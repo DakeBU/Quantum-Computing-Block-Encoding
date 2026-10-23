@@ -1,0 +1,80 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-la-119",
+  "supersedes_key": "qcb-core-la-119",
+  "supersedes_item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-la-119-textbook-v1-generated-backend-family-count-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer/rubric/exposition-only correction. Original question already asks why per-rotation counts do NOT justify a linear whole-matrix conclusion; it does not demand a universal optimal-synthesis lower bound. Give the actual unoptimized generated-backend family equality, use its unbounded G/N ratio instead of one fixed datum, and keep q=1 only as a per-stage/whole-list mismatch. Preserve all nine fields and original4 exact ordered step-node lists. Unchanged contract hash24c44aece1fcea0871151b7cead13621a753b47db0ea3ba7cd7b2b6cd171e0e0.",
+  "reference_answer": "Counts for ONE selected plane must be multiplied by the number of planes in the specified generated list. Fix the unsimplified recursive Gray/Givens backend, let S=2^q>=1, N=2^(q+1)=2S, and L=N(N-1)/2. AdjacentGivens.decomposeSO always EMITS L planes, including harmless zero-angle identity rotations. It is a list-length equality, not a theorem that a particular SO matrix optimally needs L nonidentity gates. Each full-control selected plane on the existing q+1 wires has q controls and emits S RY plus2(S-1) CX records, total3S-2. The exact generated counts are RY=L S, CX=L*2(S-1), G=L(3S-2), with zero opaque-oracle calls. These follow from the actual count equalities, not just a cubic upper bound.\n\nSubstituting S=N/2 gives G/N=((N-1)/2)*(3N/2-2). Along N=2,4,8,... this ratio is unbounded, so no fixed constant C bounds THIS backend's emitted count by C N for all widths. More quantitatively, for N>=4, L>=N^2/4 and3N/2-2>=N, hence G>=N^3/4; also G<=3N^3/4=6S^3. Thus this generated family has Theta(N^3) records. The lower comparison was derived from the exact equality for this backend; the source upper-bound theorem G<=6S^3 by itself would not prove nonlinearity or any lower bound.\n\nAt q=0,N=2,L=1 the counts are one RY and zero CX, G=1. At q=1,N=4,L=6 they are12 RY and12 CX, G=24, while one selected plane costs only four records. This datum refutes treating one-plane cost four as the whole generated list cost, but does NOT refute every asymptotic linear bound:24=6N at this size. Only the growing-width ratio above supplies that family argument.\n\nNor does any of this prove a lower bound on optimal SO synthesis or preparation of one chosen state/column. The identity matrix, for example, is SO and has an empty exact circuit, although this unsimplified backend still emits its fixed list and identity-angle records. A different optimizer or architecture is not constrained by the backend's count equality. Full-control coverage must actually enumerate all non-target wires, and plane realization/decomposition are extra semantic obligations beyond the per-plane resource line. In this current source those obligations are supplied separately by decomposeSO_action, selectedStep_matrix/Gray transport and compileSO_eval; they are not absent globally and are not proved merely by reading gate counts.\n\nThe count concerns the actual finite exact-angle RY/CX list on q+1 wires and no opaque oracle. It is not arithmetic preprocessing time, a finite-bit angle-synthesis/error bound, hardware routing cost, or an optimal gate lower bound. The correct lesson is to aggregate the generated family under its actual model and keep that claim distinct from optimal necessity.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Separates per-plane and whole generated-backend counts: L=N(N-1)/2 emitted planes, RY=L2^q, CX=2L(2^q-1), G=L(3*2^q-2), zero oracle, with identity rotations retained."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Uses the exact family equality to prove G/N unbounded (or a valid Theta(N^3) comparison), not a cubic upper bound alone or one finite-size datum. Qualifies all lower comparisons as THIS unsimplified backend, not optimal SO synthesis."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Checks q=0 and q=1; assigns the N4=24 datum only its legitimate per-stage/whole-list role. Notes full-control/decomposition semantics, their actual separate current proofs, and the identity empty-circuit counterexample to necessity."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The unoptimized Gray/Givens producer emits L=N(N-1)/2 selected planes, each3*2^q-2 gates. Its exact family ratio G/N grows quadratically, while the N4 check only distinguishes stage cost from total cost; none is an optimal-synthesis lower bound.",
+    "semantic_steps": [
+      {
+        "claim": "Each full-control selected rotation on q+1 wires emits exactly2^q RY and2(2^q-1) CX gates with no opaque oracle.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.compileSelectedRy_ryCount"
+        ]
+      },
+      {
+        "claim": "The fixed decomposeSO list emits N(N-1)/2 planes, including identity angles; this is not a minimal necessary plane count for each target.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.AdjacentGivens.decomposeSO_length"
+        ]
+      },
+      {
+        "claim": "Exact aggregation G=N(N-1)/2*(3N/2-2) has unbounded G/N along powers of two, unlike a linear backend family; an upper bound alone would not establish that.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GrayGivensCompiler.compileSO_cubic_bound"
+        ]
+      },
+      {
+        "claim": "The q1 check gives24 total versus4 per plane, not a universal asymptotic refutation. Distinct semantics/decomposition proofs and optimal/finite-bit/resource limits remain explicit.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.compileSelectedRySteps_noOracle"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "sha256_lf": "241819a53088a3f4c63a6a57df393d02a3558ef5634b534791c2f7a88c14c21e",
+      "anchor": "Read complete operative recursive producer192-214 and full RY/CX/no-oracle count induction370-409. Both recursive halves and two CX records remain even at zero angles; no optimizer is called."
+    },
+    {
+      "path": "QuantumBlockEncoding/SelectedRyPlane.lean",
+      "sha256_lf": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40",
+      "anchor": "Complete module read: selected angle/compile23-29, full-control plane refinement, exact per-plane143-156 and list aggregate/evaluation/no-oracle/count proofs through cubic bound. Actual flatMap records, not optimal costs."
+    },
+    {
+      "path": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+      "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+      "anchor": "Complete module read, including Gray/pair orientation, selectedStep and its actual matrix transport, compileSteps/count135-137, actual compileSO/evaluation, cubic bound196-199 and exact counts201 onward."
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "anchor": "Read complete operative generated sweep/step-length/action proofs222-248 and527-613; reverse/map retains exact list length N(N-1)/2, with identity steps explicitly counted."
+    }
+  ],
+  "execution": "Private author /root/qcb_formal_view_audit, pending distinct exact-content review, not self-approval or blindness. Full actual frozen release.checked()[2] item, exact bound withdrawal and complete finding read at HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. This same actual task authored the prior LA119 rejection; earlier exact-source and remaining18 comparison exposure is disclosed, not a new independent reviewer. Prior report reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json whole digesta020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22; finding digestcdee1557b5369d0e8d07d3b6de0c67340212fafc79615b8209d41683bc6109f4. Mandatory repository substantive-worker/publication/digestion/memory protocols used in this continuous task. Complete operative source/proof bodies inspected as scoped below; source LF bindings recomputed. Same frozen core/family/split/graph/source contract and exact original step count/ordered node lists retained, except the explicit first question correction when schema says question-v2. No fresh Lean/kernel/formal-view/native-formal execution, source-paper seal, new human/model approval, external acknowledgment, agent, build, canonical/source/policy/other-private/prior-evidence edit, admission, commit/push or PR107 mutation. Only this private candidate authored."
+}

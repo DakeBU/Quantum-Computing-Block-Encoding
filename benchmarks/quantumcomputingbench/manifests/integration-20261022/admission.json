@@ -1,0 +1,56 @@
+{
+  "schema_version": "qcb.integration_admission.v1",
+  "review_class": "maintainer_agent_integration_audit_not_new_independent_review_of_entire_corpus",
+  "source_native_version": "nl-v12",
+  "imported_admitted_core_ids": 217,
+  "current_admitted_core_ids": 213,
+  "current_native_splits": {"train": 74, "dev": 21, "test_public": 118},
+  "policy": "Retain frozen artifacts and reviews. Exclude exact-content-bound problematic items from current export/scoring until separately reviewed repairs exist; do not invent replacement review records.",
+  "quarantined": [
+    {
+      "key": "qcb-core-plan-001-povm-nonunique-update",
+      "core_id": "qcb-core-plan-001",
+      "item_digest": "320c2d7934ccda2c352e22328c7dd0d449039a4ef472444edb3ad7d6c4313e6d",
+      "reason": "Incorrect square-root premise and insufficient distinction between an effect/PVM and a chosen state-update instrument.",
+      "witness": "Every finite-dimensional positive semidefinite effect has a unique positive semidefinite square root, obtained by spectral calculus. This permits a square-root instrument but does not select the unique physical instrument. A projector effect likewise admits other instruments; the Lueders update is an additional specified convention, and a conditional update requires nonzero outcome probability.",
+      "source": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "source_anchor": "Section 2.2, printed page 5, distinguishes POVM outcome probabilities from the stated projective update convention. The stronger incorrect square-root assertion is the QA author's addition, not a quoted source theorem."
+    },
+    {
+      "key": "qcb-core-plan-002-partial-transpose-negativity-converse-boundary",
+      "core_id": "qcb-core-plan-002",
+      "item_digest": "a2e0f90963d9de3a008a5b6291090f3ddd7f2e6f4a5503f8a0291e4ecea5aa44",
+      "reason": "Dimension-boundary statement omits the trivial-factor case; the displayed Bell partial-transpose description is also ambiguous.",
+      "witness": "On C^1 tensor C^7 every state is a product with the unique state of the one-dimensional factor, hence separable and PPT despite total dimension 7. The 2x2/2x3 boundary must restrict to nontrivial local factors. For Phi+ the partial transpose is one half times the 4x4 swap matrix, with diagonal (1,0,0,1) before scaling, not a full identity diagonal plus off-diagonal entries.",
+      "source": "https://arxiv.org/abs/quant-ph/9605038",
+      "source_anchor": "PPT sufficiency for 2x2 and 2x3 systems. The 1xn boundary counterexample is explicit elementary reasoning, not a new Lean certificate."
+    },
+    {
+      "key": "qcb-core-plan-006-trace-norm-unitary-variational",
+      "core_id": "qcb-core-plan-006",
+      "item_digest": "350a4d461f7b4bcc804cbf605c15cad596f01ea67a77cd7e23e67c5f955fa355",
+      "reason": "Unqualified fixed-unitary impossibility has a one-dimensional counterexample; the claimed Hilbert-Schmidt Cauchy-Schwarz equivalence is not the displayed bound.",
+      "witness": "For a scalar x and any fixed scalar unitary u, abs(tr(xu))=abs(x), which is exactly the trace norm, for every x. The impossibility claim needs a dimension restriction and an argument. Ordinary Hilbert-Schmidt Cauchy-Schwarz gives the product of Frobenius norms, not directly trace norm times operator norm; the diagonal/SVD bound is valid but is a different argument."
+    },
+    {
+      "key": "qcb-core-plan-303-external-product-irrep",
+      "core_id": "qcb-core-plan-303",
+      "item_digest": "77b8111db13fc438bf847a32811c97a805cc8e72de28e649c1aa07ec0eb34536",
+      "reason": "The contrast with the inner tensor product repeats phi on W instead of using the second representation; field/finite-dimensional character conventions should be explicit.",
+      "witness": "For representations phi on V and psi on W of the same group, the diagonal tensor action is phi(g) tensor psi(g). The answer and conventions instead use phi(g) tensor phi(g), which is not the stated action on V tensor W when the representations/spaces differ. The main external-product theorem can be retained after a precisely stated, independently reviewed repair.",
+      "source": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "source_anchor": "Definition 4.2 and surrounding finite-dimensional complex representation conventions."
+    }
+  ],
+  "observed_cross_cohort_aliases": [
+    {
+      "native_core_id": "qcb-core-sp-009",
+      "legacy_key": "qcb-authored-0007",
+      "relation": "same mathematical target, native proof versus API-facing view",
+      "reason": "Both establish that a real row-canonical tensor core becomes a complex column isometry under output-row/input-column orientation. Different presentation does not add an independent mathematical core.",
+      "status": "integration-agent comparison; external shared-core acknowledgment still pending"
+    }
+  ],
+  "global_semantic_dedup_complete": false,
+  "external_collaborator_acknowledgment": null
+}

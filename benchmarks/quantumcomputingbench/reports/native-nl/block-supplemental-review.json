@@ -1,0 +1,51 @@
+{
+  "reviewer": "native-be-review-distinct-context",
+  "method": "distinct-context-source-review-supplemental-skeptical",
+  "supersedes_for_keys": ["qcb-core-be-001", "qcb-core-be-002", "qcb-core-be-010"],
+  "other_ten_unchanged": true,
+  "source_root": "QuantumComputingBench-NL/QuantumBlockEncoding (MAIN)",
+  "source_hashes_verified": {
+    "QuantumBlockEncoding/BlockEncoding.lean": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+    "QuantumBlockEncoding/CircuitSemantics.lean": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666",
+    "QuantumBlockEncoding/BlockEncodingClassics.lean": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+  },
+  "notes_global": "Skeptical supplemental re-review of the three coordinator-flagged items. I do not defend the prior green on these three. Each defect was checked against actual source scope: normalizer is an arbitrary scalar field with no nonzero constraint; the clean projection is a static zero-zero sub-block that discards all garbage by construction; the product leaf is pure matrix algebra with no ancilla model. All three reference answers assert claims not supported (and in two cases contradicted) by the source. Default is pending/reject on missing or false premises.",
+  "items": [
+    {
+      "key": "qcb-core-be-001",
+      "authored_sha256": "671bf50544fc5a21921cbbcd552f8b770637f209d6f5050e3761346499cae104",
+      "verdict": "pending",
+      "core_verdict": "uncertain",
+      "core_aliases": [],
+      "prior_verdict": "accept",
+      "defect": "divide-by-normalizer without alpha!=0 premise",
+      "notes": "SOURCE SCOPE: QueryOperatorTarget.normalizer : alpha (BlockEncoding.lean L92) is a bare field - no (0 : alpha), no invertibility, no DivisionRing constraint; grep confirms the only normalizer occurrences are the two field declarations (L35, L92). The source-faithful contract is the DIVISION-FREE form A = alpha * ((<0^a|I)U(|0^a>I)) (the doc-string of ApproximateOperatorBlockEncodingCandidate L136-153 writes alpha * block, never A/alpha), and blockContainsTarget is an abstract Prop (L115). DEFECT: be-001's reference answer and rubric c2/c3 state the per-entry REQUIREMENT as block(i,j) = A(i,j)/alpha and 'the projected block equals A/alpha', i.e. they divide by alpha; its assumptions list only 'alpha is a stored normalizer scalar, not asserted optimal' and never alpha != 0. At alpha = 0 (a legal stored normalizer) the division is undefined and the biconditional 'A = alpha*block iff block = A/alpha' is false (A=alpha*block=0 does not force block=A/alpha). The question asks for 'the single scalar equation that must the extracted entries satisfy' and the answer gives the division form as that equation - incorrect for the full scalar range the source admits. RESOLUTION: pending until either (a) an explicit alpha != 0 (or invertible normalizer) premise is added to assumptions, or (b) the required equation is restated division-free as A = alpha*block (with block = A/alpha offered only under the stated alpha != 0 case). Not accept as written.",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncoding.lean normalizer field L92, L35; ApproximateOperatorBlockEncodingCandidate L136-153; blockContainsTarget L115", "grep normalizer -> only field decls, no nonzero constraint"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-002",
+      "authored_sha256": "cc8aa28cb5ad1115d28a6b717d3d08f577aa14c00b0f8fb6cb2db6a5dbc8ed37",
+      "verdict": "reject",
+      "core_verdict": "uncertain",
+      "core_aliases": [],
+      "prior_verdict": "accept",
+      "defect": "false implication: block equality does NOT force pure-ancilla cleanup",
+      "notes": "SOURCE SCOPE: signalSystemBlockProjection (CircuitSemantics.lean L753-762) extracts the static sub-block block(i,j) = M(signalIdx*rows+i, signalIdx*cols+j), i.e. <0,i| U |0,j> with the auxiliary pinned to zero on BOTH bra and ket. By construction this projection DISCARDS every auxiliary-nonzero output branch; it is a single family of matrix entries, independent of what U produces on the garbage (a != 0) branches. DEFECT: be-002's reference answer and rubric c2/c3 assert that 'a pure ancilla may NOT be left in an arbitrary state on the clean branch' because 'any residual ancilla excitation on the clean output would move amplitude out of the projected block and break the exact (or epsilon) equality.' This is FALSE as stated. The block-correctness equation <0,i|U|0,j> = A(i,j)/alpha constrains only the zero-zero sub-block; it holds perfectly well while U|0,j> = |0,(A/alpha) e_j> + (garbage on a != 0). A concrete witness (per coordinator): a single-workspace one-qubit route with no signal/flag and top-block x realizing block entry x - the sub-block equation is satisfied while the output ancilla is excited on the garbage branch; nothing is 'moved out of the projected block' because the projection already ignores that branch. INDEED be-007's own decomposition (|0^a> tensor (A/alpha)v + orthogonal auxiliary-nonzero branches) relies on exactly this garbage being allowed. The reference conflates (i) the physical pure-ancilla cleanup property of the full unitary action with (ii) the static sub-block equality; (ii) never implies (i). The conceptual distinction signal=postselection flag vs pure ancilla=workspace is fine, but the cleanup requirement is an INDEPENDENT premise living outside the sub-block equation, not a consequence of it. RESOLUTION: reject as written; the false 'breaks block correctness' implication (c2/c3) must be removed and the pure-ancilla-returns-to-zero condition stated as a separate standalone assumption, not derived from block equality.",
+      "checked_sources": ["QuantumBlockEncoding/CircuitSemantics.lean signalSystemBlockProjection L741-772 (projection pins aux=0 both sides, discards garbage)", "QuantumBlockEncoding/BlockEncoding.lean RegisterLayout L14-30, blockContainsTarget L115", "cross-check be-007 reference answer: garbage branch explicitly permitted"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-be-010",
+      "authored_sha256": "b3f6671c8215168e66bcfaeae7ab58ddeb0c2fade935d1ea846bb1094db41687",
+      "verdict": "pending",
+      "core_verdict": "uncertain",
+      "core_aliases": [],
+      "prior_verdict": "accept",
+      "defect": "claims reset/uncompute 'fixes' product freely; reset of entangled garbage is not a coherent restoration and is outside source scope",
+      "notes": "SOURCE SCOPE: productCleanBlockCertificate (BlockEncodingClassics.lean L800-808) is PURE matrix algebra: cleanBlock := Matrix.mul left.cleanBlock right.cleanBlock, target := Matrix.mul left.target right.target, blockProof := matrix_mul_congr_pointwise (L792-797). It models NO ancilla, no unitary, no reset, no uncompute - it only multiplies two already-extracted clean blocks and preserves pointwise equality. productResourceCost (L832-839) merely ADDS auxiliaryQubits/gateCount/depth. DEFECT: be-010's reference answer states 'a correct product needs each factor to see an all-zero ancilla - either disjoint ancilla registers ... or an explicit uncompute/reset between factors'. Treating 'reset' as a free fix is wrong: after U_B the ancilla is entangled with the system (clean branch |0> tensor (B/alpha)v plus garbage on a != 0); a RESET (measurement-and-discard or re-initialization) of that entangled register decoheres/collapses the state and does NOT restore the coherent map needed for U_A to act as A's clean block on B's clean block - it destroys the superposition carrying the amplitude. Only a COHERENT uncompute (applying the inverse that returns the ancilla to zero conditioned on the actual computation) or genuinely DISJOINT fresh ancillas yields the correct product; and coherent uncompute is generally not available 'for free' - it requires the specific inverse structure. My prior review flagged 'reset not unitary' only as an optional nuance and still accepted; on skeptical re-review this is a genuine defect, both physically (entangled-garbage reset != restoration) and in scope (the entire shared-ancilla/reset narrative is NL commentary beyond the pure-algebra leaf the source actually proves). The proved algebra leaf itself is correct and distinct; the defect is the reference answer's unsupported/incorrect physical cleanup claim. RESOLUTION: pending until the reference conditions correctness on actual coherent uncompute OR disjoint ancillas and drops 'reset' as a free fixer (or restricts 'reset' to the unentangled/freshly-initialized case).",
+      "checked_sources": ["QuantumBlockEncoding/BlockEncodingClassics.lean matrix_mul_congr_pointwise L792-797, productCleanBlockCertificate L800-808, productResourceCost L832-839 (no ancilla/reset model)", "QuantumBlockEncoding/ConcreteSemantics.lean failure-branch comment L271-294"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

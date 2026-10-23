@@ -1,0 +1,175 @@
+{
+  "reviewer": "native-planned-review-distinct-context",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-plan-001-povm-nonunique-update",
+      "authored_sha256": "c8ab896d09315ab060f7a5f24d1b8301896b61e94650d03ab12ee8819d60697f",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Leditzky FT25 pp4-5 Def 2.4/2.5, Eq 2.10-2.13. r1: Eq 2.11 sum_j tr(rhoP_j)=tr rho=1 from positivity+completeness, orthogonality unused -> correct (source: 'we only needed items i and ii'). r2: projective update Eq 2.13 (P_j rho P_j)/tr(rho P_j) tied to idempotency/orthogonality -> correct. r3: POVM square-root non-uniqueness, M_k->V_kM_k leaves tr(rho E_k) fixed -> sound Kraus gauge freedom; source: POVM has 'no unique way of defining a post-measurement state'. r4: Naimark realization on larger system -> matches. Math exact; no counterexample.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-002-partial-transpose-negativity-converse-boundary",
+      "authored_sha256": "59f7fc6192a3abe930c8ea475ec927fcc2654d80244d131cc4967c0bf5499799",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp7-9 Prop 2.7 + Eq 2.25 + p9. (a) PPT-closure proof correct (linearity, transpose preserves spectrum, convex combo PSD). (b) corner state partial transpose = (1/2)F swap; recomputed swap spectrum [-1,1,1,1] so exhibited eigenvalue -1/2 correct. (c) PPT sufficient iff dim-product<=6 (HHH96) with bound entangled states above -> matches p9. Sound advanced boundary.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-003-density-set-convexity",
+      "authored_sha256": "04624b71cfc4cf2bebbc8bbd1bee905a8ea0e93affcfa5fdead8fbd9e7f82e36",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp3-4 Def 2.1 + p4. Positivity uses p_i>=0, trace uses sum p_i=1, extreme points=rank-one pure states (source: pure state=extreme point, rank1). Direct derivation correct, source-anchored.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-004-ensemble-nonuniqueness",
+      "authored_sha256": "a31bfaa448635ad3e5d85b82ac85cbb112d7eca5cc306717f555718e721459dc",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "p12 Exercise 2.1 Eq 2.37-2.38. Recomputed sum_j|phi'_j><phi'_j|=sum_{l,m}(V-dagger V)_{ml}|psi'_l><psi'_m|; V-dagger V=I_r collapses to rho -> index algebra correct. Renormalization q_j, |phi_j>=q_j^{-1/2}|phi'_j> matches Eq 2.38. Isometry freedom (any k>=r) => infinitely many ensembles. Source frames as exercise; NL phrasing original.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-005-classical-correlation-vs-product-counterexample",
+      "authored_sha256": "a381a5a87ca295ae036738d270449cd1c539eefb36fd507ec5986072609a4a15",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp5-6 Eq 2.16 + separable def + 'pure separable => product' remark. (a) tr[(w⊗s)(E⊗F)]=tr(wE)tr(sF) correct. (b) rho=1/2|00><00|+1/2|11><11|: marginals I/2, product I/4 rank4 vs rho rank2 => non-product; Pr(00)=Pr(11)=1/2 else 0, Pr(a)=Pr(b)=1/2 => correlated. Correct witness. (c) pure separable extreme hence single product hence uncorrelated => correlated separable must be mixed. Sound.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-006-trace-norm-unitary-variational",
+      "authored_sha256": "3fe305bf5299730e4ba4938a75f1a8de5ee4ec03a44f473ffd0dcbdaece683d2",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp10-13 Prop 2.14 + Exercise 2.6. |tr(XU)|=|tr(Sigma Y)|, Y=V-dagger U W unitary, |Y_ii|<=1 => <= sum s_i. Attainment U=VW-dagger: XU=W Sigma W-dagger, tr=tr Sigma=||X||_1 recomputed correct. Source hint uses X=W1 Sigma W2 (equivalent). Fixed-unitary caveat valid. Sound.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-007-werner-entanglement-threshold",
+      "authored_sha256": "d9ff11599aeb2a57de21c14d89c6578e8c07099d54f4f023b4f7d8fc14965d80",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp13-16 Prop 3.1/3.2 + Eq 3.19-3.22. rho(x)^{T_B}=((2-x)/6)I+((2x-1)/3)Phi+ via F^{T_B}=2Phi+, I^{T_B}=I. Recomputed P_+ eigenvalue z=(2-x)/6+(2x-1)/3=x/2 (checked x=-1,0,1/2,1) negative iff x<0; matches Eq 3.21 diag(z,y,y,y). Separable direction swap trick tr(w s)>=0 dimension-independent, matches Eq 3.22 and p16 remark. Threshold x<0 exact. Sound advanced.",
+      "checked_sources": [
+        "temp/qit-primary.pdf.native.txt (Leditzky FT25, pp3-16, full bounded read)",
+        "data/native_nl/foundations.json (formal LA batch; no measurement/entanglement overlap)"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-008-normalized-block-success-probability",
+      "authored_sha256": "2b74d1fa51314ffb938ea80c8b9990167551da89c2cb9d3b800685937d99f980",
+      "verdict": "pending",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qsc-block-encoding-dedup-adapter-001"
+      ],
+      "notes": "Lin-Wiebe pp141-144 Sec 9.1 Eq 9.1-9.4,9.9-9.10. p(0)=||A|b>||^2/alpha^2=(1/alpha^2)<b|A-dagger A|b> correct; exact alpha=1 p(0)=||A|b>||^2; norm recovery ||A|b>||=alpha sqrt(p(0)); p~1/alpha^2 oversized alpha harmful; normalized output A|b>/||A|b>|| -> all match source. MATH VALID. NOVELTY: base success-probability/postselection fact of Sec 9.1; authored roadmap item qsc-block-encoding-dedup-adapter-001 explicitly directs the scientific-computing part to point back to the existing certified Block Encoding part and NOT re-formalize under a second API. new_problem_core=true with empty aliases not safely established by source inspection alone -> core_verdict existing_view; verdict pending dedup against existing certified BE part.",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+        "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+        "data/authored/planned-corrections.json"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-009-subnormalization-scale-lower-bound",
+      "authored_sha256": "4e1d482fddb82b818dd82662c1276158894ca859faf3ed10c4731fe396b25f4d",
+      "verdict": "pending",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qsc-block-encoding-dedup-adapter-001"
+      ],
+      "notes": "pp142-143 Exercise 9.1 + Eq 9.8-9.10. Block B=PUQ contraction ||B||<=1 proof correct (projectors non-expansive, U norm-preserving); A/alpha a block => ||A||<=alpha i.e. alpha>=||A|| necessary; ||A||>1 rules out unit factor; alpha=||A|| smallest admissible; bound is scale-only not efficient-circuit guarantee -> matches source. MATH VALID. NOVELTY: Exercise 9.1 standard norm bound; same dedup caution as plan-008 (dedup-adapter roadmap). core_verdict existing_view; verdict pending.",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+        "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+        "data/authored/planned-corrections.json"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-010-entry-vs-operator-norm-verification",
+      "authored_sha256": "7eb4bcc47cd484eca74b3c72c610641fda9fd59671204422012b6a498bbff76d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp143-144 Eq 9.11-9.13. (a) prepare-apply-overlap reads <0^m,i|U|0^m,j>; U=U_B U_C factorization (U_B-dagger|0^m,i>)-dagger(U_C|0^m,j>) correct (Eq 9.13, Fig 9.2). (b) exact entrywise set B_ij=A_ij <=> operator identity B=A; approximate embedding Eq 9.11 controls operator norm ||A-alpha B||<=eps not per-entry; all-ones dxd matrix times delta has operator norm d*delta (verified eigenvalue d for d=2,3,5) so tiny entry errors accumulate -> correct quantitative witness. MATH VALID. Entry-vs-spectral pitfall NOT in authored BE batch (only 9.10 sum / 9.12 product). Parent added top-level supporting_nodes concept:matrix-analysis matching the third semantic step; no Q/A change. new_distinct.",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+        "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+        "data/authored/planned-corrections.json"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+      "authored_sha256": "5adedbae0d080ca887115830b6825b1eedd2eb34f7ba62ab5c5fb3dc171be2be",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "pp143-144 Example 9.3 Eq 9.14. Middle M=[[Sigma,S],[S,-Sigma]], S=sqrt(I-Sigma^2): M-dagger M diagonal blocks Sigma^2+S^2=I, off-diagonal [Sigma,S]=0 => unitary (verified). Product diag(W,I) M diag(V-dagger,I) top-left block = W Sigma V-dagger = A. Non-unitary A equals no system-only unitary (norm non-preserving); ancilla+postselection success ||A|b>||^2 unavoidable -> sound. SVD dilation construction not in authored batch. new_distinct.",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+        "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+        "data/authored/planned-corrections.json"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-012-lcu-optimal-subnormalization-cauchy-schwarz",
+      "authored_sha256": "57b13d9edff532288897c940d548d7d9537898468d0a2f8f6ad61917f8823994",
+      "verdict": "pending",
+      "core_verdict": "uncertain",
+      "core_aliases": [
+        "qasc-lcu-sum-additive-error-prop910-001",
+        "qasc-product-block-encoding-error-prop912-001",
+        "qsc-block-encoding-dedup-adapter-001"
+      ],
+      "notes": "pp145-146 Lemma 9.5 Eq 9.20-9.26. factor ||beta||_2 ||gamma||_2; ||alpha||_1=sum|beta_i gamma_i| <= ||beta||_2 ||gamma||_2 by Cauchy-Schwarz (Eq 9.26); optimum |beta_i|=|gamma_i|=sqrt(|alpha_i|) giving factor ||alpha||_1 (Eq 9.23); success prob ~1/factor^2 so minimizing factor maximizes success -> all match source exactly. MATH VALID. NOVELTY: Lemma 9.5 itself NOT among authored items (which cover Prop 9.10 sum and Prop 9.12 product composition error), so not a direct duplicate, but same qsc LCU family under the dedup-adapter roadmap caution. core_verdict uncertain; verdict pending (adjacent to authored LCU items).",
+      "checked_sources": [
+        "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+        "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+        "data/authored/planned-corrections.json"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

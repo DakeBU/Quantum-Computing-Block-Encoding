@@ -1,0 +1,365 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_native_comparison",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "selection": "Exact historical prepared qcb-core-plan-511 through520 returned by release.checked()[2]; all ten present, no substituted IDs or successors.",
+    "requested_core_ids": [
+      "qcb-core-plan-511",
+      "qcb-core-plan-512",
+      "qcb-core-plan-513",
+      "qcb-core-plan-514",
+      "qcb-core-plan-515",
+      "qcb-core-plan-516",
+      "qcb-core-plan-517",
+      "qcb-core-plan-518",
+      "qcb-core-plan-519",
+      "qcb-core-plan-520"
+    ],
+    "absent_ids": [],
+    "observed_head": "be93e03c1524fe1d7ea2e02796789d65fae90951",
+    "binding_revalidated_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "checkpoint_transition": "The shared checkout advanced during this private review; all ten exact whole-item/contract digests and metadata LF binding remained unchanged on final revalidation.",
+    "role": "Private review for a subsequent checkpoint, outside the active reader-reviews glob. Frozen prior nine-item report and candidates are untouched.",
+    "canonical_worktree_observation": "The shared tree had pre-existing/concurrent modifications to website/scripts/quantumcomputingbench.py and website/scripts/test_quantumcomputingbench.py when binding metadata was collected. This task did not write either file or any canonical file.",
+    "bounded_comparison_scope": "Ten full mathematical/grading records plus four actual close neighbors203/220/503/506; only substantive close-target relations are recorded below. No full-catalog or global split/deduplication conclusion."
+  },
+  "provenance": {
+    "actual_identity": "/root/qcb_native_comparison",
+    "exposure": "Not blind/source-blind. I previously read511/512 as bounded neighbors while reviewing502–510, and retain that prior source context. In this batch I read complete question/reference-answer/rubric/assumption/convention/semantic-step fields without consulting earlier verdict files for511–520. I did not author these stored ten items. No human/expert/model or new-reviewer-identity claim is made.",
+    "protocols": "Refreshed full AGENTS, HARNESS, theorem-publication, proof-digestion, evidence-routed-memory and substantive-worker/frontier-master instructions; used the PDF skill. No proof-bearing implementation or public content was changed, and no build/kernel gate was run.",
+    "primary": {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition": "29 April2026 public447-page edition",
+      "actual_byte_length": 5718900,
+      "actual_raw_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "pin_matched": true,
+      "actual_pdf_page_count": 447,
+      "complete_operative_text_pages_read": [
+        161,
+        162,
+        174,
+        175,
+        176,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190
+      ],
+      "actual_visual_pages_personally_rendered_in_memory_and_viewed": [
+        182,
+        185,
+        186,
+        188
+      ],
+      "operative_region_limits": "Definition9.25; full CS proof/Theorems10.9–10.10; Section10.6/example10.13; full Proposition11.1 argument, Grover Theorem11.2 proof, examples11.3/11.4, phase-kickback/diffusion circuit and full Proposition11.6 proof with reversible-state-preparation example. Later pages191–195 were text-read for context, not treated as blanket proof of these records; prior personally read pages167–168 support the bounded220 comparison. No entire-book review or visual claim for unlisted pages.",
+      "source_trust_boundary": "The source itself prints the overstrong classical randomized claim in Proposition11.1 and leaves some normalized-vector endpoint denominators unqualified. Source agreement is not substituted for mathematical correctness. The added complex-arcsine rejection in517 is not stated by the inspected source.",
+      "storage": "Primary retrieval, text extraction and page rendering were in memory only; no source/PDF/image file was written or redistributed."
+    },
+    "executed_checks": "Read-only release.checked() preparation, exact whole-item/contract digests and LF binding checks; primary-byte retrieval/extraction/rendering; exact finite enumeration of the N4 q2 classical counterexample (36/48 successes for each mark). The matrix/multiple-angle reconstructions are mathematical reasoning, not a fresh kernel certificate.",
+    "local_source_binding_limit": "source_checks binds the exact LF source-metadata file used by the items. It is metadata, not the external proof text; primary binary identity and inspected regions are separately recorded above.",
+    "excluded_claims": "No kernel/nativeformal closure, production circuit execution, compiled gate/finite-bit bound, global deduplication, novelty, admission or stable-release claim. No other agents and no repair authoring."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-511",
+      "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+      "item_digest": "216c79773b04ab1d4a02081409afd1d5bcb8b699bbc13e5e52d49665f0603746",
+      "question_contract_hash": "ed4585cfb75c266e5b089844b910e94a070956a03ae17c3f01168dd077e4f78e",
+      "verdict": "accept",
+      "reasoning": "The finite-dimensional orthogonal-projector statement is correct; 'change of basis' must transform U as well, not identify two different projectors by a single conjugation while leaving U unchanged. Explicitly choose input/output basis unitaries S,T so P=S P0 S† and P'=T P0 T† when ranks agree. Set U0=T†US. Then S†[U†(2P'-I)U(2P-I)]S=U0†(2P0-I)U0(2P0-I), proving rubric1 and steps1–2 precisely. For arbitrary ranks put Q=U†P'U. Both Q and P are orthogonal projectors, so the iterate is (2Q-I)(2P-I). On ran(P), diagonalize PQP: an eigenvector v with eigenvalue sigma²∈(0,1), together with (Qv-sigma²v)/(sigma sqrt(1-sigma²)), spans an invariant orthonormal plane. In that basis P=diag(1,0) and Q=[[sigma²,sigma sqrt(1-sigma²)],[sigma sqrt(1-sigma²),1-sigma²]], yielding a rotation by 2 arccos(sigma). Distinct spectral vectors supply orthogonal blocks. Intersections and the zero/one endpoints give one-dimensional sign sectors; rank mismatch can add eigenvalue -1 as well as +1 lines, so the answer's 'fixed vectors' means invariant lines, not necessarily vectors literally fixed with eigenvalue+1. This supplies the content behind rubric2–4 and steps3–6, rather than merely naming Jordan's lemma. The singular values here are those of the induced compression P'UP between the chosen subspace bases; for an independently scaled or approximate target, they instead encode its normalized/approximate block, not an unqualified sigma(A). Source Definition9.25, Eq10.107 and the full CS proof support this algebraic interpretation. Existence of S,T or these invariant planes is not an efficient basis-change compiler, a query construction, an error bound, or a normalized postselected-output claim.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-512",
+      "key": "qcb-core-plan-512-rotation-reflections-overlap-example",
+      "item_digest": "f7c7bcf690a37698856d2c6713a064d8184919097eb397ba4fc74e1f628a723a",
+      "question_contract_hash": "fcc6737d65441cbb178d120b9eb16efd98e5f9dcf52e41b913ee178a8109a979",
+      "verdict": "accept",
+      "reasoning": "Let P=|0><0|⊗I2, T=R(theta)⊗I2 and P'=TPT†, with R(theta)=[[cos(theta),-sin(theta)],[sin(theta),cos(theta)]]. Input vectors are |0,j> and output vectors T|0,i>, so their overlaps are cos(theta)delta_ij. Thus the induced 2×2 operator is cos(theta)I2, and both singular values equal cos(theta); 'nondegenerate' in the assumption must mean non-endpoint, not multiplicity one. Since U=I, E=(2P'-I)(2P-I)=[R(theta)ZR(theta)†Z]⊗I2=R(2theta)⊗I2. Its eigenvalues e^(±2i theta) each have multiplicity two. Because 0<theta<pi/2 is explicitly stipulated, the signed principal eigenphases lie in (-pi,pi) and sigma=cos(|phase|/2) is unambiguous; no endpoint or negative-overlap extension is needed. This verifies all four rubric entries and six semantic steps, including the reflection order and the untouched second qubit. Reversing the product would reverse the signed phase, but not its absolute-value/singular-value relation. The calculation exactly reconstructs Example10.13/Eqs10.108–10.111. It is an exact overlap/product identity, not a claim that the generally nonunitary encoded operator itself is applied deterministically to a normalized state, nor any QSP phase-synthesis or resource theorem.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-513",
+      "key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+      "question_contract_hash": "223283ae1e418ed41b108cf5cec5af739ef40b70d1bd30aa955b782c7f7f80a9",
+      "verdict": "uncertain",
+      "reasoning": "The nontrivial-search calculation is correct, including its orientation, but the literal question does not exclude the undefined N=1 endpoint. For N>1 define g=|marked>, b=(sum_unmarked|x>)/sqrt(N-1), phi=arcsin(1/sqrt(N)); then s=sin(phi), c=cos(phi), and psi=s g+c b. In ordered basis (g,b), the marked reflection is diag(-1,1), the uniform reflection is [[2s²-1,2sc],[2sc,2c²-1]], and their stated product is [[cos(2phi),sin(2phi)],[-sin(2phi),cos(2phi)]]. Thus the signed Cartesian rotation is -2phi in that ordered basis, or +2phi measured from the bad axis toward the good direction as the answer does. Its action on (sin(phi),cos(phi)) gives (sin((2k+1)phi),cos((2k+1)phi)); this proves the four rubric requirements and six steps without an eigenvalue/SVT confusion. For N=2 ordinary pi-phase Grover iterations never make the success probability exceed1/2, so the answer's final 'near one' description is only the usual large-N/suitable-rounding mechanism, not an arbitrary-precision amplification guarantee for every N. More importantly, the stated assumptions permit N=1: the sum over unmarked states is zero, cannot be normalized, and the required two-dimensional plane does not exist. The physical search is then trivial and the scalar sine formula still extends, but that does not fulfill the requested normalized-plane proof. Source Eq11.15 has the same 1/sqrt(N-1) denominator. I mark the complete current contract uncertain pending an explicit nontrivial-size domain or an endpoint treatment, rather than silently adding N≥2 or rejecting the correct interior derivation. No repair is written here.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-514",
+      "key": "qcb-core-plan-514-grover-failure-bound",
+      "item_digest": "f8f0ce53cafa5cf44f72a178c5cf657a9a3d80928242702e3db089b8f6f7b21a",
+      "question_contract_hash": "f3bb526747059fac7bcd16af26c0001dc91c8db8ec797e25cf6587e56f1e33ba",
+      "verdict": "accept",
+      "reasoning": "Put phi=arcsin(1/sqrt(N)) and k=floor(pi/(4phi)-1/2). Then beta=(2k+1)phi≤pi/2 and beta>pi/2-2phi. For N≥2 the latter lower endpoint is nonnegative, so monotonicity of cos² on [0,pi/2] gives failure=cos²(beta)≤sin²(2phi)=4(N-1)/N²≤4/N. At N=1, k=0 and success is exactly1 directly, so no nonexistent bad state or monotonicity across a negative endpoint is needed. Each independent run costs k marking calls plus the expressly assumed one verification call. With actual success s_N=sin²(beta)>0, geometric repetition costs (k+1)/s_N in expectation. The shortcut 1/(1-4/N) is usable only for sufficiently large N, not N≤4: for N≥8, s_N≥1/2 and k=O(sqrt(N)); the finitely many smaller sizes have strictly positive s_N and bounded query counts (for example N=2 gives1/2, N=3 gives1/3 and N=4 gives1). Consequently the claimed asymptotic O(sqrt(N)) holds over the full positive-integer range without dividing by a zero or negative lower bound. Markov's inequality on the stopping-query count then supplies a constant-factor query cutoff with success at least2/3. This verifies the full rubric and semantic chain; the answer's 'one plus a vanishing correction' is an N→infinity assertion, not a bound for small N. Source Eqs11.19–11.21 contain the same main argument. Verification is an additional oracle call, fresh repetitions must be independent, and no diffusion-gate, oracle-construction, finite-bit or state-preparation gate bound is inferred.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-515",
+      "key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+      "item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+      "question_contract_hash": "fa874276dfb0cbc5379d847074a106af8d877df1dba90ef559690fd9f8494b8c",
+      "verdict": "reject",
+      "reasoning": "The interior two-reflection formula is correct, but the whole contract includes an unsupported endpoint and overstates the iteration target. When 1≤M<N, the normalized states g=(sum_marked|x>)/sqrt(M), b=(sum_unmarked|x>)/sqrt(N-M) give psi=sqrt(M/N)g+sqrt(1-M/N)b. Defining phi=arcsin(sqrt(M/N)) yields the Grover plane matrix [[cos(2phi),sin(2phi)],[-sin(2phi),cos(2phi)]] and success sin²((2k+1)phi). In the sparse-mark regime M/N→0, choosing an integer near pi/(4phi)-1/2 gives k=Theta(sqrt(N/M)) and a bounded-success schedule; the near-unit approximation improves only with the small-angle/rounding regime. Yet the explicit assumptions say only M≥1 and known, so M=N is allowed. Then the unmarked sum is zero, its advertised normalization divides by sqrt(N-M)=0, and there is no good/bad two-dimensional plane as required by the question, rubric1–2 and steps1–4. The answer gives no separate all-marked case. Moreover M=N needs zero Grover iterations, not a positive Theta(sqrt(N/M)) optimum; and M=N/2 permits success exactly1/2 for every integer k under ordinary pi-phase Grover, so putting the angle near pi/2 does not universally make success near1. Source Example11.3 itself writes the bad-state denominator without excluding M=N and states bounded-below-by-a-constant success, not an arbitrary near-one guarantee. The geometric angle of psi from b is phi, whereas 2phi is the iteration angle; the question's 'angle with the bad state whose half-angle...' wording also conflates these unless read through the convention. Knowing M is relevant to this direct calibrated stopping rule, not a necessity for all search algorithms; randomized schedules can handle unknown M. These are defects in the actual question/rubric scope, not a rejection of the valid interior formula or a license to substitute a repaired target.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-516",
+      "key": "qcb-core-plan-516-grover-odd-chebyshev-identity",
+      "item_digest": "d16b9b79662aed1cc9a0d4dbaf86e932a72fa15e988bfa6581425efd1b448e4a",
+      "question_contract_hash": "8d28311cfe3fb9a671acd4693cf06c734bea72c058c9a50c349012ef138ca09f",
+      "verdict": "accept",
+      "reasoning": "The advertised rank-one identity and fixed-iteration phase are exact. Set P=|psi><psi|, P'=|x><x|, U=R_psi=2P-I and Q=2P'-I=-R_x, where R_x=I-2P'. The input/output induced scalar is <x|U|psi>=<x|psi>=a. Since U=U†=R_psi and U(2P-I)=I, the paired iterate E=U† Q U(2P-I)=R_psi Q=-G. Therefore the full extracted odd output is P'U(2P-I)E^kP=P'E^kP=(-1)^k sin((2k+1)phi)|x><psi|, phi=arcsin(a), by the exact Grover plane dynamics. Finally arccos(a)=pi/2-phi gives T_(2k+1)(a)=(-1)^k sin((2k+1)phi), identifying the coefficient. This checks all four rubric entries and six steps, including the front U/input-reflection cancellation that would be missed by merely counting odd powers. At N=1 the scalar identity holds directly even though the nontrivial plane collapses. The flagged coefficient is signed; its magnitude is |sin((2k+1)phi)| and the probability is its square. The global phase (-1)^k is irrelevant for a fixed classical iteration count and measurement, but becomes a relative phase if k or the number of iterations is coherently controlled. No unconditional state-normalization or free controlled-oracle claim follows. Source Eq11.30 and the surrounding full paragraph were read and visually checked. The O(sqrt(N)) recovery is an asymptotic, suitably rounded search statement, not exact unit success for every finite N.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-517",
+      "key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+      "item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+      "question_contract_hash": "fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e",
+      "verdict": "reject",
+      "reasoning": "The real-domain proof in rubric1–2 is correct: for a∈[-1,1], write a=sin(phi), phi=arcsin(a), then T_(2k+1)(a)=cos((2k+1)(pi/2-phi))=(-1)^k sin((2k+1)phi), including a=±1 and k=0. But outside this interval the real arcsine expression is undefined; this is a domain/type failure, not a real numeric counterexample to an equality. The full reference answer goes further and explicitly dismisses complex interpretation, claiming there is 'no way' it could equal T3(2)=26. That is false. Let h=arccosh(2)=log(2+sqrt(3)) and z=pi/2-i h. Then sin(z)=2, sin(3z)=-cosh(3h)=-26, and (-1)^1 sin(3z)=26=T3(2). Equivalently the entire identity -sin(3z)=4 sin³(z)-3 sin(z) proves the same equality for any complex inverse-arcsine value of2. General odd-order multiple-angle identities likewise continue polynomially; a complex sine is not bounded by1. Thus the question/rubric3's requested 'false extension' must be distinguished from lack of a real inverse-sine argument, and the answer's explicit complex rebuttal is mathematically wrong. The correct real hyperbolic formula for a>1 is T_m(a)=cosh(m arccosh(a)); for a<-1 it is (-1)^m cosh(m arccosh(-a)), not the unqualified expression in semantic step6, whose real arccosh(a) is undefined there. Source Example11.4 only uses a∈[0,1] and does not claim complex continuation fails. Source fidelity to that restricted use cannot certify this added boundary argument. The real overlap constraint remains valid, but the complete answer/rubric cannot be accepted.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-518",
+      "key": "qcb-core-plan-518-classical-search-lower-bound",
+      "item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+      "question_contract_hash": "6d6f5612311dac1f0e44d408b9252b503fc88147ef8c39813b5b18f2a1106d18",
+      "verdict": "reject",
+      "reasoning": "The literal N-1 bound for unconditional bounded-error classical randomized search is false, including for a label-symmetric/unbiased algorithm. Take n=2, N=4. Sample a uniform random permutation of the four inputs, query its first two distinct entries, and output the marked entry if either query hits. If both answers are0, choose uniformly from the remaining two inputs. For each fixed marked input, the hit probability is2/4; on the complementary event the final guess succeeds with probability1/2. Hence unconditional success is1/2+(1/2)(1/2)=3/4>1/2 using exactly2<N-1=3 queries in the worst case. The algorithm is equivariant under every permutation of input labels, with the same success for every mark, so it is not biased toward a particular candidate. I also executed a bounded exact enumeration: all24 permutations times the two final guess choices give36 successes out of48 for each of the four possible marks. Padding to a fixed distinct-query count is legitimate after caching/removing repeats, but does not fix the proof: after conditioning on a particular all-zero transcript, the remaining pair is indistinguishable and conditional success is at most1/2; hit transcripts have success1 and must be included in the unconditional probability. For randomized algorithms the pair of unqueried candidates also depends on the internal random choices, so choosing the adverse pair after fixing those choices swaps the standard worst-input/average-coins quantifiers. In general the same symmetric q-query construction succeeds with (q+1)/N, retaining the usual Omega(N) constant-success scale but not the stated exact N-1 threshold. N-1 is the exact-certainty/deterministic worst-case boundary, or a conditional-transcript statement under an expressly different success contract. The pinned Proposition11.1 and proof print this stronger erroneous claim; no definition of 'unbiased' there excludes the symmetric counterexample. Rubric3 and steps4–5 inherit the invalid inference. The separate observation that classical transcript indistinguishability alone supplies no quantum lower bound is correct, but cannot rescue the false classical theorem. No quantum lower-bound proof or production quantum execution is claimed.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-519",
+      "key": "qcb-core-plan-519-phase-kickback-bit-to-phase-oracle",
+      "item_digest": "afb80c476b2ea2e3b90eb6c6150ac9bab08f06123950b5cbfebb94a581d1d088",
+      "question_contract_hash": "79b4f7fdf66d25ba3607bd6e15d7c862922a03e8f0d7565c6039b3d271f6d9bb",
+      "verdict": "accept",
+      "reasoning": "Writing V_f=sum_x |x><x|⊗X^(f(x)) and X|->=-|-> gives V_f(|x>⊗|->)=(-1)^(f(x))|x>⊗|-> exactly. For an arbitrary coherent input, including one entangled with an external reference, linearity gives [sum_x(-1)^(f(x))|x><x| applied to the input/reference]⊗|->. Thus the x-dependent sign belongs to the input amplitudes, while the same answer factor is returned for all x; it is not residual answer/data entanglement or a discarded measurement outcome. This proves rubric1–3 and the first four steps. Each induced marking reflection consumes one V_f call, with one initial preparation |->=H|1> and no measurement or amplification. Reusing this ancilla requires later operations preserve its prepared factor, as in the specified repeated phase-oracle calls; it does not mean an arbitrary dirty answer qubit works. The diffusion remark uses the same kickback device with a known zero-test predicate after Hadamards, not another free query to the unknown marking function. I visually checked the actual source circuit on p186: it includes an extra X on the |-> wire. That contributes a global minus which combines with the zero-test kickback to give 2|0^n><0^n|-I, rather than its negative, matching Eq11.22. Omitting that X would change the exact diffusion operator by a sign. All four rubric entries and six steps are supported by Eqs11.1/11.4/11.22 and this direct calculation. The statement counts oracle calls, not construction of V_f, multi-control synthesis or finite-bit gates; no stronger dirty-workspace or coherently variable-iteration phase claim is inferred.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-520",
+      "key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+      "question_contract_hash": "9fc6da7ea892a915785e7651e360083795319bc98f19859b6d758618a32c676e",
+      "verdict": "uncertain",
+      "reasoning": "The intended quadratic scaling is correct under the standard reversible-preparation access model, but its per-iteration growth language and oracle hypotheses are not sufficiently scoped for unconditional acceptance of the full contract. For a normalized prepared state psi=U|0>, p∈(0,1), let phi=arcsin(sqrt(p)), g=P_good psi/sqrt(p), b=(I-P_good)psi/sqrt(1-p). With R_good=I-2P_good and R_psi=U(2|0><0|-I)U†, W=R_psi R_good gives good coefficient a_k=sin((2k+1)phi). The exact increment is a_(k+1)-a_k=2 sin(phi)cos((2k+2)phi), not a uniformly positive Theta(sqrt(p)) amount at every iteration. On an explicitly early fixed-angle window, e.g. (2k+2)phi≤pi/3, it is between sqrt(p) and2sqrt(p); choosing a stopping angle bounded away from pi/2 gives constant success in Theta(1/sqrt(p)) steps. Classical accumulated success is1-(1-p)^t with increment p(1-p)^t; it is Theta(p) on the relevant bounded-tp window and saturates, rather than growing linearly forever. A concrete over-rotation family is phi=pi/(4m+2): p=sin²(phi)→0, a_m=1, and a_(m+1)=cos(2phi)<1. This contradicts literal question/rubric1/semantic step3 claims that each iteration raises the amplitude even for arbitrarily small p. The answer does say 'near the start' once, so I do not reject the intended fixed-target complexity; however the unqualified semantic step and later linear-growth explanation retain an ambiguity. Source Proposition11.6 explicitly assumes oracles and their inverses; constructing R_psi requires U†, not just forward black-box state preparation. The question mentions queries to U and the good reflection but does not explicitly provide inverse access or a known/calibratable p stopping rule. With those supplied, the exact resource tuple is k+1 calls to U, k calls to U† and k good reflections plus k known-zero reflections; no arbitrary-state reflection, finite-bit compilation or gate bound is free. I mark the complete current item uncertain pending these access/window clarifications, without authoring a replacement.",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ],
+  "neighbor_bindings": [
+    {
+      "core_id": "qcb-core-plan-203",
+      "key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+      "item_digest": "6eda46c37ea2b7d75cb89acca2686e8411e54825a5468776262522fff5b883bd",
+      "question_contract_hash": "776732dced28546044e59a8c744f76704ce6fd8f5f110f557b9e08ceb00665ae",
+      "review_role": "Bounded close-contract comparison only; not a new verdict or alteration of any frozen report."
+    },
+    {
+      "core_id": "qcb-core-plan-220",
+      "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+      "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+      "question_contract_hash": "ec9dc64e542b86dfc207f02ba3eeea2716c1bf7559db9e35315fbc79f85a710c",
+      "review_role": "Bounded close-contract comparison only; not a new verdict or alteration of any frozen report."
+    },
+    {
+      "core_id": "qcb-core-plan-503",
+      "key": "qcb-core-plan-503-second-kind-offdiagonal",
+      "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+      "question_contract_hash": "b5f4f6be5686b4f0b01a01d2a3f07f68e5e6cac9b602dbe290e6d84f3269132b",
+      "review_role": "Bounded close-contract comparison only; not a new verdict or alteration of any frozen report."
+    },
+    {
+      "core_id": "qcb-core-plan-506",
+      "key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+      "item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+      "question_contract_hash": "0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f",
+      "review_role": "Bounded close-contract comparison only; not a new verdict or alteration of any frozen report."
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "lin-wiebe-2026-qasc source metadata only; the external pinned primary bytes and actual inspected regions are recorded in provenance"
+    }
+  ],
+  "close_target_comparisons": [
+    {
+      "left_core_id": "qcb-core-plan-511",
+      "right_core_id": "qcb-core-plan-512",
+      "relation": "explicit specialization, not complete-target equivalence",
+      "mathematical_comparison": "512 fixes rank2 input/output projectors in dimension4, U=I and one angle, and computes the overlap operator, signed phases and multiplicities.511 concerns arbitrary ranks and the coordinate/Jordan reduction; it does not itself ask for512's exact worked operator."
+    },
+    {
+      "left_core_id": "qcb-core-plan-511",
+      "right_core_id": "qcb-core-plan-220",
+      "relation": "shared reflection mechanism, different full target",
+      "mathematical_comparison": "220 assumes a Hermitian block-encoding unitary and proves all Tk(A) projected powers of UR.511 needs no Hermitian U but uses a paired iterate between arbitrary subspaces, including unequal ranks; it asks a basis/reduction theorem, not220's full polynomial-block conclusion."
+    },
+    {
+      "left_core_id": "qcb-core-plan-511",
+      "right_core_id": "qcb-core-plan-506",
+      "relation": "CS range/decomposition prerequisite, not duplicate",
+      "mathematical_comparison": "506 concerns a unitary's ordinary p×p compression, singular-value contraction and C²+S²=I.511 transports the geometry to two arbitrary projectors and the product (2U†P'U-I)(2P-I); a norm/CS lemma does not supply its input/output basis identification or rank-mismatch statement."
+    },
+    {
+      "left_core_id": "qcb-core-plan-512",
+      "right_core_id": "qcb-core-plan-513",
+      "relation": "same twice-angle geometry, different encoded overlap/sign convention",
+      "mathematical_comparison": "512 uses overlap cos(theta) between rank2 subspaces with U=I.513 uses a marked-flip of opposite projector sign and a uniform/marked overlap sin(phi), producing G's marked coefficient sin((2k+1)phi). The rotation mechanism is shared, but the full operators, ranks and initial-state/iteration conclusions differ."
+    },
+    {
+      "left_core_id": "qcb-core-plan-512",
+      "right_core_id": "qcb-core-plan-503",
+      "relation": "scalar rotation-power sublemma only",
+      "mathematical_comparison": "503 starts from a supplied M(t) and derives its full kth power including second-kind off-diagonals/endpoints.512 derives a concrete two-reflection rotation and half-eigenphase/singular-value relation; the shared R(angle) identity does not make those complete targets equivalent."
+    },
+    {
+      "left_core_id": "qcb-core-plan-513",
+      "right_core_id": "qcb-core-plan-514",
+      "relation": "dynamics prerequisite versus rounding/restart resource theorem",
+      "mathematical_comparison": "513 derives the exact rotation and signed marked amplitude.514 additionally fixes an integer floor, bounds failure by4/N, assumes candidate verification and proves expected-query/tail scaling. The exact amplitude is shared; the rounded probabilistic/resource conclusion is not supplied merely by513."
+    },
+    {
+      "left_core_id": "qcb-core-plan-513",
+      "right_core_id": "qcb-core-plan-515",
+      "relation": "single-mark specialization with additional multi-mark endpoint defect",
+      "mathematical_comparison": "For1≤M<N,515 replaces the marked vector by its uniform good vector and substitutes sin(phi)=sqrt(M/N); M=1 recovers513's plane formula.515 additionally asks calibrated M-dependent stopping and allows the all-marked M=N case, whose bad-vector normalization is undefined; the literal full contracts are not equated by silently removing that endpoint."
+    },
+    {
+      "left_core_id": "qcb-core-plan-513",
+      "right_core_id": "qcb-core-plan-516",
+      "relation": "strong common marked-amplitude target plus a rank-one projector/phase bridge",
+      "mathematical_comparison": "516 repackages513's marked coefficient into P'E^kP and adds the exact algebra U(2P-I)=I, E=-G and the odd-Chebyshev identity. This is substantial shared mathematical content, not evidence of two unrelated mechanisms, but516 does not request513's full action on both ordered-plane basis vectors."
+    },
+    {
+      "left_core_id": "qcb-core-plan-516",
+      "right_core_id": "qcb-core-plan-517",
+      "relation": "shared odd-trigonometric sublemma; literal boundary target not equivalent",
+      "mathematical_comparison": "The real-domain identity in517 is used directly in516's rank-one Chebyshev coefficient.517 adds a demanded outside-domain failure and a complex-arcsine rebuttal which are not part of516 and are mathematically defective. No equivalence to an imagined corrected boundary question is asserted."
+    },
+    {
+      "left_core_id": "qcb-core-plan-519",
+      "right_core_id": "qcb-core-plan-513",
+      "relation": "oracle-conversion prerequisite, not same conclusion",
+      "mathematical_comparison": "519 proves V_f on the reusable minus factor and counts one bit-oracle call per marking reflection.513 takes the phase reflections as given and proves their geometric action; neither full target follows from a shared reflection node alone."
+    },
+    {
+      "left_core_id": "qcb-core-plan-520",
+      "right_core_id": "qcb-core-plan-515",
+      "relation": "search is a specialized preparation/good-projector instance",
+      "mathematical_comparison": "Taking U to prepare the uniform state and p=M/N specializes the valid interior amplitude-amplification dynamics to515's search plane.520 compares quantum and classical trial scaling for a general prepared state and good projector, with inverse-access/window concerns;515 instead asks the M-dependent schedule and its unknown-M issue."
+    },
+    {
+      "left_core_id": "qcb-core-plan-520",
+      "right_core_id": "qcb-core-plan-203",
+      "relation": "specialized probability/resource substitution, not complete equivalence",
+      "mathematical_comparison": "203 fixes the POVM success p=1/(beta²2^m), specific W/W† access and a delta failure target with outer logarithmic repetition.520 supplies only the generic constant-success 1/sqrt(p) versus1/p mechanism. This comparison does not newly certify203's state-reflection availability or its full output-measurement contract."
+    }
+  ],
+  "handoff": {
+    "mathematical_delta": "Explicit permutation-symmetric counterexample retires the exact randomized N-1 claim in518; complex multiple-angle calculation refutes517's complex-domain rebuttal; endpoint/access/window obstructions are separated from the valid interior two-reflection formulas.",
+    "failure_class": "REFUTED for515/517/518's complete literal claims; SOURCE_INVALID specifically for the printed Proposition11.1 randomized bound; unresolved contract/presentation boundaries for513/520.",
+    "salvage": "Valid compression/Jordan decomposition, exact Grover plane and fixed-phase Chebyshev identities, kickback factorization, asymptotic verified-repetition bound, and early-window amplification scaling remain mathematically reusable but have not been promoted as new formal library nodes.",
+    "process_memory_consulted": "Mandatory protocols and prior personally inspected adjacent pinned-source context only; no new process-memory claim or independent-agent audit.",
+    "parallel_work": "None.",
+    "purification_and_integration": "Not applicable to this private source-reader evidence. Parent must inspect any later policy integration; no source or canonical record was repaired here.",
+    "remaining_boundary": "Actual absence of N>1 or M<N endpoint qualifications, real versus complex inverse-trigonometric typing, random-input/coin quantifiers, reversible-preparation access and monotonic stopping windows must not be silently conflated."
+  },
+  "comparison_limits": "These12 close-target records are bounded inventory-bound comparisons, not12 newly independent advances. No complete-target duplicate was established within this selected scope; several proper specializations and shared sublemmas are explicit. Neighbors521/522 were absent when checking possible continuations and were not substituted for requested records. No all-pairs or global census closure is claimed.",
+  "comparison_inventory_binding": "Each compared ID resolves to exactly one full whole-item digest and question-contract hash in items or neighbor_bindings above; pair records reference that bound inventory rather than duplicating those hashes."
+}

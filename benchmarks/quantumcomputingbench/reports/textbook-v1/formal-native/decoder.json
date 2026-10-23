@@ -1,0 +1,87 @@
+{
+  "schema_version": "qcb.native_source_blind_decoder.v1",
+  "decoder": "/root/qcb_native_decoder",
+  "packet_digest": "f6e7c505151484cd2412292e09379fd558d570eeb6e0b7c15daa6b4fc0b0b25d",
+  "source_blind": true,
+  "provenance": {
+    "exposure": "The decoder received the bounded decoder assignment and repository location, read the generic repository AGENTS.md, HARNESS.md, and docs/theorem-publication-protocol.md, and read only native-v1-decoder.json for task-specific mathematical content. The packet contains three anonymous formal targets, import names, and exact ambient definition snippets. No candidate file, QA dataset, original natural-language question or answer, previous review report, exercise webpage, or raw Lean source was read. The parent chat was not inspected and no other agent supplied mathematical answers.",
+    "execution": "The packet was parsed with the project Python interpreter and its entire parsed JSON value was hashed using SHA256 of JSON serialized with sorted keys, ensure_ascii=False, and compact comma/colon separators. No Lean elaboration, theorem execution, proof inspection, compilation, or independent proof-checking run was performed. This report reconstructs proposition semantics from the supplied text."
+  },
+  "views": [
+    {
+      "anonymous_id": "F1",
+      "reconstructed_statement": "For every natural number n, including zero, and every real-valued function f on the set of bitstrings of length n+1, define a real-valued function g on bitstrings b of length n by g(b) = sqrt(f(b followed by 0)^2 + f(b followed by 1)^2). Then the sum, over all length-n bitstrings b, of g(b)^2 equals the sum, over all length-(n+1) bitstrings x, of f(x)^2. Thus the specified operation of replacing each pair of amplitudes sharing the first n coordinates by its nonnegative Euclidean length preserves the total squared Euclidean norm exactly.",
+      "definitions_and_conventions": [
+        "PrimitiveBasis k is the set of functions from Fin k to Fin 2: its elements have k ordered coordinates, each taking the value zero or one.",
+        "Fin.snoc b d extends b by placing d in the last coordinate, indexed by n; this marginal combines amplitudes differing in that last coordinate.",
+        "pairNorm(a,b) is the nonnegative real square root of a squared plus b squared. The marginal is a real amplitude function, rather than a function returning the squared marginal weights.",
+        "normSq(h) is the finite sum of the real squares of h over its complete bitstring carrier. No square root is taken in normSq itself."
+      ],
+      "assumptions": [
+        "The only parameters are an arbitrary natural n and an arbitrary real function f on PrimitiveBasis(n+1).",
+        "There is no normalization, nonzero, positivity, boundedness, or sign assumption on f. The real expression under each square root is nonnegative because it is a sum of squares."
+      ],
+      "edge_cases": [
+        "For n=0, PrimitiveBasis 0 contains exactly the empty bitstring, so the left side has one summand and the right side has the two one-bit summands.",
+        "Every PrimitiveBasis n has 2^n elements and is nonempty, even at n=0; the outer norm sums are therefore never empty.",
+        "If both amplitudes in a pair are zero, the corresponding marginal amplitude is zero. The all-zero function is admitted. Negative real amplitudes are admitted and their signs are discarded by this marginal."
+      ],
+      "limits": [
+        "The proposition is an exact real algebraic identity for squared norms. It does not assert a circuit, a state-preparation algorithm, a measurement procedure, a gate count, query complexity, runtime, or finite-precision error bound.",
+        "It does not recover the individual amplitudes or their signs from the marginal, and it does not state a complex-amplitude or phase-preservation result. Normalized input would imply normalized marginal, but normalization is not a premise of this target.",
+        "The supplied definitions suffice to reconstruct this statement; their noncomputable annotations alone establish neither an executable algorithm nor an inefficiency result."
+      ]
+    },
+    {
+      "anonymous_id": "F2",
+      "reconstructed_statement": "For every natural number N, every real N-by-N matrix A, every ordered pair of row indices i and j in Fin N with i different from j, and every real number theta, form a new matrix by replacing row i with cos(theta/2) times the old row i minus sin(theta/2) times the old row j, replacing row j with sin(theta/2) times the old row i plus cos(theta/2) times the old row j, and leaving every other row unchanged. The determinant of the resulting matrix equals the determinant of A exactly.",
+      "definitions_and_conventions": [
+        "A has row and column carrier Fin N and real entries. The ambient rotateRows definition also supports rectangular matrices, but this target specializes it to square matrices so that its determinant is defined.",
+        "Both replacement rows use entries from the original A. For every column, the ordered pair of entries in rows i and j is multiplied on the left by the real two-by-two matrix with first row (cos(theta/2), -sin(theta/2)) and second row (sin(theta/2), cos(theta/2)).",
+        "The rotation angle in that two-dimensional plane is theta/2, not theta. Its orientation is fixed by the negative sine in the new row i and positive sine in the new row j, using the ordered pair (i,j).",
+        "The definition tests row=i first and row=j second. The hypothesis that the indices differ ensures these two branches describe separate rows. The target imposes neither adjacency nor a numerical ordering on i and j."
+      ],
+      "assumptions": [
+        "N is any natural number; A is any real square matrix of that size; i and j are valid row indices; the sole substantive hypothesis is i != j; theta is any real number.",
+        "There is no invertibility, orthogonality, normalization, sparsity, nonzero-determinant, or restriction on the angle."
+      ],
+      "edge_cases": [
+        "For N=0 there are no row indices, so there is no instance with chosen i and j. For N=1 indices exist but the distinctness hypothesis cannot hold. These sizes impose no nonvacuous determinant identity for a distinct row pair.",
+        "Singular A is included; both determinants are then zero. Theta=0 is included and gives the original matrix.",
+        "Coincident indices are excluded. At i=j, the first branch of the ambient definition takes priority and would scale that row by cos(theta/2)-sin(theta/2); the target supplies no determinant-preservation claim for that case."
+      ],
+      "limits": [
+        "The conclusion is determinant preservation by one specified row operation. It does not assert an elimination algorithm, that an entry is zeroed, a method for choosing theta, a factorization into rotations, or any gate or runtime bound.",
+        "The import or namespace name supplies no adjacency assumption and no additional circuit semantics. The target does not itself state norm preservation, matrix unitarity, or a quantum-gate implementation.",
+        "The supplied formula fixes the half-angle, row order, and signs without requiring additional definitions."
+      ]
+    },
+    {
+      "anonymous_id": "F3",
+      "reconstructed_statement": "For every pair of natural numbers l and r and every real matrix A whose rows are indexed by Fin l and whose columns are indexed by Fin 2 times Fin r, suppose A times its ordinary transpose equals the identity matrix on Fin l. Define the complex matrix B with rows indexed by Fin 2 times Fin r and columns indexed by Fin l by B((b,q),a) equal to the real entry A(a,(b,q)), embedded in the complex numbers. Then B's conjugate transpose times B equals the identity matrix on Fin l. Equivalently, real orthonormal rows of the l-by-(2r) matrix A become complex orthonormal columns of the (2r)-by-l matrix B, so the complex linear map B from complex l-space to complex (2r)-space is an isometry.",
+      "definitions_and_conventions": [
+        "Core(l,r) is literally a real matrix with row carrier Fin l and column carrier the Cartesian product Fin 2 times Fin r. The first output component b is a two-valued index and the second q ranges over r values.",
+        "complexCore is the transpose of A followed entrywise by the canonical real-to-complex embedding: it reverses the row and column carriers. It does not merely cast A while retaining its original orientation.",
+        "The hypothesis uses an ordinary real transpose. The conclusion uses the complex conjugate transpose of B. Because every entry of B is embedded from a real number, conjugation leaves those entries unchanged.",
+        "Both displayed identity matrices have row and column carrier Fin l. In components, the hypothesis says that for every a,a' in Fin l, the sum over b in Fin 2 and q in Fin r of A(a,(b,q)) times A(a',(b,q)) equals one when a=a' and zero otherwise. The conclusion says the corresponding complex inner products of columns of B have exactly those values.",
+        "The product carrier specifies the two output components explicitly; the packet supplies no separate flattening into Fin(2*r), bit-endianness convention, or requirement that r be a power of two."
+      ],
+      "assumptions": [
+        "l and r are arbitrary natural numbers and A has real entries with the stated carriers.",
+        "The sole algebraic hypothesis is A*A.transpose = I_l, namely pairwise orthonormality of all rows. No square shape, nonempty dimension, additional normalization, or separate dimension inequality is explicitly assumed.",
+        "In finite dimensions the row-orthonormality hypothesis can hold only when l <= 2*r, but that inequality is a consequence or feasibility constraint rather than an additional binder in the target."
+      ],
+      "edge_cases": [
+        "When l=0, A has no rows and B has no columns. Both the hypothesis and conclusion concern the unique zero-by-zero matrix and hold vacuously for every r, including r=0.",
+        "When r=0 and l>0, the column carrier of A and row carrier of B are empty. A*A.transpose is the zero l-by-l matrix, so the identity hypothesis cannot hold. The conditional target therefore has no such nonvacuous instance.",
+        "Rectangular cases with 0<l<2*r are permitted. Their conclusion is an isometric embedding and does not require B to be surjective. When l=2*r the carriers have equal cardinality, but the target still explicitly states only B's left Gram identity."
+      ],
+      "limits": [
+        "The target proves the conditional identity B.conjTranspose*B = I_l for this already supplied A. It does not construct a row-orthonormal core, a tensor-train canonicalization algorithm, or a decomposition of an arbitrary tensor.",
+        "It does not generally conclude B*B.conjTranspose equals the identity on the output carrier; that would be full unitarity and need not hold for rectangular B.",
+        "It does not specify a unitary extension, ancillas, a preparation circuit, successive core contractions, gate counts, computational complexity, or approximation and finite-precision bounds. The output dimension 2*r alone is not an encoding of all output degrees of freedom into a specified number of qubits.",
+        "The ambient definitions suffice to determine the exact real-to-complex conversion and orientation. No original source wording or proof was needed or inspected."
+      ]
+    }
+  ]
+}

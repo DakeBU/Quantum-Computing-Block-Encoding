@@ -1,0 +1,195 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-003",
+  "supersedes_key": "qcb-core-plan-003-density-set-convexity",
+  "supersedes_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+  "supersedes_contract_hash": "33ba67d2cb869a69a3dab85e183938f49676f44053968ffb23539051a99cb797",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-003-textbook-question-v2-density-topology",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2, not an unchanged-question answer repair. Preserve and refute the literal boundary=pure clause rather than silently substitute extreme points, assume d=2, or change the meaning of boundary. The question makes the cited finite-dimensional complex carrier and real affine/ambient topologies explicit, retains the valid mixture and extremality targets, and asks the correct boundary classification with all low/zero-dimensional cases. Only question changes among the nine contract fields; original empty assumptions/conventions, core/family/split/frozen graph/source_refs and the three exact ordered step-node lists remain. No convention itself is false or rewritten, so question-only v1 suffices. The new requested reasoning is not claimed logically equivalent to the predecessor, and no infinite-dimensional extension is claimed.",
+  "question": "Work in the cited source's finite-dimensional complex setting H=C^d, initially d>=1. Let Herm_d={X in M_d(C):X=X†}, regarded as a REAL vector space, D_d={rho in Herm_d:rho>=0, tr(rho)=1}, and A_d={X in Herm_d:tr(X)=1}. Positivity means nonnegative expectation in every vector; use the usual finite-dimensional norm topology (equivalently the operator-norm topology, including on affine subspaces), not a new definition of boundary.\n\nProve directly that, for states rho_1,...,rho_n and real probabilities p_i>=0 with sum_i p_i=1, rho=sum_i p_i rho_i is a state. Separate the hypotheses used for positivity and for trace one, without asserting that nonnegative coefficients are necessary for every particular positive linear combination. Use spectral decomposition to characterize all extreme points of D_d, proving both directions.\n\nExplicitly assess/refute the predecessor's unrestricted clause that 'the boundary of this convex set is exactly the pure states'; do not silently replace boundary by extreme points or restrict to qubits. Determine the affine hull, relative interior and relative boundary of D_d in A_d. Justify the topology and rank claims by perturbations, not only pictures or terminology. Distinguish the cases d=1, d=2 and d>=3, giving an explicit rank-two mixed boundary witness when d>=3. Then compute the boundary of D_d when the ambient space is the whole Herm_d, and when it is the whole M_d(C) with its usual real norm topology. Finally assess the zero-dimensional case d=0 directly rather than using I_d/d or assuming that a trace-one state exists. Keep extreme-point and topological-boundary assertions separate throughout.",
+  "reference_answer": "The scalars of the Hilbert space are complex, but convex weights and the vector-space structure used for Herm_d are real. Positivity in the original quadratic-form definition already implies Hermiticity in finite complex dimension: writing a matrix as B+iC with B,C Hermitian, real quadratic forms force <v,Cv>=0 for every v, hence C=0 by polarization. Thus using Herm_d is not an extra state promise. For d>=1, Herm_d has real dimension d^2 (d real diagonal entries and two real parameters per off-diagonal pair); its trace-one affine hyperplane A_d has dimension d^2-1. All norms on these finite real vector spaces induce the same topology, and subspaces/affine translates carry the induced topology.\n\nFor any v, <v,rho v>=sum_i p_i<v,rho_i v>>=0 because p_i>=0 and each summand's quadratic form is nonnegative. This proof uses no unit-sum condition. Linearity gives tr(rho)=sum_i p_i tr(rho_i)=sum_i p_i=1; this identity uses unit sum, not nonnegativity. Together they establish convexity. These are the roles of the hypotheses in universal mixture arguments, not a necessity claim for individual coefficients: if all rho_i are equal, some negative coefficients summing to one can still give a state. Conversely, in d>=2 weights (2,-1) on orthogonal pure states give trace one but not positivity. With trace-one summands, unit trace is equivalent to the weights' sum being one.\n\nThe finite-dimensional spectral theorem gives rho=sum_j lambda_j P_j, where P_j=|u_j><u_j| for an orthonormal eigenbasis, lambda_j>=0 and sum_j lambda_j=1. This is a convex pure-state decomposition. Rank one therefore means rho=P for a unit vector. If rank(rho)>=2, choose positive eigenvalues lambda_u,lambda_v and 0<t<min(lambda_u,lambda_v). Both rho_+=rho+t(P_u-P_v) and rho_-=rho-t(P_u-P_v) are positive trace-one, distinct, and rho=(rho_++rho_-)/2. So rho is not extreme. Conversely let P=|psi><psi|=s sigma+(1-s)tau for states sigma,tau and 0<s<1. For any z perpendicular to psi, zero=<z,Pz>=s<z,sigma z>+(1-s)<z,tau z>. Both terms are nonnegative, so each vanishes. Spectral decomposition of a positive matrix shows <z,sigma z>=0 implies sigma z=0, and likewise tau z=0. Hermiticity puts their ranges in span(psi); trace one then forces sigma=tau=P. Thus extreme points are exactly the pure rank-one projectors, including when d=1. This is not a definition or characterization of all boundary points.\n\nThe PSD cone is closed, since every quadratic form is continuous and nonnegativity is a closed condition. Trace one is also closed. If rho is positive definite, let lambda_min>0. Every trace-zero Hermitian E with ||E||_op<lambda_min satisfies <v,(rho+E)v>>= (lambda_min-||E||_op)||v||^2>=0, and preserves trace. Thus every positive-definite state is interior RELATIVE TO A_d. In particular I_d/d has an A_d-neighborhood inside D_d, proving aff(D_d)=A_d: any trace-zero Hermitian direction has sufficiently small positive and negative multiples in that neighborhood. This also covers the zero-dimensional affine space A_1. For d>=2, if rho is singular, choose a unit kernel vector z and a unit w perpendicular to z. The trace-zero Hermitian perturbation E_t=t(|w><w|-|z><z|) tends to zero as t decreases to zero, but <z,(rho+E_t)z>=-t<0. Hence arbitrarily nearby points of A_d fail positivity. Closedness now implies that rho is on the relative boundary. Consequently, for every d>=1, int_(A_d)(D_d)={rho in D_d:rho is positive definite}, and boundary_(A_d)(D_d)={rho in D_d:rank(rho)<d}; in d=1 the latter set is empty. One can also approach every state from the relative interior by (1-epsilon)rho+epsilon I_d/d for 0<epsilon<1.\n\nFor d=1, D_1=A_1={ [1] }; its sole state is pure and extreme, its relative interior is the entire singleton, and its relative boundary is empty. For d=2, singular trace-one positive matrices have spectrum (1,0), so the relative boundary happens to equal the pure states. For d>=3, rho_*=diag(1/2,1/2,0,...,0) is rank two, mixed and nonextreme, but relatively boundary. It is (P_1+P_2)/2, and rho_*+t(P_1-P_3) has trace one with a negative third eigenvalue for every t>0, tending to rho_*. Thus the original boundary-equals-pure clause is false even in the affine-relative topology outside its special qubit coincidence; d=1 is a separate counterexample.\n\nIn the full Herm_d, D_d is closed with empty interior for every d>=1: rho+t I_d is arbitrarily close to rho but has trace 1+td, not one, for nonzero real t. Therefore boundary_(Herm_d)(D_d)=D_d. The same perturbation and closedness apply in the whole M_d(C), viewed with its usual real norm topology, so boundary_(M_d(C))(D_d)=D_d too. For d>=2 these ambient boundaries contain mixed positive-definite states such as I_d/d. In d=1 their only boundary point is [1], unlike the empty relative boundary in A_1. None of these facts identifies topological boundary with convex extremality in general.\n\nFinally d=0 has only the zero operator, whose trace is zero. Thus D_0 and A_0 are empty, there are no pure states or extreme points, and D_0 has empty boundary in either full matrix ambient space (each is the singleton zero space), as well as empty interior/boundary in the empty A_0. There is no probability mixture of existing states to test and no normalized vector or I_d/d. No affine-dimension formula for a nonempty trace-one hyperplane is asserted at d=0. The correction preserves the convexity/extremality target but explicitly changes the old false requested conclusion into its assessment and a topology-specific classification; it is not an equivalent answer to the old question.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Derives positivity by quadratic forms with nonnegative real weights, trace one by trace linearity and unit sum, and concludes convexity; distinguishes these hypothesis roles from false necessity for every individual positive combination."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Uses the spectral decomposition and proves both directions of extreme iff rank-one projector: higher-rank perturbation/decomposition and positivity-supported uniqueness for a pure-state mixture."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Specifies real Herm_d and A_d with their finite-dimensional induced norm topology; proves aff(D_d)=A_d for d>=1, positive-definite relative interior and singular relative boundary via closedness and trace-preserving perturbations. Gives d=1 empty relative boundary, d=2 coincidence and the explicit mixed rank-two d>=3 witness."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Explicitly refutes the old unrestricted boundary=pure clause without changing definitions or restricting dimensions; proves full Hermitian and complex-matrix ambient boundaries equal D_d for d>=1, and treats d=0 directly without I_d/d or fictitious states. Keeps topological boundary distinct from extremality."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Probability mixtures are density states and pure states are precisely their extreme points. Relative boundary in the trace-one Hermitian affine space means singular density states, whereas the full Hermitian/complex ambient boundary is every density state; the original unrestricted boundary=pure request is false.",
+    "semantic_steps": [
+      {
+        "claim": "Nonnegative real weights preserve every nonnegative quadratic form, establishing positivity without the unit-sum hypothesis.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Trace linearity turns trace one of each component into trace equal to the sum of weights, so unit sum establishes the normalization and completes convexity.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Spectral decomposition and the pure-support argument characterize extreme points as rank-one projectors; positive-definite and kernel-direction perturbations separately classify relative/ambient boundaries, refuting the old clause with explicit d=0,1,2 and d>=3 cases.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/planned.json",
+      "sha256_lf": "afb90ee041855b1a011081522c41e4166fcd758236e55161f7cc9a2cd1f784bb",
+      "anchor": "Complete authored qcb-core-plan-003-density-set-convexity record inspected: literal boundary clause, extreme-point reference/r4, all three steps, empty assumptions/conventions, finite-dimensional primary-source anchor. Authored-content provenance, not a proof of the corrected topology."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole actual historical prepared qcb-core-plan-003 record from release.checked()[2], not the withheld current reader; entire question/answer/rubric/assumptions/conventions/exposition/provenance read and bound by supersedes_item_digest. Exact content provenance only."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit entry inspected: author-hosted URL, April10,2026 edition and recorded PDF hash. LF binds local bibliographic metadata, not primary PDF bytes or a proof of boundary/extremality."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_authorship_pending_distinct_review",
+    "author_identity": "/root/qcb_boundary_repair_review",
+    "authored_at_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-003-density-topology-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-003-density-topology-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "33ba67d2cb869a69a3dab85e183938f49676f44053968ffb23539051a99cb797",
+      "successor_contract_hash": "667c373770ab0b2e17a6f36c07805f86105329ad42c683449207874e5fc403c7",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [],
+      "original_conventions": [],
+      "family": "qit-state-foundations",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:probability"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 3,
+      "original_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:probability"
+        ],
+        [
+          "concept:operator-theory"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:probability"
+        ],
+        [
+          "concept:operator-theory"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "withdrawal_binding": {
+      "core_id": "qcb-core-plan-003",
+      "predecessor_key": "qcb-core-plan-003-density-set-convexity",
+      "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+      "reason": "The literal boundary-equals-pure-states clause is false; the answer silently substitutes extreme points. Relative and ambient boundary also differ.",
+      "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+      "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
+      "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0",
+      "assessment": "The exact current withdrawal and complete bound finding were read; both review and item-finding digests were independently recomputed. The earlier rejected boundary clause is retained for explicit assessment, not relabeled a source theorem."
+    },
+    "prior_exposure": {
+      "actual_prior_reviewer": "/root/qcb_boundary_repair_review",
+      "review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+      "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
+      "review_sha256_lf": "63799389718ad57743e7647fea2b29081d3c0888d654006d9a47e28c52ab6ede",
+      "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0",
+      "exposure": "I authored that prior independent reader rejection after cross-cohort discovery and parent topology observations. I now reread the full exact prepared/original records, withdrawal, full old finding and bounded operative primary text. This is informed successor authorship, not source-blind work or independent approval of my own candidate; imported original acceptance, prior verdicts and parent agreement are not mathematical proof."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "observed_edition": "April10,2026 cover, 79 pages",
+        "operative_regions": "Complete Section2.1 on printed pages3–4: Definition2.1 positivity/unit trace, finite C^d carrier and complex inner product Eq2.4, Hermitian observables Def2.2, the full convexity/extreme-point/rank-one paragraph, Definition2.3 and spectral decomposition Eq2.8 including nonnegative unit-sum eigenvalues.",
+        "actual_access": "Reopened the author-hosted PDF through the web PDF-text reader in this objective and read the complete operative region through the start of Section2.2. Primary text genuinely inspected; no full79-page reading, image inspection or PDF redistribution claimed.",
+        "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "binary_hash_independently_verified": false,
+        "rendered_pages_independently_inspected": false,
+        "access_limit": "The returned extracted text displays the recorded edition but does not independently authenticate identical raw PDF bytes. Source states convexity/extremality/spectral facts briefly rather than supplying the full proofs below; no printed boundary=pure theorem was found in this operative region. The topology and zero-dimensional extension are independently derived, not a claim of printed source support or local Lean closure."
+      }
+    ],
+    "source_proof_coverage": {
+      "source_nodes": "State definition, finite complex carrier, Hermitian scalar typing, pure-state/extreme-point assertion and spectral decomposition were read in their complete operative context.",
+      "independent_derivations": "Quadratic-form convexity, both extremality directions, affine hull, closedness, positive-definite interior, kernel-direction boundary, all ambient comparisons and d=0/1/2/>=3 discriminators are supplied explicitly in the answer. The source's concise assertions are not treated as already-complete proofs.",
+      "source_gap": "No operative printed topology theorem or proof of boundary=pure supports the old authored question. The error is the authored expansion from extreme points to topological boundary, not a refutation of Definition2.1.",
+      "excluded": "Infinite-dimensional trace-class topology, state-preparation algorithms, new formal theorem nodes, global deduplication and publication admission are not addressed."
+    },
+    "artifact_inventory": "Recursive private-file inventory before authoring found no existing plan-003 successor or private003 review. Historical site readback copies of the reserved core, the canonical old reader review, prior cross-cohort reports and unrelated boundary/BE003 artifacts are preserved without edits. This uniquely named new file is the only output.",
+    "mechanical_validation": "Whole predecessor, exact prior review/finding and old/new nine-field contracts recomputed from actual JSON; all three ordered step-node lists preserved. No admission-code file is a mathematical source dependency. Structural bindings do not constitute mathematical acceptance.",
+    "skill_handoff": {
+      "objective": "Repair the false density-boundary conclusion transparently without a new core or hidden topology/dimension promise.",
+      "mathematical_delta": "REFUTED original unrestricted clause; salvage valid convexity/extremality and supply topology-specific full finite-dimensional classification.",
+      "effect_on_root": "One private explicit question-version2 candidate, pending distinct exact-content mathematical review.",
+      "failure_class": "SOURCE_INVALID for the original authored question; candidate unapproved.",
+      "salvage_audit": "Convexity and pure-extreme characterization retained; topological boundary identification rejected; d=2 retained only as an explicitly qualified coincidence.",
+      "assumptions_and_conventions": "Prepared lists remain empty. Finite complex carrier is made explicit in the question consistently with the pinned source; real convexity/norm topology is stated rather than added as a standing convention. No d>=2 or qubit-only restriction.",
+      "process_memory_ids_consulted": [],
+      "parallel_admission": "No new agents; root owns distinct review, transport and admission. No selfapproval.",
+      "purification_state": "Question, full reference, four grading criteria and exactly three existing ordered graph steps are aligned in this private draft only."
+    },
+    "execution_limits": "Only this new private candidate is written. No old artifact, canonical QA/policy/source, production Lean or synced project sources changed; no build/test/kernel/simulator, commit/push, GPU/admin, human/expert/model/novelty/blind or native-formal admission claim.",
+    "self_approval": false
+  }
+}

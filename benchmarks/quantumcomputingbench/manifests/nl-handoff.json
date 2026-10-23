@@ -1,0 +1,21 @@
+{
+  "schema_version": "qcb.native_handoff.v1",
+  "commit": "0162cce9d7d2d8688c0b06decdae0672c1ae6293",
+  "baseline": "5fd07170d84f60a16d564d75cd72e87e26c5b837",
+  "branch": "qcb/nl-qa",
+  "latest_version": "nl-v4",
+  "active_records": 58,
+  "admitted_distinct_core_ids": 50,
+  "same_core_repairs": 3,
+  "unresolved_records": 8,
+  "tests_passed": 99,
+  "repo_harness_passed": 98,
+  "local_lean_verification_performed": false,
+  "protected_existing_files_modified": [],
+  "README_intentionally_updated": true,
+  "original_files_missing": [],
+  "push": "failed: GitHub username unavailable; not pushed",
+  "collaborator_ack": "pending; shared integration_allowed=false",
+  "goal_complete": false,
+  "next": "Continue toward several hundred reviewed cores; coordinate core IDs/families and deeper proofs, use next-batches and review-queue"
+}

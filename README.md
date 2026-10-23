@@ -1,23 +1,40 @@
 <div align="center">
 
-# ASPBE
+# QuantumComputinglib · QuantumComputingBench
 
-### Automatic State Preparation and Block Encoding for Quantum Computing
+### A Lean library and graph-grounded QA for quantum computing
 
-**From a mathematical state/operator contract to a construction, a human-readable proof, a named Lean certificate, and optional executable artifacts.**
+**Reusable quantum mathematics, inspectable proofs, and training and evaluation tasks for specialized models.**
+
+QuantumComputinglib connects readable quantum mathematics to Lean evidence. **ASPBE** is its proof-gated Automatic State Preparation and Block Encoding construction system. **QuantumComputingBench** provides a graph-grounded public QA preview for specialized quantum-computing models; whole-graph expansion is currently in development.
 
 [![Lean 4.33.0](https://img.shields.io/badge/Lean-4.33.0-6f42c1?style=flat-square)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-pinned-2f705c?style=flat-square)](https://github.com/leanprover-community/mathlib4)
 [![Qiskit](https://img.shields.io/badge/Qiskit-executable_exports-6929c4?style=flat-square)](https://www.ibm.com/quantum/qiskit)
-[![QuantumComputinglib](https://img.shields.io/badge/QuantumComputinglib-read_online-0f62fe?style=flat-square)](https://dakebu.github.io/Quantum-Computing-Block-Encoding/)
+[![QuantumComputinglib](https://img.shields.io/badge/QuantumComputinglib-read_online-0f62fe?style=flat-square)](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-35657d?style=flat-square)](LICENSE)
 
-[**Read QuantumComputinglib**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) ·
-[**Example cases**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/) ·
-[**Lean Library Explorer**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/) ·
-[**Implementation Map**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/)
+[**Read QuantumComputinglib**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/) ·
+[**Example cases**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/example-cases/) ·
+[**Lean Library Explorer**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/library/) ·
+[**Implementation Map**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/implementation-map/)
+
+[**QuantumComputingBench**](benchmarks/quantumcomputingbench/) · [**Agent build goal**](benchmarks/quantumcomputingbench/AGENT_GOAL.md)
+
+[**Exercise book**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/) ·
+[**Without Lean**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/non-lean/) ·
+[**Lean companion**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/quantumcomputingbench/lean/)
 
 </div>
+
+QuantumComputingBench's textbook checkpoint organizes the retained native QA
+into five parts with topic and exercise subpages. Both reader paths share core
+identities, source contracts and splits; Lean views do not create extra question
+counts. Solutions and evidence are folded by default. Editorial second-pass
+review and shared formal-view admission remain explicit stable-release gates.
+Contributors can use the [non-Lean goal](benchmarks/quantumcomputingbench/tracks/non-lean/AGENT_GOAL.md)
+or the [Lean goal](benchmarks/quantumcomputingbench/tracks/lean/AGENT_GOAL.md), under
+one [compatibility contract](benchmarks/quantumcomputingbench/shared/CONTRACT.md).
 
 ---
 
@@ -25,11 +42,11 @@
 
 **QuantumComputinglib builds human-understanding infrastructure for quantum computing:** a living knowledge network and a quality Lean library are the foundations; clearer proofs and better textbooks are the core value. **ASPBE** is its proof-gated state-preparation and block-encoding construction system. Natural-language explanations, compressed construction graphs and visible assumptions help a researcher understand why a construction works, which ideas it reuses, and where its model stops.
 
-Our original goals of connected knowledge, reusable Lean proofs and clearer quantum teaching predate and resonate with [Terence Tao's *Math 2.0* talk (Caltech, 2026)](https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf). We map nine examples on slides 22, 25 and 26 to concrete contributions: clearer exposition, living paper networks, quality Lean libraries, reusable insights, theorem-level ablations, theorem neighborhoods, interpretable open math tools, interactive textbooks, and model-failure analysis. Our [Math 2.0 contribution map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/math-2-0/) separates existing evidence from research directions. Tao's talk is a framing reference, not an endorsement.
+Our original goals of connected knowledge, reusable Lean proofs and clearer quantum teaching predate and resonate with [Terence Tao's *Math 2.0* talk (Caltech, 2026)](https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf). We map nine examples on slides 22, 25 and 26 to concrete contributions: clearer exposition, living paper networks, quality Lean libraries, reusable insights, theorem-level ablations, theorem neighborhoods, interpretable open math tools, interactive textbooks, and model-failure analysis. Our [Math 2.0 contribution map](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/math-2-0/) separates existing evidence from research directions. Tao's talk is a framing reference, not an endorsement.
 
 The research agenda builds on those foundations: cross-pollination through the Lean graph; proof-tool ablations grounded in source-blind encoder–denoiser review; generalizations and counterexamples around a theorem; auditable math-model training material; and analysis of model boundaries. Compression retains a path back to every assumption and proof obligation.
 
-**Start here:** [a worked construction](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/) → [its explanation and Lean graph](https://dakebu.github.io/Quantum-Computing-Block-Encoding/lean-graph/) → [the remaining obligations](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/). An ideal-circuit theorem is not a finite-bit implementation or hardware-reliability certificate; planned curricula remain planned.
+**Start here:** [a worked construction](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/example-cases/) → [its explanation and Lean graph](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/lean-graph/) → [the remaining obligations](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/implementation-map/). An ideal-circuit theorem is not a finite-bit implementation or hardware-reliability certificate; planned curricula remain planned.
 
 See the [public-claims protocol](docs/math-2-0-positioning.md).
 
@@ -39,16 +56,20 @@ See the [public-claims protocol](docs/math-2-0-positioning.md).
 
 Reverse chronological order; audited milestones, explicit research intakes and minimum project-history anchors. An intake is not a completion claim.
 
-- **18 October 2026 — priority proof-digestion intake.** We are auditing [Gu, Kemeny, Yelin and Lukin, arXiv:2610.22367v1](https://arxiv.org/abs/2610.22367v1) and its pinned author Lean artifacts. The [Uncompute research route](https://dakebu.github.io/Quantum-Computing-Block-Encoding/state-preparation-wiki/spw-uncompute/index.html) separates mechanisms, source dependencies, version adaptation and remaining circuit/error/resource gates. This announces work in progress, not completion of the paper or a new local certificate.
+- **22 October 2026 — QuantumComputingBench preview.** The [integrated preview](benchmarks/quantumcomputingbench/docs/integration-release-2026-10-22.md) retains 213 native-NL core IDs after quarantining four of the 217 imported admissions, plus a separate 26-record legacy diagnostic cohort. It provides source/review provenance, checksum-bearing exports and explicit formal-verification boundaries, not complete whole-graph coverage or a newly Lean-certified NL corpus.
 
-- **10 October 2026 — visible four-part book map.** All four peer textbooks have direct homepage actions, one shared curriculum diagram and chapter-map entries. The same four-part organization drives the collapsible chapter sidebar on every reader page, including Walsh/diagonal plans and exact QIT/scientific-computing chapter jumps. The [textbook explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/learning/index.html#textbook-explorer) filters the canonical chapter catalog by textbook, technique and evidence status; its cards expose reading sources and expandable commit-pinned OpenAI Math placements, upstream verification and remaining adapter boundaries. All entries remain readable without JavaScript. Planned chapters retain their explicit status. The curriculum release is in [PR #87](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87), followed by rendering/reader fixes [#88](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88), [#89](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89), and homepage/book-map release [#90](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/90). Reader publication does not certify the still-open finite-bit Hermite route or migrate the proof tree to Lean 4.33.0.
+- **21 October 2026 — QuantumComputingBench starts.** We are launching [QuantumComputingBench](benchmarks/quantumcomputingbench/) to build graph-grounded QA for training and evaluating specialized quantum-computing models across knowledge, mathematical reasoning and Lean skills, with planned topics clearly separated from verified library evidence.
+
+- **18 October 2026 — priority proof-digestion intake.** We are auditing [Gu, Kemeny, Yelin and Lukin, arXiv:2610.22367v1](https://arxiv.org/abs/2610.22367v1) and its pinned author Lean artifacts. The [Uncompute research route](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/state-preparation-wiki/spw-uncompute/index.html) separates mechanisms, source dependencies, version adaptation and remaining circuit/error/resource gates. This announces work in progress, not completion of the paper or a new local certificate.
+
+- **10 October 2026 — visible four-part book map.** All four peer textbooks have direct homepage actions, one shared curriculum diagram and chapter-map entries. The same four-part organization drives the collapsible chapter sidebar on every reader page, including Walsh/diagonal plans and exact QIT/scientific-computing chapter jumps. The [textbook explorer](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/learning/index.html#textbook-explorer) filters the canonical chapter catalog by textbook, technique and evidence status; its cards expose reading sources and expandable commit-pinned OpenAI Math placements, upstream verification and remaining adapter boundaries. All entries remain readable without JavaScript. Planned chapters retain their explicit status. The curriculum release is in [PR #87](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/87), followed by rendering/reader fixes [#88](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/88), [#89](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/89), and homepage/book-map release [#90](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/90). Reader publication does not certify the still-open finite-bit Hermite route or migrate the proof tree to Lean 4.33.0.
 
 - **9 October 2026 — reader release.** QuantumComputinglib now has four peer textbook parts: State Preparation, Block Encoding, Quantum Information and Representation Theory, and Quantum Algorithms for Scientific Computation. The Walsh-series and diagonal-operator papers have source-linked formalization plans and reusable technical cards; pinned OpenAI Math clusters are assigned to regular or extended chapters. Planned chapters and upstream proofs are not claimed as new local certificates. This reader-only release preserves the published proof tree; the Lean 4.33.0 migration is reviewed separately.
 
 - **6 October 2026.** QuantumComputinglib extended Statement Seal / Proof Digestion with cost-aware evidence memory: failed routes are typed and salvaged before cleanup, environment/API failures cannot masquerade as mathematical refutations, the control plane defaults to deterministic/low-token coordination in light of local route-ablation evidence, parallel Workers require distinct uncertainty, and PURIFIED pages require an Exposition Seal.
-- **10 September 2026.** For the smooth auxiliary $p$-register initial state required by [Jin–Liu–Ma’s Schrödingerisation PDE construction](https://arxiv.org/abs/2403.19123v3), connected to [Holmes–Matsuura](https://arxiv.org/abs/2005.04351), the exact Hermite–Bernstein/tensor-train contracts yield the logical bound $G\le 48n_p(2k+6)^3$: **linear $O(n_p)$ for fixed $k$**, with $O(\log k)$ workspace in that exact-real model. This does **not** certify an end-to-end finite-bit algorithm: classical core production, arithmetic and gate synthesis for `SP-HERMITE-POLY-002` remain separate open obligations. [Read the worked case and its scope →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/hermite-smooth-state-preparation/index.html)
+- **10 September 2026.** For the smooth auxiliary $p$-register initial state required by [Jin–Liu–Ma’s Schrödingerisation PDE construction](https://arxiv.org/abs/2403.19123v3), connected to [Holmes–Matsuura](https://arxiv.org/abs/2005.04351), the exact Hermite–Bernstein/tensor-train contracts yield the logical bound $G\le 48n_p(2k+6)^3$: **linear $O(n_p)$ for fixed $k$**, with $O(\log k)$ workspace in that exact-real model. This does **not** certify an end-to-end finite-bit algorithm: classical core production, arithmetic and gate synthesis for `SP-HERMITE-POLY-002` remain separate open obligations. [Read the worked case and its scope →](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/example-cases/hermite-smooth-state-preparation/index.html)
 - **14 August 2026.** For the selected $n=3$ Robin boundary instance in [Guseynov–Huang–Liu, *Block encoding by signal processing*](https://arxiv.org/abs/2406.18072), ASPBE formally reduced the audited $T^{\dagger 3}$ branch from **49 to 30** $T^{\dagger 3}$ gates and from **52 to 32** CNOTs, while keeping five qubits and zero ancillas under the same primitive model.
-- **17 May 2026.** The repository's public, auditable record begins with the [initial automation commit `af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and the timestamped [`MANIFEST.md`](MANIFEST.md). The manifest records the first QBE initialization, agent brief, Lean/LaTeX conversion window, multi-agent run cycles, reviewer handoffs, and trial-memory entries from 17–18 May 2026.
+- **17 May 2026.** The repository's public, auditable record begins with the [initial automation commit `af59b03`](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and the timestamped [`MANIFEST.md`](MANIFEST.md). The manifest records the first QBE initialization, agent brief, Lean/LaTeX conversion window, multi-agent run cycles, reviewer handoffs, and trial-memory entries from 17–18 May 2026.
 - **May 2026.** The early repository already framed the goal as turning quantum-oracle assumptions into concrete gate-level matrices and Lean-checked block-encoding certificates, with faithful-paper versus exploratory-construction modes. This month-level history is placed after the dated 17 May anchor and before April.
 - **April 2026.** The ASPBE/QBE project was already in its conception and early-prototyping stage. This date is retained as project history; it predates the repository's first public/auditable Git timestamp and is therefore not presented as an April public-commit claim.
 
@@ -68,7 +89,7 @@ Within Parts I and II, **State Preparation is a reusable preparation layer insid
 
 > **For block-encoding / state-preparation researchers.** Give ASPBE the target state/operator, available query oracles/gates, register convention, exact/approximate tolerance, and resource priorities. ASPBE evolves **certifiable** candidates and keeps the best candidate it finds under your **lexicographic objective**: optimize priority #1 first; only on ties compare #2, then #3, and so on. It never calls an unproved candidate globally optimal. Outputs can include copyable circuit LaTeX/quantikz, a natural-language derivation, Lean source/proof, and Qiskit/OpenQASM.
 >
-> **Use it:** [Run with your API →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/task-builder/) · [Use this repo in ChatGPT Work / Claude Code →](AGENTS.md) · [Browse certified cases →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/example-cases/)
+> **Use it:** [Run with your API →](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/task-builder/) · [Use this repo in ChatGPT Work / Claude Code →](AGENTS.md) · [Browse certified cases →](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/example-cases/)
 
 ---
 
@@ -84,7 +105,7 @@ ASPBE freezes the mathematical contract, reuses certified formal memory, searche
 
 **Semantic fidelity gate:** every promoted theorem also passes **original text → Lean → blind Lean-only reconstruction**; ASPBE checks normalization/register/ancilla/error/oracle semantics, and any mismatch becomes a **review-gated repair proposal**, never an automatic source edit.
 
-[**Compare the previous and current Harness on QuantumComputinglib →**](https://dakebu.github.io/Quantum-Computing-Block-Encoding/workflow/index.html) · [Protocol details](HARNESS.md)
+[**Compare the previous and current Harness on QuantumComputinglib →**](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/workflow/index.html) · [Protocol details](HARNESS.md)
 
 ---
 
@@ -116,7 +137,7 @@ X|0\rangle = |1\rangle, \qquad H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2
 
 `pauliXVerified` and `hadamardVerified` package the normalized target, Mathlib unitarity proof, state-action theorem, circuit, schedule, and resource record.
 
-[Read the State Preparation chapters →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/state-preparation/)
+[Read the State Preparation chapters →](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/state-preparation/)
 
 ---
 
@@ -152,7 +173,7 @@ The Lean library contains reusable interfaces and proof leaves for:
 - typed QSVT consumer boundaries;
 - deterministic resource comparison.
 
-[Read the Block Encoding chapters →](https://dakebu.github.io/Quantum-Computing-Block-Encoding/block-encoding/)
+[Read the Block Encoding chapters →](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/block-encoding/)
 
 ---
 
@@ -245,7 +266,7 @@ The machine-readable record is [`reports/public-case-replay/latest.json`](report
 
 **Paper-facing formalization.** Source-linked Lean statements, source audits, and explicit compiler frontiers. A compiled local declaration is never silently promoted to a paper-wide reproduction.
 
-For exact status, use the generated [Implementation Map](https://dakebu.github.io/Quantum-Computing-Block-Encoding/implementation-map/).
+For exact status, use the generated [Implementation Map](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/implementation-map/).
 
 <details>
 <summary><strong>Recent milestones</strong></summary>
@@ -254,7 +275,7 @@ For exact status, use the generated [Implementation Map](https://dakebu.github.i
 - **12 August 2026:** complete Mathlib-backed Pauli X and Hadamard State Preparation certificates.
 - **10 August 2026:** project name **ASPBE** and public library/site name **QuantumComputinglib**.
 - **July 2026:** Verso Blueprint and searchable Lean Library Explorer.
-- **17 May 2026:** public auditable history begins with commit [`af59b03`](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and [`MANIFEST.md`](MANIFEST.md).
+- **17 May 2026:** public auditable history begins with commit [`af59b03`](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/commit/af59b03c58c2cedec52b14a80b4d909031d62521) and [`MANIFEST.md`](MANIFEST.md).
 
 </details>
 
@@ -262,7 +283,7 @@ For exact status, use the generated [Implementation Map](https://dakebu.github.i
 
 ## QuantumComputinglib
 
-[QuantumComputinglib](https://dakebu.github.io/Quantum-Computing-Block-Encoding/) is the reader-facing textbook and formal library generated from this repository.
+[QuantumComputinglib](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/) is the reader-facing textbook and formal library generated from this repository.
 
 Its primary reading order is:
 
@@ -378,7 +399,7 @@ QuantumBlockEncoding/
 └── OpenProblems.lean            explicit unfinished routes
 ```
 
-The [Lean Library Explorer](https://dakebu.github.io/Quantum-Computing-Block-Encoding/library/) is the authoritative searchable declaration surface.
+The [Lean Library Explorer](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/library/) is the authoritative searchable declaration surface.
 
 <details>
 <summary><strong>Build and verify locally</strong></summary>
@@ -408,7 +429,7 @@ The complete build runs the Lean gate, tests, proof-trust checks, declaration in
 
 Two supported routes are available:
 
-1. use the [Live Formalization Workspace](https://dakebu.github.io/Quantum-Computing-Block-Encoding/ide/) to prepare a versioned lemma packet; or
+1. use the [Live Formalization Workspace](https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/ide/) to prepare a versioned lemma packet; or
 2. submit a focused pull request following [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 A contribution enters public positive retrieval memory only after maintainer review and the full repository gate.
@@ -452,10 +473,10 @@ See [`docs/attribution.md`](docs/attribution.md) and [`NOTICE.md`](NOTICE.md).
 
 ```bibtex
 @misc{aspbe2026,
-  author = {Bu, Dake and Huang, Xiajie and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
+  author = {Bu, Dake and Huang, Xiajie and Lv, Outongyi and Liu, Nana and Nitanda, Atsushi and Wong, Hau-san and Zhang, Qingfu},
   title = {{ASPBE: Automatic State Preparation and Block Encoding for Quantum Computing}},
   year = {2026},
-  note = {QuantumComputinglib and project source: \url{https://github.com/DakeBU/Quantum-Computing-Block-Encoding}}
+  note = {QuantumComputinglib and project source: \url{https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench}}
 }
 ```
 

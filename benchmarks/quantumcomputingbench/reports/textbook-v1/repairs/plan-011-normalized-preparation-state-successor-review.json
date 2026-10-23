@@ -1,0 +1,110 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-011",
+  "question_version": 2,
+  "repair_record": "_review_tmp/plan-011-normalized-preparation-state-successor.json",
+  "repair_record_digest": "3abc7e9b1e0ec54bf113dfe1e4becbfc5405442531faa7b9b12feb7aeadd3361",
+  "original_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+  "original_contract_hash": "8befbf010523ba0d7470bf3d315f6611a2d90965f3ea9f3481c107697e864693",
+  "successor_contract_hash": "07a39bea90c46dde931e87c67620bbe9377d70d306fcc87aa6481ba1b545878c",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate question, complete reference answer, rubric and exposition are mathematically correct as an explicit first question-version2 successor. This is not equivalence to the predecessor proof demand, current gold restoration, policy admission, native formal alignment, a fresh kernel certificate or source-blind/human approval.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate author /root/qcb_formal_view_audit and the recorded predecessor author.",
+    "repair_author": "/root/qcb_formal_view_audit",
+    "original_author": "native-planned-author",
+    "exposure": "Not blind: this reviewer has prior scientific-computation/block-encoding and primary-source exposure. The full actual prepared011 and exact candidate were read for this gate. The candidate discloses its author's exposure to the parent's earlier011 diagnosis; that diagnosis is not substituted for my complete block/probability/cI reconstruction. No invented source-blind decoder, collaborator or human approval."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest(entire actual historical prepared original returned by release.checked()[2]), including metadata, not the current reader successor.",
+    "repair_record_digest": "qcb_core.digest(entire exact parsed private candidate JSON), including question/answer/rubric/exposition and all execution/source metadata.",
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the exact original nine-field contract with ONLY question replaced by candidate.question. Candidate has no separate top-level assumptions/conventions/family/split/graph/source overrides.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "actual_checks": "Programmatically verified exact candidate schema/key set, pending-distinct-review marker, version2 key grammar, supersedes key/whole-item/contract hashes, changed question, positive rubric schema and source LF bindings. Only question differs among the nine fields; all other eight are literally inherited. Exposition has exactly3 steps AND exactly the predecessor's per-step supporting-node lists, not merely subsets. New/old hashes differ.",
+    "retained_contract_values": "family=qsc-block-encoding-dilation; split=test_public; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; assumptions=[]; conventions=[]; target_nodes=[\"concept:block-encoding\",\"concept:matrix-analysis\"]; supporting_nodes=[]; source_refs retained exactly as hashed."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit question-contract successor; no unchanged-question or predecessor-equivalence claim.",
+    "predecessor_literal_reading": "The exact SVD dilation and no-exact-system-unitary claims are true. The predecessor then promotes norm loss in the chosen block branch to ancilla/postselection necessity whenever A is nonunitary, without distinguishing a subnormalized linear map from its normalized output state. Under the normalized-preparation reading that universal inference is false: A=cI,0<c<1 has the identity as a deterministic system-only normalized target procedure.",
+    "changed_requested_reasoning": "Version2 retains the same arbitrary square n-qubit contraction/SVD/dilation, but explicitly asks to assess and refute that universal normalized-state claim, derive both complete ancilla sectors and their probabilities, handle undefined kernel conditioning and the norm-one subspace, and prove the separate exact-operator/trace-preservation obstructions. It is not an equivalent restatement of the old requested necessity proof or an answer-only repair.",
+    "retained_family_target_scope": "The same reserved qsc-block-encoding-dilation family, test_public split, graph snapshot, source_refs and target_nodes(block-encoding,matrix-analysis) are inherited literally. There is no new core or new oracle/resource model. The added normalized-versus-unnormalized assessment directly clarifies the original postselection boundary; it does not substitute a different algorithm.",
+    "hypotheses_and_minimality": "A remains every square contraction, including singular/zero matrices; W,V are the same SVD unitaries. Normalized b defines physical-state inputs, not an extra promise Ab!=0. The conditional expression is restricted only where defined, with the excluded event explicitly handled. No lower singular-value, generic deterministic-normalization, full-rank or efficiency premise is smuggled in. The question expansion is sufficient and honestly explicit; it is not claimed the unique shortest possible correction.",
+    "admission_boundary": "This private mathematical review does not stage or change the current-reader policy, prior withdrawal, source/graph scope, historical data or version-lineage implementation. Original remains historical; any integration and stable-release decision is separate."
+  },
+  "substantive_reconstruction": {
+    "dilation_and_clean_block": "Let S=sqrt(I-Sigma^2). Both real diagonal matrices commute, S^2+Sigma^2=I and M†=M. Therefore M^2 has diagonal blocks I and offdiagonal commutators0. The outer block diagonals are unitary, so their product is unitary. Full multiplication gives U_A=[[W Sigma V†,W S],[S V†,-Sigma]], hence the clean0-to0 block is exactly A, with ancilla preceding the system as stated. This holds for every finite N=2^n, including N=1.",
+    "branch_and_kernel": "For ||b||=1, the output is |0>Ab+|1>S V†b. Orthogonal ancilla sectors give p_b=||Ab||^2 and1-p_b=||S V†b||^2. The normalized successful vector is Ab/sqrt(p_b) only when p_b>0. If Ab=0 the outcome never occurs, not a zero physical state or an arbitrary automatically defined conditional vector. A=0 has no defined normalized target on any normalized input. No success-probability denominator is suppressed.",
+    "norm_one_subspace": "H=I-A†A is positive semidefinite. For a normalized b, p_b=1 iff <b,Hb>=||sqrt(H)b||^2=0 iff Hb0. This is K=ker(I-A†A), the span of right singular vectors with singular value1. Inner products are preserved on K because A†A acts as I there. For A=diag(1,1/2), b=|0> belongs to K although A is nonunitary. Thus even the chosen branch need not be probabilistic for every input of a nonunitary A; cI has the contrasting K={0}.",
+    "normalized_counterexample_quantifiers": "For any fixed real c with0<c<1 and every normalized b, cIb is nonzero and cIb/||cIb||=b exactly. The identity on the original system produces this normalized vector deterministically, with no extra register or postselection. The displayed unit-factor dilation still succeeds with probability c^2. That difference is allowed because the identity does not preserve the c amplitude as an unnormalized linear operator. One universal counterexample family refutes necessity for ALL normalized-target procedures; it does not prove arbitrary nonlinear normalization is a deterministic channel.",
+    "exact_operator_and_density_branch": "If a system unitary equals A on every input, equality of the linear maps gives A†A=I; square finite dimension then implies A is unitary. A nonunitary square contraction has a singular value below1 and cannot equal such a norm-preserving map. Separately tr(A rho A†)=tr(rho A†A) is1 for every density iff A†A=I: testing all rank-one projectors annihilates the Hermitian quadratic form A†A-I, hence the matrix. Conversely that identity makes the branch TP (and square-unitary). As a contraction it is always CP trace-nonincreasing, but not a deterministic trace-one branch when nonunitary. Its normalized conditional density is a different expression, undefined at zero trace.",
+    "implementation_boundary": "The SVD construction proves finite-dimensional existence of a dilation, not efficient SVD access, state preparation of arbitrary b, a one-/two-qubit gate compilation, finite-bit arithmetic, a generic deterministic normalized-state map or a new formal certificate. The candidate preserves the source's efficiency caveat and does not replace the branch with an implementation of cI as a system-only exact operator."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: transparently changes the false/ambiguous necessity demand into an assessment; still requires the exact dilation and no-exact-system-unitary theorem. Kernel, norm-one inputs, operator/state distinction and efficiency are explicit.",
+    "reference_answer": "Accept in full. Every block, unitarity product, branch probability, square-root-kernel equivalence, cI quantifier and TP quadratic-form argument is correct. Unnormalized vector, normalized ray and deterministic CP operation are kept separate.",
+    "rubric": "All c1-c4 are supported: c1 middle/full unitarity; c2 exact blocks/probability, kernel and norm-one boundary; c3 cI deterministic normalized target with its different branch probability; c4 exact-operator/TP and absent efficient implementation theorem. No criterion rewards an unjustified generic deterministic-normalization claim.",
+    "exposition": "Core summary states the same separation. All three complete new steps are correct and have exactly the predecessor's per-step node lists: matrix-analysis; block-encoding; block-encoding. Step count stays3. They do not imply a new compiled local root or alter the reserved graph.",
+    "necessity_minimality_verdict": "Accept the entire exact candidate as a first question-version2 correction. Correctness is not equivalence to the predecessor's requested reasoning, current-reader admission or approval of a source-blind/formal packet."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/planned.json",
+      "sha256_lf": "afb90ee041855b1a011081522c41e4166fcd758236e55161f7cc9a2cd1f784bb",
+      "anchor": "Complete authored predecessor qcb-core-plan-011-nonunitary-dilation-no-direct-unitary and exact actual prepared counterpart question/answer/all rubric/assumptions/conventions/three semantic steps read. Tracked QA provenance only, not mathematical proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Entire historical prepared qcb-core-plan-011 bound by original_item_digest through release.checked()[2]. Frozen content provenance, not admission or a new proof."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full lin-wiebe-2026-qasc metadata entry and recorded primary URL/edition/binary pin read. LF catalog binding is metadata only; operative primary text is separately inspected as detailed below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "CONTRACT_FIELDS, check_exposition and question_successor rules read to validate exact nine-field replacement, version2 grammar and graph/step bounds. This is schema/lineage evidence, never a mathematical proof or policy admission run."
+    }
+  ],
+  "primary_source_checks": {
+    "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+    "recorded_edition": "29 April2026;447 pages",
+    "inspected_operative_regions": "Lin–Wiebe,29 April2026/447-page PDF: full Section9.1 Eq9.1–9.13/Definition9.2 and Example9.3 Eq9.14 plus immediate gate-efficiency caveat, PDF140–143/printed141–144. Text and full displayed block regions read; diagram pixels not inspected. The chosen selected branch, not universal normalized-state necessity, is what the source describes.",
+    "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "reviewer_historical_binary_hash_verified": false,
+    "reviewer_retrieved_binary_sha256": null,
+    "actual_access": "Genuine primary PDF text extraction at author-hosted URL. Full operative definitions/displayed equations and relevant proof/exercise contexts were inspected in this continuous task context and key candidate-specific regions reread for this gate. No rendered-page/diagram-pixel inspection is newly claimed.",
+    "candidate_author_byte_claim_limit": "The candidate author reports its own successful in-memory binary retrieval and matching historical hash. This reviewer has NOT independently verified that execution or those bytes. My own fresh read-only urllib attempts to BOTH primary URLs in this gate were blocked with WinError10013. Text cover/date/anchors agree with catalog but do not establish binary equality. I do not transfer the author's hash-verification flag to myself or rewrite frozen earlier reports.",
+    "source_proof_limit": "Example9.3 gives the dilation and immediate existence-versus-efficient-gates caveat; Section9.1 gives the chosen postselection branch. Kernel/norm-one/TP distinctions and cI universal-necessity refutation are independently derived; they are not falsely attributed as printed source theorems.",
+    "redistribution": "No PDF/page saved, redistributed or relicensed; no long primary passages copied."
+  },
+  "provenance": {
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "retrieval": "Complete actual historical prepared original via release.checked()[2] and complete exact private candidate read, including source/execution metadata. Not substituted authored/current repaired intentions.",
+    "instruction_status": "Required AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared contract/acceptance texts were read completely in this context and checked unchanged from the preceding objective; substantive-worker skill reread for this gate. PDF guidance previously read completely remains the read-only primary-access discipline.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "formal_status": "Independent mathematical/source/exact-binding review only. No new local Lean node, compiled theorem, native formal view, fixed-reference replay or efficient implementation is claimed.",
+    "source_hash_method": "qcb_integrity.text_sha of each whole tracked local source/data file; qcb_core.digest for whole candidate/original/contracts. Successful schema checks do not decide mathematical truth.",
+    "mutation_scope": "Only parent _review_tmp/plan-011-normalized-preparation-state-successor-review.json written by this gate. No candidate, canonical source/data/policy, old report, history, current publication gate, commit or push changed.",
+    "remaining_limits": "No global semantic dedup, alias reconciliation, split pooling, theorem novelty or stable admission. Author execution claims not independently audited beyond the exact content/source-math review."
+  }
+}

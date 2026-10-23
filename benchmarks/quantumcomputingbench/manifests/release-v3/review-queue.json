@@ -1,0 +1,242 @@
+{
+  "instructions": "Inspect actual declarations, full ambient source, NL semantics and local Lean report. Review the sparse/physical-resource boundaries independently. Do not accept just because a referenced Lean theorem compiles.",
+  "items": [
+    {
+      "authored_sha256": "5cca87659c22df83452be7456b29cd4762cdd7242e1843c8b11f33d388220fb5",
+      "content_hash": "80760a9bd290ece2fff660c9a8ef531b92b67f3e4ebcb7fa7220be9b8cecef64",
+      "id": "qcb-894edda95e2c05d525d2",
+      "key": "qs-resource-depth-parallel-vs-serial-corrected-v3",
+      "reference_checks": [
+        "resourceWitness",
+        "disjointDemandNotMax"
+      ],
+      "source_refs": [
+        {
+          "anchor": "Resource.add / Resource.parallel / Resource.ofCounts",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Resources.lean",
+          "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+        },
+        {
+          "anchor": "Gate.resource / CircuitLayer.resource / Circuit.resource / LayeredCircuit.resource",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Circuit.lean",
+          "sha256": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "dfc5dad67a8798d9e7aa70ff8b9795f9ed76336b684d42afd765367a0aa4c5ae",
+      "content_hash": "f80d38055b8b7d98727c61beb5580833534a4465663b8667d69a232c1d32c3de",
+      "id": "qcb-070c55b06f300dbc0474",
+      "key": "neg-prepare-firstcolumn-positivity-corrected-v3",
+      "reference_checks": [
+        "sparseNonnegative",
+        "sparseHasZero",
+        "sparsePositiveMass",
+        "sparseNotStrictlyPositive",
+        "sparsePrepared",
+        "zeroSplit"
+      ],
+      "source_refs": [
+        {
+          "anchor": "prepareMatrixLE_firstColumn / prepareCircuit_firstColumn / splitAngle / normSq_pos_of_positive",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "61a837cf3f8eda4804e6eff3aa866989de38475d0917ee319fe80879519f151d",
+      "content_hash": "0a7ba902c6af24e3ddc53ec71c5888e467823b47d569c1d6045314dbddb8a482",
+      "id": "qcb-c19db65651f1861543f9",
+      "key": "neg-ry-not-half-only-at-pi-corrected-v3",
+      "reference_checks": [
+        "halfAngle"
+      ],
+      "source_refs": [
+        {
+          "anchor": "standardRyMatrix / standardRyMatrix_two_arccos_eq_amplitudeRotation",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "54416ce2903539e498ba98d4cc4122f59a411106c9d06a76db82edf74fc26061",
+      "content_hash": "cb6ea0dc14585b539f57c41f7c834bf69c1b2367a338a1ccf2cf679d11c24ac1",
+      "id": "qcb-8a5954c3aa05ceb23e54",
+      "key": "k-becost-lexicographic-order-corrected-v3",
+      "reference_checks": [
+        "oracleAbstractGate"
+      ],
+      "source_refs": [
+        {
+          "anchor": "BlockEncodingCost.betterThan / noWorseThan",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        },
+        {
+          "anchor": "Gate.resource (oracleCall)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Circuit.lean",
+          "sha256": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94"
+        },
+        {
+          "anchor": "Resource.gates",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Resources.lean",
+          "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "b8d86e0decb5645276efc1815dc79c22f3979f2f35fb4d263df66245b00f5c23",
+      "content_hash": "cfa7f9bc3626039dee03f7a7d4072259f9f4304f3ba0874a41a76bba1057aed5",
+      "id": "qcb-c75b0af65ae40b3cd680",
+      "key": "lean-standardRyMatrix-zero-corrected-v3",
+      "reference_checks": [
+        "ryZero"
+      ],
+      "source_refs": [
+        {
+          "anchor": "standardRyMatrix_zero",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "7fd8423ebc51969e0b18eabf80b21128e3c56558b38d294b60d27292522fb106",
+      "content_hash": "7aecbe4a13af5057ebf0cb0480644029461c2e6a8c96303c5144a296291d4013",
+      "id": "qcb-cb7d5fbf1366be23d369",
+      "key": "lean-flipBit-involutive-corrected-v3",
+      "reference_checks": [
+        "flipInvolution"
+      ],
+      "source_refs": [
+        {
+          "anchor": "flipBit / flipBit_flipBit",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+          "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "7bdf1ca3fc1242af917c5fce80e01c00fe1b0a76ea434cf1182d59b2c3169837",
+      "content_hash": "5de9e6c2a3c5d5ae1e361e031b8e0b89fc15e2da6f1fd6911c868d6901380fe7",
+      "id": "qcb-d2b43ab3f432d569853e",
+      "key": "lean-planeMatrix-det-applicability-corrected-v3",
+      "reference_checks": [
+        "planeDet"
+      ],
+      "source_refs": [
+        {
+          "anchor": "planeMatrix_det / rotateRows_det / det_two_row_mix",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+          "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "80c778b498ad1aadd70c53d5fc90950962f14d66d0a80f70d74342efddab690b",
+      "content_hash": "3ef120b155cda3cb91bde8131f22ee280f062deab13ec2e4ff62ada5d21baef9",
+      "id": "qcb-f6defaf48d0af1226fe7",
+      "key": "exact-resource-six-coordinates-v3",
+      "reference_checks": [
+        "resourceWitness"
+      ],
+      "source_refs": [
+        {
+          "anchor": "Resource.add/parallel/gates",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Resources.lean",
+          "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "68af5598926c1244e9985751f3475d4b84a44f6adabb149b8767b9cb60c932f1",
+      "content_hash": "5df736a443f037738905d65ccae6f32dd08acd82f4bde9f6442d854401eac5ad",
+      "id": "qcb-51859e0ab30c0da582c3",
+      "key": "exact-oracle-abstract-unit-v3",
+      "reference_checks": [
+        "oracleResourceTuple"
+      ],
+      "source_refs": [
+        {
+          "anchor": "Gate.resource",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Circuit.lean",
+          "sha256": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94"
+        },
+        {
+          "anchor": "Resource.gates",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Resources.lean",
+          "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "875c7b634071beece46b9b656a5a0f0221c69bbbc0c716cb06917c594c6b6755",
+      "content_hash": "d0e155681db0b620ecaf116991986d6c2d7a6d7833bad4284e730d164b59d1d9",
+      "id": "qcb-8ec6aa2f97a0b4cf0af1",
+      "key": "exact-clog2-boundaries-v3",
+      "reference_checks": [
+        "addressBoundary"
+      ],
+      "source_refs": [
+        {
+          "anchor": "clog2",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "7505626d473d91ebf2f028155ddbf64d7080a6258e82adafe48b4343e7054516",
+      "content_hash": "5ff2a03d83090d69e9000f40f60758c39795d337363de084625a99d2c80161cc",
+      "id": "qcb-d796c630819b0695d93b",
+      "key": "exact-sparse-strict-necessity-v3",
+      "reference_checks": [
+        "sparsePrepared",
+        "sparseNotStrictlyPositive"
+      ],
+      "source_refs": [
+        {
+          "anchor": "prepareCircuit_firstColumn / normSq",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ]
+    },
+    {
+      "authored_sha256": "a7e1295b0b6eea3813b0d078ee97dc0e4db2eef0897ac55ccb48f548b85a8eda",
+      "content_hash": "6f49e17f109d05aad363acb525676a6852b817afbcba64bcff43dd9169ca7f57",
+      "id": "qcb-7dad08acd21d3cbefa3d",
+      "key": "exact-zero-subtree-angle-v3",
+      "reference_checks": [
+        "zeroSplit"
+      ],
+      "source_refs": [
+        {
+          "anchor": "splitAngle / pairNorm",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ]
+    }
+  ],
+  "reviewer": null,
+  "state": "awaiting genuinely independent review"
+}

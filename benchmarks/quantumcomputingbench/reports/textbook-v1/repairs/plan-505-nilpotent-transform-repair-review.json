@@ -1,0 +1,54 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-505",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-505-nilpotent-transform-repair.json",
+  "repair_record_digest": "79e18e22fe2156e12718911abc8e93c27c352ffbdd373021155f061835f6c7d6",
+  "repair_record_sha256_lf": "5643fea78275773293e6ca0fc6fd704363f9adc5945efc33dbb2ff781d5c95a3",
+  "original_item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+  "verdict": "accept",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197",
+    "projected_contract_hash": "7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197",
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "assessment": "Full original mathematical/grading/source fields and complete candidate answer/rubric/exposition actually read. No question-contract field is overridden; same six steps and allowed source nodes checked. This exact answer correction does not transfer old acceptance metadata or imply policy admission."
+  },
+  "substantive_reconstruction": {
+    "exact_nilpotent": "In the stated basis A†A=diag(0,1), A^2=0. With W=I,Sigma=diag(1,0),V=X, W Sigma V†=A. Hence the stipulated right-even transform is X diag(1,-1)X=diag(-1,1)=2A†A-I, while the ordinary polynomial is2A^2-I=-I. The answer correctly distinguishes the true ordinary-polynomial result in this degree from the invalid general eigenvalue-list inference for a defective matrix; T1(A)=A is an explicit warning.",
+    "hermitian_sign_completion": "For H=Q D Q† define J diagonal with signs at nonzero D and+1 at zero. QJ is unitary and (QJ)|D|Q†=H. For even f, f(|D|)=f(D); for odd f, J f(|D|)=f(D), including zero since f(0)=0. This proves the stated sufficient Hermitian definite-parity agreement without a nonunitary sign(0)=0 SVD or arbitrary complex-phase assumption.",
+    "normal_counterexample": "For B=(i/2)I, B†B=I/4, so the right T2 transform is-I/2. In contrast B^2=-I/4 and T2(B)=-3I/2. The discrepancy is magnitude as well as phase; normality alone is insufficient. Conversely odd degree1 gives W Sigma V†=A for every A, so normality is not necessary for every individual coincidence. These assertions remove, rather than merely paraphrase, the original false normality generalization.",
+    "rubric_and_process": "All four exact rubric entries and all six complete steps read and accepted. They require the given SVD/right-even calculation and precise resolving principle, not a universal claim about all nonnormal matrices. A question revision is unnecessary: the original specific counterexample task is true, and every original convention/family/split/source field remains unchanged.",
+    "source_and_limits": "Primary Definition10.4/Eq10.14-10.16 and complete Example10.8/Eq10.77-10.80 were actually read as extracted primary text. The candidate goes beyond the source by explicitly repairing the zero-sign convention and giving the normal iI/2 discriminator; both are independently verified above. No whole-state, efficient-circuit, query, finite-bit or new local Lean claim follows."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Lin-Wiebe metadata only. Actual primary operative text and independent mathematics are separately stated; a local metadata hash is not external-binary verification or formal closure."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "reviewed_at_private_path": "_review_tmp/plan-505-nilpotent-transform-repair.json",
+    "actual_identity": "/root",
+    "independence": "Distinct from candidate author /root/qcb_native_comparison and original polynomial-signals-author-b3. Root authored neither. Root had read the original independent502-510 finding and candidate before this exact review; not blind, a human expert, or a new reviewer identity.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+      "digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+      "sha256_lf": "2dc739852d11cb9cbb3cc0acaa873b0070c2a42d6af7b6133ef70a2742299f42"
+    },
+    "primary_access": "Genuine web primary text at https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf; operative Definition10.4, Example10.8 and full Theorem10.9 proof read. Recorded29April2026/447-page source pin56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 was not freshly recomputed from raw bytes in THIS review. The candidate author separately reports matching bytes/visual pages; that execution is not reattributed to root. No new source-page pixel inspection or PDF redistribution.",
+    "execution": "Read-only prepared-record access, exact digest/contract/LF checks and independently reconstructed algebra. No kernel/native-formal admission, prediction isolation, model evaluation, production circuit, source-blind seal, human approval or stable-release claim. Private review authoring only; future transport/admission separate."
+  }
+}

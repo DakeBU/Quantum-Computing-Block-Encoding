@@ -1,0 +1,122 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-sp-119",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-119-indexed-smoothness-state-successor.json",
+  "repair_record_digest": "f2a3ae41db0d0615af7123de249e67f5598a0a130b68630cf1640482de672172",
+  "original_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+  "original_contract_hash": "3cca256fbe1e92a6a60deb68dd6a466510b411317f18ebd99ddc3fb3875e292a",
+  "successor_contract_hash": "5139594d8e003d84aa5ff57197bb73cd7cf709141dcf6e8c5872c139912e3c68",
+  "verdict": "accept",
+  "verdict_scope": "Accept the entire exact pending first question-version2 candidate, including new question, complete reference answer, all rubric criteria and all three exposition steps. This is mathematical/source acceptance, not unchanged-question equivalence, automatic formal-view transfer, transport or reader/policy admission.",
+  "independence": {
+    "actual_identity": "Actual task /root/qcb_boundary_repair_review, distinct from candidate and prior uncertain-finding author /root/qcb_formal_view_audit and historical original author structured-preparation-author-b2.",
+    "candidate_author": "/root/qcb_formal_view_audit",
+    "exposure": "Not blind: I previously read Hermite local sources and related SP reviews/candidates, and received the parent's exact review objective. In this objective I independently reread the full actual release.checked()[2] predecessor, exact withdrawal/finding, entire final candidate including metadata, complete HermiteSmoothness/HermitePolynomial modules and complete local notes. The author's prior finding and parent's focus are disclosed context, not mathematical evidence or a borrowed verdict."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of the ENTIRE actual historical prepared qcb-core-sp-119 returned by release.checked()[2], including answer/rubric/metadata, not a replacement current-reader record.",
+    "repair_record_digest": "qcb_core.digest of the ENTIRE exact final private candidate, including question/reference/rubric/exposition/source_checks/execution.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "original_contract_hash": "qcb_core.digest({k:original[k] for k in qcb_textbook_policy.CONTRACT_FIELDS}).",
+    "successor_contract_hash": "qcb_core.digest of the exact original nine-field contract with ONLY question replaced by candidate.question.",
+    "actual_checks": "Exact allowed qcb.textbook_question_successor.v1 key set, candidate author distinction, predecessor key/core/full digest, old hash, new hash, version2 key grammar, pending_distinct_review marker and nonempty new question/reference/complete positive finite rubric checked. All other8 contract fields are literally inherited, with no overrides. Semantic-step count stays3; EVERY step's supporting-node list equals its original ordered list. Candidate source LF bindings pass.",
+    "retained_values": "assumptions=[]; conventions=[]; family=hermite-smooth-gluing; split=train; graph_version=qcb-snapshot-ffa644f0da3031a1ce754b9a; original5 HermiteSmoothness target nodes, no supporting nodes, and source_refs retained exactly. No new core or graph scope introduced."
+  },
+  "withdrawal_binding": {
+    "withdrawal_row_digest": "6934c06f408e792b871cbde42ad6a5b409120b20cdf19a2c0e915eb6c9946416",
+    "review_path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+    "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+    "finding_digest": "58557745ed1b5f803ae270ac6a915b0621373c468f46c39e57f8885babc9c70b",
+    "prior_verdict": "uncertain",
+    "verification": "Exact current withdrawal predecessor/core/whole-item binding, whole immutable prior report digest and complete item-finding digest checked. Prior finding is uncertain over indexing, not a refutation of the finite-order local theorem. This binds the historical defect and does not supply proof of candidate correctness. Mutable current-policy whole-file hash is not made an evergreen source dependency."
+  },
+  "contract_change_assessment": {
+    "original_scope_and_ambiguity": "The historical question names S and one target without a k subscript, gives matching jets through k, then asks globally C^k for every natural k; its answer/r4 repeat the unindexed all-orders conclusion. For each fixed k with supplied jets the two-splice proof is correct. Under an indexed-family reading it is also correct as forall k,C^k(f_k). It is not legitimate to infer C-infinity of one fixed finite-order member. The original withdrawal correctly identifies this ambiguity rather than an invalid fixed-k source proof.",
+    "explicit_changed_reasoning": "Version2 explicitly defines the actual source S_k,f_k, fixes k across both uses of the SAME finite-order theorem and quantifies over the construction index only at the end. It additionally asks for diagnosis of the stronger fixed-function reading using the canonical k0 member. That changes the literal question and required reasoning transparently; it is not an unchanged-question answer repair or a claim that old/new questions were unconditionally equivalent.",
+    "same_family_and_target": "Both cuts0/-1, middle-inclusive literal target, supplied finite endpoint-jet premise, global finite-order regularity mechanism and three conceptual steps remain. The finite binomial formula identifies the same source family, not a new endpoint hypothesis or alternate target. Assumptions/conventions remain empty; the derivative jets were already usable premises in the original question and are independently established source conclusions. No extra positivity, grid, normalizer or circuit premise appears.",
+    "necessity_and_minimality": "Explicit k indexing is necessary to remove the suppressed-parameter ambiguity. The short canonical formula permits an actual k0 discriminator instead of an unspecified alternative polynomial. The question explicitly permits the established jets and requests no coefficient/jet reproof, so it does not replace the double-gluing objective with a different construction theorem. The extra quantifier diagnosis is bounded and fits the existing regularity family/graph/three-step scope; this is not a claim of the syntactically shortest possible correction.",
+    "limitations_and_no_transfer": "Accept a first explicit question-version2 correction with different old/new contract hashes. Source theorem bodies support the mathematics but cannot automatically align any old-hash formal companion to this exact revised question and its new counterexample demand. No policy admission, source-publication seal or new kernel receipt follows from this review."
+  },
+  "substantive_reconstruction": {
+    "literal_source_family": "The actual source coefficientSeries(k) is the formal series exp(X)*(1-X)^(-(k+1)); coefficientPolynomial(k) truncates through degrees0..k. coefficientSeries_coeff and coefficientPolynomial_eval give exactly a_(k,r)=sum_(m=0..r)choose(k+r-m,k)/m! and A_k(t)=sum_(r=0..k)a_(k,r)t^r. All factorial denominators are nonzero, including0!. sourceInterpolant uses Taylor shift1, so its evaluation is exp(-1)(1-(p+1))^(k+1)A_k(p+1)+(p+1)^(k+1)A_k(1-(p+1)). This is the candidate's source family, not a newly normalized or arbitrary bridge.",
+    "formal_to_analytic_jets": "Complete endpoint proofs were read: the truncation identity fixes low coefficients of endpointFactor to1/j!, the opposite high-multiplicity factor kills derivatives through k, and reflection contributes(-1)^j. Shift t=p+1 has derivative1. The actual iteratedDeriv_polynomial adapter proves by induction that analytic iterated derivatives of polynomial evaluation equal evaluations of iterated formal derivatives. Thus the allowed endpoint jets have their actual ordinary derivative meaning, including j0, rather than merely a formal syntax identity. Candidate correctly treats these as available inputs to the gluing objective.",
+    "reusable_finite_order_theorem": "For real globally C^k u,v with equal jets j0..k at c, splice_c takes u for p<c and v otherwise. At k0 continuity follows by equal values at the unique boundary. At successor order, equal values and first derivatives give a common difference-quotient limit at c; away from c a neighborhood selects one branch. Consequently the derivative is the splice of the two branch derivatives, and those branches are C^k with matching lower jets, so induction closes. The complete hasDerivAt_ite_of_eq/hasDerivAt_splice/deriv_splice/contDiff_splice bodies implement this logic without an infinite-order premise.",
+    "inner_glue_zero": "Fix k. Polynomial S_k and p↦exp(-p) are globally C^k. For every j≤k, the latter has derivative(-1)^j exp(-p), hence value(-1)^j at0, equal to S_k's right endpoint jet. Apply the finite-order theorem at0 to obtain R_k=splice_0(S_k,exp(-.)) globally C^k, including the cut point. The proof consumes the same fixed k throughout; analyticity of each separate branch does not make their splice automatically analytic.",
+    "local_germ_and_outer_glue": "On the open neighborhood(-3/2,-1/2) of-1 all points are strictly below0, so R_k=S_k there. This is local eventual equality, not equality at just-1. Since differentiation is local, all iterated derivatives at-1 agree with the polynomial's; in particular those through k equal exp(-1). Derivatives of exp(p) at-1 also equal exp(-1). Both exp and R_k are globally C^k, so a second application of the SAME theorem at-1 gives D_k=splice_(-1)(exp,R_k) globally C^k. Although R_k is only claimed globally C^k, it is locally polynomial at-1 and has all derivatives there; no unjustified global higher regularity was used.",
+    "exact_double_splice_identity": "For p<-1, D_k=f_k=exp(p). At p=-1 the outer right-valued splice selects R_k(-1), and -1<0 makes this S_k(-1), exactly the original middle branch; its value exp(-1) supplies continuity with the left branch. For-1<p<0 both equal S_k(p). At p0 the nested splice selects exp(0)=1 while the literal source smoothInitial selects S_k(0), whose j0 endpoint jet is1. Thus the functions agree at0 despite different branch conventions. For p>0 both equal exp(-p). This exhaustive case check proves literal equality, not equality only away from the junctions.",
+    "correct_quantifiers": "The resulting theorem is forall k∈N, C^k(f_k), with BOTH regularity order and constructed member depending on k. It also implies C^r(f_k) for r≤k, but does not swap this quantification into forall r,C^r(f_(k0)) for a fixed k0. The old finite-jet conditional statement remains true for fixed k; the false stronger unindexed reading must not be used to label that correct conditional proof false. The candidate preserves this distinction accurately.",
+    "canonical_zero_order_counterexample": "At k0 the sole coefficient is a_(0,0)=choose(0,0)/0!=1, so A_0=1 and S_0(p)=q(1-(p+1))+(p+1)=1+(1-q)p with q=exp(-1)∈(0,1). It has endpoint values S_0(-1)=q,S_0(0)=1, so both supplied j0 jets and the global C0 conclusion hold. Using the ACTUAL middle-inclusive f_0(0)=1, its left difference quotient at0 is exactly1-q for h<0 close to0. The right quotient tends to the derivative of exp(-p), namely-1. Since1-q>0≠-1, f_0 is not differentiable at0, hence not C1 or C-infinity. This is an exact analytic counterexample, not a numerical sample or arbitrary noncanonical substitute.",
+    "no_maximality_or_resource_promotion": "The single k0 witness refutes a universal fixed-member all-orders assertion and shows the family theorem does not entail it. No proof that every k member fails exactly at k+1 is needed, present or inferred; the candidate correctly avoids that stronger assertion. Global finite C^k here is not a uniform derivative bound, convergence theorem, positive sampled norm, efficiently computable oracle, finite-bit approximation, state-preparation/circuit theorem or resource count."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept. Actual source family and quantifiers are explicit; original endpoint data/cuts/branch convention are preserved, and use of the finite-order theorem is clearly permitted. The new counterexample demand is disclosed as versioned changed reasoning.",
+    "reference_answer": "Accept in full. Both gluing applications, analytic jet adapter, local neighborhood argument, proof-mechanism explanation and every branch case are correct. k0 slope values and lack of differentiability are derived from the canonical formula, not assumed. No false fixed-C-infinity or exact-maximality claim remains.",
+    "rubric": "All r1–r4 are sound: fixed-k first gluing; local eventual equality and second use of the same theorem; exact double-splice equality at both junctions; indexed quantification and canonical k0 counterexample. Four criteria have unique IDs and positive finite weights, and grade the actual revised question.",
+    "exposition": "Summary and all3 semantic steps are correct. Ordered per-step nodes remain exactly contDiff_right_splice; [right_splice_eventuallyEq,contDiff_double_splice]; [smoothInitial_eq_double_splice,smoothInitial_contDiff]. The new explanatory counterexample is not claimed to be a freshly checked formal theorem under the final node.",
+    "entire_candidate_verdict": "Accept exact candidate f2a3ae41db0d0615af7123de249e67f5598a0a130b68630cf1640482de672172 as a pending mathematical/source question-v2 correction. Execution metadata truthfully exposes same-author prior finding, static access and no fresh kernel/admission claim; it is not itself independent mathematical support."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteSmoothness.lean",
+      "sha256_lf": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc",
+      "anchor": "Complete actual module reread, including splice19–20, common-slope selection23–34, full hasDerivAt/deriv_splice36–63, complete finite-order induction66–89, exponential jets92–98, first gluing99–108, actual local-eventual-equality111–115, second gluing118–125, full boundary-case identity128–142 and final same-k theorem145–147. Static complete proof text supports exact mathematics, not a fresh kernel run."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Complete actual module reread, including independent Euclid route as distinct source evidence. Operative canonical definitions169–182, coefficient/truncation and endpoint-jet proofs184–252, finite formula/evaluation289–309, full analytic adapter335–354 and literal middle-inclusive smoothInitial357–359 with branch proofs361–371. Establishes k-dependent canonical target and algebraic k0 witness, not an automatically aligned formal companion."
+    },
+    {
+      "path": "docs/hermite-polynomial-proof.md",
+      "sha256_lf": "ba2d1f1583d222c34c5edcee142d7b5e64905198720969eb9bb58260fe81caf7",
+      "anchor": "Complete local notes reread: canonical finite formula, endpoint proof topology, full global-regularity explanation and same-k final signature, with explicit no-C-infinity-of-fixed-member limit. Verification instructions are recorded historical/local scope, not executions in this review."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+      "sha256_lf": "dfb5230153faecc09bbd4f8c3e88b16878358919670934e597c1a4ff7e0a2c9c",
+      "anchor": "Complete exact SP119 uncertain finding and its entire bound row loaded and digest-verified. Historical uncertainty/content provenance only, not successor approval or a substitute for independent reconstruction."
+    }
+  ],
+  "provenance": {
+    "observed_head": "c432bcccb35a0e63aa0800b379ad4171cfa9c021",
+    "private_reviewed_at": "_review_tmp/sp-119-indexed-smoothness-state-successor.json",
+    "locator_boundary": "repair_record names the intended canonical repository-relative integration locator. The exact candidate actually inspected was the private file above; no transport or admission is claimed.",
+    "instruction_refresh": "Mandatory AGENTS/HARNESS/theorem-publication/proof-digestion/evidence-routed-memory/shared CONTRACT/ACCEPTANCE were previously read completely in this continuous context; refreshed and verified unchanged from the previous review head. The substantive-worker skill was reread completely for this objective, requiring exact quantifier/definition/proof and execution-boundary checks. No production proof work or build authorized/performed.",
+    "retrieval": "Entire actual historical predecessor via release.checked()[2]; complete exact current withdrawal/finding; entire final private candidate and complete local operative modules/notes inspected. No current-reader successor or author's summary substituted for the predecessor/source.",
+    "source_inspection_only": true,
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "external_primary_limit": "This bounded gate independently inspects actual complete local source mathematics. It does not freshly retrieve or audit arXiv2403.19123v3, verify external PDF bytes/renderings or seal external-paper fidelity; local notes' paper reference remains attribution only.",
+    "formal_boundary": "No Lean build, kernel/native formal execution, fixed-reference check or exact question-formal companion was performed/admitted. Existing theorem bodies and source checks are static evidence only; the original formal_evidence was not upgraded. The k0 non-differentiability witness is independently derived NL mathematics, not an invented local theorem.",
+    "hash_method": "qcb_core.digest over entire exact candidate/original/contracts/withdrawal/report/finding values; qcb_integrity.text_sha over entire actual tracked source files. LF bindings and source presence are not execution or formal-semantic-equivalence receipts.",
+    "mutation_scope": "Only parent _review_tmp/sp-119-indexed-smoothness-state-successor-review.json written. Final candidate, canonical files/current PR106, source/policy/frozen data, all older reports/candidates and history remain untouched by this task. No new agent/build/commit/push.",
+    "remaining_limits": "Private exact-content mathematical/source review only. Not reader/publication admission, a global dedup/novelty or split-reconciliation result, automatic formal transfer, source-blind review, human/collaborator approval or current deployment verification."
+  },
+  "worker_handoff": {
+    "objective": "Resolve exact SP119 first question-version2 source/math gate, not implementation or current-checkpoint editing.",
+    "mathematical_delta": "The candidate correctly isolates forall k,C^k(f_k) and gives an exact canonical counterexample to fixed-function C-infinity, retaining both real junctions and source branch conventions.",
+    "failure_class": "NONE for the revised exact candidate; original indexing SOURCE_INVALID ambiguity is explicitly versioned, not a refuted finite-order theorem.",
+    "salvage": "Original fixed-k double-gluing proof, local germ transport and branch identity retained; ambiguous universal fixed-target reading excluded.",
+    "process_memory": "Mandatory process protocols consulted; no separate mathematical authority inferred from process-memory or author recommendations.",
+    "direction_fingerprint": "SP119-indexed-finite-order-double-glue-exact-candidate-independent-review",
+    "parallel_and_common_blind_spot": "No extra agents or parallel routes used; this is distinct review from the actual candidate author.",
+    "purification_and_exposition": "Private exposition checked end-to-end against exact source definitions/proofs and preserved assumptions; no repository-wide PURIFIED/publication seal claimed.",
+    "residual_risk": "No mathematical objection found in bounded exact candidate. External-paper fidelity, new exact formal alignment/execution and reader admission remain separate gates."
+  }
+}

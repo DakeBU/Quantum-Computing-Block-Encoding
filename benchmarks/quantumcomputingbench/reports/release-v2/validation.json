@@ -1,0 +1,41 @@
+{
+  "schema_version": "qcb.validation.v1",
+  "benchmark_tests": {
+    "passed": 56,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "offline unit + local release integration; not Lean/model certification"
+  },
+  "repository_harness": {
+    "exit_code": 0,
+    "passed": 98,
+    "log": "repository-harness.log"
+  },
+  "lean_gate": {
+    "exit_code": 127,
+    "status": "ENV_BLOCKED",
+    "detail": "bash: lake: command not found"
+  },
+  "production_lean_changed": false,
+  "historical_reports_changed": false,
+  "protected_file_changes": [],
+  "original_missing": [],
+  "original_files_checked": 1297,
+  "existing_benchmark_changes": [
+    "benchmarks/quantumcomputingbench/README.md"
+  ],
+  "pipeline_repeated": true,
+  "node_dispositions_complete": true,
+  "model_baseline": "unmeasured",
+  "lean_certified_items": 0,
+  "snapshot_id": "qcb-snapshot-fb5abbac40331cbc6b85e84d",
+  "source_commit": null,
+  "source_provenance": "user provided archive, no git history",
+  "completion": false,
+  "remaining": [
+    "Actual isolated Lean replay and transitive axiom audit",
+    "Substantive QA authoring across uncovered library nodes/modules",
+    "Approved-interface retrieval policy real tool harness and model-judge calibration if enabled",
+    "Optional authorized baseline endpoint and measured usage"
+  ]
+}

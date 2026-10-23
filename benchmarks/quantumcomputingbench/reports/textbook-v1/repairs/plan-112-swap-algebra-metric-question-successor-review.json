@@ -1,0 +1,134 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root",
+  "core_id": "qcb-core-plan-112",
+  "repair_record_digest": "ff862e93c47b9b828ac723a9f65cbb10087527e0d575bcf443d641af9602bbd8",
+  "repair_record_sha256_lf": "7f2a62e6c9f88805cd16eb663213520e9ce475824ed6f199e2fda046cfd98499",
+  "original_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+  "original_contract_hash": "9fe8d82f4864ac76e0234ade21d7e2bfe84b1e31e622941593236230470e4720",
+  "successor_contract_hash": "39d1ada95b06b194068795408738de8b848948875e62f1ae6293547cb055c41f",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Informed, not blind. I read the actual original, exact historical finding, entire candidate including grading/exposition/execution, and bounded primary text. I have prior source and related-candidate exposure and supplied the worker a bounded defect lead. I authored neither this candidate nor the original. This actual distinct-author mathematical reconstruction is not a human/expert/source-blind or common-blind-spot seal.",
+  "contract_change_assessment": {
+    "literal_need": "Explicit first question-version2 field/metric correction, not an answer-only repair. Preserve the original universal flip and tensor-representation target, assess the missing scalar/metric data and refute the arbitrary-field half-projector reading in characteristic2. Prove the algebraic decomposition for char!=2 without a hidden finite-dimensional assumption, then prove orthogonal projection separately with an explicitly specified real/complex tensor-product metric; supply an incompatible-metric counterexample. This is not blanket narrowing to finite complex representations or an added unitary-action promise. Only question changes among nine fields; empty assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists stay fixed. Metric and field cases are explicit requested analysis, not silently imported standing conventions. No equivalent-old-contract or formal/admission claim.",
+    "scope": "Only question changes among nine contract fields; empty assumptions/conventions remain empty. Full current question states the field/metric cases as requested mathematical analysis, not hidden standing premises. Original core/family/split/graph/source scope and exact ordered steps remain. No claim of equivalence to the old request, extra core or automatic stale-companion alignment."
+  },
+  "substantive_reconstruction": {
+    "universal_flip": "The map (x,y)->y tensor x is bilinear, so the tensor universal property defines a linear flip on the ordinary algebraic tensor product over any field and dimension. Pure tensors span, giving F^2=I and FT_g=T_gF by evaluating both sides. Group inverses make invariant-image inclusion into equality. No tensor completion, topology, finite basis, metric, unitary action or division by2 enters this universal part. The original demand for Hermitian half-projections does not follow from those facts in its unnamed field/metric scope.",
+    "algebraic_split": "For characteristic not2, direct expansion yields both idempotencies, sum identity and both zero cross-products. FP_+=P_+ and FP_-=-P_- prove image inclusion in the kernels; applying each half-sum to a plus/minus vector proves the reverse inclusion. Sum identity gives existence of the decomposition and invertible2 gives zero intersection. Polynomials in F commute with every T_g, so the direct sum is a representation decomposition without assuming phi is unitary. The eigenspace names in the revised question are explicitly scoped to characteristic not2, not silently identified with exterior quotients in all characteristics.",
+    "characteristic_two": "For V=F_2^2, the flip exchanges b01,b10 and fixes b00,b11. N=F-I has image span(b01+b10), is nonzero and satisfies N^2=0. Its kernel is the three-dimensional span(b00,b11,b01+b10). Since -1=1, the alleged two eigenspaces coincide with that kernel; they neither form a direct sum nor span the four-dimensional tensor square. No scalar1/2 exists. This refutes the literal universal formulas, not every possible invariant decomposition for this trivial-group example. Totalized division in a programming language would not rescue the intended projections.",
+    "metric_proof_and_witness": "With the specified SAME real/complex inner product on both factors and the algebraic product metric, simple-tensor inner products give <Fa,Fb>=<a,b> and <Fa,b>=<a,Fb>; sesquilinearity extends both to finite sums. Thus F has explicit adjoint F, even before any completion. The half-projections are self-adjoint idempotents, and <P_+a,P_-b>=<a,P_+P_-b>=0 proves genuine metric orthogonality. For the ordered C2 tensor basis, H=diag(1,1,2,1) is positive definite but incompatible with flip: b01 has squared norm1 and its image b10 squared norm2; also <Fb01,b10>=2 but <b01,Fb10>=1. The plus/minus vectors b01+b10 and b01-b10 have inner product -1. Hence the same algebraic idempotents fail to be orthogonal projections in that metric. An involution or symmetric-looking coordinate permutation is not a metric-free Hermitian certificate.",
+    "boundaries_grading_and_overlap": "When characteristic differs from2, the zero carrier has no nonzero eigenvectors and both images zero; dimension1 has F=I and only eigenvalue+1. Dimension>=2 supplies a nonzero diagonal tensor and a nonzero off-diagonal difference, so both eigenvalues occur, including algebraic infinite dimension. The stated finite bases give integer dimensions d(d+1)/2 and d(d-1)/2 only in the finite case. Characteristic2 still lacks the half-formulas at these low dimensions. I assessed the whole answer, four rubric criteria, summary and five ordered steps: none requires a hidden finite-complex or unitary-action promise. The source provides finite complex formulas, while this general algebraic/metric separation and explicit witnesses are independent derivations. Plan115 shares a swap mechanism but adds reducibility, actual irreducible factors and dimension/character boundaries; no whole-core alias or cross-split independence is inferred."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Complete corresponding authored qcb-core-plan-112 record read, including all literal question/answer/rubric/assumptions/conventions/steps and source metadata. Exact QA-content provenance, not a mathematical proof or approval."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole historical prepared qcb-core-plan-112-sym-antisym-projectors-swap-operator loaded via release.checked()[2], with exact digest independently revalidated after observed HEAD changed; not a current-reader substitute. Prepared-content provenance only."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit metadata entry previously read and LF rebound in this objective. Pins author-hosted URL, edition and historical SHA only; actual primary text and access limits are separately documented."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "sha256_lf": "ef0bc651dc21af694af12dc1f653fe94bf849ef97389b2b147d7f5b67be97f72",
+      "anchor": "Full exact per-item finding, exposure and source limits read; report/finding digest recomputed. Historical evidence, not prior approval of this successor."
+    }
+  ],
+  "content_bindings": {
+    "private_candidate": "../_review_tmp/plan-112-swap-algebra-metric-question-successor.json",
+    "unchanged_values": {
+      "assumptions": [],
+      "conventions": [],
+      "family": "qit-tensor-representations",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:tensor-networks"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "changed_contract_fields": [
+      "question"
+    ],
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:tensor-networks"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:tensor-networks"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:tensor-networks"
+      ]
+    ],
+    "withdrawal": {
+      "core_id": "qcb-core-plan-112",
+      "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+      "reason": "Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94"
+    },
+    "withdrawal_report_sha256_lf": "ef0bc651dc21af694af12dc1f653fe94bf849ef97389b2b147d7f5b67be97f72",
+    "binding_validation": "Whole original/candidate, LF source files, exact old/new contracts, withdrawal/finding and ordered node lists checked read-only. These transport checks are not mathematical proof or production admission."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "raw_sha256_verified": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "bytes": 554175,
+      "page_count": 79,
+      "root_actual_text_scope": "Fresh in-memory matching-byte retrieval and full zero-based pages20,25,26,27,28,29: Corollary3.20 proof, standard-S3/swap context, full Definition3.24/Example3.25/Eq3.73-3.78, and class-function/character context Definition3.28/Eq3.83-3.84/Proposition3.29(i). Earlier same continuous-turn full Definition3.6/3.12/Schur3.17 text inspection is separate prior context, not a new whole-book read.",
+      "operative_pixels_inspected": "Root personally inspected the rendered printed28 page; private PNG leditzky-symmetry-search-page-28.png SHA2568dfcdba17319ef9475a93f12765e12307421b81650fa6fce252eb0bad4a466fc. This is operative flip/projector evidence for112, not a rendered character-page30 check for108.",
+      "limits": "No PDF saved/redistributed. Primary field-general/metric/characteristic extensions and witnesses are independently derived, not printed source theorems. No entire-source, external cited-proof, kernel or native-formal seal. Root own byte/pixel execution is not transferred to the candidate author or another reviewer."
+    }
+  ],
+  "provenance": {
+    "observed_canonical_head": "543595d84298831b3a2cdb400444b544a2dcd2fd",
+    "actual_identity": "/root",
+    "scope": "Only new private review. Full candidate and predecessor mathematical/contract content actually read before this additive emission. No canonical install, prior-artifact edit, new Lean execution, model result, global reconciliation, stable/admission or additional agent claimed."
+  }
+}

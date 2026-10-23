@@ -1,0 +1,187 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-106",
+  "supersedes_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+  "supersedes_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+  "supersedes_contract_hash": "13d2d42ffb9abf52316dd44b9c632fe90ca15ebc48b2772aa05e521deacfbf34",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-106-textbook-question-v2-abelian-dimension-scope",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version correction. The literal unrestricted complex abelian-irrep assertion is false for algebraic infinite-dimensional representations, and the prepared empty assumptions/conventions do not bind the source's finite-dimensional standing convention. Preserve/refute that reading, then prove the source's nonzero finite-dimensional theorem with its field and zero-space boundaries explicit. Change only question among nine CONTRACT_FIELDS; keep core, qit-schur-lemma family, test_public split, graph/source_refs and exactly five ordered original node lists. Do not call the positive finite-dimensional theorem equivalent to the original unrestricted demand, or silently put finite dimension into a standing convention. Prior original contract13d2d42ffb9abf52316dd44b9c632fe90ca15ebc48b2772aa05e521deacfbf34 is superseded, not retained. No new core, global alias clearance, selfapproval or admission. Proposed question-only successor contract d60a5553bc25ce2cbc7f1ec76fc69539591c8d781b6742db92c8d9c494708f1b.",
+  "question": "Assess the unrestricted algebraic assertion that every complex irreducible representation of an abelian group is one-dimensional, without silently importing a finite-dimensional standing convention from the cited notes. Here representations act by complex-linear invertible maps, and algebraic irreducibility means no invariant complex-linear subspaces other than zero and the whole space. Give an explicit infinite-dimensional counterexample with an abelian group, proving that the action is a representation, the carrier really has infinite complex dimension and the action is genuinely irreducible; a reducible trivial-action example is not sufficient.\n\nThen prove the corrected positive statement: for any abelian group G and any NONZERO FINITE-DIMENSIONAL complex representation phi:G->GL_C(V) satisfying algebraic irreducibility, dim_C V=1. You may use the correctly linear scalar Schur lemma, but state exactly where abelianness, finite positive dimension and algebraic closure enter; do not infer scalarity merely from commuting operators without those hypotheses. Explain how its scalar action defines a multiplicative character G->C^times, and conversely why any such one-dimensional action is irreducible.\n\nGive a precise finite-dimensional real counterexample when the field is not algebraically closed, rather than saying that every rotation works. If a definition permits the zero carrier to count as irreducible, assess it separately without inventing a nonzero vector or a dimension-one conclusion. State whether finiteness/compactness of G, characteristic-zero averaging, unitarity or a topology is used by the positive proof, and keep the exterior algebraic counterexample distinct from appropriately hypothesized continuous/unitary Schur results. Identify the scalar-Schur dependency without claiming an alias with the whole plan105 question.",
+  "reference_answer": "The unrestricted assertion is false as an algebraic theorem. Put K=C(t), the field of rational functions in an indeterminate t, G=K^times, and V=K as a COMPLEX vector space. G is abelian. Multiplication phi(g)v=gv is complex-linear, invertible with inverse multiplication by g^{-1}, and respects multiplication and the identity, so it defines a representation. The powers 1,t,t^2,... are complex-linearly independent: a finite relation among them would make a nonzero complex polynomial in the indeterminate vanish. Thus V has infinite complex dimension. If a nonzero invariant complex-linear subspace W contains w!=0, then for every v!=0, the group element g=v/w sends w to v. Hence W=V, proving actual algebraic irreducibility. This is not a reducible infinite-dimensional trivial representation.\n\nNow assume the revised positive hypotheses, in particular 0<dim_C V<infinity. Fix h in G. Abelianness gives phi(g)phi(h)=phi(gh)=phi(hg)=phi(h)phi(g), so the LINEAR operator phi(h) commutes with every action map. Scalar Schur applies in the stated finite-dimensional complex setting. Explicitly, positive finite dimension makes det(sI-phi(h)) a polynomial of positive degree; C being algebraically closed gives a root lambda_h and a nonzero eigenvector. The linear map phi(h)-lambda_h I has a nonzero kernel, which commutation makes G-invariant. Irreducibility forces that kernel to be all of V, so phi(h)=lambda_h I. This is the eigenvalue/kernel reason for scalarity, not an averaging or simultaneous-diagonalization assertion with hidden hypotheses.\n\nFor any nonzero v, the line Cv is invariant under EVERY h, because phi(h)v=lambda_h v. Algebraic irreducibility now gives V=Cv, proving dim_C V=1. Since each phi(h) is invertible and V!=0, lambda_h!=0. Applying the representation identities to a nonzero vector yields lambda_{gh}=lambda_g lambda_h, lambda_e=1 and lambda_{g^{-1}}=lambda_g^{-1}; thus h->lambda_h is a multiplicative character into C^times. Conversely such a character acts on C by invertible scalar multiplication, respects the group laws, and is irreducible because a nonzero one-dimensional complex vector space has only zero and itself as linear subspaces. No assertion of continuity of an arbitrary algebraic character is implicit.\n\nThe real boundary can be made finite and exact. Let G=C_4 act on R^2 by powers of J=[[0,-1],[1,0]]. Then J^4=I and J is orthogonal. A proper nonzero invariant real subspace would be a line Rv, so Jv=a v for a real number a; applying J twice gives -v=a^2 v, impossible for v!=0. The real representation is therefore irreducible and two-dimensional. J commutes with the action but has no real eigenvalue and is not a real scalar. A quarter-turn, not an identity or half-turn rotation, is the needed witness. It does not contradict the complex theorem: over C the same matrix has eigenlines with eigenvalues i and -i.\n\nIf V=0 is admitted by a purely invariant-subspace definition, its unique action is vacuously irreducible by that predicate but dim V=0, not 1. The positive statement expressly requires V!=0. There is no nonzero vector, eigenvector or invariant-line argument on the zero carrier; if one's irrep convention already excludes zero, this case simply lies outside that convention.\n\nFiniteness or compactness of G is unnecessary for the positive FINITE-DIMENSIONAL proof. It uses no group averaging, inner product, unitarity or topology and no group-order/characteristic-zero division. The same eigenvalue argument works over any algebraically closed field with a finite positive-dimensional carrier. Algebraic closure can be replaced, for this particular representation, by existence of an eigenvalue in the base field for every action map; it cannot simply be omitted uniformly. The C(t) example explains the dimension boundary: multiplication by t has no complex eigenvalue, since for each lambda in C its difference from lambda I is invertible by multiplication with 1/(t-lambda). No compact, continuous, Hilbert-space or bounded-operator structure is asserted for that exterior example. It does not refute topological/unitary Schur theorems with their own hypotheses. Plan105 supplies scalar Schur for linear endomorphisms; the extra step here is applying it to abelian GROUP ACTION operators and classifying their invariant lines. Shared source/counterexample mechanisms are dependencies, not proof of whole-question equivalence.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Explicitly refutes the unrestricted algebraic assertion by a genuine infinite-dimensional complex irreducible action of an abelian group, proving group action/linearity, infinite dimension and irreducibility rather than assuming them."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "For the revised nonzero finite-dimensional complex theorem, uses abelianness to place each phi(h) in the linear commutant and justifies scalar Schur with the positive-dimensional/eigenvalue/algebraic-closure hypotheses actually present."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Shows every nonzero vector spans a G-invariant line, uses irreducibility to prove dimension one, and verifies the nonzero scalars form a multiplicative character and the converse one-dimensional action is irreducible."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Provides the precise real C4 quarter-turn irreducibility counterexample and separates the zero carrier, algebraic infinite-dimensional boundary and continuous/unitary variants. Does not add finite G, averaging or unitarity premises or claim a plan105 alias, a gate/resource theorem or admission."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The unrestricted algebraic abelian-irrep claim fails on C(t). In nonzero finite complex dimension, commuting action operators are scalar by eigenvalue-based Schur, so an invariant line is the whole irrep; real and zero/infinite-dimensional boundaries remain explicit.",
+    "semantic_steps": [
+      {
+        "claim": "Abelianness makes every action operator commute with the action, but without finite dimension this does not imply scalarity; the C(t)^times multiplication representation is a genuine irreducible counterexample.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "In nonzero finite-dimensional complex V, the linear operator phi(h) has an eigenvalue, and the invariant-kernel Schur argument gives phi(h)=lambda_h I for every h.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Consequently the line through any nonzero v is G-invariant, and the nonzero scalar coefficients form a multiplicative character.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Irreducibility forces that line to be V, so dim V=1; the zero-carrier case has dimension0 and is not hidden inside this positive theorem.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The real C4 quarter-turn representation is irreducible of dimension2, showing a field boundary; the algebraic infinite-dimensional and continuous/unitary settings remain distinct from the stated positive theorem.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky URL/edition/recorded primary pin; this LF hash binds local metadata only. Actual operative mathematical text access and byte/pixel limits are recorded separately in execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Entire original106/115 authored questions, answers, rubrics, assumptions/conventions and semantic-step lists compared against full actual prepared originals. Content provenance, not proof of their expanded claims."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Actual complete historical prepared originals from release.checked()[2], bound separately by whole supersedes_item_digest; frozen QA provenance, not present admission or new Lean execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "sha256_lf": "a6d80d945512edd20c52815a84153a821a6103cb724cedeb0f405907d6c98748",
+      "anchor": "Full exact106 rejection/finding and source/alias limits read as exposed historical evidence; not approval of this new question successor."
+    }
+  ],
+  "execution": {
+    "status": "private_authorship_pending_distinct_review",
+    "actual_author": "/root/qcb_formal_view_audit",
+    "observed_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-106-abelian-dimension-scope-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-106-abelian-dimension-scope-question-successor.json",
+    "self_approval": false,
+    "contract_binding": {
+      "original_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "original_contract_hash": "13d2d42ffb9abf52316dd44b9c632fe90ca15ebc48b2772aa05e521deacfbf34",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_values": {
+        "assumptions": [],
+        "conventions": [],
+        "family": "qit-schur-lemma",
+        "split": "test_public",
+        "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+        "target_nodes": [
+          "concept:operator-theory",
+          "concept:matrix-analysis"
+        ],
+        "supporting_nodes": [],
+        "source_refs": [
+          {
+            "anchor": "leditzky-2025-repth-qit",
+            "license": "MIT metadata only",
+            "path": "website/research/sources.json",
+            "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+          }
+        ]
+      },
+      "semantic_step_count": 5,
+      "original_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0,
+      "successor_contract_hash": "d60a5553bc25ce2cbc7f1ec76fc69539591c8d781b6742db92c8d9c494708f1b"
+    },
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "report_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e",
+      "withdrawal_digest": "2f7dd0da01780cc1786157b8204d33af018600e7384e1309dcfc824347af329e",
+      "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+      "exposure": "Same actual task identity authored the old original-item rejection; now authoring this successor, not independently approving it. Full old findings and inherited reviews visible; no blindness claimed."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "actual_text_regions": "Personally reopened and read Definition3.6 and finite-dimensional standing scope (zero-based16/printed17), Definition3.12 (18/19), full Proposition3.17(i)/(ii) and Corollary3.18 proof (19/20), complete Corollary3.20 statement/proof (20/21), and Definition3.38 finite-dimensional continuous-group convention (33/34) in the displayed79-page April10,2026 edition. The corollary relies on the source-wide finite-dimensional scope; that scope was absent in the standalone original question.",
+        "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "fresh_binary_hash_verified": false,
+        "fresh_raw_sha256": null,
+        "operative_pixels_inspected": false,
+        "actual_access_limits": "Genuine web PDF text inspection, not fresh matching-byte verification. Current zero-based20 screenshot request failed with an internal error; no operative pixels, new binary retrieval or other actor's executions inherited. Earlier same-identity matching-byte claims remain historical evidence only. No PDF saved/redistributed."
+      }
+    ],
+    "proof_scope": "Linear scalar Schur plus an invariant line proves the finite-dimensional statement; all C(t), real-quarter-turn and zero-space discriminators are explicitly reconstructed here, not extra printed source declarations or production Lean closure. Current/prepared105 and115 share proof mechanisms but have different whole targets; no global semantic alias or split reconciliation.",
+    "protocol_and_limits": "AGENTS/HARNESS, frontier-master and substantive-worker skills, publication/digestion/evidence-routed-memory and shared CONTRACT/ACCEPTANCE read in this context; PDF skill governs honest source limits. Existing private-artifact inventory found no106 successor at this name; previous reports/candidates and mutable parent canonical work remain untouched. This is private authorship only, not a source-paper/kernel/native-formal/Exposition seal, human/expert approval, finite-bit/gate compiler, stable release or admission. No builds, Lean, commits/push or extra agents; no mutable census or code hash used as mathematical evidence."
+  }
+}

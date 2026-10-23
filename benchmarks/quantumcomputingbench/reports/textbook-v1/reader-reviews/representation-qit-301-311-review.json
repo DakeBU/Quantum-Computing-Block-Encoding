@@ -1,0 +1,1779 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "observed_head_at_start": "a0836e38501d3976663ca561424063e78ba32214",
+    "requested_core_ids": [
+      "qcb-core-plan-301",
+      "qcb-core-plan-302",
+      "qcb-core-plan-304",
+      "qcb-core-plan-305",
+      "qcb-core-plan-306",
+      "qcb-core-plan-307",
+      "qcb-core-plan-308",
+      "qcb-core-plan-309",
+      "qcb-core-plan-310",
+      "qcb-core-plan-311"
+    ],
+    "present_prepared_core_ids": [
+      "qcb-core-plan-301",
+      "qcb-core-plan-302",
+      "qcb-core-plan-304",
+      "qcb-core-plan-305",
+      "qcb-core-plan-306",
+      "qcb-core-plan-307",
+      "qcb-core-plan-308",
+      "qcb-core-plan-309",
+      "qcb-core-plan-310",
+      "qcb-core-plan-311"
+    ],
+    "absent_ids": [],
+    "historical_native_count": 213,
+    "current_reader_count_at_inspection": 169,
+    "current_reader_presence_at_inspection": [
+      {
+        "core_id": "qcb-core-plan-301",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-302",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-304",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-305",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-306",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-307",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-308",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-309",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-310",
+        "present": true
+      },
+      {
+        "core_id": "qcb-core-plan-311",
+        "present": true
+      }
+    ],
+    "selection": "Actual prepared historical/native records loaded via scripts/release.checked()[2]. All ten requested IDs are present. Current-reader presence is a point-in-time observation, not new admission. Requested range intentionally omits303; it was also not returned when checked as a possible neighboring prepared comparator, and no substitute record was used.",
+    "content_inspected": "Complete questions, reference answers, every rubric criterion, assumptions, conventions, every semantic step, core summaries and primary/source metadata for all ten exact items. Full mathematical/grading fields of selected neighboring prepared contracts were compared. Whole item digests bind all fields, including metadata not treated as mathematical proof.",
+    "review_target": "Private bounded substantive mathematical/source reader evidence for a later checkpoint, not part of PR103. No policy, source, production Lean, current candidate tree or SP successor is edited.",
+    "comparison_scope": "All45 within-batch unordered pairs considered and documented below, with detailed close dependencies/subtargets and separate exact-item neighboring comparisons. A bounded keyword inventory and selected full contexts are not exhaustive global semantic reconciliation."
+  },
+  "provenance": {
+    "actual_identity": "The actual /root/qcb_boundary_repair_review task, distinct from tensor-symmetry-author-b3. No invented reviewer, collaborator acknowledgment, expert or human approval.",
+    "exposure": "Not source-blind or verdict-blind. The original authored records contain historical source-inspection/review metadata, and this task has prior exposure to neighboring QIT questions. Parent supplied IDs and source-review requirements, not the mathematical verdicts. Counterexamples and positive reconstructions here were independently derived from the actual contracts and primary text.",
+    "instructions_and_skills": "AGENTS.md, HARNESS.md, theorem-publication, proof-digestion, evidence-routed-memory and current shared contract/acceptance texts were read completely earlier in this same task context. A read-only comparison from006ed812 to the observed a0836e3 found no changes in those instructions. qbe-substantive-worker and PDF SKILL.md reread completely for this objective; used for exact-contract/typed-boundary review and read-only primary PDF inspection.",
+    "new_kernel_execution": false,
+    "local_Lean_closure_claimed": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_performed": false,
+    "novelty_claimed": false,
+    "digest_method": "qcb_core.digest(entire actual prepared item); local source_checks use qcb_integrity.text_sha for LF-normalized SHA-256. Catalog/QA text hashes are distinct from binary PDF SHA verification.",
+    "execution": "Read-only prepared/policy/source inspection and hash checks, primary web PDF text retrieval, one failed direct in-memory PDF-byte retrieval, and failed visual-render attempts. No Lean prediction/proof, source compilation, numerical simulator, remote model evaluation, production change, commit, push or extra agent.",
+    "mutation_scope": "Only parent-workspace _review_tmp/representation-qit-301-311-review.json is written. The two frozen private SP successors are untouched. No mathematical verdict here alters admission."
+  },
+  "primary_source_checks": {
+    "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+    "source": "Felix Leditzky, Representation-theoretic methods in quantum information theory; primary cover credits adaptation from Sujeet Bhalerao's scribe notes.",
+    "recorded_edition": "10 April2026;79 pages; FT25 is the course directory, not the edition date.",
+    "actual_access": "Author-hosted PDF text extraction was genuinely retrieved. Cover date/title/author and complete bounded operative regions were inspected: Definition4.3/Lemma4.4 and proof; all of Proposition4.5 and Exercise4.2; Definition4.6/Lemma4.7 proof/Corollary4.8 proof; full Proposition4.10 interpolation proof and surrounding tensor actions; Schur-Weyl Eq5.8/Proposition5.9; hook/Weyl formulas and worked example in Proposition5.10; row/column groups, their signed sums, Definition5.14 and the Young-image realization; complete first-column exclusion/example/majorization paragraph; U2 determinant/symmetric-power description; sum rule and Exercises5.2/5.3.",
+    "support_layers": "The source includes proofs for the commutant/spanning/interpolation results, a short row-count argument, a one-way majorization implication, dimension formulas and exercises. It does NOT supply a converse for309, a complete worked exercise solution for308/310, or proofs of every cited external representation theorem. Those distinctions are retained per item.",
+    "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+    "historical_binary_hash_verified_in_this_review": false,
+    "retrieved_binary_sha256": null,
+    "byte_verification_attempt": "One read-only urllib retrieval into memory was attempted in this objective; it failed with URLError/WinError10013 socket-access denial before any PDF bytes were available. No PDF was saved. Text access does not establish equality with the recorded historical binary SHA.",
+    "visual_verification": "Screenshot attempts at PDF indices46,47,48 returned cache-miss errors; no inspectable rendered-page verification is claimed. Another request at39 did not yield inspected pixels. Layout/typographic claims remain limited to the extracted text.",
+    "edition_assessment": "Text cover/date and equation/section contexts match the recorded edition; binary equality remains unverified. Apparent identity-subscript/normalization typography in extracted formulas is not promoted as exact visually verified source syntax.",
+    "redistribution": "No PDF copied, saved, redistributed or relicensed. Report mathematics is independently reconstructed; source prose is not reproduced at length.",
+    "local_binding_limit": "Local catalog and QA LF hashes establish metadata/content provenance only. They are not primary proof, a local formal theorem or evidence of PDF-byte equality."
+  },
+  "bounded_semantic_comparisons": {
+    "within_batch_pair_count": 45,
+    "within_batch_pairs": [
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "relation": "prerequisite/subtarget",
+        "reason": "301 is the single tensor-factor commutant lemma.302 uses it on each isotypical block but additionally needs finite-group image-algebra fullness, central projections and a second commutant. Not identical requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "relation": "indirect shared dependency",
+        "reason": "301 enters302's bicommutant theorem, which304 applies to S_n.304's main endomorphism-versus-invertible span/interpolation step is not301's local matrix-center argument."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "relation": "different commutant algebras",
+        "reason": "301 commutes with the ENTIRE full matrix algebra on one tensor factor.305 commutes with tensor-factor permutations and yields symmetric tensors in End(V). These are different acting algebras and fixed-space descriptions, not a renaming of a shared factor."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "relation": "related tensor substrate, distinct requested theorem",
+        "reason": "A full End(V) center/commutant calculation in301 is not a symmetric-power spanning result in306. The elementary matrix-unit proof and the polarization/closedness proof have different premises and conclusions."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-301",
+          "key": "qcb-core-plan-301-tensor-commutant-lemma",
+          "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+          "family": "qit-tensor-commutant-lemma",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "relation": "bicommuntant subtarget consumed",
+        "reason": "302 proves a general finite-group bicommutant structure.304 invokes it for S_n only after identifying A' with the GL tensor-power span; that identification is an additional substantive target."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "relation": "related invariant-operator descriptions",
+        "reason": "In finite dimension302 can describe the S_n commutant as multiplicity matrices, whereas305 describes its operator-tensor span via symmetric powers. Their equivalence needs the tensor representation/decomposition bridge and305's extra spanning theorem. Neither complete requested proof is an exact copy."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "relation": "related finite-group invariant structure, distinct output",
+        "reason": "Taking S_n on tensor powers brings302 near306, but302 identifies representation-image commutants while306 proves span by pure powers inside the trivial isotypical sector. A block description alone does not supply the polarization identity."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "relation": "explicit characterized-span subtarget",
+        "reason": "In finite dimension, invariance under conjugation by every factor permutation is equivalent to membership in A'.305 proves the span by arbitrary endomorphism powers; its converse is the elementary commuting inclusion.304 explicitly ASSUMES this characterization and asks the extra interpolation to GL plus bicommutant step. This dependency must not be counted as unrelated simply because core labels differ."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "relation": "indirect prerequisite via operator tensor space",
+        "reason": "306 supplies symmetric-power spanning;305 applies it with U=End(V), and304 then consumes the result.304 still adds generic-invertibility interpolation and a second commutant."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-304",
+          "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+          "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+          "family": "qit-schur-weyl-mutual-commutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "relation": "application/specialization after representation transport",
+        "reason": "For finite-dimensional V,305 applies306 to U=End(V) and transports permutation invariance from operator conjugation. It includes the nontrivial operator-space identification, but assumes the spanning fact rather than reproving its polarization route. The omission of finite dimension in305 is not repaired by306's finite-dimensional premise."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "different requested targets on related tensor representation",
+        "reason": "The first contract identifies an acting algebra, commutant or symmetric spanning space. The second concerns signed column cancellation, a row-count obstruction or a fixed-word/content test. Those zero-action claims require the Young-column realization beyond the commutant/span description; they do not ask to reconstruct the same algebra. Their exact premises and grading obligations are separately assessed above."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "structural prerequisite versus dimension calculation",
+        "reason": "The structural commutant/span contract does not enumerate the relevant Young shapes or evaluate hook/Weyl/tableau dimensions. The dimension question assumes those classification interfaces and asks a concrete count or determinant-times-symmetric-power dimension. Shared representation background is not equality of whole requested reasoning."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "relation": "strict one-column specialization and reusable column mechanism",
+        "reason": "308 is the full antisymmetrizer for lambda=(1^n).307 applies the same n>d zero mechanism to a long first column of a general diagram, with untouched other tensor factors and row sums. The common mechanism is substantive; the full question scopes differ."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "shared column mechanism, different domain/quantifier",
+        "reason": "307 excludes shapes with more than d rows for EVERY input word.309 assumes at most d rows and asks an exact content criterion for ONE fixed tableau/word. The latter is false as an iff. One cannot import307 as a converse proving every allowed shape acts nontrivially on every word."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "row-exclusion subtarget assumed in concrete count",
+        "reason": "310 assumes exclusion of more than3 rows and uses it to omit(1,1,1,1).307 proves the general first-column reason for that exclusion. The dimensions and81 sum in310 are additional obligations."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-307",
+          "key": "qcb-core-plan-307-young-row-bound",
+          "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+          "family": "qit-young-row-bound",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "related row eligibility, distinct result",
+        "reason": "311 uses shapes with at most two rows for d=2 and computes dimensions inside the allowed domain.307 excludes shapes outside the row limit; exclusion alone does not give the m+1 dimension or determinant twist."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "relation": "related signed cancellation, not equivalent support criterion",
+        "reason": "308 kills every word only in n>d.309 assumes allowed shape and its content-only survival converse fails even with n=4,d=2 and lambda=(3,1). The one-column shape in308's vanishing regime would violate309's at-most-d-parts premise, so it is not silently substituted into that contract."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "specific zero-sector boundary shared",
+        "reason": "At n=4,d=3,308 says the full antisymmetric sector is0; this is exactly the excluded one-column diagram in310. The latter also enumerates four other shapes and computes eight positive dimensions, so the shared zero case is not full equivalence."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "shared exterior/symmetric extremes, not same theorem",
+        "reason": "The determinant factor in311 is related to the nonzero top exterior power of C^2, while308 proves vanishing beyond the local dimension. The regimes and requested dimensions differ; the determinant twist cannot be inferred from zero-space exclusion alone."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "relation": "common decomposition background, no whole-target alias",
+        "reason": "310's dimensions count full irreducible sectors and do not assert survival of every fixed filling.309's false iff concerns an individual Young-symmetrizer image. Numerical dimensions cannot validate that stronger pointwise claim."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "semistandard feasibility versus fixed-word survival",
+        "reason": "311 counts genuine semistandard fillings to obtain a representation dimension.309 incorrectly replaces existence of a permissible filling with survival of an arbitrary fixed word under a fixed e_T. The correct tableau count does not authorize that converse."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "relation": "shared Weyl/tableau interface, different dimensions and quantifiers",
+        "reason": "310 is a concrete n=4,d=3 Schur-Weyl product count including S4 hook dimensions.311 is the arbitrary two-part U2 dimension formula with determinant twist. For the same shape(3,1), U3 dimension15 and U2 dimension3 differ; neither same-shape naming nor the common Weyl formula gives whole-contract equivalence."
+      }
+    ],
+    "neighboring_full_contexts": [
+      {
+        "core_id": "qcb-core-plan-115",
+        "key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+        "item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+        "family": "qit-tensor-representations",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-116",
+        "key": "qcb-core-plan-116-nonunique-irrep-splitting-isotypical-counterexample",
+        "item_digest": "ab9df40fd93fe05c0101d8c2d0d0b36cb55443c64c0780a092a57db7377c5e67",
+        "family": "qit-isotypical-decomposition",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-118",
+        "key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+        "item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+        "family": "qit-schur-lemma",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-412",
+        "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+        "item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+        "family": "symmetric-subspace-haar-average",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-420",
+        "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+        "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+        "family": "symmetric-subspace-dimension",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-312",
+        "key": "qcb-core-plan-312-hook-length-standard",
+        "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+        "family": "qit-hook-length-standard",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-318",
+        "key": "qcb-core-plan-318-permutation-invariant-poly",
+        "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+        "family": "qit-permutation-invariant-poly",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-319",
+        "key": "qcb-core-plan-319-spectrum-concentration",
+        "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+        "family": "qit-spectrum-concentration",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-110",
+        "key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+        "item_digest": "9b9f633d427e365f4b941d9ba0ac65a7198e50c1ed20cb2f793d3398242285ab",
+        "family": "qit-intertwiners-multiplicity",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-111",
+        "key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+        "item_digest": "5c86b4af86f4716aeec0f5399496dacdd9f853ece3b24ed6d0c0810ec154546e",
+        "family": "qit-schur-lemma",
+        "split": "test_public"
+      },
+      {
+        "core_id": "qcb-core-plan-114",
+        "key": "qcb-core-plan-114-multiplicity-breaks-schur-scalar-counterexample",
+        "item_digest": "be8cfff02ab1e6793f2ec533ebd7da483867295b6376480ae2ff6811b33f7663",
+        "family": "qit-schur-lemma",
+        "split": "test_public"
+      }
+    ],
+    "neighbor_pairs": [
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-110",
+          "key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+          "item_digest": "9b9f633d427e365f4b941d9ba0ac65a7198e50c1ed20cb2f793d3398242285ab",
+          "family": "qit-intertwiners-multiplicity",
+          "split": "test_public"
+        },
+        "relation": "related multiplicity interface",
+        "reason": "110 computes dim Hom_G(U,V)=multiplicity using Schur and direct-sum additivity.302 describes the ENTIRE commutant as multiplicity endomorphism algebras and the bicommutant. The Hom-dimension identity is a prerequisite/interface, not the same complete target."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-111",
+          "key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+          "item_digest": "5c86b4af86f4716aeec0f5399496dacdd9f853ece3b24ed6d0c0810ec154546e",
+          "family": "qit-schur-lemma",
+          "split": "test_public"
+        },
+        "relation": "strict multiplicity-free commutant subtarget plus extra averaging",
+        "reason": "111's two-inequivalent-summand scalar block form is the n_alpha=1 instance of302's commutant description.111 separately proves group averaging creates an invariant operator;302 permits arbitrary multiplicities and asks a bicommutant. Retain this overlap without claiming whole-contract equivalence."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-114",
+          "key": "qcb-core-plan-114-multiplicity-breaks-schur-scalar-counterexample",
+          "item_digest": "be8cfff02ab1e6793f2ec533ebd7da483867295b6376480ae2ff6811b33f7663",
+          "family": "qit-schur-lemma",
+          "split": "test_public"
+        },
+        "relation": "counterexample to an overstrong specialization",
+        "reason": "114's nonscalar trivial-multiplicity block is exactly permitted by302's I tensor End(C^n_alpha) form. Its explicit S2 averaging/counterexample is additional and does not contradict302."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-116",
+          "key": "qcb-core-plan-116-nonunique-irrep-splitting-isotypical-counterexample",
+          "item_digest": "ab9df40fd93fe05c0101d8c2d0d0b36cb55443c64c0780a092a57db7377c5e67",
+          "family": "qit-isotypical-decomposition",
+          "split": "test_public"
+        },
+        "relation": "related multiplicity-basis freedom",
+        "reason": "116 changes the choice of irreducible-copy lines inside one fixed isotypical component.302 describes the multiplicity-space algebra compatible with that freedom. A nonuniqueness counterexample and a full commutant theorem are different requested conclusions."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-302",
+          "key": "qcb-core-plan-302-double-commutant-bicommutant",
+          "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+          "family": "qit-double-commutant-bicommutant",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-118",
+          "key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+          "item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+          "family": "qit-schur-lemma",
+          "split": "test_public"
+        },
+        "relation": "field-boundary counterexample",
+        "reason": "118 supplies a real irreducible with commutant isomorphic to C as a real algebra.302 assumes complex finite dimension, where the scalar irreducible commutant is valid. This is a meaningful hypothesis boundary; it is not a duplicate or a counterexample on302's domain."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-308",
+          "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+          "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+          "family": "qit-antisymmetrizer-vanishing",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-115",
+          "key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+          "item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+          "family": "qit-tensor-representations",
+          "split": "test_public"
+        },
+        "relation": "complementary antisymmetric dimension regimes",
+        "reason": "115's n=2,d>=2 tensor-square reducibility uses a nonzero exterior square of dimension d(d-1)/2.308's n>d vanishing specializes at n=2 to d<=1. The shared antisymmetric mechanism is real, but the hypotheses and reducibility-versus-zero conclusions differ. No blanket correctness review of every sentence of115 is claimed."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-412",
+          "key": "qcb-core-plan-412-haar-pure-state-average-equals-symmetric-projector",
+          "item_digest": "b4183f8ccfaf78c2989b2a41175edfa0d6bd452671cb1a5d0c767b53fdac475d",
+          "family": "symmetric-subspace-haar-average",
+          "split": "test_public"
+        },
+        "relation": "spanning prerequisite versus Haar-operator normalization",
+        "reason": "412 uses pure-power vectors to locate the support of a Haar average, then needs unitary invariance, irreducibility and a trace constant.306 proves their spanning by polarization, without an integral or trace normalization."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-306",
+          "key": "qcb-core-plan-306-symmetric-power-spanning",
+          "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+          "family": "qit-symmetric-power-spanning",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-420",
+          "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+          "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+          "family": "symmetric-subspace-dimension",
+          "split": "test_public"
+        },
+        "relation": "shared occupation/symmetric-space substrate",
+        "reason": "420 counts a symmetric occupation basis and compares its dimension with d^n asymptotically.306 proves spanning by arbitrary repeated-vector powers, not basis independence, counting or asymptotics. No whole-target equivalence or acceptance of420's application prose is inferred."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-311",
+          "key": "qcb-core-plan-311-weyl-dim-u2",
+          "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+          "family": "qit-weyl-dim-u2",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-420",
+          "key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+          "item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+          "family": "symmetric-subspace-dimension",
+          "split": "test_public"
+        },
+        "relation": "strict d=2 symmetric-power dimension subtarget",
+        "reason": "The m+1 dimension of Sym^m(C^2) in311 is the d=2 specialization of420's binomial dimension.311 also requires two-part tableaux and a determinant twist;420 also asks general d asymptotics and applications."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-310",
+          "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+          "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+          "family": "qit-schur-weyl-dimension-count",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-312",
+          "key": "qcb-core-plan-312-hook-length-standard",
+          "item_digest": "c90a4685cd737246275c9615869fbb1cf529c906f12504a0b94d29215f79c7a9",
+          "family": "qit-hook-length-standard",
+          "split": "test_public"
+        },
+        "relation": "shared hook formula and one-row instance, different main counts",
+        "reason": "312 works out the seven-box shape(4,2,1) and arbitrary row/column extremes.310 uses four-box shapes with U3 dimensions and a Schur-Weyl sum. The one-row hook count is a shared elementary subtarget, not all four dimension pairs."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-305",
+          "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+          "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+          "family": "qit-permutation-conjugation-invariance",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-318",
+          "key": "qcb-core-plan-318-permutation-invariant-poly",
+          "item_digest": "73006cfae26652d2f1fde105a380b1da7f1b3994b6721ccaca20df28436a9ecc",
+          "family": "qit-permutation-invariant-poly",
+          "split": "test_public"
+        },
+        "relation": "commutant-span description versus parameter bound",
+        "reason": "In the finite-dimensional domain,305 identifies invariant operators with Sym^n(End(C^d));318 uses Schur-Weyl multiplicity blocks and dimension bounds to count polynomially many parameters. The latter adds counting/fixed-d asymptotics. The two descriptions give compatible spaces but different requested proofs."
+      },
+      {
+        "left": {
+          "core_id": "qcb-core-plan-309",
+          "key": "qcb-core-plan-309-majorization-annihilation",
+          "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+          "family": "qit-majorization-annihilation",
+          "split": "test_public"
+        },
+        "right": {
+          "core_id": "qcb-core-plan-319",
+          "key": "qcb-core-plan-319-spectrum-concentration",
+          "item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+          "family": "qit-spectrum-concentration",
+          "split": "test_public"
+        },
+        "relation": "necessary support restriction versus probabilistic concentration",
+        "reason": "319 concerns trace weights of whole Schur-Weyl sectors for rho tensor n and relative-entropy decay with fixed d. It may use necessary majorization restrictions, not309's false iff for a fixed word and a fixed e_T. Their quantifiers, positivity/normalization and asymptotic targets differ; this comparison is not a full primary-proof review of319."
+      }
+    ],
+    "search_coverage": "A bounded lexical inventory over prepared questions used Schur/majorization/symmetric/Young/tableau/Weyl/commutant/isotypical/tensor-representation terms. It surfaced other100/300/400/500-series questions and unrelated lexical hits. Full comparison was restricted to the exact neighbors listed here; unselected hits are not certified distinct.303 was not returned by release.checked()[2] and is not substituted.",
+    "whole_contract_alias_result": "No exact whole-question alias is established in this bounded set. Multiple genuine shared subtargets/application chains are explicitly identified:301->302->304,306->305->304,308 as the one-column307 mechanism, and repeated symmetric-power/hook/Weyl calculations. This is not a proof of global uniqueness.",
+    "family_and_split_assessment": "All reviewed ten and selected neighboring prepared contracts have split=test_public, so no cross-split conflict is exhibited here. Several mathematical subtargets span different qit families; family strings and frozen graph connectivity do not prove distinctness or authorize pooling. No core ID, split, family, alias label or graph scope is changed.",
+    "reusable_cross_layer_insight": "In finite dimension,305 identifies the S_n-commuting operator space with Sym^n(End(C^d)), whose occupation-basis dimension is binom(n+d^2-1,n). Combining that with the Schur-Weyl commutant blocks gives the compatible exact parameter identity sum_lambda(dim U_lambda^d)^2=binom(n+d^2-1,n). This independently reconstructed counting bridge explains318's polynomial parameter count and is a potential exposition compression, not a newly compiled theorem, admitted edge or novelty claim.",
+    "global_dedup_complete": false,
+    "cross_split_pooling_authorized": false,
+    "source_checks": [
+      {
+        "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+        "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+        "anchor": "Whole actual prepared within-batch and selected neighboring records, each with exact item digest. Full mathematical/grading contexts compared; frozen QA provenance, not endorsement of all comparator answers."
+      },
+      {
+        "path": "website/research/sources.json",
+        "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "Leditzky source metadata only; primary-access and binary-hash limits are separately recorded."
+      }
+    ]
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-301",
+      "key": "qcb-core-plan-301-tensor-commutant-lemma",
+      "item_digest": "b584bed80a1e10178eb2030fccf506dbf434129c43df6e2d8bfdb6f12531583e",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Choose a basis of W and identify V tensor W with dim(W) copies of V. If T has V-endomorphism blocks T_ab, commutation with X tensor I_W is exactly X*T_ab=T_ab*X for every X in End(V). To see that such a block is scalar without hiding a Schur hypothesis, commute it with all diagonal matrix units E_ii: its off-diagonal entries vanish. Commuting the resulting diagonal matrix with E_ij forces all diagonal entries equal. Thus T_ab=c_ab I_V and T=I_V tensor(c_ab). Conversely the mixed-factor products (X tensor I)(I tensor B)=X tensor B=(I tensor B)(X tensor I) prove the other inclusion.",
+        "boundary": "If either factor is zero dimensional, V tensor W is0 and both displayed subsets are the zero operator set; no uniqueness of the matrix(c_ab) is asserted then. For dim(V)=1 the same argument reduces to all operators on W. This full-matrix-algebra center fact in fact works over any field; algebraic closure is not needed for this particular lemma, unlike replacing End(V) by an arbitrary real irreducible group image.",
+        "answer_rubric_exposition": "The full answer, all four rubric criteria, four semantic steps and core summary correctly reconstruct both inclusions and the block argument. The optional irreducibility/Schur shortcut is valid over the stated finite-dimensional complex field, but the elementary matrix-unit proof above shows the actual premise. No assertion that a general tensor is one decomposable tensor is needed.",
+        "source_alignment": "The primary Lemma4.4 body and proof use I_V tensor End(W), matching the benchmark. The extracted displayed statement contains an apparent identity-subscript typo I_W on that side; the benchmark correctly types the factor. The proof, not that isolated typo, establishes the intended result.",
+        "bounded_relation": "A reusable tensor-factor commutant lemma consumed blockwise by302; not the full finite-group isotypical or Schur-Weyl theorem."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-301 near line3 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-301-tensor-commutant-lemma loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Definition4.3/Lemma4.4 statement and block-matrix proof Eq4.2-4.3, printed39/PDF38.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-302",
+      "key": "qcb-core-plan-302-double-commutant-bicommutant",
+      "item_digest": "eb90a4aa9096df7cd80102628985d2c7e4cf136eef91dcbf0eff10fed5c1451a",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "missing_dependency_reconstructed": "The claim that the image algebra contains each full End(V_alpha) block and the central isotypical projections is substantive, not a consequence merely of calling the blocks irreducible. Over C for a finite group it follows from matrix-coefficient orthogonality. Choose invariant Hermitian structures on the irreducibles. For each alpha,i,j, the averaged matrix (dim(V_alpha)/|G|)*sum_g conjugate(rho_alpha(g)_ij)*rho(g) has the single alpha-block E_ij tensor I and zero other blocks. These matrix units lie in A and span the independent block algebras; summing their diagonals gives the central projections P_alpha. Conversely each rho(g) acts blockwise as rho_alpha(g) tensor I, so A is exactly their direct sum.",
+        "commutant": "An operator in A' commutes with every P_alpha, hence has no cross-isotypical blocks. On an alpha block,301 gives precisely I_V_alpha tensor End(C^n_alpha). Each such collection plainly commutes with A, giving equality. The same central projections also belong to A' (they commute with A), so elements of A'' again have no cross blocks. Applying301 with the factors reversed returns End(V_alpha) tensor I on each block and hence A''=A. This checks the otherwise implicit off-block step in the second commutant.",
+        "boundary": "Only occurring irreducible types are needed; zero multiplicities contribute no space, and the zero representation gives the empty direct sum/zero algebra. Complex finite-dimensional semisimplicity is load-bearing for this image-algebra description. For real irreducibles division-algebra commutants can occur, so the arbitrary real-field substitution is not licensed.",
+        "answer_rubric_exposition": "Accept all four rubric criteria, four steps and complete exposition. The answer uses the standard full image-algebra result without expanding its proof; the primary Proposition4.5(i) supplies that dependency. It is not being introduced as a new hypothesis or assumed merely from the desired bicommutant conclusion. The correct orthogonality average above keeps its1/|G| normalization explicit; no claim is made that extracted source Eq4.5 typography was visually or binary-hash verified.",
+        "bounded_relation": "Generalizes the multiplicity-free commutant instance in111 and explains114's nonscalar multiplicity blocks;110 identifies multiplicity via Hom spaces. Those questions also ask averaging, counterexamples or dimension identities, so their entire contracts are not automatically aliases."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-302 near line108 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-302-double-commutant-bicommutant loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Proposition4.5(i)-(iii) and proof Eq4.4-4.7, printed39-40/PDF38-39; Exercise4.2, printed43/PDF42. Matrix-element orthogonality is invoked in the primary proof rather than proved there.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-304",
+      "key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+      "item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Every X acting identically on the n tensor factors commutes with every factor permutation: check on pure tensors, which span. This applies to every g in GL(V), not only unitary g, and proves B subset A'. For arbitrary X, det(X+tI) is a nonzero polynomial in t (monic of degree d when d>0), so choose n+1 distinct complex t_a avoiding its finite zero set. The operator-valued polynomial F(t)=(X+tI) tensor n has degree at most n. Lagrange interpolation gives F(0)=sum_a ell_a(0)*F(t_a); each F(t_a) lies in B, so X tensor n lies in B. The assumed characterization of A' now gives A' subset B.",
+        "bicommutant_and_boundaries": "A is the finite-group image algebra of S_n, so302 applies and A''=A. With B=A' this gives B'=A. No topological closure or matrix invertibility of X itself is required. For n=0 the tensor power isC and F is constant; for a zero-dimensional positive tensor power the ambient algebra is0, and the interpolation degree should be read as an upper bound, not an exact nonzero degree. Neither case changes the conclusion.",
+        "answer_rubric_exposition": "Accept all five rubric criteria and five semantic steps. The reference's first parenthesis says unitary and the core summary says diagonal-unitary, whereas the literal question and the interpolation proof use GL(V). This is a nomenclature mismatch: the actual tensor-factor commutation calculation works for ALL endomorphisms and establishes the required GL inclusion directly, without importing an extra hypothesis. If one instead wants the unitary-only spanning variant, that additionally needs a unitary/GL span bridge and is not what the interpolation alone proves. No algorithmic query or efficient Schur transform is certified.",
+        "bounded_relation": "305 supplies exactly the characterized permutation-commutant span assumed here;306 supplies the symmetric-power spanning lemma used by305. These are genuine dependent subtargets.302 supplies the final bicommutant step. Different labels do not make those shared ingredients independent."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-304 near line318 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-304-schur-weyl-mutual-commutant loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Proposition4.10 proof Eq4.15-4.16 and interpolation argument, printed41-42/PDF40-41; surrounding tensor action Eq4.8-4.9 and Proposition4.9's externally cited unitary/GL irreducibility bridge.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-305",
+      "key": "qcb-core-plan-305-permutation-conjugation-invariance",
+      "item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "finite_dimensional_reconstruction": "In the intended finite-dimensional complex setting, the canonical linear map End(V) tensor n -> End(V tensor n) is an isomorphism: elementary matrix tensors form a basis of the target. Conjugation by Q_pi sends X_1 tensor...tensor X_n to X_pi^-1(1) tensor...tensor X_pi^-1(n). Thus C commutes under permutation conjugation iff its corresponding tensor is fixed by S_n. Applying the given spanning fact to U=End(V) expresses it as a FINITE linear combination of X tensor n. This is a statement about arbitrary elements of a tensor product, not that every operator is a single decomposable operator tensor.",
+        "standalone_domain_obstruction": "The exact question and explicit assumptions never say that V is finite-dimensional or even restate the scalar field. The primary chapter has a finite-dimensional complex standing setting; without it the invoked End(V tensor n)=End(V) tensor n identification fails. The supplied symmetric-spanning premise itself does not repair this missing condition: that premise still holds for algebraic tensor powers in characteristic0 even when V is infinite dimensional.",
+        "explicit_infinite_dimensional_counterexample": "Let V have countable basis e_1,e_2,... over C, n=2, and define C(e_i tensor e_j)=delta_ij*(e_i tensor e_j). It is a well-defined linear map on the algebraic tensor product and commutes with swap. If C were any finite sum sum_{a=1}^L A_a tensor B_a, then for every j the slice x -> (I tensor e_j^*) C(x tensor e_j) would lie in span{A_1,...,A_L}. But that slice is the rank-one projection E_jj. Infinitely many E_jj are linearly independent, contradiction. In particular C cannot be a finite sum of powers X_a tensor X_a. The same diagonal projection is bounded on the Hilbert completion, so merely saying Hilbert space would not cure finite-sum spanning.",
+        "answer_rubric_exposition_disposition": "Mark uncertain rather than falsifying the finite-dimensional source corollary. All four rubric criteria, four steps and the intended source proof are valid once finite-dimensional complex V is an explicit or genuinely inherited standing condition. The exact standalone contract omits it; its first rubric/step then invokes a false identification on a permitted broader reading. Clarify that domain before accepting the full exact record. No extra hypothesis is silently installed by this review.",
+        "bounded_relation": "Instantiates306 on End(V) and transports its invariant tensors into operators; then becomes the input characterization assumed in304.318 asks additional polynomial parameter counting from the same commutant, not the same whole question."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-305 near line434 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-305-permutation-conjugation-invariance loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Corollary4.8 operator-space identification and proof, printed41/PDF40; surrounding Definition4.6 and Lemma4.7 finite-dimensional setting.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-306",
+      "key": "qcb-core-plan-306-symmetric-power-spanning",
+      "item_digest": "2c32e94daf140024914e71c5bb19e6cb754e24a522a54d1322c60d4271403a04",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "Let W=span{v tensor n}. Each generator is permutation fixed. Conversely the averaging projector (1/n!)*sum_pi Q_pi has image equal to the fixed space, so the unnormalized orbit sums of basis words span it. For any ordered n-tuple u_1,...,u_n of basis vectors, allowing repeated vectors, the coefficient of t_2...t_n in (u_1+sum_{a=2}^n t_a*u_a) tensor n is precisely sum_pi u_pi(1) tensor...tensor u_pi(n): homogeneity forces exactly one copy of u_1 and one of each indexed u_a. Taking one mixed derivative in each independent parameter at0 extracts this coefficient with no additional factorial, since every variable has exponent1.",
+        "closure_and_zero_cases": "For fixed parameters each pure power belongs to W. The mixed finite-difference quotient is a finite linear combination of such powers, hence belongs to W; its limit is the mixed derivative. The ambient tensor space and W are finite-dimensional, so W is closed and contains the derivative. Repeated basis labels do not identify the independent parameters: e.g. if all u_a=e, the derivative yields n!*e tensor n, agreeing with the unnormalized permutation sum. At n=1 no derivative is needed; at n=0 both spaces areC with the empty tensor1. If V=0 and n>0 both are0; the n=0 unit object still givesC.",
+        "answer_rubric_exposition": "Accept the full reference, r1-r4 and all four steps. Its phrase first/second/... basis vector must denote the chosen basis word entries, not require n distinct basis vectors or dim(V)>=n; the primary indexed Eq4.13 makes this explicit. Differentiation here is of a finite polynomial in independent parameters, not an analytic approximation or a physical operation. Characteristic0 and finite-dimensional closure fit the exact complex domain.",
+        "bounded_relation": "The abstract symmetric-tensor spanning theorem underlies305 via U=End(V),412 via pure-power support and420's occupation basis. It is not itself the Haar integral formula, an operator parameter bound or a dimension asymptotic."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-306 near line539 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-306-symmetric-power-spanning loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Definition4.6 and Lemma4.7 proof Eq4.10-4.14, printed40-41/PDF39-40; Exercise4.3 asks verification of the derivative formula.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-307",
+      "key": "qcb-core-plan-307-young-row-bound",
+      "item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "correct_row_bound": "Let p be the first-column length. If p>d, every basis word places two equal labels in that column. Let tau be their column transposition. The signed column sum c_T obeys c_T*tau=-c_T, while tau fixes the word v; hence c_T v=-c_T v and c_T v=0 over C. This holds for EVERY basis word, so c_T is the zero operator on the full tensor space, not merely on one displayed word. The source's e_T=r_T*c_T then vanishes, and the image defining the lambda-piece is0. This proves the requested exclusion without claiming that every allowed p<=d shape has nonzero image on every individual word.",
+        "factor_order_mismatch": "The primary Definition5.14 fixes e_T=r_T*c_T, which acts by COLUMN antisymmetrization first and ROW symmetrization second on column vectors. The complete benchmark answer and rubric r2 instead say row symmetrization followed by column antisymmetrization. If this means execution order, it is c_T*r_T, not the pinned source operator. Row and column sums do not generally commute. For shape(2,1), T=[1,2;3], v=e_1 tensor e_2 tensor e_1, r=I+(12), c=I-(13): r*c*v=0 but c*r*v=e_2 tensor e_1 tensor e_1-e_1 tensor e_1 tensor e_2, which is nonzero.",
+        "why_the_conclusion_survives": "For the p>d domain of this question, c_T is zero on the ENTIRE tensor space, so both products r_T*c_T and c_T*r_T vanish. Thus the row-bound theorem and pigeonhole mechanism are correct under either order; the defect is the complete exact source-realization/order description and grading criterion, not a counterexample to the row-count exclusion. The phrase product of row followed by column could alternatively mean written factors r_T*c_T rather than temporal order, so clarification is preferable to silently choosing an interpretation.",
+        "answer_rubric_exposition_disposition": "Mark uncertain pending explicit factor/action order in the answer/rubric. The question itself is sound, as are r1,r3,r4 and all four steps' broad zero-space mechanism. Do not promote source order interchangeability or infer non-annihilation for all p<=d words. An answer-only clarification appears possible, but none is authored or approved here.",
+        "bounded_relation": "308 is the one-column specialization, while307 applies the same antisymmetrizer-zero fact to the first-column subset with remaining tensor factors and row action.309 assumes at most d rows and asks a finer fixed-word/content claim, so its false converse is not a special case of this valid exclusion."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-307 near line644 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-307-young-row-bound loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete row/column groups Eq5.16-5.19 and Definition5.14 e_T=r_T*c_T, printed47/PDF46; realization Eq5.20 and full first-column/row-count remark after Eq5.23-5.24, printed48/PDF47.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-308",
+      "key": "qcb-core-plan-308-antisymmetrizer-vanishing",
+      "item_digest": "961a255fe1a9311fd2c896ffa61b8256cbd38f180ff5a734a2dfeb558b1ed39b",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "For P=(1/n!)*sum_pi sgn(pi)Q_pi and any transposition tau, P*Q_tau=-P by reindexing the finite group sum. If a basis word has equal labels at the two swapped positions, Q_tau v=v, hence Pv=-Pv and Pv=0 over C. When n>d, pigeonhole gives such a pair in every basis word; these words span, so P=0. Reindexing also gives P^2=P, and Q_pi P=sgn(pi)P; with the standard Hilbert inner product Q_pi†=Q_pi^-1 gives P†=P, so its image is exactly the totally antisymmetric subspace.",
+        "dimension_and_boundaries": "For n<=d, ordered choices i_1<...<i_n give nonzero signed-orbit vectors with disjoint basis supports for different subsets; every antisymmetrized basis word is zero or a signed multiple of one of them. Thus rank(P)=binom(d,n), including rank0 for n>d. At n=0 the empty tensor gives rank1 and the premise d<n is impossible for natural d; for d=0,n>0 the tensor space is already0. No division by a vanishing factorial occurs over C.",
+        "answer_rubric_exposition": "Accept all four rubric criteria, four steps and the complete answer. A repeated index fixes the INPUT word, whereas the sign relation is a property of its antisymmetrized output; the paired cancellation proof above supplies the precise logic. Strictly increasing tuples enumerate orbit representatives, not an assertion that every surviving input word is already sorted. The rank comment is correct, not required as an extra assumption.",
+        "source_alignment": "The primary Exercise5.2 is an exercise statement with the same1/n! signed average, not a supplied worked proof. The proof here is independently reconstructed. Young symmetrizers in general are not orthogonal projectors, but this full signed average IS one; no arbitrary Young idempotent is substituted for P.",
+        "bounded_relation": "Strict one-column special case of307's row-count exclusion, sharing its exact sign-cancellation mechanism.115's n=2 symmetric/antisymmetric split addresses the complementary nonzero regime d>=2 and reducibility, not the same whole target."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-308 near line749 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-308-antisymmetrizer-vanishing loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Exercise5.2 signed average Eq5.38, printed51/PDF50; signed column action Definition5.12/Eq5.19 and single-column Example5.15. Exercise provides a target, not a worked proof.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-309",
+      "key": "qcb-core-plan-309-majorization-annihilation",
+      "item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "literal_false_claim": "The complete reference, rubric r1 and core summary assert e_T v=0 IFF the sorted content is NOT majorized by lambda, equivalently content majorized by lambda IFF e_T v is nonzero. For a fixed tableau and a fixed basis word this is false. The primary Eq5.25 only supplies the sufficient annihilation direction, with no converse for that word.",
+        "minimal_source_aligned_witness": "Use d=2,n=4, lambda=(3,1), and the standard tableau T with first row[1,2,3] and second row[4]. Let v=e_1 tensor e_2 tensor e_1 tensor e_1. Its sorted content is(3,1)=lambda, so it satisfies every majorization inequality. The column group has c_T=I-(14), and (14)v=v because positions1 and4 both contain e_1. Therefore c_T v=0 and the pinned source e_T=r_T*c_T also sends v to0. This is exactly the pattern in the primary's Eq5.23 example, independently checked, not a numerical simulation.",
+        "same_content_opposite_result": "The same T and same content also admit w=e_1 tensor e_1 tensor e_1 tensor e_2. Now r_T*w=6*w, while r_T*(14)w=2*(e_2 tensor e_1 tensor e_1 tensor e_1+e_1 tensor e_2 tensor e_1 tensor e_1+e_1 tensor e_1 tensor e_2 tensor e_1). These are distinct basis words from w, so e_T w=6*w minus this displayed sum is nonzero. Thus content alone cannot give an exact annihilation criterion for each fixed T/word.",
+        "order_robust_additional_witness": "Even if the answer's phrase ends with column antisymmetrization is read as the reversed product, the iff remains false. Set d=3,n=4, lambda=(2,1,1), T=[1,2;3;4] and u=e_2 tensor e_3 tensor e_1 tensor e_1. Its sorted content equals lambda. Positions3 and4 are equal, in the same first column, and the only nontrivial row swap is(12), which leaves those positions unchanged. Hence c_T kills u and every term of r_T u; both r_T*c_T*u and c_T*r_T*u are0.",
+        "salvage_and_quantifier": "If the k most frequent labels occur more than sum_{i<=k}lambda_i times, the columns can hold at most sum_col min(k,height_col)=sum_{i<=k}lambda_i such labels without repetition. Thus every arrangement with that content has a repeated column and is killed by the column antisymmetrizer. This proves the necessary survival/sufficient annihilation implication. Existence of SOME globally rearranged column-distinct or semistandard filling is a different quantifier from survival of the original fixed filling after one fixed Young symmetrizer. Even a true content-feasibility theorem cannot bridge that quantifier gap.",
+        "answer_rubric_exposition_disposition": "Reject the full exact record. The question's demand for an exact content-only condition is not met by the genuine source implication; the iff and nonzero converse in the answer, r1 and summary are false. The four semantic steps are largely one-way, but their presence does not repair the stronger grading/answer. The source's r_T*c_T is also not a temporal row-then-column action. No canonical repair or changed hypothesis is supplied by this report.",
+        "bounded_relation": "307/308 provide valid sufficient zero mechanisms, not the false converse.319's concentration argument may use the NECESSARY majorization support restriction only; this review does not import309's iff into that neighboring target."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-309 near line854 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-309-majorization-annihilation loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Definition5.14 e_T=r_T*c_T, Eq5.20 and example5.23-5.24, printed47-48/PDF46-47; entire Eq5.25 majorization paragraph and semistandard-basis statement, printed49/PDF48. The source asserts a sufficient annihilation implication, not an iff for a fixed filling.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-310",
+      "key": "qcb-core-plan-310-schur-weyl-dimension-count",
+      "item_digest": "875a506ea7bb34fddaf430ef25b538ec70dd1707f5faa6172919f344a4a1faab",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "reconstruction": "The partitions of4 are(4),(3,1),(2,2),(2,1,1),(1,1,1,1); the last has four rows and is excluded for d=3. Padding to three parts, the hook products for the four allowed shapes are24,8,12,8, so their S4 dimensions are24/product=1,3,2,3. The hooks are respectively[4,3,2,1];[4,2,1;1];[3,2;2,1];[4,1;2;1]. The reference uses uniqueness of a standard tableau for(4); its hook computation gives the same1.",
+        "weyl_arithmetic": "For three parts(a,b,c), the Weyl dimension is(a-b+1)*(a-c+2)*(b-c+1)/2. It gives(4,0,0):5*6*1/2=15; (3,1,0):3*5*2/2=15; (2,2,0):1*4*3/2=6; (2,1,1):2*3*1/2=3. Products with the S4 dimensions are15,45,12,9 and sum to81=3^4. Positive gap denominators1,2,1 do not introduce singular cases.",
+        "answer_rubric_exposition": "Accept the literal question, full answer, all four rubric criteria and four steps. All diagrams and numerical values are correct. These are representation dimensions, not counts of physical gates or evidence of an efficient Schur-basis transform. The excluded sign diagram has unitary multiplicity0, not a fifth positive contribution.",
+        "source_alignment": "Primary Proposition5.10 supplies the hook/Weyl formulas, Eq5.29 the dimension sum, and Exercise5.3(iii) exactly this n=4,d=3 task. The primary does not print all benchmark numerical answers; they were independently recomputed algebraically above.",
+        "bounded_relation": "Shares the hook formula and single-row extreme with312, but312's main shape is(4,2,1) at n=7.311 addresses arbitrary two-part U2 weights, not this U3 count; for example(3,1) has U2 dimension3 but U3 dimension15, so dimensions must not be pooled by shape alone."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-310 near line959 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-310-schur-weyl-dimension-count loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete Schur-Weyl Eq5.8/Proposition5.9, hook/Weyl Proposition5.10 Eq5.9-5.11 and its worked(4,2,1) example, printed45-46/PDF44-45; sum rule Eq5.29, printed50/PDF49; complete Exercise5.3(iii), printed51/PDF50. Source supplies formulas and the exercise, not the benchmark's four worked dimension pairs.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-311",
+      "key": "qcb-core-plan-311-weyl-dim-u2",
+      "item_digest": "a540284076b09a2f0fe5e2a88254a5329ad87d91586c481043740ab5db00e80a",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "tableau_reconstruction": "For lambda_1>=lambda_2>=0, each of the first lambda_2 two-cell columns of a semistandard tableau over{1,2} is forced to have1 above2. The remaining m=lambda_1-lambda_2 cells are the top-row tail, and a weakly increasing tail is determined by the number a of its1s, with a=0,...,m. This gives m+1 tableaux; no permutation of identical tail symbols adds another tableau.",
+        "representation_reconstruction": "The source realization is det^(lambda_2) tensor Sym^m(C^2). The determinant character is one dimensional, so it does not change dimension. An occupation basis of Sym^m(C^2) has one vector for each number of1 labels from0 to m and hence dimension m+1. Equivalently Weyl's single row-pair factor gives(lambda_1-lambda_2+1)/1. Tensoring by det^lambda_2 shifts both highest-weight entries but not this difference.",
+        "zero_and_scope_boundaries": "When lambda_1=lambda_2 the tail is empty, Sym^0 isC and the representation is the one-dimensional determinant power. lambda_2=0 recovers an ordinary symmetric power. lambda=(0,0) gives the trivial n=0 representation and dimension1. The two parts may include a zero as the explicit assumption permits. These are polynomial irreducibles appearing in tensor powers, not a classification of every U2 irrep including negative determinant weights.",
+        "answer_rubric_exposition": "Accept the full answer, four rubric criteria and four semantic steps. The two requested routes are valid and consistent; the determinant factor is a one-dimensional character, not a scalar fixed independently of U. No construction, oracle access or gate-cost certificate follows from the dimension identity.",
+        "bounded_relation": "Shares a d=2 symmetric-power dimension subtarget with420 and the tableaux/Weyl interface with310. The determinant twist and two-part highest-weight description are additional obligations; no entire-contract alias is established."
+      },
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Complete leditzky-2025-repth-qit catalog entry near219 read: author-hosted URL,10 April2026/79-page edition and recorded historical PDF SHA. This LF hash authenticates metadata only, not PDF bytes or mathematics."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_schur_tensor_symmetry.json",
+          "sha256_lf": "a462ac539841410ecd8c0fe82453149b7246343940f96bf8cc37f6ea2d7d8970",
+          "anchor": "Full mathematical/grading fields of authored qcb-core-plan-311 near line1064 and exact prepared counterpart inspected, including question, answer, every rubric, assumptions, conventions, semantic steps and summary. QA provenance only."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Entire actual prepared qcb-core-plan-311-weyl-dim-u2 loaded via release.checked()[2]; whole digest above includes metadata. Complete mathematical/grading fields read. Frozen content provenance, not theorem proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "recorded_edition": "10 April2026,79 pages; stable catalog ID retains course-directory FT25",
+          "inspected_anchors": "Complete semistandard definition/Proposition5.9 and Weyl formula Eq5.11, printed45-46/PDF44-45; U2 determinant-times-symmetric-power Eq5.26-5.28 paragraph, printed49/PDF48. Explicit matrix coefficients are not needed to infer dimension; referenced proofs outside these notes are not claimed newly inspected.",
+          "retrieval": "Genuine author-hosted primary PDF text extraction; bounded complete operative regions and context inspected, not only a catalog entry.",
+          "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "historical_binary_hash_verified_in_this_review": false,
+          "limits": "Cover edition and anchors match text access. Direct in-memory PDF-byte retrieval failed with socket denial WinError10013; no bytes/hash comparison or rendered-page verification claimed. Exercise/deferred-proof source limits are explicit above. No PDF saved or redistributed."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "Independent bounded NL/source review, not a new kernel run, formal counterpart, source-blind/human/model evaluation, novelty decision or admission.",
+        "Primary PDF text is accessible but historical binary SHA equality and visual rendering are unverified. Local hashes bind QA/catalog content provenance only.",
+        "Whole-target and subtarget comparisons are bounded; different names, graph nodes and families do not establish global distinctness or authorize cross-split pooling."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-plan-301",
+      "qcb-core-plan-302",
+      "qcb-core-plan-304",
+      "qcb-core-plan-306",
+      "qcb-core-plan-308",
+      "qcb-core-plan-310",
+      "qcb-core-plan-311"
+    ],
+    "rejected": [
+      "qcb-core-plan-309"
+    ],
+    "uncertain": [
+      "qcb-core-plan-305",
+      "qcb-core-plan-307"
+    ],
+    "absent_ids": [],
+    "exact_rejections": {
+      "qcb-core-plan-309": "False fixed-tableau/fixed-word iff: lambda=(3,1),T=[1,2,3;4],v=|1,2,1,1> has sorted content=lambda but e_T v=0; the same-content |1,1,1,2> survives. Source Eq5.25 only asserts sufficient annihilation."
+    },
+    "uncertainties": {
+      "qcb-core-plan-305": "Finite-dimensional complex source corollary is correct, but the standalone question omits that standing domain. An infinite-dimensional swap-invariant diagonal projection is not a finite operator-tensor sum.",
+      "qcb-core-plan-307": "Row-count exclusion is correct, but the full answer/rubric's row-then-column phrasing conflicts with source r_T*c_T if read as execution order; those products differ in general. Clarify source realization rather than falsely reject the vanishing theorem."
+    },
+    "disposition": "Seven accepted, one rejected, two uncertain. All ten requested exact prepared IDs present. No canonical quarantine, question/answer repair or admission performed.",
+    "stable_release_limit": "This report satisfies only one bounded mathematical/source inspection objective. It is not a complete-catalog correctness certificate, global dedup/split reconciliation, formal closure, proof of novelty, human approval or release/PR103 approval."
+  },
+  "worker_handoff": {
+    "objective": "Exact source/contract reader review of the ten requested planned representation/QIT cores.",
+    "mathematical_delta": "A decisive fixed-word counterexample retires309's false content iff; two precise scope/order ambiguities are isolated; seven intended mathematical records are accepted at NL/source level.",
+    "failure_class": "SOURCE_INVALID",
+    "salvage_audit": "Keep309's sufficient annihilation implication and307/308's column sign cancellation; keep305's finite-dimensional operator-symmetric-space bridge conditional on an explicit standing domain. No fragment is promoted to a new Lean or publication certificate.",
+    "process_memory_ids_consulted": [
+      "QBE-PM-VERIFIER-SEMANTIC-LEVEL",
+      "QBE-PM-LOW-TOKEN-CONTROL-PLANE"
+    ],
+    "direction_fingerprint": "Pinned finite-complex representation contracts; exact fixed-tableau versus existence quantifiers; matrix/tensor identifications; signed operator order; dimension/zero boundaries.",
+    "parallel_admission": "No extra agent. One source-reconstruction route; a cross-route common-blind-spot audit is not claimed.",
+    "default_route_and_comparator": "Matrix units and finite-group orthogonality for commutants; finite polynomial interpolation/polarization for spanning; exact signed cancellation for Young zeros; direct hook/Weyl/tableau arithmetic for dimensions. These match the stated domain without new proof ingredients being treated as hypotheses.",
+    "purification_exposition_status": "Private evidence only; no source Anchor, graph edge or page is marked PROOF_SEALED/PURIFIED. Source expansion anchors are listed per item; there are no new Lean expansion nodes.",
+    "residual_risk": "Binary historical-source equality and page rendering unverified;305's inherited-domain interpretation and307's factor-order language need editorial decisions. No global semantic distinctness conclusion.",
+    "recommended_next_step": "Parent independently inspect the counterexamples and exact uncertain contracts, then decide separate reviewed corrections/withdrawals. Do not transfer these predecessor verdicts to any future successor.",
+    "files_changed": [
+      "_review_tmp/representation-qit-301-311-review.json"
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+"""Current mathematical admission policy over immutable native release history.
+
+Old files remain inspectable; they must not be reused as current gold when an
+answer was superseded after a real mathematical/source defect was identified.
+This additive guard does not alter earlier pipeline hashes or claim new proofs.
+"""
+from qcb_nl import WITHDRAWN_NATIVE
+
+WITHDRAWN_KEYS = {
+    'qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary': 'The separately reviewed answer successor corrects qubitization source locators and exact normalization/endpoint claims; the predecessor is historical, not current gold.',
+    'qcb-core-plan-304-schur-weyl-mutual-commutant': 'The separately reviewed answer successor clarifies the actual common GL action and interpolation proof; the predecessor is historical, not current gold.',
+    'qcb-core-plan-414-twirled-channel-covariance-haar': 'Twirling gives channel covariance; Schur scalar output follows only for invariant input and the specified symmetric output block, not arbitrary states.',
+    'qcb-core-plan-415-spectrum-measurement-symmetry-wlog': 'Unitary twirling preserves a uniform invariant worst-case testing guarantee, not each fixed state measurement distribution; the WLOG performance quantifiers are missing.',
+    'qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary': 'Permutation-invariant mixed states need not have original symmetric support; the mixed de Finetti proof instead uses an enlarged symmetric purification space.',
+    'qcb-core-plan-319-spectrum-concentration': 'The concentration exposition drops a polynomial prefactor; a single outcome is not bounded by the bare exponential and neighborhood sums require a count.',
+    'qcb-core-plan-320-isotropic-partial-transpose': 'Partial transpose transports operator symmetry but not state positivity; a maximally entangled state maps to the nonpositive swap divided by dimension.',
+    'qcb-core-plan-502-parity-pairing-even-odd-iterate': 'Directed qubitization planes need not be distinct and non-Hermitian global completion does not universally force paired-iterate necessity.',
+    'qcb-core-plan-504-svt-parity-left-right-vectors': 'Projected SVT blocks are not whole normalized output states; U maps the input plane forward while U-adjoint, not U, supplies the reverse.',
+    'qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample': 'The nilpotent calculation is valid but the answer incorrectly extends Hermitian parity agreement to arbitrary normal matrices.',
+    'qcb-core-plan-506-cosine-sine-constraint-and-range': 'Individual column lengths do not imply the spectral bound; the complete proof needs the full Gram identity and zero-sine-safe rotated-column completion.',
+    'qcb-core-plan-509-even-odd-split-subnormalization-doubling': 'The balanced selected-block identity is sound but the exclusive-success-port claim fails on allowed degenerate spectra.',
+    'qcb-core-plan-510-definite-parity-lcu-resource-statement': 'The exact unit-normalized input block premise is missing; an arbitrary-scale block encoding cannot imply the stated output coefficient factor.',
+    'qcb-core-plan-513-grover-two-reflection-rotation': 'The allowed one-element search has no normalized bad vector or requested two-dimensional plane; the endpoint needs explicit treatment.',
+    'qcb-core-plan-515-grover-multi-marked-iteration-count': 'The all-marked case has no normalized bad state; a positive Theta iteration optimum and near-unit integer-round success do not hold uniformly.',
+    'qcb-core-plan-517-chebyshev-identity-sine-domain-boundary': 'Real arcsine is undefined outside its domain, but the answer falsely rejects valid complex multiple-angle continuation and mishandles negative hyperbolic arguments.',
+    'qcb-core-plan-518-classical-search-lower-bound': 'The claimed N-minus-one randomized bounded-error lower bound is false; a symmetric four-input two-query algorithm succeeds with probability three quarters.',
+    'qcb-core-plan-520-amplitude-vs-probability-quadratic': 'Amplitude increments are not positive at every iteration; the early-angle window, inverse-preparation access and calibrated stopping rule require explicit scope.',
+    'qcb-core-plan-401-isotropic-positivity-x-range': 'The positivity interval silently assumes dimension at least two; at dimension one the state is the identity for every real parameter.',
+    'qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k': 'At fixed accuracy it is the excess copy count n-minus-k, not the total n, that scales by exactly the dimension factor.',
+    'qcb-core-plan-407-spectrum-estimator-normalized-partition-validity': 'Exact spectrum equality is impossible for an irrational spectrum at every finite sample count; neighborhood consistency is a different statement.',
+    'qcb-core-plan-011-nonunitary-dilation-no-direct-unitary': 'An exact nonunitary linear operator is not a native unitary, but its normalized output need not require postselection; a nonzero scalar identity is a counterexample.',
+    'qcb-core-plan-004-ensemble-nonuniqueness': 'A column isometry may have zero output rows and different isometries need not yield physically different ensembles; the complete answer and rubric need explicit genuine witnesses.',
+    'qcb-core-plan-007-werner-entanglement-threshold': 'Swap-overlap positivity proves separable implies nonnegative overlap, not the converse; the rubric and process step omit the actual product-twirl construction.',
+    'qcb-core-plan-305-permutation-conjugation-invariance': 'The standalone operator-tensor identification omits the finite-dimensional domain; a swap-invariant infinite-dimensional diagonal projection is not a finite tensor sum.',
+    'qcb-core-plan-307-young-row-bound': 'The row-bound conclusion is correct, but temporal row-then-column wording is ambiguous relative to the source Young symmetrizer r_T*c_T.',
+    'qcb-core-plan-309-majorization-annihilation': 'Majorization is a necessary survival condition, not a fixed-tableau/fixed-word nonzero iff; explicit same-content words have different outcomes.',
+    'qcb-core-plan-112-sym-antisym-projectors-swap-operator': 'Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.',
+    'qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample': 'The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.',
+    'qcb-core-plan-117-non-unitarizable-infinite-group-counterexample': 'The compact-group extension omits continuity; Haar averaging does not apply to every abstract representation.',
+    'qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed': 'The scalar-Schur/division-ring-collapse summary omits finite dimension, despite a valid real two-dimensional example.',
+    'qcb-core-plan-119-finite-vs-compact-haar-boundary': 'Raw compact-group matrix coefficients are not orthonormal without dimension normalization; continuity scope is missing.',
+    'qcb-core-plan-120-dual-representation-conjugate-boundary': 'Equal real characters do not classify self-duality for arbitrary nonsemisimple group representations.',
+    'qcb-core-plan-211-s-sparse-konig-matching-decomposition': 'Sparsity and label-qubit count are conflated; zero-padding and regularization claims need additional structure.',
+    'qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919': 'Separate permutation maps do not imply a unique disjoint cover of each nonzero matrix position.',
+    'qcb-core-plan-213-dual-oracle-row-column-sparse-prop922': 'The literal forward oracle tail differs from the adjoint tail required by the source figure and amplitude proof.',
+    'qcb-core-plan-215-hermitian-sparse-block-encoding-prop924': 'The square-root conjugacy step fails for negative diagonal entries; the Hermitian SWAP circuit encodes the wrong sign.',
+    'qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence': 'Definite parity is sufficient, not necessary for coincidence on a fixed spectrum; scope is ambiguous.',
+    'qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure': 'An unnormalized non-isometric transformed vector is not a deterministic lossless quantum state.',
+    'qcb-core-plan-219-matrix-power-not-singular-value-transformation': 'The inverse lacks an invertibility premise and an SVD interior obstruction does not exclude all three transform forms.',
+    'qcb-core-be-102': 'Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.',
+    'qcb-core-be-104': 'Bare emitted gate products omit the compiler global phase and do not equal the claimed exact 0/1 permutation matrix.',
+    'qcb-core-be-108': 'Independent row/column permutations preserve unitarity; same-axis algebra closure is not a necessary condition.',
+    'qcb-core-be-112': 'Product unitarity neither forces the final adjoint nor guarantees deterministic selector cleanup.',
+    'qcb-core-be-119': 'Visible backend wire count is not established as the full physical count including internal oracle workspace.',
+    'qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso': 'Equivariance as a functional equation omits the linear-map premise used by Schur kernel/image reasoning.',
+    'qcb-core-plan-105-schur-lemma-scalar-over-alg-closed': 'The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.',
+    'qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional': 'The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.',
+    'qcb-core-plan-107-pauli-twirl-maximally-mixed': 'The Pauli twirl expansion omits the right adjoint and contains a false noncommutative equality.',
+    'qcb-core-plan-108-character-is-class-function-degree': 'The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.',
+    'qcb-core-plan-203-povm-amplitude-amplification-query-count': 'The amplification proof assumes an input-state reflection and independent fresh trials absent from the access contract.',
+    'qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity': 'The complex-overlap proof drops a conjugation and equates 1-c^2 with 1-|c|^2.',
+    'qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary': 'Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.',
+    'qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute': 'The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.',
+    'qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary': 'The regime analysis mishandles zero entries and loses signed/complex amplitude phases through a magnitude-only rotation.',
+    'qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles': 'The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.',
+    **WITHDRAWN_NATIVE,
+    'qcb-core-sp-101': 'unasked degree-minimality overclaim; use exact degree upper-bound successor',
+    'qcb-core-la-205': 'missing +2N write-budget term makes stated sum internally inconsistent',
+    'qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity': 'normalization A/||A|| used without excluding A=0',
+    'qcb-core-plan-402-werner-isotropic-k-extendibility-thresholds': 'printed fraction (1-d)/k misread as 1-d/k in primary text extraction',
+    'qcb-core-plan-411-transpose-trick-and-UU-invariance': 'false intermediate identity and silent source-conjugation repair',
+    'qcb-core-plan-418-cloning-map-cp-trace-nonincreasing': 'incorrect single-Kraus extension and trace equality characterization',
+    'qcb-core-plan-001-povm-nonunique-update': 'integration quarantine: positive square root and instrument semantics',
+    'qcb-core-plan-002-partial-transpose-negativity-converse-boundary': 'integration quarantine: trivial-factor dimension counterexample',
+    'qcb-core-plan-006-trace-norm-unitary-variational': 'integration quarantine: scalar counterexample and norm-bound argument',
+    'qcb-core-plan-303-external-product-irrep': 'integration quarantine: wrong second tensor representation',
+    'qcb-core-sp-002': 'textbook second pass: free output bond index conflated with summed input bond index; use the separately reviewed answer successor',
+    'qcb-core-sp-006': 'textbook second pass: arbitrary-real normalization does not remove the circuit theorem nonnegative-entry hypothesis',
+    'qcb-core-sp-011': 'textbook second pass: active dimension > 2 also forbids active-only unitary terminal cleanup',
+    'qcb-core-sp-105': 'textbook second pass: unrestricted affine dimension is missing from answer and rubric',
+    'qcb-core-sp-107': 'textbook second pass: public coefficient normalization/reflection contract is ambiguous',
+    'qcb-core-sp-108': 'textbook second pass: false degree k+1 instead of i+k+1 in question',
+    'qcb-core-sp-111': 'textbook second pass: zero grid step invalidates exact polynomial degree claim',
+    'qcb-core-sp-113': 'textbook second pass: positivity does not supply the unit grid anchor',
+    'qcb-core-sp-115': 'textbook second pass: width-two threshold claim omits bounded natural suffix premise',
+    'qcb-core-sp-117': 'textbook second pass: single-cut/all-cut rank and circuit-existence conflation',
+    'qcb-core-sp-119': 'textbook second pass: fixed-function versus order-indexed family ambiguity',
+    'qcb-core-la-003': 'textbook second pass: raw coefficient syntax is not a ring under constructor operations',
+    'qcb-core-la-013': 'textbook second pass: basis permutation must be explicitly wire-induced',
+    'qcb-core-la-112': 'textbook second pass: UpperPrefix does not set earlier diagonal entries to zero',
+    'qcb-core-la-119': 'textbook second pass: fixed-size example is not an asymptotic lower bound or optimal plane necessity',
+    'qcb-core-la-206': 'textbook second pass: literal equality-with-budgets wording conflicts with the proved upper bound',
+    'qcb-core-la-214': 'textbook second pass: a polynomial supplier example does not refute polynomial boundedness; use reviewed quantified repair',
+    'qcb-core-la-215': 'textbook second pass: nonnegative-y nonzero branch does not attain the full field budget; use reviewed branch repair',
+    'qcb-core-la-219': 'textbook second pass: correlated compiled guards do not establish an attainable loose-cap endpoint',
+    'qcb-core-la-220': 'textbook second pass: attained maximum bond differs from its upper bound for a single closed core',
+    'qcb-core-plan-003-density-set-convexity': 'textbook second pass: topological boundary is not the extreme-point set',
+    'qcb-core-be-003': 'textbook second pass: conflicting scalar target ranges in question and assumptions',
+    'qcb-core-be-004': 'textbook second pass: adjoint uniqueness and deterministic auxiliary cleanup overclaims',
+    'qcb-core-be-008': 'textbook second pass: more signal qubits cannot evade clean-block contraction',
+    'qcb-core-be-009': 'textbook second pass: counterexample violates the one-sparse premise',
+    'qcb-core-be-012': 'textbook second pass: finite injective self-map is already surjective',
+}
+
+
+def check_current_gold(items, *, frozen_preview_audit=False):
+    withdrawn = sorted({i.get('key') for i in items} & WITHDRAWN_KEYS.keys())
+    if frozen_preview_audit:
+        # Only reproduce the published historical preview for audit. Its CLI
+        # separately refuses current native scoring/repackaging after a repair.
+        audit_only_keys = {'qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary', 'qcb-core-plan-304-schur-weyl-mutual-commutant',
+            'qcb-core-plan-414-twirled-channel-covariance-haar', 'qcb-core-plan-415-spectrum-measurement-symmetry-wlog', 'qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary',
+            'qcb-core-plan-319-spectrum-concentration', 'qcb-core-plan-320-isotropic-partial-transpose', 'qcb-core-plan-502-parity-pairing-even-odd-iterate', 'qcb-core-plan-504-svt-parity-left-right-vectors', 'qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample', 'qcb-core-plan-506-cosine-sine-constraint-and-range', 'qcb-core-plan-509-even-odd-split-subnormalization-doubling', 'qcb-core-plan-510-definite-parity-lcu-resource-statement', 'qcb-core-plan-513-grover-two-reflection-rotation', 'qcb-core-plan-515-grover-multi-marked-iteration-count', 'qcb-core-plan-517-chebyshev-identity-sine-domain-boundary', 'qcb-core-plan-518-classical-search-lower-bound', 'qcb-core-plan-520-amplitude-vs-probability-quadratic', 'qcb-core-plan-401-isotropic-positivity-x-range', 'qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k', 'qcb-core-plan-407-spectrum-estimator-normalized-partition-validity', 'qcb-core-plan-011-nonunitary-dilation-no-direct-unitary',
+            'qcb-core-plan-004-ensemble-nonuniqueness', 'qcb-core-plan-007-werner-entanglement-threshold', 'qcb-core-plan-305-permutation-conjugation-invariance', 'qcb-core-plan-307-young-row-bound', 'qcb-core-plan-309-majorization-annihilation',
+            'qcb-core-plan-112-sym-antisym-projectors-swap-operator', 'qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample', 'qcb-core-plan-117-non-unitarizable-infinite-group-counterexample', 'qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed', 'qcb-core-plan-119-finite-vs-compact-haar-boundary', 'qcb-core-plan-120-dual-representation-conjugate-boundary', 'qcb-core-plan-211-s-sparse-konig-matching-decomposition', 'qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919', 'qcb-core-plan-213-dual-oracle-row-column-sparse-prop922', 'qcb-core-plan-215-hermitian-sparse-block-encoding-prop924', 'qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence', 'qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure', 'qcb-core-plan-219-matrix-power-not-singular-value-transformation',
+            'qcb-core-be-102', 'qcb-core-be-104', 'qcb-core-be-108', 'qcb-core-be-112', 'qcb-core-be-119', 'qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso', 'qcb-core-plan-105-schur-lemma-scalar-over-alg-closed', 'qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional', 'qcb-core-plan-107-pauli-twirl-maximally-mixed', 'qcb-core-plan-108-character-is-class-function-degree', 'qcb-core-plan-203-povm-amplitude-amplification-query-count', 'qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity', 'qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary', 'qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute', 'qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary', 'qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles',
+            'qcb-core-sp-002', 'qcb-core-sp-006', 'qcb-core-sp-011',
+            'qcb-core-sp-105', 'qcb-core-sp-107', 'qcb-core-sp-108', 'qcb-core-sp-111',
+            'qcb-core-sp-113', 'qcb-core-sp-115', 'qcb-core-sp-117', 'qcb-core-sp-119',
+            'qcb-core-la-003', 'qcb-core-la-013', 'qcb-core-plan-003-density-set-convexity',
+            'qcb-core-la-112', 'qcb-core-la-119', 'qcb-core-la-206', 'qcb-core-la-214',
+            'qcb-core-la-215', 'qcb-core-la-219', 'qcb-core-la-220',
+            'qcb-core-be-003', 'qcb-core-be-004', 'qcb-core-be-008', 'qcb-core-be-009', 'qcb-core-be-012'}
+        withdrawn = [key for key in withdrawn if key not in audit_only_keys]
+    if withdrawn:
+        raise ValueError('withdrawn historical native gold: ' + ', '.join(withdrawn)
+                         + '; use scripts/release.py for the current admission overlay; old files are audit-only')
+    if any(i.get('lifecycle') != 'released' for i in items):
+        raise ValueError('current scoring accepts admitted release items only')
+    return items

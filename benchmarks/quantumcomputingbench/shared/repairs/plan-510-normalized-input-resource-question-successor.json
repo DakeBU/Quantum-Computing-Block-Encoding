@@ -1,0 +1,85 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-510",
+  "supersedes_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+  "supersedes_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+  "supersedes_contract_hash": "2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-510-textbook-question-v2-normalized-input-resource-contract",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not an answer-only silent addition of the exact unit-normalized input premise. The old single-ancilla description fixes register count, not block factor or error, and is insufficient for its promised coefficient factor. Keep/refute that reading, then request the true conditional normalized-input theorem and exact arbitrary-scale rescaling boundary. Only question changes among nine CONTRACT_FIELDS; assumptions/conventions/family/test_public split/frozen graph/source_refs remain literal, with six steps and every ordered per-step node list unchanged. Original contract 2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-510-normalized-input-resource-question-successor.json; private _review_tmp/plan-510-normalized-input-resource-question-successor.json. No new core, standing assumption-field override, engine change or selfapproval. Recomputed proposed question-only contract c70aee607b7ca91f359152628fb31bbab1e0855382bbbfcfa55b8468e8f239da.",
+  "question": "A single-ancilla block encoding alone does not specify its factor or error: with J|psi>=|0>_s|psi>, an exact (kappa,1)-block encoding satisfies J†U J=A/kappa for known kappa>0, while an approximate one only satisfies ||A-kappa J†U J||<=epsilon. Let f(x)=sum_(k=0)^d alpha_k T_k(x) have definite parity d mod2 and beta=sum_k|alpha_k|. Assess the predecessor's unconditional promise of output factor beta from merely a single-ancilla block encoding. Give an exact allowed counterexample if this premise is insufficient; do not silently assume kappa1 or epsilon0.\n\nState and justify the precise CONDITIONAL theorem when U is an exact (1,1)-block encoding of a square matrix A, with the signal/input/output projector fixed to s=0. For a nonzero f, specify the parity-dependent singular-value target from A=W Sigma V†, the accepted block and factor, extra clean index ancillas (including small d), and query count to U and U†. Explain coefficient phases and preparation, known signal reflections, padding, and the efficient binary reuse that avoids a sum of independently rebuilt Chebyshev orders. Keep full output garbage distinct from the accepted block; include singular values0/1 and zero postselected output.\n\nFor an exact known (kappa,1) input instead, explain precisely which operator the unrescaled polynomial construction transforms and how replacing f by g(x)=f(kappa*x), reexpanded in the Chebyshev basis, recovers f^SV(A) with the corresponding NEW coefficient factor. Distinguish this from an unproved approximate-input error guarantee. Treat d=0,d=1 and the all-zero coefficient case without log(0), division by beta0 or a zero positive block factor. Separate U/U† query count from coefficient-oracle/gate synthesis, finite-precision, input-state preparation, success amplification and readout costs.",
+  "reference_answer": "The predecessor's premise is insufficient. Let A=2I_N, U=I_(2N), kappa=2 and epsilon=0. This is an exact single-ancilla block encoding since <0|U|0>=I_N=A/2. For f(x)=x, d=1 and beta=1, the promised factor1 block of f^SV(A)=2I_N would have norm2. Every compression of a unitary between isometric clean inputs/outputs has norm at most1, so that output is impossible. The problem is normalization, not the number of ancillas; approximate access additionally cannot justify an exact target without error analysis.\n\nNow impose the stated CONDITIONAL exact normalized-input case: B=J†U J=A, so ||A||<=1 and all singular values are in[0,1]. With a full square SVD A=W Sigma V†, define f^SV(A)=V f(Sigma)V† for even f and W f(Sigma)V† for odd f. The latter is independent of a null-space singular-vector completion because an odd polynomial vanishes at0; the even target is the right transform, not generally the balanced one or the ordinary polynomial f(A). No Hermiticity of a general A is assumed here. Equal parities make the same definition linear in the Chebyshev terms that actually appear.\n\nLet R=2JJ†-I be the known signal reflection (Z on the one signal qubit) and E=U†RUR, with rightmost operators applied first. The qubitization/CS construction gives\nJ† E^j J = T_(2j)^SV(A),\nJ† U R E^j J = T_(2j+1)^SV(A).\nThese are accepted blocks, not pure full-output images. In singular coordinates each central two-by-two block is built from sigma and s=sqrt(1-sigma^2); E is a rotation by twice arccos(sigma), and U R E^j has the odd multiple. Their top entries give the displayed Chebyshev polynomials. At sigma0 and sigma1 use these same matrix/polynomial identities directly: never divide by s or demand a distinct two-dimensional garbage direction when it vanishes. The leftover output is orthogonal to the clean signal port.\n\nWrite the supported parity orders as 2j+p, p=d mod2, j=0,...,q=floor(d/2). Pad the coefficients with zeros to K=2^a>=q+1, where a=ceil(log2(q+1)) and a=0 when q=0. Let mu_j=alpha_(2j+p), beta=sum_j|mu_j|>0. Prepare |p_mu>=sum_j sqrt(|mu_j|/beta)|j> on the a-qubit index register and put phases theta_j=mu_j/|mu_j| on nonzero entries (phase1 for zero entries). Controlled SELECT applies E^j in the even case and U R E^j in the odd case. Phase-weighted prepare-SELECT-unprepare then has all-zero index/signal block\nsum_j mu_j T_(2j+p)^SV(A)/beta=f^SV(A)/beta.\nFor complex coefficients use the actual unit-modulus theta_j as relative phases, not unsigned magnitudes; real signs are its special case. The total clean flag size is1+a, with any implementation scratch separately declared. The factor beta is achieved by this coefficient LCU; it is not asserted to be the least possible factor for every matrix/spectrum.\n\nFor query accounting, binary j=sum_l b_l2^l lets SELECT reuse one controlled E^(2^l) per index bit. It takes sum_l2^l=K-1 E steps, hence2(K-1) calls to U/U†, plus one unconditional U R for odd parity. Distinctly, the even circuit uses K-1 calls to U and K-1 to U†; the odd circuit uses K calls to U and K-1 to U†. The multiplication order in that odd case is U R on the LEFT of the even SELECT, so it acts after the even powers. This does not require a promise that an arbitrary unknown U can be controlled for free: controlled-E itself can be realized as U† controlled-R U controlled-R. With control0 the U†U cancels, and with control1 it is E; known controlled signal reflections have their own gate cost. K is less than2(q+1) except the trivial K1 case, giving O(d) queries for d>=1 and O(log(d+1)) index qubits. Rebuilding every independently selected order instead would sum j and can cost quadratically many queries.\n\nFor d0 and f=alpha_0 nonzero, a0 and no U query are needed: implement its unit phase times the identity clean block, with factor|alpha_0|. For d1 with odd f=alpha_1 x, a0 and one U query suffice, using the coefficient phase and U R (R fixes clean input). If all coefficients are zero, the target is zero and normalized coefficient preparation by beta is undefined; use any chosen POSITIVE factor, e.g.1, and a zero-block unitary X on a signal qubit instead. Do not call zero a positive factor or the zero polynomial degree-d in the usual exact-degree sense. The extension to a parity-compatible degree bound covers this degenerate coefficient list explicitly.\n\nFor an exact (kappa,1) input the compressed contraction is B=A/kappa. Applying the unmodified f algorithm yields f^SV(B)/beta, not generally f^SV(A)/beta. To recover the latter, form g(x)=f(kappa*x), retaining parity since kappa>0, reexpand g=sum_j gamma_j T_j, and use beta_kappa=sum_j|gamma_j| as the achieved factor. The positive scaling preserves singular vectors and g(sigma(A)/kappa)=f(sigma(A)), so g^SV(B)=f^SV(A). In the counterexample g(x)=2x and beta_kappa2, consistent with the compression bound. An approximate input exactly encodes its actual contraction J†U J; relating the resulting transform back to the intended A requires a separate perturbation/error contract, not just changing kappa in an exact formula.\n\nOn normalized input psi the chosen all-zero success probability is ||f^SV(A)psi||^2/beta^2 in the normalized theorem, with conditional state f^SV(A)psi/||f^SV(A)psi|| only if that norm is nonzero. Query counts do not produce arbitrary coefficient states, implement phases/controlled reflections, synthesize finite-bit gates, prepare psi, amplify a small success branch or read out the answer for free. Exact coefficient oracles here are ideal construction ingredients with separately accounted costs, as distinct from an executed compiler or a robustness theorem.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Refutes the missing-normalization promise by an exact valid input and compression-norm obstruction; then states the exact normalized-input conditional parity-dependent SV target and beta block with proper coefficient phases, fixed projections and nonzero-beta condition."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Accounts for the parity-order index register a=ceil(log2(floor(d/2)+1)), power-of-two zero padding and clean signal size, handling d0,d1 and all-zero coefficients without invalid logarithms, coefficient normalization or zero block factor."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Derives even E^j and odd U R E^j accepted blocks and binary SELECT reuse for O(d) U/U† calls; retains chronological factor order and0/1 singular-value endpoints. Any controlled-query implementation ingredient is explicit, not a free unknown-unitary control assumption."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Separates f^SV(A/kappa) from f^SV(A), rescales/reexpands g(x)=f(kappa x) and changes the coefficient factor accordingly. Keeps approximate-error, garbage/success normalization, coefficient-oracle, gate, finite-bit, input-state, amplification and readout accounting separate."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Coefficient1-norm LCU resources require an exact unit-normalized input block. A general factor-kappa input instead transforms A/kappa unless the polynomial and Chebyshev coefficients are rescaled; parity, projected output, endpoint and resource boundaries remain explicit.",
+    "semantic_steps": [
+      {
+        "claim": "The arbitrary-factor predecessor promise is refuted; under an exact normalized input, the parity-compatible Chebyshev expansion has the stated even/right or odd/balanced singular-value target.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Phase-aware coefficient preparation and SELECT/unprepare yield the fixed accepted block f^SV(A)/beta for beta>0; all-zero coefficients require a separate positive-factor zero block.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Padding the parity-order index requires O(log(d+1)) clean index qubits, with a0 for d0/d1 and no log(0) boundary.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Binary reuse of E=U†RUR yields2(K-1) queries, plus one U for odd parity, with correct left U R factor and controlled-reflection construction.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "The queries are to U/U†; a factor-kappa input directly transforms A/kappa, and recovery of f^SV(A) requires rescaled Chebyshev coefficients/factor, not a silent input-normalization assumption.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Projected garbage and state-dependent success, approximation, coefficient-oracle/gate synthesis, finite-bit, input-state preparation, amplification and readout costs remain separate obligations.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Read complete lin-wiebe-2026-qasc registry entry. This LF binds URL/edition/historical PDF hash METADATA ONLY, not a local mathematical proof or current PDF-byte equality. Actual mathematical source: https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf; observed cover29 April2026 and447 pages. Operative author-hosted PDF text read in this authoring task: Definition9.2 exact (kappa,m,epsilon) contract, printed143; complete Lemma9.5 proof/phased coefficient LCU, printed145-146; full Definition10.4 parity-dependent targets and Hermitian relation, printed165; operative normalized CS/paired blocks Eq10.90-10.98, printed175-176; complete Section10.5 binary SELECT argument, Fig10.3 textual formula, Eq10.99-10.104 and Theorem10.12 with its exact(1,m) premise, printed177-178. The controlled-reflection cancellation, exact-scale polynomial rescaling and endpoint calculations are independent derivations, not fabricated source theorems. Recorded historical binary SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 remains unverified here; screenshot requests PDF pages177,178,187 failed with cache misses, so no operative pixel inspection or fresh source-paper seal is claimed."
+    }
+  ],
+  "execution": "Actual author /root/qcb_native_comparison, not an independent reviewer or selfapprover. I previously wrote the historical scientific reader review/finding for this core and have full parent/source/withdrawal exposure; this is not blind authoring. Entire actual prepared predecessor was read again via release.checked()[2], including complete question/answer/rubric, assumptions/conventions, semantic steps and provenance. Whole original digest ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0 and original nine-field contract 2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c were recomputed; current bound withdrawal reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json report digest 611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc and exact finding digest 410ccd51e78b2071927d9f67951836196e7c4a9ea7647781d82297320fcd62d2 were recomputed and matched. Entire new mathematical/grading candidate is authored here. All six original ordered per-step supporting-node lists and count6 are preserved; no family/split/graph/source_refs or active assumption/convention list is edited. Actual canonical HEAD observed e9308632431899a08938b4d9a6cd1b9d90c45e30; engine code is not a mathematical source dependency. Primary access was web PDF text extraction of the complete operative regions identified above, with matching cover/date/page count, but no direct binary verification or rendered operative page inspection: screenshots failed with cache misses. Historical primary SHA is provenance, not a fresh byte seal. No paper/PDF stored or redistributed. No production Lean/native-formal theorem, kernel/build/compiler/simulator/GPU/admin operation, model/human/expert approval, global alias reconciliation, minimality/novelty or reader admission claim. Only NEW private _review_tmp/plan-510-normalized-input-resource-question-successor.json is written; proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-510-normalized-input-resource-question-successor.json is not installed. Prior candidates/reports and all canonical files stay unchanged by me. A distinct exact-content review is required before any transport/admission. Recomputed proposed nine-field contract hash: c70aee607b7ca91f359152628fb31bbab1e0855382bbbfcfa55b8468e8f239da. Only question differs from the inherited nine-field contract; all other eight fields remain exact."
+}

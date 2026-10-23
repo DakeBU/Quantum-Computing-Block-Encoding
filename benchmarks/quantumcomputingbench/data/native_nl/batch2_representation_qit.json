@@ -1,0 +1,2084 @@
+[
+  {
+    "core_id": "qcb-core-plan-101",
+    "key": "qcb-core-plan-101-homomorphism-preserves-identity-inverse",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (G, .) and (H, *) be groups with identities e_G and e_H, and let phi: G -> H be a group homomorphism, meaning phi(x.y) = phi(x)*phi(y) for all x, y in G. Prove from the homomorphism property alone (without assuming phi is injective, surjective, or that G or H is finite) that phi(e_G) = e_H and that phi(g^{-1}) = phi(g)^{-1} for every g in G. State explicitly which group axioms (uniqueness of identity, uniqueness of inverses, cancellation) you invoke at each step, and explain why these two facts justify the standing claims that every representation phi satisfies phi(e) = 1_V and phi(g^{-1}) = phi(g)^{-1}.",
+    "reference_answer": "For the identity: pick any g in G and write g = e_G . g, so phi(g) = phi(e_G . g) = phi(e_G) * phi(g). Thus phi(e_G) * phi(g) = phi(g) = e_H * phi(g). Right-multiplying both sides by phi(g)^{-1} in H (which exists because H is a group) and cancelling gives phi(e_G) = e_H; equivalently, phi(e_G) acts as a left identity on phi(g), and since the identity of H is unique, phi(e_G) = e_H. For the inverse: fix g in G. Then e_H = phi(e_G) = phi(g . g^{-1}) = phi(g) * phi(g^{-1}), and likewise e_H = phi(g^{-1} . g) = phi(g^{-1}) * phi(g). So phi(g^{-1}) is a two-sided inverse of phi(g) in H; because inverses in a group are unique, phi(g^{-1}) = phi(g)^{-1}. The only axioms used are the homomorphism identity, the group axioms e_G . g = g and g . g^{-1} = g^{-1} . g = e_G in G, existence of inverses in H (to cancel), and uniqueness of the identity and of inverses in H. Applied to a representation phi: G -> GL(V) with H = GL(V) and identity 1_V, these say precisely phi(e) = 1_V and phi(g^{-1}) = phi(g)^{-1}; in particular every phi(g) is automatically invertible with the stated inverse, so invertibility need not be postulated separately.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Derives phi(e_G) = e_H by applying the homomorphism identity to g = e_G . g and cancelling / invoking uniqueness of the identity in H",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Derives phi(g^{-1}) = phi(g)^{-1} by showing phi(g^{-1}) is a two-sided inverse of phi(g) and invoking uniqueness of inverses in H",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Identifies the specific group axioms used (homomorphism property, identity/inverse axioms in G, cancellation/uniqueness in H) rather than asserting the results",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Connects the two facts to the representation statements phi(e) = 1_V and phi(g^{-1}) = phi(g)^{-1}, noting invertibility of phi(g) is a consequence not a hypothesis",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Applying phi to e_G . g = g gives phi(e_G)*phi(g) = phi(g).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Cancellation / uniqueness of identity in H forces phi(e_G) = e_H.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Applying phi to g.g^{-1} = e_G = g^{-1}.g gives phi(g)*phi(g^{-1}) = e_H = phi(g^{-1})*phi(g).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Uniqueness of inverses in H forces phi(g^{-1}) = phi(g)^{-1}.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Specializing H = GL(V) yields phi(e) = 1_V and phi(g^{-1}) = phi(g)^{-1}, so each phi(g) is invertible automatically.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "A short structured proof from group axioms; requires naming the uniqueness/cancellation steps rather than quoting the result, but no deep machinery."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "17",
+          "anchors": "Definition 3.5 (group homomorphism) and Eq. (3.23)-(3.24) proving phi(e_G)=e_H and phi(g^{-1})=phi(g)^{-1}; Definition 3.6 (representation) and the remark that a representation satisfies phi(e)=1_V and phi(g^{-1})=phi(g)^{-1}",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-representation-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A homomorphism automatically preserves the identity and inverses, which is exactly why a representation phi satisfies phi(e)=1_V and phi(g^{-1})=phi(g)^{-1} with invertibility free.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-102",
+    "key": "qcb-core-plan-102-weyl-unitarity-trick-invariant-complement",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G, and let <.|.> be any inner product on V. Define the averaged form <v|w>_G := (1/|G|) sum_{g in G} <phi(g) v | phi(g) w>. Prove that (a) <.|.>_G is again an inner product on V; (b) every phi(g) is unitary with respect to <.|.>_G, i.e. <phi(g) v | phi(g) w>_G = <v|w>_G; and (c) consequently, for any G-invariant subspace W, its orthogonal complement W^perp taken with respect to <.|.>_G is also G-invariant, so that V = W (+) W^perp as representations. Explain exactly where the ability to average over G is used.",
+    "reference_answer": "(a) Each summand <phi(g)v | phi(g)w> is sesquilinear in (v,w) because phi(g) is linear and <.|.> is sesquilinear, and a finite average of sesquilinear forms is sesquilinear; Hermitian symmetry is inherited termwise. For positivity, <v|v>_G = (1/|G|) sum_g <phi(g)v | phi(g)v> >= 0 as an average of nonnegative terms, and it vanishes only if every term is 0; the g = e term gives <v|v> = 0, hence v = 0 since <.|.> is definite. So <.|.>_G is a genuine inner product. (b) Fix h in G. Then <phi(h)v | phi(h)w>_G = (1/|G|) sum_g <phi(g)phi(h)v | phi(g)phi(h)w> = (1/|G|) sum_g <phi(gh)v | phi(gh)w> by the homomorphism property. As g ranges over G so does g' = gh (left translation is a bijection of G), so the sum equals <v|w>_G. Thus phi(h) preserves <.|.>_G and is unitary for it. (c) Let W be G-invariant and u in W^perp. For any g and w in W, <phi(g)u | w>_G = <u | phi(g)^* w>_G = <u | phi(g^{-1}) w>_G, using that the adjoint of the <.|.>_G-unitary phi(g) is phi(g)^{-1} = phi(g^{-1}). Invariance gives phi(g^{-1}) w in W, so the pairing is 0; hence phi(g)u in W^perp and W^perp is invariant. Then V = W (+) W^perp (nondegeneracy) with both summands invariant, a decomposition of representations. The averaging over G is used exactly twice: forming the normalized sum (1/|G|) sum_g requires it to be finite (compact groups replace it by Haar integration), and the reindexing g -> gh being a bijection is what makes the form G-invariant.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows <.|.>_G is sesquilinear, Hermitian, and positive-definite, using the g=e term for definiteness",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves G-invariance of <.|.>_G via the homomorphism property and the reindexing g -> gh being a bijection of G",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Deduces each phi(g) is unitary for <.|.>_G and uses phi(g)^* = phi(g^{-1}) to show W^perp is invariant when W is",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes V = W (+) W^perp as representations and pinpoints the normalized average and reindexing as the essential ingredient",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Each term <phi(g)v|phi(g)w> is sesquilinear/Hermitian; the g=e term gives definiteness, so <.|.>_G is an inner product.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "<phi(h)v|phi(h)w>_G = (1/|G|) sum_g <phi(gh)v|phi(gh)w> by the homomorphism property.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Reindexing g'=gh (a bijection of G) shows the average is unchanged, so phi(h) is unitary for <.|.>_G.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Unitarity gives phi(g)^* = phi(g^{-1}); for u in W^perp, w in W, <phi(g)u|w>_G = <u|phi(g^{-1})w>_G = 0.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Hence W^perp is G-invariant and V = W (+) W^perp as representations.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires correctly handling the averaged inner product, the reindexing bijection, and the adjoint-equals-inverse step; a clean multi-step argument beyond definition recall."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "19-20",
+          "anchors": "Second (alternative) proof of Proposition 3.14 via Weyl's unitarity trick: the averaged inner product <v|w>_G, G-invariance of W^perp, and (phi,V) becoming unitary with phi(g^{-1})=phi(g)^dagger",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-representation-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Averaging an arbitrary inner product over a finite group yields a G-invariant inner product making the representation unitary, so orthogonal complements of invariant subspaces are invariant.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-103",
+    "key": "qcb-core-plan-103-invariant-complement-averaged-projection",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a representation of a finite group G over a field whose characteristic does not divide |G|, and let W be a G-invariant subspace with some (not necessarily invariant) projection P_W onto W (P_W^2 = P_W, im P_W = W). Define Q_W := (1/|G|) sum_{g in G} phi(g) P_W phi(g)^{-1}. Prove that Q_W commutes with every phi(g), that im Q_W = W and Q_W is a projection, and conclude that ker Q_W is a G-invariant complement, so V = W (+) ker Q_W as representations. Indicate where the hypothesis on the characteristic is used.",
+    "reference_answer": "Equivariance: for h in G, phi(h) Q_W phi(h)^{-1} = (1/|G|) sum_g phi(h)phi(g) P_W phi(g)^{-1} phi(h)^{-1} = (1/|G|) sum_g phi(hg) P_W phi(hg)^{-1}. Reindexing g' = hg (a bijection of G) shows this equals Q_W, so phi(h) Q_W = Q_W phi(h) for all h. Image in W: invariance means phi(g)^{-1} maps V into V, P_W maps into W, and phi(g) maps W into W, so each term phi(g) P_W phi(g)^{-1} has image in W; the average does too, giving im Q_W subset W. Q_W fixes W pointwise: for w in W, phi(g)^{-1} w in W, P_W fixes it, and phi(g) phi(g)^{-1} w = w, so each term returns w; the normalized average (1/|G|) sum_g w = w. This normalization is exactly where the characteristic hypothesis enters: 1/|G| must exist in the field, i.e. |G| must be invertible, which holds iff the characteristic does not divide |G|. Hence Q_W|_W = id_W, so Q_W maps everything into W and acts as the identity there, giving Q_W^2 = Q_W: a projection onto W. Finally, since Q_W commutes with all phi(g), both im Q_W = W and ker Q_W are G-invariant, and V = im Q_W (+) ker Q_W = W (+) ker Q_W. Thus W has a G-invariant complement and the decomposition is of representations.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves phi(h) Q_W phi(h)^{-1} = Q_W via the reindexing g -> hg, i.e. Q_W commutes with phi",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows im Q_W subset W (each averaged term lands in W by invariance) and Q_W fixes W pointwise, hence im Q_W = W and Q_W^2 = Q_W",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Identifies that the normalization 1/|G| requires |G| invertible, i.e. char does not divide |G|",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes ker Q_W is a G-invariant complement giving V = W (+) ker Q_W as representations",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "phi(h)Q_W phi(h)^{-1} = (1/|G|) sum_g phi(hg)P_W phi(hg)^{-1}; reindexing g->hg shows this equals Q_W.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Hence Q_W commutes with every phi(h).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Invariance of W makes each phi(g)P_W phi(g)^{-1} have image in W, so im Q_W subset W.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For w in W each term returns w; the normalized average (needing |G| invertible, i.e. char not dividing |G|) gives Q_W w = w.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Thus im Q_W = W, Q_W^2 = Q_W, and commuting with phi makes ker Q_W invariant: V = W (+) ker Q_W.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A multi-step operator computation (equivariance, image, idempotency) plus recognizing the role of the characteristic hypothesis in the normalization."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "19-20",
+          "anchors": "Proof sketch of Proposition 3.14: the averaged projection Q_W = (1/|G|) sum_g phi(g) P_W phi(g)^{-1} (Eq. 3.26) with im Q_W = W, phi(g)Q_W = Q_W phi(g), and W' = ker Q_W the invariant complement; characteristic-not-dividing-|G| hypothesis",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-representation-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Averaging a projection over the group produces an equivariant projection onto the invariant subspace whose kernel is an invariant complement, provided |G| is invertible in the field.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-104",
+    "key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi_1, V_1) and (phi_2, V_2) be irreducible representations of a group G and let f: V_1 -> V_2 be G-equivariant, meaning f . phi_1(g) = phi_2(g) . f for all g in G. Prove that either f = 0 or f is an isomorphism (so V_1 ~ V_2). Your proof must show that ker f is a G-invariant subspace of V_1 and that im f is a G-invariant subspace of V_2, and then use irreducibility to force the conclusion.",
+    "reference_answer": "ker f is G-invariant: take v in ker f and g in G. Then f(phi_1(g) v) = phi_2(g)(f(v)) = phi_2(g)(0) = 0, using equivariance and f(v) = 0; so phi_1(g) v in ker f. Since V_1 is irreducible, its only invariant subspaces are {0} and V_1, so either ker f = V_1 (f = 0) or ker f = {0} (f injective). im f is G-invariant: any element of im f is f(v), and phi_2(g)(f(v)) = f(phi_1(g) v) in im f by equivariance, so phi_2(g) maps im f into im f. Irreducibility of V_2 forces im f = {0} or im f = V_2. If f is not the zero map, then ker f = {0} (injective) and im f is not {0}, hence im f = V_2 (surjective). An injective and surjective linear map is a bijection, i.e. a vector-space isomorphism; it intertwines phi_1 and phi_2, so it is an isomorphism of representations and V_1 ~ V_2. Therefore f = 0 or f is an isomorphism, with no middle case. The only properties used are equivariance (invariance of kernel and image) and irreducibility (no nontrivial invariant subspaces); no field assumption is needed for this part.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves ker f is a G-invariant subspace of V_1 using equivariance and f(v)=0",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Proves im f is a G-invariant subspace of V_2 using equivariance",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Applies irreducibility of V_1 and V_2 to force ker f in {0, V_1} and im f in {0, V_2}",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes f=0 or f is injective and surjective hence an isomorphism intertwining the representations, with no field hypothesis needed",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Equivariance gives f(phi_1(g)v)=phi_2(g)f(v); if f(v)=0 then phi_1(g)v in ker f, so ker f is invariant.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Irreducibility of V_1 forces ker f = V_1 (f=0) or ker f = {0} (f injective).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Equivariance gives phi_2(g)f(v)=f(phi_1(g)v) in im f, so im f is invariant.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Irreducibility of V_2 forces im f = {0} or im f = V_2.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "If f != 0 then f is injective and surjective, hence an isomorphism intertwining phi_1, phi_2, so V_1 ~ V_2.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean but genuinely structured proof: two invariance checks plus the dichotomy from irreducibility; standard yet requires care that no field hypothesis is smuggled in."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "20",
+          "anchors": "Proposition 3.17 (Schur's Lemma) part (i): a G-equivariant map between irreps is zero or invertible; kernel and image are G-invariant subspaces (cf. Exercise 3.6)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A nonzero equivariant map between irreducibles must be an isomorphism, because its kernel and image are invariant subspaces and irreducibility leaves only the trivial options.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-105",
+    "key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be an irreducible representation of a group G on a finite-dimensional vector space V over an algebraically closed field F (for example F = C), and let f: V -> V be G-equivariant, i.e. f . phi(g) = phi(g) . f for all g. Prove that f = lambda . 1_V for some scalar lambda in F. Make explicit where algebraic closure and finite dimension are used, and derive as a corollary that any operator X commuting with an irreducible representation is a scalar multiple of the identity.",
+    "reference_answer": "Because F is algebraically closed and V is finite-dimensional, the characteristic polynomial of f has a root in F, so f has an eigenvalue lambda in F; this is exactly where both hypotheses are needed (over R or in infinite dimension an operator may have no eigenvalue). Set f' := f - lambda . 1_V. Since 1_V commutes with every phi(g) and f is equivariant, f' phi(g) = f phi(g) - lambda phi(g) = phi(g) f - lambda phi(g) = phi(g) f', so f' is G-equivariant. Moreover f' is not invertible: lambda is an eigenvalue, so some nonzero v has (f - lambda)v = 0, giving ker f' != {0}. By part (i) of Schur's Lemma applied to the equivariant endomorphism f' on the irreducible V, f' is either zero or an isomorphism; being non-invertible, it must be zero. Hence f = lambda . 1_V. Corollary: if X satisfies phi(g) X = X phi(g) for all g, then X is a G-equivariant endomorphism of the irreducible V, so X = lambda . 1_V for some lambda; i.e. the commutant of an irreducible representation consists only of scalar multiples of the identity.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Uses algebraic closure plus finite dimension to produce an eigenvalue lambda of f, flagging these as essential",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows f' = f - lambda 1_V is G-equivariant",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Observes f' is non-invertible (nonzero kernel from the eigenvalue) and applies Schur (i) to force f' = 0, hence f = lambda 1_V",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States the corollary that any operator commuting with an irreducible representation is a scalar multiple of the identity",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Algebraic closure and finite dimension guarantee f has an eigenvalue lambda in F.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "f' = f - lambda 1_V is G-equivariant since 1_V commutes with every phi(g).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "f' has nonzero kernel (the eigenvector), so it is not invertible.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Schur part (i) forces the non-invertible equivariant f' to be zero, so f = lambda 1_V.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Any X with phi(g)X=Xphi(g) is equivariant, hence X = lambda 1_V: the commutant of an irrep is the scalars.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires combining eigenvalue existence (with the right hypotheses) and part (i) of Schur; the corollary about commutants is a short deduction."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "20-21",
+          "anchors": "Proposition 3.17(ii): over an algebraically closed field a G-equivariant endomorphism of an irrep is lambda 1_V; Corollary 3.18: an operator commuting with an irreducible representation is proportional to the identity",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Over an algebraically closed field an equivariant endomorphism of an irrep is a scalar, because f minus an eigenvalue is non-invertible and equivariant hence zero; consequently the commutant of an irrep is the scalars.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-106",
+    "key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let G be an abelian group. Prove that every complex irreducible representation (phi, V) of G is one-dimensional. You may use Schur's Lemma. Make clear exactly where commutativity of G and where the complex (algebraically closed) field are used, and explain why the statement can fail if the field is not algebraically closed.",
+    "reference_answer": "Fix h in G. Because G is abelian, for every g in G, phi(g) phi(h) = phi(gh) = phi(hg) = phi(h) phi(g); thus the single operator phi(h) commutes with every phi(g), so phi(h) is a G-equivariant endomorphism of V. Since V is irreducible and the field is C (algebraically closed), Schur (ii) gives phi(h) = lambda_h . 1_V for some lambda_h in C. This holds for every h in G, so every representation operator is a scalar multiple of the identity. Hence for any nonzero v in V and any h, phi(h) v = lambda_h v lies in span(v), so span(v) is a G-invariant subspace. By irreducibility the only nonzero invariant subspace is V, so V = span(v) is one-dimensional. Commutativity is used to make each phi(h) commute with all phi(g) (so Schur applies to phi(h) itself); algebraic closure is used in Schur (ii) to turn phi(h) into a genuine scalar. Over a non-algebraically-closed field the conclusion fails: a generic rotation representation of a cyclic group on R^2 is irreducible over R (a non-trivial rotation has no real eigenvector, hence no proper real invariant subspace) yet is two-dimensional, precisely because the rotation operator is not a real scalar.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Uses commutativity to show each phi(h) commutes with all phi(g), i.e. is G-equivariant",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Applies Schur (ii) over C to conclude every phi(h) = lambda_h 1_V",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Deduces every nonzero vector spans an invariant subspace, so irreducibility forces dim V = 1",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains failure over a non-algebraically-closed field with the real rotation representation as a boundary case",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Abelianness gives phi(g)phi(h)=phi(h)phi(g) for all g, so phi(h) is equivariant.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Schur (ii) over C forces phi(h) = lambda_h 1_V for every h.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Then phi(h)v = lambda_h v, so span(v) is G-invariant for any nonzero v.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Irreducibility makes span(v) = V, so dim V = 1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Over R a cyclic-group rotation representation is irreducible but 2-dimensional, showing algebraic closure is essential.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Direct application of Schur with careful attribution of commutativity and algebraic closure, plus an honest boundary remark; a little more than recall."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "21",
+          "anchors": "Corollary 3.20: every complex irreducible representation of an abelian group is one-dimensional, proved via Proposition 3.17 (Schur's Lemma)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "For an abelian group each operator commutes with all others, so Schur over C makes it a scalar and every vector spans an invariant line, forcing complex irreps to be one-dimensional.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-107",
+    "key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let rho be any single-qubit density matrix (a 2x2 positive semidefinite operator with trace 1). Using the fact that the Pauli operators {1, X, Y, Z} generate an irreducible representation of the single-qubit Pauli group acting on C^2, prove that (1/4)(rho + X rho X + Y rho Y + Z rho Z) = (1/2) 1. Base your argument on Schur's Lemma / the commutant-is-scalars corollary and on the trace, not on a brute-force coordinate computation.",
+    "reference_answer": "Write T(rho) := (1/4)(rho + X rho X + Y rho Y + Z rho Z); each P in {1,X,Y,Z} is Hermitian and unitary, so P rho P^dagger = P rho P. Claim: T(rho) commutes with the Pauli representation. It suffices to check commutation with each generator Q in {X,Y,Z}. Conjugating, Q T(rho) Q = (1/4) sum_P (QP) rho (QP), and as P ranges over {1,X,Y,Z} the products QP range over {1,X,Y,Z} up to overall phases (Pauli-group multiplication permutes the four classes). Since P rho P^dagger is insensitive to a global phase on P (phases cancel between P and P^dagger), the multiset {QP rho (QP)^dagger} equals {P rho P}, so Q T(rho) Q = T(rho), i.e. Q T(rho) = T(rho) Q. Thus T(rho) commutes with the generators, hence with the whole irreducible Pauli representation on C^2. By the Schur commutant corollary (commutant of an irrep = scalars), T(rho) = lambda . 1. Fix lambda by the trace: tr T(rho) = (1/4)(tr rho + tr(X rho X) + tr(Y rho Y) + tr(Z rho Z)) = (1/4)(1+1+1+1) = 1, using cyclicity and P^2 = 1 so tr(P rho P) = tr(rho) = 1. Also tr(lambda 1) = 2 lambda, so 2 lambda = 1, lambda = 1/2. Therefore T(rho) = (1/2) 1, the maximally mixed state. The argument used only irreducibility (via Schur) and trace normalization, not the entries of rho - which is the content of the symmetrization principle.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Shows the twirled operator T(rho) commutes with the Pauli generators (hence the whole representation) using that conjugation permutes the Paulis up to phase",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Invokes irreducibility of the Pauli representation and the Schur commutant corollary to conclude T(rho) = lambda 1",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Fixes lambda = 1/2 by taking traces with cyclicity and P^2 = 1 (tr T(rho) = 1 = 2 lambda)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes T(rho) = (1/2) 1 independently of rho, identifying this as the Schur/averaging principle",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Each P in {1,X,Y,Z} is Hermitian-unitary so P rho P^dagger = P rho P and global phases cancel.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Q T(rho) Q = (1/4) sum_P (QP) rho (QP); QP permutes {1,X,Y,Z} up to phase, so Q T(rho) Q = T(rho).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Hence T(rho) commutes with the irreducible Pauli representation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Schur's commutant corollary forces T(rho) = lambda 1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Trace: tr T(rho) = (1/4)(1+1+1+1) = 1 = 2 lambda, so lambda = 1/2 and T(rho) = (1/2) 1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines a commutation check, Schur's corollary, and a trace normalization; conceptually richer than a coordinate check and tests why the result is rho-independent."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "20-21",
+          "anchors": "Example 3.19 and Eq. (3.27): (1/4)(rho + X rho X + Y rho Y + Z rho Z) = (1/2)1 following from irreducibility of the Pauli representation and Schur's Lemma (Proposition 3.17), cf. Corollary 3.18",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The Pauli twirl of any qubit state equals the maximally mixed state because the twirled operator commutes with an irreducible representation (so is a scalar by Schur) and the trace fixes the scalar to 1/2.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-108",
+    "key": "qcb-core-plan-108-character-is-class-function-degree",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a finite-dimensional representation of a group G and define its character by chi(g) := tr(phi(g)). Prove that (a) chi is a class function, i.e. chi(h g h^{-1}) = chi(g) for all g, h in G, and (b) chi(e) = dim V. State precisely which properties of the trace and which property of phi you use, and explain why being a class function means chi is really a function on conjugacy classes.",
+    "reference_answer": "(a) Fix g, h in G. Using multiplicativity of phi, phi(h g h^{-1}) = phi(h) phi(g) phi(h^{-1}) = phi(h) phi(g) phi(h)^{-1}, the last equality from phi(h^{-1}) = phi(h)^{-1} (valid for any representation). Apply the trace: chi(h g h^{-1}) = tr(phi(h) phi(g) phi(h)^{-1}). By cyclicity of the trace, tr(A B A^{-1}) = tr(A^{-1} A B) = tr(B) with A = phi(h), B = phi(g), so this equals tr(phi(g)) = chi(g). Hence chi is constant on each conjugacy class {h g h^{-1} : h in G}, i.e. a class function; equivalently chi descends to a well-defined function on the set of conjugacy classes of G. The trace properties used are linearity (to define tr) and cyclicity tr(AB) = tr(BA); the property of phi used is multiplicativity phi(xy) = phi(x)phi(y) together with phi(h^{-1}) = phi(h)^{-1}. (b) Since phi(e) = 1_V (a representation sends the identity to the identity operator), chi(e) = tr(1_V) = dim V, as the trace of the identity on an n-dimensional space is n. So the character at the identity recovers the degree of the representation.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Rewrites phi(hgh^{-1}) = phi(h) phi(g) phi(h)^{-1} using multiplicativity and phi(h^{-1}) = phi(h)^{-1}",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Applies cyclicity of the trace to get tr(phi(h) phi(g) phi(h)^{-1}) = tr(phi(g)) = chi(g)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Concludes chi is constant on conjugacy classes, i.e. a well-defined function on conjugacy classes",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Computes chi(e) = tr(1_V) = dim V using phi(e) = 1_V",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:operator-theory"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Multiplicativity and phi(h^{-1})=phi(h)^{-1} give phi(hgh^{-1}) = phi(h)phi(g)phi(h)^{-1}.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Cyclicity of the trace gives tr(phi(h)phi(g)phi(h)^{-1}) = tr(phi(g)) = chi(g).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence chi(hgh^{-1}) = chi(g): chi is constant on conjugacy classes and descends to the set of classes.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "phi(e) = 1_V gives chi(e) = tr(1_V) = dim V, the degree.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "A short trace computation; the content is correctly invoking cyclicity and the homomorphism property, plus the identity-trace fact."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "29-30",
+          "anchors": "Definition 3.28 (character chi(g)=tr(phi(g))) and Eq. (3.83) class function; Eq. (3.84) proving chi(hgh^{-1})=chi(g) by cyclicity; Proposition 3.29(i) chi(e)=dim V",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-character-theory",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The character is a class function because cyclicity of the trace kills conjugation, and its value at the identity equals the dimension of the representation.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-109",
+    "key": "qcb-core-plan-109-multiplicity-character-inner-product",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let G be a finite group and let the characters of its pairwise inequivalent complex irreducible representations W_1, ..., W_k be chi_1, ..., chi_k, orthonormal for the inner product (x, y) = (1/|G|) sum_{g} conj(x(g)) y(g); so (chi_i, chi_j) = delta_{ij}. Let (phi, V) be an arbitrary finite-dimensional complex representation with isotypical decomposition V ~ (+)_i W_i^{(+) n_i} (n_i the multiplicity of W_i). Prove that n_i = (chi_i, chi_V), where chi_V is the character of V. Then prove the two consequences: V is irreducible iff (chi_V, chi_V) = 1, and two representations are isomorphic iff they have equal characters.",
+    "reference_answer": "By additivity of the character under direct sums (chi_{A (+) B} = chi_A + chi_B, which follows from tr being additive on block-diagonal operators), the isotypical decomposition V ~ (+)_j W_j^{(+) n_j} gives chi_V = sum_j n_j chi_j. Taking the inner product with chi_i and using bilinearity (conjugate-linearity in the first slot but the n_j are real nonnegative integers) together with orthonormality, (chi_i, chi_V) = (chi_i, sum_j n_j chi_j) = sum_j n_j (chi_i, chi_j) = sum_j n_j delta_{ij} = n_i. This proves the multiplicity formula. Consequence 1: compute (chi_V, chi_V) = (sum_i n_i chi_i, sum_j n_j chi_j) = sum_{i,j} n_i n_j delta_{ij} = sum_i n_i^2. Since the n_i are nonnegative integers, sum_i n_i^2 = 1 holds iff exactly one n_i equals 1 and all others are 0, i.e. iff V is (isomorphic to) a single irreducible W_i; thus V is irreducible iff (chi_V, chi_V) = 1. Consequence 2: if V ~ V' then they have the same character (characters are isomorphism invariants, since conjugate representation matrices have equal trace). Conversely, the multiplicities n_i = (chi_i, chi_V) are determined entirely by chi_V; so if chi_V = chi_{V'} then n_i(V) = n_i(V') for all i, meaning V and V' have the same isotypical decomposition and hence V ~ V'. Therefore two representations are isomorphic iff their characters coincide.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Expands chi_V = sum_j n_j chi_j from additivity of characters over the isotypical decomposition",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Computes (chi_i, chi_V) = sum_j n_j delta_{ij} = n_i using orthonormality of the irreducible characters",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Derives (chi_V, chi_V) = sum_i n_i^2 and argues it equals 1 (n_i nonnegative integers) iff V is irreducible",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Proves V ~ V' iff chi_V = chi_{V'} by noting the multiplicities, hence the whole decomposition, are determined by the character",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Additivity of characters gives chi_V = sum_j n_j chi_j from V ~ (+)_j W_j^{(+)n_j}.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Orthonormality (chi_i, chi_j) = delta_{ij} yields (chi_i, chi_V) = n_i.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "(chi_V, chi_V) = sum_i n_i^2, which equals 1 iff a single n_i = 1: V irreducible.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Equal characters force equal multiplicities n_i = (chi_i, chi_V), hence the same decomposition and V ~ V'.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A multi-step argument chaining additivity, orthonormality, an integrality observation, and an iff for isomorphism; genuinely uses the orthogonality relations."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "29-31",
+          "anchors": "Proposition 3.30 (orthonormality of irreducible characters, inner product Eq. 3.85) and Proposition 3.31(i)-(iii): multiplicity n_i = (chi_V, chi_{W_i}), irreducibility iff (chi_V, chi_V)=1, isomorphism iff equal characters",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-character-theory",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Character orthonormality turns multiplicities into inner products n_i = (chi_i, chi_V), from which irreducibility (norm-squared one) and the isomorphism-iff-equal-characters criterion follow.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-110",
+    "key": "qcb-core-plan-110-intertwiner-space-dimension-multiplicity",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G, and let ( phi_U, U) be a complex irreducible representation of G. Recall that Hom_G(U, V) is the space of intertwiners f: U -> V, i.e. linear maps satisfying f . phi_U(g) = phi(g) . f for all g, and that Hom_G is additive in each argument: Hom_G(X, Y (+) Z) ~ Hom_G(X, Y) (+) Hom_G(X, Z). Prove that dim Hom_G(U, V) equals the multiplicity k of U in the isotypical decomposition of V. You should use Schur's Lemma to evaluate Hom_G(U, U) and Hom_G(U, F) where F collects the irreducible summands of V inequivalent to U.",
+    "reference_answer": "Decompose V ~ V_U (+) F, where V_U ~ U^{(+)k} is the isotypical component of U (U appearing with multiplicity k) and F is the direct sum of all irreducible summands of V inequivalent to U. By additivity of Hom_G in the second argument, Hom_G(U, V) ~ Hom_G(U, U^{(+)k}) (+) Hom_G(U, F) ~ ((+)_{i=1}^{k} Hom_G(U, U)) (+) Hom_G(U, F). Now evaluate the pieces with Schur's Lemma. First, Hom_G(U, U) is the space of G-equivariant endomorphisms of the irreducible U over C; by Schur (ii) every such endomorphism is a scalar multiple of 1_U, so Hom_G(U, U) = C . 1_U has dimension 1. Second, for any irreducible summand W of F, W is inequivalent to U, so by Schur (i) any equivariant map U -> W is either zero or an isomorphism; an isomorphism would make U ~ W, contradicting inequivalence, so the only equivariant map is 0. Hence Hom_G(U, W) = 0 for each such W, and by additivity Hom_G(U, F) = 0. Combining, dim Hom_G(U, V) = sum_{i=1}^{k} dim Hom_G(U, U) + dim Hom_G(U, F) = k . 1 + 0 = k. Therefore the dimension of the intertwiner space Hom_G(U, V) equals the multiplicity of U in V, which realizes the multiplicity space of U as the space of intertwiners from U into V.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Decomposes V ~ U^{(+)k} (+) F and uses additivity of Hom_G to split Hom_G(U, V) accordingly",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses Schur (ii) to show Hom_G(U, U) = C 1_U is one-dimensional",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses Schur (i) and inequivalence to show Hom_G(U, W) = 0 for every irreducible summand W of F, hence Hom_G(U, F) = 0",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes dim Hom_G(U, V) = k, the multiplicity of U in V (multiplicity space realized as intertwiners)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "V ~ U^{(+)k} (+) F and additivity give Hom_G(U, V) ~ ((+)_{i=1}^k Hom_G(U,U)) (+) Hom_G(U, F).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Schur (ii) over C: Hom_G(U, U) = C 1_U, dimension 1.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Schur (i) plus inequivalence: Hom_G(U, W) = 0 for irreducible W !~ U, so Hom_G(U, F) = 0.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Summing, dim Hom_G(U, V) = k.1 + 0 = k, the multiplicity of U in V.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires combining the additivity of Hom spaces with both parts of Schur and tracking inequivalence; a conceptual proof underlying the realization of multiplicity spaces as intertwiner spaces."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "31-32",
+          "anchors": "Proposition 3.33(i): k = dim hom_G(U, V); Eq. (3.89)-(3.91) additivity of Hom and the Schur evaluations hom_G(U,F)=0, dim hom_G(U,U)=1; Corollary 3.34 isotypical decomposition V ~ (+)_i W_i (x) hom_G(W_i, V)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-intertwiners-multiplicity",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The multiplicity of an irreducible U in V equals dim Hom_G(U, V): additivity splits the intertwiner space, Schur makes self-intertwiners one-dimensional and cross-intertwiners zero.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-111",
+    "key": "qcb-core-plan-111-symmetrization-block-diagonal-isotypical",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G, and for X in L(V) define the symmetrized operator Xbar := (1/|G|) sum_{g in G} phi(g) X phi(g)^{-1}. (a) Prove that Xbar is G-invariant, i.e. phi(h) Xbar = Xbar phi(h) for all h in G. (b) Using Schur's Lemma, prove that if V = W_1 (+) W_2 is a multiplicity-free decomposition into two inequivalent irreducibles, then in a basis adapted to W_1, W_2 the operator Xbar is block diagonal with each diagonal block a scalar multiple of the identity, and the off-diagonal blocks vanish. Explain which part of Schur kills the off-diagonal blocks and which part scalarizes the diagonal blocks.",
+    "reference_answer": "(a) For h in G, phi(h) Xbar phi(h)^{-1} = (1/|G|) sum_g phi(h)phi(g) X phi(g)^{-1}phi(h)^{-1} = (1/|G|) sum_g phi(hg) X phi(hg)^{-1}. Reindexing g' = hg (a bijection of G) leaves the average unchanged, so phi(h) Xbar phi(h)^{-1} = Xbar, i.e. phi(h) Xbar = Xbar phi(h). Thus Xbar commutes with the whole representation; it is G-equivariant. (b) Write Xbar in block form with respect to V = W_1 (+) W_2: Xbar = [[A_{11}, A_{12}], [A_{21}, A_{22}]], where A_{ij}: W_j -> W_i. Equivariance phi(h) Xbar = Xbar phi(h) restricted to blocks says A_{ij} phi_j(h) = phi_i(h) A_{ij} for all h, i.e. each A_{ij} is an intertwiner from the irreducible W_j to the irreducible W_i. For the off-diagonal blocks i != j: W_1 and W_2 are inequivalent irreducibles, so by Schur part (i) any intertwiner between them is zero; hence A_{12} = 0 and A_{21} = 0. For the diagonal blocks i = j: A_{ii} is an equivariant endomorphism of the irreducible W_i over C, so by Schur part (ii) A_{ii} = lambda_i . 1_{W_i} for some scalar lambda_i. Therefore Xbar = lambda_1 1_{W_1} (+) lambda_2 1_{W_2}, block diagonal with scalar blocks. Part (i) of Schur kills the off-diagonal blocks (maps between inequivalent irreps), and part (ii) scalarizes the diagonal blocks (equivariant endomorphisms of an irrep). This is exactly the small multiplicity-free instance of the general symmetrization result; with multiplicities the diagonal blocks would instead be 1_{W_k} tensored with an arbitrary operator on the multiplicity space.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves phi(h) Xbar phi(h)^{-1} = Xbar via the reindexing g -> hg, so Xbar is G-equivariant",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Translates the block A_{ij} into an intertwiner W_j -> W_i using equivariance",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Uses Schur (i) and inequivalence of W_1, W_2 to force the off-diagonal blocks A_{12} = A_{21} = 0",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Uses Schur (ii) over C to make each diagonal block A_{ii} = lambda_i 1_{W_i}, giving the scalar block-diagonal form and naming which part of Schur does which",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Reindexing g -> hg gives phi(h) Xbar phi(h)^{-1} = Xbar, so Xbar commutes with the representation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Block A_{ij} satisfies A_{ij} phi_j(h) = phi_i(h) A_{ij}: an intertwiner W_j -> W_i.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Schur (i): off-diagonal intertwiners between inequivalent irreps vanish, A_{12}=A_{21}=0.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Schur (ii) over C: each A_{ii} = lambda_i 1_{W_i}, so Xbar = lambda_1 1_{W_1} (+) lambda_2 1_{W_2}.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires the equivariance computation plus the correct block interpretation and both parts of Schur; a focused instance of the symmetrization theorem."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "21-24",
+          "anchors": "Proposition 3.23 (symmetrization block form, Eq. 3.32) and the worked multiplicity-free S_2 / S_3 computations in Section 3.4.1 showing off-diagonal blocks vanish (Schur i) and diagonal blocks are scalar (Schur ii)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Group-averaging an operator produces an equivariant operator that, on a multiplicity-free decomposition into two inequivalent irreps, is block diagonal with scalar diagonal blocks (Schur ii) and vanishing off-diagonal blocks (Schur i).",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-112",
+    "key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a representation of a group G and consider the tensor-square representation on V (x) V with the swap operator F defined by F(|x> (x) |y>) = |y> (x) |x>, extended linearly. (a) Prove F^2 = 1 and that F commutes with phi(g) (x) phi(g) for all g. (b) Define Pi_sym := (1/2)(1 + F) and Pi_asym := (1/2)(1 - F). Prove that Pi_sym and Pi_asym are orthogonal projections with Pi_sym + Pi_asym = 1 and Pi_sym Pi_asym = 0, that their images are exactly the +1 and -1 eigenspaces of F, and that both images are G-invariant subspaces, giving V (x) V = Sym^2(V) (+) Lambda^2(V) as representations.",
+    "reference_answer": "(a) On product vectors F(F(|x> (x) |y>)) = F(|y> (x) |x>) = |x> (x) |y>, so F^2 = 1 on a spanning set, hence everywhere by linearity; in particular F is an involution, so its only possible eigenvalues are +1 and -1. For commutation, (phi(g) (x) phi(g)) F (|x> (x) |y>) = (phi(g) (x) phi(g))(|y> (x) |x>) = phi(g)|y> (x) phi(g)|x> = F(phi(g)|x> (x) phi(g)|y>) = F (phi(g) (x) phi(g)) (|x> (x) |y>), and by linearity F commutes with phi(g) (x) phi(g) for all g. (b) Compute Pi_sym^2 = (1/4)(1 + F)^2 = (1/4)(1 + 2F + F^2) = (1/4)(2 + 2F) = (1/2)(1 + F) = Pi_sym, so Pi_sym is idempotent; similarly Pi_asym^2 = (1/4)(1 - 2F + F^2) = Pi_asym. Both are Hermitian since F is Hermitian (F = F^dagger because F is a real symmetric permutation / an involution that is also unitary, hence self-adjoint), so they are orthogonal projections. Pi_sym + Pi_asym = (1/2)(1 + F) + (1/2)(1 - F) = 1 and Pi_sym Pi_asym = (1/4)(1 + F)(1 - F) = (1/4)(1 - F^2) = (1/4)(1 - 1) = 0. Because Pi_sym Pi_asym = 0 and they sum to 1, their images are complementary. The image of Pi_sym is {|z> : F|z> = |z>} (the +1 eigenspace): if F|z> = |z> then Pi_sym|z> = |z>, and conversely any |z> in the image satisfies F|z> = F Pi_sym |z> = (1/2)(F + F^2)|z> = (1/2)(F + 1)|z> = Pi_sym|z> = |z>; likewise im Pi_asym is the -1 eigenspace. Finally, since F commutes with phi(g) (x) phi(g), so do Pi_sym and Pi_asym (they are polynomials in F), hence their images are G-invariant subspaces. Therefore V (x) V = im Pi_sym (+) im Pi_asym = Sym^2(V) (+) Lambda^2(V) as representations.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves F^2 = 1 (F is an involution with eigenvalues +-1) and that F commutes with phi(g) (x) phi(g)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Shows Pi_sym, Pi_asym are idempotent and Hermitian (orthogonal projections) with sum 1 and product 0 using F^2 = 1",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Identifies im Pi_sym and im Pi_asym with the +1 and -1 eigenspaces of F",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Uses commutation of F (hence of the projectors) with phi(g) (x) phi(g) to conclude both images are G-invariant, giving V(x)V = Sym^2 (+) Lambda^2 as representations",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:tensor-networks"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "F^2 = 1 on product vectors hence everywhere, so F is an involution with eigenvalues +-1.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "(phi(g)(x)phi(g)) F = F (phi(g)(x)phi(g)) by swapping tensor factors, so F commutes with the tensor representation.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Pi_sym^2 = Pi_sym, Pi_asym^2 = Pi_asym, both Hermitian; Pi_sym+Pi_asym=1 and Pi_sym Pi_asym=(1/4)(1-F^2)=0.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "im Pi_sym = {|z|:F|z>=|z>} and im Pi_asym = {|z>:F|z>=-|z>}, the +-1 eigenspaces.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Projectors commute with phi(g)(x)phi(g), so images are G-invariant: V(x)V = Sym^2(V) (+) Lambda^2(V).",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A concrete operator proof: involution, idempotency, eigenspace identification, and invariance; several short but distinct verifications."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "26-28",
+          "anchors": "Example 2.8 revisited and Example 3.25 (symmetric/antisymmetric square): swap operator F with F^2=1, projectors Pi_sym=(1/2)(1+F), Pi_asym=(1/2)(1-F) (Eq. 3.78), and the decomposition V(x)V = Sym^2(V) (+) Lambda^2(V)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-tensor-representations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The swap operator is a G-commuting involution whose +-1 eigenspace projectors (1 +- F)/2 are complementary orthogonal projections onto the invariant symmetric and antisymmetric squares.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-113",
+    "key": "qcb-core-plan-113-character-projector-isotypical-component",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let (phi, V) be a finite-dimensional complex representation of a finite group G. For the trivial representation, define P := (1/|G|) sum_{g in G} phi(g). Prove that (a) P is idempotent (P^2 = P), (b) im P = V^G := {|v> : phi(g)|v> = |v> for all g}, and (c) P commutes with every phi(h). Then explain, by taking the trace, why tr P equals the multiplicity of the trivial representation in V (the number of independent G-invariant vectors), connecting to the general character-projection formula P_W = (dim W / |G|) sum_g conj(chi_W(g)) phi(g).",
+    "reference_answer": "(a) and (c) together: for any h in G, phi(h) P = (1/|G|) sum_g phi(h)phi(g) = (1/|G|) sum_g phi(hg) = (1/|G|) sum_{g'} phi(g') = P, reindexing g' = hg (a bijection of G); likewise P phi(h) = P by reindexing on the right. So phi(h) P = P = P phi(h) for all h, which gives both that P commutes with every phi(h) and that P is left/right absorbing for the group action. Idempotency follows: P^2 = (1/|G|) sum_g phi(g) P = (1/|G|) sum_g P = P, using phi(g) P = P from the previous line. (b) If |v> in im P, write |v> = P|w>; then phi(h)|v> = phi(h) P|w> = P|w> = |v> for all h, so |v> in V^G, giving im P subset V^G. Conversely if |v> in V^G then phi(g)|v> = |v> for all g, so P|v> = (1/|G|) sum_g phi(g)|v> = (1/|G|) sum_g |v> = |v>, hence |v> in im P; thus V^G subset im P. Therefore im P = V^G. (b continued, trace) Since P is idempotent and (being an average of the unitaries phi(g) in a suitable invariant inner product) an orthogonal projection, its trace equals the dimension of its image: tr P = dim im P = dim V^G, which is precisely the number of independent G-invariant vectors, i.e. the multiplicity of the trivial representation in V. This is the chi_W = chi_triv = 1 case of the general formula P_W = (dim W/|G|) sum_g conj(chi_W(g)) phi(g): the trivial representation has dimension 1 and character identically 1, so P_triv = (1/|G|) sum_g phi(g) = P, and its trace recovers the multiplicity, consistent with the character inner-product formula for multiplicities.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves phi(h) P = P = P phi(h) via reindexing, giving both commutation with phi(h) and absorption",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Deduces idempotency P^2 = P from phi(g) P = P",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Proves im P = V^G by double inclusion (image vectors are invariant; invariant vectors are fixed by P)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains tr P = dim V^G = multiplicity of the trivial representation, as the chi_triv case of P_W = (dim W/|G|) sum_g conj(chi_W(g)) phi(g)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [
+      "concept:matrix-analysis"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Reindexing g -> hg gives phi(h) P = P (and P phi(h) = P), so P commutes with the representation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "P^2 = (1/|G|) sum_g phi(g) P = P, so P is idempotent.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "im P subset V^G (image vectors fixed) and V^G subset im P (invariant vectors satisfy P|v>=|v>), so im P = V^G.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "As an orthogonal projection tr P = dim V^G = multiplicity of the trivial irrep, the chi_triv case of the character projector.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Combines the averaging/reindexing argument with the image characterization and the trace-equals-dimension fact; ties cleanly to the general character projector."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "30-31",
+          "anchors": "Proposition 3.32 (character projector P_W = (dim W/|G|) sum_g chi_W(g) phi(g), Eq. 3.87) and the special case P = (1/|G|) sum_g phi(g) projecting onto V^G",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-character-theory",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Averaging the representation over G gives the orthogonal projection onto the invariant vectors V^G, whose trace counts the trivial-representation multiplicity, the trivial case of the character projection formula.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-114",
+    "key": "qcb-core-plan-114-multiplicity-breaks-schur-scalar-counterexample",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "A student claims: for any representation (phi, V) of a finite group G and any X in L(V), the symmetrized operator Xbar = (1/|G|) sum_g phi(g) X phi(g)^{-1} is always block diagonal with respect to the isotypical decomposition AND each diagonal block is a scalar multiple of the identity. Decide whether the second half of this claim is true in general. Give an explicit counterexample using the action of S_2 = {e, (12)} on (C^2)^{(x)2} by permuting the two tensor factors (so phi((12)) = F, the swap), and explain precisely what feature of the decomposition makes the diagonal block fail to be scalar.",
+    "reference_answer": "The block-diagonal part of the claim is correct, but the assertion that every diagonal block is a scalar multiple of the identity is FALSE in general; it holds only when each isotypical component is a single copy of an irrep (multiplicity one). Counterexample: let S_2 act on (C^2)^{(x)2} by phi(e) = 1 and phi((12)) = F (swap). The isotypical decomposition is (C^2)^{(x)2} = Vtriv (+) Vsgn, where Vtriv is the 3-dimensional +1 eigenspace of F (symmetric subspace, spanned by |00>, |11>, (|01>+|10>)/sqrt 2) carrying three copies of the trivial irrep, and Vsgn is the 1-dimensional -1 eigenspace (spanned by (|01>-|10>)/sqrt 2) carrying the sign irrep. Now take X = |00><11| (a rank-one operator). Symmetrizing: Xbar = (1/2)(X + F X F^{-1}) = (1/2)(|00><11| + F|00><11|F) = (1/2)(|00><11| + |00><11|) = |00><11|, because F|00> = |00> and F|11> = |11> (both symmetric), so F X F = X. The operator Xbar = |00><11| maps entirely within the symmetric (trivial-isotypical) subspace Vtriv, so it is block diagonal (its Vsgn block and the off-diagonal blocks are zero, consistent with Schur part (i)). However, restricted to the 3-dimensional Vtriv it is the rank-one operator |00><11|, which is NOT a scalar multiple of the 3x3 identity (it is not even diagonal in the symmetric basis and has rank 1, trace 0). The reason the diagonal block is not scalar is multiplicity: Vtriv contains the trivial irrep three times, so Hom_G(triv, Vtriv) is 3-dimensional and the symmetrized operator restricted to Vtriv is of the form 1_{W_triv} (x) X_triv with X_triv an arbitrary 3x3 operator on the multiplicity space C^3 - only this multiplicity-space factor is scalar when the multiplicity is 1. Hence Schur's Lemma forces scalar diagonal blocks only in the multiplicity-free case; with multiplicity greater than 1 the diagonal block is merely of the form (identity on the irrep) (x) (arbitrary operator on the multiplicity space).",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Correctly judges the claim: block-diagonal part holds but diagonal-block-scalar part is false in general",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Gives the explicit S_2 action on (C^2)^{(x)2}, the isotypical decomposition Vtriv (3 copies of trivial) (+) Vsgn, and a concrete X whose symmetrization stays non-scalar on Vtriv",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Verifies the symmetrization computation (e.g. Xbar = |00><11| via F|00>=|00>, F|11>=|11>) showing a rank-one, non-scalar diagonal block",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains that multiplicity > 1 is the cause: the diagonal block is 1_W (x) X_k with X_k arbitrary on the multiplicity space, scalar only when multiplicity is 1",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Schur forces scalar diagonal blocks only when each isotypical component is a single irrep copy (multiplicity one).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For S_2 on (C^2)^{(x)2}, Vtriv is the 3-dim symmetric subspace (trivial irrep, multiplicity 3) and Vsgn the 1-dim sign irrep.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "With X = |00><11|, F X F = X so Xbar = |00><11|, a rank-one non-scalar operator supported on Vtriv.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Multiplicity 3 makes the Vtriv block 1_{W_triv} (x) X_triv with X_triv arbitrary on C^3, hence not scalar.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires recognizing the subtle false half of the claim and constructing an explicit multiplicity-driven counterexample with a verified computation; tests the limitation of Schur."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "26-27",
+          "anchors": "Section 3.4.2 (Limitations of Schur's Lemma: Multiplicities): the S_2 action on (C^2)^{(x)2}, isotypical decomposition (C^2)^{(x)2} = Vtriv (+) Vsgn with Vtriv ~ W_triv (x) C^3 of multiplicity 3, and the symmetrized operator having form 1_{W_triv} (x) X_triv (Eq. 3.69-3.72) which is generally not scalar",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "When an isotypical component has multiplicity greater than one, the symmetrized operator's diagonal block is identity-on-irrep tensor an arbitrary multiplicity-space operator, so it need not be a scalar - a concrete S_2 swap counterexample.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-115",
+    "key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "A student asserts: the tensor product of two irreducible representations of a group G is again irreducible. Show this is false by a counterexample. Specifically, take any representation (phi, V) of G with dim V >= 2 (you may take V irreducible) and consider the tensor-square representation on V (x) V. Exhibit a proper nonzero G-invariant subspace of V (x) V, and compute the dimensions to show V (x) V cannot be irreducible when dim V >= 2.",
+    "reference_answer": "The claim is false. Let (phi, V) be any representation with d := dim V >= 2 (e.g. an irreducible one such as the standard representation of S_3 of dimension 2). Consider the tensor-square representation (phi (x) phi) on V (x) V, which has dimension d^2 >= 4. The swap operator F on V (x) V, defined by F(|x> (x) |y>) = |y> (x) |x>, commutes with phi(g) (x) phi(g) for all g (shown by swapping tensor factors), and F^2 = 1. Hence the +1 eigenspace Sym^2(V) and the -1 eigenspace Lambda^2(V) of F are both G-invariant subspaces of V (x) V, and V (x) V = Sym^2(V) (+) Lambda^2(V) as representations. Their dimensions are dim Sym^2(V) = d(d+1)/2 and dim Lambda^2(V) = d(d-1)/2 (standard counts of symmetric and antisymmetric index pairs). For d >= 2 both of these are strictly positive: dim Lambda^2(V) = d(d-1)/2 >= 1 and dim Sym^2(V) = d(d+1)/2 >= 3, and both are strictly less than d^2 (since each is a proper summand of a direct sum of two nonzero spaces). Thus Lambda^2(V) is a proper nonzero G-invariant subspace of V (x) V (and so is Sym^2(V)); the existence of such a subspace means V (x) V is reducible. Therefore even when V is irreducible, V (x) V fails to be irreducible as soon as dim V >= 2, refuting the claim. (For the degenerate case d = 1, Lambda^2(V) = 0 and V (x) V ~ V is one-dimensional hence irreducible, which is exactly why the hypothesis dim V >= 2 is needed.)",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "States the claim is false and sets up the tensor-square (phi (x) phi) on V (x) V with d = dim V >= 2",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Exhibits the swap operator F commuting with phi(g) (x) phi(g) and its +-1 eigenspaces Sym^2(V), Lambda^2(V) as G-invariant subspaces",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Computes dim Sym^2(V) = d(d+1)/2 and dim Lambda^2(V) = d(d-1)/2 and shows both are proper nonzero for d >= 2",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes V (x) V is reducible for dim V >= 2 and notes the d = 1 degenerate case where irreducibility is restored",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:tensor-networks",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "For dim V = d >= 2, V (x) V has dimension d^2 >= 4 and carries the tensor-square representation.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "The swap F commutes with phi(g)(x)phi(g) and F^2=1, so its +-1 eigenspaces Sym^2(V), Lambda^2(V) are G-invariant.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "dim Sym^2(V) = d(d+1)/2 and dim Lambda^2(V) = d(d-1)/2 are both proper nonzero summands for d >= 2.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Hence Lambda^2(V) is a proper nonzero invariant subspace: V (x) V is reducible, refuting the claim.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A clean counterexample built from the symmetric/antisymmetric decomposition with explicit dimension counts; conceptually crisp and tests understanding that tensoring breaks irreducibility."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "26-28",
+          "anchors": "Example 3.25 (symmetric and antisymmetric square): V (x) V = Sym^2(V) (+) Lambda^2(V), dim Sym^2(V) = d(d+1)/2, dim Lambda^2(V) = d(d-1)/2 (Eq. 3.77), with the stated conclusion that V (x) V is reducible whenever deg V >= 2",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-tensor-representations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The tensor square of an irreducible representation of dimension at least two is reducible, because the swap operator splits it into nonzero invariant symmetric and antisymmetric subspaces.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-116",
+    "key": "qcb-core-plan-116-nonunique-irrep-splitting-isotypical-counterexample",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "Proposition 3.22 says the decomposition of a representation into isotypical components is unique. A student over-reads this as: 'the decomposition of a representation into irreducible subrepresentations is unique.' Show by counterexample that the finer decomposition into individual irreducible subspaces is NOT unique, even though the isotypical components are. Use the trivial-isotypical component of the S_2 action on (C^2)^{(x)2} (equivalently, any space carrying the trivial representation with multiplicity >= 2) and exhibit two genuinely different splittings into irreducible lines.",
+    "reference_answer": "The student's reading is wrong: it is the isotypical components that are unique, not the splitting of a multiplicity-greater-than-one component into individual irreducible subspaces. Take the S_2 action on (C^2)^{(x)2} with phi((12)) = F. The symmetric subspace Vtriv = Sym^2(C^2) is the +1 eigenspace of F, a 3-dimensional space on which S_2 acts trivially; it is the trivial-isotypical component and is uniquely determined (it equals the +1 eigenspace of F, basis-independent). But because S_2 acts as the identity on all of Vtriv, EVERY one-dimensional subspace of Vtriv is an irreducible (trivial) subrepresentation, and Vtriv can be written as a direct sum of three trivial lines in infinitely many ways. Concretely, one splitting is Vtriv = span(|00>) (+) span(|11>) (+) span((|01>+|10>)/sqrt 2); a genuinely different splitting is Vtriv = span((|00>+|11>)/sqrt 2) (+) span((|00>-|11>)/sqrt 2) (+) span((|01>+|10>)/sqrt 2). Both are decompositions of Vtriv into three irreducible (trivial) subrepresentations, but the first line span(|00>) of the first splitting is not among the lines of the second splitting, so the two decompositions into irreducibles are different. This does not contradict Proposition 3.22: the isotypical component Vtriv itself is identical in both (it is the full +1 eigenspace of F), and only its internal basis / line-by-line splitting changed. The source of the non-uniqueness is multiplicity: when an irrep occurs with multiplicity n >= 2, the choice of the n individual copies corresponds to a choice of basis of the n-dimensional multiplicity space, and any invertible change of that basis gives an equally valid finer decomposition. Uniqueness is recovered precisely in the multiplicity-free case.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Diagnoses the over-reading: isotypical components are unique, but the splitting of a multiplicity >= 2 component into irreducible subspaces is not",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Identifies Vtriv = Sym^2(C^2) as the unique trivial-isotypical component (the +1 eigenspace of F), 3-dimensional with trivial action",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Exhibits two genuinely different direct-sum splittings of Vtriv into trivial lines and notes a line in one is absent from the other",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Attributes the non-uniqueness to multiplicity (choice of basis of the multiplicity space) and notes uniqueness holds in the multiplicity-free case, consistent with Proposition 3.22",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [
+      "concept:tensor-networks"
+    ],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Proposition 3.22 fixes the isotypical components, not the internal irreducible splitting of a multiplicity > 1 component.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Vtriv = Sym^2(C^2) (the +1 eigenspace of F) is the unique 3-dim trivial-isotypical component with trivial S_2 action.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Since S_2 acts as identity on Vtriv, every line is a trivial subrep; two different line-splittings of Vtriv both valid.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Non-uniqueness comes from the freedom to change basis of the multiplicity space; multiplicity-free decompositions are unique.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires distinguishing isotypical uniqueness from irreducible-splitting non-uniqueness and producing two explicit distinct splittings; a precise conceptual boundary of the uniqueness theorem."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "21,26-27",
+          "anchors": "Proposition 3.22 (uniqueness of isotypical components and multiplicities) contrasted with Section 3.4.2, where Vtriv on (C^2)^{(x)2} has multiplicity 3 and the three trivial copies depend on a basis choice (the symmetric subspace is unique but its splitting into irreps is not)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-isotypical-decomposition",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Isotypical components are unique but splitting a multiplicity-greater-than-one component into individual irreducible subspaces is not, as shown by two distinct trivial-line splittings of the symmetric subspace of (C^2)^{(x)2}.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-117",
+    "key": "qcb-core-plan-117-non-unitarizable-infinite-group-counterexample",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "counterexample",
+    "question": "A student claims: 'every finite-dimensional representation of every group can be made unitary by averaging an inner product over the group, so every invariant subspace has an invariant complement.' Explain why the averaging argument requires the group to be finite (or compact, with Haar measure), and give a counterexample: a finite-dimensional representation of an infinite group that has an invariant subspace with NO invariant complement (hence is not unitarizable and not completely reducible).",
+    "reference_answer": "The averaging argument defines <v|w>_G = (1/|G|) sum_{g in G} <phi(g)v | phi(g)w> (finite groups) or integrates against the Haar probability measure (compact groups). It needs the normalized average/integral to exist and to be invariant under the reindexing g -> gh; for a general infinite non-compact group there is no finite normalization and no invariant probability measure, so the construction breaks down. Counterexample: let G = (R, +), an infinite non-compact group, and define phi: R -> GL(2, C) by phi(t) = [[1, t], [0, 1]]. This is a representation since phi(s) phi(t) = [[1, s+t],[0,1]] = phi(s+t). Consider W = span(e_1), the first coordinate line. W is G-invariant: phi(t) e_1 = e_1 for all t, so W is a (trivial) subrepresentation. Suppose for contradiction there were a G-invariant complement W' with C^2 = W (+) W', dim W' = 1, say W' = span(v) with v = (a, b), b != 0 (if b = 0 then v in W, impossible). Invariance of W' requires phi(t) v in W' = span(v) for all t, i.e. phi(t) v = lambda(t) v. But phi(t)(a, b) = (a + t b, b), and for this to be a scalar multiple of (a, b) we need (a + t b, b) = lambda(t)(a, b); the second coordinate forces lambda(t) = 1, and then the first forces a + t b = a, i.e. t b = 0 for all t, impossible since b != 0 and t ranges over all reals. Hence no one-dimensional invariant complement exists, so W has no invariant complement and phi is not completely reducible; equivalently phi is not unitarizable (a unitary representation would decompose W^perp as an invariant complement). This shows the finite/compact hypothesis is essential: the only G-invariant subspaces of this phi are {0}, W, and C^2, and W cannot be split off invariantly. For finite or compact groups the averaging restores complete reducibility, which is exactly why those hypotheses appear in Maschke's theorem and its compact-group analogue.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Explains the averaging/Haar argument needs a finite normalization or invariant probability measure, which a general infinite non-compact group lacks",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Gives the explicit representation phi(t) = [[1,t],[0,1]] of G = (R,+) and verifies it is a homomorphism",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Identifies the invariant line W = span(e_1) and proves no invariant complement exists (the scalar-multiple condition forces t b = 0 for all t)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Concludes phi is not completely reducible / not unitarizable, pinpointing finiteness or compactness (Maschke / Haar) as the essential hypothesis",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "The averaged inner product / Haar integral needs a finite normalization and invariant measure, unavailable for general infinite non-compact groups.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "phi(t) = [[1,t],[0,1]] is a representation of (R,+) since phi(s)phi(t)=phi(s+t).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "W = span(e_1) is invariant (phi(t)e_1 = e_1); any complement line span(v), v=(a,b), b!=0 must satisfy phi(t)v = lambda(t)v.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "phi(t)(a,b)=(a+tb,b) forces lambda(t)=1 and tb=0 for all t, impossible; so no invariant complement, phi not unitarizable.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires understanding why averaging fails for infinite groups and constructing the classic non-unitarizable shear representation with a complete invariant-complement obstruction proof."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "19-20,34-35",
+          "anchors": "Proposition 3.14 and Proposition 3.16 (Maschke) rely on finite averaging (1/|G|) sum_g; Proposition 3.39 and Section 3.8 replace it by Haar measure for compact groups, implying the finite/compact hypothesis is essential for complete reducibility and unitarizability",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-representation-foundations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The averaging that makes representations unitary needs finiteness or compactness; the shear representation of (R,+) has an invariant line with no invariant complement, so it is not completely reducible.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-118",
+    "key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Part (ii) of Schur's Lemma concludes that a G-equivariant endomorphism of an irreducible representation is a scalar multiple of the identity, under the hypothesis that the field is algebraically closed. Delineate the boundary of this result: show precisely why algebraic closure is needed by exhibiting an irreducible real representation whose equivariant endomorphism algebra (commutant) is strictly larger than the real scalars, and state what part (i) still guarantees without algebraic closure.",
+    "reference_answer": "Part (i) of Schur (a nonzero equivariant map between irreps is an isomorphism; an equivariant endomorphism of an irrep is 0 or invertible) holds over ANY field, because it uses only invariance of kernel and image. Part (ii) additionally needs an eigenvalue in the field, which is where algebraic closure is essential: without it an equivariant endomorphism may be invertible yet not scalar. Boundary example: let G = Z/4 = <g> act on V = R^2 by phi(g) = R, the 90-degree rotation [[0, -1], [1, 0]]. This representation is irreducible over R: R has no real eigenvector (its eigenvalues are +-i, not real), so there is no proper nonzero real invariant subspace. Now consider the commutant, the real-linear maps A with A R = R A. The rotation R itself satisfies R R = R R trivially, and R is NOT a real scalar multiple of the identity (a real scalar times the identity is diagonal, but R has zero diagonal and nonzero off-diagonal). More fully, the commutant of R over R is {a I + b R : a, b in R}, which is a 2-dimensional real algebra isomorphic to the complex numbers C (with R playing the role of i), strictly larger than the real scalars R I. Thus over R an equivariant endomorphism of this irreducible representation need not be scalar, so Schur (ii) genuinely fails without algebraic closure. What survives from part (i): every nonzero element of this commutant is invertible (indeed a I + b R has determinant a^2 + b^2 > 0 unless a = b = 0), so the commutant is a division algebra - consistent with the general fact (Schur part (i)) that the endomorphism algebra of an irreducible representation is a division ring. Over an algebraically closed field this division ring collapses to the field itself (scalars), recovering part (ii); over R it can be R, C, or the quaternions H (the real/complex/quaternionic types), and this example realizes the complex type.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Separates the hypotheses: part (i) holds over any field (kernel/image invariance), part (ii) needs an eigenvalue in the field (algebraic closure)",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Gives the explicit irreducible real representation (Z/4 or rotation on R^2) and verifies irreducibility over R (no real eigenvector / invariant line)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Exhibits a non-scalar equivariant endomorphism (the rotation itself) and identifies the commutant as {aI+bR} ~ C, strictly larger than real scalars",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States what part (i) still guarantees: the commutant is a division algebra (nonzero elements invertible), collapsing to scalars only under algebraic closure",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Schur part (i) holds over any field; part (ii) needs an eigenvalue in the field, i.e. algebraic closure.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "phi(g) = R (90-degree rotation) on R^2 is irreducible over R since R has no real eigenvector.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "R commutes with itself but is not a real scalar; the commutant is {aI + bR} ~ C, larger than R I.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Every nonzero a I + b R is invertible (det = a^2 + b^2 > 0): the commutant is a division algebra, scalar only under algebraic closure.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires precisely locating the algebraic-closure hypothesis, an irreducible real example with a non-scalar commutant, and the division-algebra refinement that survives; a careful boundary analysis."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "20-21",
+          "anchors": "Proposition 3.17 (Schur's Lemma) parts (i) and (ii) with the explicit hypothesis that F is algebraically closed in (ii); Corollary 3.18 (commutant of an irrep); the dependence of (ii) on an eigenvalue existing in F",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-schur-lemma",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Schur part (ii) fails without algebraic closure: a rotation gives an irreducible real representation whose commutant is C, not the real scalars, while part (i)'s division-algebra conclusion still holds.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-119",
+    "key": "qcb-core-plan-119-finite-vs-compact-haar-boundary",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "Many representation-theoretic results for finite groups (invariant complements, complete reducibility, character orthogonality) are proved using the averaging (1/|G|) sum_{g in G}. For compact groups this is replaced by integration against the Haar probability measure. Delineate carefully which statements carry over verbatim to infinite compact groups and which must be modified or fail. In particular address: (a) existence of invariant complements and complete reducibility; (b) finite-dimensionality of irreducible representations; (c) the identity sum_i (dim W_i)^2 = |G| and formulas explicitly involving |G|.",
+    "reference_answer": "The key replacement is: the normalized finite average (1/|G|) sum_g, which is an invariant probability measure on a finite group, becomes the Haar integral integral_G . dg against the unique invariant probability measure dg guaranteed for any compact group (invariant under left and right translation, normalized so integral_G 1 dg = 1). Wherever a proof used only the invariance and normalization of the average, it carries over verbatim with sum replaced by integral. (a) Invariant complements and complete reducibility DO carry over: the Weyl unitarity trick defines <v|w>_G = integral_G <phi(g)v | phi(g)w> dg, which is still a well-defined G-invariant inner product (the integrand is continuous and the measure finite), making phi unitary and giving every invariant subspace an invariant complement; thus every finite-dimensional representation over C of a compact group is completely reducible - verbatim analogue of Maschke. (b) Finite-dimensionality of irreducibles: for FINITE groups every irrep is automatically finite-dimensional (it is a subrepresentation of the finite-dimensional regular representation). For infinite compact groups one must RESTRICT attention or prove a theorem: it is a nontrivial theorem (Peter-Weyl) that every irreducible UNITARY representation of a compact group is finite-dimensional; this does not come for free from averaging and is a genuine modification of the finite-group situation (where it was trivial). (c) Formulas with |G| must be modified or fail: the identity sum_i (dim W_i)^2 = |G| and 'multiplicity of W_i in the regular representation equals dim W_i summing to |G|' involve the finite cardinality |G|, which is infinite for an infinite compact group. The regular representation becomes L^2(G), which is infinite-dimensional when G is infinite; the correct compact-group statement is that L^2(G) decomposes as a Hilbert-space direct sum of all irreducible unitary representations, each with multiplicity equal to its dimension (Peter-Weyl), and the matrix coefficients form an orthonormal basis - but any expression literally equal to |G| is no longer valid. Character orthogonality (chi_i, chi_j) = delta_{ij} survives with the inner product (x,y) = integral_G conj(x(g)) y(g) dg, since it too used only invariance/normalization; however the counting statement 'number of irreps = number of conjugacy classes' and sums over the finite group do not transfer. Summary: averaging-based existence results (invariant complements, complete reducibility, character orthonormality) carry over by replacing sum with the Haar integral; statements relying on the finiteness of |G| (the dimension-squared sum, finite-dimensional regular representation) fail and are replaced by Peter-Weyl, and finite-dimensionality of irreducibles becomes a theorem rather than an automatic fact.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Explains the replacement of (1/|G|) sum_g by the Haar probability integral and that proofs using only invariance/normalization transfer verbatim",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "States that invariant complements and complete reducibility (and character orthonormality) carry over via the Haar-averaged inner product",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Notes that finite-dimensionality of irreducibles is automatic for finite groups but becomes the nontrivial Peter-Weyl theorem (restricted to unitary irreps) for compact groups",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Explains that sum_i (dim W_i)^2 = |G| and other |G|-explicit formulas fail for infinite compact groups, with the regular representation replaced by the infinite-dimensional L^2(G) and Peter-Weyl's decomposition",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "Haar measure gives a unique invariant probability measure; (1/|G|) sum_g becomes integral_G . dg, and invariance/normalization-based proofs transfer.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "The Haar-averaged inner product makes representations unitary, so invariant complements, complete reducibility, and character orthonormality carry over.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Finite-dimensionality of irreps is trivial for finite groups but is the Peter-Weyl theorem for compact groups (unitary irreps).",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Formulas with |G| (e.g. sum_i (dim W_i)^2 = |G|) fail for infinite G; the regular representation becomes L^2(G), decomposed by Peter-Weyl.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires a nuanced mapping of which averaging-based results survive the finite-to-compact transition and which rely on finiteness, including the role of Peter-Weyl; a genuine scope-boundary analysis."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "34-35",
+          "anchors": "Section 3.8 (Finite and compact groups): Proposition 3.39 (Haar measure, invariance and normalization), Example 3.40 (finite group Haar = counting measure ~ (1/|G|) sum), the three carried-over statements (invariant complement, decomposition into irreps, character theory with the caveat that |G| expressions may fail), and Proposition 3.42 (Peter-Weyl: irreducible unitary reps finite-dimensional, L^2(G) decomposition)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-compact-groups",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Averaging-based results (invariant complements, complete reducibility, character orthonormality) transfer from finite to compact groups via the Haar integral, but |G|-explicit identities fail and finite-dimensionality of irreducibles becomes the Peter-Weyl theorem.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-120",
+    "key": "qcb-core-plan-120-dual-representation-conjugate-boundary",
+    "topic": "planned_representation_qit",
+    "track": "planned",
+    "task_kind": "boundary",
+    "question": "For a finite-dimensional representation (phi, V) of a group G, the dual representation (phi^*, V^*) is defined by phi^*(g)(L) = L . phi(g)^{-1}. (a) Prove that in a basis phi^*(g) = phi(g^{-1})^T, and that if (phi, V) is unitary then phi^*(g) = conj(phi(g)) (the entrywise complex conjugate). (b) Delineate the boundary between a representation and its dual: give the character relation chi_{V^*}(g) = conj(chi_V(g)) for unitary representations, and explain precisely when V is isomorphic to its dual (self-dual) versus not, giving an explicit example of a NON-self-dual irreducible representation. (c) State what remains true regardless: (phi^*, V^*) is irreducible iff (phi, V) is.",
+    "reference_answer": "(a) By definition phi^*(g)(L) = L . phi(g)^{-1} for L in V^*. Fixing dual bases, the matrix of the map L -> L . phi(g)^{-1} acting on row vectors is right multiplication by phi(g)^{-1}, which on column-vector (coordinate) representation of V^* is the transpose: phi^*(g) = (phi(g)^{-1})^T = phi(g^{-1})^T, using phi(g)^{-1} = phi(g^{-1}). If (phi, V) is unitary, then phi(g)^{-1} = phi(g)^dagger = conj(phi(g))^T, so phi(g^{-1})^T = (phi(g)^dagger)^T = (conj(phi(g))^T)^T = conj(phi(g)); hence phi^*(g) = conj(phi(g)), the entrywise complex conjugate. (b) Taking traces of the character: chi_{V^*}(g) = tr(phi^*(g)) = tr(phi(g^{-1})^T) = tr(phi(g^{-1})) = chi_V(g^{-1}); for unitary phi this equals conj(chi_V(g)) because chi_V(g^{-1}) = conj(chi_V(g)) for unitary representations (eigenvalues of phi(g) lie on the unit circle, so inverse = conjugate). Thus chi_{V^*}(g) = conj(chi_V(g)). The boundary: V is self-dual (V ~ V^*) iff chi_V = chi_{V^*}, i.e. iff chi_V(g) = conj(chi_V(g)) for all g, i.e. iff the character is real-valued. So real-character (in particular all-real-matrix, e.g. permutation) representations are self-dual, while a representation with a genuinely complex character is NOT self-dual. Explicit non-self-dual example: let G = Z/3 = <g> and let (phi, C) be the one-dimensional irrep phi(g) = omega, where omega = e^{2 pi i/3} is a primitive cube root of unity. Its character is chi(g) = omega, which is not real (omega != conj(omega) = omega^2). Its dual is phi^*(g) = conj(omega) = omega^2, the OTHER nontrivial irrep of Z/3; since omega != omega^2, phi and phi^* have different characters and are inequivalent, so this irrep is not self-dual. (c) Regardless of self-duality, (phi^*, V^*) is irreducible iff (phi, V) is: invariant subspaces of V^* correspond (via annihilators) bijectively and inclusion-reversingly to invariant subspaces of V, so V^* has only the trivial invariant subspaces iff V does. Hence duality preserves irreducibility even when it changes the isomorphism class.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Proves phi^*(g) = phi(g^{-1})^T from the definition and phi^*(g) = conj(phi(g)) in the unitary case",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Derives chi_{V^*}(g) = chi_V(g^{-1}) = conj(chi_V(g)) (unitary) and states V is self-dual iff its character is real-valued",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Gives an explicit non-self-dual irreducible example (the omega-representation of Z/3 whose dual is the omega^2-representation, inequivalent)",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States that (phi^*, V^*) is irreducible iff (phi, V) is, regardless of self-duality, via the annihilator correspondence of invariant subspaces",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:harmonic-analysis"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [],
+    "conventions": [],
+    "semantic_steps": [
+      {
+        "claim": "phi^*(g)(L) = L.phi(g)^{-1} gives matrix phi^*(g) = phi(g^{-1})^T; unitarity gives phi^*(g) = conj(phi(g)).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "chi_{V^*}(g) = tr(phi(g^{-1})^T) = chi_V(g^{-1}) = conj(chi_V(g)) for unitary phi.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "V ~ V^* iff chi_V = conj(chi_V), i.e. iff chi_V is real-valued; a complex character means not self-dual.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "For Z/3, phi(g)=omega has dual phi^*(g)=omega^2, an inequivalent irrep, so it is not self-dual.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Annihilators give an inclusion-reversing bijection of invariant subspaces, so V^* is irreducible iff V is.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires the dual-representation matrix identity, the character-conjugation relation, the real-character self-duality criterion with an explicit non-self-dual example, and the preserved-irreducibility fact; a multi-part boundary analysis."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "leditzky-2025-repth-qit",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+          "sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+          "edition": "10 April 2026 edition (79 pages); course directory FT25",
+          "pages": "28-29",
+          "anchors": "Definition 3.26 (dual representation phi^*(g)(L) = L . phi(g)^{-1}), Eq. (3.79) phi^*(g) = phi(g^{-1})^T and the unitary case phi^*(g) = conj(phi(g)), the remark that (phi^*,V^*) is irreducible iff (phi,V) is; Proposition 3.29(ii) chi(g^{-1}) = conj(chi(g)) for unitary representations",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original mathematical Q/A only; source text not redistributed; no external license relicensing"
+        }
+      }
+    ],
+    "family": "qit-tensor-representations",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The dual representation is phi(g^{-1})^T (the conjugate when unitary), self-dual exactly when the character is real-valued; the omega-representation of Z/3 is a non-self-dual irrep, and duality always preserves irreducibility.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "representation-qit-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

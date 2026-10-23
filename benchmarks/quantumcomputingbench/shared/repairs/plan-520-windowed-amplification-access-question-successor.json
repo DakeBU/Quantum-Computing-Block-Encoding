@@ -1,0 +1,215 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-520",
+  "supersedes_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+  "supersedes_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+  "supersedes_contract_hash": "9fc6da7ea892a915785e7651e360083795319bc98f19859b6d758618a32c676e",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-520-textbook-question-v2-windowed-amplification-access",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction. Retain the original small-positive-p projector setting and both true conventions (sine amplitude and query-level costs), but assess/refute perpetual positive amplitude growth rather than silently restricting k. Ask for an early-angle quantitative theorem and matched constant-success comparison, plus an explicit CONDITIONAL oracle/access and calibration audit. Do not turn missing inverse/prepared-reflection access, known p or a projective check into new standing assumptions: identify the necessary dependencies and state what the original promises alone do not establish. Other eight contract fields, all six ordered node lists, family/split/source scope stay unchanged. The replacement changes requested reasoning, not a proof of the original unqualified growth/access claim. No arbitrary-state reflection, free cleanup/control, global query lower bound, finite-bit or gate certificate.",
+  "question": "Keep the original assumption of a small positive initial success probability p for a state psi=U|0> and an orthogonal good projector Π, and keep the original query-level cost convention. Assess/refute the predecessor's assertion that every reflection iteration increases the good amplitude by order sqrt(p); do not replace it silently by a near-start assertion. First analyze the mathematical iterate W=R_psi R_good with R_good=I-2Π and R_psi=2|psi><psi|-I: for0<p<1 derive its signed good coefficient a_k, its exact increment, a quantitative early-angle range with positive Theta(sqrt(p)) increments, and a family of arbitrarily small p for which a later increment is negative. Compare with independent classical repetition's exact cumulative success and increments, including their saturation. Exhibit a p-dependent integer stopping rule attaining a specified constant success (for example1/4) in Theta(1/sqrt(p)) iterations as p->0, versus Theta(1/p) independent classical trials for that same target. Then AUDIT applicability rather than add promises: identify the inverse/known-zero-reflection access that supplies R_psi, and the p-information needed to select this calibrated rule; give the exact U,U-dagger,R_good and known-zero-reflection call tuple conditionally on those dependencies. Explain what forward preparation and a good-subspace reflection alone do not certify, and why the classical comparison also needs an available good-outcome check. Keep signed amplitude, norm and probability distinct; handle zero/all-good endpoints separately as outside the small-positive regime, without dividing by zero or claiming free workspace cleanup, controls, gates or finite-bit compilation.",
+  "reference_answer": "The assertion of a positive order-sqrt(p) increase at every iteration is false. For0<p<1 set phi=arcsin(sqrt(p)), g=Πpsi/sqrt(p) and b=(I-Π)psi/sqrt(1-p). These are orthonormal and psi=sin(phi)g+cos(phi)b, even when the ambient Hilbert space or good subspace has larger dimension. On their plane R_good=diag(-1,1) and R_psi is the reflection about psi, so W has ordered(g,b) matrix [[cos2phi,sin2phi],[-sin2phi,cos2phi]]. Therefore W^k psi=sin((2k+1)phi)g+cos((2k+1)phi)b. The signed good coefficient is a_k=sin((2k+1)phi), its norm is |a_k| and success probability is a_k^2, not the signed sine itself. Subtracting consecutive sines gives a_(k+1)-a_k=2sin(phi)cos((2k+2)phi)=2sqrt(p)cos((2k+2)phi). In the explicit early window0<=(2k+2)phi<=pi/3 it lies between sqrt(p) and2sqrt(p). It is not positive forever: take any integer m>=1, phi=pi/(4m+2), p=sin^2(phi). Then p->0 as m->infinity, a_m=1 and a_(m+1)=cos(2phi)<1. At still later angles the signed coefficient can be negative, although probabilities remain nonnegative. For independent classical trials, C_t=1-(1-p)^t and C_(t+1)-C_t=p(1-p)^t. This is Theta(p) only on a bounded-tp window as p->0: for p<=1/2 and tp<=C, p exp(-2C)<=increment<=p, since log(1-p)>=-2p. It saturates rather than increasing linearly forever. For a concrete matched target, let beta=pi/6 and, for sufficiently small p such that phi<=pi/12, choose k=ceil((beta/phi-1)/2). It is nonnegative, and beta<=(2k+1)phi<beta+2phi<=pi/3. Hence success>=sin^2(beta)=1/4 and k=Theta(1/phi)=Theta(1/sqrt(p)). All increments used before stopping lie within the displayed early window. Within this fixed-iterate scheme any first attainment of success>=1/4 also needs (2k+1)phi>=pi/6, using |sin(alpha)|<=alpha for alpha>=0; this justifies the Theta scaling here, not a lower bound for all quantum algorithms. The least number of independent classical trials for the same target is ceil(log(3/4)/log(1-p))=Theta(1/p). Born's rule squares the rotating signed coefficient; in the early window the angle and amplitude scale linearly with k sqrt(p), while probability scales quadratically there. This coherent rotation, not perpetual amplitude growth, explains the matched quadratic comparison. Applicability is conditional. A normalized state vector defines the mathematical R_psi, but free physical access to it does not follow just from forward U. With S_0=2|0><0|-I on the FULL preparation input/workspace, the identity R_psi=U S_0 U-dagger supplies it when inverse preparation and S_0 are available. Starting from U|0>, k iterates then use exactly k+1 calls to U, k to U-dagger, k to R_good and k to S_0. The calibrated k above is a function of p; implementing that direct rule requires p or sufficient calibration information. Neither that information nor unit-cost U-dagger is included as a new standing assumption here. Unknown-p schedules would require separate analysis. Classical rejection/repetition further needs fresh preparations and an accessible measurement/check of the good event; a bare phase-reflection oracle does not by itself certify a free projective membership test. Extra inverse/control/check synthesis, gates and finite-bit precision must be charged separately. U and its inverse act on the complete specified workspace; the proof does not promise that discarded garbage is clean or an arbitrary unknown state can be reflected about for free. At p=0, the initial state is entirely bad and W leaves it fixed, so no amplification occurs; g is undefined. At p=1, it is entirely good and W^k psi=(-1)^k psi has success1 already with k=0; b is undefined. These endpoints are outside the small-positive asymptotic, not artificial normalized zero states. This answer proves the revised windowed/conditional task and explicitly does not prove the original universal-increment or access guarantee.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Derives normalized good/bad components only for0<p<1, the exact oriented rotation and a_k=sin((2k+1)phi); distinguishes signed coefficient, absolute norm and squared success."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Computes the exact increment2sqrt(p)cos((2k+2)phi), proves the explicit early-window two-sided bounds and supplies the small-p over-rotation family with a negative increment."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Uses exact C_t and p(1-p)^t, their bounded-tp window and saturation; derives a concrete integer constant-success schedule and compares the SAME target with independent classical repetitions without asserting a universal quantum lower bound."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Identifies inverse U, full-input S_0, calibration and the classical check as dependencies, gives exact(k+1,k,k,k) call counts conditionally, does not silently assume those dependencies, and handles p=0/1 and workspace/resource boundaries."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Amplitude increments equal2sqrt(p) times a running cosine: they are positive Theta(sqrt(p)) only in a specified early window. A calibrated constant-success schedule has the quadratic repetition advantage only with the reversible-reflection and good-check access explicitly accounted for.",
+    "semantic_steps": [
+      {
+        "claim": "For0<p<1 set sin(phi)=sqrt(p) and normalize the two projected components; endpoints do not admit both normalized vectors.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The mathematical two-reflection product rotates the good/bad plane by angle2phi with the stated orientation, giving signed coefficient sin((2k+1)phi).",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The exact increment is2sqrt(p)cos((2k+2)phi), positive Theta(sqrt(p)) in an early window and negative for an explicit arbitrarily-small-p over-rotation family.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Independent classical repetition has cumulative1-(1-p)^t and increment p(1-p)^t, so its linear-in-p regime also has a window and saturation.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "A calibrated constant-success integer schedule needs Theta(1/sqrt(p)) iterates versus Theta(1/p) independent trials; implementation conditionally costs(k+1,k,k,k) calls to U,U-dagger,R_good,S_0, with calibration/check access not presumed.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Born's rule relates the signed rotating coefficient to squared probability; no perpetual increase, free inverse/cleanup/check or global gate/lower-bound claim is inferred.",
+        "supporting_nodes": [
+          "concept:approximation",
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Entire lin-wiebe-2026-qasc metadata entry230-238 read: URL, April29 2026/447-page edition and historical PDF pin. This LF authenticates metadata only, not source proof or binary identity. Genuine primary text access/limitations below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete authored qcb-core-plan-520-amplitude-vs-probability-quadratic question/assumptions/conventions/answer/rubric/semantic steps and actual whole prepared counterpart read. Content provenance only; mathematical corrections are derived, not certified by this QA file."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Historical prepared original loaded through release.checked()[2] and bound as a whole, not a substituted current-reader row. No change to frozen content."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_candidate_pending_distinct_review",
+    "authored_at_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "private_origin": "_review_tmp/plan-520-windowed-amplification-access-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-520-windowed-amplification-access-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "9fc6da7ea892a915785e7651e360083795319bc98f19859b6d758618a32c676e",
+      "successor_contract_hash": "b2fe41619a12e1932fb1f8c78109c1582e824efb65a575099d817994cc93958c",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [
+        "Initial success probability p is small and positive; the good subspace is defined by a projector"
+      ],
+      "original_conventions": [
+        "sine of the half-angle equals sqrt(p); amplitude is the sine of the running angle",
+        "Costs counted in state-preparation-unitary and good-subspace-reflection calls"
+      ],
+      "preserved_family": "qsc-grover-amplitude-amplification",
+      "preserved_split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:approximation",
+        "concept:complexity",
+        "concept:operator-theory"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 6,
+      "original_ordered_step_nodes": [
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:approximation",
+          "concept:operator-theory"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:approximation",
+          "concept:operator-theory"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "prior_exposure": {
+      "source_and_original": "This author read the entire actual prepared original, current withdrawal and complete bound finding, including old imported accept metadata. Parent supplied defect leads; neither those leads nor prior verdicts are proof. The source was then reread and the arguments independently reconstructed. This is not source-blind authorship.",
+      "withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "withdrawal_review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea",
+      "actual_prior_reviewer": "/root/qcb_native_comparison",
+      "withdrawal_bindings_verified": true
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "edition_observed": "Cover April29,2026;447 pages",
+        "operative_regions": "Full Chapter11 introductory amplitude-versus-probability discussion, Section11.2 good/bad decomposition Eq11.31, complete Proposition11.6 statement and proof Eq11.32-11.42, complete Example11.7 Eq11.43-11.47 and Corollary11.8 statement's additional p/control access boundary. Source Proposition11.6 explicitly supplies inverses, and its norm-equals-signed-sine wording cannot be imported for arbitrary k; the increment, early window, stopping proof and conditional resource ledger are reconstructed here.",
+        "access": "Primary PDF text genuinely retrieved through web extraction in this objective. One group of requests failed, direct-URL retry succeeded. No PDF redistributed.",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "binary_hash_independently_verified": false,
+        "visual_check": "Attempted Fig11.1 page screenshot; service reported screenshot unavailable. No visual source-layout seal or verified binary claim.",
+        "limits": "The cover/anchors match the recorded edition, but this author did not obtain and hash original PDF bytes. Source statements themselves have assessed defects; primary-source presence is not proof of their correctness."
+      }
+    ],
+    "source_proof_coverage": {
+      "mathematical_nodes": "Full Chapter11 introductory amplitude-versus-probability discussion, Section11.2 good/bad decomposition Eq11.31, complete Proposition11.6 statement and proof Eq11.32-11.42, complete Example11.7 Eq11.43-11.47 and Corollary11.8 statement's additional p/control access boundary. Source Proposition11.6 explicitly supplies inverses, and its norm-equals-signed-sine wording cannot be imported for arbitrary k; the increment, early window, stopping proof and conditional resource ledger are reconstructed here.",
+      "source_gaps": "No local Lean theorem or source-to-formal bridge supplied. Source bounds/normalizations are assessed rather than inherited; this candidate contains an explicit NL derivation only.",
+      "excluded": "Neighboring Chebyshev/SVT reinterpretation, exact-amplification variants, quantum lower-bound proofs and circuit synthesis are not needed for this bounded correction and are not claimed covered."
+    },
+    "validation": "Whole predecessor/withdrawal/contract bindings and exact six-step ordered-node preservation checked mechanically; those checks are not mathematical approval. No test/build/Lean/kernel or prediction execution.",
+    "author_self_approval": false
+  }
+}

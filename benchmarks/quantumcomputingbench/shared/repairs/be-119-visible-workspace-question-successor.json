@@ -1,0 +1,83 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-be-119",
+  "supersedes_key": "qcb-core-be-119",
+  "supersedes_item_digest": "9861d3807794ab3a410205c3d90e220174973ab60491d738ba200ce0de215506",
+  "supersedes_contract_hash": "4d00d5fa56caf609041bdfb2399f6cba6567cbd92c4e5d42725303b60e962807",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-be-119-textbook-question-v2-visible-workspace-question-successor",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction of the unsupported scope of 'total13 physical qubits'. Preserve that historical claim for assessment, retain all original numbers/hypotheses and clarify visible versus full resource scopes instead of silently asserting a cheaper total. Same transcript/9-versus10 target; no replacement physical count or cleanup theorem. Original contract hash 4d00d5fa56caf609041bdfb2399f6cba6567cbd92c4e5d42725303b60e962807. Only question changes among the nine CONTRACT_FIELDS; preserve other8 literally, same core/family/split/frozen graph/source scope, 4 steps and exactly their ordered supporting-node lists. Not predecessor-equivalence, new core, selfapproval, formal transfer or admission.",
+  "question": "Retain the adapter's ten named oracle-call labels rather than matrix semantics, and the fact that executable SWAP semantics belong to a separate module. The historical question reports layout(system,signal,pureAncilla)=(3,9,6), effective signal10 and 'total13 physical qubits'. Assess that last unqualified total as a claim about an expanded implementation INCLUDING internal oracle workspace; do not silently reinterpret it as a full physical bound. Read the actual warm visible partition(mf,indicator,sparse,paddedOD,system,trailing)=(5,1,3,0,3,1). State the exact ten-label order and what this transcript does and does not certify; explain the label-only SWAP. Derive the13 VISIBLE backend wires and9-versus10 projection arithmetic, and distinguish visible pure workspace from the theorem-layout2n=6 budget that also includes internal oracle work. Does the adapter establish a complete total physical footprint or cleanup/block correctness? Explain why neither adding all bookkeeping numbers nor subtracting budgets yields a certified physical count.",
+  "reference_answer": "The exact source-ordered list is [H_W^(kappa),U_indic,O_DT^S,Ry_boundary,O_DT^BS,U_indic^dagger,O_f,SWAP(two n-qubit registers; paper label only),(O_D^BS)^dagger,(H_W^(kappa))^dagger]. The list definition and length theorem fix these identities/order and length10 only. Every item is Gate.oracleCall with a string, not an interpreted matrix/primitive program. A dagger-looking label does not establish inverse semantics; the transcript alone proves neither unitarity, cleanup, a projected target block nor an oracle resource implementation.\n\nThe SWAP label is especially explicit: naming a swap between two registers does not execute its wire action here. A separate SourceBaseline module supplies a three-pair logical swap fragment [(0,3),(1,4),(2,5)] and associated definitions, but that separate object is not imported as matrix correctness of this string transcript by its name. Replacing the label with a physical circuit, composing its matrices and proving the full ten-block action require separate bridges; one must not infer them from the transcript's list equality.\n\nThe visible partition sums to5+1+3+0+3+1=13. Removing the3 system wires leaves10 non-system backend wires for the clean projection. The layout's declared signal count is9=5+1+3, and effective10=declared9+paddedOD0+trailing1. This matches the source's complete effective-signal layout bridge. It is dimension/bookkeeping arithmetic, not a proof that the non-system outputs are clean after execution or that their projection encodes the desired block.\n\nVisible pure ancillas in this partition are paddedOD0+trailing1=1. The theorem-level layout/resource field is2n=6 at n3. Source documentation explicitly says that full pure-ancilla budget also includes internal sparse-access/oracle workspace, unlike the narrower visible ket partition. Thus the three facts 'visible13', 'declared signal9/effective10' and 'theorem pure budget6' refer to different scopes. The historical phrase 'total13 physical qubits' is unsupported if meant to include all internal implementation workspace; the exact theorem establishes the visible backend total, not that expanded physical upper bound. This is a scope obstruction, not a proof that an optimized physical implementation necessarily needs more than13 wires.\n\nNo exact fully expanded footprint follows from these fields alone. One cannot simply add system3+signal9+pure6 as disjoint simultaneously live registers, nor declare6-1=5 additional physical wires or add that to13 without overlap/lifetime/subcircuit allocation evidence. A budget is not a tight minimality theorem. Uninterpreted oracle labels can stand for implementations with different workspace; even padding a hidden implementation would leave this list unchanged. Cleanup and reuse would need actual semantic proofs, and a zero visible padded register does not make internal oracle work free. Conversely the arithmetic bridge does not assert a success probability, normalizer, finite-bit gate cost or circuit-resource certification. The initial assumption that SWAP semantics live elsewhere remains intact, but those semantics and the whole source-paper resource theorem are not freshly verified here.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Gives the exact ten-label order/length and separates strings from matrices, inverse/cleanup/unitarity/block correctness and resources."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Explains label-only SWAP and why a separate executable fragment needs a semantic/composition bridge rather than transfer by name."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Computes visible13, declared9 and effective10=9+0+1; distinguishes visible pure1 from theorem full2n=6 budget and explicitly assesses the old unqualified physical-total claim."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Does not manufacture a fully expanded total by adding/subtracting different-scope budget fields; leaves internal allocation, cleanup, normalization and gate/finite-bit resources as separate obligations."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The ten named oracle-call labels fix exact printed order and length but are not interpreted matrices. No matrix, inverse/cleanup, unitarity or block-correctness assertion follows from the transcript or its length theorem. SWAP is a string label here; a separate executable object requires its own semantics/composition bridge. Visible backend total13 and effective projection10=declared9+visible padded0+trailing1 differ from the full internal-oracle pure-workspace budget6; an expanded physical footprint is not certified by these bookkeeping facts.",
+    "semantic_steps": [
+      {
+        "claim": "The ten named oracle-call labels fix exact printed order and length but are not interpreted matrices.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit"
+        ]
+      },
+      {
+        "claim": "No matrix, inverse/cleanup, unitarity or block-correctness assertion follows from the transcript or its length theorem.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_length"
+        ]
+      },
+      {
+        "claim": "SWAP is a string label here; a separate executable object requires its own semantics/composition bridge.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit"
+        ]
+      },
+      {
+        "claim": "Visible backend total13 and effective projection10=declared9+visible padded0+trailing1 differ from the full internal-oracle pure-workspace budget6; an expanded physical footprint is not certified by these bookkeeping facts.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinEffectiveSignalQubits_eq"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/RobinEvolution.lean",
+      "sha256_lf": "8673572458ff260cf35d6cfce60ffcc52b5b2be721671b3171919e32d0b73a37",
+      "anchor": "Personally read actual operative definitions and complete relevant proof bodies: Complete warmRobinParameters, SourceLayout, VisiblePartition, ten-label SourceCircuit and gate-list/length proofs; Parameters_spec, SourceLayout_spec, VisiblePartition_spec, TotalQubits_eq and EffectiveSignalQubits_eq (lines 88-177) Static source evidence only; no new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/GHL2025.lean",
+      "sha256_lf": "75aa9e6b508e31fe70db050c58899d9c62560b838810d65c98e3879c9b58e5c4",
+      "anchor": "Personally read actual operative definitions and complete relevant proof bodies: RobinRegisterPartition, totalQubits, default partition and totalPureAncillas including internal-workspace caveat (lines 49-97); oneTermRobinLayout (149-152); oneTermRobinTotalQubits, effectiveRobinSignalQubits and complete layout/theorem-data projection bridges (771-844) Static source evidence only; no new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/SourceBaseline.lean",
+      "anchor": "Actual separate warmRobinRegisterSwapPairs/Circuit, full gate-list/length and wire involution definitions/proofs at28–55 read. Used only to verify the separate named fragment exists; no full swap/circuit or source-route closure is claimed.",
+      "sha256_lf": "cc3aa711cb2bc5c4dfb308719e77ac299539d9a1f97f7b45002b4a11cc9a5722"
+    }
+  ],
+  "execution": "Private authorship by actual /root/qcb_boundary_repair_review, not an independent approval of this candidate. Full actual historical release.checked()[2] record, all question/assumption/convention/reference/rubric/step/source/metadata fields, exact bound withdrawal and full prior finding were read. Prior exposure includes related Hermite/QIT/source review tasks, parent's six-item repair focus; no blindness claimed. Reserved withdrawal row digest cbba7a62d2320318b00627e1762935e7f0ead04ab02271340358c97aa41b4383; prior review reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json whole digest 045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b; item-finding digest bb4d92a5d0627f4314bd0c0ba5413139fdade1764e5066e5dccad0bcbb076a5b. Those prior findings identify defects, not approval of my candidate. Observed local HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Mandatory repository instructions/protocols were read fully in this continuous context and checked unchanged since prior gate; substantive-worker skill refreshed. Operative local source definitions and complete relevant proof bodies were personally read; broader unrelated modules and transitive Mathlib proof closure are not claimed fully audited. No external source-paper/PDF seal, human/expert/model approval, Lean/kernel/nativeformal execution, build, agent, canonical/source/policy/frozen/older-private edit, commit/push or currentPR107 change. Algebraic/phase/resource reconstruction is written mathematics, not newly executed formal evidence. Planned canonical destination benchmarks/quantumcomputingbench/shared/repairs/be-119-visible-workspace-question-successor.json; actual authored/read location _review_tmp/be-119-visible-workspace-question-successor.json only. Portable provenance names are repository/workspace-relative. Distinct exact-content review and root reconciliation required before any transport/admission."
+}

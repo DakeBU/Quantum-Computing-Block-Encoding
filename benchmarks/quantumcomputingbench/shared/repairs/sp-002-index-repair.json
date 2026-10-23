@@ -1,0 +1,21 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-sp-002",
+  "supersedes_key": "qcb-core-sp-002",
+  "supersedes_item_digest": "7f1b2a1988e00771f6ae01653a655d04982f664f22fab24482075424eb8cbed5",
+  "author": "/root",
+  "key": "qcb-core-sp-002-textbook-v1-index-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Reference answer and rubric only; question, assumptions, conventions, mathematical core, graph snapshot, source refs, family and split unchanged.",
+  "reference_answer": "(i) Let x denote the full emitted bit string after this stage, let c be its newly appended highest-wire bit, let p be the previous prefix obtained by removing that last bit, let b be the output bond label, and let a range over the prior input bond labels. The emitted amplitude is step(U,v)(x,b) = sum_a U((c,b),(0,a)) * v(p,a). The fresh input bit is fixed to zero, so the fresh-bit-input-1 columns multiply zero and cannot affect this clean-input action. The output bond b is free; only the prior bond a is summed. These unused columns are completion data not determined by the clean-input action, but they are not arbitrary if an additional admissibility condition such as unitarity is imposed. (ii) For the padding operation alone, freshZero(v)(p,(c,a)) is v(p,a) when c=0 and zero when c=1. Summing conjugate(amplitude) times amplitude over p,c,a therefore gives exactly the prior sum over p,a. This introduces a fresh zero register deterministically, with no measurement, discarded outcome weight, postselection or renormalization. Norm preservation of this padding does not by itself assert norm preservation of an arbitrary full stage matrix U; the latter requires an appropriate condition such as unitarity.",
+  "rubric": [
+    {"id": "r1", "weight": 1, "criterion": "Identifies that only fresh-bit-input-0 columns affect the clean-input action; fresh-bit-input-1 columns are irrelevant to that action, not unconstrained under additional matrix admissibility requirements."},
+    {"id": "r2", "weight": 1, "criterion": "States the collapsed amplitude with free output bond b and summed input bond a: sum_a U((c,b),(0,a))*v(p,a), with p the old prefix and c the newly appended highest-wire bit."},
+    {"id": "r3", "weight": 1, "criterion": "Shows that fresh-zero padding preserves total squared-modulus mass by the fresh-bit 0/1 sum; does not claim arbitrary U is norm preserving."},
+    {"id": "r4", "weight": 1, "criterion": "Concludes the padding is deterministic register enlargement, not postselection or measurement, with no discarded weight or renormalization."}
+  ],
+  "source_checks": [
+    {"path": "QuantumBlockEncoding/SequentialBondPreparation.lean", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "anchor": "freshZero lines39-42; liftStage and step lines45-59; step_apply lines65-68; amplitudeMass and amplitudeMass_freshZero lines285-306; amplitudeMass_mulVec explicitly requires unitarity"}
+  ],
+  "execution": "Source reconstruction only; unchanged Lean definitions/proofs; no new compilation claimed."
+}

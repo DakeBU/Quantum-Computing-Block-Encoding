@@ -1,0 +1,151 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-004",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-004-ensemble-repair.json",
+  "repair_record_digest": "515747bfeded89a5c56224d2ee4b8a3f96c2f52b3b45a73be29aed8524536b2f",
+  "repair_record_sha256_lf": "b1f07a4de1cc0ea4fa9778e9e305231c8770100ba75420460511c496a8ba407b",
+  "original_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+  "verdict": "accept",
+  "verdict_scope": "Independent acceptance of this exact answer/rubric/exposition candidate under the unchanged question contract only. No historical acceptance transfer, canonical transport, reader admission, new core, local Lean closure or kernel execution is performed.",
+  "independence": {
+    "actual_reviewer": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_native_comparison",
+    "original_author": "native-planned-author",
+    "assessment": "This reviewer authored neither the original nor this candidate and is distinct from their actual authors.",
+    "exposure": "Not blind or a fresh identity. Prior Leditzky source exposure from other representation/QIT reviews is disclosed. The parent's concern, exact original, inherited accept labels, full authored candidate and relevant previous reader finding are visible. This task reconstructs the mathematics independently; none of those labels supplies the verdict."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e",
+    "projected_contract_hash": "8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "contract_field_overrides_in_repair": [],
+    "assessment": "Programmatically loaded the actual whole prepared original through current release.checked()[2]. Privately deep-copied it and replaced only key/reference_answer/rubric/author plus native_nl.core_summary and semantic_steps, as inspected in the answer-successor policy. Every actual nine-field contract value and its qcb_core.digest remain exactly equal. Candidate supersedes_key/item_digest match the original. No future admitted full-item digest is invented.",
+    "family": "qit-state-foundations",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "original_semantic_step_count": 3,
+    "candidate_semantic_step_count": 3,
+    "mechanical_checks": "check_exposition and check_source_bindings passed read-only, including the original target/support node set and retained semantic-step count. These checks do not certify mathematics or perform admission.",
+    "mathematical_scope": "Same finite realizing-ensemble isometry construction and genuine mixed-state nonuniqueness target. No nonzero-output assumption is added; zero rows are handled rather than excluded. Spectral decomposition is used to construct witnesses for each mixed rho, not imposed as a restriction on the supplied starting ensemble."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit entry219-227 read, including author-hosted URL, printed10 April2026/79-page edition and historical PDF pin. This whole-file LF hash binds metadata only; actual primary access/hash and bounded mathematics are separately recorded."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "Read actual CONTRACT_FIELDS/check_exposition12-27 and answer-successor projection153-207. Private unchanged-contract projection uses those actual replacement fields; no current-policy mutation or admission invoked."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "anchor": "core_contract19-20 read; actual nine-field dictionary used to compute unchanged contract digest."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April 2026,79 pages; course-directory FT25",
+      "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "byte_count": 554175,
+      "pdf_page_count": 79,
+      "hash_match": true,
+      "retrieval": "Fresh independent read-only HTTPS retrieval into memory in this review; initial ordinary fetch failed with WinError10013, approved read-only retry succeeded. hashlib computed raw binary SHA256 and bundled pypdf extracted complete relevant pages. Raw PDF not saved or redistributed.",
+      "title_page": "April10,2026 independently read from retrieved bytes.",
+      "last_modified_header": "Fri, 10 Apr 2026 12:15:47 GMT",
+      "response_date_header": "Thu, 22 Oct 2026 20:15:23 GMT",
+      "visual_inspection": {
+        "performed": true,
+        "scope": "Independently viewed the existing root-rendered full printed pages12 and16. Web screenshot attempts failed with cache misses. This reviewer did not execute rendering, and does not claim whole-book visual inspection.",
+        "artifacts": [
+          {
+            "name": "leditzky-foundation-page-12.png",
+            "raw_sha256": "411aae2bf632bdd390606ea531b6dd1cee494f95031a464ddb66198505517466"
+          },
+          {
+            "name": "leditzky-foundation-page-16.png",
+            "raw_sha256": "a570501008dfd41cd19afb94a7e0a7965908ba0a88970c5896b2d2eac5e90157"
+          }
+        ]
+      },
+      "local_lean_closure": "None: primary-source NL only; source concept nodes do not constitute formal counterparts.",
+      "zero_based_pdf_pages_read": [
+        0,
+        3,
+        5,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "operative_regions": "Definition2.3/Eqs2.7-2.8 printed4 and complete Exercise2.1/Eqs2.37-2.38 printed12; full relevant surrounding pages read.",
+      "comparison": "Source gives preservation as an exercise and states infinite ensemble freedom, but its displayed normalization leaves zero weights implicit. The candidate's zero-output qualification, noninjectivity audit, continuous spectral rotation and explicit rectangular witness are reconstructed mathematics, not attributed complete source proofs."
+    }
+  ],
+  "provenance": {
+    "observed_head": "a0836e38501d3976663ca561424063e78ba32214",
+    "reviewed_at_private_path": "_review_tmp/plan-004-ensemble-repair.json",
+    "published_locator_note": "repair_record names intended canonical transport destination. Actual reviewed bytes were read privately at reviewed_at_private_path; copying the exact artifact changes its locator, not mathematics or digest.",
+    "whole_digest_method": "qcb_core.digest of entire actual prepared original and complete parsed repair including all metadata. Candidate LF binding independently recomputed with qcb_integrity.text_sha.",
+    "instruction_status": "Substantive-worker and PDF skill used. Mandatory repository publication/digestion/memory/shared contract instructions read in this continuous task context; keep source, NL review, Lean execution and admission evidence separate.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "additional_agents": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this private *-review.json output is authored; candidates, frozen originals, prior reports, source-binding modules, production Lean, policy, canonical reports and PR103 are untouched. No commit or push.",
+    "limitations": "Bounded independent NL/source mathematical review. No efficient twirl, exact-real/finite-bit resource result, quantum compilation, global semantic dedup, theorem novelty, blanket source approval or stable-release certification.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+      "reviewed_at_private_path": "_review_tmp/qit-foundations-004-005-007-review.json",
+      "digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+      "sha256_lf": "6b01ae49271f3f45b4312b560f2fd18e06cc640b4a289d7bcf14623bf2e6c9e1",
+      "reviewer": "/root",
+      "inspection": "Entire parent004/005/007 report read, with004 original rejection. This reviewer did not author that reader report or claim its source inspections as this task's execution."
+    }
+  },
+  "original_defect": "The isometry identity is true, but a zero output cannot be normalized; a k-row column isometry need not give k positive-weight components. More seriously, infinitely many isometries do not imply distinct physical ensembles, since row phases/permutations and zero padding can preserve the physical ensemble.",
+  "substantive_reconstruction": {
+    "complex_index_identity": "For u_l=sqrt(p_l)psi_l and w_j=sum_l V_jl u_l, the coefficient of |u_l><u_m| in sum_j|w_j><w_j| is sum_j V_jl conjugate(V_jm)=(V^dagger V)_(m,l)=delta_ml. Thus the result is exactly sum_l|u_l><u_l|=rho, including complex V. There is no transpose-versus-adjoint substitution.",
+    "zero_outputs_and_normalization": "q_j=||w_j||^2>=0 and sum_jq_j=tr(rho)=1. Positive q_j gives a unit phi_j=w_j/sqrt(q_j). If q_j=0, definiteness gives w_j=0; delete that contribution or assign its zero weight any unit vector, which exists for a nonzero mixed-state Hilbert support. At most k positive terms is the correct general conclusion. An appended zero row makes the missing case explicit without a new premise.",
+    "noninjectivity": "If D is diagonal unitary on output labels, DV is another column isometry and w_j only acquires its row phase, preserving q_j and the rank-one projector. Permuting rows only reorders terms; zero rows and duplicate rays add descriptions. This disproves the predecessor's automatic injectivity step, not the true nonuniqueness theorem.",
+    "mixed_state_witness_and_continuity": "A mixed finite density state has rank s>=2 and two strictly positive eigenvalues lambda1,lambda2. On their orthonormal eigenvectors put u=sqrt(lambda1)e1,v=sqrt(lambda2)e2. The stated rotation is orthogonal, hence a column isometry, and w1,w2 have the two displayed strictly positive weights. On0<theta<pi/4, w1's e2/e1 ratio is sqrt(lambda2/lambda1)tan(theta)>0 and strictly increasing; w2 has negative ratio. No row phase can alter these ratios; w1 cannot match w2 or an untouched orthogonal eigenvector ray. Thus distinct angles yield distinct unordered weighted projector ensembles, even when lambda1=lambda2. This independently proves infinitely many ensembles of each rho and therefore alternatives to any one initial ensemble.",
+    "longer_isometry": "The displayed first column(1/sqrt2,1/2,-1/2) and second column(0,1/sqrt2,1/sqrt2) have squared norms1 and inner product0. Add s-2 disjoint identity rows/columns to obtain(s+1)-by-s V with V^dagger V=I. The three weights are lambda1/2 and twice(lambda1/4+lambda2/2), summing to lambda1+lambda2, all strictly positive. The first output lies on e1; the other two have nonzero v coefficients and opposite u coefficients, so their rays are pairwise distinct and cannot be untouched spectral rays. This is a genuine length increase over the rank-s spectral ensemble, not an assertion that every k>r or every initial list automatically lengthens.",
+    "boundaries_and_minimality": "Pure/rank-one rho is outside the mixed-state target; finite trace1 excludes an empty positive ensemble and rank0. Zero eigenvalues are omitted from the positive spectral witness. Zero initial weights cause no problem in the identity. The repair derives rather than assumes positivity and genuine variation, keeps the original question, and corrects every affected normalization/nonuniqueness answer/rubric/step. No resource or HJW reachability classification for every possible input ensemble is asserted or needed for the existence conclusion."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full: the generic preservation/normalization identity and separate existential witnesses jointly prove the actual question. 'At most k positive entries' and 'generally' are not silently upgraded to all isometries.",
+    "rubric": "r1 checks conjugation/index(m,l); r2 checks recovery/norm trace; r3 explicitly disallows zero division and exact-k positivity claims; r4 requires actual projective variation and a valid existential longer witness rather than parameter counting. All criteria are sound.",
+    "exposition": "Three claims and the core summary retain graph/support scope, correctly distinguish physical ensemble freedom from isometry freedom, and handle zero outputs before normalization. No remaining false noninjectivity inference found.",
+    "necessity_minimality": "Answer/rubric/exposition repair suffices: original question is a true construction/existence target with 'generally', not an all-isometries-injectivity statement. No hypothesis or question correction is required."
+  }
+}

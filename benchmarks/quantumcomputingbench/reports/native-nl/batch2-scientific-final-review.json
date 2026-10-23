@@ -1,0 +1,343 @@
+{
+  "reviewer": "scientific-algorithms-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "status": "final",
+  "supersedes": [
+    "reports/native-nl/batch2-scientific-review.json",
+    "reports/native-nl/batch2-scientific-review-supplement.json"
+  ],
+  "note": "Single self-contained final review of all 20 items (core_ids 201-220) in MAIN benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json. This file is the authoritative full-20 record and should be ingested INSTEAD OF the original + supplement (which are preserved on disk for audit but together describe the same 20 same-reviewer records; use this one to avoid duplicate overlapping records). Incorporates the resolved primary-source hash and the resolved Eq.(9.95) finding inline.",
+  "verdict_summary": {
+    "total": 20,
+    "accept": 19,
+    "pending": 1,
+    "reject": 0,
+    "pending_keys": [
+      "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity"
+    ]
+  },
+  "primary_source_resolution": {
+    "pdf_path_inspected": "temp/qasc-primary.pdf (5,718,900 bytes)",
+    "computed_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "claimed_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "verdict": "MATCH - caveat RESOLVED. Direct Python hashlib.sha256 of the actual PDF binary equals the authored primary_source sha256. The earlier mismatch was only against a derived text extract (temp/qasc-batch2-primary.txt, 79823d64...e0cd5); the real PDF is authentic and all source_refs primary digests are verified."
+  },
+  "eq_9_95_resolution": {
+    "method": "rendered PDF page (pdf index 159 / printed p.160) at 4x zoom, read visually",
+    "actual_source_form": "O_A |i>|0>|j> = |i> ( sqrt(A_ij) |0> + sqrt(1 - |A_ij|) |1> ) |j>",
+    "verdict": "sqrt(1 - |A_ij|) is CORRECT, not a typo: square-root entry oracle (|0> amplitude sqrt(A_ij)), so |A_ij| + (1-|A_ij|) = 1 under ||A||_max<=1. Prior 'quirk/typo' note withdrawn. Item 215 is fully faithful and remains accept."
+  },
+  "duplicate_core_scan": "Parent committed native_nl files (planned/state_preparation/block_encoding/foundations/expansion1/expansion2/repairs-native-v2) scanned: NO core_id collision (qcb-core-plan-2xx range unused by committed data; parent planned.json uses plan-001..012; other files use be-/sp-/la- prefixes) and NO content overlap - chapter 9.4-9.9 POVM/state-discrimination/amplitude-oracle/sparse/Hermitian/beyond-basis and chapter 10 SVT/qubitization material do not appear in committed items. The one 'POVM' hit (plan-001) is a Chapter-2 Naimark/update-rule item from a different source. Generic A/alpha postselection cores (be-007, plan-006) share only the 1/alpha^2 flavor, not the POVM/amplitude-amplification/Chebyshev results. Intra-batch: the 201/202/203, 204/205, 207/208/209 clusters are distinct facets, not duplicates.",
+  "scope_note": "Hashes are of the exact MAIN items (confirmed unchanged after the plan-204 supporting_nodes metadata fix). Coordinator-flagged 208 (strict ||A||_max<1 necessity) and 210 (alpha=1 global optimality) were fixed by the author; 208 is fully correct (accept) while 210 retains a residual A=0 edge-case overclaim in its optimality discussion and is PENDING a ||A||>0 qualifier. All 20 cores are new_distinct. No Lean/formal verification run (source-inspection only).",
+  "items": [
+    {
+      "key": "qcb-core-plan-201-povm-lcu-success-probability-completeness",
+      "authored_sha256": "998c7ee71607bbd12b242a72eaa188b7a847a3834fa4109d29e9daffbf299de4",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Lemma 9.15 POVM-via-block-encoding. Verified against primary Eq.(9.58)-(9.62): W block-diagonal gives W|u>|0^a>|psi>=(1/(beta sqrt(2^m))) sum_i |i>|0^a>sqrt(P_i)|psi>+|perp>; postselection on 0^a kills |perp> (each (<0^a|tensorI)|perp_i>=0); orthonormality of |i> removes cross terms; sum_i||sqrt(P_i)|psi>||^2=sum_i<psi|P_i|psi> uses sqrt(P_i)^dag sqrt(P_i)=P_i (PSD root, correct); completeness sum_i P_i=I collapses to <psi|psi>=1 giving P(succ)=1/(beta^2 2^m), matching Eq.(9.62). Assumptions (shared a, shared beta, uniform PREP, normalized psi) are the real load-bearing hypotheses. P(succ) psi-independence correctly attributed to completeness. Sound. Distinct from parent generic A/alpha postselection cores (be-007, plan-006) and from Chapter-2 POVM item plan-001 (different source/result).",
+      "checked_sources": [
+        "Lemma 9.15",
+        "Eq.(9.58)-(9.62)",
+        "P(succ)=1/(beta^2 2^m)",
+        "PDF p.153"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-202-povm-conditional-output-state-update-rule",
+      "authored_sha256": "97bb20ec4b4d4e5bd088ac67fc8802ec3e5dd114d120085a8455c4e4eaa36769",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Lemma 9.15 continuation, verified vs Eq.(9.63)-(9.66): normalization of sum_i|i>sqrt(P_i)|psi>=1 by orthonormality+completeness (Eq.9.64); P(i|succ)=<psi|P_i|psi> (Eq.9.65); collapsed state sqrt(P_i)|psi>/sqrt(<psi|P_i|psi>) (Eq.9.66); pure->mixed lift by linearity to rho->sqrt(P_i)rho sqrt(P_i)/Tr(P_i rho) matching update rule Eq.(9.51); unconditional P(i)=(1/(beta^2 2^m))<psi|P_i|psi> chains 201 correctly. All steps correct and faithful. Distinct result from 201 (output statistics/update vs scalar success probability).",
+      "checked_sources": [
+        "Lemma 9.15",
+        "Eq.(9.63)-(9.66)",
+        "update rule Eq.(9.51)",
+        "PDF p.153-154"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+      "authored_sha256": "de889c56532a93095c9e6c06aa5fea4bb748f4a5248da25b232c916715a6b345",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Verified vs Eq.(9.57)/(9.67): naive repetition cost 1/P(succ)=beta^2 2^m (exponential in m); good amplitude sqrt(p); amplitude amplification rotates angle theta (sin^2 theta=p) to pi/2 in O(1/theta)=O(1/sqrt(p))=O(beta 2^{m/2}) rounds, each one W and one W^dag; O(log(1/delta)) outer repetitions; total O(beta 2^{m/2} log(1/delta)), matching Eq.(9.57). Quadratic-speedup angle argument correct and correctly hedged, not merely quoted. Distinct from 201: 201 derives the probability, 203 derives query complexity/amplification; rubric grades 1/sqrt(p) scaling + log factor, not the probability itself, so no restatement of the same relation.",
+      "checked_sources": [
+        "Lemma 9.15",
+        "Eq.(9.57) O(beta 2^{m/2} log(1/delta))",
+        "Eq.(9.67)",
+        "PDF p.153-154"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+      "authored_sha256": "5b32318291ccee47111229ffbfd9d245c2b2eb7fad235b9374575c5bf3467453",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 9.14 impossibility (counterexample). Verified numerically for c in {0.3,0.6i,0.8}: PSD zero-expectation forces E_psi=a|phi_perp><phi_perp|, E_phi=b|psi_perp><psi_perp|; <psi|phi_perp>=sqrt(1-|c|^2) gives a=b=1/(1-|c|^2); Tr(E_psi+E_phi)=2/(1-|c|^2)>2=Tr(I) for 0<|c|<1 (checked: 2.198, 3.125, 5.556) so no two-element unambiguous POVM; adding P_?=I-P_psi-P_phi with weights 1/(1+|c|) restores a valid POVM. Impossibility argument genuine and correct. The 0<|c|<1 domain correctly excludes the c=0 orthogonal case (where two outcomes would suffice). Distinct core from 205 (necessity-of-inconclusive vs validity-of-construction). Parent-fixed metadata only: step2 supporting_nodes now includes concept:matrix-analysis; Q/A/reference unchanged, no math impact.",
+      "checked_sources": [
+        "Example 9.14",
+        "Eq.(9.53) psi_perp/phi_perp",
+        "Eq.(9.54) POVM P_psi,P_phi,P_?",
+        "PDF p.152-153"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-205-state-discrimination-povm-validity-unambiguity",
+      "authored_sha256": "6264970fa755867e5bccc7bf698cb648c81f79dd74642dcdec20c4fa18bf9e6d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 9.14 validity (proof). Verified numerically: (ii) sum=I by definition of P_?; (iii) <phi|phi_perp>=0 and <psi|psi_perp>=0 (~1e-16) giving unambiguity <phi|P_psi|phi>=<psi|P_phi|psi>=0; P_psi,P_phi PSD as nonneg scalings of rank-1 projectors; S=P_psi+P_phi has eigenvalues {1,(1-|c|)/(1+|c|)} so ||S||=1 and P_?=I-S has eigenvalues {0,2|c|/(1+|c|)}>=0 (confirmed at |c|->0, 0.5, 0.999). All PSD checks correct across the |c|<1 range. Distinct from 204.",
+      "checked_sources": [
+        "Example 9.14",
+        "Eq.(9.53)-(9.54)",
+        "P_? PSD via ||P_psi+P_phi||=1",
+        "PDF p.152-153"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "authored_sha256": "5f9387c3a9ba35e89bff865644009f6afe972e927504d84f20f9b7932771ff10",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Boundary / hypothesis-diagnosis on Lemma 9.15. Verified: (a) distinct beta_i -> postselection yields (1/sqrt(2^m)) sum_i (1/beta_i)|i>sqrt(P_i)|psi>, statistics prop to (1/beta_i^2)<psi|P_i|psi>, i.e. effective family {P_i/beta_i^2} need not sum to I, so the completeness collapse that produced 1/(beta^2 2^m) genuinely breaks - correct. (b) per-branch ancillas a_i -> no single |0^a><0^a| projector flags success across all branches, so (I tensor <0^a| tensor I)|perp>=0 fails - correct. Minimal fixes (pad to common beta / non-uniform PREP; shared ancilla a=max a_i) are sound. Both named assumptions are indeed load-bearing. Accurate.",
+      "checked_sources": [
+        "Lemma 9.15 shared a / shared beta hypotheses",
+        "W=sum_i|i><i| tensor U_i",
+        "PDF p.153"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "authored_sha256": "cbe9903e218c8b1b7cfaa704a9b2f9d9b03b3617974132a8dd2ea215965ac2fa",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 9.16, verified vs Eq.(9.70)-(9.71): O'_A loads |theta~_ij>; CR gives (cos(pi theta~)|0>+sin(pi theta~)|1>)|theta~> with sin>=0 on range and A~_ij=cos(pi theta~); (O'_A)^{-1} depends only on unchanged (i,j), acts as identity on the ancilla, so it uncomputes |theta~> coherently across both ancilla branches. Decoherence/which-path argument correct: discarding the entangled work register would leave a marker that kills (i,j)-branch interference downstream, so the final inverse query is mandatory - matches source emphasis on uncomputation. Faithful, original phrasing.",
+      "checked_sources": [
+        "Example 9.16",
+        "Eq.(9.68)-(9.71) compute-rotate-uncompute",
+        "PDF p.154-155"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+      "authored_sha256": "6e9f0b79ef71bb6f5589bb3a29dc7d2055d72bb53479d2b6d46473bbd634fd09",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Boundary, Section 9.6 Eq.(9.68). Coordinator-flagged concern (false 'strict <1 necessary' / |A_ij|=1 degenerate) CHECKED and found RESOLVED in the final artifact: reference answer, rubric r1-r2, steps and native_nl state the amplitude A_ij|0>+sqrt(1-|A_ij|^2)|1> is a valid normalized state iff |A_ij|<=1, with |A_ij|=1 explicitly LEGITIMATE (only the sqrt term vanishes), impossibility restricted to |A_ij|>1, and ||A||_max<1 called a sufficient convenience/numerical margin NOT a necessity. Regime analysis mathematically correct, does not overclaim necessity. Preprocessing A->A/M with M>=||A||_max correctly tied to subnormalization. Accept.",
+      "checked_sources": [
+        "Section 9.6",
+        "Eq.(9.68)",
+        "standing assumption ||A||_max<1",
+        "alpha=s||A||_max (Section 9.7)",
+        "PDF p.154-156"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "authored_sha256": "50b0dd680641556597ed08eccfccdd188e3fa9a3f523bf5230ff72ca68416052",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Concept, Section 9.6 / Example 9.16. Verified: bit oracle = digital/query interface (explicit readable string, fan-out/arithmetic); amplitude oracle = analog interface consumed by block encodings; conversion = arithmetic query + controlled rotation (irreducible digital->analog step) + inverse query (uncompute); reversibility forces counting both forward and inverse queries ('no free cleanup'); d-bit work register borrowed clean (returned to |0^d>), amplitude qubit persistent output. Resource accounting accurate and consistent with 207. Distinct facet (model comparison / cost roles) from 207 (construction) and 208 (normalization regime).",
+      "checked_sources": [
+        "Section 9.6",
+        "Eq.(9.68) amplitude oracle",
+        "Eq.(9.69) bit oracle",
+        "Example 9.16",
+        "PDF p.154-155"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+      "authored_sha256": "1bfc7fa6882126f4d53d012cace884eb17770cb1b3b3b3590c5cdfbaa09d3bb3",
+      "verdict": "pending",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Example 9.17 (Eq.9.72-9.73). The core (1,1)-block-encoding identity <0|<i|O_A|0>|j>=A_ii delta_ij is CORRECT and holds for ALL diagonal A with ||A||_max<=1, INCLUDING A=0 (both sides 0); c(j)=j triviality (no O_c) correct; the earlier coordinator-flagged false GLOBAL-optimality claim (alpha=1 optimal for every A) WAS fixed by the author (reference/rubric r4/step4/native_nl now say alpha>=||A||=max_i|A_ii|, alpha=1 saturates iff ||A||=1, and for ||A||<1 a smaller alpha=||A|| is achievable). HOWEVER a residual EDGE-CASE OVERCLAIM remains and is why this item is PENDING: the 'smaller alpha=||A|| achievable, e.g. by encoding A/||A||' statement FAILS at the zero matrix A=0, which is in the stated domain (||A||_max=0<=1): 'A/||A||' is division by zero/undefined, and a subnormalization must be strictly positive (the infimum of valid alpha for A=0 is 0 but UNATTAINED, so there is no achievable minimal alpha=||A||=0). MINIMAL FIX: add the qualifier ||A||>0 (equivalently A!=0) to the 'smaller alpha achievable' claim in reference_answer, rubric r4, semantic_steps[4] and native_nl core_summary; optionally note the A=0 degenerate case where no positive-minimal alpha exists. The graded identity portion is unaffected; only the optimality discussion needs the qualifier.",
+      "checked_sources": [
+        "Example 9.17",
+        "Eq.(9.72)-(9.73)",
+        "U_A in BE_{1,1}(A)",
+        "alpha>=||A||=||A||_max floor",
+        "A=0 degenerate case",
+        "PDF p.155"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+      "authored_sha256": "7f9bb92c74d9a700b25280aca05005eec17229301220e840d47315caa459c349",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 9.7 / Eq.(9.77)-(9.80). Verified: an s-regular bipartite graph has chromatic index s (Koenig line-coloring), so edges partition into s disjoint perfect matchings; each matching gives a bijection j->c(j,ell) packaged by O_c; A^{(ell)} supported on matching ell is 1-sparse with A=sum_ell A^{(ell)}; equal-weight LCU with D=H^{tensor s} has coefficient 1-norm s giving alpha=s=s||A||_max, consistent with ||A||<=s||A||_max (Lemma 2.46) and the floor alpha>=||A||. All claims correct; source attributes the matching decomposition to Koenig (Die25 Prop 5.3.1) exactly as cited. 'alpha=s natural rather than smaller' is explicitly hedged ('with this oracle structure','generally','worst case'), consistent with the 210 lesson, so NOT an overclaim here. Distinct core.",
+      "checked_sources": [
+        "Section 9.7",
+        "Koenig line-coloring (Die25 Prop 5.3.1)",
+        "Eq.(9.77) A=sum A^{(ell)}",
+        "Eq.(9.78)-(9.80)",
+        "PDF p.155-156"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+      "authored_sha256": "aefe75492591460ea32a4f06519768441d70be5c931d84fe59bee5132fb035e5",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Proposition 9.19 / Eq.(9.81)-(9.84). Verified the inner-product propagation: D,O_A,O_c map |0>|0^s>|j> to (1/sqrt(s)) sum_ell (A_{c(j,ell),j}|0>+...|1>)|ell>|c(j,ell)>; Hermiticity of D propagates the target to (1/sqrt(s)) sum_{ell'}|0>|ell'>|i>; <0| kills the |1> branch, <ell'|ell>=delta collapses the double sum, <i|c(j,ell)>=delta selects the unique matching, yielding (1/s)A_ij (unique ell if A_ij!=0, else 0). Matches Eq.(9.84) exactly. Correct. Distinct from 211 (graph decomposition vs explicit matrix-element verification).",
+      "checked_sources": [
+        "Proposition 9.19",
+        "Eq.(9.81)-(9.84)",
+        "U_A in BE_{s,s+1}(A)",
+        "PDF p.156-157"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+      "authored_sha256": "e2e2c312c8df17df1c9d781ee2b5c1b1654ff61bef5f2838e02ff372235e4160",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Proposition 9.22 / Fig. 9.8 / Eq.(9.88)-(9.92). Verified the two-oracle (O_r,O_c) model: D,O_c,O_A,SWAP on source and D,O_r on target give (1/s) sum_{ell,ell'} A_{c(j,ell),j} delta_{i,c(j,ell)} delta_{r(i,ell'),j}; the paired deltas enforce column-side routing c(j,ell)=i and row-side routing r(i,ell')=j; unique surviving term (1/s)A_ij for A_ij!=0, 0 otherwise. The explanation that arbitrary O_A rotations on zero entries are harmless (no (ell,ell') selects a non-pattern position) matches the source remark after Eq.(9.89). Matches Eq.(9.92). Correct. Distinct from 212 (single-oracle Oc vs dual Or/Oc model, BE_{s,n+1}).",
+      "checked_sources": [
+        "Proposition 9.22",
+        "Fig. 9.8",
+        "Eq.(9.88)-(9.92)",
+        "U_A in BE_{s,n+1}(A)",
+        "PDF p.158-159"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+      "authored_sha256": "79665d5f697e8d8b2f715f70e1c498fe5c56833d56bad57d567ea53cab3597f8",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 9.8 / Definition 9.23. Verified: the block-encoding definition fixes only the top-left ancilla-0^m block =A/alpha, leaving other blocks free up to global unitarity, so A=A^dag does not force U_A=U_A^dag - matches source statement that only the upper-left block is guaranteed Hermitian. Concrete example correct: amplitude-oracle encoding of a real diagonal entry a acts as rotation [[a,-sqrt(1-a^2)],[sqrt(1-a^2),a]], non-symmetric hence non-Hermitian though its (1,1) block is a. Definition 9.23 (U_A=U_A^dag, set HBE) correctly stated as strictly stronger. Qubitization motivation (reflection on 2D subspace, two-step closure, Chebyshev) correct and consistent with item 220. Distinct boundary core.",
+      "checked_sources": [
+        "Section 9.8",
+        "Definition 9.23 (HBE)",
+        "Example 9.17",
+        "qubitization closure Eq.(10.30)-(10.40)",
+        "PDF p.159,163-168"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+      "authored_sha256": "3942230741d9465b0a052e3148a0f8ea034c309d39a5e8c5d4b57fcc7e4ff345",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Proposition 9.24 / Fig. 9.9 / Eq.(9.93)-(9.98). Verified the two-register symmetric propagation: ancilla <0| overlaps keep sqrt(A_{c(j,ell),j}) from ket and conjugate sqrt(A_{c(i,ell'),i})^* from bra; deltas delta_{i,c(j,ell)}, delta_{c(i,ell'),j} select the unique matched term (1/s) sqrt(A_ij) sqrt(A_ji)^*; Hermiticity A_ji=A_ij^* gives sqrt(A_ji)^* = (sqrt(|A_ij|)e^{-i theta/2})^* = sqrt(|A_ij|)e^{i theta/2} = sqrt(A_ij), so product = (sqrt(A_ij))^2 = A_ij, giving (1/s)A_ij and U_A in HBE_{s,n+2}(A). Matches Eq.(9.98); the exact point where Hermiticity recombines the two half-entries is correctly identified. SOURCE-FIDELITY NOTE (RESOLVED): the primary text Eq.(9.95) reads sqrt(1-|A_ij|) (verified on the rendered PDF page, pdf index 159 / printed p.160). This is CORRECT, not a typo: Eq.(9.95) is a SQUARE-ROOT entry oracle whose |0> amplitude is sqrt(A_ij), so |sqrt(A_ij)|^2 + |sqrt(1-|A_ij|)|^2 = |A_ij| + (1-|A_ij|) = 1 under ||A||_max<=1 (distinct from amplitude oracle 9.68 whose |0> amplitude is A_ij, needing sqrt(1-|A_ij|^2)). The author reproduces the source exactly and the result uses only the sqrt(A_ij)|0> branch. 215 fully faithful. Correct. Distinct HBE core.",
+      "checked_sources": [
+        "Proposition 9.24",
+        "Fig. 9.9",
+        "Eq.(9.93)-(9.98)",
+        "A_ji=A_ij^* recombination",
+        "square-root oracle sqrt(1-|A_ij|) rendered-page verified",
+        "U_A in HBE_{s,n+2}(A)",
+        "PDF p.159-161"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-216-block-encoding-beyond-computational-basis-def925",
+      "authored_sha256": "a45fad07952e92ab5f9882bdc76b32332011cdaca9dc1d82f0447f604408d96a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 9.9 / Eq.(9.99)-(9.105) / Definition 9.25. Verified: Xi_N|e_j>=|phi_j>, (Xi')_{N'}|e_i>=|psi_i> give A~_{ij}=<psi_i|U_A|phi_j>; with Pi=sum_j|phi_j><phi_j|, Pi'=sum_i|psi_i><psi_i|, Pi' U_A Pi = sum_{i,j}|psi_i>A~_{ij}<phi_j|, so exact encoding iff A~=A; approximate condition ||A-alpha A~||<=eps (Definition 9.25); reduction for Pi=Pi'=|0^m><0^m| tensor I, N'=N recovers A~_{ij}=<0^m|<i|U_A|0^m>|j>, the standard top-left block. All linear-algebra steps correct and faithful to the subspace generalization. Distinct core.",
+      "checked_sources": [
+        "Section 9.9",
+        "Eq.(9.99)-(9.105)",
+        "Definition 9.25 generalized block encoding",
+        "PDF p.161-162"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+      "authored_sha256": "3179458064ec2be852f8c1a86a5f025f21d13ead36c309a1c707fb037741032b",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 10.1 / Definitions 10.1-10.4 / Eq.(10.15)-(10.16). Verified: for Hermitian A=VDV^dag with SVD Sigma=|D|, W=V sign(D): odd f gives f^diamond(A)=V sign(D) f(|D|) V^dag and f(|lambda_i|)=sign(lambda_i) f(lambda_i) so sign(D)f(|D|)=f(D), giving f(A); even f gives f^triangleright(A)=V f(|D|) V^dag with f(|lambda_i|)=f(lambda_i)=f(D), giving f(A). The 'definite parity removes the |lambda| vs lambda sign ambiguity' explanation correct and matches Eq.(10.15)-(10.16); holds including sigma_i=0. Both cases handled correctly. Distinct core.",
+      "checked_sources": [
+        "Definitions 10.1-10.4",
+        "Eq.(10.7)-(10.16)",
+        "SVT = eigenvalue transform for definite parity",
+        "PDF p.164-165"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+      "authored_sha256": "e73d8ffe7b881317708ac691ea68f900310570573254d38b619574d1266bf99f",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Eq.(10.17)-(10.23). Verified numerically (A=[[1,2],[0,3]]): A~=[[0,A^dag],[A,0]] Hermitian; A~|0>|v_i>=sigma_i|1>|w_i>, A~|1>|w_i>=sigma_i|0>|v_i>, so A~|z_i^pm>=pm sigma_i|z_i^pm> (confirmed for both singular values 3.650, 0.822). Block expansion of f(A~) via f_even/f_odd into triangleright/diamond/triangleleft generalized functions correct; even f -> f(A~)|0>|psi>=|0>f^triangleright(A)|psi>, odd f -> |1>f^diamond(A)|psi>, with deterministic ancilla outcome because definite parity zeroes one component. Matches Eq.(10.22)-(10.23). Correct. Distinct from 217 (Hermitian-A equivalence vs general-A dilation mechanism).",
+      "checked_sources": [
+        "Eq.(10.17)-(10.23)",
+        "dilation A~=[[0,A^dag],[A,0]], eigenvalues pm sigma_i",
+        "parity block split",
+        "PDF p.165-166"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+      "authored_sha256": "746844952ef066e4fc25342d11e8b8239ffbb60b2e131ca57288f693807531f7",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 10.1 (p.166), A^k not an SVT / inverse exception. Verified: A^2=W Sigma (V^dag W) Sigma V^dag exhibits an interior unitary M=V^dag W between two Sigma factors; the three SVT forms carry a single diagonal g(Sigma) with no interior unitary, so A^2 is not an SVT unless M is diagonal (normal/special case); A^{-1}=V Sigma^{-1} W^dag (verified numerically) has the odd-SVT diamond form (f(x)=x^{-1}, f_SV(A^dag)=A^{-1}) with no cross term because inversion transforms a single Sigma factor. The exp/log non-SVT remarks match the source's own claim by analogy. Structural obstruction argument correct. Correct counterexample. Distinct core.",
+      "checked_sources": [
+        "Eq.(10.20) parity-block form",
+        "A^k not SVD-expressible",
+        "inverse exception A^{-1}=V Sigma^{-1} W^dag",
+        "PDF p.166"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+      "authored_sha256": "6ded95751b9bcf380e880ce6c1ecbb363fb63149d41e8374e864089280da8bf9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Section 10.2.1 / Eq.(10.25)-(10.41). Verified numerically (lambda=0.6): U_A Hermitian with U_A^2=I; applying U_A twice yields U_A|perp_i>=sqrt(1-lambda_i^2)|0^m>|v_i>-lambda_i|perp_i>, so H_i is 2D invariant with reflection matrix [[lambda,sqrt(1-lambda^2)],[sqrt(1-lambda^2),-lambda]]; [Z_Pi]=diag(1,-1); O=U_A Z_Pi = rotation [[lambda,-sqrt(1-lambda^2)],[sqrt(1-lambda^2),lambda]]; O^k top-left = T_k(lambda) (confirmed k=1,2,3,5 against cos(k arccos lambda)); summing over i gives O^k in BE_{1,m,0}(T_k(A)). The claim that Hermiticity (U_A^2=I, second application) is exactly what closes the 2D subspace is correct and correctly flagged; lambda=pm1 edge handled separately. Matches Eq.(10.40)-(10.41). Correct. Distinct core; capstone of the qubitization chapter.",
+      "checked_sources": [
+        "Section 10.2.1",
+        "Eq.(10.25)-(10.41)",
+        "iterate O=U_A Z_Pi",
+        "O^k in BE_{1,m,0}(T_k(A))",
+        "PDF p.167-168"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

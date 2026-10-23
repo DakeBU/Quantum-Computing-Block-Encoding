@@ -1,0 +1,212 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-515",
+  "supersedes_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+  "supersedes_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+  "supersedes_contract_hash": "fa874276dfb0cbc5379d847074a106af8d877df1dba90ef559690fd9f8494b8c",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-515-textbook-question-v2-marked-fraction-rounding",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction. Keep known M>=1 among N, including M=N, the original normalized-good/bad convention as a definition only where its component is nonzero, and sin(half-angle)=sqrt(M/N). Do not add M<N or a sparse-mark standing premise. Correct the question's conflation of the angle phi from the bad direction with the full iteration angle2phi. Replace the vague uniform positive 'optimal k/near-one' demand by an explicitly first-peak integer schedule, quantitative guaranteed success and sparse-regime asymptotic, while retaining/refuting the predecessor's all-marked plane demand. Other eight contract fields, six ordered node lists and source/family/split scope remain. This is changed requested reasoning, not an equivalent proof or a global optimality claim.",
+  "question": "Keep the original assumptions: M>=1 marked states among N basis states, M known in advance, so the allowed domain includes M=N. Let Π_mark project onto the marked basis states, psi be uniform, and G=(2|psi><psi|-I)(I-2Π_mark). Assess the predecessor's universal construction of normalized good and bad superpositions, its phrase that the angle from the bad state has the stated half-angle, and its uniform 'optimal iteration count/near-one' conclusion. Do not silently assume M<N. For 1<=M<N construct g,b, define phi=arcsin(sqrt(M/N)), identify the actual angle from b to psi and the full iteration angle2phi, and prove success after integer k is sin^2((2k+1)phi). For M/N<=1/2 choose a nonnegative integer nearest to pi/(4phi)-1/2 and prove a quantitative success bound from its rounding error; for M/N>1/2 examine k=0. State exactly which Theta(sqrt(N/M)) assertion holds as M/N tends to zero, rather than claiming a positive iteration optimum uniformly or a global maximum over all integers. Treat M=N separately without defining a bad vector. Explain why M calibrates this direct stopping rule, while not being logically necessary for every possible search method. Count only Grover marking-reflection calls here; no unproved finite-bit/gate or verification cost is free.",
+  "reference_answer": "Write r=M/N. The unique domain implication is 1<=M<=N, not M<N. When M<N, g=M^(-1/2)sum_marked|x> and b=(N-M)^(-1/2)sum_unmarked|x> are normalized and orthogonal, and psi=sqrt(r)g+sqrt(1-r)b. With phi=arcsin(sqrt(r)), the angle FROM b TOWARD g of psi is phi, not an angle whose half is phi; the iteration angle is2phi. On this plane, I-2Π_mark acts as diag(-1,1), and the diffusion reflection has matrix [[2sin^2(phi)-1,2sin(phi)cos(phi)],[2sin(phi)cos(phi),2cos^2(phi)-1]]. Their product in ordered(g,b) is [[cos2phi,sin2phi],[-sin2phi,cos2phi]], so G^k psi=sin((2k+1)phi)g+cos((2k+1)phi)b and the success probability is sin^2((2k+1)phi). The marking reflection is not globally I-2|g><g| when M>1; that rank-one expression is only its restriction to the relevant plane. For 0<r<=1/2, put x=pi/(4phi)-1/2>=1/2 and choose any nearest nonnegative integer k. Then |k-x|<=1/2, hence |(2k+1)phi-pi/2|<=phi. Success is therefore at least cos^2(phi)=1-r>=1/2. This is a first-peak rounding rule, not a global optimizer over every later integer iterate. As r tends to zero, phi=sqrt(r)(1+O(r)), k=pi/(4sqrt(r))+O(1), so k=Theta(sqrt(N/M)) and the success lower bound1-r tends to one. The success probability need not approach one for an arbitrary fixed fraction: r=1/2 gives1/2 for every integer k. For r>1/2, k=0 already succeeds with probability r>1/2, so a positive Theta(sqrt(N/M)) minimal iteration count is not a uniform claim. The selected total1+k is O(sqrt(N/M)) over the whole promised domain, whereas the sparse-regime iteration asymptotic has the stated meaning. At M=N the good state equals psi, the unmarked sum is zero and cannot be normalized. G psi=-psi, so G^k psi=(-1)^k psi and success is one already at k=0; no plane or angle-from-b assertion is defined there. The formal parameter phi=pi/2 may still be used in the scalar sine-square identity, not to fabricate b. M=0 is outside the retained promise and would have no normalized good state. Known M supplies r and the calibrated stopping rule. Without that information a chosen fixed k can over- or under-rotate; this is a limitation of this direct rule, not an impossibility of unknown-M algorithms. Alternatives require separately specified schedules/information and their own proof/cost. Each Grover iteration uses one marking reflection; preparation, diffusion synthesis, verifying/repeating outputs and finite-bit gates are not made free by this algebraic count. The question revision retains/refutes the old endpoint and ambiguous count demands instead of pretending they were proved.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Retains M=N in the promised domain, explicitly exposes the zero unmarked sum and answers that case without inventing a normalized bad state; does not silently replace assumptions by M<N."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "For 1<=M<N derives normalized g,b, the geometric angle phi versus iteration2phi, correct ordered matrices and all-k success; distinguishes the global marked-subspace projector from its rank-one plane restriction."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Proves the nearest-first-peak rounding error at most phi and success>=1-r for r<=1/2, handles r>1/2 by k=0, and uses r=1/2 to refute a universal near-unit guarantee."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "States k=pi/(4sqrt(r))+O(1) only as r->0, not a uniformly positive/global optimum; explains known-M calibration versus unknown-M alternatives and keeps the oracle/resource boundary explicit."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Interior multi-marked Grover dynamics has angle2arcsin(sqrt(M/N)); nearest-first-peak rounding gives bounded success, sparse fractions yield the usual iteration asymptotic, and the all-marked case needs zero iterations and has no bad vector.",
+    "semantic_steps": [
+      {
+        "claim": "For M<N define normalized g,b and decompose psi; at M=N the bad vector does not exist and psi is already entirely good.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "sin(phi)=sqrt(M/N), where phi is the actual angle from b when b exists;2phi is the full iteration angle.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The two reflection product has the exact oriented rotation matrix on the nontrivial good/bad plane, not a global rank-one marking reflection.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The good success probability is sin^2((2k+1)phi); at M=N the exact state gains (-1)^k and probability remains1.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Nearest-first-peak rounding gives success>=1-M/N when M/N<=1/2 and sparse-regime k=Theta(sqrt(N/M)); k=0 suffices for larger fractions.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "Known M calibrates this direct rule; unknown M can cause over/under-rotation, not a general impossibility for all search algorithms.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Entire lin-wiebe-2026-qasc metadata entry230-238 read: URL, April29 2026/447-page edition and historical PDF pin. This LF authenticates metadata only, not source proof or binary identity. Genuine primary text access/limitations below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete authored qcb-core-plan-515-grover-multi-marked-iteration-count question/assumptions/conventions/answer/rubric/semantic steps and actual whole prepared counterpart read. Content provenance only; mathematical corrections are derived, not certified by this QA file."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Historical prepared original loaded through release.checked()[2] and bound as a whole, not a substituted current-reader row. No change to frozen content."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_candidate_pending_distinct_review",
+    "authored_at_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "private_origin": "_review_tmp/plan-515-marked-fraction-rounding-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-515-marked-fraction-rounding-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "fa874276dfb0cbc5379d847074a106af8d877df1dba90ef559690fd9f8494b8c",
+      "successor_contract_hash": "15b71c7d5e6643e4a7266d3ee33ef290f9c40ce59973d7e7b627723f74b4742d",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [
+        "M at least one and known in advance; marked set has M elements among N"
+      ],
+      "original_conventions": [
+        "Good/bad states are the normalized marked/unmarked superpositions",
+        "sine of the half-angle equals sqrt(M/N)"
+      ],
+      "preserved_family": "qsc-grover-amplitude-amplification",
+      "preserved_split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:approximation",
+        "concept:operator-theory",
+        "concept:complexity"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 6,
+      "original_ordered_step_nodes": [
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:operator-theory"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:operator-theory"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "prior_exposure": {
+      "source_and_original": "This author read the entire actual prepared original, current withdrawal and complete bound finding, including old imported accept metadata. Parent supplied defect leads; neither those leads nor prior verdicts are proof. The source was then reread and the arguments independently reconstructed. This is not source-blind authorship.",
+      "withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "withdrawal_review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "75d97ae9fc5e1d85f1e51d6a6f4c84fb6d021b76bea6a8e4d9e8c4a18940f840",
+      "actual_prior_reviewer": "/root/qcb_native_comparison",
+      "withdrawal_bindings_verified": true
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "edition_observed": "Cover April29,2026;447 pages",
+        "operative_regions": "Complete Section11.1/Algorithm11.1 and Theorem11.2 proof Eq11.2-11.22 for the two-reflection and integer-rounding mechanism; full Example11.3 Eq11.23-11.28 including the sqrt(N-M) denominator and bounded-constant success wording. First-peak nearest-integer bound, all-marked case and non-global-optimality clarification are explicit reconstruction, not an inherited source theorem.",
+        "access": "Primary PDF text genuinely retrieved through web extraction in this objective. One group of requests failed, direct-URL retry succeeded. No PDF redistributed.",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "binary_hash_independently_verified": false,
+        "visual_check": "Attempted Fig11.1 page screenshot; service reported screenshot unavailable. No visual source-layout seal or verified binary claim.",
+        "limits": "The cover/anchors match the recorded edition, but this author did not obtain and hash original PDF bytes. Source statements themselves have assessed defects; primary-source presence is not proof of their correctness."
+      }
+    ],
+    "source_proof_coverage": {
+      "mathematical_nodes": "Complete Section11.1/Algorithm11.1 and Theorem11.2 proof Eq11.2-11.22 for the two-reflection and integer-rounding mechanism; full Example11.3 Eq11.23-11.28 including the sqrt(N-M) denominator and bounded-constant success wording. First-peak nearest-integer bound, all-marked case and non-global-optimality clarification are explicit reconstruction, not an inherited source theorem.",
+      "source_gaps": "No local Lean theorem or source-to-formal bridge supplied. Source bounds/normalizations are assessed rather than inherited; this candidate contains an explicit NL derivation only.",
+      "excluded": "Neighboring Chebyshev/SVT reinterpretation, exact-amplification variants, quantum lower-bound proofs and circuit synthesis are not needed for this bounded correction and are not claimed covered."
+    },
+    "validation": "Whole predecessor/withdrawal/contract bindings and exact six-step ordered-node preservation checked mechanically; those checks are not mathematical approval. No test/build/Lean/kernel or prediction execution.",
+    "author_self_approval": false
+  }
+}

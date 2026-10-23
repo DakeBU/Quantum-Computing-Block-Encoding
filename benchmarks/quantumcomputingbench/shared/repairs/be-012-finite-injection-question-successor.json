@@ -1,0 +1,63 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-be-012",
+  "supersedes_key": "qcb-core-be-012",
+  "supersedes_item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+  "supersedes_contract_hash": "be2e431321111e231fd75ca79c603a24a827d45ffc7335d5621f6abd48b5977e",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-be-012-textbook-question-v2-finite-injection-question-successor",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction of the false finite-square injectivity boundary and unqualified raw-block expressiveness inference. Preserve and refute the literal original finite self-map demand; do not obtain an easier result by changing to rectangular/infinite maps. Keep the original normalization-free raw-entry calculation and explicitly distinguish rescaled targets. Original contract hash be2e431321111e231fd75ca79c603a24a827d45ffc7335d5621f6abd48b5977e. Only question changes among the nine CONTRACT_FIELDS; preserve other8 literally, same core/family/split/frozen graph/source scope, 2 steps and exactly their ordered supporting-node lists. Not predecessor-equivalence, new core, selfapproval, formal transfer or admission.",
+  "question": "Keep the rational finite-square backend and a self-map p:Fin n→Fin n; permMatrix p has entry1 exactly when row=p(column). The historical question demands that bijectivity, not merely injectivity, is needed for the row Gram identity. Assess that claim IN THIS finite square setting rather than silently replacing it by a rectangular or infinite map. Prove the column and row Gram identities for a bijection by expanding their finite sums, and determine what injectivity alone implies here. For a product ancilla-system embedding e(s)=productIndex(zero,s), give the exact clean-block entry and prove the raw block has at most one1 in each row AND column. Distinguish the raw normalizer-one0/1 partial-permutation block B from an encoded target A=alpha B with positive normalizer alpha, and state precisely which expressiveness and resource conclusions follow. Include the empty finite basis and the existence requirement on the chosen clean ancilla index.",
+  "reference_answer": "For P(i,j)=1[i=p(j)], (P^T P)(i,j)=sum_k1[k=p(i)]1[k=p(j)]. If i=j the single surviving term at p(i) gives1; if i≠j injectivity makes p(i)≠p(j) so it is0. Thus injectivity proves column Gram identity.\n\nFor a bijection, (PP^T)(i,j)=sum_k1[i=p(k)]1[j=p(k)]. If i≠j every summand is0. If i=j exactly one preimage k=p^{-1}(i) exists by surjectivity and is unique by injectivity, giving1. This reproduces the complete source row proof, and both identities give the rational orthogonality proxy. The source's separate injective-column and bijective-row interfaces express a proof organization, not an independence theorem about their hypotheses.\n\nCrucially p is a self-map of ONE finite set of n elements. If injective, its image has n elements and therefore is the whole codomain; hence it is surjective. So injectivity alone ALREADY implies bijectivity and both Gram identities in the declared finite square setting. The historical demand that injectivity is insufficient is false here; there is no allowed missing-row counterexample. Infinite or rectangular injections could change that conclusion, but are not replacements for this question. At n0 all entrywise assertions are vacuous and the unique empty self-map is both injective and surjective.\n\nWith a chosen zero:Fin ancilla, let e(s)=zero.val*system+s.val. This embedding is injective: equality cancels the common offset and gives equal system values. The clean block is B(r,c)=1[e(r)=p(e(c))]. It is0/1. Two different clean rows cannot both equal the same p(e(c)), so each column has at most one1. If one row had1 at two columns, injectivity of p followed by injectivity of e would force those columns equal. Thus each row also has at most one1, and B is a partial permutation; a clean column may have zero1s because its image leaks outside the clean set. A chosen zero requires a nonempty ancilla-basis carrier; a zero-qubit signal register still has dimension1 and is not an empty carrier. If system dimension0 the clean block is empty and assertions are vacuous.\n\nAt unit normalizer the directly extracted target B can only be that raw0/1 partial permutation. However the conventional exact encoding equation is A=alpha B. For positive alpha a common rescaling alpha times such a block is encoded by the same U with that declared normalizer. For example U=I and alpha2 encode A=2I, whose entries are not all0/1. Thus the unqualified assertion that a permutation can encode no non-0/1 target is false once nonunit normalizers are allowed. A common scalar does not create arbitrary relative weights, signs or dense entries; realizing those generally requires further constructions or a different encoding. These finite rational identities embed into real/complex unitary matrices, but do not compile a reversible map into primitive gates, charge its cost, establish workspace cleanup or prove postselection/preparation efficiency.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Derives column Gram by injective disjoint supports and row Gram by unique preimages for a bijection; handles empty basis."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Explicitly refutes injectivity-insufficient in a finite square self-map by finite injective=>surjective, without substituting a rectangular/infinite contract or mistaking lemma interfaces for necessity."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Gives exact product clean-block formula, both row/column partial-permutation bounds and clean-index domain; distinguishes raw B from A=alpha B and avoids resource overclaims."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Permutation Gram sums give identity for a bijection, and finite-square injectivity already implies surjectivity; the historical alleged independent necessity is explicitly refuted. The injective product embedding yields a raw0/1 partial permutation in both rows and columns; a positive normalizer can rescale that block but supplies no arbitrary relative weights or circuit/resource certificate.",
+    "semantic_steps": [
+      {
+        "claim": "Permutation Gram sums give identity for a bijection, and finite-square injectivity already implies surjectivity; the historical alleged independent necessity is explicitly refuted.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.permMatrix_columnInner_of_injective",
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.permMatrix_rowInner_of_bijective"
+        ]
+      },
+      {
+        "claim": "The injective product embedding yields a raw0/1 partial permutation in both rows and columns; a positive normalizer can rescale that block but supplies no arbitrary relative weights or circuit/resource certificate.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_permMatrix_entry",
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.productIndex"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Personally read actual operative definitions and complete relevant proof bodies: Complete permMatrix, columnInner, rowInner and IsRationalOrthogonal definitions, lines 19-36; full productIndex/cleanBlockProduct and cleanBlockProduct_permMatrix_entry, lines 48-86; complete injective column-Gram, bijective row-Gram and combined orthogonality proofs, lines 283-394. Static source evidence only; no new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncoding.lean",
+      "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+      "anchor": "Personally read actual operative definitions and complete relevant proof bodies: The explicit encoded-target normalization convention in ApproximateOperatorBlockEncodingCandidate documentation, lines 136-153. Static source evidence only; no new kernel execution."
+    }
+  ],
+  "execution": "Private authorship by actual /root/qcb_boundary_repair_review, not an independent approval of this candidate. Full actual historical release.checked()[2] record, all question/assumption/convention/reference/rubric/step/source/metadata fields, exact bound withdrawal and full prior finding were read. Prior exposure includes related Hermite/QIT/source review tasks, parent's six-item repair focus; no blindness claimed. Reserved withdrawal row digest 197c29d4026e6e21077f7d6b2cb1a96efde5610d34a925d33a6eb6db59d921df; prior review reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json whole digest 3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf; item-finding digest 4d6fa0174c308e192484ab625f67d247932d688f61e3f09a5b3c5685cd757a0d. Those prior findings identify defects, not approval of my candidate. Observed local HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Mandatory repository instructions/protocols were read fully in this continuous context and checked unchanged since prior gate; substantive-worker skill refreshed. Operative local source definitions and complete relevant proof bodies were personally read; broader unrelated modules and transitive Mathlib proof closure are not claimed fully audited. No external source-paper/PDF seal, human/expert/model approval, Lean/kernel/nativeformal execution, build, agent, canonical/source/policy/frozen/older-private edit, commit/push or currentPR107 change. Algebraic/phase/resource reconstruction is written mathematics, not newly executed formal evidence. Planned canonical destination benchmarks/quantumcomputingbench/shared/repairs/be-012-finite-injection-question-successor.json; actual authored/read location _review_tmp/be-012-finite-injection-question-successor.json only. Portable provenance names are repository/workspace-relative. Distinct exact-content review and root reconciliation required before any transport/admission."
+}

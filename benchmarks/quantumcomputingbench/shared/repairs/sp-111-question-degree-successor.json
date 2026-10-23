@@ -1,0 +1,67 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-sp-111",
+  "supersedes_key": "qcb-core-sp-111",
+  "supersedes_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+  "supersedes_contract_hash": "1c89646531e5e6897c0e8bc9ebaf2840d58c260824ce3d40d7ff57427cb09bc1",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-sp-111-textbook-question-v2-affine-square-degree-bound",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "First explicit question-contract correction. Preserve and assess the predecessor's unconditional exact-degree2*deg(q) assertion, replace it by a universal upper bound and the correct zero-step/nonzero-step cases, and retain the same exact degree-sized Faulhaber discrete squared-mass identity. The original assumptions still require a coefficient bound at least2*deg(q) and exact real sampling; no nonzero-step or nonzero-polynomial hypothesis is added. The question spells out natDegree at zero to make the inherited bound meaningful. Core, family, split, frozen graph/source scope and three semantic steps remain unchanged. This changes requested reasoning and is not claimed equivalent to the old question.",
+  "question": "Let q be any real polynomial, start and step any real numbers, and count a natural number. Set d=natDegree(q): this is the usual degree when q is nonzero, and d=0 for the zero polynomial. This natural-degree convention is used for coefficient bounds; it does not assert that the ordinary degree of the zero polynomial is0. Sample on the exact arithmetic progression x_j=start+step*j for j=0,...,count-1, and put g(X)=q(start+step*X)^2 and M=sum_{j=0}^{count-1} q(x_j)^2.\n\nFirst assess the predecessor's assertion that g always has exact degree2*d. Give a counterexample if false, prove the universally valid natDegree(g)<=2*d, and state the exact degree behavior for step=0 and for step!=0, including q=0 and nonzero constants. Do not exclude zero step or a zero sampled value by adding a hypothesis.\n\nNow let D be any natural coefficient bound with D>=2*d and write g_r for the coefficient of X^r in g, including trailing zeros. For each natural r, let P_r be the exact power-sum polynomial satisfying P_r(N)=sum_{j=0}^{N-1} j^r for every natural N (for example the Faulhaber/Bernoulli formula). Prove M=sum_{r=0}^{D} g_r*P_r(count). Explain why D+1 weighted power sums suffice independently of the number of samples, why this is exact algebra rather than quadrature, and what this expression-size statement does not imply about finite-bit arithmetic cost. Verify count=0, step=0, q=0 and constant q explicitly.",
+  "reference_answer": "The unconditional exact-degree assertion is false. For q(X)=X, start=1 and step=0, we have d=1 but g(X)=1, whose ordinary and natural degree are0, not2. With start=0 the same choice yields g=0, with natDegree(g)=0 and ordinary degree undefined or minus infinity according to the extended-degree convention. An affine substitution does not raise degree, but that inequality alone cannot justify an equality.\n\nFor every q, the affine polynomial start+step*X has natDegree at most1. Composition therefore has natDegree at most d, and squaring gives natDegree(g)<=2*d. The zero polynomial is covered using natDegree(0)=0. More explicitly, if step=0 then g is the constant polynomial q(start)^2: its natural degree is0, its ordinary degree is0 if q(start)!=0, and it is the zero polynomial otherwise. If step!=0 and q!=0 has leading coefficient a_d, the affine composite has nonzero leading coefficient a_d*step^d and exact degree d. Squaring gives leading coefficient a_d^2*step^(2*d), still nonzero, and exact degree2*d. If q=0 then g=0 regardless of step. A nonzero constant q=c gives g=c^2 and degree0 for every step. Thus the natural-degree equality holds for all q when step!=0, and at step=0 exactly when d=0; a positive-degree polynomial may collapse even if its sampled value is nonzero. No division by step is needed for the universal bound or the mass formula.\n\nSince natDegree(g)<=2*d<=D, all coefficients above D vanish and for every real x the exact monomial expansion is g(x)=sum_{r=0}^{D} g_r*x^r. Substituting each integer sample index gives q(start+step*j)^2=g(j)=sum_{r=0}^{D} g_r*j^r. Hence\nM=sum_{j=0}^{count-1} sum_{r=0}^{D} g_r*j^r\n =sum_{r=0}^{D} g_r*sum_{j=0}^{count-1} j^r\n =sum_{r=0}^{D} g_r*P_r(count).\nThe exchange is between two finite sums, and the last substitution is the exact Faulhaber identity. The upper bound D need not equal the actual degree of g; zero trailing coefficients are permitted. In particular choosing D=2*d always gives at most2*d+1 weighted power sums. This is an exact real/rational algebraic expression with a number of coefficient slots controlled by degree, not a continuum integral, asymptotic expansion or quadrature approximation.\n\nFor count=0 the original sum is empty and P_r(0)=0 for every r, so both sides are0. In particular P_0(N)=N, since the zeroth power is1 in polynomial evaluation, including j=0. For step=0, g_0=q(start)^2 and g_r=0 for r>=1, so the result reduces to M=count*q(start)^2, valid also when q(start)=0. For q=0 every coefficient and both sides are0. For a nonzero constant q=c it reduces to count*c^2; the same formula includes c=0. Negative or zero step and repeated sample locations do not invalidate any finite-sum identity.\n\nThe D+1 statement counts weighted power-sum slots, not unit-cost implementation steps in a bit model. If each P_r is expanded separately by a degree-r+1 Bernoulli formula, it has its own degree-dependent terms; powers of count and rational arithmetic still must be evaluated. The representation/precision costs of arbitrary real coefficients, the bit length of count and growth of exact integers/rationals are not bounded away by this identity. The source is an algebraic mass-evaluation leaf, not a free coherent oracle or state-preparation circuit. Static inspection of its degree-bound and sum-exchange proofs is not a new kernel certificate for this candidate.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Refutes the unconditional exact-degree claim with an allowed zero-step example; proves natDegree(g)<=2*d and correctly distinguishes step=0, step!=0, zero q, constant q and zero sampled-value cases, without adding step!=0 as a standing assumption."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Uses an upper coefficient bound D>=2*d, not a false exact-degree equality, expands g including trailing zeros and identifies g(j)=q(start+step*j)^2 for every sampled index."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Exchanges the two finite sums and substitutes the exact power-sum identity to obtain M=sum_{r=0}^{D} g_r*P_r(count), uniformly in all natural counts."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Checks count=0, P_0(N)=N, zero step, zero polynomial and constants; distinguishes exact algebraic expression size from quadrature, finite-bit runtime and any circuit/oracle certificate."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Squared affine sampling has natural degree at most2*natDegree(q), with zero-step collapse explicitly allowed; any retained coefficient bound at least that value yields the exact Faulhaber discrete squared-mass formula for every sample count.",
+    "semantic_steps": [
+      {
+        "claim": "The predecessor's unconditional exact-degree equality fails at zero step. The squared affine sample instead has natDegree at most2*natDegree(q), with exact nonzero-step and constant/zero cases distinguished, so every sample is captured by a bound D>=2*natDegree(q).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared"
+        ]
+      },
+      {
+        "claim": "Expanding the actual squared affine polynomial with trailing-zero coefficients and exchanging two finite sums gives M=sum_r g_r*sum_j j^r, valid for every exact real grid and natural count.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+        ]
+      },
+      {
+        "claim": "Substitution of the exact Faulhaber power-sum polynomial yields the degree-bounded expression, including zero count/step/polynomial and constants; expression size is not a finite-bit or coherent-oracle cost certificate.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+      "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+      "anchor": "Complete powerSumClosed definition and powerSumClosed_eq proof; affineSquared/affineSquared_eval; polynomialMassClosed and full polynomialMassClosed_eq finite-sum proof with supplied natDegree<=bound; complete affineSquared_degree proof, which states <=2*p.natDegree and does not assume step!=0. Complete module read, but exponential-tail/state-conditioning leaves are not claimed as this question's proof. Exact-degree cases in the candidate are independently derived leading-coefficient mathematics, not a fabricated local exact-degree theorem."
+    }
+  ],
+  "execution": "Private authoring by the actual /root/qcb_boundary_repair_review task. Entire actual frozen predecessor read through release.checked()[2], including literal question, complete reference, rubric, assumptions, conventions and semantic steps. Complete local source module and operative proof regions inspected statically. Parent's degree concern and inherited accept metadata were exposed; no source-blindness or self-approval is claimed. No kernel execution, new Lean/native formal admission, finite-bit implementation, model evaluation, novelty or human approval. Only this private candidate is written, pending a distinct exact-content question-change review."
+}

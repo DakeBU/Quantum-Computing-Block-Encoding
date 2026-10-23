@@ -1,0 +1,68 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-la-013",
+  "supersedes_key": "qcb-core-la-013",
+  "supersedes_item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+  "supersedes_contract_hash": "9ee6494ba1c46bb565bbb37ed3e59665c616ad6633e47368efec9a3c722dccb7",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-la-013-textbook-question-v2-wire-induced-basis-permutation",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version correction: the original arbitrary computational-basis P is not necessarily induced by a wire permutation. Define that load-bearing relation in the question and assess the unrestricted reading with a one-wire counterexample. This is not an answer-only silent restriction. Other eight CONTRACT_FIELDS unchanged, original3 steps/nodes, native-expansion-mechanism-013/train/frozen graph preserved.",
+  "question": "Let sigma be a bijection of the N physical wires, sigma:Fin N equiv Fin N. Its INDUCED bitstring bijection is R_sigma(b)(w)=b(sigma^{-1}(w)); define P by P|b>=|R_sigma(b)>. Thus P is specifically this wire-induced basis permutation, not an arbitrary permutation of all2^N computational labels. A primitive circuit has chronological matrices U_1,...,U_t, with first-listed gate acting first. Consistently rename each gate's target and each control by sigma, retaining gate kind and angle.\n\nProve that the renamed circuit realizes P(U_t...U_1)P^{-1}, rather than insertion of a one-sided physical permutation. Justify the single-gate conjugation from the induced bitstring action and show the interior inverse/permutation cancellations through the chronological product. Explain why output-only relabeling fails to preserve products, giving two identity stages and an actual nontrivial involutive wire swap as a witness when N>=2. Include empty circuit and N=0,1 boundaries. Finally assess why the same wire-renaming assertion would be false if P were an arbitrary unrelated basis-label permutation: on one wire compare P=X with a nonzero RY. Distinguish algebraic basis reindexing from a physical SWAP/routing implementation; no hardware routing cost follows for free.",
+  "reference_answer": "For a bitstring b, R_sigma(b)(sigma(w))=b(w), so renaming the physical target/control wires transports their stored bits exactly. X flips the renamed target; RY/RZ act with the same2x2 matrix on that target with the same spectator context; CX tests the renamed control and flips the renamed distinct target. Hence each renamed primitive U'_j satisfies U'_j P=P U_j on every basis ket, and U'_j=P U_j P^{-1}. Equivalently its entry at(a,b) is U_j(a composed with sigma,b composed with sigma), matching the source matrix_apply formula. This per-gate statement uses the RELATION between sigma and P; it is not true for an unrelated P merely because P is a basis permutation.\n\nChronological evaluation multiplies later gates on the left. Therefore U'_t...U'_1=(P U_t P^{-1})...(P U_1 P^{-1})=P(U_t...U_1)P^{-1}, since every interior P^{-1}P cancels. The empty product isI and PIP^{-1}=I, so no extra stage is inserted. For N=0 or1 the wire-bijection group is trivial, P=I, and the theorem reduces to unchanged evaluation; those cases do not supply a nontrivial wire-swap example.\n\nOutput-only renaming would assign U_j the matrix P U_j. For two identity stages this gives P^2, while output-only reindexing of their composed identity givesP. At N=2 take sigma swapping the two wires, whose induced P sends|01> to|10> and vice versa, fixes|00>,|11>, is nontrivial and hasP^2=I. Thus P^2!=P, so one-sided reindexing is not multiplicative. For more wires the same swap with all others fixed works.\n\nAn arbitrary basis permutation still supports a valid ALGEBRAIC conjugation M->PMP^{-1}. It need not correspond to renaming wires gate-by-gate. On one wire the sole wire permutation is identity, so renaming leaves RY(theta) unchanged. The unrelated basis swapP=X instead obeys X RY(theta) X=RY(-theta) for the standard half-angle rotation [[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]]. At theta=pi/2 the off-diagonal signs differ, so RY(-theta)!=RY(theta). This refutes the original unrestricted reading without contradicting general matrix conjugation.\n\nBoth boundary label maps are representational: all input/output labels are consistently changed. This is not an assertion that an arbitrary basis permutation is implementable by physical wire swaps, or that routing on a fixed hardware graph is free. The source eval_gate/eval_circuit proofs certify the induced-wire primitive list under exact matrix semantics; static reading is not a new execution.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Uses the actual wire-induced R_sigma and P, derives U'_j=P U_j P^{-1} with target/control roles and spectator context preserved, then cancels interior factors in chronological order."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Gives the two-identity-stage output-only failure with an induced nontrivial involutive wire swap at N>=2, and handles empty circuit/N=0,1 without inventing a nontrivial wire permutation."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Refutes the unrelated arbitrary-basis P reading on one wire using X RY(theta) X=RY(-theta), e.g.theta=pi/2, and distinguishes representation reindexing from physical SWAP/routing costs."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Wire renaming induces one specific permutation of bitstring labels. Each renamed primitive is conjugated by that permutation, so chronological products telescope; arbitrary unrelated basis permutations are not generally wire renamings.",
+    "semantic_steps": [
+      {
+        "claim": "The wire bijection induces a specific bitstring permutation, and the renamed gate is conjugated by its matrix P.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_gate"
+        ]
+      },
+      {
+        "claim": "Both input and output basis maps make interior P^{-1}P cancel through the chronological product, including the empty case.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_circuit",
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.matrix_mul"
+        ]
+      },
+      {
+        "claim": "Output-only reindexing fails by an actual involutive wire-swap/identity-stage witness; unrelated basis-label permutations require a distinct operation.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveWireRename.matrix_mul"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+      "sha256_lf": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727",
+      "anchor": "Complete module read: basisEquiv10-14, gate16-20, circuit22-23, matrix25-33, multiplicativity35-38 and COMPLETE spectator/context/action/eval_gate/eval_circuit proofs40-118. Counts are contextual, not a routing cost theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+      "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+      "anchor": "Read exact half-angle matrix18-25 and chronological list evaluation374-398; prior full operative gate semantics read in this same task."
+    }
+  ],
+  "execution": "Private author /root/qcb_formal_view_audit, pending distinct exact-content review, not self-approval or blindness. Full actual frozen release.checked()[2] item, exact bound withdrawal and complete finding read at HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Prior uncertain finding is by /root/qcb_native_comparison, distinct from this author; it was visible before reconstruction, not a new blind review. Prior report reports/textbook-v1/reader-reviews/linear-algebra-011-020-review.json whole digest91acd2c7c75eb4d0db95f87b1743b0352f6925cf3ea20b40fa0b0edee81b0807; finding digestdc6de2ac88b200ae76d61dd5e4488e8958fd2eda342d20d710d6279f81ea1d67. Mandatory repository substantive-worker/publication/digestion/memory protocols used in this continuous task. Complete operative source/proof bodies inspected as scoped below; source LF bindings recomputed. Same frozen core/family/split/graph/source contract and exact original step count/ordered node lists retained, except the explicit first question correction when schema says question-v2. No fresh Lean/kernel/formal-view/native-formal execution, source-paper seal, new human/model approval, external acknowledgment, agent, build, canonical/source/policy/other-private/prior-evidence edit, admission, commit/push or PR107 mutation. Only this private candidate authored."
+}

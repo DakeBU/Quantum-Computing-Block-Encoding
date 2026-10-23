@@ -1,0 +1,251 @@
+{
+  "schema_version": "qcb.mathematical_reader_review.v1",
+  "method": "independent-mathematical-reader-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "repository_commit": "e9bd65f737959662d7acd882b518a59692a77fea",
+  "absent_core_ids": [],
+  "provenance": {
+    "item_source": "Complete admitted native records from release.checked() at the pinned local HEAD, with whole-record item_digest computed by qcb_core.digest. All requested la-211 through la-220 IDs were present.",
+    "instructions": "The mandatory repository instructions and substantive-worker skill were read in full in the immediately preceding batch at this same unchanged e9bd65f checkpoint; their review, exact-contract, source-fidelity and evidence-layer requirements remain in force.",
+    "scope": "Complete question, reference answer, assumptions, conventions, rubric and semantic steps were reviewed. Relevant source definitions, exact contracts and complete root proof bodies were inspected, including the stored Run/counter model, underlying chain shapes and legal guard geometry where needed. This report does not claim fresh kernel verification, decoder blindness, production execution, a finite-bit runtime theorem or an expert credential.",
+    "bounded_alias_scope": "Compared the ten tasks with one another and complete nearby candidate questions la-201, la-202, la-203, la-204, la-206, la-208, la-210, la-101, la-109, la-110, la-014, la-012 and sp-120. Shared declarations were retrieval aids only. The report distinguishes arithmetic lemmas, stored-producer ledgers, structural bounds and logical circuit counts rather than equating them by node names. No global semantic deduplication is claimed.",
+    "mutation_scope": "Only this new private report outside the canonical repository was written. Frozen files, earlier reports, PR100 and all source/policy/catalog files were left unchanged."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-la-211",
+      "item_digest": "8a26d0b580fa303806b022d75965d1d39401d78114de1ccc9363c4c6c4f582c6",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Op has exactly the eight constructors field, sqrt, angle, trig, compare, read, write and emit, and Cost is Op->Nat. Enumerating Finset.univ once therefore rewrites sum_op cost(op) as precisely the eight-term StoredRectangularGivens.total expression, with no extra or missing tag. Pointwise addition distributes through the finite sum, so ordinary(a+b)=ordinary(a)+ordinary(b); the zero cost sums to zero. tick(tag) has value one exactly at that constructor and zero elsewhere, so its total is one. These are equalities for every cost function, and function extensionality also gives equality of the two total functions if desired. The answer supplies all requested laws and all rubric steps. I inspected the actual Op/Cost/tick and Run.bind definitions, the explicit total and the complete ordinary adapter proofs; this is not inferred from the names of the counters. It licenses composing already counted subruns by addition and evaluating unit-charge leaves, not ignoring a callback cost, inferring that an upper bound is an equality, or inventing charges for operations outside the model. Exponential and the separately named integer counters in RawRun are not members of Op and are not silently included in this ordinary total. These are mathematical ledger identities, independent of real scalar precision, wall-clock time or primitive quantum gate counts. la-212 uses these laws in a same-run raw-source certificate; la-216 evaluates a particular identity-materialization ledger, and la-201/la-202 count particular stored rotations. Their conclusions are different from this finite-enumeration/additivity adapter.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+          "sha256_lf": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+          "anchor": "Complete ordinary, ordinary_eq_total, ordinary_add, ordinary_zero and ordinary_tick definitions/proofs, lines 21-36."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Complete Op/Cost/tick, Run and additive bind/charge definitions, lines 21-49; header states word-operation and excluded-bookkeeping model."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Complete eight-term total definition, lines 236-238."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-212",
+      "item_digest": "3b06beca17d084d5e8dfc81822d969d9e1271b530e70525a1fb4f0e7713a7c24",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Expanding the four given counters gives (n+1)(n+2)=n^2+3n+2, (n+1)^2=n^2+2n+1, n, and 4(n+1)=4n+4. Their sum is exactly 2n^2+10n+7. At n=0 the values are 2,1,0,4 and sum to seven, so the constant term and zero-width boundary agree. The source raw_selected_integer_total proves exactly this substitution/ring identity. I also read the complete raw producer and root work certificate: cache, stage tables, boundaries and closure are actual let-bound subruns whose values/costs feed the same RawRun; raw_certified names one result and conjoins its denotation, ordinary budget, exponential cap and four integer equalities. Its semantic raw-source equality requires L>0, while the ledger identities and polynomial cost statements are proved for the raw function more generally. The question assumes the same-run semantic certificate, so it does not license dropping that positive-scale premise when instantiating the source theorem. The answer correctly excludes normalization, canonicalization, state-preparation compilation, arbitrary-precision bit work, general index operations and proof/counter bookkeeping. 'Every materialization pass' means the charged stored passes of this declared producer/model, not all physical allocator activity. The exponential cap remains an upper bound, with disabled guards avoiding calls; this item does not require that cap to be attainable or sharp. All three rubric requirements are met. la-219 separately asks for the guard-dependent exponential count, and la-208 isolates stored boundary-chain closure costs. Neither is an exact alias of the selected integer-total and same-run scope question.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+          "sha256_lf": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+          "anchor": "Entire module inspected, especially stage/tables/boundaries/raw ordinary-cost composition, exact raw exponential and four integer lemmas, raw_selected_integer_total and raw_certified through line 227."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteRawSource.lean",
+          "sha256_lf": "5b61bed754471e7413108a8a2c69f5567a6034e6aab406c2586b412c3302cbef",
+          "anchor": "Complete stage, collectStages, tables, boundaries, RawRun/raw and raw_value/raw_contract definitions/proofs; actual same-run source assembly and explicit unnormalized scope."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteSourceCache.lean",
+          "sha256_lf": "a3b61e1c2b8891df7de1597d0cd0f0985b668f169c76c5382433e0321445123c",
+          "anchor": "CacheRun and actual compile composition, lines 39-102; complete compile_exponentialCalls, compile_quotientCalls, compile_remainderCalls and compile_integerDoublings, lines 150-167; scope exclusions in module header."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-213",
+      "item_digest": "e8d6aac4380e1be63a7428f60ed9f11f343696644445cfb3f1cae3cfe7f2ba36",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Assume every current wire depth is at most b. The supremum on a gate's touched wires is at most b; each touched wire is assigned that supremum plus one and hence at most b+1. An untouched wire retains depth at most b, therefore also at most b+1. Folding L instructions from the zero profile and applying this per-step inequality inductively gives every final wire depth at most L. Taking the finite supremum over all wires proves depth<=gateCount. The actual primitive resource constructor stores exactly this scheduling depth, so its reported resource.depth obeys the same bound. I inspected the complete proof module and the underlying touched, nextWireDepth, wireDepths, depth and resource definitions. No serial-depth surrogate was silently substituted. The empty circuit has depth zero; at zero qubits the finite supremum is zero and no nonempty typed primitive instruction can be supplied. For two X gates on disjoint wires the computed profile has maximum one while the length is two, giving the stated strict-inequality example. This verifies all three rubric criteria. The phrase genuine/true depth means this specified dependency-respecting scheduling fold, not globally optimal depth after commutation, resynthesis, hardware routing or changes of gate duration. The result concerns logical layers, not preprocessing work or the eight stored exact-real counters. la-014 proves logical count invariance under wire renaming and explicitly separates routing; la-201/la-202 count work for stored numerical row rotations. Those are different cost objects, not aliases of this layer-count theorem.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/PrimitiveDepthBound.lean",
+          "sha256_lf": "fd31cfd12a5ed193608b0f666ee1e990981f36b45182fc34dd0fc2db1cf62b16",
+          "anchor": "Entire module, including complete nextWireDepth_le, foldl_nextWireDepth_le, wireDepths_le_gateCount, depth_le_gateCount and resource_depth_le_gateCount proofs."
+        },
+        {
+          "path": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+          "sha256_lf": "d5019ef58ce1ce65664d2a40979cdd652ca691c94743532c59dfe18cf2036d4c",
+          "anchor": "PrimitiveGate/PrimitiveCircuit and touched definitions, lines 95-123; gateCount, lines 132-133; complete nextWireDepth/wireDepths/depth/resource definitions, lines 183-202."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-214",
+      "item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The materialization identity and its conditional estimate are correctly understood: per counter it is sum_i sum_j supplier(i,j).cost plus (NM+N)(2 read+2 write), and a per-entry bound B gives NM*B plus that surcharge. But the answer's proposed counterexample performs j extra field operations, whose total N*M*(M-1)/2 is itself a fixed polynomial in N and M. This demonstrates that supplier work is not constant or equal to the surcharge, not that no dimensions-only polynomial upper bound exists. Two suppliers having unequal costs also does not refute a common polynomial upper bound. The reference answer and rubric c1 explicitly make that invalid inference, so they do not supply the requested precise counterexample. A diagnostic showing the actual issue is that for fixed N=M=1 one may choose suppliers with arbitrarily many charged dummy field additions before returning the same scalar: the total is arbitrarily large while the dimensions and surcharge stay fixed. Alternatively one fixed supplier family can perform 2^M charged operations per entry. These are mathematical examples within the allowed arbitrary counted supplier scope, not executed production routines. Moreover, a uniform B for one run is not by itself a polynomial-in-dimensions guarantee: B must be dimension-independent or bounded by a specified polynomial in the dimensions (or retained as an additional input parameter). The answer omits this qualification when claiming the correct condition. For N=0 there are no entries/rows and zero cost; for M=0 and N>0 the row materialization surcharge still remains. I inspected collect/materialize and the full exact cost proof plus the actual conditional finite-sum bound in StoredTensorTrainNorm. None proves that arbitrary suppliers have a constant/polynomial evaluation cost. la-201/la-202 are explicit bounded suppliers; this question instead asks about the input-callback boundary, so the defect is logical rather than semantic duplication.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Complete Run.bind/charge/field primitives, collect and collect_cost, StoredMatrix/denote/materialize definitions, lines 30-85; full materialize_cost statement/proof, lines 369-374."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+          "sha256_lf": "60fa71fc821f7598f5df739b231f5b25cf1927824d2b028ef723f9ee04074011",
+          "anchor": "Complete private materialize_cost_le proof, lines 147-161: the uniform supplier bound B is an explicit additional hypothesis, retained in NM*B."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-215",
+      "item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The zero-pair counterexample correctly refutes 'one arccos per call': x=y=0 takes three field operations for two squares and their sum, one sqrt and one comparison, then returns, with zero angle calls and no division/sign test. The source budget is indeed a componentwise upper bound. However, the reference answer additionally says the budget is tight on the nonzero branch 'where ... the arithmetic for signing ... are all executed'. The actual code conditionally performs sub(0,a) only when y<0. For a nonzero pair with y>=0, such as (1,0), it skips this charged negation and executes six field operations, one sqrt, one angle and two comparisons. For y<0 it executes seven field operations with the other same counters. The budget's full vector is therefore attained on the negative-y nonzero branch, not on every nonzero branch. The complete zero/nonzero/sign branch distinction matters because the task asks for the precise relation between the budget and actual per-input costs, and rubric c2 endorses an incompletely specified tightness claim. The correct core moral about inequalities versus exact counts and summing upper bounds is sound, but the exact record overstates its arithmetic execution explanation and is rejected for that reason. This is source inspection of the charged control flow and the complete angle_cost_le proof, not a fresh timing or kernel result. A zero angle can still incur nonzero work (e.g. (1,0) calls arccos), and no finite-bit complexity follows. la-101 proves the elimination value identity and la-203 proves exact emitted-record counts for a sweep; those do not identify these angle-routine arithmetic counts and are not aliases.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Complete charged scalar primitives and Run composition, lines 30-57; entire angle definition and value proof, lines 88-109; full angleBudget/angle_cost_le, lines 253-261."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-216",
+      "item_digest": "06ed62cc08c6f5635662d9347275c6820fe449819d095626d4b19289a2acaf7f",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The actual identity supplier charges one comparison per (i,j) and returns the corresponding 0/1 scalar, then materialize adds two reads and two writes per entry and per row. Thus the only nonzero counters are compare=N^2, read=2(N^2+N) and write=2(N^2+N), whose ordinary/eight-tag total is 5N^2+4N. This is zero for N=0 and positive for every natural N>=1 (already at least nine at N=1). Since the counters are nonnegative, the zero total at N=0 also means every counter vanishes. This checks the complete answer and three rubric criteria against the full identity, identityBudget and identity_cost definitions/proofs. The empty matrix has no outer rows and no entries, exactly matching the nested collect definition; no uncharged initialization comparison was silently added. In a larger run the term must be charged when the identity is freshly materialized as here; using a previously supplied cached identity would be a different input/preprocessing contract, not a contradiction of this cost identity. The statement is about the declared exact-real/word-operation ledger, whose allocator and proof/counter metadata are outside scope, rather than a claim that creating any empty object takes literally zero wall-clock time. It also does not assert quantum circuit identity gates have this numerical construction cost. la-214 treats arbitrary entry suppliers, while this item fixes a one-comparison supplier. la-218 uses this identity cost in its tall branch, and la-204 uses it as a replay starting matrix; those are distinct composition/dispatch questions.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Complete materialized identity, identity_value, identityBudget and identity_cost, lines 92-106; eight-tag total definition, lines 236-238."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredGivens.lean",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "anchor": "Complete collect/materialize and cost equations, lines 60-85 and 369-374, including row surcharge at zero column width."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-217",
+      "item_digest": "cf1248c62cc4a15751ecfbedf58495f047548317dc6baee60b7e784b4f6e4d99",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The defined persistent append returns xs++ys with cost length(xs)*(tick read+tick write). For left/right lengths 2 and 1000, the counter pair is (read,write)=(2,2); reversing the operands gives (1000,1000), despite the same total length 1002. These examples disprove dependence solely on the sum of lengths, and the unbounded family (p,0) disproves a uniform constant cost. A zero-length left spine costs zero even if the shared right tail is huge, which is consistent with the asymmetry. Every other operation counter is zero for append itself. The reference answer supplies exactly these distinctions and satisfies all three rubric criteria. I inspected the complete append definition and its actual use in the rectangular sweep and induction bound: the copied first log has length N-1-k, while the already computed right log is shared, and its copying charge is retained rather than assigned a fictitious constant. This is the specified persistent-list operation model; the Lean expression xs++ys does not establish a measured allocator/copy-on-write behavior for a different runtime. A coarse upper bound by total length would still be valid, so the refuted 'total-length dependence' is the asserted exact cost rule, not the existence of such a loose upper bound. No field work, physical gate cost or finite-bit runtime claim follows from these traffic counters. la-203 counts emission and step work, and la-204 counts replaying logs rather than constructing them. They share a list but have different operations and ledger contracts, so are not semantic aliases.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Complete append definition, lines 21-22; full sweep recursion and matrix/log refinements, lines 24-62; complete sweep_cost_le proof and its explicit prefix-copy charge, lines 67-89."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-218",
+      "item_digest": "2b9c9d2449bb0b0da1ab69a254c046c2da52c231a4d71d5ef29f1a828508ee72",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For m>n, k=min(m,n)=n, the dispatcher returns R=A of shape m x n and freshly materialized Q=I_n of shape n x n. Consequently RQ=A and QQ^T=I_n, exactly the two equations in the source Factorization contract. The charged work is one dimension comparison plus identity(n), so the total is 1+5n^2+4n, with zero field/sqrt/arccos/trig/emit counters from elimination. In particular at n=0<m it still pays the dispatch comparison even though identity(0) is free. At m=n the source chooses the wide branch; the all-zero 0x0 case also follows that branch, which need not emit an actual rotation. The wide path materializes the transpose, runs counted rectangular compilation and materializes both extractions, with a uniform polynomial budget of total degree at most three; this is an upper bound rather than a claim of an attained cubic lower cost on every input. I inspected the complete stored dispatcher, its dependent casts, both semantic-refinement proofs and cost proof, and the underlying deterministic Factorization definition. 'Triangular-factor slot' must be understood as the named R slot under this explicitly stated two-equation contract: arbitrary tall A need not be lower-trapezoidal, and neither source Factorization nor compile_correct asserts such a triangularity property. The answer correctly justifies the contract it actually describes, not a stronger conventional triangular-LQ theorem. It refutes the always-sweep claim and meets the three rubric criteria without claiming bit complexity or primitive quantum synthesis. la-206 is the wide four-stage certificate; la-216 is the identity-cost leaf. Neither asks this all-shape/tall-branch boundary.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+          "sha256_lf": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+          "anchor": "Entire module inspected: entry/transpose/extractors and wide producer/refinements/cost; complete compileBody/compile, dependent-cast semantic proofs, compile_correct, compileBudget/compile_cost_le and polynomial total bound."
+        },
+        {
+          "path": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+          "sha256_lf": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af",
+          "anchor": "Complete Factorization contract (factorization and row-orthogonality only), wide factors/proofs, all-shape factor dispatcher and factor_correct."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+          "sha256_lf": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+          "anchor": "Complete identity/identity_value/identityBudget/identity_cost definitions and proofs, lines 92-106."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-219",
+      "item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The exact ledger identity is sound: if g is the actual number of true child leftFull flags, then expCalls=n+2+g, since each flagged leftInjection calls exp once and an unflagged injection calls it zero times. The bound g<=2(n+1) gives the cited valid cap 3n+4; when cutoff=0 every left-full flag is false and g=0, so the base-only case correctly refutes an always-two claim. The issue is the record's description of the 'actual range' up to an all-guards-enabled endpoint. In the real compiled raw producer these flags are not arbitrary independent booleans. At stage r, span s=2^r>0, parent start p=2^(r+1)*floor(cutoff/2^(r+1)), and the right child has first=p+s, excluded endpoint p+2s. By the quotient/remainder bound cutoff<p+2s, that right child can never satisfy Full(0,cutoff,first,s). Thus at least one child flag per stage is always false on legal positive-scale compiled inputs; all 2(n+1) injections cannot fire, and the loose cap is not an attainable endpoint of that producer's actual range. Already at n=0 at most one injection can occur, so expCalls<=3 while the cited cap is four. I inspected the raw count proofs, actual stage/input/cache definitions and the full child flags/refinement/quotient-schedule formulas to check this correlation. If 'range' merely means a non-sharp containing interval, the answer's n+2+g and upper cap are correct; if it means attainable counts, as the wording suggests, the endpoint claim fails. This unresolved distinction warrants uncertainty rather than silently upgrading a loose inequality into a sharp producer range. No improved producer theorem was authored or kernel-checked here. la-212 asks the selected integer sum and broad same-run scope, while this item asks guard-dependent exp counts, so they are not aliases.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+          "sha256_lf": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+          "anchor": "Complete stage_exponentialCalls/upper-bound, tables aggregation and raw_exponentialCalls/upper-bound proofs, lines 61-72, 97-127 and 181-191."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteRawSource.lean",
+          "sha256_lf": "5b61bed754471e7413108a8a2c69f5567a6034e6aab406c2586b412c3302cbef",
+          "anchor": "Complete stage/tables/raw producer definitions: stages use the actual compiled source cache and its two child geometries, not arbitrary flag assignments."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteStageFields.lean",
+          "sha256_lf": "e30857c180a6d86080b08cfc2271632f4bcac86a9c699be08fbfe4a61afc97cf",
+          "anchor": "Complete fromLoaded/one and collectSource/two definitions, lines 99-136 and 193-227; full one_exponentialCalls, one_exponentialCalls_le and two_exponentialCalls_le proofs, lines 229-244."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteGeometry.lean",
+          "sha256_lf": "167b4fa79eaa7c8629f6c3e246c9cda4d64d678bfc99f8aa7c5820a68a1f4739",
+          "anchor": "Complete leftInjection and exact exponential-call proof, lines 266-297: disabled branch has zero exp calls."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteStageInput.lean",
+          "sha256_lf": "ab8918d8c0a177e83af7554776b638c4d363c6b714687c31e44a0183bebffe08",
+          "anchor": "Complete view/load/input/stageView and inputCorrect proof: parent and span come from compile, with remaining-width index n-t and span 2^(n-t)."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteSourceCache.lean",
+          "sha256_lf": "a3b61e1c2b8891df7de1597d0cd0f0985b668f169c76c5382433e0321445123c",
+          "anchor": "Actual compile, complete compile_tails/compile_parents_first and compile_spans proofs, lines 89-146; positive-scale premises for semantic cache identification."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredHermiteChildGeometry.lean",
+          "sha256_lf": "f1e63bc91654690b681775eb4108d65866d604206fe40943d75795ba560b22f6",
+          "anchor": "Complete flags/flags_full, child/child_first/child_flags, children and child_refines/children_refines proofs; excluded endpoint is first+span and leftFull tests it against cutoff."
+        },
+        {
+          "path": "QuantumBlockEncoding/HermiteBoundaryInjection.lean",
+          "sha256_lf": "a78c5a9e71e669048e5274cb55e3e10ccec326bccf26739713dd695bd15b2ca0",
+          "anchor": "Full interval definition, lines 46-48; selectedChild, lines 309-310; complete boundarySchedule and boundarySchedule_child formulas, lines 408-413; gridStep/gridPointNat/cutIndex definitions and cutoff interval interpretation, lines 661-711."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-la-220",
+      "item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The source inequality maxBond(result)<=max(D,1) and its separation from construction cost are correct. The unit scalar boundaries give a floor of one, and for natural D the bound evaluates to one when D=0 or D=1 and to D when D>=1. But the question asks when the actual bond equals one rather than D, and the answer largely substitutes evaluation of an upper bound for that actual-value question. The construction admits n=0, i.e. one stored core. It first contracts the right boundary, then contracts the left boundary into that same core, producing a single core of shape 1->1 and nil(1). Its actual maximum bond is exactly one for every D, including D=2 or any larger D, despite the displayed upper bound being D. Thus D alone does not determine when the actual maximum is one. For n>=1 the typed construction retains its internal D bonds, so the actual maximum is max(D,1); this is a structural statement, not a minimal-rank statement about the represented amplitudes. At D=0 with multiple cores, zero-dimensional interior bonds still exist in the typed chain, contrary to the answer's wording that there are 'no interior bonds'; the outer unit bonds keep the maximum one and the contracted amplitudes are zero. I inspected the full stored producer, its denotation/refinement and bound proofs, as well as the exact un-stored tailChain/closeLeft and maxBond definitions. The source theorem remains valid, but the exact NL record/rubric does not address the admitted length-one boundary and conflates bound with attained bond, so I reject it. This does not affect the correct statement that bond size alone says nothing about construction traffic or finite-bit runtime. la-208 asks actual closure cost and la-109/la-110 ask boundary contraction identities, not this actual-bond versus upper-bound interpretation.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+          "sha256_lf": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+          "anchor": "Complete terminal/initial/tailChain/closeLeft/ofTable definitions, lines 11-61; full value/refinement proofs, lines 64-124; complete ofTable_maxBond and same-run ofTable_certified proofs, lines 249-265."
+        },
+        {
+          "path": "QuantumBlockEncoding/StoredTensorTrain.lean",
+          "sha256_lf": "086a876a80de90eee79ded827c2fc8f1e4eab7f5ca3e31f5025c2eec1649e0da",
+          "anchor": "Complete StoredCore, denoteCore, dependent StoredChain and denoteChain definitions, lines 19-32."
+        },
+        {
+          "path": "QuantumBlockEncoding/MatrixProductChain.lean",
+          "sha256_lf": "d916236ffc04fb1d09c9737d77ad83c965ea12716d1f22d6e7c0ec7b1a34e974",
+          "anchor": "Complete tailChain/closeLeft/ofKernel definitions, lines 20-54, and full tailChain_maxBond/ofKernel_maxBond proofs, lines 64-77, including the n=0 branch."
+        },
+        {
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+          "anchor": "Dependent Chain definition, lines 24-26; complete maxBond recursion including both boundaries, lines 197-199."
+        }
+      ]
+    }
+  ]
+}

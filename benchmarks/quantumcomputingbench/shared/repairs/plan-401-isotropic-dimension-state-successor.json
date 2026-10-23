@@ -1,0 +1,68 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-401",
+  "supersedes_key": "qcb-core-plan-401-isotropic-positivity-x-range",
+  "supersedes_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+  "supersedes_contract_hash": "35796e5369f3f45d58d9b62103d321787c8fd234a7d0ed8d6b8b4c585181b9cf",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-401-textbook-question-v2-isotropic-dimension-boundary",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-contract correction. Preserve the original positivity/trace/eigenvalue target and require assessment of its dimension-independent interval claim, but include the allowed d=1 branch instead of silently imposing d>=2. All-real x and all nonzero Hilbert dimensions remain; d=0 was already incompatible with the stipulated rank-one trace-one Phi. Only question changes among the nine CONTRACT_FIELDS; original assumptions/conventions stay empty, and family/split/frozen graph/source scope/three semantic steps remain reserved. Not an equivalent proof demand, answer-only repair, new core, or admission.",
+  "question": "For every positive integer d, work on C^d tensor C^d and let Phi=|Phi_d><Phi_d|, where |Phi_d>=(1/sqrt(d))*sum_{i=1}^d |i,i>. Thus Phi is a rank-one trace-one projector. Put rho_d(x)=(1-x)*Phi+(x/d^2)*I for any real x, without a sign restriction.\n\nAssess the predecessor's dimension-independent assertion that rho_d(x) is a density operator exactly for x in[0,d^2/(d^2-1)], with two tight finite endpoints. Is that assertion valid at every allowed d? Determine the exact set of real x for each dimension branch, treating d=1 explicitly rather than inserting d>=2 as a standing premise.\n\nProve trace1 holds for all real x. For d>=2, diagonalize rho_d(x) on the range of Phi and its orthogonal complement, give eigenvalues and multiplicities, derive the exact full positivity interval and exhibit a negative-expectation unit vector on each side outside it. Identify the endpoint states/ranks. For d=1, compute the whole family directly, explain why a coefficient on a zero-rank complementary projector imposes no positivity constraint, and say why there are no two finite boundary endpoints in this case. Explain why d=0 does not support the stipulated trace-one Phi, without dividing by zero. This is only a density-positivity calculation, not an entanglement or PPT classification.",
+  "reference_answer": "The predecessor's universal finite-interval assertion is false/inapplicable at d=1: the denominator d^2-1 then vanishes and the proposed lower constraint x>=0 is false. At d=1, Phi=I=1 on the one-dimensional joint space, so rho_1(x)=(1-x)+x=1 for EVERY real x. In particular x=-1 is still a positive trace-one state. The exact allowed set in this branch is R, not a finite interval with two tight endpoints. The label x is redundant there.\n\nFor any positive d, tr(Phi)=1 and tr(I)=d^2 give tr(rho_d(x))=1-x+(x/d^2)d^2=1 for every real x. The operator is Hermitian for real x. Write rho_d(x)=a Phi+b(I-Phi), with a=1-x+x/d^2 and b=x/d^2. These are coefficients of two orthogonal projectors, not necessarily two different numerical eigenvalues: at x=1 they coincide. For d>=2 both subspaces are nonzero, with ranks1 and d^2-1 respectively. Thus the spectrum is a with multiplicity1 and b with multiplicity d^2-1, and positivity is equivalent to a>=0 and b>=0.\n\nSince d^2>0, b>=0 iff x>=0. Also 1-1/d^2>0 when d>=2, so a=1-x(1-1/d^2)>=0 iff x<=L_d=d^2/(d^2-1). Hence the exact allowed interval is[0,L_d]. If x<0, the unit product vector |1,2>, available for every d>=2, is orthogonal to |Phi_d> and has expectation b<0. If x>L_d, the unit vector |Phi_d> has expectation a<0. These witnesses prove necessity and sharpness, while nonnegative a,b prove sufficiency. At x=0 the state is Phi of rank1; at x=L_d it is (I-Phi)/(d^2-1), of rank d^2-1. At either endpoint the named eigenvalue is zero and becomes negative immediately outside. There is no condition x<=1: x can exceed1 up to L_d while both spectral coefficients remain nonnegative.\n\nAt d=1 the same algebraic coefficients reduce to a=1,b=x, but I-Phi=0 has rank0. Thus b is NOT an actual eigenvalue of any nonzero spectral sector, and requiring b>=0 is invalid. The sole actual eigenvalue is1, independent of x; there is no division by d^2-1 or a vanishing-eigenvalue endpoint argument. At d=0 there cannot be a rank-one trace-one projector at all: the zero-dimensional space has only the zero operator with trace0, so the premise of this family is unsatisfied. One must not define |Phi_d> or x/d^2 at d=0.\n\nThis proves the complete dimension-branch positivity statement without hiding a d>=2 standing assumption. The source Exercise6.2/Prop6.8 gives the nontrivial isotropic interval, but its parameter expression does not define the one-dimensional boundary by itself. This is an explicit change to the requested question; the historical claim is preserved for assessment, not silently accepted. No separability, partial-transpose criterion, quantum implementation or new local formal proof is inferred from positivity alone.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Assesses the predecessor's universal interval statement and explicitly gives d=1:Phi=I,rho(x)=I for every real x, including a negative-x witness against a universal lower bound. Does not silently add d>=2."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Proves trace1 for all real x and decomposes a Phi+b(I-Phi), giving correct nonzero-sector multiplicities for d>=2 and not treating a zero-rank sector as an eigenvalue constraint."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "For d>=2 derives exactly0<=x<=d^2/(d^2-1), proves sufficiency and gives explicit unit-vector negativity witnesses outside each endpoint."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Identifies the endpoint states/ranks; handles d=1 as the full real line with no finite endpoints and d=0 as incompatible with a trace-one Phi. Makes no positivity-versus-entanglement or new formal claim."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The isotropic family has trace1 for all real x. At d>=2 positivity holds exactly on[0,d^2/(d^2-1)] with tight spectral endpoints; at d=1 the whole family equals I for every real x because the complementary sector is absent.",
+    "semantic_steps": [
+      {
+        "claim": "For every positive dimension and real x, tr rho_d(x)=1; at d=1,Phi=I and the family is constant, while d=0 cannot support the stipulated projector.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The orthogonal-projector decomposition has coefficients1-x+x/d^2 and x/d^2, with nonzero sectors of ranks1 and d^2-1 only when d>=2; a coefficient multiplying the zero complementary projector imposes no positivity constraint at d=1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "For d>=2 the two actual sectors give the sharp interval and explicit negative witnesses outside it. For d=1 the allowed set is all R, refuting the predecessor's universal finite-endpoint assertion.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full Leditzky metadata entry219-227 read; metadata LF binding only. Fresh independently retrieved historical-pin-matching primary PDF554175bytes/79pages raw SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3. Complete printed57 Definition6.7/Prop6.8/Eq6.47 and printed58 Exercise6.2 context read. Exercise states the nontrivial range but contains no worked proof; exact eigenvalue/multiplicity/d1 analysis above is independently reconstructed, not a claimed source solution or local Lean theorem."
+    }
+  ],
+  "execution": "Private explicit question-version2 authoring by actual /root/qcb_formal_view_audit, not independent approval of my candidate. Entire actual prepared original read through release.checked()[2], including question, reference, rubric, assumptions/conventions, summary, three steps and primary/source metadata; whole item and original contract bound. Read the exact private qit-extendibility-401-410-review.json's scope/provenance,401/407 findings and material overlap comparisons; parent diagnostics and inherited accept metadata exposed, not source/verdict blind. Prior source/QIT review exposure disclosed. Mandatory repository protocols and substantive-worker/PDF guidance used in this continuous context. Fresh independent read-only HTTPS memory retrieval of the Leditzky PDF in this objective:554175bytes/79pages, raw SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3 matching the historical pin; complete operative printed57-58 isotropic definition/parameterization/exercise and printed71-76 spectrum context read. No fresh visual verification of these pages, no PDF/page saved or redistributed. No Lean/kernel/native-formal execution, algorithmic cost guarantee, novelty, model/human/expert approval, extra agent, admission, canonical/source/policy edit, commit/push or PR104 change. Only _review_tmp/plan-401-isotropic-dimension-state-successor.json authored, pending distinct exact-content question-change review."
+}

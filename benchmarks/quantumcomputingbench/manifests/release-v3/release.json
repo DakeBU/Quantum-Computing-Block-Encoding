@@ -1,0 +1,73 @@
+{
+  "baseline": "unmeasured",
+  "ids": [
+    "qcb-93a09f278c059a57a12e",
+    "qcb-50319d5f3f55c7b54564",
+    "qcb-c48492565a0aca0bbf44",
+    "qcb-e146e2a572a3f5879482",
+    "qcb-0114312eb64b6d738216",
+    "qcb-5f21f62723a5d87ab091",
+    "qcb-dd4d719e69bf777883b6",
+    "qcb-8c3fa22bd6ad10255484",
+    "qcb-b9a7b2a73ff0963c1320",
+    "qcb-40a4882e33e6dd73800f",
+    "qcb-f5b1f9df507f6ac9283d",
+    "qcb-2cdd78eeb72fde677022",
+    "qcb-486b9aec70c569866488",
+    "qcb-8f9946a41726f8015d5a",
+    "qcb-09248f41459defbf7817",
+    "qcb-06abc9602b94fbaa9b7f",
+    "qcb-bfb9e6dcbff5e726ec0e",
+    "qcb-f9c0c2fcf9cbae389111",
+    "qcb-237d731d8a44aaf4afb4",
+    "qcb-c90c7afcd009e812ae4f",
+    "qcb-c1e0219d1dc24b615295",
+    "qcb-6d839eb906836883ccdb",
+    "qcb-07aec2c5f00e7d131782",
+    "qcb-6702a446193a42a15b47",
+    "qcb-4392f9ee285000ca498d",
+    "qcb-a950db1fdcd9d482cc2e"
+  ],
+  "items_hash": "9bd1672230ef465a6b397656ad4e880bef9a9298fae8e5165569fc1d3705f23c",
+  "license": "See dataset card; external source text not redistributed.",
+  "private_gold_published": false,
+  "provisional_count": 12,
+  "provisional_items_hash": "702d4717a5124f18ee4466b85a924e1ca3afb60d8f9515f2b2462abb430ac7ca",
+  "schema_version": "qcb.release.v1",
+  "snapshot_id": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+  "splits": {
+    "dev": [
+      "qcb-c48492565a0aca0bbf44",
+      "qcb-5f21f62723a5d87ab091",
+      "qcb-dd4d719e69bf777883b6",
+      "qcb-8c3fa22bd6ad10255484"
+    ],
+    "test_public": [
+      "qcb-50319d5f3f55c7b54564",
+      "qcb-b9a7b2a73ff0963c1320",
+      "qcb-40a4882e33e6dd73800f",
+      "qcb-bfb9e6dcbff5e726ec0e",
+      "qcb-f9c0c2fcf9cbae389111",
+      "qcb-c1e0219d1dc24b615295",
+      "qcb-6d839eb906836883ccdb",
+      "qcb-07aec2c5f00e7d131782",
+      "qcb-6702a446193a42a15b47",
+      "qcb-4392f9ee285000ca498d",
+      "qcb-a950db1fdcd9d482cc2e"
+    ],
+    "train": [
+      "qcb-93a09f278c059a57a12e",
+      "qcb-e146e2a572a3f5879482",
+      "qcb-0114312eb64b6d738216",
+      "qcb-f5b1f9df507f6ac9283d",
+      "qcb-2cdd78eeb72fde677022",
+      "qcb-486b9aec70c569866488",
+      "qcb-8f9946a41726f8015d5a",
+      "qcb-09248f41459defbf7817",
+      "qcb-06abc9602b94fbaa9b7f",
+      "qcb-237d731d8a44aaf4afb4",
+      "qcb-c90c7afcd009e812ae4f"
+    ]
+  },
+  "test_is_public": true
+}

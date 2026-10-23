@@ -1,0 +1,1239 @@
+{
+  "schema_version": "qcb.textbook_current_policy.v1",
+  "policy": "Frozen historical releases are unchanged. Answer-only successors preserve every question-contract field. Explicit question successors require a rejected or ambiguous exact predecessor, new version/hash, distinct content-bound contract-change review and preserved core/family/split/graph scope; they do not claim proposition equivalence or create another core. All predecessor reviews remain history, never inherited approval. Withdrawals alone do not satisfy stable acceptance.",
+  "question_successors": [
+    {
+      "core_id": "qcb-core-la-206",
+      "predecessor_key": "qcb-core-la-206",
+      "predecessor_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+      "reason": "Explicit question version2 refutes literal budget equality before deriving the actual-cost identity, upper bound and same-run correctness.",
+      "repair": "shared/repairs/la-206-cost-contract-successor.json",
+      "review": "reports/textbook-v1/repairs/la-206-cost-contract-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-206",
+        "predecessor_key": "qcb-core-la-206",
+        "predecessor_item_digest": "570ef6e2369350a88e413eebd4a96a3608685517dc5e1d1f6b7a08e741cd77ba",
+        "reason": "The literal question may demand equality with a sum of upper budgets, while the source and reference prove only a componentwise upper bound.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-201-210-review.json",
+        "review_digest": "a51c24b07f402ff5373d5e8c0c07e52f0c8754b3fd66dca3df4b16f03373c45a",
+        "finding_digest": "de2149de4a2d2beee514747e3bd787e1bec72050579a0cb98accda109692cc3e"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-108",
+      "predecessor_key": "qcb-core-sp-108",
+      "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+      "reason": "First explicit question-contract correction, not an unchanged-question answer repair. Preserve and assess the predecessor's false description of t^i(1-t)^(k+1) as degree k+1, replace it by the exact degree i+k+1, and retain the same exact Bernstein elevation and source-coefficient nonnegativity target. Define the previously implicit full source polynomial in its existing coordinate t=p+1. No premise is added to the unchanged assumptions/conventions; core, family, split, frozen graph/source scope and three semantic steps remain reserved. Old and new requested reasoning are not claimed equivalent; the original remains historical.",
+      "repair": "shared/repairs/sp-108-question-degree-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-108-question-degree-successor-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-108",
+        "predecessor_key": "qcb-core-sp-108",
+        "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+        "reason": "The question gives the false degree k+1 for t^i(1-t)^(k+1); its degree is i+k+1.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+        "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+        "finding_digest": "a00068654d14500fe3903fde2955649e61d1f1e6ea184f3dd168c9359eddd2dc"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-111",
+      "predecessor_key": "qcb-core-sp-111",
+      "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+      "reason": "First explicit question-contract correction. Preserve and assess the predecessor's unconditional exact-degree2*deg(q) assertion, replace it by a universal upper bound and the correct zero-step/nonzero-step cases, and retain the same exact degree-sized Faulhaber discrete squared-mass identity. The original assumptions still require a coefficient bound at least2*deg(q) and exact real sampling; no nonzero-step or nonzero-polynomial hypothesis is added. The question spells out natDegree at zero to make the inherited bound meaningful. Core, family, split, frozen graph/source scope and three semantic steps remain unchanged. This changes requested reasoning and is not claimed equivalent to the old question.",
+      "repair": "shared/repairs/sp-111-question-degree-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-111-question-degree-successor-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-111",
+        "predecessor_key": "qcb-core-sp-111",
+        "predecessor_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+        "reason": "The allowed zero grid step invalidates the claimed exact degree 2*deg(q); only an upper bound follows.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "87a3bd96b762a6434e855a55bee89412168140113f31b0e9ae758b40f5f70c43"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-320",
+      "predecessor_key": "qcb-core-plan-320-isotropic-partial-transpose",
+      "predecessor_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+      "reason": "Explicit first question-version2 correction, not an unchanged-question answer repair and not an equivalent restatement of the predecessor's requested proof. Retain the false state-level iff for assessment/refutation, then request the valid full sandwich/adjoint identity, unconditional OPERATOR-symmetry equivalence and the conditional PPT state-level theorem. PPT is a proved case/necessary positivity condition, not a new standing premise excluding the counterexample. The exact assumptions, conventions, family, split, frozen graph/source scope and four semantic steps remain reserved; only question changes among the nine contract fields. Original source wording and the frozen predecessor remain historical. No new core or Lean node is introduced.",
+      "repair": "shared/repairs/plan-320-partial-transpose-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-320-partial-transpose-state-successor-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-320",
+        "predecessor_key": "qcb-core-plan-320-isotropic-partial-transpose",
+        "predecessor_item_digest": "ba9009dea18f4b0ac26f611f7313943bc82ce7ea5ef58a3f0bf6bd28263b2916",
+        "reason": "Partial transpose transports operator symmetry but not state positivity; a maximally entangled state maps to the nonpositive swap divided by dimension.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+        "review_digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+        "finding_digest": "67bcc2c402586f17aefc82809acea89ad9159ded86b184014e0768aac06f02cb"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-011",
+      "predecessor_key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+      "predecessor_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+      "reason": "Explicit first question-version2 correction, not an answer-only repair or an equivalent restatement of the predecessor's requested proof. Preserve the exact SVD unitary dilation and no-exact-system-unitary claim. Replace the universal demand to prove ancilla/postselection necessity for nonunitary A by explicit assessment/refutation for NORMALIZED state preparation, while retaining the chosen branch probability and exact unnormalized-operator boundary. Keep original assumptions/conventions (both empty), family/split, frozen graph/source scope and the same three semantic steps/nodes; only question changes among the nine contract fields. No deterministic implementation of the unnormalized nonunitary A, efficient gate synthesis, new core or formal admission is claimed.",
+      "repair": "shared/repairs/plan-011-normalized-preparation-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-011-normalized-preparation-state-successor-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-011",
+        "predecessor_key": "qcb-core-plan-011-nonunitary-dilation-no-direct-unitary",
+        "predecessor_item_digest": "71c049845a37c2fa731dc00c39014bb8a418b1b970aa41179fc09245ff638b53",
+        "reason": "An exact nonunitary linear operator is not a native unitary, but its normalized output need not require postselection; a nonzero scalar identity is a counterexample.",
+        "review": "reports/textbook-v1/reader-reviews/encoding-foundations-010-011-review.json",
+        "review_digest": "5a155ddc15bd54290a7dfd292bd7e6166c6b7c6c7969ac4b46be2d368ceb2912",
+        "finding_digest": "d9269435cbdfb1fc7da2499a9274a5df80a07d47e35e71b871f016ba5e5c60ac"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-401",
+      "predecessor_key": "qcb-core-plan-401-isotropic-positivity-x-range",
+      "predecessor_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+      "reason": "Explicit first question-contract correction. Preserve the original positivity/trace/eigenvalue target and require assessment of its dimension-independent interval claim, but include the allowed d=1 branch instead of silently imposing d>=2. All-real x and all nonzero Hilbert dimensions remain; d=0 was already incompatible with the stipulated rank-one trace-one Phi. Only question changes among the nine CONTRACT_FIELDS; original assumptions/conventions stay empty, and family/split/frozen graph/source scope/three semantic steps remain reserved. Not an equivalent proof demand, answer-only repair, new core, or admission.",
+      "repair": "shared/repairs/plan-401-isotropic-dimension-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-401-isotropic-dimension-state-successor-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-401",
+        "predecessor_key": "qcb-core-plan-401-isotropic-positivity-x-range",
+        "predecessor_item_digest": "a1e13c8ee83cf6e9502719cba3080b6fa3006bf2b81c673e32dc4ddbf412d0bd",
+        "reason": "The positivity interval silently assumes dimension at least two; at dimension one the state is the identity for every real parameter.",
+        "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+        "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+        "finding_digest": "7dd8cd3e026c51b8ed2c8c4d778a9efd2a03f7ed1e0eed62f935411c088158f8"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-407",
+      "predecessor_key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+      "predecessor_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+      "reason": "Explicit first question-contract correction, not equivalent to the predecessor's demand to prove Pr(hat r!=r)->0. Keep that exact-equality assertion for assessment/refutation and replace the false proof demand with fixed-epsilon convergence in probability using the original polynomial-qualified outcome bound and an explicit diagram-count union factor. Keep estimator-domain validation, all spectra including zeros, original assumptions/conventions (empty), family spectrum-estimation-consistency, split, frozen graph/source scope and three semantic steps. Only question changes among the nine fields. The corrected neighborhood theorem substantially overlaps plan319's concentration subtarget; this is reserved lineage under existing407, not an additional distinct core or global deduplication/alias decision.",
+      "repair": "shared/repairs/plan-407-fixed-neighborhood-state-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-407-fixed-neighborhood-state-successor-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-407",
+        "predecessor_key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+        "predecessor_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+        "reason": "Exact spectrum equality is impossible for an irrational spectrum at every finite sample count; neighborhood consistency is a different statement.",
+        "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+        "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+        "finding_digest": "3edbf7781b4db74af20cc4116027f3749ed29fb005d2ca662d4316887f8e879d"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-107",
+      "predecessor_key": "qcb-core-sp-107",
+      "predecessor_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+      "reason": "Explicit first question-contract correction of an underspecified standalone source coefficient/ambiguous reflection demand. Define the actual canonical coefficient polynomial and derive its normalization, rather than silently adding A_k(0)=1 as a standing premise. Preserve the coordinate, opposite-endpoint k-jet decoupling, endpoint-value and weighted-shape target. Only question changes among the nine fields; original assumptions/conventions remain empty, with the same core/family/train split/frozen graph/source scope/three semantic steps. The predecessor is ambiguous, not a counterexample to the canonical production formula. Requested reasoning changes explicitly; no new core, full endpoint-jet reproof or source/kernel closure is claimed.",
+      "repair": "shared/repairs/sp-107-coefficient-reflection-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-107-coefficient-reflection-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-107",
+        "predecessor_key": "qcb-core-sp-107",
+        "predecessor_item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+        "reason": "The standalone question does not specify A_k(0)=1 used for the endpoint values; weighted reflection needs explicit shape/weight semantics.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+        "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+        "finding_digest": "a09afc1e0293de4db4da7412ddffcad481527cdcc3ca65a356dcd27300291de4"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-113",
+      "predecessor_key": "qcb-core-sp-113",
+      "predecessor_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+      "reason": "Explicit first question-contract correction of the demanded positivity-as-anchor explanation, not an altered mass inequality. The original question ALREADY supplies f_k(0)=1 and the central grid identity; no unit-grid premise is newly invented. Retain that exact unit-sample/squared-mass target and L>0 domain, but ask the reader to assess/refute the claimed role of strict positivity and prove the bound/nonzero consequence without it. Only question changes among the nine fields; assumptions/conventions stay empty, same core/family/dev split/frozen graph/source scope and three steps/nodes retained. This is not an equivalent explanation demand or a fresh production theorem.",
+      "repair": "shared/repairs/sp-113-unit-grid-anchor-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-113-unit-grid-anchor-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-113",
+        "predecessor_key": "qcb-core-sp-113",
+        "predecessor_item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+        "reason": "The answer/rubric wrongly attribute the unit grid anchor to strict positivity rather than the central-index and endpoint identity.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "b81bd650d3b6b65a3997bdd8b1ed2f9eaa69ebb5ba2c3716c32dc76e5506548e"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-502",
+      "predecessor_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+      "predecessor_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+      "reason": "Explicit question-version2 candidate, NOT an unchanged-question answer repair. The historical final demand that a single UR no longer gives a clean Chebyshev block is false as stated: UR always has degree-one clean block A, and lack of global Hermiticity neither forces distinct geometric planes nor universally prevents correct unpaired powers. Replace that false necessity with the guaranteed adjoint-paired construction and a precise counterexample-based boundary. Only question changes among the nine CONTRACT_FIELDS; preserve the other eight fields exactly, the same core/family/test_public split/frozen graph/source scope and seven semantic steps. Original contract hash ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037 is superseded, not falsely claimed unchanged. Exact normalized compression and endpoint handling are explicit in the new question. No equivalence-to-predecessor, additional core, source-edit, admission or selfapproval claim.",
+      "repair": "shared/repairs/plan-502-paired-iterate-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-502-paired-iterate-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-502",
+        "predecessor_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+        "predecessor_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "reason": "Directed qubitization planes need not be distinct and non-Hermitian global completion does not universally force paired-iterate necessity.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "e34e7ac69cf7f42a89f5d771db3532fdadbf90e17c75e6a088860be09ad8864c"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-115",
+      "predecessor_key": "qcb-core-sp-115",
+      "predecessor_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+      "reason": "Explicit first question-version2 correction, not an unchanged-question answer successor. The literal historical question has valid universal composition-law requests, but its last threshold application supplies no threshold domain; the historical answer and rubric r3 promote a width-two claim that is false for unrestricted thresholds. The question itself does not explicitly assert that every threshold has width two, so the rank-three example below refutes that answer/rubric claim, not the four laws. Rather than silently insert a source premise into an unchanged contract, this version explicitly asks for the source's bounded natural prefix/suffix application and its limitation. It also clarifies 'exact width each produces' as the cardinality of the supplied construction, not necessarily minimum width. Only question changes among the nine CONTRACT_FIELDS; retain the other eight exactly, including empty assumptions/conventions, family hermite-cut-rank, dev split, frozen graph/source_refs, the same six target nodes and no supporting nodes. Retain exactly three semantic steps and each step's original supporting-node list. No equivalence-to-predecessor, additional core, selfapproval or admission claim. Proposed canonical repair locator is benchmarks/quantumcomputingbench/shared/repairs/sp-115-threshold-domain-question-successor.json; only the private _review_tmp/sp-115-threshold-domain-question-successor.json is authored/inspected here.",
+      "repair": "shared/repairs/sp-115-threshold-domain-question-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-115-threshold-domain-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-115",
+        "predecessor_key": "qcb-core-sp-115",
+        "predecessor_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+        "reason": "The width-two threshold assertion omits the bounded natural suffix premise; an allowed unrestricted threshold matrix has rank three.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "207301599011cac2c810f0e5331bcc1e48f81b689ff8fd692d08c78aa3738f0b"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-117",
+      "predecessor_key": "qcb-core-sp-117",
+      "predecessor_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+      "reason": "Explicit question-v2 because the original asks readers to reject an unqualified polynomial-resource inference, without distinguishing existential arbitrary-real gate size from a uniform finite-bit compiler. Its old rank-one example confuses a single cut with all ordered cuts. Retain the Hermite cut-certificate/normalized-preparation boundary objective but require a qualified comparison, not a nonexistent gate-count impossibility. Only question changes among the nine contract fields; original logical-sufficiency assumption and empty conventions stay intact, same core/hermite-cut-rank family/dev split/frozen graph/source refs and original three ordered step-node lists. The generic computability discriminator below is not a hardness claim about Hermite samples. Current later source interfaces are read-only contextual evidence, not new frozen graph nodes or a new formal view.",
+      "repair": "shared/repairs/sp-117-rank-resource-model-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-117-rank-resource-model-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-117",
+        "predecessor_key": "qcb-core-sp-117",
+        "predecessor_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+        "reason": "The answer conflates rank one at a single cut, all-cut product structure, exact-real circuit existence and a computed finite-bit compiler.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "114d7fd61409efca3a2e77f0052725e3460c5c1ff061a1bd45c875e410e07828"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-119",
+      "predecessor_key": "qcb-core-sp-119",
+      "predecessor_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+      "reason": "Explicit first question-contract correction of the suppressed smoothing index and ambiguous all-orders conclusion. The predecessor is valid under the indexed-family reading but false under a single fixed C-infinity-target reading; this is not silently resolved by changing only its answer. Make the actual source family S_k,f_k explicit, prove forall natural k,C^k(f_k), and require the canonical k=0 counterexample to the stronger reading. Retain the exact two-junction target and supplied finite-jet premise, middle-inclusive boundary convention, same core/hermite-smooth-gluing family/train split/frozen graph/source scope and original three semantic steps with exactly the same node lists. Only question changes among the nine contract fields; no assumptions/conventions field is added. No assertion that every fixed k member fails exactly at order k+1 is required or claimed.",
+      "repair": "shared/repairs/sp-119-indexed-smoothness-state-successor.json",
+      "review": "reports/textbook-v1/repairs/sp-119-indexed-smoothness-state-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-119",
+        "predecessor_key": "qcb-core-sp-119",
+        "predecessor_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+        "reason": "The question may conflate a family of order-k bridges with one fixed infinitely smooth function; its quantifiers need clarification.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+        "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+        "finding_digest": "58557745ed1b5f803ae270ac6a915b0621373c468f46c39e57f8885babc9c70b"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-004",
+      "predecessor_key": "qcb-core-be-004",
+      "predecessor_item_digest": "69ef913513b5551fc106df171152b284d3ab8de62ca563ee680e1e751cfaa977",
+      "reason": "Explicit first question-v2, not an unchanged-question answer repair. The original final-stage request and 'ancilla that must be returned to zero' wording can be read as demanding uniqueness and deterministic cleanup, while the original answer/rubric expressly overclaim both. This version retains the four-stage/register-role objective but explicitly asks whether uniqueness and cleanup follow and requires boundary examples; it makes right-to-left matrix order versus chronological order explicit. Only question changes among nine contract fields. Retain coefficient\u00d7(selector\u00d7system), the frozen convention that the CHOSEN architecture uses P_lift\u2020 SELECT AMPLITUDE P_lift and shares the selector, same be-lcu-stage-roles family/train split, frozen graph/source_refs and exactly two semantic steps with their original ordered node lists. Alternative gates are counterexamples to a claimed necessity, not a silent redefinition of the architecture. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-004-stage-role-projection-question-successor.json; inspection/authorship here is private _review_tmp only.",
+      "repair": "shared/repairs/be-004-stage-role-projection-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-004-stage-role-projection-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-004",
+        "predecessor_key": "qcb-core-be-004",
+        "predecessor_item_digest": "69ef913513b5551fc106df171152b284d3ab8de62ca563ee680e1e751cfaa977",
+        "reason": "PREPARE-dagger is a sufficient architectural choice, not the unique final gate with the same clean row; projected correctness does not imply deterministic selector cleanup.",
+        "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+        "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+        "finding_digest": "707fb90219b42b5a2ee811cc875a99c39ad58c29253a58af49cd677e558f112f"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-112",
+      "predecessor_key": "qcb-core-be-112",
+      "predecessor_item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+      "reason": "Explicit first question-v2. The original literally requires explaining why unprepare MUST be the adjoint and phrases written matrix-factor order as 'then', while the old answer/rubric also claim deterministic selector cleanup. The valid product-unitarity theorem is retained, but the false necessity/cleanup demand becomes an explicit question to assess with counterexamples and chronological order is specified. This is not a silent answer-only weakening or a new source theorem. Only question changes among nine contract fields; retain the original three local certificate assumptions and convention that the CHOSEN unprepare stage is the conjugate transpose, same be-lcu-composite-unitary family/dev split, frozen graph/source_refs, five semantic steps and every original ordered per-step node list. Alternative finals below challenge a universal necessity inference; they do not override the chosen-architecture convention. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-112-unitarity-versus-adjoint-question-successor.json; authored/inspected only in private _review_tmp.",
+      "repair": "shared/repairs/be-112-unitarity-versus-adjoint-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-112-unitarity-versus-adjoint-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-112",
+        "predecessor_key": "qcb-core-be-112",
+        "predecessor_item_digest": "c9008a445032f5ece7e8068ed7a580c1a74eda9188a36cdaac48888b6da4cc19",
+        "reason": "Product unitarity neither forces the final adjoint nor guarantees deterministic selector cleanup.",
+        "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+        "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+        "finding_digest": "f19345e48c0c9646bc0181d7b8556e55c1901c2935d455fdc91715669016262e"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-013",
+      "predecessor_key": "qcb-core-la-013",
+      "predecessor_item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+      "reason": "Explicit first question-version correction: the original arbitrary computational-basis P is not necessarily induced by a wire permutation. Define that load-bearing relation in the question and assess the unrestricted reading with a one-wire counterexample. This is not an answer-only silent restriction. Other eight CONTRACT_FIELDS unchanged, original3 steps/nodes, native-expansion-mechanism-013/train/frozen graph preserved.",
+      "repair": "shared/repairs/la-013-wire-induced-permutation-successor.json",
+      "review": "reports/textbook-v1/repairs/la-013-wire-induced-permutation-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-013",
+        "predecessor_key": "qcb-core-la-013",
+        "predecessor_item_digest": "f7dfea0e196e67a9b833837bf177bf9c36da072211cae75d84abed089fd87226",
+        "reason": "The permutation must be explicitly induced by the wire bijection; arbitrary basis permutations need not give the stated circuit rename.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-011-020-review.json",
+        "review_digest": "91acd2c7c75eb4d0db95f87b1743b0352f6925cf3ea20b40fa0b0edee81b0807",
+        "finding_digest": "dc6de2ac88b200ae76d61dd5e4488e8958fd2eda342d20d710d6279f81ea1d67"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-003",
+      "predecessor_key": "qcb-core-be-003",
+      "predecessor_item_digest": "a757beddff8a7a05762348e416f2e50a373efa53005468c33f43d4ea53b61de8",
+      "reason": "Explicit first question-version2 clarification of the question/explicit-assumption range mismatch. Keep the inherited positive premise visible and ask to assess the old broader wording plus a labeled extension, rather than silently changing assumptions. Same nonunique-completion target; no false claim that the original witness mathematics was invalid. Exact predecessor contract hash 44e0c8e158d38e93a29891a143cf773aecbf6f7aada292309b5f9c96e67ba1a8. Preserve core/family/split/frozen graph/source scope, 3 semantic steps and each ordered per-step supporting-node list. Only question changes among the nine CONTRACT_FIELDS; all other8 fields inherited literally. Old/new requested reasoning is not claimed equivalent. No new core, selfapproval, formal transfer or admission.",
+      "repair": "shared/repairs/be-003-range-completion-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-003-range-completion-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-003",
+        "predecessor_key": "qcb-core-be-003",
+        "predecessor_item_digest": "a757beddff8a7a05762348e416f2e50a373efa53005468c33f43d4ea53b61de8",
+        "reason": "The question and explicit assumptions use different scalar target ranges; the supplied witnesses are correct but the literal public contract needs clarification.",
+        "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+        "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+        "finding_digest": "ce9239275d214f69c3f75465f848a35a5c123c4d0e836e54b2cc41a9c080ee07"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-009",
+      "predecessor_key": "qcb-core-be-009",
+      "predecessor_item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+      "reason": "Explicit first question-version2 correction of the false demand for a counterexample to a true existential reconstruction claim. Keep the original one-sparse premise and fixed-support convention visible, assess/refute the invalid old example logically, and separate existential-map truth from the genuinely false arbitrary-fixed-map claim. No silent replacement by a non-one-sparse input. Exact predecessor contract hash 6659d3e45a3aa738998a147809356d44e0b5f688405bbe667a6d174f6f8ba117. Preserve core/family/split/frozen graph/source scope, 2 semantic steps and each ordered per-step supporting-node list. Only question changes among the nine CONTRACT_FIELDS; all other8 fields inherited literally. Old/new requested reasoning is not claimed equivalent. No new core, selfapproval, formal transfer or admission.",
+      "repair": "shared/repairs/be-009-support-quantifiers-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-009-support-quantifiers-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-009",
+        "predecessor_key": "qcb-core-be-009",
+        "predecessor_item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+        "reason": "The proposed counterexample violates the at-most-one-nonzero-per-column premise and cannot refute it; a fixed versus existential support map must be distinguished.",
+        "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+        "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+        "finding_digest": "fea98e3562be629e82f7a4e733ee182d623a0bf36e2dba6e33e7ea0c4d158ee9"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-012",
+      "predecessor_key": "qcb-core-be-012",
+      "predecessor_item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+      "reason": "Explicit first question-version2 correction of the false finite-square injectivity boundary and unqualified raw-block expressiveness inference. Preserve and refute the literal original finite self-map demand; do not obtain an easier result by changing to rectangular/infinite maps. Keep the original normalization-free raw-entry calculation and explicitly distinguish rescaled targets. Original contract hash be2e431321111e231fd75ca79c603a24a827d45ffc7335d5621f6abd48b5977e. Only question changes among the nine CONTRACT_FIELDS; preserve other8 literally, same core/family/split/frozen graph/source scope, 2 steps and exactly their ordered supporting-node lists. Not predecessor-equivalence, new core, selfapproval, formal transfer or admission.",
+      "repair": "shared/repairs/be-012-finite-injection-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-012-finite-injection-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-012",
+        "predecessor_key": "qcb-core-be-012",
+        "predecessor_item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+        "reason": "An injective self-map on a finite basis is automatically surjective; source lemma signatures do not establish an extra independent necessity.",
+        "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+        "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+        "finding_digest": "4d6fa0174c308e192484ab625f67d247932d688f61e3f09a5b3c5685cd757a0d"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-104",
+      "predecessor_key": "qcb-core-be-104",
+      "predecessor_item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
+      "reason": "Explicit first question-version2 correction of an exact false matrix equality. Retain the original bare-product assumption, seven-wire setting and P(E) convention; assess/refute the old claim with the actual45pi/8 ledger and ask for phase-aware refinement as a distinct denotation. No silent redefinition of C or global-phase quotient. Original contract hash 4cded40db452c99cb732915e47e3b2d27b7a9973e7a32ac5b33b63ff8a58f04e. Only question changes among the nine CONTRACT_FIELDS; preserve other8 literally, same core/family/split/frozen graph/source scope, 5 steps and exactly their ordered supporting-node lists. Not predecessor-equivalence, new core, selfapproval, formal transfer or admission.",
+      "repair": "shared/repairs/be-104-phase-aware-refinement-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-104-phase-aware-refinement-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-104",
+        "predecessor_key": "qcb-core-be-104",
+        "predecessor_item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
+        "reason": "Bare emitted gate products omit the compiler global phase and do not equal the claimed exact 0/1 permutation matrix.",
+        "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+        "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+        "finding_digest": "ee83aba1d642fb319bce4fae588fba9cd04798253f52ec3bff03abad91664fa3"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-119",
+      "predecessor_key": "qcb-core-be-119",
+      "predecessor_item_digest": "9861d3807794ab3a410205c3d90e220174973ab60491d738ba200ce0de215506",
+      "reason": "Explicit first question-version2 correction of the unsupported scope of 'total13 physical qubits'. Preserve that historical claim for assessment, retain all original numbers/hypotheses and clarify visible versus full resource scopes instead of silently asserting a cheaper total. Same transcript/9-versus10 target; no replacement physical count or cleanup theorem. Original contract hash 4d00d5fa56caf609041bdfb2399f6cba6567cbd92c4e5d42725303b60e962807. Only question changes among the nine CONTRACT_FIELDS; preserve other8 literally, same core/family/split/frozen graph/source scope, 4 steps and exactly their ordered supporting-node lists. Not predecessor-equivalence, new core, selfapproval, formal transfer or admission.",
+      "repair": "shared/repairs/be-119-visible-workspace-question-successor.json",
+      "review": "reports/textbook-v1/repairs/be-119-visible-workspace-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-119",
+        "predecessor_key": "qcb-core-be-119",
+        "predecessor_item_digest": "9861d3807794ab3a410205c3d90e220174973ab60491d738ba200ce0de215506",
+        "reason": "Visible backend wire count is not established as the full physical count including internal oracle workspace.",
+        "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+        "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+        "finding_digest": "bb4d92a5d0627f4314bd0c0ba5413139fdade1764e5066e5dccad0bcbb076a5b"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-219",
+      "predecessor_key": "qcb-core-la-219",
+      "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+      "reason": "Explicit first question-AND-convention successor under the announced qcb.textbook_question_successor.v2 engine, not a question-only wrapper or answer repair. Only question and conventions change among the nine CONTRACT_FIELDS; assumptions,family,split,graph_version,target_nodes,supporting_nodes,source_refs are literally inherited. Retain reserved qcb-core-la-219/native-stored-cost-219/train/frozen graph and three exact ordered step-node lists; no additional core or predecessor-equivalence claim. The old active 'only an inequality cap is provable' convention is false as an unrestricted mathematical claim and is retained only in historical evidence, not silently reinterpreted. The exact proposed question/conventions, complete answer/rubric/exposition and operative source bindings are carried unchanged from the separately mathematically reviewed frozen private migration proposal, while this NEW full admissible payload and its execution metadata require distinct exact-content review. Old contract 1adc7e2fff3b379cfa59091ba192d0d9ffdd4cd49c4b0e945f9e884ce5c4ba79; new question+convention contract 8071360a2cb8f672ebcbb0bf3ca61da4283ffe28766652b17ede24d6cc89eb3d. Engine compatibility does not imply mathematical approval or current reader admission.",
+      "repair": "shared/repairs/la-219-correlated-guard-question-convention-successor.json",
+      "review": "reports/textbook-v1/repairs/la-219-correlated-guard-question-convention-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-219",
+        "predecessor_key": "qcb-core-la-219",
+        "predecessor_item_digest": "17529c3e96a9905183c6dae1c01a2913c0f0ccd19b569e01410ef064feb9321e",
+        "reason": "The valid guard-count ledger and loose cap do not establish an attainable full range; actual compiled child guards are correlated.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "7e6c52380b436f2f09fa465c8760c5b591ffeddac9fc4e8824ad75b73def19eb"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-415",
+      "predecessor_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+      "predecessor_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+      "reason": "First explicit question-version successor. The old 'without loss of generality' has no performance criterion; preserve and assess that defect rather than assume a hidden guarantee from the intended answer. Replace ONLY question among the nine contract fields, retaining empty assumptions/conventions, spectrum-estimation-symmetries family, test_public split, graph/source scope and the original three ordered step-node lists. Establish the exact pointwise/permutation versus orbit-average/uniform-risk distinction, then the full both-symmetry Schur postprocessing statement. No convention migration, new core or split override.",
+      "repair": "shared/repairs/plan-415-minimax-spectrum-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-415-minimax-spectrum-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-415",
+        "predecessor_key": "qcb-core-plan-415-spectrum-measurement-symmetry-wlog",
+        "predecessor_item_digest": "58f5463de5d55b912ea13c5c871302cf415a3e9a567911acfe7746fdadc6830f",
+        "reason": "Unitary twirling preserves a uniform invariant worst-case testing guarantee, not each fixed state measurement distribution; the WLOG performance quantifiers are missing.",
+        "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+        "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+        "finding_digest": "255fe64423284aaf29fc37d3945ae22098f4ff0d4685b94c2319dedbac851528"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-420",
+      "predecessor_key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+      "predecessor_item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+      "reason": "First explicit question-version successor, because the literal question(c) presupposes false original-space symmetric support for de Finetti/cloning constructions without qualification. Retain(a)/(b), explicitly assess/refute that premise and repair the interpretation using the actual mixed-state purification and projected-cloner domains. Replace ONLY question among nine contract fields: empty assumptions/conventions, symmetric-subspace-dimension family, test_public split, graph/source_refs and exact original three ordered step-node lists remain unchanged. No silent restriction to pure symmetric states, no assertion that arbitrary invariant states or every full cloning channel are symmetric-supported, and no new core/count/split or convention migration.",
+      "repair": "shared/repairs/plan-420-symmetric-support-dimension-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-420-symmetric-support-dimension-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-420",
+        "predecessor_key": "qcb-core-plan-420-symmetric-dimension-weyl-formula-boundary",
+        "predecessor_item_digest": "1951692e1270730eeefd5b8d7e53d434e0046252fa59c28cb2f041fce9ee1ac7",
+        "reason": "Permutation-invariant mixed states need not have original symmetric support; the mixed de Finetti proof instead uses an enlarged symmetric purification space.",
+        "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+        "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+        "finding_digest": "054eb2176652b357778927631005014e6031653129241046875b9c11b5e26403"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-510",
+      "predecessor_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+      "predecessor_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+      "reason": "Explicit first question-version2 correction, not an answer-only silent addition of the exact unit-normalized input premise. The old single-ancilla description fixes register count, not block factor or error, and is insufficient for its promised coefficient factor. Keep/refute that reading, then request the true conditional normalized-input theorem and exact arbitrary-scale rescaling boundary. Only question changes among nine CONTRACT_FIELDS; assumptions/conventions/family/test_public split/frozen graph/source_refs remain literal, with six steps and every ordered per-step node list unchanged. Original contract 2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-510-normalized-input-resource-question-successor.json; private _review_tmp/plan-510-normalized-input-resource-question-successor.json. No new core, standing assumption-field override, engine change or selfapproval. Recomputed proposed question-only contract c70aee607b7ca91f359152628fb31bbab1e0855382bbbfcfa55b8468e8f239da.",
+      "repair": "shared/repairs/plan-510-normalized-input-resource-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-510-normalized-input-resource-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-510",
+        "predecessor_key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+        "predecessor_item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+        "reason": "The exact unit-normalized input block premise is missing; an arbitrary-scale block encoding cannot imply the stated output coefficient factor.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "410ccd51e78b2071927d9f67951836196e7c4a9ea7647781d82297320fcd62d2"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-513",
+      "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+      "reason": "Explicit first question-version2 correction, not an answer-only repair. Retain the literal single-mark promise for every positive N, including N=1, and assess/refute the predecessor's universal normalized-unmarked-plane demand at that endpoint. Preserve the two reflections, their order, the interior angle/power target, and every other contract field. The existing half-angle and two-mirror conventions remain true on their defined loci; no convention change or N>=2 standing premise is introduced. The nontrivial plane is a case conclusion for N>1, not a new assumption. Preserve all six ordered semantic-step node lists. Changed requested reasoning and non-equivalence are explicit; no arbitrary near-unit success, new core or local formal admission.",
+      "repair": "shared/repairs/plan-513-nontrivial-plane-endpoint-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-513-nontrivial-plane-endpoint-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-513",
+        "predecessor_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+        "predecessor_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+        "reason": "The allowed one-element search has no normalized bad vector or requested two-dimensional plane; the endpoint needs explicit treatment.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "8f5aca8a2b1a2bdf4cd54d2b5126fa33b84f7598bb44e4394483ec4afdb1a348"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-515",
+      "predecessor_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+      "predecessor_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+      "reason": "Explicit first question-version2 correction. Keep known M>=1 among N, including M=N, the original normalized-good/bad convention as a definition only where its component is nonzero, and sin(half-angle)=sqrt(M/N). Do not add M<N or a sparse-mark standing premise. Correct the question's conflation of the angle phi from the bad direction with the full iteration angle2phi. Replace the vague uniform positive 'optimal k/near-one' demand by an explicitly first-peak integer schedule, quantitative guaranteed success and sparse-regime asymptotic, while retaining/refuting the predecessor's all-marked plane demand. Other eight contract fields, six ordered node lists and source/family/split scope remain. This is changed requested reasoning, not an equivalent proof or a global optimality claim.",
+      "repair": "shared/repairs/plan-515-marked-fraction-rounding-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-515-marked-fraction-rounding-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-515",
+        "predecessor_key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+        "predecessor_item_digest": "c43f284df9948aea79762f7797a9fa54e23675d85ae9d393c3ac55281cba72c1",
+        "reason": "The all-marked case has no normalized bad state; a positive Theta iteration optimum and near-unit integer-round success do not hold uniformly.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "75d97ae9fc5e1d85f1e51d6a6f4c84fb6d021b76bea6a8e4d9e8c4a18940f840"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-517",
+      "predecessor_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+      "predecessor_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+      "reason": "Explicit first question-version2 correction. The original question requests a concrete false extension beyond real arcsine's domain, while the original answer additionally (and falsely) excludes complex continuation. Replace that demand transparently by assessment of real well-formedness versus the valid complex identity, retaining its real proof, exact a2 witness, correct signed hyperbolic representation and physical-overlap boundary. Only question changes among nine CONTRACT_FIELDS; both original conventions remain true when hyperbolic representation is stated with reflection/parity sign. No active assumption/convention is overridden. Preserve core/family/test_public split/frozen graph/source_refs, six steps and every ordered per-step node list. Original contract fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json; inspected/authored private _review_tmp/plan-517-real-domain-complex-continuation-question-successor.json. Pending distinct review, not a new core or selfapproval. Recomputed proposed question-only contract a7cd3d15c64e8ec16178faaa51a6e067064725220063b471bf6e1826851513fe.",
+      "repair": "shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-517-real-domain-complex-continuation-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-517",
+        "predecessor_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+        "predecessor_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+        "reason": "Real arcsine is undefined outside its domain, but the answer falsely rejects valid complex multiple-angle continuation and mishandles negative hyperbolic arguments.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "bb15f37a2e8deeec8147b21b53ea6258b68ad076a504ab74faa9b88c478f1a71"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-518",
+      "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
+      "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+      "reason": "Explicit first question-version2 correction, not answer-only weakening. Preserve N=2^n, unique mark, unbiased algorithms, classical worst-case query accounting and no-quantum-lower-bound conclusion. Retain the original N-1/>1/2 statement for explicit refutation, then request the sharp bounded-error guarantee (q+1)/N and the distinct certainty threshold N-1. The upper bound applies even without unbiasedness; the matching counterexample/algorithm is label-symmetric, so the retained assumption is not evaded or redefined to save the false claim. Only question changes among nine fields; all six ordered nodes remain. Same search-query family and source scope, changed requested reasoning, no formal admission.",
+      "repair": "shared/repairs/plan-518-randomized-query-guarantee-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-518-randomized-query-guarantee-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-518",
+        "predecessor_key": "qcb-core-plan-518-classical-search-lower-bound",
+        "predecessor_item_digest": "4a6f908a4ce62d5377927e6d3a035f06fdbb6322af5c18eff94cd84df876b9c2",
+        "reason": "The claimed N-minus-one randomized bounded-error lower bound is false; a symmetric four-input two-query algorithm succeeds with probability three quarters.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "3ac468c2706e32d6cc769a47839576b4c6a02a98ebb853e8aa0e77aca7cf1365"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-520",
+      "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+      "reason": "Explicit first question-version2 correction. Retain the original small-positive-p projector setting and both true conventions (sine amplitude and query-level costs), but assess/refute perpetual positive amplitude growth rather than silently restricting k. Ask for an early-angle quantitative theorem and matched constant-success comparison, plus an explicit CONDITIONAL oracle/access and calibration audit. Do not turn missing inverse/prepared-reflection access, known p or a projective check into new standing assumptions: identify the necessary dependencies and state what the original promises alone do not establish. Other eight contract fields, all six ordered node lists, family/split/source scope stay unchanged. The replacement changes requested reasoning, not a proof of the original unqualified growth/access claim. No arbitrary-state reflection, free cleanup/control, global query lower bound, finite-bit or gate certificate.",
+      "repair": "shared/repairs/plan-520-windowed-amplification-access-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-520-windowed-amplification-access-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-520",
+        "predecessor_key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+        "predecessor_item_digest": "ef7c3621b6b5fad8fc6359734a3c10021e16390ab56e6b8333bbd138868ef0c2",
+        "reason": "Amplitude increments are not positive at every iteration; the early-angle window, inverse-preparation access and calibrated stopping rule require explicit scope.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+        "review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+        "finding_digest": "1a2ec98812099b35814fa779424d2c24c4504ff5db248ef5f32e30a3e2870eea"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-003",
+      "predecessor_key": "qcb-core-plan-003-density-set-convexity",
+      "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+      "reason": "Explicit first question-version2, not an unchanged-question answer repair. Preserve and refute the literal boundary=pure clause rather than silently substitute extreme points, assume d=2, or change the meaning of boundary. The question makes the cited finite-dimensional complex carrier and real affine/ambient topologies explicit, retains the valid mixture and extremality targets, and asks the correct boundary classification with all low/zero-dimensional cases. Only question changes among the nine contract fields; original empty assumptions/conventions, core/family/split/frozen graph/source_refs and the three exact ordered step-node lists remain. No convention itself is false or rewritten, so question-only v1 suffices. The new requested reasoning is not claimed logically equivalent to the predecessor, and no infinite-dimensional extension is claimed.",
+      "repair": "shared/repairs/plan-003-density-topology-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-003-density-topology-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-003",
+        "predecessor_key": "qcb-core-plan-003-density-set-convexity",
+        "predecessor_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+        "reason": "The literal boundary-equals-pure-states clause is false; the answer silently substitutes extreme points. Relative and ambient boundary also differ.",
+        "review": "reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+        "review_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
+        "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-104",
+      "predecessor_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+      "predecessor_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+      "reason": "Explicit first question-version2 correction, not an answer-only silent linearity premise. The original defines equivariance solely by a functional composition equation, so its zero-or-linear-isomorphism and kernel/image-subspace demands are false for arbitrary functions. Retain and refute that reading with genuine continuous/holomorphic finite-unitary-irrep counterexamples, then put the common-field F-linear conditional theorem explicitly in the QUESTION. No field/algebraic-closure or finite-group restriction is silently added. Original assumptions/conventions are both empty and remain empty; only question changes among nine CONTRACT_FIELDS. Core qcb-core-plan-104, qit-schur-lemma family, test_public split, frozen graph/source_refs, five steps and every original ordered per-step node list are preserved. Original contract 50738c89ced0281d39cb9294217c84dbd8c958ee8bf75e0ca18bd89f7b23d3d1 is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-104-functional-equivariance-linearity-question-successor.json; authored private _review_tmp/plan-104-functional-equivariance-linearity-question-successor.json. No additional core, active-convention override, selfapproval or admission. Recomputed proposed nine-field question-only contract a3065731e3b29568ab9eb2c692a90f89eb2b2c854f49ab505d8a67974a7914ff.",
+      "repair": "shared/repairs/plan-104-functional-equivariance-linearity-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-104-functional-equivariance-linearity-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-104",
+        "predecessor_key": "qcb-core-plan-104-schur-lemma-equivariant-zero-or-iso",
+        "predecessor_item_digest": "d8ceef23276e205705f3522d7ecd45f9dbb7362521e202b42ef77ddf1828bfd4",
+        "reason": "Equivariance as a functional equation omits the linear-map premise used by Schur kernel/image reasoning.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "4558782c88d3c0ab2f8a40185e85c35b3947e65c35d916ac5b8ab21189263e5b"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-105",
+      "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "reason": "Explicit first question-version2 correction, not an answer-only assumption of linearity. The original finite-dimensional/algebraically closed question defines f-equivariance only by a functional equation; even there a continuous entire equivariant function need not be scalar. Retain/refute that reading and put F-linear endomorphism, finite dimension, algebraic closure and the nonzero/zero-space eigenvalue distinction explicitly in the assessed QUESTION. Restrict the commutant conclusion to End_F(V), not all commuting functions. Original assumptions/conventions remain empty and only question changes among nine CONTRACT_FIELDS; core/family/test_public split/frozen graph/source_refs and five exact ordered per-step node lists are preserved. Original contract 309c75520531398abe723c2336552f0c218d92787f06a834b7fb16bfa6f49be2 is superseded without an equivalence claim. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-105-linear-scalar-schur-question-successor.json; authored private _review_tmp/plan-105-linear-scalar-schur-question-successor.json. No convention migration, new core, selfapproval or admission. Recomputed proposed nine-field question-only contract 66e2872bd051a32e94d0a7f3affed31b2fc48f29be73fdd24fb86462efb14c73.",
+      "repair": "shared/repairs/plan-105-linear-scalar-schur-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-105-linear-scalar-schur-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-105",
+        "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+        "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+        "reason": "The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "c0c58b623d3ea5cabe7b2ebc6ab27b3547b16bdda387f45ac8779508fceb6c33"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-206",
+      "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+      "reason": "Explicit first question-version2 correction, not an answer-only repair. The predecessor forces false necessity in part(b): disjoint/unequal-size CLEAN ancillas can be embedded in one union register with a well-defined union-zero success projector. Retain and assess/refute that assertion rather than silently add a shared-register promise. Also replace 'different beta always fails' by the exact projected-map criterion and expose the unnormalized proposed compensating PREP. Only question changes among nine fields: original selector/success assumptions, both conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists remain. Clean initialization, embeddings, attenuation and coefficient preparation are explicit construction operations with costs, not hidden free promises. No convention is rewritten, no new core or optimality/formal/admission claim.",
+      "repair": "shared/repairs/plan-206-common-projector-weighted-prep-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-206-common-projector-weighted-prep-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-206",
+        "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+        "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+        "reason": "Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "29ed87e1b485d7a29947e777bf2027ffd4136259fb8568b9f46da65a3f0383ff"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-207",
+      "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+      "reason": "Explicit first question-version2 clarification/assessment, not an answer-only repair of the literal arbitrary-real finite-bit equality. Retain the exact compute-rotate-uncompute target for the actual stored angle and the original rounded-entry convention, but explicitly assess theta~=arccos(A_ij)/pi as a finite-bit equality rather than silently assume exact representability. Also make the clean arbitrary-superposition interface, basis-input exception and unchanged signal marginal part of the requested reasoning, not a universal signal-decoherence slogan. Only question changes among nine fields; all original assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists remain. No new angle-exactness, free inverse/reset/control or cleanup premise; no convention override. The revision clarifies changed requested reasoning, not equivalence to every original unqualified interpretation or native formal admission.",
+      "repair": "shared/repairs/plan-207-rounded-angle-joint-coherence-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-207-rounded-angle-joint-coherence-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-207",
+        "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+        "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+        "reason": "The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-106",
+      "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "reason": "Explicit first question-version correction. The literal unrestricted complex abelian-irrep assertion is false for algebraic infinite-dimensional representations, and the prepared empty assumptions/conventions do not bind the source's finite-dimensional standing convention. Preserve/refute that reading, then prove the source's nonzero finite-dimensional theorem with its field and zero-space boundaries explicit. Change only question among nine CONTRACT_FIELDS; keep core, qit-schur-lemma family, test_public split, graph/source_refs and exactly five ordered original node lists. Do not call the positive finite-dimensional theorem equivalent to the original unrestricted demand, or silently put finite dimension into a standing convention. Prior original contract13d2d42ffb9abf52316dd44b9c632fe90ca15ebc48b2772aa05e521deacfbf34 is superseded, not retained. No new core, global alias clearance, selfapproval or admission. Proposed question-only successor contract d60a5553bc25ce2cbc7f1ec76fc69539591c8d781b6742db92c8d9c494708f1b.",
+      "repair": "shared/repairs/plan-106-abelian-dimension-scope-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-106-abelian-dimension-scope-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-106",
+        "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+        "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+        "reason": "The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-108",
+      "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
+      "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+      "reason": "Explicit first question-version2 scalar/codomain correction. The old class-function proof survives over every field, but its unqualified dimension equality needs a scalar cast and its answer's universal integer-recovery claim fails in positive characteristic. Retain and assess that assertion, prove chi(e)=n*1_K and separate characteristic-zero recovery from the characteristic-p counterexample. Do not merely impose C or characteristic zero on all inputs. Empty assumptions/conventions stay empty; only question changes among the nine fields, with the same core/family/split/frozen graph/source_refs and four exact ordered step-node lists. A true scalar-cast reading of the old equality is acknowledged rather than falsely refuted. No equivalence of requested reasoning or approval claimed.",
+      "repair": "shared/repairs/plan-108-character-scalar-degree-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-108-character-scalar-degree-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-108",
+        "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
+        "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+        "reason": "The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "fef77d5dd0cf1cd367e8fab0d9141f07005ec9e52610916c8dac6c9928d55f48"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-112",
+      "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+      "reason": "Explicit first question-version2 field/metric correction, not an answer-only repair. Preserve the original universal flip and tensor-representation target, assess the missing scalar/metric data and refute the arbitrary-field half-projector reading in characteristic2. Prove the algebraic decomposition for char!=2 without a hidden finite-dimensional assumption, then prove orthogonal projection separately with an explicitly specified real/complex tensor-product metric; supply an incompatible-metric counterexample. This is not blanket narrowing to finite complex representations or an added unitary-action promise. Only question changes among nine fields; empty assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists stay fixed. Metric and field cases are explicit requested analysis, not silently imported standing conventions. No equivalent-old-contract or formal/admission claim.",
+      "repair": "shared/repairs/plan-112-swap-algebra-metric-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-112-swap-algebra-metric-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-112",
+        "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+        "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+        "reason": "Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+        "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+        "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94"
+      }
+    }
+  ],
+  "answer_successors": [
+    {
+      "core_id": "qcb-core-sp-002",
+      "predecessor_key": "qcb-core-sp-002",
+      "predecessor_item_digest": "7f1b2a1988e00771f6ae01653a655d04982f664f22fab24482075424eb8cbed5",
+      "reason": "The original answer conflates the free output-bond label with the summed input-bond index. step_apply requires distinct b and a labels. Completion columns are irrelevant to the clean-input action, not arbitrary under unitarity.",
+      "repair": "shared/repairs/sp-002-index-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-002-index-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-sp-006",
+      "predecessor_key": "qcb-core-sp-006",
+      "predecessor_item_digest": "44c37085b4bd6ee2044b283002c7cb3d2067205bc96c3b84b5cb04a60a4002a6",
+      "reason": "The arbitrary-real normalization answer unconditionally transfers a circuit first-column theorem that additionally requires nonnegative entries, and conflates ordinary partial division with Lean's total division.",
+      "repair": "shared/repairs/sp-006-normalization-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-006-normalization-boundary-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-sp-011",
+      "predecessor_key": "qcb-core-sp-011",
+      "predecessor_item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f",
+      "reason": "Active dimension > 2 makes even active-only unitary terminal cleanup impossible; the source's supported state-action theorem is conditional and does not establish a unitary remedy.",
+      "repair": "shared/repairs/sp-011-terminal-feasibility-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-011-terminal-feasibility-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-la-003",
+      "predecessor_key": "qcb-core-la-003",
+      "predecessor_item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+      "reason": "Raw constructor syntax is not a ring under its constructors; evaluation preserves operations, not an unqualified ring/algebra structure.",
+      "repair": "shared/repairs/la-003-syntax-semantics-repair.json",
+      "review": "reports/textbook-v1/repairs/la-003-syntax-semantics-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-003",
+        "predecessor_key": "qcb-core-la-003",
+        "predecessor_item_digest": "33122c5bd9eba24d73f1abe0de97a9f05e8a48e6e2bdcb636e8e2ac68388a5e9",
+        "reason": "Raw constructor syntax is not a ring under its constructors; evaluation preserves operations, not an unqualified ring/algebra structure.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-001-010-review.json",
+        "review_digest": "184e5889cf196e497230736df566fdb68ecee48f9e9a676d608bd6c0facfb841",
+        "finding_digest": "f090a10ade6316a4d4b74ea2c247cc5acbadaff876c2d126e36406ecfe3fe1ad"
+      }
+    },
+    {
+      "core_id": "qcb-core-sp-105",
+      "predecessor_key": "qcb-core-sp-105",
+      "predecessor_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+      "reason": "The unrestricted fixed-jet solution set needs its countably infinite affine dimension; the answer/rubric only grade finite degree-capped slices.",
+      "repair": "shared/repairs/sp-105-affine-dimension-repair.json",
+      "review": "reports/textbook-v1/repairs/sp-105-affine-dimension-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-sp-105",
+        "predecessor_key": "qcb-core-sp-105",
+        "predecessor_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+        "reason": "The unrestricted fixed-jet solution set needs its countably infinite affine dimension; the answer/rubric only grade finite degree-capped slices.",
+        "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+        "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+        "finding_digest": "fef4bb8b3a59dd636393f754ffefc5910f00f35717d54593d9bc8eeac3846eab"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-214",
+      "predecessor_key": "qcb-core-la-214",
+      "predecessor_item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+      "reason": "The j-cost supplier example is itself polynomial and cannot refute every dimensions-only polynomial bound; the unrestricted supplier quantifier needs a valid counterexample.",
+      "repair": "shared/repairs/la-214-uniform-supplier-bound-repair.json",
+      "review": "reports/textbook-v1/repairs/la-214-uniform-supplier-bound-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-214",
+        "predecessor_key": "qcb-core-la-214",
+        "predecessor_item_digest": "c676dd23f7a68be8627059eb6e12cfefe9910f62c9a635b3495675187dfae459",
+        "reason": "The j-cost supplier example is itself polynomial and cannot refute every dimensions-only polynomial bound; the unrestricted supplier quantifier needs a valid counterexample.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "e6886887a76e5aeae9136891a0175d2af15bed85ec424b424de56ce1527a3bd5"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-215",
+      "predecessor_key": "qcb-core-la-215",
+      "predecessor_item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+      "reason": "Nonzero inputs with nonnegative y skip the charged sign subtraction; the full budget is attained only on the negative-y branch, not every nonzero branch.",
+      "repair": "shared/repairs/la-215-branch-cost-repair.json",
+      "review": "reports/textbook-v1/repairs/la-215-branch-cost-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-215",
+        "predecessor_key": "qcb-core-la-215",
+        "predecessor_item_digest": "5a8b2818c7e3028baaecd34a3473244b7bc65f2379c41f21d8fbabf8c03de06a",
+        "reason": "Nonzero inputs with nonnegative y skip the charged sign subtraction; the full budget is attained only on the negative-y branch, not every nonzero branch.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "86aaacd8f8d5951d95b7ec66e8245301c0bc9136397b15d46d15a006ab94bb31"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-102",
+      "predecessor_key": "qcb-core-be-102",
+      "predecessor_item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+      "reason": "Answer/rubric/exposition correction only. Preserve the exact question and its seven-wire, clean-workspace, graph, family and split contracts. Distinguish absence of a clean-input certificate from universal failure on every dirty input; derive the actual stronger row/work preservation facts from this concrete program.",
+      "repair": "shared/repairs/be-102-dirty-work-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/be-102-dirty-work-boundary-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-102",
+        "predecessor_key": "qcb-core-be-102",
+        "predecessor_item_digest": "ccce000279db59f25b24bf92dc5768b74e732a097f2cb4da9eb98c4851df6165",
+        "reason": "Dirty-input loss of a clean-branch guarantee is not universal simultaneous arithmetic failure and scratch corruption.",
+        "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+        "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+        "finding_digest": "8059b40a5108a2530185439e03bbfe25082f260311a4d1f9b3794fa760fb3acb"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-107",
+      "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+      "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+      "reason": "Repair the false right factor in the twirl expansion throughout answer, rubric and semantic exposition. The question already specifies C^2, a density matrix, irreducibility and a Schur/trace proof. No question, assumptions, graph scope, family, split or step count changes; no local Lean closure is asserted for this planned concept anchor.",
+      "repair": "shared/repairs/plan-107-pauli-adjoint-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-107-pauli-adjoint-repair-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-107",
+        "predecessor_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+        "predecessor_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+        "reason": "The Pauli twirl expansion omits the right adjoint and contains a false noncommutative equality.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "0103f696beb09b7a15f628254279f7d0879042f7fa538bd13439ab71ba3aa656"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-204",
+      "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+      "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+      "reason": "Repair the dropped complex conjugation in the no-two-outcome proof, and make the positivity verification complete. Keep the original complex-overlap question, 0<|c|<1, two-dimensional ambient space, graph, family, test split and five support steps. Do not silently restrict c to a real phase convention or claim a new local formal theorem.",
+      "repair": "shared/repairs/plan-204-complex-conjugation-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-204-complex-conjugation-repair-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-204",
+        "predecessor_key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+        "predecessor_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+        "reason": "The complex-overlap proof drops a conjugation and equates 1-c^2 with 1-|c|^2.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "dcd0cb8e660cb2bc5c6770f428b752242e01ef43d844fe17f6dc8f4e2ccb3591"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-004",
+      "predecessor_key": "qcb-core-plan-004-ensemble-nonuniqueness",
+      "predecessor_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+      "reason": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact question, assumptions, conventions, qit-state-foundations family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: 8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e. Correct zero-output normalization and the false inference from different isometries to physically different ensembles; give explicit varying ensembles for every mixed state and an honest longer-ensemble witness. This is authorship, not approval or admission.",
+      "repair": "shared/repairs/plan-004-ensemble-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-004-ensemble-repair-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-004",
+        "predecessor_key": "qcb-core-plan-004-ensemble-nonuniqueness",
+        "predecessor_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+        "reason": "A column isometry may have zero output rows and different isometries need not yield physically different ensembles; the complete answer and rubric need explicit genuine witnesses.",
+        "review": "reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+        "review_digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+        "finding_digest": "fe9e555b715be7c35c4faa05e8bdef5a2377bc274cb8ce604da4f2a0b4b0a039"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-007",
+      "predecessor_key": "qcb-core-plan-007-werner-entanglement-threshold",
+      "predecessor_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+      "reason": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact two-qubit question and x interval, empty explicit assumptions/conventions, qit-symmetry-entanglement family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: d2196fd968d517f6f9d4f870dab30d7bd70e0344eddb4b3ad19e6ff0464a6874. Replace the reversed implication in rubric r4 and the third semantic step by the explicit product-with-overlap-x, invariant-twirl, uniqueness and closed-separability proof. No low-dimensional PPT-sufficiency premise is added; this is not approval or admission.",
+      "repair": "shared/repairs/plan-007-werner-converse-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-007-werner-converse-repair-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-007",
+        "predecessor_key": "qcb-core-plan-007-werner-entanglement-threshold",
+        "predecessor_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+        "reason": "Swap-overlap positivity proves separable implies nonnegative overlap, not the converse; the rubric and process step omit the actual product-twirl construction.",
+        "review": "reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+        "review_digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+        "finding_digest": "8f69d1537c88c514a97f878f2812a52d1fb9b6a97877836c785b4070de36649f"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-307",
+      "predecessor_key": "qcb-core-plan-307-young-row-bound",
+      "predecessor_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+      "reason": "Answer, rubric r2 and explanatory summary/four semantic steps only. The exact question and all nine contract fields remain unchanged, including assumptions, conventions, family, split, frozen graph and source scope. Make the pinned source product e_T=r_T*c_T and its actual column-first action explicit; first prove c_T=0 on the whole tensor space when the diagram has more than d rows. The predecessor's row-bound conclusion is true: its row-then-column phrase was ambiguous, not a counterexample to the zero theorem. No claim of nonzero action on every allowed filling, new mathematical core, question change or formal admission.",
+      "repair": "shared/repairs/plan-307-young-order-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-307-young-order-repair-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-307",
+        "predecessor_key": "qcb-core-plan-307-young-row-bound",
+        "predecessor_item_digest": "5fd70ebf8a2f530a3753626e1424b902ca8e06be8d61426c16be0ec8ef234ec3",
+        "reason": "The row-bound conclusion is correct, but temporal row-then-column wording is ambiguous relative to the source Young symmetrizer r_T*c_T.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+        "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+        "finding_digest": "785c061d3ee33b72d66f626d11f373296581ded85ba7591272e007e75c37db39"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-319",
+      "predecessor_key": "qcb-core-plan-319-spectrum-concentration",
+      "predecessor_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+      "reason": "Unchanged-question complete answer/rubric/exposition repair. Preserve all nine contract fields, fixed-d assumption, original source/graph scope, family/split and four semantic steps. Correct the bare-exponential process claim and clarify total neighborhood mass versus individual/exact-matching outcomes. Supply the prefactor-aware finite-n proof and zero-spectrum cases without a full-rank premise. No new question/core/native formal view, resource or admission claim.",
+      "repair": "shared/repairs/plan-319-concentration-prefactor-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-319-concentration-prefactor-repair-migration-revalidation-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-319",
+        "predecessor_key": "qcb-core-plan-319-spectrum-concentration",
+        "predecessor_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+        "reason": "The concentration exposition drops a polynomial prefactor; a single outcome is not bounded by the bare exponential and neighborhood sums require a count.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+        "review_digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+        "finding_digest": "e99edf0301fa05d76b800d1e2b763f13ef5f7373b09000cb63a4596033772f29"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-505",
+      "predecessor_key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+      "predecessor_item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+      "reason": "Private unchanged-question answer/rubric/exposition successor only. The actual question asks for the nilpotent SVD, its even degree-two singular-value transform, the discrepancy and a correct resolving principle; these demands are true, so no question correction is needed. Preserve all nine CONTRACT_FIELDS, core/family/split, graph/source scope and six semantic steps. Exact original question-contract hash:7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197. Remove the false normal-matrix generalization, keep the nilpotent calculation, distinguish the ordinary polynomial/Jordan issue and contrast normal (i/2)I. This is authorship, not independent approval or admission.",
+      "repair": "shared/repairs/plan-505-nilpotent-transform-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-505-nilpotent-transform-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-505",
+        "predecessor_key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+        "predecessor_item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+        "reason": "The nilpotent calculation is valid but the answer incorrectly extends Hermitian parity agreement to arbitrary normal matrices.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "bb72ef8f9a6c3abd5b7ef2db3c60c19833ca45d95da90475b051991c82387333"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-506",
+      "predecessor_key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+      "predecessor_item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+      "reason": "Private unchanged-question answer/rubric/exposition successor only. The actual question's unitary-compression bound and CS structure are true for p\u2264q, so answer-only repair suffices without weakening the demand. Preserve all nine CONTRACT_FIELDS, core/family/split, graph/source scope and six semantic steps. Exact original question-contract hash:0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f. Replace the insufficient individual-column-length inference by the full Gram identity, rotated-column orthogonality and a zero-sine-safe orthonormal completion; give the complete CS factorization and precise real Chebyshev domain. This is authorship, not independent approval or admission.",
+      "repair": "shared/repairs/plan-506-unitary-compression-gram-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-506-unitary-compression-gram-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-506",
+        "predecessor_key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+        "predecessor_item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+        "reason": "Individual column lengths do not imply the spectral bound; the complete proof needs the full Gram identity and zero-sine-safe rotated-column completion.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "33cbe77c883d1429de099cee3dfc04c2d66e8590d4520aeeb01b0374874924d3"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-214",
+      "predecessor_key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+      "predecessor_item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+      "reason": "Unchanged-question answer/rubric/exposition clarification, not a question-contract correction. Actual resolved ID is qcb-core-plan-214, not sp-214. Preserve all nine CONTRACT_FIELDS, family/split/frozen graph/source scope and five steps; original contract hash fa6d5317e5460f774b682be442b3a28aaf6d927eb9775d600bc204dec418b186. Section9.8, Example9.17 and Definition9.23 are correct source identifiers; the qubitization equations are10.30-10.40, not9.30-9.40. The old primary_sources anchor string also has that bad equation range, and its page list omits printed155 for Example9.17: it remains frozen and is NOT overridden by the current answer-successor schema. Correct operative pages are155,159,167-168. The correction is explicitly documented in this answer/source evidence, with any additive primary-metadata transport still a separate operation. Clarify admissible oracle completion, exact normalization and one-dimensional endpoint sectors rather than overstate a universal2D/approximate Chebyshev identity. No question/core/source node, standing premise or admission is changed.",
+      "repair": "shared/repairs/plan-214-qubitization-source-clarification-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-214-qubitization-source-clarification-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-plan-304",
+      "predecessor_key": "qcb-core-plan-304-schur-weyl-mutual-commutant",
+      "predecessor_item_digest": "8c71082c4fb736eefc753e15be5f10fee4e9608aa150fb873a1b2c6cec31a677",
+      "reason": "Unchanged-question answer/rubric/exposition clarification. The literal question is already about GL(V), not just U(V), and is mathematically correct. Replace the reference's unitary-only parenthesis and diagonal-unitary core summary with the actual common invertible-linear action; make degree an upper bound and the finite-group bicommutant conditions explicit. Preserve all nine contract fields, five semantic steps, source/graph scope, family and split. Original contract hash 0a1210e64058fbc9844b798192122398397094a6ce67c6c6af5192f14476ae61. No unitary/GL span equivalence is silently assumed or newly claimed proved; no question change or new core.",
+      "repair": "shared/repairs/plan-304-gl-action-clarification-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-304-gl-action-clarification-repair-review.json"
+    },
+    {
+      "core_id": "qcb-core-plan-504",
+      "predecessor_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+      "predecessor_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+      "reason": "Unchanged-question answer/rubric/exposition successor. The actual question says U realizes A in its flag block and asks the correct assembled even/right and odd/balanced operators; it does NOT demand that each bare U application be a bidirectional swap or that the full unitary image be purely clean. Thus this is an explicit block-output clarification and proof repair, not a silent correction of a false question demand. Preserve all nine CONTRACT_FIELDS, the same core/family/test_public split/frozen graph/source scope and six semantic steps. Exact unchanged original contract hash:8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26. Replace the false answer/rubric/step swap rationale by U:H\u2192H', U\u2020:H'\u2192H, retain the flag-orthogonal terms, handle singular values0/1 and keep exact normalization/projection distinct from state preparation or gate cost. Pending distinct review, not selfapproval or admission.",
+      "repair": "shared/repairs/plan-504-projected-svt-direction-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-504-projected-svt-direction-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-504",
+        "predecessor_key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+        "predecessor_item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "reason": "Projected SVT blocks are not whole normalized output states; U maps the input plane forward while U-adjoint, not U, supplies the reverse.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "deaf47730e88830d63e81f5fd432a11dd62efb6e05eb7b47ce6e7c82a354e059"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-112",
+      "predecessor_key": "qcb-core-la-112",
+      "predecessor_item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+      "reason": "Answer/rubric/exposition-only correction. The literal upper-prefix question and its strict-below convention are sound. Replace the false assertion that an old diagonal is zero by the actual swept-window inequality r>=k>c; keep the existing question, assumptions, conventions, family/train split, graph and4 ordered semantic-step node lists. The original rubric is retained unchanged. Unchanged nine-field contract hash77c102094d16f2fe997c42dfd3e75fcf661263f56d7065fd074fbd91556f1014.",
+      "repair": "shared/repairs/la-112-strict-prefix-window-repair.json",
+      "review": "reports/textbook-v1/repairs/la-112-strict-prefix-window-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-112",
+        "predecessor_key": "qcb-core-la-112",
+        "predecessor_item_digest": "5a3312d25c43d37773774a1db3e7a6d4ef238bc017da1b184a887dc2db33e54e",
+        "reason": "UpperPrefix only guarantees entries strictly below each earlier diagonal are zero, not the diagonal itself; preservation uses the later swept window.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json",
+        "review_digest": "a020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22",
+        "finding_digest": "c618ea778aa8275a3d95f0c0e2c59885b526ebfed9375799565a49d01a9085f6"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-119",
+      "predecessor_key": "qcb-core-la-119",
+      "predecessor_item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+      "reason": "Answer/rubric/exposition-only correction. Original question already asks why per-rotation counts do NOT justify a linear whole-matrix conclusion; it does not demand a universal optimal-synthesis lower bound. Give the actual unoptimized generated-backend family equality, use its unbounded G/N ratio instead of one fixed datum, and keep q=1 only as a per-stage/whole-list mismatch. Preserve all nine fields and original4 exact ordered step-node lists. Unchanged contract hash24c44aece1fcea0871151b7cead13621a753b47db0ea3ba7cd7b2b6cd171e0e0.",
+      "repair": "shared/repairs/la-119-generated-backend-count-repair.json",
+      "review": "reports/textbook-v1/repairs/la-119-generated-backend-count-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-119",
+        "predecessor_key": "qcb-core-la-119",
+        "predecessor_item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+        "reason": "The fixed backend has a cubic family count, but one N=4 datum does not refute every linear bound and its emitted plane count is not an optimal-synthesis necessity.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json",
+        "review_digest": "a020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22",
+        "finding_digest": "cdee1557b5369d0e8d07d3b6de0c67340212fafc79615b8209d41683bc6109f4"
+      }
+    },
+    {
+      "core_id": "qcb-core-la-220",
+      "predecessor_key": "qcb-core-la-220",
+      "predecessor_item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+      "reason": "Answer/rubric/exposition-only correction. The literal question already asks about the ACTUAL returned chain and includes n+1 cores, so the answer can supply the omitted n=0 dependence and refute D-only characterization without changing its question. Do not substitute evaluation of the upper bound for actual maxBond. Preserve all nine fields and3 exact ordered step-node lists. Unchanged contract hashd725a753f5c011ea653c8e37c9c5de99b25a49b605224057e1426c5cde0d6e5c.",
+      "repair": "shared/repairs/la-220-closed-chain-bond-repair.json",
+      "review": "reports/textbook-v1/repairs/la-220-closed-chain-bond-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-la-220",
+        "predecessor_key": "qcb-core-la-220",
+        "predecessor_item_digest": "89824ba88947fc98d212a79d3b548e480a272b0577fdce101305eb146bf3125c",
+        "reason": "A single closed core has actual maximum bond one for every D; evaluating max(D,1) alone does not characterize the attained bond.",
+        "review": "reports/textbook-v1/reader-reviews/linear-algebra-211-220-review.json",
+        "review_digest": "be8bfc665cef4998985a0fd259218ed48f86521d10e5e8ed3ac7910d87ac6fef",
+        "finding_digest": "7496cd12e696b1f4e7cace614faf99aefa9b14628345b244e76462983278319b"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-008",
+      "predecessor_key": "qcb-core-be-008",
+      "predecessor_item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+      "reason": "Unchanged-question answer/rubric/exposition repair. The literal question already asks real-y existence separately from the rational entrywise backend; explain both carriers rather than claiming rational square-root witnesses. It does not demand the old answer's false extra-signal remedy, so remove that answer/rubric error without modifying any question/assumption. No universal real-to-rational source transfer is claimed. Exact predecessor contract hash feff0f307f0c6ad39e5005c64e9c3468a58c3a773630c438345563f33c66d55c. Preserve core/family/split/frozen graph/source scope, 2 semantic steps and each ordered per-step supporting-node list. All nine CONTRACT_FIELDS remain literally inherited; no question or assumption/carrier override. No new core, selfapproval, formal transfer or admission.",
+      "repair": "shared/repairs/be-008-contraction-carrier-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/be-008-contraction-carrier-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-008",
+        "predecessor_key": "qcb-core-be-008",
+        "predecessor_item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+        "reason": "A larger signal register cannot evade the clean-block contraction bound; real and rational square-root existence must also be distinguished.",
+        "review": "reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json",
+        "review_digest": "3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf",
+        "finding_digest": "f53f7d473a8dea4823d16ac7c401577259b9d70a5744233157bcb088204ea38e"
+      }
+    },
+    {
+      "core_id": "qcb-core-be-108",
+      "predecessor_key": "qcb-core-be-108",
+      "predecessor_item_digest": "a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02",
+      "reason": "Unchanged-question answer successor, selected from the LITERAL original rather than copying the prior finding's label. The question already assumes same-axis relabeling and asks why it is essential 'for the argument to close': a faithful answer can restrict that to the one-map algebra-equivalence proof. The original false claim that different row/column bijections are not square-compatible is removed, and the boundary is explicitly explained: independent permutations remain square/unitary although their fixed two-axis transformation is generally not unital or multiplicative. All nine CONTRACT_FIELDS, including the literal question, original same-axis assumptions/conventions, be-reindex-preserves-unitary family/train split and frozen graph/source_refs, remain EXACTLY unchanged. Exactly five semantic steps retain each original ordered per-step node list. No new standing assumption or weakened theorem, source override, equivalent-core/duplicate-count or admission claim. Original unchanged contract hash9d0c3c71f51d29071eb2ae9233bdbed5a785dbfdc336519086097ec5a8d4efa7. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/be-108-reindex-isomorphism-boundary-repair.json; inspected/authored private locator _review_tmp/be-108-reindex-isomorphism-boundary-repair.json. This is a NEW private terminology revision of the earlier frozen candidate, not an overwrite: only 'unital multiplicative endomorphism between the two square-matrix algebras' in its answer is replaced by 'unital star-algebra isomorphism between the two square-matrix algebras'. For distinct I,K, isomorphism is the precise term. No equations, proofs, boundary examples, rubric, exposition, source binding or nine-field contract are changed; the key and private/proposed-canonical locators identify the new exact bytes.",
+      "repair": "shared/repairs/be-108-reindex-isomorphism-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/be-108-reindex-isomorphism-boundary-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-be-108",
+        "predecessor_key": "qcb-core-be-108",
+        "predecessor_item_digest": "a6acd83107961bd9360a0c2c55995f194064e1416340d73260285f5dbcb73c02",
+        "reason": "Independent row/column permutations preserve unitarity; same-axis algebra closure is not a necessary condition.",
+        "review": "reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+        "review_digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+        "finding_digest": "9f0ddc315b8481d1b3bc3b501643535116bcff0325c0da58c174500a826c32b7"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-414",
+      "predecessor_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+      "predecessor_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+      "reason": "Answer/rubric/exposition only. The literal question asks covariance and how it lets Schur-Weyl constrain a symmetric output block; it does not demand the false assertion that every output is scalar. Preserve ALL nine contract fields, empty assumptions/conventions, family haar-twirl-covariance, test_public split, graph/source scope, and exactly three ordered step-node lists. Unchanged contract hash 978355f5a0bd94ec866217b30d86c71d7567df66b79cc556a0b81d5d596a73f7. Correct the translation justification and restrict the scalar conclusion to invariant input and the symmetric output block, rather than quietly add an input hypothesis to the covariance theorem.",
+      "repair": "shared/repairs/plan-414-invariant-output-block-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-414-invariant-output-block-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-414",
+        "predecessor_key": "qcb-core-plan-414-twirled-channel-covariance-haar",
+        "predecessor_item_digest": "7655ddef61c1ba6c3690219bfc2fe0d1480ae1f152b262040ab453308f3159d0",
+        "reason": "Twirling gives channel covariance; Schur scalar output follows only for invariant input and the specified symmetric output block, not arbitrary states.",
+        "review": "reports/textbook-v1/reader-reviews/qit-cloning-411-420-review.json",
+        "review_digest": "86bfd93df663de6d6225d88ae946b8e5a282d50cb1c461082320c03207280b70",
+        "finding_digest": "6786b3ea4a98fe328e01a3358cad1b502a9b0b6d208222455343324831bfd329"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-509",
+      "predecessor_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+      "predecessor_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+      "reason": "Unchanged-question answer/rubric/exposition successor, not a question or convention migration. The literal question's factor2 is true for the specified naive balanced common-c combiner and its chosen all-zero port; it does not require the answer's false exclusive-success-port claim. Preserve all nine CONTRACT_FIELDS exactly, original core/family/test_public split/frozen graph/source_refs, six semantic steps and every ordered per-step node list. Unchanged contract hash ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2. Clarify finite-dimensional input normalization/access, compatible branch registers, both control-port projections, degenerate spectra and fixed-scheme versus global optimality. No extra source assumption is silently imposed on the arbitrary Hermitian A: normalization of A and polynomial rescaling are explicit construction obligations. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-509-balanced-selected-port-boundary-repair.json; authored private locator _review_tmp/plan-509-balanced-selected-port-boundary-repair.json. Pending distinct review; no additional core or selfapproval.",
+      "repair": "shared/repairs/plan-509-balanced-selected-port-boundary-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-509-balanced-selected-port-boundary-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-509",
+        "predecessor_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+        "predecessor_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+        "reason": "The balanced selected-block identity is sound but the exclusive-success-port claim fails on allowed degenerate spectra.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json",
+        "review_digest": "611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc",
+        "finding_digest": "5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-404",
+      "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+      "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+      "reason": "Unchanged-question answer/rubric/exposition successor only. The literal question(a)-(c) supplies the two correct bounds, asks their purification origin, strict-below-one thresholds and vanishing regimes; it does NOT ask for exactly d-times as many TOTAL copies. That false exact wording is in the historical reference/rubric r4, not the question or its empty conventions. Correct it without replacing the question, adding a fixed-d assumption, or weakening its target: give the fixed-d regime and the fully dimension-dependent criterion when d varies. ALL nine CONTRACT_FIELDS are unchanged, old and new hash both 6b6e41599ffc0cfa4f8e5c4c63f405cda41de360a349b07533969992adba766c. Retain definetti-bound-scaling family, test_public split, frozen graph/source_refs, empty assumptions/conventions, original three steps and their exact ordered supporting-node lists. The supplied upper bounds are guarantees, not optimal or necessary physical copy costs. No new core, alias clearance, convention migration, admission or selfapproval.",
+      "repair": "shared/repairs/plan-404-excess-copy-count-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-404-excess-copy-count-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-404",
+        "predecessor_key": "qcb-core-plan-404-definetti-bound-scaling-dk-vs-d2k",
+        "predecessor_item_digest": "4130143bb729437029128decdc18b250157a590ff27650b756eb4be353884f70",
+        "reason": "At fixed accuracy it is the excess copy count n-minus-k, not the total n, that scales by exactly the dimension factor.",
+        "review": "reports/textbook-v1/reader-reviews/qit-extendibility-401-410-review.json",
+        "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
+        "finding_digest": "e7638c3136c2047766855d9329ffbfd597ff7fdfa426e8de22a8f9f1632b2137"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-115",
+      "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+      "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+      "reason": "Unchanged-question answer/rubric/exposition repair. The literal question asks for a proper nonzero invariant subspace for ANY representation with dim V>=2 and to 'compute the dimensions to show V (x) V cannot be irreducible'. That reducibility target is true over any common field and for algebraic infinite dimension, so an explicit finite-complex question restriction is unnecessary. Answer the dimension request with finite integer formulas AND infinite cardinal dimensions/equality, proving properness by basis witnesses where dimension inequalities cannot do so; do not pretend equal infinite dimension implies equality of subspaces. The question itself does not demand the old reference's universally valid +/- eigenspace decomposition or its false d1 isomorphism. Preserve all nine contract fields, old=new hash0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6, empty assumptions/conventions, qit-tensor-representations family, test_public split, graph/source_refs, original FOUR steps and exact ordered node lists. Replace unsupported proof/rubric material, not the literal target. Explicitly disclose the characteristic2/infinite-dimensional proof-method limits and the correct one-dimensional character square; no blanket narrowing, new core, global alias clearance, selfapproval or admission.",
+      "repair": "shared/repairs/plan-115-universal-tensor-square-character-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-115-universal-tensor-square-character-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-115",
+        "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+        "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+        "reason": "The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+        "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+        "finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-209",
+      "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "reason": "Private unchanged-question answer/rubric/exposition successor. Preserve all nine CONTRACT_FIELDS and exactly five ordered predecessor step-node lists. The question asks why the one-forward/one-inverse original-entry-query charge is natural for the conversion, not why it is an optimal lower bound or a complete gate count with arithmetic omitted. Supply an actual fused conversion with those original queries plus both arithmetic passes, all scratch, phases, precision and inverse-access qualifications. The displayed arbitrary-real coefficient is a target, not a guarantee that finite-bit input realizes it exactly; distinguish the implemented rounded coefficient and invalid-domain cases. No substitution of a derived angle oracle as a primitive, hidden reality/sparsity assumption or new oracle promise. This is authorship pending a distinct exact-content review, not selfapproval.",
+      "repair": "shared/repairs/plan-209-original-entry-query-ledger-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-209-original-entry-query-ledger-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-209",
+        "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+        "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+        "reason": "The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b"
+      }
+    }
+  ],
+  "withdrawals": [
+    {
+      "core_id": "qcb-core-plan-203",
+      "predecessor_key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+      "predecessor_item_digest": "6eda46c37ea2b7d75cb89acca2686e8411e54825a5468776262522fff5b883bd",
+      "reason": "The amplification proof assumes an input-state reflection and independent fresh trials absent from the access contract.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "1e3e595067d2c96cc48105b4e40869640a5307faa897543b14a94a0d6f210dbd"
+    },
+    {
+      "core_id": "qcb-core-plan-208",
+      "predecessor_key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+      "predecessor_item_digest": "1433ecfb6610132671b67d490e1d21b1d9dae433bb26badca61bce12b62e0347",
+      "reason": "The regime analysis mishandles zero entries and loses signed/complex amplitude phases through a magnitude-only rotation.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "e8539d2919a9c4bc460c55039710e7b3c3029f74120bdc431f1e7e99765c6fc2"
+    },
+    {
+      "core_id": "qcb-core-plan-117",
+      "predecessor_key": "qcb-core-plan-117-non-unitarizable-infinite-group-counterexample",
+      "predecessor_item_digest": "eec0cb51404622c0e85a513a847761fd901179fb2ae5383757106e295d0c690f",
+      "reason": "The compact-group extension omits continuity; Haar averaging does not apply to every abstract representation.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "cd00b1e9cde5d2705dcbc1c70b64a14fbf0768fbeb207129c9043c197ea77163"
+    },
+    {
+      "core_id": "qcb-core-plan-118",
+      "predecessor_key": "qcb-core-plan-118-schur-ii-boundary-non-algebraically-closed",
+      "predecessor_item_digest": "18b194dedfd34e0201b2edbc78e5ce8545fbaa37a56e99edeee582302e03020d",
+      "reason": "The scalar-Schur/division-ring-collapse summary omits finite dimension, despite a valid real two-dimensional example.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "9406d3c4b6ebf24784c7569ae0a28961ca8dda1589203f3816fc3c43c8182809"
+    },
+    {
+      "core_id": "qcb-core-plan-119",
+      "predecessor_key": "qcb-core-plan-119-finite-vs-compact-haar-boundary",
+      "predecessor_item_digest": "dca75eb96b7c01ba5932c174af9039b8070253a2ac90ff323882760a463f2323",
+      "reason": "Raw compact-group matrix coefficients are not orthonormal without dimension normalization; continuity scope is missing.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "0fb7ce239b61148423d0a48f7a7631fcc47b030ad8594d3cc8a62c925c5970a6"
+    },
+    {
+      "core_id": "qcb-core-plan-120",
+      "predecessor_key": "qcb-core-plan-120-dual-representation-conjugate-boundary",
+      "predecessor_item_digest": "c4c3e55cfc17e2cd0d8984618558bdea620de9ea2410140f1652fe489fd27ea4",
+      "reason": "Equal real characters do not classify self-duality for arbitrary nonsemisimple group representations.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "7e2cd44822bf18d5861c1bc37db7bbf7c3d2df0cfae784f50e15b0d8ce8f9811"
+    },
+    {
+      "core_id": "qcb-core-plan-211",
+      "predecessor_key": "qcb-core-plan-211-s-sparse-konig-matching-decomposition",
+      "predecessor_item_digest": "956c29f294371de27e9ec45ec5196f99962ce8a623ede5e3b3285f52d19ab01c",
+      "reason": "Sparsity and label-qubit count are conflated; zero-padding and regularization claims need additional structure.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "f74c0a5099286ea339404e8f8760828be9ab1856b6d18e516f351ef363eb6984"
+    },
+    {
+      "core_id": "qcb-core-plan-212",
+      "predecessor_key": "qcb-core-plan-212-sparse-lcu-entry-evaluation-prop919",
+      "predecessor_item_digest": "970c5ba0f50e0dd502278b4dc174d90ea437909bbaf2877765b536179388b15d",
+      "reason": "Separate permutation maps do not imply a unique disjoint cover of each nonzero matrix position.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "8731c6aca54ebe1013fd940f3af7b58ef930765ce2b887a10061462091fa79bb"
+    },
+    {
+      "core_id": "qcb-core-plan-213",
+      "predecessor_key": "qcb-core-plan-213-dual-oracle-row-column-sparse-prop922",
+      "predecessor_item_digest": "25309f761a99ded35bf244e4492c4586faf0237b0cf08117241262e92d77f079",
+      "reason": "The literal forward oracle tail differs from the adjoint tail required by the source figure and amplitude proof.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "1db8cb3137b7ef804b50b2d6ac9f152f54cf67eda9d01d79488264507384fbd3"
+    },
+    {
+      "core_id": "qcb-core-plan-215",
+      "predecessor_key": "qcb-core-plan-215-hermitian-sparse-block-encoding-prop924",
+      "predecessor_item_digest": "576ff269c4242c5a9080540a6009923b6f34ab1f07e5ad9fdd42381baca1176d",
+      "reason": "The square-root conjugacy step fails for negative diagonal entries; the Hermitian SWAP circuit encodes the wrong sign.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "f111c9ca65f47c5173f1b606b32c2ae6147ad191b5d7f8ba8eb0eba3b7ac6639"
+    },
+    {
+      "core_id": "qcb-core-plan-217",
+      "predecessor_key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+      "predecessor_item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+      "reason": "Definite parity is sufficient, not necessary for coincidence on a fixed spectrum; scope is ambiguous.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "fb4e2f91c81088a6bfc6416921f3cddd964ecd84e85761aad2ce78f79814aa2b"
+    },
+    {
+      "core_id": "qcb-core-plan-218",
+      "predecessor_key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+      "predecessor_item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+      "reason": "An unnormalized non-isometric transformed vector is not a deterministic lossless quantum state.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "2eeb8ab2a932b998d24686c30d98a3f5bee17669dbf0ff364a88b7bd7244befe"
+    },
+    {
+      "core_id": "qcb-core-plan-219",
+      "predecessor_key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+      "predecessor_item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+      "reason": "The inverse lacks an invertibility premise and an SVD interior obstruction does not exclude all three transform forms.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-211-220-review.json",
+      "review_digest": "51e9ef0913dd8f90b5a421b161aeaa096cf02abdc271247f0b6f456250ba0245",
+      "finding_digest": "4bd9c821d89cc6706cb515c028f1b2ef693ede3a7019a039bfc577e9f5bdc5a5"
+    },
+    {
+      "core_id": "qcb-core-plan-305",
+      "predecessor_key": "qcb-core-plan-305-permutation-conjugation-invariance",
+      "predecessor_item_digest": "eb1ed6867265f52993db82b527d22750c7a92b07da4656f80d1dbf1325f5e05a",
+      "reason": "The standalone operator-tensor identification omits the finite-dimensional domain; a swap-invariant infinite-dimensional diagonal projection is not a finite tensor sum.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+      "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+      "finding_digest": "3400748d2ffbb56cb8fb05e1ba97aa253a2122e3d96510b5a48cbcd0df9c2c8a"
+    },
+    {
+      "core_id": "qcb-core-plan-309",
+      "predecessor_key": "qcb-core-plan-309-majorization-annihilation",
+      "predecessor_item_digest": "fe0a6741ae22ffa0f202040524317b866a24a4cb22475b1e3d798a377d7f41a9",
+      "reason": "Majorization is a necessary survival condition, not a fixed-tableau/fixed-word nonzero iff; explicit same-content words have different outcomes.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-301-311-review.json",
+      "review_digest": "90779f33394d2dfe880d6bdbcd83ec5d1a9446bacd693833f0863c9e707f4710",
+      "finding_digest": "2994fbf67f6441a17218102ef2a26bc8179f74b6249587445d75ed95495eb471"
+    }
+  ]
+}

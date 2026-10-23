@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = ROOT / "website" / "hermite-insight.json"
 CASE_SLUG = "hermite-smooth-state-preparation"
-PROJECT_URL = "https://github.com/DakeBU/Quantum-Computing-Block-Encoding"
+PROJECT_URL = "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench"
 
 
 def load_data() -> dict[str, object]:

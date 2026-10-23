@@ -1,0 +1,134 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Informed, not blind: I have prior scientific/block-encoding cohort and primary-source exposure, and received the parent's bounded defect leads. I did not author these candidates or the scientific-algorithms-201-210 historical findings. Here I read the complete actual prepared originals via release.checked()[2], current exact withdrawals and full findings, entire candidates including execution/rubric/exposition, and complete operative primary regions. Distinct candidate authorship plus this substantive reconstruction is the independence claimed; no human/expert or unexposed-cognition seal is claimed.",
+  "core_id": "qcb-core-plan-207",
+  "repair_record_digest": "d98af1a91282588fcbf06bd1c8a5d05d8572286cb4cefbb51792dc76ac4b1410",
+  "original_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+  "original_contract_hash": "7d2f9cde13aacc1e0b0bc6861255c55ac6c5054d724b259cef6b33fb79326f44",
+  "successor_contract_hash": "a2990190157e0445347d0897271b81649ccc15e8872d3c5e01b3e39a92c26d6f",
+  "contract_change_assessment": {
+    "literal_need": "The original question identifies arccos(A_ij)/pi for arbitrary real A with a finite d-bit value and asks exactness without separating its original d'-bit datum from the cosine-redefined entry. A=1/2 gives angle1/3, not a finite binary fraction. The retained rounding convention supports the corrected law but does not make that literal equality true. The successor explicitly assesses it and asks exactness for the actual stored q. Its cleanup question also tests exceptions instead of demanding universal signal decoherence. This is an explicit first question-version2, not a silent exact-representability premise.",
+    "retained_contract": "Real entries and strict original max norm give a real principal angle; the displayed stored range[0,1) ensures the nonnegative sine. Reversible index-controlled arithmetic and a fresh signal are unchanged assumptions. The cosine-rounded-entry convention is retained literally; the answer distinguishes it from the original fixed-point datum rather than changing its meaning to an exact arbitrary-real oracle. Discarding remains partial trace, not unitary erasure. The other eight fields and five ordered step-node lists are exact. No active convention is false under this explicit typing."
+  },
+  "substantive_reconstruction": {
+    "rotation_and_inverse": "Write q=sum_r bit_r 2^(-r). Rotations Ry(2pi 2^(-r)) controlled on the corresponding work bit commute, so their product has first column(cos(pi q),sin(pi q)). This matches the source's most-to-least-significant controls and half-angle convention. In order(S,W,T), B loads q_t without changing t, CR changes only S, and B† returns |q_t,t> to |0,t> in both signal branches. Linearity gives sum_t c_t|v_t,0,t>, preserving signs and label phases. Nonnegative sine equals sqrt(1-a_t²), including q0. The clean zero-signal block is diagonal D_a on the combined retained index, not the original full matrix A; the other signal block is D_b.",
+    "precision_and_success": "The exact output is for a_t=cos(pi q_t). Generic real access and exact arccos arithmetic are not inferred from finite output length. The conditional error bounds follow from cosine and unit-circle vector Lipschitz constants pi; converting input/arithmetic errors into angle error is separate, especially near arccos endpoints. Signal-zero probability is sum_t rho_tt a_t², with normalized accepted index state D_a rho D_a†/p only for p>0. A rounded q0 may produce a1 despite strict original max norm, whereas q1 is excluded by the fixed-point range; d0 has only the empty zero record.",
+    "partial_trace_reconstruction": "Before cleanup the density contains rho_ts |v_t><v_s| tensor |q_t><q_s| tensor |t><s|. Tracing W inserts the Kronecker delta for equal bit strings, exactly the orthogonal angle-class dephasing on the joint S,T state. It does not remove coherence within one equal-record class. Tracing T then kills t!=s regardless of cleanup, leaving the same sum_t rho_tt |v_t><v_t| for S. Additional local index dephasing or discarding cannot change that marginal. On one basis input signal/work are a product, so the signal remains pure; distinct unused records and already-incoherent inputs are not evidence of new decoherence.",
+    "signed_witness": "For d2 choose two populated indices with q1/4,3/4 and actual allowed real entries plus/minus1/sqrt2. The corresponding v vectors are plus=(0+1)/sqrt2 and minus=(-0+1)/sqrt2. With equal coherent index amplitudes, clean signal-zero projection has index(t-s)/sqrt2; work trace yields its incoherent equal mixture. The joint test signal0,index-minus therefore has probability1/2 clean versus1/4 dirty, although both signal marginals are I/2. These are valid index-dependent rounded records with original max norm below1, and the calculation uses the negative amplitude rather than replacing it by a norm.",
+    "projection_and_limits": "Without B†, projection onto the SAME S0,W0 flag inserts 1_(q_t=0), so both witness entries have zero block instead of D_a. Partial trace is a channel, with accepted subchannel D_a(sum_q Q_q rho Q_q)D_a†, not a unitary matrix entry. B† is sufficient cleanup, not a uniquely necessary gate; a W-only unitary cannot send two orthogonal records to one zero state. The four rubric criteria and all five steps correctly distinguish these interfaces. One B, one B† and d ideal controlled rotations are a scoped count, not total arithmetic or compiled gate complexity; all actual scratch must be included and restored. The source's omitted-work convention does not authorize ignoring it. Shared projection bookkeeping with206 is a submechanism, not target equivalence or global deduplication."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc metadata entry personally inspected and LF checked in this review. Binds external URL/edition/historical pin only, not primary bytes or a local proof. Primary mathematical regions and access limits are separately stated."
+    }
+  ],
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-207-rounded-angle-joint-coherence-question-successor.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-207-rounded-angle-joint-coherence-question-successor.json",
+    "candidate_sha256_lf": "adb7479256aa6e5380f009bab28b229a82768d5d6bf6e076193c531b5f434309",
+    "original_assumptions": [
+      "||A||_max < 1 and A_ij real so arccos(A_ij) is well defined and sin(pi theta~) >= 0",
+      "O'_A is a reversible classical-arithmetic unitary depending only on (i,j)",
+      "CR is controlled on the work register and acts on a single fresh ancilla qubit"
+    ],
+    "original_conventions": [
+      "A~_ij = cos(pi theta~_ij) is the d-bit-rounded entry",
+      "'Discarding' a register means tracing it out; a quantum computer cannot erase an entangled register for free"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_digests": {
+      "assumptions": "9fd4b0b23f9816b370384e32f9bb3aed841033ec2ea12f366384caa2af5b0ddf",
+      "conventions": "82b4fa97b4067dfb76607ce16927d1ed7dc2be2151cefb408af231206d914900",
+      "family": "d850e1e154d80ccc4158a0217a24bf98b3ee85d07841f66272b856c4e8c31fce",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "5562a83686c09221fd4ceb41a258444b774e579e4ad986788edb0b4d2eb818da",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "5c4265958dc20cca662e75650774b7cf3998fb866be977f879a73d2cc238bc75"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "semantic_step_count": 5,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-207",
+      "predecessor_key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "predecessor_item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+      "reason": "The explanation conflates joint signal/index decoherence with an unchanged signal marginal and basis-input coherence.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716"
+    },
+    "withdrawal_report_sha256_lf": "44dbcedbd5e9499d0dc81a3bc65df49ae9a625e764efe16a0a322c60169b3756",
+    "original_content_source_bindings": [
+      {
+        "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+        "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+        "anchor": "Whole exact historical prepared qcb-core-plan-207 loaded through release.checked()[2], with full question/assumptions/conventions/answer/rubric/steps and provenance; content binding, not mathematical proof or current-reader substitution."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+        "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+        "anchor": "Complete corresponding authored mathematical record read and matched to the prepared original. Local QA-content provenance only, not a primary proof seal."
+      }
+    ],
+    "validation": "Actual whole candidate/original digests, both nine-field contracts, withdrawal report/finding digests, all candidate LF source bindings, exact16-field V1 payload, version2, distinct author, pending marker and five identical ordered lists independently recomputed. These are static content/grammar checks, not execution of production admission."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition_observed": "Cover April29,2026;447 pages",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "operative_regions": "Complete Example9.16 Eq9.68-9.71, printed154-155/PDF153-154, including rounded cosine redefinition and hidden-work caveat; complete Proposition5.7 proof Eq5.17-5.20 and Fig5.3 textual controls/angles, printed104-105/PDF103-104; Example5.8 Eq5.21-5.25 and Fig5.4 textual circuit/workspace discussion, printed105-106/PDF104-105; uncomputation Eq5.3-5.7/Remark5.3/Fig5.2 textual context read. Density/dephasing/witness analysis independently reconstructed.",
+      "actual_review_access": "Personally accessed author-hosted PDF text in this objective and read complete operative formulas/construction/proofs and textual figure labels named above. No primary PDF copied or redistributed.",
+      "binary_hash_verified_in_this_review": false,
+      "operative_pixels_inspected_in_this_review": false,
+      "limits": "My screenshot requests for PDF104,152,154 returned cache misses. I inspected figure textual controls/angles, not rendered geometry. No fresh raw-byte SHA match, paper/PDF/visual/human seal or inherited parent's/candidate author's execution claim."
+    }
+  ],
+  "provenance": {
+    "observed_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "written_private_review": "_review_tmp/plan-207-rounded-angle-joint-coherence-question-successor-review.json",
+    "limitations": "Private exact-content mathematical/source review only. No canonical installation, earlier artifact edits, build/kernel/native-formal proof, simulator, code-as-mathematical dependency, self-approval, human/expert/blind/model/novelty/admission or global closure claim."
+  },
+  "review_scope": "Complete candidate question, reference answer, four rubric criteria, summary, five semantic steps and execution/source/process metadata read and assessed against full actual predecessor and bound finding. Verdict is for these exact bytes, not transferred from an old approval or guaranteed by metadata. No production build/kernel or admission executed."
+}

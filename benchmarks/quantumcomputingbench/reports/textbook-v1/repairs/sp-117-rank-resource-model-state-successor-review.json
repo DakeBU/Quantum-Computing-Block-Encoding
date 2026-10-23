@@ -1,0 +1,142 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "verdict": "accept",
+  "core_id": "qcb-core-sp-117",
+  "repair_record": "shared/repairs/sp-117-rank-resource-model-state-successor.json",
+  "repair_record_digest": "278c5832ce61f73d463023cc70fc3dd163f2364bb8e7014f3290b2a00b019955",
+  "original_item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+  "original_contract_hash": "1b9fcc519870440970cd5546bde896c4a8bdde2db6458994b83c9a4006d7a850",
+  "successor_contract_hash": "e5c98cae0eaae7d1e5cfc5785dbffaf7f537f9d0cdebae3fb688e7faf21672ea",
+  "question_version": 2,
+  "exposure": "Actual reviewer /root/qcb_native_comparison is distinct from candidate author /root/qcb_formal_view_audit and original author structured-preparation-author-b2. This task received root's review objective and expected bindings, then personally read the complete private candidate and complete actual historical prepared SP117 record via release.checked()[2], including inherited historical review metadata; inspected the reserved withdrawal and its exact bound SP117 finding. I authored adjacent SP115's private correction and have prior quantum textbook source/review exposure; I did not author or repair this SP117 candidate, and do not claim blindness, a human/expert/model review identity, or independence from all prior context.",
+  "provenance": {
+    "inspected_private_candidate": "_review_tmp/sp-117-rank-resource-model-state-successor.json",
+    "written_private_review": "_review_tmp/sp-117-rank-resource-model-state-successor-review.json",
+    "proposed_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/sp-117-rank-resource-model-state-successor.json",
+    "proposed_canonical_review": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/sp-117-rank-resource-model-state-successor-review.json",
+    "locator_limit": "repair_record and proposed canonical paths are precise future publication locators. I inspected the bound private candidate, not an asserted installed canonical repair; this task writes only the private review and does not activate policy.",
+    "source_limit": "Operative primary evidence here is the exact local Lean text identified below. Complete relevant named proof/interface modules were inspected with stated region limits; no external PDF/URL retrieval or visual-source inspection was performed or needed for these local-source claims.",
+    "execution_limit": "Read-only loading, digest/hash/schema/scope checks and written mathematical reconstruction only. No builds, kernel/nativeformal/formal-view execution, compiler execution, finite-bit runtime experiment, source or candidate edits, new agents, canonical/PR106 edits, commits, pushes, selfapproval or admission."
+  },
+  "withdrawal_binding": {
+    "review": "reports/textbook-v1/reader-reviews/state-preparation-111-120-review.json",
+    "review_digest": "ffd653585db1a4dec073a2f1c4efcd7015c458230e4316aabd183819eb6aaec8",
+    "finding_digest": "114d7fd61409efca3a2e77f0052725e3460c5c1ff061a1bd45c875e410e07828",
+    "assessment": "Recomputed both exact digests from the bound report and SP117 finding and matched the current-policy predecessor/item binding. The old finding's single-cut versus all-cut distinction is reconstructed below rather than accepted on authority."
+  },
+  "contract_change_assessment": {
+    "literal_decision": "Question-v2 is appropriate and transparent. The original loaded request to reject an unqualified polynomial-resource inference does not distinguish nonuniform arbitrary-real gate-size existence from a uniform effective finite-bit compiler; its old rank-one counterexample/rubric blurs these genuinely different meanings. The successor expressly asks for the positive consequence in model I and the remaining obligations in model II. It is not falsely presented as an unchanged-question answer repair or an equivalent rewording. A qualified reading of the old question was possible, but this explicit new grading contract removes that ambiguity.",
+    "preserved_contract": "The exact historical item/contract and candidate digest were recomputed and matched the supplied values. Only question changes among CONTRACT_FIELDS. The existing logical-sufficiency assumption, empty conventions, core/family/dev split, frozen graph version, target/supporting nodes and frozen source_refs remain intact. The exact three original per-step supporting-node lists, their order and total step count are preserved. Later contextual compiler modules are not promoted to new frozen graph nodes.",
+    "schema_and_identity": "The candidate uses the exact sixteen-field qcb.textbook_question_successor.v1 schema, canonical per-core question-v2 key, question_version2, matching supersedes_key/item/contract, actual nonblank distinct author and pending_distinct_review marker. Complete nonempty answer/rubric and typed unique positive-weight criteria are present; source LF bindings and exposition scope passed the local read-only checks.",
+    "publication_boundary": "Accept applies only to the exact private bytes identified by repair_record_digest and the computed new question contract. It does not clear all historical source/publication debt, admit the successor, create a new core, close global aliases, or certify execution. Root must separately reconcile/install exact bytes and enforce publication gates."
+  },
+  "substantive_reconstruction": {
+    "cut_certificate_and_target": "For each p+s=N the actual integer sample index is 2^s*x+y, with the suffix restricted to Fin(2^s). HermiteSampleStructure applies the full affine threshold/polynomial separation to that literal grid and returns an existential A,B through HermiteBond k, whose cardinality is 8k+12; rank_le follows because the column space is in the span of A's columns. Dividing A by the true positive sample norm preserves the factorization. That operation substitutes a scalar expression, not an evaluated-normalizer/circuit record. Actual sampled amplitudes are strictly positive, so the nonempty 2^N table has Z>0. When N=0, Z=a_0>0 and the sole amplitude is1; the reference loader's actual base branch is the empty circuit. No zero-vector premise is hidden.",
+    "all_cut_to_short_exact_real_circuit": "The positive existence route is sound and additional to independent cut witnesses. Iteratively factor flattened tensors by exact real SVD; the previously chosen prefix isometry is injective, so removing it preserves the residual flattening ranks, which equal the relevant ordered cut ranks. This produces compatible TT cores with endpoint bonds1 and internal dimensions at most D, not an arbitrary stitching of unrelated A,B. Right-canonicalization gives orthonormal rows, equivalently input-column isometries into one emitted qubit and the next bond; the normalized scalar-boundary residual can be absorbed into the first core. Pad each active bond into B=2^ceil(log2(max(1,D))) with B<2D for D>1 (actual D>=12). There are at most B required columns in a 2B-dimensional local space, so orthogonal/unitary completion exists; unused columns permit orientation correction without altering the required action. N local stages, each compilable with polynomially many exact-real one/two-qubit gates in B, yield polynomial size in N,D and O(log D) reusable clean bond wires. The last active bond is scalar, so the bond returns to zero. The candidate explicitly preserves the necessary word/site-to-little-endian reindexing. It neither charges computing arbitrary real angles nor claims a new cut-rank-to-TT Lean theorem.",
+    "rank_one_boundary": "For normalized nonzero N>1, the first ordered cut of rank1 gives psi=u tensor v, with u,v made unit by moving a nonzero scalar/sign between them. At a later cut the full flattening is the corresponding residual flattening multiplied/tensored by nonzero u; this injective embedding preserves rank. Thus v has rank1 at every internal residual cut, and induction ends at one-qubit factors. N=1 is the vacuous-cut base case. Each real normalized (alpha,beta) is exactly the first column of [[alpha,-beta],[beta,alpha]], an arbitrary-angle RY gate; a global real sign can be absorbed into one factor for N>=1. This is O(N) nonuniform exact-real preparation, independent of effective encodability. Bell12 tensor Bell34 instead has rank1 only at12|34 and rank2 at the two other internal cuts, so the candidate's one-cut discriminator is correct.",
+    "genuine_effective_input_obstruction": "Choose a noncomputable q in(1/4,3/4). The displayed first-qubit state tensor |+> on the remaining sites is normalized, product across every cut and still has an O(N) arbitrary-real circuit. If a finite no-oracle program produced fixed-computable-gate approximations for every requested accuracy, one could compute the first-qubit-zero probability of each finite output circuit. For normalized vectors and projector P, |<psi,Ppsi>-<phi,Pphi>|<=2||psi-phi||; requesting extra bits and evaluating the output circuit to comparable precision computes q, contradiction. The statement is a missing-effective-input-promise example: it does not purport to encode this q as an allowed finite input. It supplies no lower bound on arbitrary-real gate count and no hardness result for the actual Hermite samples. Merely computable entries similarly imply no polynomial evaluation bound without an explicit access/runtime promise.",
+    "current_constructions_and_separate_hypotheses": "Current source supports the answer's careful acknowledgment of existing compilers. The full-table loader is an actual exact-real circuit with the stated 2^N-1 RY and 2(2^N-1-N) CX counts. ConstructiveTensorTrain starts from actual Chain cores and returns canonical data/residual; ConstructiveTensorTrainCompiler's correctness theorem additionally requires normalized scalar-boundary mass and a fitting bond cap, and gives every clean/non-clean output sector, not just an unspecified target overlap. ConstructiveHermitePreparation supplies its own literal normalized source using localSampleNorm, with maxBond<=2k+6 and gate/depth<=48(n+1)(2k+6)^3. Its sharper chain is separate from the 8k+12 separation certificate, not obtained by equating their dimensions. HermiteFiniteNorm identifies local Gram recursion with the exact true norm and gives scoped syntactic real-operation/storage bounds. Stored raw source and same-run cost modules are genuinely data-producing and charged within their exact-real/selected-integer model, but unnormalized and explicitly not full arbitrary-precision cost. The candidate does not assert that these compilers or norm suppliers are absent.",
+    "finite_bit_boundary": "The requested uniform model additionally needs an effective L/coefficient/core representation with charged access; algorithms for normalized compatible stage data, evaluated norm/relative precision and real gate parameters; fixed-finite-gate synthesis; global approximation propagation and conditioning; and a runtime in N,k,b and input length. An exact algebraic identity or exact-real gate count is not this combined contract. Normalization can amplify raw absolute errors when a norm is small, so the norm/error obligation is real even though exact positivity is proved. Neither Lean's noncomputable annotation nor the certificate's own disclaimer proves inefficiency or incomputability. The candidate correctly leaves Hermite finite-bit difficulty open rather than inferring hardness, and avoids asserting cut rank is necessary for arbitrary efficient circuit architectures."
+  },
+  "answer_rubric_and_exposition_assessment": "The entire candidate question, reference answer, all four rubric criteria and all three exposition steps were read. Their substantive obligations agree: qualified positive model-I existence, actual source/circuit boundaries, all-cut product-state induction and an algorithmic-input rather than gate-size obstruction. The rubric no longer rewards the old false all-cut rank-one hardness example. Empty cuts, N=0, N=1, supplied normalization, finite-bit versus exact-real cost and physical ordering are accounted for. No substantive defect requiring rejection or uncertainty was found within this bounded exact-content review.",
+  "verdict_scope": "Accept exact-content mathematical/source correspondence and explicit question-contract migration only. No fresh Lean verification, finite-bit compiler theorem, execution, admission, novelty or global-dedup verdict.",
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+      "sha256_lf": "eda04790bd59d39a49da0e98bc9602261ef7c5b0cdb531d88a97c3f6d1036d1f",
+      "anchor": "Complete module read: cutSampleIndex fixes j=2^sWidth*x+y; sampled_cut_factorization proof instantiates affine Hermite separation with the actual grid; sampled_cut_rank_le applies rank_le/cardinality; normalized_cut_factorization absorbs reciprocal sampleNorm with scale. All ordered cuts, including empty ones, are covered, with L>0. This is not a returned norm evaluator or circuit."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+      "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+      "anchor": "Complete module/proof bodies read during the immediately preceding SP115 task, with its whole LF hash revalidated here: existential FactorsThrough, rank_le, polynomial/threshold/exponential suppliers, full Hermite affine factorization, HermiteBond cardinality and scaling. This source inspection is not a fresh kernel check. The certificate comment is not a gate-size impossibility theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+      "sha256_lf": "dee753c9379124c29f3c2b08e2b597714b9f9dacca073ec315add33f7f169ec7",
+      "anchor": "Complete module and proof bodies read: gridPoint/sampledAmplitude, unconditional positive samples and true sampleNorm positivity, normalized amplitudes, actual hermiteCircuit/first column/state action, exact RY/CX counts and no-oracle certificate. Positivity, not an unchecked division, handles the actual zero-qubit singleton."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveTensorTrain.lean",
+      "sha256_lf": "8e36e9762568f0ef52e18aca99d15240be32103b8fb3ed76782a2cd3e914139e",
+      "anchor": "Complete module/proof bodies read: deterministic factorCore, recursive canonicalize on an already supplied Chain, amplitude-preserving residual, canonicality/maxBond and normalized-boundary proofs. This supplies compatible canonical data from actual cores; it is not automatic extraction of cores from rank inequalities."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveTensorTrainCompiler.lean",
+      "sha256_lf": "a8dbe683cab13bf55a52f9d3d976aa005ed19c2ee7e7c79088da54aa3611044c",
+      "anchor": "Complete module/proof bodies read: signed-boundary absorption, canonical unitBoundary and preserved amplitudes, completeStage-based actual stages, compile, gate/depth/unitarity and all-bond-sector clean-column theorem. The normalized-chain hypothesis and bond cap occur in the semantic theorem; the list producer alone is not a promise that an arbitrary unnormalized input is prepared."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveHermitePreparation.lean",
+      "sha256_lf": "e244b8dbf2d35ec51a432ffadfac8be5532d31e47ad4850c58418786f84d9b5c",
+      "anchor": "Complete module/proof bodies read: normalizedSource uses localSampleNorm and equals the literal source for L>0; actual maxBond<=2k+6, normalized contractions and prepare; gate/depth<=48(n+1)(2k+6)^3 and exact clean/non-clean output sectors for N=n+1. Existing exact-real construction, not a finite-bit implementation theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteFiniteNorm.lean",
+      "sha256_lf": "c63848c15a010911cdf622a892002f6c9b3463a19ea6a19f94220fb8a11b5d9f",
+      "anchor": "Complete module/proof bodies read: raw source contract/maxBond, local Gram norm equality and positivity versus the complete sampleNorm, source-chain substitution, storage and syntactic real-arithmetic budgets. Excluded entry-supplier, canonicalization, angle and finite-bit costs are explicit."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomialResources.lean",
+      "sha256_lf": "e3498942130f957315c3328cc0e55d1054b042a14d670bbb80c743b531832d2d",
+      "anchor": "Complete module/proof body read: exists_polynomial_resources takes k,n,L,hL and returns a circuit on (n+1)+bondQubits k wires with polynomial gate/depth, no-oracle, unitarity and clean-bond normalized-column semantics. Its existence conclusion is not a uniform finite-bit complexity claim."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredHermiteRawSource.lean",
+      "sha256_lf": "5b61bed754471e7413108a8a2c69f5567a6034e6aab406c2586b412c3302cbef",
+      "anchor": "Complete module/proof bodies read: stage tables/one-time collection, boundary data, RawRun and raw producer, denotation refinement and raw_contract for unnormalized actual samples. Cache/core/boundary construction is real progress and is not erased by the rank-certificate caveat."
+    },
+    {
+      "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+      "sha256_lf": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+      "anchor": "Complete module and all proof bodies read, with the initially truncated final integer/exponential section reread to EOF: same-run ordinary cost bound, counted stage projection work, exponential cap and exactly the named quotient/remainder/doubling/addition counters. Does not claim arbitrary-precision runtime or normalized circuit compilation."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+      "sha256_lf": "6fd2024c3c22ed6ec301dcf5df205a0bafda0456b34bed5f5ce9f9aa0af0f2af",
+      "anchor": "Complete module/proof bodies read: actual wide matrix factors from transpose elimination, exact recovery/orthogonal rows, and tall/zero/deficient cases. Confirms the current canonicalizer uses named exact-real factor data, not merely an existential factorization API."
+    },
+    {
+      "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+      "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f",
+      "anchor": "Complete module/proof bodies read: Chain/Core/Word conventions, right-canonical row-isometries, absorb, compatible residual factorization, mass preservation, normalized boundary, maximum-bond control and active-column/padded isometry semantics. Elementary MPS existence in the review is separately reconstructed, not asserted as this module's cut-rank extraction theorem."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean",
+      "sha256_lf": "1b61cbc9ad587cc2ae2a7cdc7bacd3b7d39fb05274833a3fea5dbb4dff69678c",
+      "anchor": "Complete module/proof bodies read: rotation sweeps, actual prefixCompletion, prescribed-column placement, unused-column orientation fix and complete/completeNamed specifications. The strict active-column dimension inequality supplies an unused column, so SO orientation can be corrected without changing required input columns."
+    },
+    {
+      "path": "QuantumBlockEncoding/ConstructiveIsometryLocal.lean",
+      "sha256_lf": "cfe48ba1a39d39cfff7c58f93ce7f49f46dbeba7eb83ca861f9e6e0937fcfc71",
+      "anchor": "Complete module/proof bodies read: actual local coordinates, active clean input positions, completeStage and its orthogonality/determinant/preserved-column proof. For B=2^q the at-most-B active inputs lie in a 2B-dimensional local unitary."
+    },
+    {
+      "path": "QuantumBlockEncoding/TensorTrainNormEnvironment.lean",
+      "sha256_lf": "e684550c248817ac77e03a23e0af86d3b2c7f3d8b09bcdb2385702624f5ebe6c",
+      "anchor": "Complete module/proof bodies read: local Gram recursion and equality to the full word sum, scalar norm/positivity, environment storage and explicit naive real-operation budget. Local exact norm semantics and syntactic arithmetic counts are distinct from bit-cost/error control."
+    },
+    {
+      "path": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+      "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+      "anchor": "Complete module/proof bodies read: selected rotations, target orientation/Gray basis transport, compileSteps, actual compileSO and exact matrix proof, cubic gate cap 6(2^q)^3. Supplies the polynomial exact-real local compilation scope acknowledged by the answer; its finite selected-gate output uses exact real angle data."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermiteFiniteChain.lean",
+      "sha256_lf": "b6cd70313fe158287b243327bef81599a131b7bba205d10509fe3d17f95212bf",
+      "anchor": "Complete module/proof bodies read: formula-derived normalized sourceChain, literal sample contract and source normalization, bound 2k+6, explicit bondQubits=Nat.clog 2 (2k+6), padding bound and cubic_stage_budget. Confirms this sharper chain is not identified with the unrelated 8k+12 separation witness."
+    },
+    {
+      "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+      "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa",
+      "anchor": "Only the operative prepareCircuit region around lines224-272 was read for this review, including the complete recursive definition with the zero-qubit branch returning the empty list and adjacent lift/controlled-rotation context. I do not claim a fresh full-module audit. The Hermite wrapper's complete stated correctness/count proofs were inspected separately."
+    },
+    {
+      "path": "QuantumBlockEncoding/TensorTrainWord.lean",
+      "sha256_lf": "65406c2bfa5359d6b6c1559a5a5a3f686ad4417cac436a8a1aab696b7becbdf8",
+      "anchor": "Complete module/proof bodies read: head-first Word/basis correspondence, explicit reverseBasis and sampleEquiv, wordSampleIndex and sampleEquiv_public. Confirms physical little-endian reindexing is explicit in the compiler's final column theorem."
+    }
+  ]
+}

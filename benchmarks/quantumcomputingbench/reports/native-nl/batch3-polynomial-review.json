@@ -1,0 +1,206 @@
+{
+  "reviewer": "polynomial-signals-reviewer-b3",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-plan-501-chebyshev-degree-two-top-block",
+      "authored_sha256": "94a442ddf5c4f66d59819eacb8a34a25b5f3062e2a6d27e22b3ef2c874f04f01",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": ["qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding"],
+      "notes": "Math fully correct and matches Example 10.5 / Prop 10.6 on p.169-172. On the 2D invariant plane U=[[t,sqrt(1-t^2)],[sqrt(1-t^2),-t]] (first column from the HBE relation, symmetric second column forced by Hermiticity+unitarity); R=diag(1,-1); O=UR=[[t,-sqrt],[sqrt,t]] is a rotation with cos=t; squaring doubles the angle so top-left = t^2-(1-t^2)=2t^2-1=T_2(t); ranging over eigenvectors lifts to 2A^2-I. All four rubric steps are genuine, no padding. HOWEVER the entire mathematical core is a strict degree-2 special case of batch2 qcb-core-plan-220, which proves the same Hermitian-U rotation [[lambda,-sqrt],[sqrt,lambda]] and O^k top-left = T_k(lambda_i) for all k. 501 restricts to k=2 and the 2A^2-I identity; same viewpoint, narrower instantiation, so not independently novel. Accept as a valid easier item but flag the containment honestly.",
+      "checked_sources": ["p169 Eq.10.43-10.44 Example (HBE1,1, O=U_A Z_Pi)", "p169 Eq.T2(A)=2A^2-1 top-left of O^2", "p171-172 Eq.10.60 Prop 10.6 repeating k times gives T_k(A)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+      "authored_sha256": "0a3936e9ebb7cf766c25a9071ffc24b97494f604a6c270db1fe9d4f0a5ad59d0",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct and faithful to Section 10.2.2 (general, non-Hermitian U) p.170-172. Verified: U maps H to H' as [[t,s],[s,-t]], U-dagger maps H' back to H with same symmetric matrix (Eqs 10.51-10.52), R=diag(1,-1) (Eq 10.54); then UR = rotation by p and U-dagger R = rotation by p, so E=U-dagger R U R = rotation by 2p (Eq 10.55); E^k diagonal = T_{2k}(t), off-diag = -sqrt(1-t^2)U_{2k-1}(t) (Eq 10.56), (UR)E^k gives T_{2k+1} (Eqs 10.58-10.59). The 'single UR fails because it lands in H' not H' explanation is exactly the subspace-swap point of the source. Genuinely distinct from batch2 plan-220 which only treats the Hermitian-U case (U^2=I); the non-Hermitian adjoint-pairing is the new content. Depth is real, not padded.",
+      "checked_sources": ["p170 Eqs.10.45-10.50 U:H_i->H'_i, U-dagger:H'_i->H_i", "p171 Eqs.10.51-10.55 2x2 reps and Z_Pi=diag(1,-1)", "p171 Eq.10.56 (U-dagger Z U Z)^k = T_2k/U_2k-1 block", "p171 Eqs.10.58-10.59 extra U_A Z_Pi gives T_2k+1"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-503-second-kind-offdiagonal",
+      "authored_sha256": "a27e653a8c5322cd70449d78ce095157f976812b51014a31455f22e30093dc71",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct. t=cos p, M=[[cos p,-sin p],[sin p,cos p]], M^k=[[cos kp,-sin kp],[sin kp,cos kp]]; T_k(cos p)=cos kp, U_{k-1}(cos p)=sin kp/sin p, so off-diagonal = -sin kp = -sqrt(1-t^2)U_{k-1}(t). Endpoint analysis is precise and is the genuine value-add: at t=1 (p=0) the finite U_{k-1}(1)=k is annihilated by the sin p=sqrt(1-t^2)=0 prefactor, giving identity; at t=-1 (p=pi) M^k=(-1)^k I consistent with T_k(-1)=(-1)^k and zero off-diagonal. The separation of 'finite U value' from 'vanishing prefactor' is correctly handled, not glossed. Matches Eq.10.56 and the parallel SVT forms Eqs.10.72/10.74. Distinct emphasis (second-kind off-diagonal + endpoint boundary) from the T_k-focused batch2 plan-220.",
+      "checked_sources": ["p171 Eq.10.56 off-diagonal -sqrt(1-lambda^2)U_2k-1", "p173 Eq.10.72 SVT T_2k/U_2k-1", "p173 Eq.10.74 odd SVT T_2k+1/U_2k"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+      "authored_sha256": "39fd0323bdf48017d0d1fc1d2cf958c7b30fd5e314da158a6c785496ba029ea3",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct and matches Section 10.3 exactly: even output = sum_i v_i T_2k(sigma_i) v_i-dagger = T^triangleright_2k(A) (Eq 10.73), odd output = sum_i w_i T_2k+1(sigma_i) v_i-dagger = T^diamond_2k+1(A) (Eq 10.75). The parity->vector argument (each U swaps right-vector plane and left-vector plane; even count returns to v_i, odd ends on w_i) is a faithful and genuine derivation of why even uses triangleright and odd uses diamond. Adjacent to batch2 plan-217 (SVT=eigenvalue transf for Hermitian, definite parity) and plan-218 (dilation), but neither derives the qubitization-plane assembly producing the triangleright/diamond operators; distinct content.",
+      "checked_sources": ["p172 Eqs.10.61-10.68 SVD setup, U:H_i->H'_i with |w_i>", "p173 Eq.10.73 T^triangleright_2k(A)=sum v_i T_2k(sigma_i) v_i-dagger", "p173 Eq.10.75 T^diamond_2k+1(A)=sum w_i T_2k+1 v_i-dagger", "p174 Prop 10.7"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+      "authored_sha256": "bb0afd7519e660932e5941adfddd4c87cb6c2c2402302ff134775f82e8e279bc",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Example 10.8 (p.173-174). A=[[0,1],[0,0]], SVD W=I, Sigma=diag(1,0), V=X. T_2(Sigma)=diag(T_2(1),T_2(0))=diag(1,-1); T^triangleright_2(A)=V T_2(Sigma) V-dagger = X diag(1,-1) X = diag(-1,1). I independently confirmed X diag(1,-1) X = diag(-1,1). The eigenvalue-based (false) guess T_2(0)*I = -I = diag(-1,-1) differs in the (2,2) entry (+1 vs -1), so the counterexample is genuine. Resolution (transform acts on singular values, which diverge from the doubly-zero eigenvalues of the non-normal nilpotent) is correct. Conceptually adjacent to batch2 plan-219 (matrix power is not an SVT) but a different concrete object and different point (eigenvalue vs singular-value confusion). Distinct.",
+      "checked_sources": ["p174 Eq.10.77 A=[[0,1],[0,0]]", "p174 Eq.10.78 SVD W=I,Sigma=diag(1,0),V=X", "p174 T^triangleright_2(A)=X diag(1,-1) X = diag(-1,1)", "p174 Eqs.10.79-10.80 (1,1)-block-encoding check"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+      "authored_sha256": "702f53720b923fcbee71b891dea2e12904ee62eb52db681a11734851eb0a7f2a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Theorem 10.9 (p.174-176). Sub-block B of unitary U: columns of U orthonormal and unit-norm, so B's column norms <=1, giving singular values c_j in [0,1]; orthonormality splits each unit column into c_j^2 + s_j^2 = 1, i.e. C^2+S^2=I with S=sqrt(I-C^2) (Eqs 10.87-10.88). The added pedagogical point - that this forces Chebyshev arguments into [-1,1] where T_m(cos p)=cos mp stays bounded rather than growing hyperbolically - is correct and a legitimate connective step, not padding. Section 10.4 is not covered by batch2. Distinct.",
+      "checked_sources": ["p174 Thm 10.9 CS decomposition, C=diag(c_j),S=diag(s_j),C^2+S^2=I_p", "p175 Eq.10.83 U00=W1 C V1-dagger with C in [0,1]", "p175 Eqs.10.87-10.88 R=[S;0], C^2+S^2=I_p"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-507-z-reflection-commutes-not-xy",
+      "authored_sha256": "6be5515d37e6fd437fa01ec66f553266a4e59adee706339a3799433a0c70cfce",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct. In the flag/complement grading Z-reflection D=diag(+I,-I), outer unitaries diag(W,W'); D diag(W,W')=diag(W,-W')=diag(W,W')D so they commute (per-block scalar). X-reflection is off-diagonal [[0,I],[I,0]]; [[0,I],[I,0]]diag(W,W')=[[0,W'],[W,0]] while diag(W,W')[[0,I],[I,0]]=[[0,W],[W',0]], equal only if W=W' - I verified both products. This is exactly the source's remark (Eq.10.96, p.176) that Z_Pi commutes with W-tilde,V-tilde and would fail for Pauli X or Y. The explicit non-commuting product is a genuine, source-faithful refutation. Not in batch2. Distinct.",
+      "checked_sources": ["p176 Thm 10.10 Eqs.10.94-10.95 U_A = W-tilde [...] V-tilde-dagger", "p176 Eq.10.96 Z_Pi direct sum of Z, commutes with V-tilde,W-tilde; 'would not be true if Z replaced by Pauli X or Y'"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-508-lcu-select-query-count",
+      "authored_sha256": "05f01b40f8dda9ce0becf5eb1b3aa9dcadd898f61dfb767dbd0e69e9d4d1ed69",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Section 10.5 (p.177-178). Direct select: sum_{k=0}^{K-1} 2k = 2*K(K-1)/2 = K(K-1) = O(K^2); cause (iterates not reused) is the source's point. Binary reuse with K=2^a: 2(1+2+...+2^{a-1}) = 2(2^a-1) = 2^{a+1}-2 = 2K-2, equal to one T_{2K-2} block encoding (2(K-1)=2K-2). I confirmed the geometric sum. Discipline to keep counts at query level (not gates/prepare) is correctly maintained and matches the source caveat on Eq.10.102. Distinct from batch2 (Section 10.5 not covered).",
+      "checked_sources": ["p177 Eq.10.100 U_SEL=sum|k><k| tensor U_2k; U_2k makes 2k queries", "p178 'total queries O(K^2)... not reused'", "p178 Fig 10.3 binary select, 2(1+2+...+2^{a-1})=2^{a+1}-2=2K-2 = one T_2K-2 cost"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+      "authored_sha256": "0dc1f7c3971ba9b19c67a8cbf957b322c3e9ab2c4c8ce9740ef09015688217e9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Eq.10.105 (p.179). f_even=(f(x)+f(-x))/2, f_odd=(f(x)-f(-x))/2, unique even+odd split. Combining two definite-parity block encodings (common subnormalization c) with one balanced-control ancilla yields f(A)/(2c), i.e. subnormalization 2c - the factor-two 'multiplies the subnormalization by 2' from the source. The explanation (balanced 1/sqrt(2) branches, coherent recombination divides summed operator by number of branches) is a correct and genuine LCU subnormalization accounting, not padding. Distinct from batch2.",
+      "checked_sources": ["p179 Eq.10.105 f_even=(f(x)+f(-x))/2, f_odd=(f(x)-f(-x))/2", "p179 'one more ancilla... f_even(A)+f_odd(A)=f(A); multiplies subnormalization factor by 2'"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+      "authored_sha256": "df3bf53a2bc6e340d4c631b10031418a45ffa9ae75151d589d2547ef7bcfdbdf",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Theorem 10.12 (p.178): (||alpha||_1, m+a)-block encoding of f^SV(A), a=O(log_2 d) ancillas, O(d) queries to U_A and U_A-dagger. Justifications are sound: ||alpha||_1 from prepare-select-unprepare LCU; log_2 d index register addressing orders up to d; O(d) (not O(d^2)) from squared-iterate reuse; and the explicit separation of query count from gate/prepare/readout cost matches the source's Eq.10.102 caveat. This is a concept/statement item but with genuine per-quantity justification. Distinct from batch2.",
+      "checked_sources": ["p178 Thm 10.12 (||alpha||_1, m+a)-block encoding, a=O(log_2 d), O(d) queries to U_A,U_A-dagger", "p178 Eq.10.102 gate complexity depends separately on prepare oracle cost"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+      "authored_sha256": "f44089d9dc2a9dfb8bf9ab8254a36c9fa6553831eb859c19b252d374f06fc8ac",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Section 10.6 (p.179-180). Reflections Z_Pi=2Pi-I, Z_Pi'=2Pi'-I (Eq.10.106), iterate U-dagger Z_Pi' U Z_Pi (Eq.10.107). (a) When N'=N a unitary identifies output with input subspace, reducing to U-dagger R U R with single R=2Pi-I - matches source 'reduces to usual qubitization iterate under a change of basis'. (b) For N'!=N the iterate is still a product of two reflections and the two-reflection->rotation (Jordan's lemma) decomposition into <=2D invariant planes still holds, with rank mismatch only changing the count of paired planes vs fixed 1D pieces. This is a faithful and genuine use of the Jordan/CS-decomposition structure. Not in batch2. Distinct.",
+      "checked_sources": ["p180 Eq.10.106-10.107 Z_Pi,Z_Pi', iterate U-dagger Z_Pi' U Z_Pi", "p180 'N'=N reduces to usual iterate under change of basis; N'!=N well defined, same CS analysis'", "p179-180 Notes: Jordan's lemma product of two reflections = rotation on invariant 2D subspace"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-512-rotation-reflections-overlap-example",
+      "authored_sha256": "b70cf9f03b7f5a96a63852056e644a1c4d7012e6ce273b1ed02b1813fafcb2d9",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Example 10.13 (p.179-180). m=n=1, U_A=I, Pi=|0><0| tensor I so Z_Pi=Z tensor I; Pi'=Xi' Pi Xi'-dagger with Xi'=R(theta) tensor I; overlap matrix A_ij=<psi_i|phi_j> = cos theta * I_2 (Eq.10.110); iterate U-dagger Z_Pi' U Z_Pi = Z_Pi' Z_Pi = (R(theta) Z R(theta)-dagger Z) tensor I = R(2theta) tensor I (Eq.10.111), eigenvalues e^{+-2i theta}, eigenphases +-2theta determining singular value cos theta. I confirmed R(theta)Z R(theta)-dagger Z = R(2theta). A concrete worked instance; genuine. Distinct from batch2.",
+      "checked_sources": ["p180 Eq.10.108 Pi=|0><0| tensor I", "p180 Eq.10.109 R(theta); Eq.10.110 A=cos theta I_2", "p180 Eq.10.111 U-dagger Z_Pi' U Z_Pi = R(2theta) tensor I, eigenphases +-2theta -> cos theta"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-513-grover-two-reflection-rotation",
+      "authored_sha256": "bceb8dcf62f12eb7dae864eae0d6cc8a720b1025c181d7117a26b51e7a835e93",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Theorem 11.2 proof (p.183-185). G=(2|psi_0><psi_0|-I)(I-2|x_0><x_0|) (Eq.11.9); invariant 2D subspace with submatrix [[cos theta,-sin theta],[sin theta,cos theta]] (Eq.11.14); |psi_0>=sin(theta/2)|x_0>+cos(theta/2)|x_0 perp> (Eq.11.16), theta=2 arcsin(1/sqrt(N)); G^k|psi_0>=sin((2k+1)theta/2)|x_0>+cos(...)|x_0 perp> (Eq.11.18). The two-mirrors-differing-by-phi => rotation-by-2phi framing is a correct geometric derivation of the same result. Grover (Ch.11) is not in batch2. Distinct.",
+      "checked_sources": ["p184 Eq.11.9 G=(2|psi0><psi0|-I)(I-2|x0><x0|)", "p184-185 Eqs.11.11-11.14 submatrix = rotation [[cos,-sin],[sin,cos]]", "p185 Eq.11.16 |psi0> decomposition, theta=2arcsin(1/sqrt N)", "p185 Eq.11.18 G^k|psi0>=sin((2k+1)theta/2)|x0>+..."],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-514-grover-failure-bound",
+      "authored_sha256": "4128cb4172c6d327a8267d60147c25a6b3749068f30601ec476f90ba9eae05bd",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Eqs.11.19-11.21 (p.185-186). k=floor(pi/(2theta)-1/2) gives (2k+1)theta/2 >= pi/2-theta; P(fail)=cos^2((2k+1)theta/2) <= cos^2(pi/2-theta)=sin^2(theta)=4 sin^2(theta/2)cos^2(theta/2) <= 4 sin^2(theta/2)=4/N. Expected-query argument: geometric repetition with P(succ)>=1-4/N, classical check with one extra query, E[queries]=O(sqrt(N)/P(succ))=O(sqrt(N)), Markov gives >2/3 within O(sqrt(N)). All steps correct and keep accounting in oracle queries per the ask. Distinct from batch2.",
+      "checked_sources": ["p186 Eq.11.19 (2k+1)theta/2 >= pi/2-theta", "p186 Eq.11.20 P(fail)=cos^2(...) <= sin^2(theta)=4sin^2(theta/2)cos^2(theta/2) <= 4/N", "p186 Eq.11.21 O(sqrt(N)/P(succ))=O(sqrt(N))"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-515-grover-multi-marked-iteration-count",
+      "authored_sha256": "7b9f2d47ed194aaf7f357a559fea870c0bbd6572f7c43991bd9cf4c512e07d1e",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Example 11.3 (p.187). |w>=(1/sqrt M)sum_{f=1}|x> (Eq.11.23), |w perp> (Eq.11.24), |psi_0>=sqrt(M/N)|w>+sqrt((N-M)/N)|w perp>=sin(theta/2)|w>+cos(theta/2)|w perp> with sin(theta/2)=sqrt(M/N) (Eq.11.25); G^k|psi_0>=sin((2k+1)theta/2)|w>+cos(...)|w perp> (Eq.11.28); k approx pi/(2theta)-1/2 approx (pi/4)sqrt(N/M). The 'M must be known / unknown M causes over- or under-rotation' discussion is correct and a genuine extension (the source gives k approx (pi/4)sqrt(N/M) and notes M must be known). Distinct from batch2.",
+      "checked_sources": ["p187 Eqs.11.23-11.25 |w>,|w perp>,|psi0>=sqrt(M/N)|w>+..., sin(theta/2)=sqrt(M/N)", "p187 Eq.11.28 G^k|psi0>", "p187 k approx (pi/4)sqrt(N/M); 'number of marked states needs to be known'"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-516-grover-odd-chebyshev-identity",
+      "authored_sha256": "03ce1af380576f4ce90e3e0c4b83bbcc537da7f17929f2f4ddf8a76b3aa0cb07",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Example 11.4 (p.187-188). R_psi0 is block encoding of scalar a=1/sqrt(N)=sin(theta/2) (Eq.11.29), Pi=|psi0><psi0|, Pi'=|x0><x0|; Pi' U_A Z_Pi (U_A-dagger Z_Pi' U_A Z_Pi)^k Pi = T_{2k+1}(a)|x0><psi0| = (-1)^k sin((2k+1)theta/2)|x0><psi0| (Eq.11.30), using T_{2k+1}(a)=(-1)^k sin((2k+1)arcsin a); and U_A-dagger Z_Pi' U_A Z_Pi = -G, so the k-th power carries global phase (-1)^k, measurement-irrelevant. All verified against the source. Grover-as-SVT not in batch2. Distinct and genuinely advanced.",
+      "checked_sources": ["p188 Eq.11.29 [R_psi0]=[[a,*],[*,*]], a=1/sqrt N, UA=R_psi0", "p188 Eq.11.30 Pi'...Pi=T_2k+1(a)|x0><psi0|=(-1)^k sin((2k+1)theta/2)|x0><psi0|", "p188 T_2k+1(a)=(-1)^k sin((2k+1)arcsin a); U-dagger Z U Z = -G global phase (-1)^k"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+      "authored_sha256": "61d01b3472c3333f3990b590b92bd397975cb56c6632f6a22dd15ea7e6b42c44",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct. Validity domain [-1,1] stated and proved: a=sin phi, T_m(cos beta)=cos(m beta) with beta=pi/2-phi, odd m=2k+1 gives T_{2k+1}(a)=(-1)^k sin((2k+1)arcsin a). Refutation at a>1: T_3(2)=4*8-3*2=32-6=26 (I verified via T_3(x)=4x^3-3x), which a real bounded sine cannot equal; correct replacement T_m(a)=cosh(m arccosh a) for a>1. This boundary/domain item extends the Example 11.4 identity (which the source uses only for a in [0,1] under the C^2+S^2=I range constraint). Mathematically sound, genuine, distinct from batch2.",
+      "checked_sources": ["p188 Eq.11.30 identity T_2k+1(a)=(-1)^k sin((2k+1)arcsin a) used for a in [0,1]", "p175 Thm 10.9 C^2+S^2=I_p constraint keeping a=1/sqrt(N) in [0,1]", "independent: T_3(x)=4x^3-3x so T_3(2)=26; cosh(m arccosh a) for a>1"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-518-classical-search-lower-bound",
+      "authored_sha256": "00c837eafd9a8581af6f2dd7d11ee4f8c1302d035fdc40556cdae2831ad2b03d",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Proposition 11.1 and proof (p.181-183). Contradiction hypothesis of <= 2^n-2 = N-2 queries; padding to exactly N-2 distinct queries (later queries on unmarked inputs reveal nothing); two unqueried candidates x* and x'; in both worlds all queried answers are 0, identical evidence => success <= 1/2; hence >= N-1 queries needed. The 'no quantum lower bound' addendum is correct: the argument counts classical deterministic transcripts, which does not bound superposed quantum queries (Grover O(sqrt N)). Faithful to the source. Distinct from batch2.",
+      "checked_sources": ["p182 Prop 11.1 statement (fewer than 2^n-1 queries cannot exceed 1/2)", "p182 proof: pad to 2^n-2 queries, two candidates x*,x', identical evidence f=0, success <= 1/2", "p183 contrast with quantum O(sqrt N) (Thm 11.2)"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-519-phase-kickback-bit-to-phase-oracle",
+      "authored_sha256": "5cafe052b35b70a606a4c8976fa533514d9181884bac8baa1c10cc71e217d632",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Eq.11.4 and surrounding (p.183-186). V_f on |x,-> maps components (x,0)+ and (x,1)- to (x,f(x))+ and (x,1 xor f(x))-, giving (-1)^{f(x)}|x,-> in both f(x)=0,1 cases; answer qubit returns unchanged in |->, factorizes out, reusable for both R_psi0 and R_x0 (source reuse remark near Eq.11.22). Resource reading (one phase reflection = one bit-oracle query + one-time |-> prep, no measurement/amplification since phase kickback is coherent unitary) is correct. NOTE: distinct from batch2 plan-207 (amplitude oracle from bit oracle via arccos controlled rotation + uncomputation) - different mechanism (phase kickback vs amplitude encoding), not a duplicate. Distinct.",
+      "checked_sources": ["p183 Eq.11.4 V_f|x,->=(-1)^{f(x)}|x,->", "p184 Eqs.11.7-11.8 R_x0=I-2|x0><x0|", "p186 near Eq.11.22 signal qubit |-> changes up to sign, reusable for R_psi0 and R_x0"],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "key": "qcb-core-plan-520-amplitude-vs-probability-quadratic",
+      "authored_sha256": "81a70915a2b85b04290015a30ed1c434bcb81f90a39d4f0789429c90e9bcaa3a",
+      "verdict": "accept",
+      "core_verdict": "new_distinct",
+      "core_aliases": [],
+      "notes": "Correct, matches Chapter 11 intro and Section 11.2 (p.181-182). sin(half-angle)=sqrt(p); two-reflection rotation advances good amplitude by order sqrt(p) per iteration; classical repetition gives accumulated success prob 1-(1-p)^t approx p*t, linear in p per trial. Reaching constant success: O(1/sqrt(p)) quantum iterations vs O(1/p) classical trials; quadratic speedup because amplitude grows linearly in steps while measured probability is its square (Born's rule) - matches the source statement 'a rotation through angle theta leads to growth in probability of O(theta^2)'. Costs kept in state-preparation-unitary and good-subspace-reflection calls per the ask. Slightly related to batch2 plan-203 (POVM amplitude amplification query count) but that is a specific POVM-success-probability context; 520 is the general amplitude-vs-probability principle. Distinct.",
+      "checked_sources": ["p181 Ch.11 intro: amplitude rotated between success/failure branches, quadratically fewer operations than sampling", "p183 'quantum works with amplitudes whose square gives probability; rotation by theta grows probability O(theta^2)'", "p182/p188 Section 11.2 good-subspace Pi_good, I-Pi_good=Pi_bad"],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

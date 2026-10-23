@@ -1,0 +1,26 @@
+{
+  "schema_version": "qcb.config.v1",
+  "seed": 0,
+  "generation": {
+    "provider": "curated_offline",
+    "max_calls": 0,
+    "max_cost_usd": 0
+  },
+  "batch_size": 128,
+  "evaluation": {
+    "baseline": "unmeasured",
+    "judge": "human_rubric",
+    "test_policy": "public",
+    "exposure": [
+      "closed_book",
+      "approved_interface",
+      "open_library"
+    ]
+  },
+  "lean": {
+    "container_image": null,
+    "require_image_digest": true,
+    "status": "ENV_BLOCKED"
+  },
+  "freeze": "library input hashes; new inputs require new release version"
+}

@@ -1,0 +1,625 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "core_ids": [
+      "qcb-core-sp-101",
+      "qcb-core-sp-102",
+      "qcb-core-sp-103",
+      "qcb-core-sp-104",
+      "qcb-core-sp-105",
+      "qcb-core-sp-106",
+      "qcb-core-sp-107",
+      "qcb-core-sp-108",
+      "qcb-core-sp-109",
+      "qcb-core-sp-110"
+    ],
+    "current_keys": [
+      "qcb-core-sp-101-corrected-v2",
+      "qcb-core-sp-102",
+      "qcb-core-sp-103",
+      "qcb-core-sp-104",
+      "qcb-core-sp-105",
+      "qcb-core-sp-106",
+      "qcb-core-sp-107",
+      "qcb-core-sp-108",
+      "qcb-core-sp-109",
+      "qcb-core-sp-110"
+    ],
+    "record_selection": "Actual current prepared items from qcb_curriculum.load_catalog; whole-item qcb_core.digest bindings populated programmatically.",
+    "catalog_hash": "ae4c66d6bd179c026a226f6b5bbc23a70f56476df4afdbdf892ea2e9da2848b8",
+    "observed_head": "368c861f4733a279270282a52027c6068130bebc",
+    "source_class": "All ten have local source_refs and no external primary_sources. The complete HermitePolynomial.lean and HermiteBernstein.lean files were read. No claim of arXiv paper fidelity is inferred from a module comment.",
+    "output_scope": "This report only, outside the active catalog glob at the parent's requested _review_tmp path; no repository source, data, existing review or repair changed.",
+    "alias_scope": "Compared these ten actual contracts pairwise and searched other current native and release-v3 released/provisional questions and source identities. Likely outside matches were analytic sp-118/sp-119 and a legacy Hermite resource-scope question; those are different targets. No aggregate distinct-core count or exhaustive semantic dedup claim."
+  },
+  "provenance": {
+    "actual_task": "/root/qcb_formal_view_audit",
+    "independence": "Reviewer is distinct from structured-preparation-author-b2 and main-batch2-boundary-repair-author; authored none of these items. Existing review acceptance was not used as mathematical evidence.",
+    "exposure": "Nonblind reader review: all current questions, full answers, rubrics and metadata were visible; no invented decoder or reviewer identity.",
+    "protocol_context": "Previously read repository AGENTS/HARNESS, substantive-worker skill and required publication/digestion/memory/shared protocols remain applicable.",
+    "lean_rerun": false,
+    "external_access": false,
+    "additional_agents": false,
+    "file_hash_method": "qcb_integrity.text_sha (LF normalization only)",
+    "execution_claim": "Source inspection and independent NL mathematical reconstruction only; existing named declarations do not mean this pass executed Lean."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-sp-101",
+      "key": "qcb-core-sp-101-corrected-v2",
+      "item_digest": "b8d06ee21a9000b00a45e7a559e8ec84e1a3821bc80cf948e134426bf5687741",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "P(x)=sum_{i=0}^k v(i)(x-a)^i/i!. Translation back to the centered Taylor coordinates gives coefficient v(j)/j! for j<=k, and the j-th ordinary derivative at a equals j! times that coefficient. Every real factorial is nonzero, so cancellation gives v(j). Each summand has degree at most k; no exact-degree or minimality assertion follows for arbitrary data.",
+        "answer_and_rubric": "The complete corrected-v2 answer and r1-r4 agree with the source Taylor/ordinary-derivative bridge and explicitly retain the upper-bound nature of the degree. They distinguish exact identities from numerical approximation. The arbitrary real sequence is used only on 0..k.",
+        "edge_cases": "k=0 gives constant v(0). All-zero data gives the zero polynomial, so claiming exact degree k would fail, but the current corrected item avoids that. j=0 is evaluation. Orders above k vanish rather than reproducing arbitrary v(j)."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "jetPolynomial",
+            "eval_iterate_derivative",
+            "jetPolynomial_jet"
+          ],
+          "lines": "27-49",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read complete definition and coefficient proof, including shifted Taylor sign and factorial normalization."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-102",
+          "other_item_digest": "68c0514f0b9677c677caf2ac29f4872c3571042ec82a12426c71df57763e6c00",
+          "relation": "related_multiplicity_transport",
+          "same_core_alias_proposed": false,
+          "reason": "Prescribed jet realization differs from transporting already given jets across a divisible difference; neither question is merely a renaming.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-104",
+          "other_item_digest": "10130b96d45745bf1b25df4c137ef2168b7368cb7eef7fb384197c1df6db6fc7",
+          "relation": "local_jet_prerequisite_for_two-node_uniqueness",
+          "same_core_alias_proposed": false,
+          "reason": "One-node construction does not establish the degree-bounded two-node uniqueness target.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Local source theorem is a symbolic polynomial result; no fresh Lean execution or circuit/resource result."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-102",
+      "key": "qcb-core-sp-102",
+      "item_digest": "68c0514f0b9677c677caf2ac29f4872c3571042ec82a12426c71df57763e6c00",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Let r=p-q and m=k+1. Repeated Leibniz differentiation shows (X-a)^(m-j) divides r^(j) for j<=k. Since m-j>=1, evaluating at a gives zero; derivative linearity then gives equality of the two j-th jets. For r=(X-a)^(k+1), derivative k+1 at a is the nonzero factorial of k+1, while lower jets vanish.",
+        "answer_and_rubric": "The answer provides all four steps, retains the strict below-multiplicity boundary, and supplies the sharp witness. Rubric r1's 'dividing by' is read as divisibility/factorization, not forming a rational function at the root. No regularity or characteristic hypothesis is missing because the question is over real polynomials.",
+        "edge_cases": "k=0 requires equality only of values; r=0 is allowed; the (k+1)-st derivative need not agree but can agree for some pairs, so 'nothing in general' is the correct quantifier."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "jet_eq_of_pow_dvd_sub"
+          ],
+          "lines": "51-62",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read entire derivative-divisibility and evaluation proof."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-104",
+          "other_item_digest": "10130b96d45745bf1b25df4c137ef2168b7368cb7eef7fb384197c1df6db6fc7",
+          "relation": "one_direction_prerequisite",
+          "same_core_alias_proposed": false,
+          "reason": "Two-node uniqueness additionally needs the converse jet-to-divisibility direction, coprime products and a degree contradiction.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-105",
+          "other_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+          "relation": "zero-jet_witness_ingredient",
+          "same_core_alias_proposed": false,
+          "reason": "Counterexample E uses the lemma at two distinct nodes but asks for a solution-family conclusion, not just jet transfer.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "The general differentiation/multiplicity explanation is mathematically reconstructed from the displayed proof; no theorem execution claimed."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-103",
+      "key": "qcb-core-sp-103",
+      "item_digest": "cf9f012b3ae8f37e5d04817754ee8ca5785470f5f4faef3d82c859613ef20f54",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "In the formal product exp(X)*(1-X)^-(k+1), coefficient a_{k,r}=sum_{m=0}^r choose(k+r-m,k)/m!. Every term is nonnegative, and the constant coefficient is 1. Hence the truncation A_k(t)>=1 for t>=0. If t=p+1 lies in [0,1], both A_k(t) and A_k(1-t) are positive. The two endpoint terms are nonnegative; at t=0 the left term is positive, while for t>0 the right term is positive. This covers t=1 as well.",
+        "answer_and_rubric": "The complete answer and rubric reproduce the actual coefficient calculation, constant-term strictness and endpoint split. Strict positivity is not inferred merely from nonnegative coefficients with a possibly zero constant term: the required a_{k,0}=1 is proved. The question defines A_k completely, unlike an arbitrary degree<=k polynomial.",
+        "edge_cases": "k=0 gives A_0=1 and S=e^-1(1-t)+t>0 throughout [0,1]. Formal power-series convolution requires no analytic convergence. Positivity applies to S(p) on p in [-1,0], not an unstated all-real p assertion."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "coefficientSeries",
+            "coefficientPolynomial",
+            "coefficientSeries_coeff",
+            "coefficientSeries_coeff_nonneg",
+            "coefficientSeries_coeff_zero"
+          ],
+          "lines": "168-204",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read definitions and full convolution/nonnegativity/constant proofs."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "coefficientPolynomial_pos",
+            "sourceInterpolant_pos"
+          ],
+          "lines": "254-286",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read complete finite-sum lower bound and strict-positive endpoint case split."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-106",
+          "other_item_digest": "bfb8236c482b42681d8f649cd2b0f1c243cc6405d52b55cb9abb4ab337f16792",
+          "relation": "explicit_shared_coefficient_subtarget",
+          "same_core_alias_proposed": false,
+          "reason": "sp-106's convolution and nonnegativity target is an explicit part of this proof; this item additionally proves positive truncation and source positivity. Shared subtargets are acknowledged, not counted as independent whole-problem equivalence.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-108",
+          "other_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+          "relation": "different_positive_representation_target",
+          "same_core_alias_proposed": false,
+          "reason": "Positive source values do not by themselves imply a nonnegative Bernstein coefficient vector; the latter needs an exact representation bridge.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "No external arXiv fidelity or newly executed Lean closure; local literal formula and proofs inspected."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-104",
+      "key": "qcb-core-sp-104",
+      "item_digest": "10130b96d45745bf1b25df4c137ef2168b7368cb7eef7fb384197c1df6db6fc7",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "All jets 0..k of r=p-q vanish at each endpoint. Taylor coefficients are jet/j!, so (X+1)^(k+1) and X^(k+1) each divide r. The linear bases are coprime (Bezout difference is the unit 1), so their powers are coprime and their product E divides r. E is monic of degree 2k+2. If r!=0, divisibility forces deg r>=2k+2, contradicting deg r<=2k+1. Hence r=0.",
+        "answer_and_rubric": "The full answer supplies both directions of the multiplicity/jet correspondence, the correct coprimality mechanism and nonzero-degree comparison. Rubric r1 requires more than the direction actually needed, but the answer provides it and it is valid. The generic p,q formulation is a mathematical generalization of the source-specific uniqueness theorem: its proof uses the same two-node argument and does not require source exponential jet values.",
+        "edge_cases": "At k=0, agreement at two nodes uniquely determines a degree<=1 polynomial. The zero difference is handled before applying nonzero degree divisibility. At degree 2k+2 the kernel witness E shows why the budget is sharp."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "leftModulus",
+            "rightModulus",
+            "endpointModuli_coprime"
+          ],
+          "lines": "119-127",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read endpoint definitions and coprimality proof."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "pow_dvd_sub_of_jet_eq",
+            "sourceInterpolant_unique"
+          ],
+          "lines": "380-417",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read full Taylor-divisibility proof and source uniqueness degree contradiction; reconstructed the generic p,q transport."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "jet_eq_of_pow_dvd_sub"
+          ],
+          "lines": "51-62",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Checked converse jet-transport direction referenced by the answer."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-105",
+          "other_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+          "relation": "complementary_failure_boundary_not_same_requested_target",
+          "same_core_alias_proposed": false,
+          "reason": "This proves degree-bounded uniqueness; sp-105 asks for a nonuniqueness witness and the unrestricted solution-family dimension.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-119",
+          "other_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+          "relation": "polynomial_prerequisite_not_analytic_gluing",
+          "same_core_alias_proposed": false,
+          "reason": "Endpoint polynomial uniqueness is not the global C^k splice result, which also needs regularity/gluing.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Generic p,q uniqueness is a valid NL argument, not a claim that the exact generic theorem was freshly elaborated."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-105",
+      "key": "qcb-core-sp-105",
+      "item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Let E=(X+1)^(k+1)*X^(k+1), monic of degree 2k+2. Multiplicity kills all endpoint jets 0..k, and coprimality plus the Taylor converse implies that every difference of solutions is exactly E*h with h in R[X]. A particular solution exists for arbitrary real endpoint jets by the two-point CRT construction. Thus the nonempty solution set is an affine coset p0+E*R[X] of countably infinite real affine dimension, with translation-space basis {E*X^m:m>=0}. It is generally not a vector subspace unless the prescribed data are zero. With degree cap 2k+1+d, its affine dimension is d for d>=0.",
+        "defect": "The question explicitly requests the exact dimension with no degree restriction. The full reference answer never states countably infinite affine dimension (nor even an explicit unbounded dimension answer); it only states the ideal-coset form and bounded d-dimensional slices. The rubric likewise grades only bounded extra-degree freedom and omits the requested unrestricted dimension and affine/vector distinction. Its counterexample and finite-degree formula are correct, but the exact requested answer is incomplete.",
+        "required_change": "An answer/rubric successor should explicitly state countably infinite affine dimension over R in the unbounded case, explain the basis E*X^m of its translation space, and retain the correct bounded d formula. It should distinguish affine dimension from cardinality and from a vector-space structure on a nonzero-jet solution coset.",
+        "edge_cases": "d=0 gives one point (dimension zero), d=1 gives the E direction, k=0 gives E=X(X+1). Arbitrary data must first have a solution; the source's general CRT/jet construction supplies this, so uniqueness alone is not a proof of nonempty intersection."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "jetPolynomial_jet",
+            "twoPointInterpolant",
+            "twoPointInterpolant_left",
+            "twoPointInterpolant_right",
+            "endpointModuli_coprime",
+            "interpolant_degree"
+          ],
+          "lines": "27-49 and 77-166",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read complete general CRT construction, jet realization and degree bound, supplying existence for arbitrary endpoint data."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "jet_eq_of_pow_dvd_sub",
+            "pow_dvd_sub_of_jet_eq",
+            "sourceInterpolant_unique"
+          ],
+          "lines": "51-62 and 380-417",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read both multiplicity directions and degree argument used to identify E*R[X]."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-104",
+          "other_item_digest": "10130b96d45745bf1b25df4c137ef2168b7368cb7eef7fb384197c1df6db6fc7",
+          "relation": "explicit_shared_kernel_boundary",
+          "same_core_alias_proposed": false,
+          "reason": "Uses the same coprime-modulus kernel as uniqueness but adds affine-family/dimension reasoning; no exact whole-question alias is proposed.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Rejection is for completeness of the exact question/answer/rubric contract, not a false E counterexample.",
+        "The countably infinite affine-dimension extension is independent NL reasoning; no existing local Lean theorem for that full dimension claim or new execution is asserted."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-106",
+      "key": "qcb-core-sp-106",
+      "item_digest": "bfb8236c482b42681d8f649cd2b0f1c243cc6405d52b55cb9abb4ab337f16792",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For formal power series, each degree-r product coefficient is the finite antidiagonal sum m+(r-m)=r. Substitution of 1/m! and choose(k+r-m,k) yields the stated formula. m<=r ensures all natural subtractions are correctly interpreted. Binomial coefficients are nonnegative real casts, factorials are strictly positive, and the r=0 sum has the single term choose(k,k)/0!=1.",
+        "answer_and_rubric": "The full answer and four rubric criteria establish the convolution, complementary index, termwise positivity and zero coefficient. No analytic convergence of the formal series is assumed. The downstream positivity reference is a use of the coefficient result, not a claim that this item alone proves circuit preparation.",
+        "edge_cases": "k=0 and r=0 are valid. The series reciprocal exists because 1-X has unit constant term. No numerical truncation error or finite-bit algorithm follows from coefficient identities."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "coefficientSeries",
+            "coefficientSeries_coeff",
+            "coefficientSeries_coeff_nonneg",
+            "coefficientSeries_coeff_zero"
+          ],
+          "lines": "168-204",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read entire antidiagonal reindexing proof and nonnegativity/constant lemmas."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-103",
+          "other_item_digest": "cf9f012b3ae8f37e5d04817754ee8ca5785470f5f4faef3d82c859613ef20f54",
+          "relation": "proper_coefficient_subtarget_overlap",
+          "same_core_alias_proposed": false,
+          "reason": "This exact target appears as the coefficient part of sp-103, which also requests strict positivity on two domains. The overlap is explicit, and both items share the source-positivity family/split; no claim of disjoint proof content.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Local symbolic coefficient theorem is present; no new Lean run or broader source-paper closure."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-107",
+      "key": "qcb-core-sp-107",
+      "item_digest": "3edb854fbc6b1caef98b17e0be51e11cfabd70712e0a0852d776b4a990fc7075",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Write F(t)=(1-t)^(k+1)A_k(t). Then F and jets 0..k vanish at t=1; its reflected shape F(1-t) and the corresponding low jets vanish at t=0. The coordinate p+1 translates -1,0 to 0,1 without a derivative scaling. Endpoint values of S are e^-1*A_k(0) and A_k(0). They equal the requested e^-1 and 1 only if A_k(0)=1. The canonical source A_k has this property because it truncates the generating series with constant coefficient one.",
+        "uncertainty": "The public question only describes A_k as a fixed degree<=k polynomial, while assumptions and conventions are empty. It does not supply the generating-series definition or A_k(0)=1 used by the answer and rubric r3. If 'source A_k' imports that canonical definition, the source argument is correct; if the stated degree condition is the whole public contract, k=0,A_0=2 satisfies it and doubles both endpoint values. A source-linked name is not by itself a self-contained mathematical characterization, so I cannot give the exact current item an unqualified accept.",
+        "reflection_audit": "The answer correctly describes exchange of the two endpoint shapes with unequal weights. This is not literal reflection invariance or S(1-t)=e^-1*S(t): for k=0, S(t)=e^-1(1-t)+t, whose reflection is e^-1*t+(1-t). The phrase 'symmetric up to the constant' must mean shape exchange with separately assigned weights, not a claimed multiplicative symmetry of S.",
+        "required_clarification": "Specify the canonical generating-series truncation for A_k, or at least A_k(0)=1 for the endpoint-value task. Describe reflection as exchanging F(t),F(1-t) while exchanging their weights. Vanishing at the opposite endpoint alone does not specify the full jet values at the responsible endpoint; this item only checks endpoint values and structural jet decoupling.",
+        "rubric_audit": "r1, r2 and the weighted-shape reading of r4 are correct. r3 depends on the missing explicit constant normalization. No new full endpoint-jet derivation is inferred."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "coefficientSeries",
+            "coefficientPolynomial",
+            "endpointFactor",
+            "sourceInterpolant",
+            "coefficientSeries_coeff_zero"
+          ],
+          "lines": "168-204",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read canonical definitions, which do supply the missing public A_k normalization."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "endpointFactor_zero_jet",
+            "endpointFactor_one_jet",
+            "sourceInterpolant_left_jet",
+            "sourceInterpolant_right_jet",
+            "sourceInterpolant_eval"
+          ],
+          "lines": "222-252 and 297-308",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Read complete endpoint proofs and shifted formula; checked signs under reflection."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-103",
+          "other_item_digest": "cf9f012b3ae8f37e5d04817754ee8ca5785470f5f4faef3d82c859613ef20f54",
+          "relation": "shares_canonical_formula_but_not_same_reasoning",
+          "same_core_alias_proposed": false,
+          "reason": "sp-103 explicitly defines A_k via its series and proves positivity; this item asks for endpoint decomposition and weighted reflection.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-106",
+          "other_item_digest": "bfb8236c482b42681d8f649cd2b0f1c243cc6405d52b55cb9abb4ab337f16792",
+          "relation": "normalization_dependency",
+          "same_core_alias_proposed": false,
+          "reason": "The constant-coefficient result is a prerequisite here, not automatically a public assumption in this item's empty metadata.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Uncertainty is about the current standalone reader contract, not the correctness of the canonical source formula.",
+        "No external source-paper fidelity or new Lean execution claimed."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-108",
+      "key": "qcb-core-sp-108",
+      "item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For i<=k and 0<=j<=k-i, i+j<=2k+1, so choose(2k+1,i+j)>0 and cancellation is legitimate. Each weighted Bernstein term becomes t^i*(1-t)^(k+1)*choose(k-i,j)*t^j*(1-t)^(k-i-j). Summing gives the binomial factor (t+(1-t))^(k-i)=1. Nonnegative source coefficients times nonnegative elevation weights yield nonnegative collected coefficients; reflection reverses the degree-(2k+1) index and preserves their signs. The exact polynomial identity holds for all real t, while nonnegative basis values require t in [0,1].",
+        "defect": "The public question calls t^i(1-t)^(k+1) a monomial 'of degree k+1'. Its exact degree is i+k+1, which may be as large as 2k+1. For k=i=1 it is t(1-t)^2, of degree three, not two. The degree-elevation identity and answer's exponent arithmetic are correct, but the exact current question contains a false degree statement in the very degree-conversion task being tested.",
+        "required_change": "A question successor must replace 'of degree k+1' by 'of degree i+k+1 (at most 2k+1)'. The existing identity and source proof can then be retained. The answer should make the denominator's positivity explicit and use the correct source weighting e^-1*left plus unweighted reflection; positivity itself is unaffected by which positive copy is named first.",
+        "answer_and_rubric": "r1-r4 correctly target cancellation, binomial summation, collected-coefficient positivity and basis positivity. The reference has the right proof but does not correct the false degree description. No approximation theorem or finite-bit coefficient-stability guarantee is established.",
+        "edge_cases": "i=k leaves only j=0 and already has degree 2k+1. i=0 has degree k+1. k=0 gives the degree-one factor 1-t. Index bounds ensure the binomial denominator is never zero on the actual summation range."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "declarations": [
+            "basis",
+            "basis_eq",
+            "basis_nonneg",
+            "basis_flip",
+            "elevationWeight",
+            "elevation_term",
+            "elevation_sum"
+          ],
+          "lines": "21-84",
+          "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+          "checked": "Read entire elevation proof, especially choose_pos from i+j bound and exponent identity."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "declarations": [
+            "leftCoefficient",
+            "leftCoefficient_nonneg",
+            "leftCoefficient_eval",
+            "sourceBernsteinCoefficient",
+            "sourceBernsteinCoefficient_nonneg",
+            "reflected_sum",
+            "sourceInterpolant_bernstein"
+          ],
+          "lines": "86-198",
+          "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+          "checked": "Read full collected coefficient representation, reflected indexing and exact source bridge."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-103",
+          "other_item_digest": "cf9f012b3ae8f37e5d04817754ee8ca5785470f5f4faef3d82c859613ef20f54",
+          "relation": "stronger_representation_than_value_positivity",
+          "same_core_alias_proposed": false,
+          "reason": "The Bernstein coefficient vector construction is additional structure; source pointwise positivity does not imply this exact sign pattern.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-106",
+          "other_item_digest": "bfb8236c482b42681d8f649cd2b0f1c243cc6405d52b55cb9abb4ab337f16792",
+          "relation": "coefficient_nonnegativity_prerequisite",
+          "same_core_alias_proposed": false,
+          "reason": "Uses nonnegative a_{k,i} but requires a separate exact degree-elevation mechanism.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Rejection binds the false degree in the question; no production theorem is rejected or edited.",
+        "No repaired item, execution or source publication admission authored."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-109",
+      "key": "qcb-core-sp-109",
+      "item_digest": "3a814cf53b0df4df2ad559be465c6234a73ffca971366dae638536dbc21981d0",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "On coefficient rows let H be the forward shift and T_s=(1-s)I+sH. Then T_{ut}=(1-t)I+tT_u. Define (L_u c)_i=(T_u^i c)_0. At component i, L_u T_{ut}c=(1-t)(T_u^i c)_0+t(T_u^(i+1)c)_0, giving T_t L_u c; linearity and the power relation justify the semiconjugacy. Iterating d times and reading component zero gives T_t^d(L_uc)_0=T_{ut}^d(c)_0. The binomial formula for commuting I,H is exactly sum_{r=0}^d c_r*B_{d,r}(s), producing the requested identity.",
+        "answer_and_rubric": "The complete reference supplies the operator relation, semiconjugacy, iteration and Bernstein evaluation translation demanded by r1-r4. The source's infinite-row representation is harmless: a degree-d evaluation and each needed left-edge coefficient use only the first d+1 original entries, so no unspecified infinite tail affects the result.",
+        "edge_cases": "d=0 reads c(0) on both sides. The identity is polynomial and valid for arbitrary real u,t; the geometric interval interpretation [0,u] is literal subdivision of [0,1] only when u is in [0,1]. No interval hypothesis is needed for the equality. This is exact coefficient algebra, not a floating-point stability or resource theorem."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "declarations": [
+            "coefficientShift",
+            "coefficientShift_pow",
+            "casteljauStep",
+            "casteljauStep_apply",
+            "casteljau",
+            "casteljau_eq_sum"
+          ],
+          "lines": "200-247",
+          "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+          "checked": "Read full commuting-operator binomial proof of the evaluation sum."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "declarations": [
+            "leftRestriction",
+            "casteljauStep_mul_parameter",
+            "leftRestriction_step",
+            "casteljau_leftRestriction",
+            "leftRestriction_eval"
+          ],
+          "lines": "249-282",
+          "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+          "checked": "Read all semiconjugacy and iterate/readout proofs."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-110",
+          "other_item_digest": "19291aabce76c1930159c1330905a8a44784b80535f3d33e1810e220eb3aa5ec",
+          "relation": "restriction_semantics_versus_range_bound",
+          "same_core_alias_proposed": false,
+          "reason": "This target proves equality under affine reparametrization for all real parameters; sp-110 adds interval hypotheses and proves convex-hull bounds. Neither conclusion is a restatement of the other.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "No finite-bit forward-error analysis, efficient implementation or circuit compilation claimed."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-110",
+      "key": "qcb-core-sp-110",
+      "item_digest": "19291aabce76c1930159c1330905a8a44784b80535f3d33e1810e220eb3aa5ec",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Bernstein weights have nonnegative values for s in [0,1] and sum to one. Every de Casteljau edge coefficient is a Bernstein average of an appropriate contiguous subrow, hence lies in the original common interval. Right restriction at u preserves all relevant coefficients. From 0<=u<v<=1 obtain 1-u>0 and s=(v-u)/(1-u) in [0,1]. A second, left restriction at s preserves the same bounds. Exact right-then-left semantics maps the parameter to u+(v-u)t.",
+        "answer_and_rubric": "All four rubric criteria and the complete answer retain the correct two-step order and relative parameter, with positivity of the denominator established by u<v<=1. They use partition of unity and basis nonnegativity rather than assuming positive original coefficients or lo>=0. 'Numerical-stability' is justified here only as exact coefficient-range non-amplification, not as a proved floating-point error or bit-complexity bound.",
+        "edge_cases": "u=0 and v=1 are valid, including the full interval. u=1 is impossible under the strict interval hypotheses, so no total-division edge is hidden. d=0 leaves the constant coefficient unchanged. If lo>hi there is no real c(0) satisfying the premise, so the conditional result is vacuous; no extra lo<=hi premise is needed."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "declarations": [
+            "rightRestriction",
+            "rightRestriction_eq_casteljau",
+            "rightRestriction_eval",
+            "restrictCoefficients",
+            "restrictCoefficients_eval"
+          ],
+          "lines": "284-325",
+          "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+          "checked": "Read full right-edge/restriction definitions and affine evaluation proof."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "declarations": [
+            "basis_nonneg",
+            "basis_sum",
+            "bernstein_sum_bounds",
+            "leftRestriction_bounds",
+            "rightRestriction_bounds",
+            "restrictCoefficients_bounds"
+          ],
+          "lines": "28-32 and 327-374",
+          "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+          "checked": "Read complete convex-bound proof and second-parameter interval inequalities."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-109",
+          "other_item_digest": "3a814cf53b0df4df2ad559be465c6234a73ffca971366dae638536dbc21981d0",
+          "relation": "different_hypotheses_and_guarantee",
+          "same_core_alias_proposed": false,
+          "reason": "Uses de Casteljau maps but asks for coefficient bounds under interval constraints, not just exact affine semantics.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        },
+        {
+          "other_core_id": "qcb-core-sp-108",
+          "other_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+          "relation": "different_coefficient_operation",
+          "same_core_alias_proposed": false,
+          "reason": "Degree elevation creates an exact positive coefficient vector; restriction preserves an existing common interval. Shared Bernstein basis does not make the tasks identical.",
+          "split_assessment": "Both current items are train; no exact-alias split conflict is asserted."
+        }
+      ],
+      "limitations": [
+        "Exact range preservation is not a finite-bit numerical-analysis certificate or a quantum resource bound."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-sp-101",
+      "qcb-core-sp-102",
+      "qcb-core-sp-103",
+      "qcb-core-sp-104",
+      "qcb-core-sp-106",
+      "qcb-core-sp-109",
+      "qcb-core-sp-110"
+    ],
+    "rejected": [
+      "qcb-core-sp-105",
+      "qcb-core-sp-108"
+    ],
+    "uncertain": [
+      "qcb-core-sp-107"
+    ],
+    "source_theorem_closure": "Local source bodies inspected. Generic two-polynomial uniqueness and unrestricted affine-dimension reasoning are identified as NL extensions; no fresh exact-root compilation, proof-input-equality inheritance or publication seal claimed.",
+    "quantum_resource_boundary": "These ten targets are exact real polynomial/coefficient mathematics. None proves state normalization, register/ancilla cleanup, an oracle implementation, gate count, preprocessing complexity, precision dependence or finite-bit stability. They are prerequisites for later construction, not construction certificates.",
+    "action": "Inspect the exact flagged originals before admission. Preserve frozen records. sp-108 needs corrected degree wording; sp-105 needs an explicit unbounded affine-dimension answer/rubric; sp-107 needs explicit A_k normalization/definition and precise weighted-reflection language. No successor approval or blanket catalog approval is given."
+  }
+}

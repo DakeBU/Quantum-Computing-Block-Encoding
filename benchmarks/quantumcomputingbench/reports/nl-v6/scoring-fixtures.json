@@ -1,0 +1,7 @@
+{
+  "copied_reference_not_automatic_rubric_credit": true,
+  "fixture_only": true,
+  "missing_predictions_zero": true,
+  "model_performance_measured": false,
+  "note": "Software fixtures only; no model or human result invented."
+}

@@ -1,0 +1,30 @@
+{
+  "checked_commit": "e5d759ea9f0598617a5c887751e5473f3f9a3ff7",
+  "changed_tracked_files": 101,
+  "matched_user_files": 101,
+  "missing_user_files": [],
+  "different_user_files": [],
+  "original_files_modified": [
+    "benchmarks/quantumcomputingbench/README.md"
+  ],
+  "original_files_missing": [],
+  "active_records": 58,
+  "released_records": 50,
+  "distinct_released_core_ids": 50,
+  "provisional_records": 8,
+  "primary_target_nodes": 76,
+  "support_only_nodes": 56,
+  "ledger_nodes": 5153,
+  "goal_complete": false,
+  "collaborator_coordination": {
+    "status": "pending",
+    "required_before_integration": true,
+    "mechanism": "Versioned core registry and formal-candidate handoff; actual collaborator acknowledgment must not be invented."
+  },
+  "publishing": {
+    "status": "AUTH_BLOCKED",
+    "working_branch": "qcb/nl-qa",
+    "main_push_forbidden": true,
+    "dry_run_error": "could not read Username; no authenticated GitHub identity"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dakebu.github.io/Quantum-Computing-Block-Encoding/community/contribution.schema.json",
+  "$id": "https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/community/contribution.schema.json",
   "title": "QuantumComputinglib State Preparation or Block Encoding case",
   "type": "object",
   "additionalProperties": false,

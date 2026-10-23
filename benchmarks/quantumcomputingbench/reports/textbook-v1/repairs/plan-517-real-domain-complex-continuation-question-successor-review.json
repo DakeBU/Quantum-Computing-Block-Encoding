@@ -1,0 +1,131 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-517",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json",
+  "repair_record_digest": "b68bdff475347f2e2482728410afd647d72c28f1adfdf2cbcabd3575efd406dd",
+  "repair_record_sha256_lf": "edd1d4633e6f3f4454585f14f28178d5b55bfcff836873520e55f833acc3f4d6",
+  "original_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+  "question_version": 2,
+  "original_contract_hash": "fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e",
+  "successor_contract_hash": "a7cd3d15c64e8ec16178faaa51a6e067064725220063b471bf6e1826851513fe",
+  "changed_contract_fields": [
+    "question"
+  ],
+  "contract_change_assessment": {
+    "necessity": "The old question requests a numerical refutation outside the real inverse's domain, and its answer falsely rejects complex continuation. With real arcsin, the expression is undefined there, not a false evaluated equality. A transparent question revision is needed to ask the right assessment and continuation theorem rather than silently pretend to produce the requested counterexample.",
+    "preservation": "Only question changes. Empty assumptions and both literal conventions remain: the first explicitly concerns real inverse sine; the qualitative 'hyperbolic-cosine representation' does not assert an unsigned negative-side formula and is respected by the reflected signed formula. The false unsigned semantic step is repaired, not preserved as a convention. Family/split/source/graph and all six ordered step-node lists are unchanged. Same scalar/Grover-domain target, changed requested reasoning, no equivalence claim."
+  },
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: mathematical correctness, literal contract fit/change, complete answer/rubric/exposition. Private review, not admission or automatic formal transfer.",
+  "substantive_reconstruction": {
+    "real_domain": "For real a∈[-1,1] let φ=arcsin a∈[-π/2,π/2] and β=π/2−φ. Then cosβ=a and T_(2k+1)(a)=cos((2k+1)β)=(-1)^k sin((2k+1)φ). This proves the sign as well as the identity, including a=0,±1 and k=0. Outside[-1,1] there is no real inverse value φ; a totalized software function would be a different convention. T_3(2)=4·8−3·2=26 shows a bounded REAL sine extrapolation cannot work, but cannot refute a complex sine, which has no such bound.",
+    "complex_identity": "Induction in the Chebyshev recurrence, using complex cosine's addition identity, gives T_j(cos w)=cos(jw) for every complex w. Substitute w=π/2−z and j=2k+1 to get T_(2k+1)(sin z)=(-1)^k sin((2k+1)z) for every complex z. Therefore every inverse value satisfying sin z=a gives the same polynomial value, independently of branch. This does not produce a global holomorphic inverse: differentiating sin z(a)=a at a=1 would require cos(z(1))z′(1)=1 although cos(z(1))=0. For the exact witness η=log(2+sqrt3), coshη=2, z=π/2−iη has sin z=2 and sin3z=−cosh3η=−26; multiplying by(-1)^1 recovers26. This explicitly contradicts the old answer's complex rebuttal, not real inverse partiality.",
+    "exterior_and_physics": "The recurrence also gives T_j(coshη)=cosh(jη) from identical initial values and hyperbolic addition. For a≥1 use η=arccosh a; for a≤−1 parity T_j(−b)=(-1)^jT_j(b) gives (-1)^jcosh(j arccosh(−a)), not real arccosh(a). This covers a=±1,j=0 and negative odd values such as T_3(−2)=−26. Cauchy–Schwarz bounds normalized overlaps by1; isometric compression J_out†UJ_in has norm≤1, so a unit-normalized block cannot have singular value above1. An unnormalized inner product or analytic continuation is no physical amplification construction. The exact(-1)^k scalar phase cancels in an isolated probability but becomes relative under control and must be tracked rather than silently discarded."
+  },
+  "answer_rubric_and_exposition_assessment": "All four rubric entries test the precise real domain and endpoints, complete all-complex recurrence/branch distinction, the exact26 witness under both interpretations, and signed hyperbolic/physical-phase boundaries. The six exposition steps retain their ordered supports while replacing the false complex-continuation rejection. The full answer neither bounds complex sine by1 nor treats negative arccosh arguments as real. It also avoids claiming a global inverse branch or an oracle implementation from a scalar polynomial identity. I accept the entire exact question-version2 candidate; the predecessor remains refuted/ill-posed in the stated ways.",
+  "bounded_semantic_relations": "This scalar real/complex domain task relates to Grover rotation but does not provide513/515's endpoint plane or stopping theorem,520's amplification access/cost theorem, or510's general-matrix LCU resources. Those are shared formulas/subtargets, not full-target aliases or a global dedup conclusion.",
+  "preserved_scope": {
+    "family": "qsc-grover-amplitude-amplification",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:harmonic-analysis",
+      "concept:approximation",
+      "concept:matrix-analysis"
+    ],
+    "supporting_nodes": [],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 6,
+    "original_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:harmonic-analysis"
+      ],
+      [
+        "concept:harmonic-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:approximation"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:approximation"
+      ],
+      [
+        "concept:harmonic-analysis"
+      ],
+      [
+        "concept:harmonic-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:approximation"
+      ]
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete Lin–Wiebe metadata entry230–238 read. LF authenticates recorded URL/edition/pin metadata only; not PDF proof or binary equality. Genuine primary mathematics/access limits are separately described."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete relevant authored question/assumptions/conventions/answer/rubric/steps and source context read. Tracked content provenance, not independent proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole actual historical prepared qcb-core-plan-517 loaded through release.checked()[2], not current-reader substitution; exact item digest above."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "operative_regions": "Full Example11.4/Eq11.29–11.30 and its normalized Grover/reflection context read, with Definition9.2's compression factor and Definition10.4's singular-value/parity context. The source only asserts the scalar relation for a∈[0,1] and tracks(-1)^k; it does not disprove complex continuation. The all-complex recurrence, negative exterior formula and explicit inverse witness are independently reconstructed mathematical boundary arguments, not invented source paragraphs or Lean theorems.",
+      "actual_access": "Primary PDF text genuinely accessed in this review objective. April29,2026 cover observed in the continuous source-reading context; current tool reports447 pages. Complete operative proof/definition regions above read, with independent reconstruction rather than verdict inheritance.",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "binary_hash_independently_verified": false,
+      "rendered_pages_independently_inspected": false,
+      "limits": "This reviewer did not obtain/hash original PDF bytes or inspect operative rendered pages. Parent separately reported genuine rehash/rendering; those actions are not mine and are not imported as a seal. No source-paper seal, local Lean/kernel execution or source-blind claim."
+    }
+  ],
+  "provenance": {
+    "candidate_author": "/root/qcb_native_comparison",
+    "reviewed_private_origin": "_review_tmp/plan-517-real-domain-complex-continuation-question-successor.json",
+    "canonical_locator_status": "repair_record is the intended canonical transport locator, not a claim that those bytes were installed/admitted there. Whole digest and LF bind actual privately inspected bytes.",
+    "prior_exposure": "I previously inspected related qubitization/Grover sources and repairs, and received parent defect leads. For this objective I read the full actual original, exact withdrawal/finding and entire new candidate, including grading/process/metadata. Not a source-blind review; candidate author's or parent's reasoning/verdicts are not proof.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+    "prior_withdrawal_review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+    "prior_finding_digest": "bb15f37a2e8deeec8147b21b53ea6258b68ad076a504ab74faa9b88c478f1a71",
+    "actual_prior_reviewer": "/root/qcb_native_comparison",
+    "independence": "Actual reviewer /root/qcb_boundary_repair_review is distinct from candidate author /root/qcb_native_comparison and prepared original author polynomial-signals-author-b3. I did not author these candidates.",
+    "execution": "Read-only source/math and binding calculations only; no build/test/kernel/simulator/prediction, human/expert approval, global deduplication, policy change or admission.",
+    "mechanical_context": "Main engine remains e9308632431899a08938b4d9a6cd1b9d90c45e30. Payload grammar is mechanical context, not mathematical source_checks; no executable admission code is used as proof.",
+    "writes": "Only this NEW private exact-content review. Candidate, authorship handoff, all prior private artifacts and canonical files remain unchanged."
+  }
+}

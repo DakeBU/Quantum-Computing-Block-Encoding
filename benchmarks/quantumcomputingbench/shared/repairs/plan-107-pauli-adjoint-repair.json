@@ -1,0 +1,34 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-107",
+  "supersedes_key": "qcb-core-plan-107-pauli-twirl-maximally-mixed",
+  "supersedes_item_digest": "78bd0325d3ec88da16fbd93359b46049553ad3e088445cbb3f077baccc1e530a",
+  "author": "/root",
+  "key": "qcb-core-plan-107-textbook-v1-pauli-adjoint-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Repair the false right factor in the twirl expansion throughout answer, rubric and semantic exposition. The question already specifies C^2, a density matrix, irreducibility and a Schur/trace proof. No question, assumptions, graph scope, family, split or step count changes; no local Lean closure is asserted for this planned concept anchor.",
+  "reference_answer": "Let S={I,X,Y,Z} and T=(1/4) sum over P in S of P*rho*P^dagger. Each of these four matrices is Hermitian and unitary, so this is the operator in the question. For Q in {X,Y,Z}, the conjugation expansion is Q*T*Q^dagger=(1/4) sum_P (Q*P)*rho*(Q*P)^dagger. The rightmost factor is P^dagger*Q^dagger=P*Q, not Q*P. Products of distinct Hermitian Paulis need not themselves be Hermitian, so that adjoint cannot be dropped.\n\nLeft multiplication by Q permutes the four Pauli classes modulo scalar phases. More explicitly, for each P there are a unit-modulus scalar omega_P and a uniquely associated R_P in S such that Q*P=omega_P*R_P, and P->R_P is a permutation. In each conjugation term the scalar cancels with its complex conjugate: (omega_P R_P)*rho*(omega_P R_P)^dagger=R_P*rho*R_P^dagger. Relabeling this finite sum therefore proves Q*T*Q^dagger=T. Since Q is unitary, multiplying on the right by Q gives Q*T=T*Q. The same follows for all products of the generators and scalar central phases, so T commutes with the irreducible Pauli representation.\n\nNow use Schur's commutant-is-scalars corollary on the finite-dimensional complex space C^2: T=lambda*I. The hypotheses needed for its scalar conclusion are present, not silently assumed for a general field or an infinite-dimensional representation. Cyclicity of trace and P^dagger*P=I give tr(P*rho*P^dagger)=tr(rho)=1 for every P. Thus tr(T)=1. On the other hand tr(lambda*I)=2*lambda, so lambda=1/2 and T=I/2. This follows from conjugation invariance, irreducibility and trace normalization, without computing the entries of rho. Positivity supplies the density-state interpretation but is not needed for the linear-operator identity T(A)=tr(A)*I/2. That extension is a mathematical consequence of the same proof, not a newly compiled local Lean theorem or a circuit-resource claim.",
+  "rubric": [
+    {"id": "r1", "weight": 1, "criterion": "Expands Q*T*Q^dagger with right factor (QP)^dagger=PQ, then uses a bijection of Pauli classes modulo unit phases and adjoint phase cancellation. Does not treat every product QP as Hermitian."},
+    {"id": "r2", "weight": 1, "criterion": "Derives commutation with the whole representation and applies the scalar commutant corollary on finite-dimensional C^2 with the given irreducibility."},
+    {"id": "r3", "weight": 1, "criterion": "Uses trace cyclicity and P^dagger*P=I to get tr(T)=1=2*lambda and lambda=1/2."},
+    {"id": "r4", "weight": 1, "criterion": "Concludes T=I/2 for every input density matrix by the Schur/averaging argument, not brute-force coordinates or a new formal/circuit claim."}
+  ],
+  "exposition": {
+    "core_summary": "Pauli conjugation permutes operator-conjugation terms modulo phases only when the right adjoint is retained; Schur and trace then give the maximally mixed output on C^2.",
+    "semantic_steps": [
+      {"claim": "Each P in {I,X,Y,Z} is Hermitian-unitary, so P*rho*P^dagger=P*rho*P; a scalar phase cancels only against its adjoint phase.", "supporting_nodes": ["concept:operator-theory"]},
+      {"claim": "Q*T*Q^dagger=(1/4)sum_P (QP)*rho*(QP)^dagger; QP permutes the Pauli classes modulo unit phases, so the correctly conjugated sum is T.", "supporting_nodes": ["concept:operator-theory"]},
+      {"claim": "Unitary Q then gives Q*T=T*Q, and hence commutation with the entire irreducible Pauli representation.", "supporting_nodes": ["concept:operator-theory"]},
+      {"claim": "The scalar Schur corollary applies on finite-dimensional C^2 and gives T=lambda*I.", "supporting_nodes": ["concept:matrix-analysis"]},
+      {"claim": "Cyclicity gives tr(T)=1=2*lambda, so T=I/2 independently of the density matrix entries.", "supporting_nodes": ["concept:matrix-analysis"]}
+    ]
+  },
+  "source_checks": [
+    {"path": "website/research/sources.json", "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae", "anchor": "Complete leditzky-2025-repth-qit source entry. This LF hash binds metadata only; the actual primary mathematical regions are separately identified below, not inferred from this catalog."}
+  ],
+  "primary_source_checks": [
+    {"url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf", "edition": "April10,2026;79pages", "anchors": "Complete Proposition3.17 proof and Corollary3.18 (printed20), Example3.19/Eq3.27 (printed21), with actual finite-dimensional complex setting. The source states the twirl result and points to an exercise; the conjugation/class-permutation expansion above is independently reconstructed.", "inspection": "Primary PDF text retrieved through web access and complete bounded regions read. Web screenshots failed and the root's first direct binary retrieval failed TLS; no fresh root-owned PDF-byte or visual-layout verification is claimed by this candidate."}
+  ],
+  "execution": "Mathematical/source reconstruction only. No production Lean module, source-blind formal companion, kernel execution or isolated prediction evaluation is claimed."
+}

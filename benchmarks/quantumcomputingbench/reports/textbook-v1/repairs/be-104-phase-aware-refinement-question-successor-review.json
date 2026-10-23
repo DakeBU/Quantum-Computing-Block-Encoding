@@ -1,0 +1,165 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-be-104",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/be-104-phase-aware-refinement-question-successor.json",
+  "repair_record_digest": "64c8c9d982f74eeab60368816f64e808524724f4626c9badec05cae57aeda1b5",
+  "repair_record_sha256_lf": "07f2b8d7142acdcf393082daf5dc5f5af560cba3013ea09899c27fc45a89356d",
+  "original_item_digest": "09426de0cfd6a624bf2b04f6011fbb177a23b57067ad18a29ca7ccb95d4765d8",
+  "original_contract_hash": "4cded40db452c99cb732915e47e3b2d27b7a9973e7a32ac5b33b63ff8a58f04e",
+  "successor_contract_hash": "789bf7e634c8ba45459366388155594cf11cf3822154020f0970064ebf0f43e8",
+  "verdict": "accept",
+  "verdict_scope": "Accept this entire exact private candidate's mathematics, complete answer/rubric/exposition and disclosed contract boundary only. No historical acceptance transfer, current catalog restoration, canonical transport, fresh kernel/native-formal verification, source-publication seal or admission is performed.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "oracle-composition-author-b2",
+    "assessment": "This reviewer authored neither this candidate nor its frozen predecessor and is distinct from both actual authors.",
+    "exposure": "Not source-blind or a fresh identity. This task has substantial previous local Lean/QCB source and review exposure. The parent supplied the six candidates, focus concerns and authorship handoff; the complete original, candidate, withdrawal and prior reader finding were visible. Prior finding by /root/qcb_native_comparison and author summaries are not substituted for the present independent reconstruction."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of entire actual prepared original retrieved through current release.checked()[2].",
+    "repair_record_digest": "qcb_core.digest of entire exact parsed private candidate, including all metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of complete exact private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of the exact nine-field predecessor contract with only question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "retained_scope": {
+      "core_id": "qcb-core-be-104",
+      "family": "be-compile-eval-refinement",
+      "split": "train",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a"
+    },
+    "original_semantic_step_count": 5,
+    "candidate_semantic_step_count": 5,
+    "ordered_per_step_supporting_nodes_equal": true
+  },
+  "original_defect": "The old exact equality identifies the chronological primitive list product with P(E), omitting PrimitiveProgram.globalPhase. In the actual seven-wire witness this phase is nontrivial; a global-phase quotient cannot justify exact0/1 equality.",
+  "contract_change_assessment": {
+    "classification": "Question-version2 is required: C remains the inherited bare list product, and the old demanded equality is assessed/refuted. The new D=exp(i phi)C is introduced as a separate full program denotation, not a redefinition of C or an implicit phase quotient.",
+    "preservation": "Only question changes; inherited bare-product assumption, bijective reversible semantics, rowE(column) permutation convention, family, train split, frozen graph/source scope and five ordered step-node lists remain. The seven-wire access program is the source-backed concrete discriminator for the same compiler-refinement family.",
+    "scope": "Full-space exact compiler refinement does not assert clean-work arithmetic without its hypothesis. The new question intentionally requests different reasoning, not an equivalent restatement or automatically upgraded formal view."
+  },
+  "substantive_reconstruction": {
+    "chronology": "Primitive list evaluation satisfies eval([])=I and eval(g::rest)=eval(rest)eval(g); append is second-times-first. Program.seq appends lists and adds exact angles. Central phase scalars then give evalProgram(first.seq(second))=evalProgram(second)evalProgram(first), matching P(second)P(first)=P(second o first). The complete compiler induction applies gate soundness in the cons case, not a definitional equality.",
+    "gate_mechanism": "X and CX have phase0 and literal permutation matrices. H is i RY(pi/2)RZ(pi), as checked with half-angle RY and diagonal RZ; T=e^(i pi/8)RZ(pi/4), Tdagger=e^(-i pi/8)RZ(-pi/4). The complete CCX middle monomial proof restores all bits and gives-1 only on111. Splitting by unchanged control context gives Z or I on the target; HZH=X and H^2=I yield exact Toffoli. All corresponding bodies in PrimitiveMacros were read, not inferred from macro names.",
+    "ledger": "The actual CCX middle contains4 T and3 Tdagger; two surrounding H yield phi_CCX=2(pi/2)+(4-3)pi/8=9pi/8. The fixed adder's eight reversible instructions contain five CCX and three CX. Access prepends X0,X1, so phi=5*9pi/8=45pi/8. ExactAngle.add evaluates to a real sum, without reducing stored angles modulo2pi.",
+    "counterexample": "Full D=P(E), hence C=e^(-i45pi/8)P(E)=e^(i3pi/8)P(E). Since0<3pi/8<pi, this scalar is nonreal and not1. Every nonzero entry of C is that scalar, so its support and unitarity match a permutation but it is not a0/1 real permutation. In a nonempty basis, C=P(E) iff exp(i phi)=1. The seven-wire space has128 basis elements, so no empty-basis exception applies.",
+    "semantics_and_costs": "Full D maps |c> exactly to |E(c)> on the whole space; the arithmetic address loader and cleaned work claim separately require input work0. Bare C differs by a physically common phase for isolated rays/probabilities, not necessarily after control. Stored phase is semantic metadata, not an implemented free phase gate or an uncharged controlled implementation. No new gate count, uniform-width or finite-bit result is claimed."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question_and_answer": "Accept complete phase-sensitive correction and source-specific counterexample. The explicit formulas maintain both chronological order and the distinction between full-space compiler soundness and clean-work arithmetic.",
+    "rubric_and_steps": "Four criteria and five claims were read. They require gate-case/list refinement, actual H/T ledger and scalar counterexample rather than handwaving global phase away. Exact original node lists remain; no source theorem is misquoted as a bare-product equality.",
+    "residual": "None found. Static reading verifies the derivation as NL/source evidence, not a new evaluated circuit, fresh Lean proof, native-formal companion or controlled-resource theorem."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+      "sha256_lf": "e4f35bfdd690445de12d5a7e6692b9ab86d1a096b9ed3f4d1a41e07b99181ca7",
+      "anchor": "Complete module read: seven-wire little-endian helper/offset, reversible program40-42, basis equivalence, complete cleanAction/preservation/cleanup bodies, primitive compiler interface and exact full-program refinement77-80, and resource/unitarity wrappers. No native_decide or Lean execution performed."
+    },
+    {
+      "path": "QuantumBlockEncoding/ModularAdder3.lean",
+      "sha256_lf": "3995a7d9068322d7116e6d3852111574c3c94acc09b9927231be931d33d17002",
+      "anchor": "Complete module read. Operative X/compiler gate cases16-49 and full list induction52-72; exact littleEndian3Value and eight-instruction adder198-212, basis equivalence and clean-work arithmetic217-225, full-program refinement227-233 and workspace/resource wrappers235-247. Five CCX and three CX counted directly from the source list."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveMacros.lean",
+      "sha256_lf": "c1cea784608c9bc1533a0a026368f63f2f5b3606e34463149b73fad9f7221f63",
+      "anchor": "Complete module1-633 read: H/phase matrices15-73; H/T/Tdagger programs76-90 and complete evaluation/lift proofs92-170; monomial matrix/composition and program interfaces174-304; full CCX middle/list309-336; complete bit-case permutation/phase and CCZ evaluation proofs339-405; H^2/HZH/block decompositions407-578 and complete conjugation/CCX exact refinement580-632. This is static source inspection, not re-execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+      "sha256_lf": "d5019ef58ce1ce65664d2a40979cdd652ca691c94743532c59dfe18cf2036d4c",
+      "anchor": "Read exact-angle constructors/evaluation17-64, primitive instructions95-101, PrimitiveProgram103-106, resource interfaces189-203 and identity/chronological seq209-217. seq adds exact phases and appends chronological lists; no modulo reduction."
+    },
+    {
+      "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+      "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62",
+      "anchor": "Read standardRyMatrix and zero/add bodies18-37; complete flip/X/CX/split/lift definitions and proofs118-229; standardRzMatrix and unitarity/adjoint bodies232-284; permutation/lift adjoint bodies286-320; gate interpretation/unitarity323-340; complete circuit/append/dagger374-410, global phase413-435, full program/seq/unitarity/dagger439-479 and exact-refinement structure481-485."
+    },
+    {
+      "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+      "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+      "anchor": "Read realOrthogonalRotation/realRotation and full normalization proof23-78, equivPermutationMatrix148-151, complete unitary/left/right application and chronological multiplication proofs154-223. Source orientation is row=equiv(column)."
+    },
+    {
+      "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+      "sha256_lf": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711",
+      "anchor": "Complete module1-75 read: reversible gate IR, CCX basis action/involutivity and equivalence24-61, gate interpretation63-68 and chronological head/rest program evaluation70-73. Full-space bijection is distinct from clean-work arithmetic."
+    }
+  ],
+  "provenance": {
+    "observed_head": "0e42c19ec6def3722dc9cc130f86f8453869c5c1",
+    "reviewed_at_private_path": "_review_tmp/be-104-phase-aware-refinement-question-successor.json",
+    "published_locator_note": "repair_record is the intended future canonical destination; actual reviewed bytes were private. Exact copying changes locator only, not content or hashes.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/oracle-composition-101-120-review.json",
+      "digest": "045da846e93abe988eee9a7879e0c22bec7fbe98e17a3a3bea2241b824851e4b",
+      "sha256_lf": "8e6844f1b5c2efc2508ff121eaa28906474330d25b3da6e25e80c501ab90e5d4",
+      "reviewer": "/root/qcb_native_comparison",
+      "finding_digest": "ee83aba1d642fb319bce4fae588fba9cd04798253f52ec3bff03abad91664fa3",
+      "verdict": "reject",
+      "inspection": "Complete exact core finding read in its canonical report; its historical verdict remains bound to the original digest. It is diagnosis evidence, not approval of this candidate."
+    },
+    "withdrawal_evidence": {
+      "path": "benchmarks/quantumcomputingbench/shared/current-policy.json",
+      "row_digest": "4a3532b57c6a13c9c1726460c399abd244a9d9f2e884e3cebd956cc7ec5f7252",
+      "core_id": "qcb-core-be-104",
+      "inspection": "Exact original-bound withdrawal row inspected and check_withdrawal passed read-only. Mechanical provenance, not a mathematical source dependency."
+    },
+    "instruction_status": "Repository AGENTS/HARNESS, substantive-worker skill and required publication/digestion/evidence-memory protocols refreshed/read in this continuous task context; shared CONTRACT/ACCEPTANCE read. The skill requires honest source/semantic/Lean/admission separation.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "primary_paper_retrieval_performed": false,
+    "mutation_scope": "Only this new private review JSON authored. No candidates, prior private packets including LA/SP/remaining18, frozen QA, canonical tree, production Lean, policy, code, PR107, build, commit or push changed.",
+    "limits": "Static complete operative local-source inspection and independently reconstructed mathematics. No transitive Mathlib closure, fresh compilation, primary-paper/PDF/visual seal, circuit execution, uniform finite-bit synthesis, global deduplication or blanket source/module approval."
+  },
+  "mechanical_context": {
+    "separate_from_mathematical_source_dependencies": true,
+    "checks": "Read-only actual prepared-record retrieval, whole parsed/LF hashes, supersedes key/digest, original and projected nine-field contracts, check_exposition, check_source_bindings and check_withdrawal passed. Additionally compared every ordered semantic-step supporting-node list exactly; no admission function invoked.",
+    "tools_used": "Existing checkout .venv/Scripts/python.exe with PYTHONDONTWRITEBYTECODE=1; no installation or executable-file source dependency is introduced.",
+    "incidental_policy_and_curriculum_files_not_bound_as_mathematical_sources": true
+  },
+  "worker_handoff": {
+    "objective": "Distinct exact-candidate source/semantics review for this reserved BE core.",
+    "mathematical_delta": "Independent reconstruction resolves the stated carrier/quantifier/phase/resource ambiguity with exact candidate/predecessor/source bindings.",
+    "failure_class": "NONE for this exact candidate; historical defect remains auditable.",
+    "salvage": "Existing source identities and core scope retained; no newly compiled fragment promoted.",
+    "process_memory_ids_consulted": [],
+    "direction_fingerprint": "exact-private-BE-104-source-reader-not-author",
+    "parallel_admission": "No agents spawned. Parent-assigned distinct-author review, not duplicated proof authoring.",
+    "common_blind_spot_scope": "Checked stated conventions against operative source, not just author summary; not a multi-route/global blind-spot certification.",
+    "purification_exposition_seal": "No publication/purification seal issued; private candidate acceptance pending parent reconciliation and independent gates.",
+    "recommended_next_step": "Parent inspect exact review and candidate, then separately decide transport/admission. Preserve predecessor historical withdrawal and all existing frozen artifacts."
+  }
+}

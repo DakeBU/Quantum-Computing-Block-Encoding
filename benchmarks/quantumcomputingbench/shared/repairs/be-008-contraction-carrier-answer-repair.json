@@ -1,0 +1,60 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-be-008",
+  "supersedes_key": "qcb-core-be-008",
+  "supersedes_item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-be-008-textbook-v1-contraction-carrier-answer-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition repair. The literal question already asks real-y existence separately from the rational entrywise backend; explain both carriers rather than claiming rational square-root witnesses. It does not demand the old answer's false extra-signal remedy, so remove that answer/rubric error without modifying any question/assumption. No universal real-to-rational source transfer is claimed. Exact predecessor contract hash feff0f307f0c6ad39e5005c64e9c3468a58c3a773630c438345563f33c66d55c. Preserve core/family/split/frozen graph/source scope, 2 semantic steps and each ordered per-step supporting-node list. All nine CONTRACT_FIELDS remain literally inherited; no question or assumption/carrier override. No new core, selfapproval, formal transfer or admission.",
+  "reference_answer": "Use the inherited rational-entry backend for the initial matrix: x,y∈Q, regarded as real numbers. For D=[[x,y],[y,-x]], the two row self-overlaps are x²+y² and y²+(-x)²=x²+y². The cross-overlaps are xy+y(-x)=0 and yx+(-x)y=0. Consequently DD^T=(x²+y²)I2, and D is orthogonal exactly when x²+y²=1; the same equation gives D^T D=I2. These identities are polynomial algebra valid overQ andR. Automatic zero cross-overlap alone is not unit normalization.\n\nThe question separately asks whether a REAL y exists. For a fixed rational x viewed inR (indeed for any real x under this scalar extension), a real y with y²=1-x² exists iff|x|≤1. Necessity is y²≥0; sufficiency is y=±sqrt(1-x²). This is real-existence mathematics, not a claim that those witnesses have rational entries. Remaining within the inherited rational matrix backend, a rational y exists exactly when1-x² is a square of a rational number. For rational x=1/2 the required y=±sqrt(3)/2 is irrational: if sqrt3=a/b in lowest positive integer terms, a²=3b² forces3 to divide a and then b, a contradiction. Thus|x|≤1 alone is not a rational-completion theorem. Conversely x=3/5,y=4/5 is rational; x0 admits y±1. At x=1 or-1, y0 works over both carriers, so the largest possible |x| is1 in either carrier, although the interior rational-existence criterion is stricter.\n\nThe normalizer-one obstruction is independent of auxiliary dimension. Let J be any clean isometric embedding, J†J=I, and U any unitary (real orthogonal in the real case). Then ||J†UJ z||≤||UJz||=||z||. Hence every clean compression is a contraction. In particular a scalar c with|c|>1 cannot appear as a normalizer-one clean block in ANY signal-register dimension. More signal qubits do not remedy this. This also follows entrywise because an entry of a unit vector has magnitude≤1.\n\nWith conventional positive normalizer alpha and exact target A=alpha B, it is B=J†UJ=A/alpha that must have norm≤1; for a scalar c this requires alpha≥|c|. Raising alpha is the necessary normalization remedy, not enlarging the signal space at fixed alpha1. Over real matrices, a2x2 dilation then realizes c/alpha; over rational entries its rational completion condition still applies and no arbitrary real square-root witness is silently imported. The Gram lemmas prove conditional algebraic identities, not a general rational-existence, finite-bit synthesis, success-probability or efficient circuit theorem.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Computes both row norms x²+y² and both cross terms0, and derives full orthogonality iff x²+y²=1."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Distinguishes real-y existence |x|≤1 from rational-y existence1-x² a rational square, including the x1/2 obstruction and endpoint y0."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Proves clean compression is a contraction for every auxiliary dimension; rejects added signal qubits as a remedy at alpha1 and states the positive-normalizer convention A=alpha B correctly."
+    }
+  ],
+  "exposition": {
+    "core_summary": "For rational x,y embedded inR, both row norms are x²+y² and the cross overlap0, so D is orthogonal iff x²+y²=1. The question's real-completion existence has boundary|x|≤1, but rational witnesses need a rational square; universal clean-compression contraction rules out|c|>1 at normalizer1 in every auxiliary dimension.",
+    "semantic_steps": [
+      {
+        "claim": "For rational x,y embedded inR, both row norms are x²+y² and the cross overlap0, so D is orthogonal iff x²+y²=1.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_normSq",
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row1_normSq",
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_rows01_orthogonal"
+        ]
+      },
+      {
+        "claim": "The question's real-completion existence has boundary|x|≤1, but rational witnesses need a rational square; universal clean-compression contraction rules out|c|>1 at normalizer1 in every auxiliary dimension.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_unit_norm_of"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+      "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+      "anchor": "Actual operative definitions and complete proof bodies read: Complete rational scalarDilation definition and four entry lemmas, lines 532-554; complete row-dot definition, self-overlap, conditional unit-norm and both cross-overlap proofs, lines 556-595. Static source evidence only; no new kernel execution."
+    },
+    {
+      "path": "QuantumBlockEncoding/BlockEncoding.lean",
+      "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+      "anchor": "Actual operative definitions and complete proof bodies read: Approximate block-encoding norm convention A-alpha*cleanBlock, lines 136-153, and total-unitary dimension definition, lines 103-116. Static source evidence only; no new kernel execution."
+    }
+  ],
+  "execution": "Private authorship by actual /root/qcb_boundary_repair_review, not an independent approval of this candidate. Full actual historical release.checked()[2] record, all question/assumption/convention/reference/rubric/step/source/metadata fields, exact bound withdrawal and full prior finding were read. Prior exposure includes related Hermite/QIT/source review tasks, parent's six-item repair focus; no blindness claimed. Reserved withdrawal row digest 3b0218e59f969928588f0f1dd9e87c00098e90bd85f9871581397f1373a9d1b6; prior review reports/textbook-v1/reader-reviews/block-encoding-001-012-review.json whole digest 3c4a17d247a70f8e7663f5cd72907840adc4fe2c662f80683d045ab1b72b1eaf; item-finding digest f53f7d473a8dea4823d16ac7c401577259b9d70a5744233157bcb088204ea38e. Those prior findings identify defects, not approval of my candidate. Observed local HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1. Mandatory repository instructions/protocols were read fully in this continuous context and checked unchanged since prior gate; substantive-worker skill refreshed. Operative local source definitions and complete relevant proof bodies were personally read; broader unrelated modules and transitive Mathlib proof closure are not claimed fully audited. No external source-paper/PDF seal, human/expert/model approval, Lean/kernel/nativeformal execution, build, agent, canonical/source/policy/frozen/older-private edit, commit/push or currentPR107 change. Algebraic/phase/resource reconstruction is written mathematics, not newly executed formal evidence. Planned canonical destination benchmarks/quantumcomputingbench/shared/repairs/be-008-contraction-carrier-answer-repair.json; actual authored/read location _review_tmp/be-008-contraction-carrier-answer-repair.json only. Portable provenance names are repository/workspace-relative. Distinct exact-content review and root reconciliation required before any transport/admission."
+}

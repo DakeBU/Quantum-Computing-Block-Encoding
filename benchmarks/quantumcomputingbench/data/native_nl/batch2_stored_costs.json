@@ -1,0 +1,1750 @@
+[
+  {
+    "core_id": "qcb-core-la-201",
+    "key": "qcb-core-la-201",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Work in an exact-real word-operation model that keeps eight separate running counters: field operations, square roots, inverse-cosine calls, other trigonometric calls, exact comparisons, stored-word reads, stored-word writes, and emitted records. Each primitive call adds one unit to its own counter; proof checking, counter bookkeeping and loop-index arithmetic are free, and stored data are nested vectors. A plane rotation acts on two stored length-M real rows u and v with coefficients c and s, returning rows whose j-th entries are c*u_j - s*v_j and s*u_j + c*v_j. The implementation first materializes a stored vector of M computed entry-pairs, then materializes the first output row and the second output row as two further stored passes. Every materialized pass over M indices additionally charges two reads and two writes per index to write each intermediate value and read it back for projection, and each single entry-pair is computed with exactly the six field operations c*u_j, s*v_j, s*u_j, c*v_j, their difference, and their sum. Prove that rotating the two rows costs exactly 6*M field operations, 10*M reads and 6*M writes, and account for the origin of every read and write.",
+    "reference_answer": "Count the three materialized passes separately. Pass 1 computes the entry-pairs: for each index j it reads u_j and v_j (2 reads) and performs the six field operations, so its own work is 6 field + 2 reads per index; the materialization surcharge adds 2 reads + 2 writes per index, giving 6*M field + 4*M reads + 2*M writes. Pass 2 materializes the first output row by reading the stored pair at each index (1 read) and projecting its first component (free), with surcharge 2 reads + 2 writes, giving 3*M reads + 2*M writes. Pass 3 does the same for the second component, another 3*M reads + 2*M writes. Summing: field = 6*M; reads = 4*M + 3*M + 3*M = 10*M; writes = 2*M + 2*M + 2*M = 6*M. The field count is purely the arithmetic of the rotation; the reads split into 2*M genuine input reads, 2*M pair reads for the two projections, and 6*M materialization read-backs; the writes are the three stored passes at 2*M each. This is an exact operation count in the extended exact-real model, not a finite-bit running-time bound, and it does not assert that any of these operations is physically free.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Each entry-pair uses exactly six field operations and two input reads",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Correctly charge the two-read/two-write materialization surcharge on all three passes",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Derive the exact totals 6*M field, 10*M read, 6*M write with per-pass accounting",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.rowPair_cost"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.entryPair_cost",
+      "declaration:QuantumBlockEncoding.StoredGivens.collect_cost",
+      "declaration:QuantumBlockEncoding.StoredGivens.rowPair"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrices stored as nested vectors; all scalars are exact reals",
+      "Eight independent primitive counters; each primitive call costs one unit of its own counter"
+    ],
+    "conventions": [
+      "Proof checking, counter bookkeeping and loop-index arithmetic are free; a materialized pass of length M charges two reads and two writes per index",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A single entry-pair costs six field operations plus two input reads.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.entryPair_cost"
+        ]
+      },
+      {
+        "claim": "Each materialized pass of length M adds two reads and two writes per index on top of its entry work.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.collect_cost"
+        ]
+      },
+      {
+        "claim": "Summing the three passes yields exactly 6*M field, 10*M read and 6*M write.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.rowPair_cost"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Several-step exact operation count requiring correct per-pass read/write accounting."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredGivens.lean",
+        "sha256": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+        "anchor": "entryPair123-130; entryPair_cost135-138; collect60-64; collect_cost83-85; rowPair141-153; rowPair_cost272-277",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-201",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "In an eight-counter exact-real operation model, prove a stored two-row plane rotation on length-M rows costs exactly 6*M field, 10*M read and 6*M write operations, accounting for each from the three materialized passes.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-202",
+    "key": "qcb-core-la-202",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Continue in the eight-counter exact-real operation model where stored matrices are vectors of N stored rows and replacing one stored row is charged as a full persistent copy costing N reads and N writes, never an in-place update. A rotation step on an N-by-M stored matrix reads the two rows i and j to be combined, computes the two rotated rows (whose production costs 6*M field, 10*M read and 6*M write), and then stores the two new rows with two separate persistent row-replacements. Prove that one such rotation step costs 6*M field operations, 10*M + 2*N + 2 reads, and 6*M + 2*N writes, and explain why the step cannot be made cheaper by assuming in-place row updates.",
+    "reference_answer": "Add the charged subparts. Reading rows i and j from the stored matrix contributes 2 reads. Producing the two rotated rows contributes 6*M field, 10*M reads and 6*M writes. Each persistent row-replacement copies the whole length-N spine of rows, charging N reads and N writes; two replacements add 2*N reads and 2*N writes. Totals: field = 6*M; reads = 10*M + 2 + 2*N; writes = 6*M + 2*N. The 2*N read/write term is a deliberate feature of the cost contract: the model charges a full persistent row-replacement as N reads and N writes of the row-index spine. This is a stipulated charge, not a theorem that no sharing is possible; a functional persistent vector may in fact share the unaffected rows, but the model declines to credit any such copy-on-write or structural-sharing optimization and bills the full spine copy regardless. Charging it this way makes the bound robust: it holds for any implementation of row replacement without relying on aliasing analysis, and it is an exact-real word-operation count rather than a finite-bit machine running time. The 2*N term would only vanish under a model that explicitly credits in-place or shared updates, which this cost contract does not.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Account the two input row reads and the row-production cost",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Charge each persistent replacement as a full N-read, N-write spine copy",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain the 2*N term is a stipulated spine-copy charge in the cost contract, not a proof that sharing is impossible",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.rotate_cost"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.rowPair_cost",
+      "declaration:QuantumBlockEncoding.StoredGivens.replace",
+      "declaration:QuantumBlockEncoding.StoredGivens.rotate"
+    ],
+    "assumptions": [
+      "Finite-dimensional real matrices stored as nested vectors of N rows",
+      "Replacing a stored row is charged as a full persistent copy of N reads and N writes"
+    ],
+    "conventions": [
+      "No in-place-update or copy-on-write optimization is assumed; the bound is an exact-real operation count, not a finite-bit runtime",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Reading the two combined rows and producing the rotated rows contributes 2 reads plus 6*M field, 10*M read, 6*M write.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.rowPair_cost"
+        ]
+      },
+      {
+        "claim": "Each persistent row-replacement copies the N-row spine for N reads and N writes.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.replace"
+        ]
+      },
+      {
+        "claim": "Summation gives 6*M field, 10*M+2*N+2 read, 6*M+2*N write, and the 2*N term is the contract's stipulated spine-copy charge.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.rotate_cost"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Compositional exact count plus a model-level justification of the persistent-copy charge."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredGivens.lean",
+        "sha256": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+        "anchor": "replace67-68; rotate161-167; rowPair_cost272-277; rotate_cost279-285",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-202",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove one stored rotation step costs 6*M field, 10*M+2*N+2 read and 6*M+2*N write operations, where the 2*N spine-copy term is a stipulated charge of the cost contract.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-203",
+    "key": "qcb-core-la-203",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "In the eight-counter exact-real model, a column sweep eliminates entries below a pivot by performing a chronological chain of elimination steps. Each step first computes an elimination angle and the two rotation coefficients (bounded by a fixed per-step budget B that is independent of which branch of the angle computation is taken), applies a rotation to the stored matrix, and then emits exactly one rotation record (one unit on the emitted-record counter). A sweep performing k steps is defined by recursion: zero steps emit nothing and do no work; a sweep of k+1 steps performs one elimination step and then recurses on the resulting matrix, emitting one record for the step. Prove by induction on k that (a) the total cost of a k-step sweep is at most k*(B + one emit) on every counter, and (b) the emitted-record counter equals exactly k, even though some steps may rotate by a harmless zero angle.",
+    "reference_answer": "Argue by induction on the number of steps k. Base case k=0: the sweep returns the input unchanged with zero cost on every counter, so both the bound 0*(B+emit) and the exact emit count 0 hold. Inductive step k+1: by the recursive definition the sweep cost equals the cost of one elimination step, plus the cost of the k-step sweep on the updated matrix, plus one emitted record. For (a), the single step is bounded by B on every counter (the per-step budget already absorbs the branch-independent angle budget, both rotation coefficients, the rotation, and the stored reads), the recursive part is bounded by k*(B+emit) by the induction hypothesis, and the emit contributes one unit; adding gives at most (k+1)*(B+emit) on every counter. For (b), the single step emits exactly one record and the recursive sweep emits exactly k by hypothesis, with no other operation touching the emit counter, so the total is exactly k+1. The exact emit equality holds regardless of the actual angles because a zero-angle rotation still produces and emits its record; the step budget B is only an upper bound on the arithmetic counters, so the two claims are of different strengths: an exact count for emissions and an inequality for the rest.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Set up induction on step count with correct base and recursive decomposition",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove the k*(B+emit) upper bound using the branch-independent step budget",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Prove the emit counter equals exactly k including zero-angle steps, distinguishing exact count from upper bound",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.columnSweep_cost_le",
+      "declaration:QuantumBlockEncoding.StoredGivens.columnSweep_emit"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.stepBudget",
+      "declaration:QuantumBlockEncoding.StoredGivens.columnSweep"
+    ],
+    "assumptions": [
+      "Finite-dimensional real stored matrices; eight independent primitive counters",
+      "The per-step budget is independent of the angle-computation branch"
+    ],
+    "conventions": [
+      "A zero-angle rotation still emits one record; the budget is an upper bound on arithmetic counters only",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The recursion splits a (k+1)-step sweep into one step, the k-step tail, and one emission.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.columnSweep"
+        ]
+      },
+      {
+        "claim": "The branch-independent step budget bounds each step, giving the k*(B+emit) upper bound by induction.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.columnSweep_cost_le"
+        ]
+      },
+      {
+        "claim": "Each step emits exactly one record, so the emit counter equals k exactly, even for zero-angle steps.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.columnSweep_emit"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Induction proving an upper bound and an exact count simultaneously with a branch-independence subtlety."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredGivens.lean",
+        "sha256": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+        "anchor": "columnSweep219-229; stepBudget300; columnSweep_cost_le313-326; columnSweep_emit343-353",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-203",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "By induction on step count, prove a k-step column sweep is bounded by k*(step budget + emit) on every counter and emits exactly k records including zero-angle steps.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-204",
+    "key": "qcb-core-la-204",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A rectangular elimination records a chronological list of two-row rotation steps. Rather than forming the accumulated orthogonal transform by multiplying out dense plane-rotation matrices, a stored replay starts from a materialized identity and re-applies each recorded two-row rotation to the stored matrix in order; the empty list charges one read of the end marker, and each recorded step charges one read of the record, one field operation for halving its angle, two trigonometric calls for the pair of coefficients, and one stored two-row rotation. On a k-by-N working matrix a single such rotation costs the fixed amount described earlier (field, read and write terms linear in N and in the matrix dimension). Prove two things about replaying a list of L steps: first, that the result denotes exactly the product of the recorded plane rotations applied to the starting matrix, and second, that the total cost is L times a fixed per-step budget plus one extra read, with the extra read coming from the empty-list base case.",
+    "reference_answer": "Both claims go by induction on the step list. Correctness: for the empty list, replay returns the starting matrix, which equals the empty product applied to it. For a cons step followed by the rest, replay rotates the current matrix by the step's recorded angle and recurses; by the induction hypothesis the recursion denotes the remaining product, and one rotation realizes exactly the plane-rotation matrix of this step, so composing gives the full product applied to the start. This shows the stored replay refines the dense matrix-product specification without ever evaluating that product. Cost: for the empty list the only charge is the single end-marker read, matching 0*budget + one read. For a cons step, the step charges one read of the record, one field halving, two trigonometric calls and one two-row rotation; summing with the inductive cost L_tail*budget + one read gives (L_tail+1)*budget + one read, where the per-step budget collects exactly the field, two trig, rotation field/read/write and the three reads (two from the rotation, one from the record). Hence an L-step replay costs L*budget + one read, and the two reads inside the rotation plus the record read explain the three-read-per-step term, while the single trailing read is the base case.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove by list induction that replay denotes the product of recorded rotations without forming the dense product",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Identify the per-step budget: one field, two trig, one rotation, and three reads",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Derive total cost L*budget + one read with the trailing read from the empty-list base case",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.replay_value",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.replay_cost"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.replay",
+      "declaration:QuantumBlockEncoding.StoredGivens.rotate_cost"
+    ],
+    "assumptions": [
+      "Recorded steps carry an exact angle and a pair of adjacent rows",
+      "Eight independent primitive counters in the exact-real model"
+    ],
+    "conventions": [
+      "The accumulated transform is replayed, never formed as a dense matrix product; costs are not finite-bit runtimes",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The empty list returns the start matrix and the cons case rotates once then recurses.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.replay"
+        ]
+      },
+      {
+        "claim": "List induction shows the replay denotes the composed product of recorded plane rotations.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.replay_value"
+        ]
+      },
+      {
+        "claim": "Each step charges one field, two trig, a rotation and three reads, giving total L*budget + one trailing read.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.replay_cost"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Joint refinement-and-cost induction over a recorded step list with a non-dense accumulation strategy."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+        "sha256": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+        "anchor": "replay110-118; replay_value120-128; replayStepBudget130-133; replay_cost135-143",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-204",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "By list induction, prove a stored replay of L recorded rotations denotes the product of plane rotations (not formed densely) and costs L times a per-step budget plus one trailing read.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-205",
+    "key": "qcb-core-la-205",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A full stored rectangular compilation of an N-by-M matrix produces a reduced residual, a chronological list of rotation steps, and a fully accumulated N-by-N transform. In the eight-counter exact-real model its per-counter cost has been bounded by an explicit polynomial budget whose values on the eight counters are: field = N*M*(6*M+6*N+9); square root = N*M; inverse-cosine = N*M; other trigonometric = 4*N*M; comparison = 2*N*M + M + N*N; read = N*M*(10*M+14*N+10) + 2*N*N + 2*N + 1; write = N*M*(6*M+10*N+1) + 2*N*N; emitted records = N*M. Prove that the sum of all eight counters is bounded by N*M*(22*M+30*N+29) + 5*N*N + 4*N + M + 1, and explain why this single scalar is an operation count in an extended exact-real model and not a finite-bit running time.",
+    "reference_answer": "Add the eight per-counter polynomials. Group the N*M*(...) coefficients: from field 6*M+6*N+9, from read 10*M+14*N+10, from write 6*M+10*N+1, giving 22*M+30*N+20 inside the N*M factor; the square-root, inverse-cosine, emitted and part of the comparison counters each contribute an extra N*M (that is 1+1+1 from sqrt/angle/emit, 4 from the other trig, and 2 from the comparison), adding 9 more inside the same N*M factor and yielding N*M*(22*M+30*N+29). The remaining non-N*M terms are: comparison M + N*N, read 2*N*N + 2*N + 1, write 2*N*N; summing the N*N terms gives 5*N*N, the linear-in-N terms give 4*N, the M term stays M, and the constants give 1. Hence the grand total is N*M*(22*M+30*N+29) + 5*N*N + 4*N + M + 1. The quantity counts exact-real primitive operations (field arithmetic, exact square roots and trigonometric evaluations, exact comparisons) and stored-word traffic in a word-RAM style model; it charges no bit-level cost for representing or rounding reals, so it is explicitly not a finite-bit running-time bound.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Correctly collect the N*M coefficient to 22*M+30*N+29 across all eight counters",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Sum the lower-order terms to 5*N*N + 4*N + M + 1",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain the exact-real word-model reading and that it is not finite-bit complexity",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.compile_total_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.polynomialBudget",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.total",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.compile"
+    ],
+    "assumptions": [
+      "The eight per-counter polynomial budgets are as stated",
+      "Totalling means summing the eight counters"
+    ],
+    "conventions": [
+      "Exact-real word-RAM operation model with no bit-level charge; not a finite-bit runtime",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The N*M-scaled parts of all eight counters collect to 22*M+30*N+29.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.polynomialBudget"
+        ]
+      },
+      {
+        "claim": "The remaining quadratic, linear and constant terms sum to 5*N*N+4*N+M+1.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.total"
+        ]
+      },
+      {
+        "claim": "The scalar total is an exact-real operation count, not finite-bit complexity.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.compile_total_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Careful polynomial summation of eight counters with an explicit model caveat."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+        "sha256": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+        "anchor": "polynomialBudget213-221; total236-238; compile_total_cost_le240-253",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-205",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove the eight per-counter polynomial budgets of a stored rectangular compilation sum to N*M*(22*M+30*N+29)+5*N*N+4*N+M+1 and read it as an exact-real, not finite-bit, count.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-206",
+    "key": "qcb-core-la-206",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A stored thin LQ factorization of a wide m-by-n stored matrix (with m at most n) proceeds in four materialized stages: transpose the matrix, run the full stored rectangular compilation on the transpose, extract the triangular factor from the compiled residual, and extract the orthonormal factor from the compiled transform. Transposing and each extraction are implemented as a materialization that reads two stored words per output entry (one row read, one entry read) and then pays the standard materialization surcharge. The transpose of an m-by-n matrix is an n-by-m materialization, the compilation runs on an n-by-m matrix, the triangular extraction is an m-by-m materialization, and the orthonormal extraction is an m-by-n materialization. Prove that the total per-counter cost of the wide factorization is the sum of these four stage budgets, and that the resulting factors exactly satisfy A = R*Q with Q having orthonormal rows, so the cost bound is a certificate for the same run that produces the correct factors.",
+    "reference_answer": "Decompose by the four stages and add per counter. The transpose stage is a materialization over n*m output entries, charging the two per-entry reads plus the surcharge, i.e. the extraction budget at dimensions (n,m). The compilation stage runs the stored rectangular compiler on the n-by-m transpose, contributing its polynomial budget at (n,m). The two extractions are materializations at dimensions (m,m) and (m,n), each the extraction budget at those sizes. Because materialization costs are additive across sequential stages and each stage's own bound has already been established, the wide factorization cost is bounded on every counter by extraction(n,m) + polynomial(n,m) + extraction(m,m) + extraction(m,n). Correctness is inherited from the refinement theorems: the transpose denotes the matrix transpose, the compiler's residual and transform denote the rectangular reduced matrix and its orthogonal transform, and the two extractions project exactly the thin triangular and orthonormal blocks; composing yields A = R*Q with Q*Q-transpose = identity. Hence a single stored run simultaneously carries the polynomial operation bound and the exact factorization identity; the bound is an exact-real word count, not a finite-bit runtime, and the dispatcher additionally charges one comparison to decide the wide-versus-tall shape.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Decompose the factorization into transpose, compile, and two extraction stages with correct dimensions",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Add the four stage budgets per counter using additivity of sequential costs",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "State the inherited exact factorization A=R*Q with orthonormal Q for the same run",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredThinLQ.wide_cost_le",
+      "declaration:QuantumBlockEncoding.StoredThinLQ.wide_correct"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredThinLQ.transpose_cost",
+      "declaration:QuantumBlockEncoding.StoredThinLQ.extractionBudget",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.polynomialBudget"
+    ],
+    "assumptions": [
+      "Wide shape m at most n; stored matrices are nested vectors",
+      "Each materialization reads two stored words per output entry plus the surcharge"
+    ],
+    "conventions": [
+      "Sequential stage costs add per counter; bounds are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Transpose and each extraction cost the extraction budget at their output dimensions.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.transpose_cost",
+          "declaration:QuantumBlockEncoding.StoredThinLQ.extractionBudget"
+        ]
+      },
+      {
+        "claim": "The four stage budgets add per counter to the wide factorization budget.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.wide_cost_le"
+        ]
+      },
+      {
+        "claim": "The same run's factors satisfy A=R*Q with orthonormal Q by inherited refinement.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.wide_correct"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Multi-stage compositional cost bound paired with an inherited exact factorization identity."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+        "sha256": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+        "anchor": "extractionBudget40-41; transpose_cost43-46; wide74-80; wide_correct94-98; wideBudget100-102; wide_cost_le104-109",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-206",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove a stored wide thin-LQ factorization costs the sum of transpose, compile, and two extraction budgets per counter, and the same run yields exact A=R*Q with orthonormal Q.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-207",
+    "key": "qcb-core-la-207",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "In the eight-counter exact-real model, a bounded sum over an index set of size k is evaluated by a monadic fold: starting from the pure value zero (no charge), each of the k summands is produced and then added to the running accumulator with one field addition. Suppose every summand has the same per-counter cost B. Prove that the whole sum costs exactly k*(B + one field operation). Then specialize to a single contraction entry over a bond of size D, where each summand reads one entry of a stored core (two reads) and one entry of a stored vector (one read) and multiplies them (one field), so B is three reads plus one field, and conclude that the entry costs exactly D*(three reads + two field operations).",
+    "reference_answer": "Induct on k. Base case k=0: the empty sum is the pure zero with no charge, matching 0*(B+field). Inductive step: a sum over k+1 indices produces the first summand (cost B), binds an addition of it to the recursively evaluated tail (that addition is one field operation), and the tail is a sum over k indices. By the induction hypothesis the tail costs k*(B+field); adding the first summand's B and the one field for its combination gives B + field + k*(B+field) = (k+1)*(B+field). So the sum costs exactly k*(B+field) on every counter. For the contraction entry: each summand reads a stored core entry, which is a row read followed by an entry read (two reads), reads one stored vector entry (one read), and multiplies the two values (one field), so B = three reads + one field. Substituting into the law gives D*((three reads + one field) + one field) = D*(three reads + two field operations). The second field per index is exactly the accumulation addition, which is why the entry has two field operations per bond index rather than one. This is an exact count in the extended exact-real model, not a finite-bit cost.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove the sum cost law k*(B+field) by induction with correct base and accumulation step",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Identify the summand cost B as three reads plus one field for a contraction entry",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude D*(three reads + two field), attributing the extra field to accumulation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry",
+      "declaration:QuantumBlockEncoding.StoredThinLQ.entry_cost"
+    ],
+    "assumptions": [
+      "Reading a stored core entry is a row read followed by an entry read (two reads)",
+      "Eight independent primitive counters; pure zero carries no charge"
+    ],
+    "conventions": [
+      "The accumulation addition is one field operation per summand; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "An empty bounded sum has zero cost and a (k+1)-sum charges B plus one accumulation field over the k-tail.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry"
+        ]
+      },
+      {
+        "claim": "Induction yields the exact sum cost k*(B+field).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.terminalEntry_cost"
+        ]
+      },
+      {
+        "claim": "With B = three reads + one field per summand, the contraction entry costs D*(three reads + two field).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.entry_cost"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Cost induction over a monadic sum with a specialization that isolates the accumulation field."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+        "sha256": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+        "anchor": "terminalEntry11-16; sumEntries_cost_eq125-133; terminalEntry_cost135-143",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-207",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove a size-k monadic sum of equal-cost summands costs k*(B+one field), and specialize to a bond-D contraction entry costing D*(three reads + two field).",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-208",
+    "key": "qcb-core-la-208",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A stored matrix-product chain over n+1 cores, each of bond size D, is closed into a scalar-boundary chain in two conceptual halves. First the tail is processed recursively: at the last position the terminal core is contracted against a right boundary vector, and at every earlier position the current core is kept while the remaining table is copied by reference and the tail is recursed; a fixed small per-node record is charged at each position. Second the leftmost core is contracted against a left boundary vector. The returned chain exactly refines the kernel chain contracted against the two boundary vectors. Prove that the summed cost of the whole closure is bounded by a polynomial that is quadratic in the chain length n and cubic-free but quadratic in the bond D, and explain why the tail recursion contributes an n-squared term while the single left closure contributes only a bond-dependent term with no dependence on n.",
+    "reference_answer": "Split the accounting as the construction does. The tail recursion visits n+1 positions. The terminal contraction at the last position contracts a D-by-D core against a length-D vector, costing on the order of D-squared field and read work plus boundary materialization, a fixed function of D. Each earlier position copies the remaining table of references (cost linear in the number of remaining cores, i.e. linear in the position index) and charges a fixed node record; summing the reference-copy cost over the n earlier positions gives an arithmetic series that is quadratic in n, which is the source of the n-squared term, while the fixed node records contribute a term linear in n. Hence the tail total is bounded by a constant times D-squared plus a constant plus terms 5*n-squared + 7*n + constant. The left closure performs exactly one initial contraction of a D-by-D core against a length-D left vector plus one node record; this is a single bond-dependent cost with no sum over positions, hence no n dependence. Adding the two halves gives the closure bound 20*D-squared + 30*D + 5*n-squared + 7*n + constant. The decoupling is structural: the tail walks the whole chain so its copying accumulates with length, whereas the left boundary touches only the one leftmost core. All of this is counted in the extended exact-real word model, not as finite-bit running time, and the referenced cores are already materialized so no kernel callback is evaluated.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Separate the n+1-position tail recursion from the single left closure",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain the n-squared term as the arithmetic series of reference-copy costs over positions",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain why the left closure is bond-dependent only, with no n dependence, and note exact-real counting",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le",
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le",
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable"
+    ],
+    "assumptions": [
+      "All cores stored and bond-bounded by D; reference copying is charged per remaining core",
+      "Eight independent primitive counters; input cores already materialized"
+    ],
+    "conventions": [
+      "No kernel callback is evaluated in production; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The tail recursion over n+1 positions copies references whose per-position cost grows with the index.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le"
+        ]
+      },
+      {
+        "claim": "The accumulated reference-copy series is quadratic in n, giving the 5*n-squared+7*n term.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.tailChain_total_cost_le"
+        ]
+      },
+      {
+        "claim": "The single left closure is bond-dependent only, so the total is 20*D-squared+30*D+5*n-squared+7*n+constant.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.closeLeft_tail_total_cost_le",
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_total_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Structural cost decoupling with an arithmetic-series argument explaining the quadratic length dependence."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+        "sha256": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+        "anchor": "ofTable55-59; tailChain_total_cost_le202-214; closeLeft_tail_total_cost_le216-226; ofTable_total_cost_le230-237",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-208",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove the stored chain closure costs 20*D-squared+30*D+5*n-squared+7*n+constant, explaining the n-squared term as a reference-copy series and the n-independent left closure.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-209",
+    "key": "qcb-core-la-209",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A stored tensor-train norm is computed by streaming local Gram environments from right to left. At the empty tail the environment is a materialized identity of bond size r. At a non-empty node carrying a core of left bond l and right bond m, the recursively computed right environment E (an m-by-m stored matrix) is updated: for each of the two physical bits the core slice is contracted with E (a first materialized pass) and the result is contracted with the transposed slice (a second materialized pass), and the two per-bit matrices are added; a fixed six-word node record is charged. Each per-node update therefore costs on the order of l*m*m + l*l*m matrix-contraction work plus additive and materialization terms. Assume every bond along a length-n chain is at most D. Prove by induction on the chain that the total summed cost of the Gram computation is bounded by n*(24*D-cubed + 25*D-squared + 20*D + 6) + 5*D-squared + 4*D + 6.",
+    "reference_answer": "Induct on the chain. Base case (empty tail): the environment is the materialized identity of bond r at most D, whose summed cost is 5*r-squared + 4*r at most 5*D-squared + 4*D, plus the fixed node record 6; this matches the n=0 instance of the bound. Inductive step at a node with left bond l, right bond m and tail chain C: the recursive Gram of C is bounded by the induction hypothesis (its bonds are at most D). The one-node update contracts the stored core against the already-stored environment E for both bits and adds the results; bounding l and m by D, the update's summed cost 12*l*m*m + 12*l*l*m + 8*l*m + 17*l*l + 20*l is at most 24*D-cubed + 25*D-squared + 20*D, and the node record adds 6, so one node contributes at most 24*D-cubed + 25*D-squared + 20*D + 6. Adding this to the inductive bound for the tail increments the n-coefficient by one, giving (n+1)*(24*D-cubed + 25*D-squared + 20*D + 6) + 5*D-squared + 4*D + 6. The cubic-in-D term comes from the two matrix contractions, each costing on the order of a bond cubed when all three dimensions reach D. These are exact-real word-operation counts including every materialization pass, not finite-bit or whole-machine runtimes; the two uses of E are stored reads of the same cached environment, not a recomputation.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Base case bounds the identity environment plus node record by 5*D-squared+4*D+6",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Bound one update by 24*D-cubed+25*D-squared+20*D using l,m at most D, attributing the cubic term to the contractions",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Complete the induction to the per-node coefficient and note exact-real counting with a cached environment",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram_total_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_total_cost_le",
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram",
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update"
+    ],
+    "assumptions": [
+      "Every bond along the chain is at most D; input cores are stored tables",
+      "Eight independent primitive counters plus a fixed six-word node record"
+    ],
+    "conventions": [
+      "The recursive environment is read, not recomputed; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The empty-tail identity environment plus its node record is bounded by 5*D-squared+4*D+6.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram"
+        ]
+      },
+      {
+        "claim": "One node update is bounded by 24*D-cubed+25*D-squared+20*D with the cubic term from the two contractions.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_total_cost_le"
+        ]
+      },
+      {
+        "claim": "Induction over the chain accumulates the per-node coefficient n times.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.gram_total_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Chain induction with a cubic-in-bond per-node bound and a cached-environment subtlety."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+        "sha256": "60fa71fc821f7598f5df739b231f5b25cf1927824d2b028ef723f9ee04074011",
+        "anchor": "update80-86; gram103-108; update_total_cost_le234-242; gram_total_cost_le256-284",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-209",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "By chain induction, prove the stored Gram-environment computation costs at most n*(24*D-cubed+25*D-squared+20*D+6)+5*D-squared+4*D+6, with the cubic term from the per-node contractions.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-210",
+    "key": "qcb-core-la-210",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Given the stored right-to-left Gram-environment computation of a scalar-boundary tensor-train chain (which returns a 1-by-1 stored environment), the stored norm is obtained by reading the single scalar entry of that environment and taking its exact square root. Prove that the norm computation's cost equals the Gram computation's cost plus exactly two reads and one square root on the appropriate counters, and hence that its summed total exceeds the Gram total by exactly three. Then state precisely what mathematical quantity the returned scalar equals and why charging only two reads and one square root is the correct marginal cost of the scalar boundary.",
+    "reference_answer": "The norm is defined as: run the Gram computation to get the 1-by-1 environment E, read its entry E(0,0), and return the exact square root of that entry. Reading the entry of a stored matrix is a row read followed by an entry read, i.e. two reads; the square root is one square-root call. No other counter is touched. Therefore, counter by counter, the norm cost equals the Gram cost plus two on the read counter and plus one on the square-root counter, and is unchanged on the other six counters. Summing all eight counters, the norm total is the Gram total plus exactly 2 + 1 = 3. The returned scalar equals the square root of the sum over all computational-basis words of the squared contracted amplitude of the chain, i.e. the Euclidean norm of the vector the tensor train represents; equivalently it is the square root of the single top-left Gram entry, since the full Gram environment at the scalar boundary stores exactly that total squared mass. Charging only two reads and one square root is correct because the environment has already been fully materialized by the Gram computation, so the only additional work at the boundary is to look up the stored scalar and apply one exact-real square root; this is an exact-real operation count, not a finite-bit cost, and the heavy contraction work is all accounted inside the Gram stage.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Identify the marginal operations as two reads (row then entry) and one square root",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Conclude the summed total exceeds the Gram total by exactly three",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "State the scalar equals the Euclidean norm (square root of total squared mass) and justify the small marginal charge",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_cost",
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_total_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm",
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_eq_sum"
+    ],
+    "assumptions": [
+      "Scalar-boundary chain; the Gram environment is a 1-by-1 stored matrix",
+      "Reading a stored matrix entry is one row read plus one entry read"
+    ],
+    "conventions": [
+      "The environment is already materialized before the boundary step; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The norm reads the single environment entry (two reads) and applies one square root.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm"
+        ]
+      },
+      {
+        "claim": "Per counter the norm cost is the Gram cost plus two reads and one square root, so the total grows by exactly three.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_cost",
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_total_cost_le"
+        ]
+      },
+      {
+        "claim": "The returned scalar is the Euclidean norm, the square root of total squared contracted mass.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.norm_eq_sum"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Exact marginal-cost accounting combined with a precise statement of the computed quantity."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+        "sha256": "60fa71fc821f7598f5df739b231f5b25cf1927824d2b028ef723f9ee04074011",
+        "anchor": "norm118-121; norm_eq_sum129-131; norm_cost286-290; norm_total_cost_le293-302",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-210",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove the stored tensor-train norm costs the Gram cost plus exactly two reads and one square root (total +3), and equals the Euclidean norm of the represented vector.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-211",
+    "key": "qcb-core-la-211",
+    "topic": "stored_cost_refinement",
+    "track": "knowledge",
+    "task_kind": "proof",
+    "question": "Two notions of total cost appear in the stored exact-real model. One, call it the ordinary total, is the sum of a cost function over the finite type of all operation tags. The other, call it the enumerated total, is the explicit eight-term sum field + square root + inverse-cosine + other-trig + comparison + read + write + emitted-record. Prove that these two totals are equal as functions of the cost, that the total of a sum of two costs is the sum of their totals, that the total of the zero cost is zero, and that the total of a single unit charge on one tag is one. Explain why these simple algebraic facts are exactly what licenses replacing a sum-over-tags by the fixed eight-term expression in later cost proofs.",
+    "reference_answer": "The operation tags form a finite type with exactly the eight inhabitants field, square root, inverse-cosine, other-trig, comparison, read, write, emitted-record. The ordinary total sums the cost over the universal finite set of tags. Enumerating that finite set as the eight listed inhabitants, the sum over the set equals field + sqrt + angle + trig + compare + read + write + emit, which is precisely the enumerated total; hence the two totals coincide for every cost. Additivity: the sum over tags of (a+b) applied pointwise is the sum over tags of a plus the sum over tags of b, because finite summation distributes over pointwise addition; so the total of a sum is the sum of the totals. Zero: the zero cost assigns zero to every tag, and a finite sum of zeros is zero. Unit charge: a single unit charge on one tag assigns one to that tag and zero to the others, so its total over all tags is exactly one. These facts matter because cost expressions are built compositionally by adding sub-costs and charging unit ticks; additivity lets a total be computed term by term, the zero and unit laws evaluate the leaves, and the enumeration identity lets a proof pass freely between the abstract sum-over-tags and the concrete eight-term polynomial used in the final bound. All of this concerns operation counts in the exact-real model and makes no finite-bit runtime claim.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove ordinary total equals the enumerated eight-term total via finite enumeration of tags",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove additivity, the zero law, and the unit-charge law for totals",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain how these laws license term-by-term compositional cost computation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_eq_total"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_add",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_zero",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_tick"
+    ],
+    "assumptions": [
+      "The operation tags form a finite type with exactly eight inhabitants",
+      "Cost functions map tags to natural numbers"
+    ],
+    "conventions": [
+      "Totals are operation counts in the exact-real model, not finite-bit runtimes",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Enumerating the eight tags identifies the ordinary total with the eight-term enumerated total.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_eq_total"
+        ]
+      },
+      {
+        "claim": "Finite summation gives additivity, the zero law and the unit-charge law.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_add",
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_zero",
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_tick"
+        ]
+      },
+      {
+        "claim": "These laws justify computing a total term by term and switching between abstract and enumerated forms.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.ordinary_eq_total"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "Elementary finite-sum algebra, but with a precise account of why it enables compositional cost proofs."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+        "sha256": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+        "anchor": "ordinary21; ordinary_eq_total24-29; ordinary_add31-32; ordinary_zero34; ordinary_tick36",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-211",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove the sum-over-tags total equals the eight-term enumerated total, is additive, zero on the zero cost and one on a unit charge, and explain why this enables compositional cost proofs.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-212",
+    "key": "qcb-core-la-212",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A stored Hermite raw-source assembly builds a scalar-boundary tensor-train chain for a state-preparation amplitude. One single run of the assembly returns the chain together with a work ledger carrying both the eight ordinary exact-real counters and four separately named integer counters (quotient calls, remainder calls, integer doublings, integer additions), plus a count of exponential-function calls. For parameters k and n it is proved on the same run that the chain denotes the explicit raw-source kernel chain, that the ordinary total is bounded by a stated polynomial in k and n, that the exponential calls are at most 3*(n+1)+1, and that the four integer counters equal (n+1)*(n+2), (n+1)-squared, n, and 4*(n+1) respectively. Prove that the four integer counters sum to 2*n-squared + 10*n + 7, and explain carefully which costs this certificate does and does not account for, especially regarding finite-bit arithmetic and normalization.",
+    "reference_answer": "Substitute the four certified integer-counter values and add: quotient (n+1)*(n+2) = n-squared + 3*n + 2; remainder (n+1)-squared = n-squared + 2*n + 1; integer doublings n; integer additions 4*(n+1) = 4*n + 4. Summing: (n-squared + 3*n + 2) + (n-squared + 2*n + 1) + n + (4*n + 4) = 2*n-squared + 10*n + 7. Scope: the certificate is a same-run guarantee, so the identical run that is proved to denote the raw-source kernel chain is the one whose costs are bounded; it does not build a second chain or substitute a hypothetical dimension-only budget. The ordinary total counts exact-real field, square-root, trigonometric, comparison and stored-word operations, including every materialization pass and the per-node records. The four integer counters count only those four named integer operations arising in the cache construction; they explicitly do not count every index manipulation, arbitrary-precision bit-level work, proof checking or counter bookkeeping. The exponential-call cap counts calls to the exponential primitive and is at most 3*(n+1)+1 because disabled guards contribute zero injections. Crucially the certificate makes no finite-bit running-time claim and no normalized state-preparation-compiler claim: the returned chain is an unnormalized source, so one may not read the bound as a complete machine runtime or as a normalized amplitude loader.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Correctly expand and sum the four integer counters to 2*n-squared+10*n+7",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "State the same-run scope: the certified run is the one that denotes the kernel chain",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain the exclusions: not all integer/bit work, no finite-bit runtime, unnormalized source not a normalized loader",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_selected_integer_total"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_certified",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_quotientCalls",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_remainderCalls",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_integerAdditions"
+    ],
+    "assumptions": [
+      "A single run returns the chain and its full ledger of ordinary and named integer counters",
+      "The four integer counters take the stated closed forms"
+    ],
+    "conventions": [
+      "The named integer counters cover only those operations; no finite-bit or whole-machine runtime, and the source is unnormalized",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The four certified integer-counter values expand and sum to 2*n-squared+10*n+7.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_quotientCalls",
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_remainderCalls",
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_integerAdditions",
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_selected_integer_total"
+        ]
+      },
+      {
+        "claim": "The certificate is a same-run guarantee tying the denoted chain to its costs.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_certified"
+        ]
+      },
+      {
+        "claim": "The counters exclude general integer/bit work and make no finite-bit or normalized-loader claim.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_certified"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Closed-form summation plus a careful delineation of what an exact-real same-run certificate does and does not cover."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+        "sha256": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+        "anchor": "raw_quotientCalls193-195; raw_remainderCalls197-199; raw_integerDoublings201-203; raw_integerAdditions205-207; raw_selected_integer_total210-214; raw_certified218-227",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-212",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove the four named integer counters of the stored Hermite raw-source run sum to 2*n-squared+10*n+7, and delineate the same-run scope excluding finite-bit runtime and normalization.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-213",
+    "key": "qcb-core-la-213",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A primitive quantum circuit is a chronological list of gates, each gate acting on a set of touched wires. A per-wire scheduling fold tracks, for every wire, the earliest layer at which its next gate can be placed: processing a gate pushes every touched wire to one more than the maximum current depth over the gate's touched wires, and leaves untouched wires unchanged. The circuit depth is the maximum over all wires of the final per-wire depths; the gate count is the length of the list. Prove that the circuit depth is at most the gate count, i.e. that scheduling in parallel layers never makes the reported depth exceed the number of gates. Identify the key per-step inequality that drives the induction.",
+    "reference_answer": "The key per-step fact is: if every wire currently has depth at most some bound, then after processing one gate every wire has depth at most that bound plus one. For a touched wire the new depth is one plus the maximum current depth over the touched wires; since each of those is at most the bound, their maximum is at most the bound, so the new depth is at most bound plus one. For an untouched wire the depth is unchanged, hence at most the bound and so at most bound plus one. Now induct on the gate list to bound the folded profile: starting from the all-zero profile (every wire at most 0), each of the L gates raises the uniform upper bound by at most one, so after the whole circuit every wire has depth at most 0 + L = L, the gate count. Taking the maximum over wires, the circuit depth is at most L. Finally the reported resource depth is defined to equal this scheduling depth, so it too is at most the gate count. This bounds a genuine parallel-scheduling depth, computed by the per-wire fold rather than assigned as a serial surrogate; equality can fail because parallelizable gates on disjoint wires share a layer, making the true depth strictly smaller than the gate count.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "State and prove the per-step inequality: one gate raises the uniform depth bound by at most one, covering touched and untouched wires",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Induct from the all-zero profile over the L gates to bound every wire depth by L",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude depth and reported resource depth are at most gate count, noting parallel layers can make it strictly smaller",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveCircuit.depth_le_gateCount"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.PrimitiveCircuit.nextWireDepth_le",
+      "declaration:QuantumBlockEncoding.PrimitiveCircuit.foldl_nextWireDepth_le",
+      "declaration:QuantumBlockEncoding.PrimitiveCircuit.resource_depth_le_gateCount"
+    ],
+    "assumptions": [
+      "Depth is computed by the per-wire scheduling fold, not an assigned serial surrogate",
+      "Gate count is the list length; touched wires determine the pushed layer"
+    ],
+    "conventions": [
+      "The reported resource depth equals the scheduling depth; this is a layer-count bound, not a runtime claim",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "One gate raises every wire's depth bound by at most one, for touched and untouched wires alike.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveCircuit.nextWireDepth_le"
+        ]
+      },
+      {
+        "claim": "Folding over L gates from the zero profile bounds every wire depth by L.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveCircuit.foldl_nextWireDepth_le"
+        ]
+      },
+      {
+        "claim": "The maximum over wires, and the equal reported resource depth, are at most the gate count.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.PrimitiveCircuit.depth_le_gateCount",
+          "declaration:QuantumBlockEncoding.PrimitiveCircuit.resource_depth_le_gateCount"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "List induction driven by a per-step monotone inequality over a scheduling fold."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/PrimitiveDepthBound.lean",
+        "sha256": "fd31cfd12a5ed193608b0f666ee1e990981f36b45182fc34dd0fc2db1cf62b16",
+        "anchor": "nextWireDepth_le12-19; foldl_nextWireDepth_le23-33; depth_le_gateCount40-42; resource_depth_le_gateCount45-47",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-213",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove a primitive circuit's parallel-scheduling depth is at most its gate count via the per-step inequality that one gate raises every wire depth by at most one.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-214",
+    "key": "qcb-core-la-214",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "counterexample",
+    "question": "A stored N-by-M matrix is built by materializing an entry supplier: for each of the N*M entries the supplier is run to produce a value, and the construction charges, on top of the supplier's own counted work, two reads and two writes per entry plus two reads and two writes per row to store and project. The proved cost identity is that the materialized matrix costs the double sum of the supplier's per-entry costs plus (N*M + N) times the two-read-two-write surcharge. A colleague claims this identity proves that building any N-by-M stored matrix always costs a fixed polynomial in N and M alone. Give a precise counterexample showing the claim is false, and state the exact condition under which a clean polynomial-in-dimensions bound does hold.",
+    "reference_answer": "The claim is false because the cost identity contains the double sum of the supplier's own per-entry costs, which is not determined by N and M alone. Counterexample: let the supplier for entry (i,j) perform j additional field operations (say by summing j stored values before returning). Then the supplier's per-entry cost is not constant, and the double sum of field operations equals the sum over i of (0+1+...+(M-1)) = N*M*(M-1)/2 field operations, which depends on the internal structure of the supplier, not merely on the surcharge. Two different suppliers producing matrices of the same dimensions can therefore have different total costs, so no fixed polynomial in N and M alone bounds every materialization. Indeed the source flags the input callback as an explicit boundary: the constructor charges storage but does not certify the callback's scalar evaluation cost. The correct statement is conditional: if the supplier's per-entry cost is bounded by a uniform value B on every counter, then the materialization is bounded by N*M*B plus (N*M + N) times the surcharge; only after supplying such a per-entry bound B does a polynomial-in-dimensions bound follow. All of this is in the exact-real operation model and makes no finite-bit claim; the moral is that materialization cost cleanly separates the surcharge (fixed by dimensions) from the supplier work (which must be separately bounded).",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Give a concrete supplier whose per-entry cost varies, defeating a dimensions-only bound",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Identify that the cost identity keeps the double sum of supplier costs, which the storage charge does not absorb",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "State the correct conditional bound requiring a uniform per-entry supplier bound B",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.materialize_cost"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.materialize",
+      "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_cost_le"
+    ],
+    "assumptions": [
+      "Materialization charges supplier work plus a dimension-fixed storage surcharge",
+      "Suppliers may perform data-dependent amounts of counted work"
+    ],
+    "conventions": [
+      "The input callback cost is an explicit boundary not certified by the constructor; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The materialization cost retains the double sum of supplier per-entry costs.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.materialize_cost"
+        ]
+      },
+      {
+        "claim": "A supplier with per-entry cost growing in the column index defeats any dimensions-only bound.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.materialize"
+        ]
+      },
+      {
+        "claim": "A uniform per-entry bound B is exactly what yields a polynomial-in-dimensions bound.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredTensorTrainNorm.update_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A counterexample isolating the supplier-dependent term from the dimension-fixed storage surcharge."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredGivens.lean",
+        "sha256": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+        "anchor": "materialize75-78; materialize_cost369-374",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-214",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Counterexample: materialization cost is not a dimensions-only polynomial because it keeps the supplier's double-sum work; a clean bound needs a uniform per-entry supplier bound.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-215",
+    "key": "qcb-core-la-215",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "counterexample",
+    "question": "The elimination-angle routine in the exact-real model computes a norm from two inputs x and y: it squares both, adds them, takes a square root, and tests whether that root is zero. If the root is zero it returns the angle zero immediately; otherwise it divides, takes an inverse cosine, tests the sign of y, conditionally negates, doubles, and negates again. A branch-independent angle budget of seven field operations, one square root, one inverse-cosine and two comparisons is proved to be an upper bound on the angle cost for all inputs. A colleague concludes that every call to the angle routine performs exactly one inverse-cosine call. Refute this with a specific input, and explain the precise logical relationship between the proved budget and the actual per-input cost.",
+    "reference_answer": "The conclusion is false. Take x = 0 and y = 0. Then the squared norm is 0, its square root is 0, the zero test succeeds, and the routine returns the angle zero immediately, performing zero inverse-cosine calls, zero divisions, and no sign test. So on this input the actual inverse-cosine count is 0, not 1, contradicting the claim that every call makes exactly one inverse-cosine call. The source states the budget bound as an inequality, holding on every counter for all inputs; it is explicitly described as a branch-independent upper bound in which the zero pair uses fewer operations. The correct relationship is: the budget is an over-approximation that is tight only on the nonzero branch, where the division, inverse-cosine, sign test and the arithmetic for signing and doubling are all executed. On the zero branch several counters are strictly below their budget. Hence one may use the budget to bound sums of many angle computations, but may not read it as an exact per-call cost; exactness holds only for the emit-style counters elsewhere, not for the arithmetic counters of the angle routine. This is an exact-real operation-count distinction, with no finite-bit runtime content.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Exhibit the zero input (x=y=0) taking the early-return branch with zero inverse-cosine calls",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain the budget is a branch-independent upper bound, tight only on the nonzero branch",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Distinguish a valid summed upper bound from an invalid exact-per-call reading",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.angle_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredGivens.angle",
+      "declaration:QuantumBlockEncoding.StoredGivens.angleBudget"
+    ],
+    "assumptions": [
+      "The angle routine returns zero early when the computed norm is zero",
+      "The angle budget bounds every counter for all inputs"
+    ],
+    "conventions": [
+      "The budget is a branch-independent upper bound, not an exact per-input count; exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "On x=y=0 the zero test succeeds and the routine returns immediately with no inverse-cosine call.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.angle"
+        ]
+      },
+      {
+        "claim": "The proved budget is an inequality, a branch-independent over-approximation.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.angle_cost_le",
+          "declaration:QuantumBlockEncoding.StoredGivens.angleBudget"
+        ]
+      },
+      {
+        "claim": "A summed upper bound is valid but an exact per-call reading is not.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredGivens.angle_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A branch-based counterexample clarifying the inequality-versus-equality status of a cost budget."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredGivens.lean",
+        "sha256": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+        "anchor": "angle88-100; angleBudget253-255; angle_cost_le257-261",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-215",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Counterexample (x=y=0): the angle routine makes zero inverse-cosine calls on the zero branch, so the branch-independent budget is an upper bound, not an exact per-call cost.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-216",
+    "key": "qcb-core-la-216",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "In the stored exact-real model the identity matrix of size N is not a primitive constant but is materialized: each of the N*N entries is produced by an exact comparison deciding whether its row and column indices are equal (returning one or zero), and the materialization adds the standard two-read-two-write surcharge per entry and per row. The proved identity cost is N*N comparisons plus (N*N + N) times the two-read-two-write surcharge. A colleague treats the stored identity as a zero-cost input when bounding a larger algorithm. Explain why this is wrong in general, work out the exact summed cost, and determine the boundary size N at which the identity genuinely costs nothing.",
+    "reference_answer": "Treating the stored identity as free is wrong because it is materialized entry by entry: producing it charges N*N exact comparisons (one per entry to test index equality) and the materialization surcharge of two reads and two writes on each of the N*N entries and each of the N rows. Summing all eight counters: the comparison counter contributes N*N, and the read and write counters each contribute 2*(N*N + N), so the summed total is N*N + 4*(N*N + N) = 5*N*N + 4*N. This is strictly positive for every N at least 1, so the identity is not free at any positive size, and in a composed algorithm this term must be added, not dropped. The unique boundary at which the stored identity costs nothing is N = 0: the empty matrix has no entries and no rows, so every counter is zero (5*0 + 0 = 0). Thus the only free identity is the degenerate zero-dimensional one; for all N at least 1 the quadratic comparison and storage work is real exact-real operation cost, carrying no finite-bit runtime claim but still contributing to the overall operation count.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Explain the identity is materialized with one comparison per entry plus the storage surcharge",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Compute the exact summed cost 5*N*N + 4*N",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Identify N=0 as the unique boundary where the cost vanishes, so it is nonzero for all N at least 1",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.identity_cost"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.identity",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.identityBudget"
+    ],
+    "assumptions": [
+      "The identity is materialized by an index-equality comparison per entry",
+      "Materialization adds the two-read-two-write surcharge per entry and per row"
+    ],
+    "conventions": [
+      "Stored constants are not free primitives; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The identity is materialized with one index-equality comparison per entry.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.identity"
+        ]
+      },
+      {
+        "claim": "The summed cost is N*N comparisons plus 2*(N*N+N) reads and writes, i.e. 5*N*N+4*N.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.identity_cost",
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.identityBudget"
+        ]
+      },
+      {
+        "claim": "Only N=0 makes every counter vanish, so the identity is nonzero at any positive size.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.identity_cost"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "A boundary analysis correcting the false intuition that a stored constant is free."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+        "sha256": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+        "anchor": "identity92-93; identityBudget100-101; identity_cost103-106",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-216",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Boundary: the stored identity costs 5*N*N+4*N exact-real operations, nonzero for all N at least 1, free only at the degenerate N=0.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-217",
+    "key": "qcb-core-la-217",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "counterexample",
+    "question": "When a stored sweep concatenates its chronological step logs, it uses a persistent list append that copies the spine of the left list while sharing the right list unchanged; the append is charged exactly the length of the left list in reads and the same in writes, with the right list contributing nothing. A colleague asserts two things: first that appending two logs is a constant-cost pointer operation, and second that the cost depends on the total number of records in both logs. Show that both assertions are wrong by exhibiting append costs for concrete left/right lengths, and state the exact rule the cost actually follows.",
+    "reference_answer": "Both assertions are wrong. Against the constant-cost claim: appending a left list of length p costs p reads and p writes, which grows without bound as p grows, so it is not constant; for example a left log of 100 records costs 100 reads and 100 writes regardless of pointer sharing. Against the total-length claim: the right list is shared, not copied, so it contributes zero to the cost; appending a left list of length 2 to a right list of length 1000 costs only 2 reads and 2 writes, not 1002. Concretely, left length 2 and right length 1000 cost (2,2); left length 1000 and right length 2 cost (1000,1000); same total length, vastly different cost, which also disproves any dependence on the sum. The exact rule is: the persistent append cost equals the left list's length on both the read and write counters and is independent of the right list's length, because only the left spine must be rebuilt to point into the shared right tail. This is an operation count in the exact-real model with no finite-bit content; the asymmetry is the whole point of charging prefix copying rather than a fictitious constant or total-length cost.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Refute constant cost by showing cost grows with left length",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Refute total-length dependence by showing the shared right list contributes zero, with a concrete asymmetric pair",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "State the exact rule: cost equals left length in reads and writes, independent of right length",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.append"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.sweep_cost_le"
+    ],
+    "assumptions": [
+      "Persistent append copies only the left spine and shares the right list",
+      "Append is charged the left length on the read and write counters"
+    ],
+    "conventions": [
+      "Cost is asymmetric in the two operands; exact-real operation count, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Append charges the left list length in both reads and writes.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.append"
+        ]
+      },
+      {
+        "claim": "The shared right list contributes zero, so equal total lengths can have very different costs.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.append"
+        ]
+      },
+      {
+        "claim": "The exact rule depends only on the left length, as used in the sweep cost bound.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.sweep_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "A two-sided counterexample pinning the asymmetric cost of a persistent append."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+        "sha256": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+        "anchor": "append21-22; sweep_cost_le67-89",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-217",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Counterexample: persistent log append costs the left length in reads and writes and is independent of the right length, so it is neither constant nor total-length dependent.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-218",
+    "key": "qcb-core-la-218",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "A stored thin-LQ dispatcher takes an m-by-n stored matrix and charges one exact comparison to decide the shape. When m is at most n (the wide case) it transposes, runs the full stored rectangular compilation, and extracts both factors. When m exceeds n (the tall case) it does none of that: it returns the input matrix as the triangular factor together with a materialized identity of size n as the orthonormal factor. Explain what the tall branch returns and why it is correct, and compare the cost of the tall branch against the wide branch. In particular, refute the claim that a thin-LQ factorization always performs a sweep of eliminations.",
+    "reference_answer": "In the tall branch (m greater than n) the dispatcher performs no elimination sweep at all. It returns the original matrix unchanged in the triangular-factor slot and a freshly materialized n-by-n identity in the orthonormal-factor slot, after paying only the one dimension comparison plus the identity materialization. This is correct for the thin shape because the thin inner dimension is the minimum of m and n, which equals n here; pairing the matrix with the identity trivially reproduces the matrix as a product with an orthonormal (identity) factor of the right size, so the factorization identity and the orthonormality condition both hold by construction. The cost contrast is stark: the wide branch pays the transpose, the cubic-order rectangular compilation and two extractions, whereas the tall branch pays only one comparison plus the identity cost 5*n*n + 4*n, with no field, square-root, inverse-cosine, trigonometric or emit work from any elimination. This refutes the claim that thin-LQ always runs a sweep: on tall inputs the admissible route is the trivial dispatch, and the only elimination-bearing path is the wide branch. The boundary between the branches is the exact comparison m at most n; everything is counted in the exact-real model with no finite-bit runtime claim.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Describe the tall branch returning the input and an identity with only a comparison plus identity cost",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Justify correctness via the thin inner dimension being the minimum of m and n",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Refute 'thin-LQ always sweeps' by contrasting tall (no sweep) and wide (full compilation) costs",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredThinLQ.compile_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredThinLQ.compileBody",
+      "declaration:QuantumBlockEncoding.StoredThinLQ.compile_correct",
+      "declaration:QuantumBlockEncoding.StoredThinLQ.compileBudget"
+    ],
+    "assumptions": [
+      "The dispatcher charges one comparison and branches on m at most n",
+      "The thin inner dimension is the minimum of m and n"
+    ],
+    "conventions": [
+      "The tall branch runs no elimination; counts are exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The tall branch returns the input matrix and a materialized identity, charging only a comparison plus the identity cost.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.compileBody",
+          "declaration:QuantumBlockEncoding.StoredThinLQ.compileBudget"
+        ]
+      },
+      {
+        "claim": "It is correct because the thin dimension equals the minimum of m and n, giving a trivial orthonormal factor.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.compile_correct"
+        ]
+      },
+      {
+        "claim": "Only the wide branch performs the compilation, refuting the always-sweep claim.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredThinLQ.compile_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A dispatch boundary analysis contrasting a trivial branch with the full-cost branch."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredThinLQ.lean",
+        "sha256": "ed08ef278a93268f7d9620cb2ddafc2e3468fcc4f2543923251a3ce4e057177a",
+        "anchor": "compileBody111-119; compile122-125; compile_correct162-166; compileBudget174-175; compile_cost_le177-187",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-218",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Boundary: the tall LQ branch (m>n) runs no sweep, returning the input plus an identity at cost one comparison + 5*n*n+4*n, refuting that thin-LQ always eliminates.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-219",
+    "key": "qcb-core-la-219",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics",
+    "task_kind": "counterexample",
+    "question": "In the stored Hermite raw-source assembly, exponential-function calls are tracked by their own counter. The total number of exponential calls on a run with parameters k and n equals a fixed base of n+2 (one coefficient call plus n+1 cached tail calls) plus the sum over the n+1 stages of each stage's injection calls, where each stage makes between zero and two injection calls depending on whether a left-full child guard is enabled. The overall cap proved is 3*(n+1)+1 exponential calls. A colleague claims every stage always contributes exactly two exponential calls, so the exact count is always n+2 + 2*(n+1). Refute this and give the exact count's actual range as a function of how many guards are enabled.",
+    "reference_answer": "The claim overcounts because the per-stage injection calls are guarded: a stage contributes one exponential call for each physical-bit child whose left-full guard is enabled, so a stage with both guards disabled contributes zero injection calls, not two. Counterexample: if every stage has both child guards disabled, the injection sum is zero and the exact exponential count is just the base n+2, far below the claimed n+2 + 2*(n+1). More generally, if exactly g child guards are enabled across all stages (with g between 0 and 2*(n+1)), the exact exponential count is n+2 + g. The actual range is therefore from n+2 (no guards enabled) up to n+2 + 2*(n+1) (all guards enabled); the proved cap 3*(n+1)+1 = 3*n+4 is an upper bound that is reached only when all 2*(n+1) injections fire, since n+2 + 2*(n+1) = 3*n+4. So the colleague's formula is only the extreme upper end of a range, not the exact count; the exact count depends on the data-dependent guards, which is why the source states the stage exponential calls as a sum of guard indicators and proves only an inequality for the cap. This counts calls to the exponential primitive in the exact-real model, with no finite-bit runtime implication.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Explain stage injection calls are guard-dependent, so a stage can make zero calls",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Give the exact count n+2+g for g enabled guards and the counterexample g=0",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Identify the cap 3*n+4 as the all-guards-enabled extreme, not the exact count",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls_le",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls",
+      "declaration:QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls_le"
+    ],
+    "assumptions": [
+      "The base exponential count is n+2 (one coefficient plus n+1 tail calls)",
+      "Each stage makes zero to two injection calls, one per enabled left-full child guard"
+    ],
+    "conventions": [
+      "The exact count is guard-dependent; only an inequality cap is provable; exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The exact exponential count is n+2 plus the sum of per-stage guard-dependent injection calls.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls",
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls"
+        ]
+      },
+      {
+        "claim": "With all guards disabled the count is just the base n+2, refuting the always-two claim.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.stage_exponentialCalls_le"
+        ]
+      },
+      {
+        "claim": "The cap 3*n+4 is attained only when all 2*(n+1) injections fire.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredHermiteRawCost.raw_exponentialCalls_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A guard-dependent counterexample distinguishing an exact data-dependent count from its worst-case cap."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+        "sha256": "315e9f210c44c15e41742ef673ac93b191dfbbe48bb4ba84cd9abdd35f6adf62",
+        "anchor": "stage_exponentialCalls61-68; stage_exponentialCalls_le70-72; raw_exponentialCalls181-185; raw_exponentialCalls_le187-191",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-219",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Counterexample: exponential calls are n+2 plus guard-dependent injections (range n+2 to 3*n+4), so the always-two-per-stage formula is only the worst case, not the exact count.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-la-220",
+    "key": "qcb-core-la-220",
+    "topic": "stored_cost_refinement",
+    "track": "quantum_semantics",
+    "task_kind": "boundary",
+    "question": "A stored matrix-product chain is assembled from n+1 stored cores, each of bond size D, closed against left and right boundary vectors of length D to form a scalar-boundary chain. It is proved that the maximum bond of the resulting chain is at most the maximum of D and one. Interpret this bond bound as a statement about the represented object, explain why the maximum with one appears, and determine the boundary values of D for which the bond equals one rather than D. Also state what this does and does not say about the cost of building the chain.",
+    "reference_answer": "The bond bound says the assembled chain never develops an internal bond larger than the input core bond D, except that the two scalar boundaries contribute trivial bonds of size one. Concretely the closure contracts the end cores against length-D vectors, collapsing the two outer bonds to one while leaving the interior bonds at most D; taking the maximum over all bonds gives at most the maximum of D and one. The maximum with one appears precisely because of the degenerate boundary: a scalar-boundary chain has outer bonds of dimension one, so even if an interior bond were zero or the chain degenerate, the reported maximum bond cannot drop below one. The boundary analysis: for D at least one the maximum of D and one is just D, so the bond bound is simply D; the maximum with one only becomes active, giving bond one, in the degenerate case D equal to zero, where there are no interior bonds and only the unit scalar boundaries remain. Regarding cost, this is a statement about the stored object's structure (its bonds), not its construction cost: it certifies that contraction does not inflate the bond dimension, but it says nothing by itself about the number of exact-real operations spent building the chain, which is bounded separately; and it is not a finite-bit claim.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Interpret the bound as the chain not inflating the interior bond beyond D, with unit scalar boundaries",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain the maximum with one as the degenerate scalar-boundary floor, active only at D=0",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Separate this structural bond statement from the (separately bounded) construction cost; note it is not finite-bit",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified",
+      "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines"
+    ],
+    "assumptions": [
+      "Cores have bond D; the chain is closed to scalar boundaries of dimension one",
+      "Maximum bond is the maximum bond dimension over the chain"
+    ],
+    "conventions": [
+      "The bond bound is structural, separate from construction cost; exact-real, not finite-bit",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Closing against length-D vectors collapses the outer bonds to one while interior bonds stay at most D.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_refines"
+        ]
+      },
+      {
+        "claim": "The maximum with one is the scalar-boundary floor, active only when D=0; otherwise the bound is D.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_maxBond"
+        ]
+      },
+      {
+        "claim": "This structural bond statement is independent of the separately bounded construction cost.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredMatrixProductChain.ofTable_certified"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "A boundary interpretation of a bond bound separating structure from cost."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+        "sha256": "7a697d064a5fddd909bba048d6adc36cb645421bd565e2357588fef1ff0449f2",
+        "anchor": "ofTable_maxBond249-254; ofTable_certified257-265",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-220",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Boundary: the stored chain's maximum bond is at most max(D,1); the floor of one is the scalar-boundary degenerate case (D=0), and the bound is structural, separate from construction cost.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "stored-cost-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

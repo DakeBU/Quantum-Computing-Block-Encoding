@@ -1,0 +1,137 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-007",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-007-werner-converse-repair.json",
+  "repair_record_digest": "f6638980d6a9548f92155a420a8362adb0e3b5f9a6e3e6f7840e36dd3c167999",
+  "repair_record_sha256_lf": "1426399ab8c9141f9e575c2a686781de9168cd31f7cdc636042ffbc228090801",
+  "original_item_digest": "e04084fe7f2ef7232f2d953cffe7f86e11665744ae6669b27b5f0ff5fa232312",
+  "verdict": "accept",
+  "verdict_scope": "New substantive revalidation of this entire exact current answer/rubric/exposition under the unchanged question, not mechanical transplantation of prior acceptance or admission.",
+  "independence": {
+    "repair_author": "/root/qcb_native_comparison",
+    "original_author": "native-planned-author",
+    "assessment": "Actual reviewer /root/qcb_formal_view_audit authored neither predecessor nor candidate. I previously reviewed these candidates and have substantial Leditzky/source exposure; this is not blind or a new identity. Complete current canonical candidate, historical original and original withdrawal/finding were reread and the mathematics reconstructed again."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "d2196fd968d517f6f9d4f870dab30d7bd70e0344eddb4b3ad19e6ff0464a6874",
+    "projected_contract_hash": "d2196fd968d517f6f9d4f870dab30d7bd70e0344eddb4b3ad19e6ff0464a6874",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": "All nine actual values remain literally inherited; no contract field override in candidate. Empty assumptions/conventions remain empty.",
+    "family": "qit-symmetry-entanglement",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "original_semantic_step_count": 3,
+    "candidate_semantic_step_count": 3,
+    "ordered_per_step_supporting_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "ordered_node_lists_identical": true,
+    "checks": "Whole predecessor/supersedes digest and key, whole candidate/LF, exact nine-field hash and each ordered step-node list independently recomputed. Historical review is preserved, not converted into the new verdict."
+  },
+  "original_defect": "Old rubric r4 and final process step reverse separable=>nonnegative swap overlap into a purported converse. The restricted Werner theorem is true, but that proof principle fails for arbitrary states; the actual product-twirl/uniqueness argument must be supplied.",
+  "substantive_reconstruction": {
+    "state_spectrum": "With a=(2-x)/6,b=(2x-1)/6, swap has +1 multiplicity3 and-1 multiplicity1. Thus rho has eigenvalues(1+x)/6 three times and(1-x)/2 once, nonnegative and summing1 throughout the stipulated[-1,1]. This is not its partial-transpose spectrum.",
+    "entanglement": "F^(T_B)=2P_plus gives rho^(T_B)=aI+2bP_plus. Its eigenvalues are a+2b=x/2 once and a=(2-x)/6 three times. Partial transpose preserves positivity of every product positive operator and its convex mixtures, so x<0 implies entanglement. For x>=0 these eigenvalues prove PPT only; no low-dimensional sufficiency is invoked.",
+    "necessary_overlap": "tr(F(omega tensor sigma))=tr(omega sigma)>=0, since tr(sqrt(omega)sigma sqrt(omega))>=0. Linearity extends this to separable states. It does not establish the converse. The entangled Bell projector P_plus has overlap1, illustrating why nonnegative overlap is not a general criterion; it is not Werner, so this does not refute the restricted theorem.",
+    "product_and_twirl": "For0<=x<=1, |a>=|0> and |b>=sqrt(x)|0>+sqrt(1-x)|1> are unit vectors with squared overlap x. Their product projector is separable. Every common-U conjugate remains a normalized product projector. Normalized Haar averaging preserves trace and positivity; change of variable U->VU gives Werner invariance. F commutes with U tensor U, so cyclic trace and normalized integration preserve the overlap x.",
+    "identification_and_closedness": "Inside the stated invariant family, tr=1 and swap overlap x give4a+2b=1 and2a+4b=x. This system has the unique displayed solution, so the average equals this rho(x), not merely some state with positive overlap. Pure product projectors form a compact set in finite dimension; its convex hull is compact by a finite-dimensional Caratheodory bound and therefore closed. The continuous Haar average is a limit of finite convex averages and stays separable. This supplies the source footnote's limit justification.",
+    "endpoints_and_model": "At x0 the product factors are orthogonal; at x1 identical, so both separable endpoints are covered. At x=-1, rho is the antisymmetric singlet and the negative partial-transpose eigenvalue is-1/2. The product/twirl strategy extends to local d>=2, not the literal qubit coefficients or multiplicities. No d1 claim, efficient discrete twirl, circuit, finite-bit resource or source-kernel certification follows."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full: both spectra, correct implication direction, explicit product choice, invariant twirl, uniqueness and closed-separability argument are sound. The question's brief converse request is answered without imposing a PPT-sufficiency premise.",
+    "rubric": "r1 gives the exact restricted threshold; r2 distinguishes the two spectra; r3 uses only necessary PPT positivity for entanglement; r4 requires the real converse and explicitly rejects the old reversed implication. All criteria and weights were read.",
+    "exposition": "All three corrected claims and summary agree with the answer and retain exactly the original ordered concept-node lists. No concept node is represented as local formal closure.",
+    "repair_scope": "Answer-only is sufficient: the true two-qubit question and[-1,1] domain remain literal, with empty assumptions/conventions preserved. Historical rejection concerns grading/process logic and remains bound to the original; this review does not overwrite it."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Actual complete leditzky-2025-repth-qit registry entry218-228 read. LF hash binds metadata only; primary mathematical inspection and current access limits are separate below. No policy/curriculum executable is a mathematical source dependency."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10April2026,79pages",
+      "recorded_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "current_binary_sha256": null,
+      "current_binary_hash_verified": false,
+      "retrieval": "Current web PDF extraction succeeded, exposing79pages/title date and the operative full bounded text. Direct urllib in-memory fresh-byte fetch failed WinError10013; no escalation/retry success or fresh binary hash claimed. Web screenshots of pages12/16 cache-missed.",
+      "operative_regions": "Separability definition/complete PPT-necessity proof; Proposition3.1 form; complete normalized Haar/twirl and overlap-preservation3.3-3.19; complete Proposition3.2 proof3.20-3.22 and footnote3 limit argument reread. Explicit product/uniqueness/compactness details reconstructed.",
+      "visual_scope": "Actually re-viewed existing root-rendered printed pages12/16; did not freshly render or bind these images to newly retrieved PDF bytes.",
+      "existing_image_sha256": {
+        "leditzky-foundation-page-12.png": "411aae2bf632bdd390606ea531b6dd1cee494f95031a464ddb66198505517466",
+        "leditzky-foundation-page-16.png": "a570501008dfd41cd19afb94a7e0a7965908ba0a88970c5896b2d2eac5e90157"
+      },
+      "limits": "Historical raw pin remains a recorded pin and prior exposure, not a fresh-byte seal. Current extracted edition/content agrees with inspected anchors; full-book, cited-proof and transitive formal approval not claimed."
+    }
+  ],
+  "withdrawal_evidence": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/qit-foundations-004-005-007-review.json",
+    "report_digest": "4abf4a37cc2623f6feb6473e335730daee6715618091c94eb42d4af1feabfcf1",
+    "report_sha256_lf": "6b01ae49271f3f45b4312b560f2fd18e06cc640b4a289d7bcf14623bf2e6c9e1",
+    "finding_digest": "8f69d1537c88c514a97f878f2812a52d1fb9b6a97877836c785b4070de36649f",
+    "row_digest": "63479968bd4bcbb8ccfaca1e8e052916f70c6b66299f03b73860159a884b593f",
+    "reviewer": "/root",
+    "inspection": "Full original finding reread; exact immutable report/finding/predecessor bindings matched."
+  },
+  "previous_repair_review": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-007-werner-converse-repair-review.json",
+    "digest": "7e8d9597586b46e54bfd42849488748b27a044f4b5ae717ef8c8ba1eecf6fd2c",
+    "sha256_lf": "d7f5958c8de6ce4137a3d609278cd6ef1defe8d9be7f69d7e3371f81280be64b",
+    "status": "Historical earlier acceptance/source access is preserved unchanged, not rebound or claimed as current execution."
+  },
+  "mechanical_context": {
+    "context_class": "Historical mechanical context at the announced FINAL engine freeze, not mathematical source dependencies or an evergreen proof-input binding.",
+    "observed_head": "f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818",
+    "branch": "agent/qcb-convention-contract-migration",
+    "working_tree": "Announced dirty engine; no Lean changes inferred from this hash.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab"
+      }
+    ],
+    "inspection": "Actual edited question/answer projection, exact contract checks, convention-list/narrative/lineage requirements, curriculum convention_revision_lineage gate and all three new direct convention tests read. These do not prove ensemble/Werner mathematics.",
+    "execution": "Only read-only retrieval/hash/scope checks by this reviewer. Parent reported three convention tests passed in4.612s; this reviewer did not rerun them or invoke admission."
+  },
+  "provenance": {
+    "reviewed_candidate_location": "Canonical repair_record above, not an assumed old private copy.",
+    "instruction_status": "Substantive-worker and PDF skills used; required repository protocols previously read fully, skill refreshed and mandatory instruction files checked unchanged from preceding inspected head.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this NEW private migration-revalidation-review JSON authored after freeze. Candidate, original, old review, canonical tree and source/policy code unchanged; no build/commit/push/extra agents.",
+    "limits": "Primary-source NL mathematics only. No new Lean view, efficient implementation, global deduplication, blind test, model baseline or source-paper/kernel/publication seal."
+  }
+}

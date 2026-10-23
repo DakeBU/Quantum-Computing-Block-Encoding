@@ -61,11 +61,12 @@ NAVIGATION = [
     ("Organizers", "organizers/"),
 ]
 
-PROJECT_REPOSITORY = "DakeBU/Quantum-Computing-Block-Encoding"
+PROJECT_REPOSITORY = "DakeBU/QuantumComputinglib-QuantumComputingBench"
 PROJECT_REPOSITORY_URL = f"https://github.com/{PROJECT_REPOSITORY}"
 ORGANIZERS = (
     ("Dake Bu", "City University of Hong Kong · A*STAR"),
     ("Xiajie Huang", "Shanghai Jiao Tong University"),
+    ("Outongyi Lv", "Shanghai Jiao Tong University"),
     ("Nana Liu", "Shanghai Jiao Tong University"),
     ("Atsushi Nitanda", "A*STAR · Nanyang Technological University"),
     ("Hau-san Wong", "City University of Hong Kong"),
@@ -506,7 +507,8 @@ def page_template(
       options: {{skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}}
     }};
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="{prefix}static/math-reader.js?v=20261021-2"></script>
+  <script defer src="{prefix}static/vendor/mathjax@3.2.2/tex-mml-chtml.js"></script>
 </head>
 <body data-site-root="{prefix}">
   {site_header(prefix, current)}
@@ -951,8 +953,9 @@ def render_home(
     generated proof-status pages.</p>
   </div>
   <ol class="milestone-list">
+    <li><time datetime="2026-10-21">21 October 2026</time><div><strong>QuantumComputingBench starts.</strong><p>We are launching <a href="{PROJECT_REPOSITORY_URL}/tree/main/benchmarks/quantumcomputingbench">QuantumComputingBench</a> to build graph-grounded QA for training and evaluating specialized quantum-computing models across knowledge, mathematical reasoning and Lean skills, with planned topics clearly separated from verified library evidence.</p></div></li>
     <li><time datetime="2026-10-18">18 October 2026</time><div><strong>Priority: digesting discovered reversible circuits.</strong><p>We have opened a source-first formalization route for <a href="https://arxiv.org/abs/2610.22367v1">Gu, Kemeny, Yelin and Lukin</a>, explicitly crediting the author Lean proofs and separating their adaptation from circuit, error and resource closure. <a href="state-preparation-wiki/spw-uncompute/index.html">Read the layered Uncompute plan →</a>. Work in progress; no paper-wide or new local certificate is claimed.</p></div></li>
-    <li><time datetime="2026-10-10">10 October 2026</time><div><strong>Four textbooks you can browse, not just a roadmap.</strong><p>All four peer textbooks have homepage actions, a shared curriculum diagram and chapter-map entries. The <a href="learning/index.html#textbook-explorer">textbook explorer</a> filters chapters by book, technique and evidence status, with reading sources and expandable commit-pinned OpenAI Math memory. Parts III and IV remain source-anchored plans, not newly certified Lean books. The first curriculum release was merged in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/87">PR #87</a>; rendering and deployed-reader checks were repaired in <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/88">#88</a> and <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/pull/89">#89</a>.</p></div></li>
+    <li><time datetime="2026-10-10">10 October 2026</time><div><strong>Four textbooks you can browse, not just a roadmap.</strong><p>All four peer textbooks have homepage actions, a shared curriculum diagram and chapter-map entries. The <a href="learning/index.html#textbook-explorer">textbook explorer</a> filters chapters by book, technique and evidence status, with reading sources and expandable commit-pinned OpenAI Math memory. Parts III and IV remain source-anchored plans, not newly certified Lean books. The first curriculum release was merged in <a href="https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/87">PR #87</a>; rendering and deployed-reader checks were repaired in <a href="https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/88">#88</a> and <a href="https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/pull/89">#89</a>.</p></div></li>
     <li><time datetime="2026-10-09">9 October 2026</time><div><strong>Four peer textbook parts and explicit formalization plans.</strong><p>State Preparation and Block Encoding are joined by Quantum Information and Representation Theory, and Quantum Algorithms for Scientific Computation. Walsh-series and diagonal-operator papers have source-linked plans and reusable technical cards. New parts and upstream OpenAI Math placements are planned curriculum, not new local theorem certificates.</p></div></li>
     <li><time datetime="2026-10-06">6 October 2026</time><div><strong>Statement Seal, evidence memory, and proof digestion.</strong><p>QuantumComputinglib now freezes source-facing quantum contracts before proof search, types and salvages failed routes before cleanup, keeps environment/API failures separate from mathematical refutation, defaults routine coordination to deterministic/low-token control in light of local route-ablation evidence, requires distinct uncertainty for parallel Workers, and seals PURIFIED reader explanations against the source and Lean graphs.</p></div></li>
     <li><time datetime="2026-09-10">10 September 2026</time><div><strong>Schrödingerisation smooth auxiliary-state preparation: a structured logical resource bound.</strong><p>The smooth auxiliary \(p\)-register state required by <a href="https://arxiv.org/abs/2403.19123v3">Jin–Liu–Ma’s PDE Schrödingerisation construction</a>, viewed alongside the smooth-function state-preparation route of <a href="https://arxiv.org/abs/2005.04351">Holmes–Matsuura</a>, has exact Hermite–Bernstein/tensor-train structure. The logical bound is \(G\le48n_p(2k+6)^3\), hence \(O(n_p)\) for fixed \(k\), with \(O(\log k)\) workspace under the stated exact-real contracts. This is not a complete finite-bit algorithm certificate: classical core generation, arithmetic and gate synthesis for <code>SP-HERMITE-POLY-002</code> still need separate certification. <a href="example-cases/hermite-smooth-state-preparation/index.html">Read the worked case and its scope →</a></p></div></li>
@@ -960,7 +963,7 @@ def render_home(
     <li><time datetime="2026-08-10">10 August 2026</time><div><strong>ASPBE and QuantumComputinglib.</strong><p>The two application tracks, local workspace, task builder, and contributor review path are presented in one site.</p></div></li>
     <li><time datetime="2026-07">July 2026</time><div><strong>Blueprint and Library Explorer.</strong><p>One generated inventory now drives the checked Blueprint catalog and searchable declaration browser.</p></div></li>
     <li><time datetime="2026-06">June 2026</time><div><strong>Public testing preview.</strong><p>The site exposed separate State Preparation and Block Encoding directions and the user task builder.</p></div></li>
-    <li><time datetime="2026-05-17">17 May 2026</time><div><strong>Earliest repository record.</strong><p>The <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/commit/af59b03c58c2cedec52b14a80b4d909031d62521">initial commit</a> and <a href="https://github.com/DakeBU/Quantum-Computing-Block-Encoding/blob/af59b03c58c2cedec52b14a80b4d909031d62521/MANIFEST.md">timestamped manifest</a> begin the public, auditable project history. No earlier date is asserted without evidence.</p></div></li>
+    <li><time datetime="2026-05-17">17 May 2026</time><div><strong>Earliest repository record.</strong><p>The <a href="https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/commit/af59b03c58c2cedec52b14a80b4d909031d62521">initial commit</a> and <a href="https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/blob/af59b03c58c2cedec52b14a80b4d909031d62521/MANIFEST.md">timestamped manifest</a> begin the public, auditable project history. No earlier date is asserted without evidence.</p></div></li>
   </ol>
 </section>
 <section class="content-section" id="chapters">
@@ -2241,7 +2244,7 @@ def render_community(
     gate: dict[str, object],
     context: dict[str, object],
 ) -> str:
-    repository = context.get("repository") or "DakeBU/Quantum-Computing-Block-Encoding"
+    repository = context.get("repository") or "DakeBU/QuantumComputinglib-QuantumComputingBench"
     issue_url = f"https://github.com/{repository}/issues/new?template=lemma-contribution.yml"
     pull_url = f"https://github.com/{repository}/compare"
     body = f"""

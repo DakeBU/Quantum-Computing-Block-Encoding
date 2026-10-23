@@ -1,0 +1,136 @@
+{
+  "reviewer": "/root/qcb_native_comparison",
+  "verdict": "accept",
+  "exposure": "Not blind: I authored related private plan104/105 repairs and have prior representation-theory/source/cohort and parent-lead exposure, including the C(t) and real quarter-turn mechanisms. I authored neither106/115 candidate nor their original QA records or historical106/115 reader findings. In this objective I read both complete actual prepared originals, exact current withdrawals/full findings, entire frozen candidates including execution/rubrics/steps, and operative primary source. Distinct actual candidate authorship and this reconstruction are the independence claimed; old verdicts and the author's source-access assertions are not my evidence of correctness.",
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit metadata entry personally read in continuous context and LF rechecked here. Authenticates primary URL/edition/historical pin only, not matching PDF bytes or local mathematical proof. Actual operative source and access limits recorded separately."
+    }
+  ],
+  "review_scope": "Entire actual question, answer, four rubric criteria, summary, all ordered semantic steps, source and execution/process metadata assessed. Whole-candidate and predecessor/content checks are static bindings, not production admission, a kernel run or a source-paper seal.",
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-plan-106",
+  "repair_record_digest": "44f89e5daddf14f3dbff730edaf1440547a87bdd9a72a2e12767feca4ab03582",
+  "original_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+  "original_contract_hash": "13d2d42ffb9abf52316dd44b9c632fe90ca15ebc48b2772aa05e521deacfbf34",
+  "successor_contract_hash": "d60a5553bc25ce2cbc7f1ec76fc69539591c8d781b6742db92c8d9c494708f1b",
+  "substantive_reconstruction": {
+    "infinite_counterexample": "Let K=C(t), G=K^times and V=K over C. Multiplication by g preserves C-linear combinations, is inverted by multiplication by g^-1, and respects the group law. G is abelian. A finite relation among1,t,t²,... would be a zero polynomial in an indeterminate, so their C-linear independence proves infinite dimension. If invariant W contains w!=0, then every nonzero v equals(v/w)w for v/w in G; hence W=V. This verifies irreducibility rather than inferring it from a large orbit name or using a reducible trivial action. Multiplication by t has no complex eigenvalue: t-lambda is invertible in K for every lambda.",
+    "finite_positive_proof": "For fixed h, abelianness gives rho(h)rho(g)=rho(g)rho(h). Positive finite dimension makes the characteristic polynomial of the LINEAR rho(h) nonconstant; algebraic closure gives a root lambda and a nonzero kernel for rho(h)-lambda I. Commutation makes that kernel invariant, so irreducibility makes it all of V. Every rho(h) is scalar. For any nonzero v, Cv is invariant under every group element and therefore equals V. This proves dimension1 without simultaneous diagonalization, group averaging, finiteness of G, unitarity or division by its order.",
+    "character_and_field": "On nonzero V each scalar is unique and nonzero because rho(h) is invertible. Representation identities applied to v give lambda_gh=lambda_g lambda_h and lambda_e=1; the inverse scalar follows too. Conversely a homomorphism G->C^times acts irreducibly on C because a line has no proper nonzero linear subspace. The same argument works over ANY algebraically closed field, including positive characteristic: no trace or characteristic-zero operation occurs. Eigenvalues for every particular action operator would also suffice; closure is a uniform sufficient field condition, not necessary for every individual representation.",
+    "real_and_zero_witnesses": "The C4 generator J=[[0,-1],[1,0]] satisfies J4=I and acts orthogonally on R². If a proper nonzero invariant real line had generator v, then Jv=a v for real a, giving -v=a²v, impossible. Thus it is a genuine irreducible two-dimensional real action, unlike identity or half-turn rotations. Over C its eigenlines remove this counterexample. If the invariant-subspace predicate permits V0, it is vacuously irreducible but dimension0; the positive theorem explicitly excludes it and does not invent an eigenvector. No topology or bounded/Hilbert-space realization is claimed for C(t), so continuous/unitary Schur variants are not contradicted.",
+    "grading_source_and_overlap": "All four criteria and five exposition claims use these actual hypotheses and preserve the counterexample and zero-space distinctions. The full source proof of Corollary3.20 indeed uses scalar Schur, whose finite-dimensional hypothesis is explicit in Proposition3.17 and the course convention after3.6; its printed short wording cannot justify the original enlarged QA. My related104/105 authorship exposes the shared linear invariant-kernel/eigenvalue mechanism, so this is informed distinct-candidate review, not independent invention or blind decoding. The additional abelian-action-to-invariant-line classification is not the entire scalar-commutant target; no global alias, split clearance, new formal proof or resource claim follows."
+  },
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-106-abelian-dimension-scope-question-successor.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-106-abelian-dimension-scope-question-successor.json",
+    "candidate_sha256_lf": "179523dd497dbb50e7e9a11c7614d7816dad8e85529af9fee1671f864dabe901",
+    "original_contract": {
+      "question": "Let G be an abelian group. Prove that every complex irreducible representation (phi, V) of G is one-dimensional. You may use Schur's Lemma. Make clear exactly where commutativity of G and where the complex (algebraically closed) field are used, and explain why the statement can fail if the field is not algebraically closed.",
+      "assumptions": [],
+      "conventions": [],
+      "family": "qit-schur-lemma",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_digests": {
+      "assumptions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "conventions": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "family": "d4bcb8c68718417b62a77bc69607241a6ea34a91bc499cb031490d8dcca4060d",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "cb74bfa3777d0ea7c63eb9efeeca457dca43f5b71fa2f5b9063f6470fa19b731",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "12d8e64fd1780743851209d7f8806bd74a58dbaaeb90825e729ec41594815f3d"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:matrix-analysis"
+      ]
+    ],
+    "semantic_step_count": 5,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-106",
+      "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "reason": "The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e"
+    },
+    "withdrawal_report_sha256_lf": "a6d80d945512edd20c52815a84153a821a6103cb724cedeb0f405907d6c98748",
+    "full_finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e",
+    "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+    "static_validation": "Whole original/candidate digest, exact candidate LF, full old/new nine-field hashes, pending marker/distinct author, source LF, actual bound withdrawal/report/finding, complete answer/rubric/exposition and all identical ordered lists checked. Exact existing V1 question/answer payload grammar inspected; no production admission or kernel executed."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "edition_observed": "Cover April10,2026;79 pages",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "operative_regions": "Definition3.6 and explicit finite-dimensional standing restriction, printed17/PDF16; Definition3.12 printed19/PDF18; complete Proposition3.17(i)/(ii) statements and both proofs plus Corollary3.18 proof, printed20/PDF19; complete Corollary3.20 statement/proof, printed21/PDF20; Definition3.38 finite-dimensional continuous-group convention, printed34/PDF33. C(t), real C4 and zero-space delimiters independently reconstructed, not newly attributed printed proofs.",
+      "actual_access": "Personally accessed author-hosted primary PDF text in this review and read complete operative statements/proofs named above. Historical findings/candidate authors' byte-access claims are attributed to them, not inherited as my execution.",
+      "fresh_binary_hash_verified": false,
+      "operative_pixels_inspected": false,
+      "limits": "My current PDF20 and27 screenshot requests returned cache misses. Text was accessible; rendered page geometry and fresh raw-byte identity were not verified. No paper/PDF/human/visual seal, copied PDF, complete-book reading or other actor's retrieval/render work is claimed."
+    }
+  ],
+  "provenance": {
+    "observed_head": "543595d84298831b3a2cdb400444b544a2dcd2fd",
+    "written_private_review": "_review_tmp/plan-106-abelian-dimension-scope-question-successor-review.json",
+    "limits": "New private exact-content mathematical/source review only; no canonical/candidate/old-artifact edit, build/kernel/native-formal proof, admission, code-as-math dependency, commit/push, agents, human/expert/blind/model/novelty or global closure claim."
+  },
+  "question_version": 2,
+  "contract_change_assessment": {
+    "literal_revision": "The predecessor asks for all algebraic complex irreducibles of arbitrary abelian groups, with empty assumptions/conventions. Source finite dimension cannot be inserted as invisible background. The rational-function action below is a genuine counterexample, so answer-only cannot prove the original conclusion. The new question explicitly refutes that reading and proves a separately stated nonzero finite-dimensional theorem, with linearity and algebraic irreducibility defined. It does not call the two targets equivalent.",
+    "scope_preservation": "Only question changes among the nine fields. Empty assumptions/conventions stay empty; the added positive theorem's necessary dimension/nonzero hypotheses appear visibly in the question. Family, test_public split, frozen graph/source scope and all five ordered node lists are exact. Real, zero and algebraic-versus-continuous boundaries are requested and answered, not new standing promises. The shared105 scalar-Schur dependency is disclosed without transferring its approval or asserting an alias."
+  }
+}

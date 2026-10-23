@@ -1,0 +1,34 @@
+{
+  "by_track_fixture_pending": {
+    "knowledge": {
+      "graded": 0,
+      "graded_mean": null,
+      "pending": 4,
+      "total": 4
+    },
+    "planned": {
+      "graded": 0,
+      "graded_mean": null,
+      "pending": 4,
+      "total": 4
+    },
+    "quantum_semantics": {
+      "graded": 0,
+      "graded_mean": null,
+      "pending": 6,
+      "total": 6
+    },
+    "reasoning": {
+      "graded": 0,
+      "graded_mean": null,
+      "pending": 12,
+      "total": 12
+    }
+  },
+  "fixture_only": true,
+  "missing_predictions_all_zero": true,
+  "model_performance_measured": false,
+  "note": "Synthetic transport/scoring checks, not a model baseline or mathematical validation.",
+  "rubric_answers_not_automatically_accepted": true,
+  "schema_version": "qcb.scoring_smoke.v1"
+}

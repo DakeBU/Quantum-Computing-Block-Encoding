@@ -1,0 +1,82 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "author": "/root/qcb_native_comparison",
+  "admission": "pending_distinct_review",
+  "core_id": "qcb-core-plan-506",
+  "supersedes_key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+  "supersedes_item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+  "key": "qcb-core-plan-506-textbook-v1-unitary-compression-gram-repair",
+  "change_scope": "Private unchanged-question answer/rubric/exposition successor only. The actual question's unitary-compression bound and CS structure are true for p≤q, so answer-only repair suffices without weakening the demand. Preserve all nine CONTRACT_FIELDS, core/family/split, graph/source scope and six semantic steps. Exact original question-contract hash:0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f. Replace the insufficient individual-column-length inference by the full Gram identity, rotated-column orthogonality and a zero-sine-safe orthonormal completion; give the complete CS factorization and precise real Chebyshev domain. This is authorship, not independent approval or admission.",
+  "reference_answer": "Work over the complex field and partition U=[[B,F],[G,H]], where B is p×p, G is q×p and U is unitary on dimension p+q, with p≤q. The first p columns of U are an isometry, so the entire Gram identity is B†B+G†G=I_p. In particular, for every x∈C^p, ||Bx||^2=||x||^2-||Gx||^2≤||x||^2. Hence ||B||≤1, not merely a bound on each original column separately. Individual column lengths alone would not imply this spectral bound: [[1,1],[0,0]] has both columns of norm1 but largest singular value sqrt(2), and cannot be such a unitary compression.\n\nTake an SVD B=W_1 C V_1†, where W_1,V_1 are p×p unitary and C=diag(c_1,...,c_p) is nonnegative. Conjugating the Gram identity by V_1 gives (GV_1)†(GV_1)=I_p-C^2. The diagonal entries are squared norms, so1-c_j^2≥0; together with c_j≥0 this proves0≤c_j≤1. The columns of GV_1 are mutually orthogonal, with lengths s_j=sqrt(1-c_j^2). Thus S=diag(s_1,...,s_p) is real nonnegative and C^2+S^2=I_p.\n\nHere is an explicit endpoint-safe construction of the CS structure, including the zero-sine cases. For every j with s_j>0, let w_j=GV_1 e_j/s_j. These vectors form an orthonormal family in C^q. For indices with s_j=0, the corresponding GV_1 e_j is zero, so do not divide by s_j. Instead choose additional orthonormal w_j from the orthogonal complement of the already chosen nonzero-sine vectors. Since q≥p, there is room to choose all first p vectors and then complete them to a q-dimensional orthonormal basis. Let W_2 be the unitary with these vectors as columns. Then W_2†GV_1=[S;0_(q-p)×p]. This construction also covers c_j=1 (s_j=0), c_j=0 (s_j=1), and repeated singular values; no representative is asserted unique.\n\nThe transformed unitary U_hat=diag(W_1†,W_2†) U diag(V_1,I_q) therefore has its first p columns equal to L=[C;S;0], where the row blocks have sizes p,p,q-p. Define the (p+q)×q matrix K=[[S,0],[-C,0],[0,I_(q-p)]]. Because C and S are commuting real diagonal matrices with C^2+S^2=I, one has L†L=I_p, K†K=I_q and L†K=0. Thus [L,K] is a complete unitary basis. The remaining q columns Y of U_hat are another orthonormal basis of L's orthogonal complement, so there is a q×q unitary V_2 with Y=K V_2†. Consequently\nU=diag(W_1,W_2) [[C,S,0],[S,-C,0],[0,0,I_(q-p)]] diag(V_1†,V_2†).\nThis is the claimed cosine-sine form with nonnegative C,S. When q=p the final row/column blocks are absent; empty p=0 blocks, if allowed, reduce to an arbitrary q-dimensional unitary and the same basis-completion statement.\n\nFor qubitization applied to this encoded block B, the scalar singular-value arguments are precisely the c_j∈[0,1], hence lie in[-1,1]. In the Hermitian/eigenvalue variant, the real eigenvalues may be negative, but |lambda_j|≤||B||≤1, so the signed arguments also lie in[-1,1]. For a general nonnormal block, its possibly complex eigenvalues are not substituted into the singular-value construction. If B represents a separately scaled target A/alpha, this range conclusion concerns the actual normalized block's arguments, sigma_j(A)/alpha, not automatically unscaled sigma_j(A).\n\nFor each real argument t∈[-1,1], choose theta=arccos(t)∈[0,pi]. Then T_m(t)=cos(m theta), and in the interior U_l(t)=sin((l+1)theta)/sin(theta), with polynomial endpoint values U_l(1)=l+1 and U_l(-1)=(-1)^l(l+1). Thus no nonreal angle or division by a zero endpoint sine is needed to evaluate the polynomials on the encoded spectrum. Outside[-1,1] the polynomials are still defined, but this real-angle parametrization is unavailable and hyperbolic growth can occur. Staying inside the interval is a domain guarantee, not a uniform bound of1 on second-kind polynomials or a numerical-error/finite-bit stability theorem. The SVD and basis-completion argument proves mathematical existence of the factorization; it does not certify an efficient circuit to implement its basis changes or any query/gate count.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Uses the full identity B†B+G†G=I_p (or its all-vector norm inequality), not individual column lengths alone, to justify that B is a contraction and its singular values are at most1."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "After B=W_1 C V_1†, derives (GV_1)†GV_1=I_p-C^2 and C^2+S^2=I_p with S nonnegative; justifies the CS basis structure by orthonormal completion, explicitly avoiding division by zero when s_j=0."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Identifies the actual encoded block's singular-value arguments c_j∈[0,1], and, for a Hermitian eigenvalue variant, its signed real eigenvalues in[-1,1]; does not substitute arbitrary nonnormal eigenvalues or unnormalized target values."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Explains why these arguments admit the real-angle Chebyshev formulas on[-1,1], with polynomial endpoint values rather than undefined sine quotients, without claiming a uniform second-kind bound, compiled basis-change cost or numerical precision guarantee."
+    }
+  ],
+  "exposition": {
+    "core_summary": "A unitary compression obeys B†B+G†G=I, so its full operator norm is at most1. Rotated-column Gram orthogonality gives C^2+S^2=I and a CS decomposition with zero-sine-safe basis completion; the normalized singular-value or Hermitian signed arguments then lie in[-1,1].",
+    "semantic_steps": [
+      {
+        "claim": "The first p columns of the partitioned unitary satisfy the full Gram identity B†B+G†G=I_p, which bounds ||Bx||≤||x|| for every vector x.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For B=W_1 C V_1†, the rotated Gram identity (GV_1)†GV_1=I_p-C^2 implies 0≤c_j≤1 and mutually orthogonal lower-column vectors with squared lengths1-c_j^2.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Set s_j=sqrt(1-c_j^2). Normalize GV_1 e_j only when s_j>0, choose orthonormal complement vectors at s_j=0, and complete W_2 using q≥p, obtaining W_2†GV_1=[S;0].",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The column isometry L=[C;S;0] and complement K=[[S,0],[-C,0],[0,I]] form a unitary; expressing the remaining transformed columns in K supplies V_2 and the full CS form, with C^2+S^2=I_p.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Qubitization's actual singular-value arguments c_j lie in[0,1]; in a Hermitian eigenvalue variant the signed eigenvalues lie in[-1,1], with any target scaling applied to the encoded block first.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Real-angle Chebyshev formulas therefore apply on[-1,1], using polynomial limits at zero endpoint sine; this is a domain statement, not a uniform second-kind bound or a circuit/finite-bit resource guarantee.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry lin-wiebe-2026-qasc, metadata only. Personally retrieved pinned primary: complete pp174–176, Theorem10.9/Eqs10.81–10.89 and the subsequent qubitization CS form. The full-Gram all-vector argument and explicit L/K orthogonal-complement construction, including zero-sine completion, are this author's reconstruction of the same source statement rather than a claim that the abbreviated printed proof spells out every endpoint step."
+    }
+  ],
+  "execution": "Private source-grounded authorship, pending distinct independent review; no selfapproval/admission/kernel/nativeformal/stable claim. I previously authored the independent502–510 reader review and diagnosed506's insufficient column-length implication, read root's reconciliation message, and reread the complete actual prepared historical506 question, answer, rubric, assumptions, conventions, graph/source fields and six steps through release.checked()[2]; no blindness or new identity is claimed. For this authoring task I independently re-fetched https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf in memory:5718900 bytes,447 pages, raw SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599, matching the inherited pin. I read complete pages165,173–176 and personally rendered in memory and viewed174/175, checking the full CS block sizes/signs and source proof. No PDF/image/source file was saved or redistributed. The existence proof is not fresh kernel verification or an implemented numerical/circuit SVD. Only this private candidate's answer/rubric/exposition is authored; original source metadata and all nine contract fields are preserved."
+}

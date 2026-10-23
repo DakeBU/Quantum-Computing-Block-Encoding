@@ -1,0 +1,602 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "core_ids": [
+      "qcb-core-sp-111",
+      "qcb-core-sp-112",
+      "qcb-core-sp-113",
+      "qcb-core-sp-114",
+      "qcb-core-sp-115",
+      "qcb-core-sp-116",
+      "qcb-core-sp-117",
+      "qcb-core-sp-118",
+      "qcb-core-sp-119",
+      "qcb-core-sp-120"
+    ],
+    "record_selection": "Actual current prepared items from qcb_curriculum.load_catalog; full digests populated programmatically.",
+    "catalog_hash": "ae4c66d6bd179c026a226f6b5bbc23a70f56476df4afdbdf892ea2e9da2848b8",
+    "observed_head_at_start": "09ae98960d9e13da80de9689f8b49e38f68c4fd0",
+    "output": "Only workspace _review_tmp/state-preparation-111-120-review.json; prior report left intact and no active-catalog/repository file edited.",
+    "source_coverage": "Complete HermiteIntervalMass, HermiteCutRank, HermiteSampleStructure, HermiteBinaryCutoff and HermiteSmoothness modules read. Relevant sample API, cutoff dependency and cost primitives read; HermitePolynomial definitions/proofs reused from preceding complete read under identical LF hash.",
+    "primary_sources": "All ten primary_sources arrays are empty. Review binds exact local Lean source_refs; no external paper fidelity claim inferred from module prose.",
+    "alias_scope": "Actual within-batch contracts compared; bounded search of current native and release-v3 released/provisional questions/source identities found related resource/error targets. No global semantic deduplication or aggregate distinct-core count."
+  },
+  "provenance": {
+    "actual_task": "/root/qcb_formal_view_audit",
+    "independence": "Distinct from structured-preparation-author-b2; no item or repair in this batch authored by this reviewer. Old review verdicts not used as evidence.",
+    "exposure": "Questions, complete answers/rubrics and source metadata visible. This is not blind decoding.",
+    "protocol_context": "Previously read repository substantive-worker/publication/digestion/shared protocols retained.",
+    "lean_rerun": false,
+    "external_access": false,
+    "additional_agents": false,
+    "file_hash_method": "qcb_integrity.text_sha with LF normalization only.",
+    "publication_boundary": "Source inspection and independent mathematical reader review only, not new exact-root kernel execution, source-publication sealing or current catalog admission."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-sp-111",
+      "key": "qcb-core-sp-111",
+      "item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For g(x)=q(start+step*x)^2 and any coefficient cutoff D>=natDegree(g), expand g(j)=sum_{r=0}^D g_r*j^r. Interchanging finite sums and using the exact power-sum polynomial gives M=sum_r g_r*P_r(count). Since affine substitution does not increase degree, D=2*natDegree(q) is a valid upper bound for arbitrary step, and every count including zero is covered.",
+        "defect": "The question says g is of degree D=2deg(q), and the answer/rubric r1 explicitly assert deg(g)=2deg(q). The assumptions allow step=0. For q(x)=x, start=1, step=0, g=1 has degree zero rather than two. The correct relation is an upper bound. The proof and closed-form mass identity are otherwise valid.",
+        "answer_rubric": "r2-r4 correctly exchange sums, insert exact Faulhaber polynomials and cover empty sums. Their validity does not repair r1's false exact-degree assertion. An answer/question/rubric successor should call D a bound, or separately assume a nonconstant affine substitution and handle the zero polynomial's degree convention.",
+        "resource_boundary": "A degree-sized symbolic sum does not mean constant bit complexity in count: count's representation length, power/rational evaluation, Bernoulli coefficients and coefficient production still cost work. No dense sample enumeration or quadrature approximation is needed for the algebraic identity."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "declarations": [
+            "powerSumClosed",
+            "powerSumClosed_eq",
+            "affineSquared",
+            "polynomialMassClosed",
+            "polynomialMassClosed_eq",
+            "affineSquared_degree"
+          ],
+          "lines": "20-71",
+          "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+          "checked": "Read entire Faulhaber adapter, finite-sum exchange and the actual <= affine degree theorem."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-112",
+          "other_item_digest": "f461f617f938693f5dd6590f3941706aa04c057bf24d4f52eda14c0641aecfab",
+          "relation": "different_branch_mass_identity",
+          "same_core_alias_proposed": false,
+          "reason": "Polynomial power sums versus exponential geometric sums are complementary mass suppliers, not the same closed form."
+        }
+      ],
+      "limitations": [
+        "Rejection binds the false degree statement; the local arbitrary-bound theorem remains correct as inspected."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-112",
+      "key": "qcb-core-sp-112",
+      "item_digest": "f461f617f938693f5dd6590f3941706aa04c057bf24d4f52eda14c0641aecfab",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "exp(start+step*j)^2=exp(2start)*q^j with q=exp(2step). Over real inputs exp injectivity gives q=1 iff step=0. For step!=0 use the finite geometric quotient. At step=0 the sum is count*exp(2start). The quotient agrees with the finite polynomial sum in q away from q=1, so its continuous extension has value count; this proves the claimed limit without needing L'Hopital.",
+        "answer_rubric": "The complete answer and r1-r4 preserve the zero-step branch, ratio condition and limiting value. 'Undefined quotient' is standard partial-division language; in the source Lean field division is total. At step=0 the raw quotient expression evaluates to zero, so it gives the wrong mass for count>0 and must be replaced by the explicit branch. At count=0 both branch values are zero. The reference must not be read as saying Lean terms cease to exist.",
+        "evidence_boundary": "The exact finite-sum theorem is locally present. Continuity at zero is a valid independent NL extension via the finite sum, not a newly inspected Lean continuity theorem. Small-step cancellation may be numerically ill-conditioned in the quotient; the exact identity proves no floating-point accuracy."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "declarations": [
+            "exponentialMassClosed",
+            "exponentialMassClosed_eq",
+            "right_exponential_mass"
+          ],
+          "lines": "89-125",
+          "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+          "checked": "Read both definition branches and complete geometric-sum proof; the right tail negates both start and step."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-111",
+          "other_item_digest": "bd9b2d2da101f1db87e218c7ec51012ef6c990243065faefa15cd99c4985d4eb",
+          "relation": "complementary_branch_supplier",
+          "same_core_alias_proposed": false,
+          "reason": "Distinct exponential versus polynomial mass evaluations; neither formula is an alias of the other."
+        }
+      ],
+      "limitations": [
+        "No bit-complexity or stable numerical evaluation claim; no new Lean execution."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-113",
+      "key": "qcb-core-sp-113",
+      "item_digest": "a7ff8025b9d3472242c418b45c7937ff94ad3774a512035a0a2895e785d55564",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "On n+1 wires, the natural index 2^n is in Fin(2^(n+1)). Substitution into the actual left-inclusive grid gives p=0. The source endpoint value gives smoothInitial(k,0)=1, so that squared summand is one and all other squares are nonnegative. Therefore total unnormalized squared mass is >=1. No positivity of any amplitude is used, and the source result actually holds for every real L.",
+        "defect": "The main proof is correct, but the question assigns strict positivity the role of keeping the anchor 'honest'; the answer and rubric r4 say positivity realizes the anchor by an actual sample and makes the normalizer nonzero. The actual unit anchor is realized by the central-index identity plus the order-zero endpoint jet, independently of positivity. Positivity alone supplies no sample of value one. The established >=1 bound already implies the normalizer is nonzero, so an additional positivity premise is unnecessary for that conclusion.",
+        "required_change": "Retain the central-index/single-square proof, and replace the invented positivity explanation in question, answer and r4 by: strict positivity is a separate theorem with no role in this bound or its nonzero-normalizer consequence. Do not move that separate fact into the proof's dependency list.",
+        "edge_cases": "n=0 here means one qubit, two grid points; the central index is one. It does not mean the zero-qubit sample table. L=0 still has all grid values at zero and the bound holds, though the question's L>0 restriction is harmless. No ancilla, phase or probability-success guarantee follows from unnormalized mass alone."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "declarations": [
+            "smoothInitial_zero",
+            "centralIndex",
+            "gridPoint_central",
+            "sampled_mass_ge_one"
+          ],
+          "lines": "162-195",
+          "sha256_lf": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f",
+          "checked": "Read complete actual-grid identity and single-term proof; it calls no positivity theorem."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+          "declarations": [
+            "gridPoint",
+            "sampledAmplitude",
+            "sampleNorm",
+            "sampledAmplitude_pos"
+          ],
+          "lines": "22-44",
+          "sha256_lf": "dee753c9379124c29f3c2b08e2b597714b9f9dacca073ec315add33f7f169ec7",
+          "checked": "Read sample/normalizer definitions and distinguished the separate positivity argument."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-103",
+          "other_item_digest": "cf9f012b3ae8f37e5d04817754ee8ca5785470f5f4faef3d82c859613ef20f54",
+          "relation": "positive_values_not_unit_anchor",
+          "same_core_alias_proposed": false,
+          "reason": "Source positivity is different from exact value one at the central grid point; the logical distinction is the defect here."
+        }
+      ],
+      "limitations": [
+        "The inequality itself is accepted; rejection concerns the requested explanatory premise and its rubric."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-114",
+      "key": "qcb-core-sp-114",
+      "item_digest": "8692de94902e02e828e3bcd36f059d65ad388327e3f3824390ab974de1fa729b",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Translate q about a=u(x): q(a+s)=sum_{i=0}^d (taylor(a,q))_i*s^i because translation preserves degree and deg(q)<=d. Taking s=v(y), define A[x,i]=translated coefficient and B[i,y]=v(y)^i. Their product is the array exactly through inner carrier Fin(d+1); rank(F)<=rank(A)<=d+1 for finite columns.",
+        "answer_rubric": "The answer gives the actual separating factors, correct output-row/intermediate/column orientation and rank argument required by all four rubric entries. The hypothesis is arbitrary real u,v; only their additive separation matters. This is a width upper bound, not an assertion of exact rank d+1 or full independence.",
+        "edge_cases": "d=0 and zero q give constant/zero arrays factoring through width one. Empty row or column index sets give rank zero. Large row/column counts do not affect the symbolic width, but evaluating/storing factors can still depend on those counts."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "declarations": [
+            "FactorsThrough",
+            "FactorsThrough.rank_le",
+            "polynomial_add_factorization",
+            "polynomial_add_rank_le"
+          ],
+          "lines": "23-50",
+          "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+          "checked": "Read complete shifted-Taylor factor witnesses and rank extraction."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-115",
+          "other_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+          "relation": "base_factorization_for_composition",
+          "same_core_alias_proposed": false,
+          "reason": "The sum/product calculus uses this degree-width supplier; a base factorization is not the same target as the full calculus."
+        },
+        {
+          "other_core_id": "qcb-core-sp-116",
+          "other_item_digest": "5a48d2fbfdcd90638dbcba8d09119755740f0e5606aae50d25be30c0d2c43380",
+          "relation": "polynomial_piece_of_full_target",
+          "same_core_alias_proposed": false,
+          "reason": "The piecewise target needs thresholds and exponentials as well as this polynomial factor."
+        }
+      ],
+      "limitations": [
+        "Exact real factorization only; no orthonormal completion, normalized circuit or costed producer inferred."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-115",
+      "key": "qcb-core-sp-115",
+      "item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "The four factorization laws are valid upper-bound constructions: concatenate inner indices for sums (w1+w2), negate or scale one factor without changing w, and use paired inner indices for Hadamard products (w1*w2). Exponentials of additive arguments factor through width one. The two-state threshold supplier, however, is for natural block indices M*u(x)+v(y) with 0<=v(y)<M.",
+        "defect": "The answer and rubric r3 assert threshold width two without stating those necessary block-index assumptions; the item's assumptions and conventions are empty and the question is generic. For M=1, u=0,1,2, v=0,1,2 and T=3, the threshold matrix is [[1,1,1],[1,1,0],[1,0,0]], with determinant -1 and rank three. Thus the unqualified width-two base claim is false. It violates v<M, precisely the source premise omitted by the item.",
+        "required_change": "Retain the four universal composition laws but qualify the threshold application with natural-valued indices, M>0 and v(y)<M (or supply the exact source block-suffix contract). Rubric r3 must check the qualifier. Widths are produced upper bounds, not minimal ranks; scaling by zero and cancellations can lower actual rank.",
+        "resource_boundary": "Symbolic factor witnesses and index-cardinality arithmetic avoid forming the dense target for this proof. They do not bound arithmetic cost of computing arbitrary factor entries or certify a preprocessing/circuit algorithm."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "declarations": [
+            "FactorsThrough.add",
+            "FactorsThrough.neg",
+            "FactorsThrough.pointwise_mul",
+            "FactorsThrough.scale"
+          ],
+          "lines": "72-105 and 250-257",
+          "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+          "checked": "Read all factor constructions and finite-sum proofs."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "declarations": [
+            "blockIndex_lt_iff",
+            "threshold_factorization",
+            "product_factorization",
+            "exponential_add_factorization"
+          ],
+          "lines": "61-70 and 107-148",
+          "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+          "checked": "Read natural index/suffix-bound assumptions and explicit two-state witnesses."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-116",
+          "other_item_digest": "5a48d2fbfdcd90638dbcba8d09119755740f0e5606aae50d25be30c0d2c43380",
+          "relation": "calculus_prerequisite_with_missing_threshold_hypothesis",
+          "same_core_alias_proposed": false,
+          "reason": "sp-116 explicitly includes v<M and instantiates the three-piece target. Its valid supplier use does not validate this generic unqualified claim."
+        }
+      ],
+      "limitations": [
+        "Rank-three witness is elementary exact mathematics, not a newly executed Lean counterexample."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-116",
+      "key": "qcb-core-sp-116",
+      "item_digest": "5a48d2fbfdcd90638dbcba8d09119755740f0e5606aae50d25be30c0d2c43380",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For the actual increasing affine source grid a+h*j (h>0), translate p<-1 and p<0 into j<A and j<B via natural ceilings. With j=M*u+v and v<M, each threshold has width two; its complement also has width two directly. The left exp term has width 2*1=2. The middle band is a difference of two width-two indicators (width4), multiplied by a degree<=2k+1 polynomial (width2k+2), giving 8k+8. The right exp term has width2. Direct-sum composition yields 8k+12.",
+        "answer_rubric": "The complete reference and r1-r4 account for every summand and the complement supplier; in particular they do not incorrectly give the middle band width two merely from a difference. The intended grid is the source's positive-step affine grid; this convention should be stated more explicitly in a self-contained edition. Under that source grid, all index casts, natural cutoffs and endpoint conventions agree. At p=0 the exponential and source polynomial both equal one, so using the right branch there is exact.",
+        "edge_cases": "Empty prefix/suffix cuts still satisfy the finite block-factorization API. For nonempty suffix carrier, v<M entails M>0; if suffix is empty, the conditional statement is vacuous. The result is a rank upper bound, not exact rank 8k+12 and not a circuit or finite-precision certificate."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "declarations": [
+            "blockIndex_lt_iff",
+            "threshold_factorization",
+            "threshold_complement_factorization",
+            "affine_lt_cut",
+            "smoothInitial_strict",
+            "HermiteBond",
+            "hermiteBond_card",
+            "hermite_affine_factorization",
+            "hermite_affine_cut_rank_le"
+          ],
+          "lines": "107-248",
+          "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+          "checked": "Read complete threshold/complement, ceiling transport, endpoint adjustment, cardinality and three-piece factorization proof."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+          "declarations": [
+            "cutSampleIndex",
+            "sampled_cut_factorization",
+            "sampled_cut_rank_le"
+          ],
+          "lines": "10-46",
+          "sha256_lf": "eda04790bd59d39a49da0e98bc9602261ef7c5b0cdb531d88a97c3f6d1036d1f",
+          "checked": "Read actual positive-L grid instantiation, including empty prefix/suffix widths."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-114",
+          "other_item_digest": "8692de94902e02e828e3bcd36f059d65ad388327e3f3824390ab974de1fa729b",
+          "relation": "proper_polynomial_subtarget",
+          "same_core_alias_proposed": false,
+          "reason": "One ingredient controls the polynomial piece; thresholds, two exponential pieces and composition are additional."
+        },
+        {
+          "other_core_id": "qcb-core-sp-115",
+          "other_item_digest": "9b1cb75533a000762b2c32c229bd35ff69abe87b9d290f07a67c8c3f56841339",
+          "relation": "concrete_application_not_generic_calculus_alias",
+          "same_core_alias_proposed": false,
+          "reason": "This target provides the actual full sample bound under its block-suffix premise, rather than just stating composition rules."
+        }
+      ],
+      "limitations": [
+        "Acceptance interprets 'grid' as the actual source affine grid with L>0; no arbitrary non-affine grid claim.",
+        "No new Lean execution or algorithm/resource guarantee."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-117",
+      "key": "qcb-core-sp-117",
+      "item_digest": "9f96b85f604c2c935ea27115f03d4f820e9c9f77fe246cd7050e6a2809a6e658",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "valid_part": "The source per-cut algebraic factorization does not itself provide a computed canonical TT/MPS, an actual local unitary completion, a primitive compiler, an evaluated normalizer or a uniform finite-bit runtime. It is correct to keep those obligations separate from the local rank certificate and not call the proof file a complete construction.",
+        "defect": "The answer goes further and treats rank-one factors as an example compatible with hard short-circuit preparation, then uses that to support a claim about every binary cut. Rank one at a single chosen cut permits arbitrary factor vectors that can have high ranks at internal cuts. Rank one at EVERY ordered binary cut is instead a product state and admits O(n) arbitrary-real one-qubit gate existence. More generally all-cut polynomial Schmidt rank supports an MPS and existential polynomial-size exact-real local-isometry circuits via additional mathematical theorems. Thus rank information alone does not produce an executable uniform finite-bit compiler, but it cannot be dismissed as insufficient for existential short exact-real gate count in the unqualified manner of this answer/rubric r3.",
+        "required_change": "A successor should specify the intended resource/constructivity contract and distinguish existential exact-real gate-size consequences from producing/computing the gates and finite-bit guarantees. Replace the one-cut arbitrary-factor example by a genuine computability/precision/access obstruction consistent with all-cut ranks (even noncomputable single-qubit amplitudes illustrate algorithmic input issues, while still allowing symbolic one-qubit gate existence). Do not infer necessity for arbitrary short-circuit architectures from usefulness for a TT route.",
+        "evidence_boundary": "The local source comment correctly describes its own certificate frontier and is not an impossibility theorem about all-cut bounded-rank states. No new MPS existence theorem was compiled in this review; the all-cut rank-one product-state discrimination is elementary NL mathematics."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+          "declarations": [
+            "sampled_cut_factorization",
+            "sampled_cut_rank_le",
+            "normalized_cut_factorization"
+          ],
+          "lines": "1-58",
+          "sha256_lf": "eda04790bd59d39a49da0e98bc9602261ef7c5b0cdb531d88a97c3f6d1036d1f",
+          "checked": "Read full module and exact source frontier: factorization witnesses, unchanged width under scalar normalization, no compiler."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "declarations": [
+            "FactorsThrough",
+            "FactorsThrough.rank_le"
+          ],
+          "lines": "23-31",
+          "sha256_lf": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2",
+          "checked": "Checked that the proposition is a matrix factorization certificate, not an algorithm/cost record."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+          "declarations": [
+            "sampleNorm",
+            "hermiteCircuit",
+            "hermite_firstColumn",
+            "hermite_ryCount",
+            "hermite_cxCount"
+          ],
+          "lines": "36-51 and 67-95",
+          "sha256_lf": "dee753c9379124c29f3c2b08e2b597714b9f9dacca073ec315add33f7f169ec7",
+          "checked": "Read separate normalizer and existing full-table reference circuit; the latter has exponential reference counts, not a consequence of cut rank."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-116",
+          "other_item_digest": "5a48d2fbfdcd90638dbcba8d09119755740f0e5606aae50d25be30c0d2c43380",
+          "relation": "certificate_scope_critique_not_same_rank_proof",
+          "same_core_alias_proposed": false,
+          "reason": "A boundary explanation is a different task from constructing the bound, but it must respect exact-real existence versus computational claims."
+        },
+        {
+          "other_key": "breadth-hermite-resource-scope",
+          "other_item_digest": "daaf6fa6a85ab645fd579a0682fd97ccf847363a87ad3ca0655852bbd81804b8",
+          "relation": "different_resource_or_error_target",
+          "same_core_alias_proposed": false,
+          "reason": "The legacy question inspects an actual resource theorem and finite-bit boundary, rather than deriving an impossibility from rank alone."
+        }
+      ],
+      "limitations": [
+        "Rejects the reference's overbroad logical-gap/example claim, not the useful distinction between certificate and compiler.",
+        "No source theorem refuted, no short-circuit construction or fresh Lean execution claimed."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-118",
+      "key": "qcb-core-sp-118",
+      "item_digest": "27638bfef87bf0b5f1fc109c2d14d973d255199199bfe386b9d7b6b53453ccdf",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "At c=0, f=0 and g(x)=x are smooth and agree in value, but their splice h is max(0,x). Its left difference quotient is zero and right difference quotient one, so h is continuous but not differentiable at zero. For general order j, using f=0,g=x^j shows matching lower jets does not ensure differentiability at order j; at the cut the unmatched derivative creates the analogous defect.",
+        "answer_rubric": "The full answer and rubric provide the explicit k=1 witness and correct one-sided derivative argument, then describe the source induction: value equality gives continuity, and common first derivative makes the derivative of a splice equal the splice of derivatives before recursing one order lower. 'Every equation used' is not, by itself, a necessity proof, but here the one-sided-jet condition and polynomial examples supply the stated role. For k=0 value agreement is precisely the continuity requirement.",
+        "boundary": "The reusable theorem assumes both branches are C^k on the real line and jets are ordinary iterated derivatives. The NL ReLU counterexample is not presented as a locally compiled new example. This is regularity, not state-preparation/resource evidence."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteSmoothness.lean",
+          "declarations": [
+            "splice",
+            "hasDerivAt_ite_of_eq",
+            "hasDerivAt_splice",
+            "deriv_splice",
+            "contDiff_splice"
+          ],
+          "lines": "21-90",
+          "sha256_lf": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc",
+          "checked": "Read complete common-derivative selector proof, neighborhood branches, continuity base and successor induction."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-119",
+          "other_item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+          "relation": "counterexample_to_dropping_hypothesis_versus_two-junction_application",
+          "same_core_alias_proposed": false,
+          "reason": "A failure witness for the general gluing contract differs from applying it to a specific parameterized Hermite family."
+        }
+      ],
+      "limitations": [
+        "No new Lean run or source-paper fidelity claim."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-119",
+      "key": "qcb-core-sp-119",
+      "item_digest": "040f53d31ca55c21c402b682f39e82941f9decafb2374dbed92e8d3d8bc47194",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For a FIXED order k and its source polynomial S_k, first glue S_k to exp(-p) at zero using right jets (-1)^j. The resulting right splice agrees with S_k on a neighborhood of -1, so their iterated derivatives at -1 agree. Glue exp(p) to that right splice at -1 using left jets exp(-1). Equality S_k(0)=1 reconciles the original middle-inclusive/right-exclusive convention with the splice's right value. The result is C^k(f_k).",
+        "uncertainty": "The source theorem is forall k, ContDiff(k,smoothInitial k): both the smoothing polynomial and the target depend on k. The public question and answer suppress that index on S and the target, then conclude 'the target is C^k for all k'. If this means the parameterized family f_k, the argument is correct. If it means one fixed polynomial splice is C^k for every k (C-infinity), it is false. For k=0 the canonical bridge is S_0(p)=1+(1-exp(-1))*p; its derivative at zero from the left is 1-exp(-1), whereas the right exponential has derivative -1, so f_0 is not C^1.",
+        "answer_rubric": "The two splice steps, local eventual equality and boundary value proof are correct for each fixed k. Rubric r4 repeats the ambiguous all-k conclusion. Require explicit S_k,f_k notation and conclusion forall k,C^k(f_k), or a fixed-k theorem with the given jets; do not claim one fixed bridge is smooth at every order.",
+        "resource_boundary": "No gate, normalizer, oracle or finite-bit statement follows from smoothness alone."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteSmoothness.lean",
+          "declarations": [
+            "contDiff_right_splice",
+            "right_splice_eventuallyEq",
+            "contDiff_double_splice",
+            "smoothInitial_eq_double_splice",
+            "smoothInitial_contDiff"
+          ],
+          "lines": "99-147",
+          "sha256_lf": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc",
+          "checked": "Read complete two-glue proof and final signature with the same k in regularity and smoothInitial k."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "declarations": [
+            "coefficientPolynomial",
+            "sourceInterpolant",
+            "sourceInterpolant_right_jet",
+            "smoothInitial"
+          ],
+          "lines": "168-182, 246-252 and 356-359",
+          "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+          "checked": "Checked k-dependent literal target and k=0 degree-one formula from its definitions."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_core_id": "qcb-core-sp-118",
+          "other_item_digest": "27638bfef87bf0b5f1fc109c2d14d973d255199199bfe386b9d7b6b53453ccdf",
+          "relation": "valid_gluing_hypothesis_consumer",
+          "same_core_alias_proposed": false,
+          "reason": "Related theorem and counterexample, not the same target."
+        },
+        {
+          "other_core_id": "qcb-core-sp-104",
+          "other_item_digest": "10130b96d45745bf1b25df4c137ef2168b7368cb7eef7fb384197c1df6db6fc7",
+          "relation": "jet_uniqueness_prerequisite_not_regularization",
+          "same_core_alias_proposed": false,
+          "reason": "Polynomial endpoint uniqueness does not imply C-infinity of one finite-degree splice."
+        }
+      ],
+      "limitations": [
+        "Uncertainty concerns quantifier/indexing in the exact public reader contract, not the fixed-k source theorem."
+      ]
+    },
+    {
+      "core_id": "qcb-core-sp-120",
+      "key": "qcb-core-sp-120",
+      "item_digest": "345c21e4f78ee80ed2cbaa7372d069aacbfb19d8c3c2f046e5b8df13c107196a",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Let c=cutIndex(n,L) be the first natural index not below -1. In an interval of 2^r cells, keep start<=c<=start+2^r and exact lower=gridPointNat(start), span=gridStep*2^r. For r=0, comparison at lower gives start<c or c<=start, so the invariant forces respectively c=start+1 or c=start. At r+1, halving span and adding it to lower gives exactly gridPointNat(start+2^r); comparison selects the half whose inclusive c bounds hold. Induction proves the returned value. Initially root span is pi*L, lower=-pi*L, and c lies in [0,2^n], so compute returns c.",
+        "answer_rubric": "The reference and r1-r4 preserve the correct inclusive cutoff-index bounds, the extra base comparison, exact midpoint identities and endpoint treatment. This is a search over the LEFT half interval [-pi L,0] of the n+1-qubit full grid, containing 2^n cells; it is not a different n-qubit full grid. The answer's 'already-decided low-order index' is informal: start is the left index offset selected by successive upper/lower halves, not a change to physical little-endian wire semantics.",
+        "cost": "Each internal level charges a field division and addition plus one comparison; the leaf charges one comparison. Search costs exactly 2n field and n+1 comparison operations. Initialization charges pi*L multiplication and 0-width subtraction, giving 2n+2 fields and n+1 comparisons. Natural indices, exponentiation by two, data representation, pi generation, proof/counter bookkeeping and finite-bit exact comparisons are outside this stored exact-real scalar model.",
+        "edge_cases": "n=0 is one left-half cell and needs the leaf comparison, with possible cutoff zero or one. If -pi L>=-1 then c=0. Positive L makes gridStep positive and bounds c by the midpoint, including the extreme c=2^n. No grid-sized table or ceiling evaluation is performed by the producer, although its correctness target is defined by the clamped natural ceiling."
+      },
+      "source_checks": [
+        {
+          "file": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+          "declarations": [
+            "below",
+            "search",
+            "search_cost",
+            "half_span",
+            "middle_point",
+            "search_value",
+            "compute",
+            "root_span",
+            "compute_value",
+            "compute_cost",
+            "compute_comparisons",
+            "compute_field_operations"
+          ],
+          "lines": "18-129",
+          "sha256_lf": "3e236d6572ceba6d0418cb75da49512152bf03586cebc03b4d9cd8132029d098",
+          "checked": "Read entire search module, both correctness induction branches and exact counter equalities."
+        },
+        {
+          "file": "QuantumBlockEncoding/HermiteBoundaryInjection.lean",
+          "declarations": [
+            "gridStep",
+            "gridPointNat",
+            "gridStep_pos",
+            "gridPointNat_midpoint",
+            "cutIndex",
+            "gridPointNat_lt_neg_one_iff",
+            "cutIndex_le_midpoint"
+          ],
+          "lines": "660-713",
+          "sha256_lf": "a78c5a9e71e669048e5274cb55e3e10ccec326bccf26739713dd695bd15b2ca0",
+          "checked": "Read actual n+1-qubit grid, strict comparison/ceiling equivalence and upper bound."
+        },
+        {
+          "file": "QuantumBlockEncoding/StoredGivens.lean",
+          "declarations": [
+            "Op",
+            "Cost",
+            "Run",
+            "Run.pure",
+            "Run.bind",
+            "charge",
+            "add",
+            "sub",
+            "mul",
+            "div"
+          ],
+          "lines": "21-53",
+          "sha256_lf": "87a1f69d5b138f23c96a6f77a438aa81edef27427cb2581c4defe019079d2ee4",
+          "checked": "Read counter semantics and charged scalar primitives used by the search."
+        }
+      ],
+      "alias_findings": [
+        {
+          "other_key": "breadth-hermite-resource-scope",
+          "other_item_digest": "daaf6fa6a85ab645fd579a0682fd97ccf847363a87ad3ca0655852bbd81804b8",
+          "relation": "different_resource_or_error_target",
+          "same_core_alias_proposed": false,
+          "reason": "Scalar cutoff preprocessing is not the final state-action/gate-bound theorem."
+        },
+        {
+          "other_key": "breadth-hermite-angle-budget",
+          "other_item_digest": "d2984caafeda90de3eb89b0fff28e267dd248af2c8ee539ee846eb462147061c",
+          "relation": "different_resource_or_error_target",
+          "same_core_alias_proposed": false,
+          "reason": "Search exact comparisons and scalar operation counts differ from approximate rotation-angle error propagation."
+        }
+      ],
+      "limitations": [
+        "Exact-real value/cost theorem inspected, not a finite-bit or implementable arbitrary-real-comparison algorithm.",
+        "No new Lean execution."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-sp-112",
+      "qcb-core-sp-114",
+      "qcb-core-sp-116",
+      "qcb-core-sp-118",
+      "qcb-core-sp-120"
+    ],
+    "rejected": [
+      "qcb-core-sp-111",
+      "qcb-core-sp-113",
+      "qcb-core-sp-115",
+      "qcb-core-sp-117"
+    ],
+    "uncertain": [
+      "qcb-core-sp-119"
+    ],
+    "defect_boundary": "Rejections concern exact question/reference/rubric contracts, not an environment failure or refutation of the narrower named Lean theorems.",
+    "resource_classification": "Mass and rank modules are exact algebraic suppliers. Cutoff module is an explicit producer in an extended exact-real counter model. Smoothness module is a fixed-order gluing theorem applied to an order-dependent target family. None alone is a finite-bit Clifford+T preparation certificate.",
+    "next_action": "Inspect the bound originals and qualify/repair the stated degree, threshold premise, positivity dependency and rank/existence claims separately. Clarify the indexed smoothness family. No successor is authored or approved here."
+  }
+}

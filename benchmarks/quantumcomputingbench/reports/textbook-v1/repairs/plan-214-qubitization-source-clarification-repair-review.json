@@ -1,0 +1,38 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-plan-214",
+  "repair_record_digest": "4554f42e4b47e86a076bf97e782baa34f6ae271884d2cc834ef7a1190551ab8d",
+  "original_item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+  "verdict": "accept",
+  "exposure": {
+    "role": "Actual /root/qcb_native_comparison reviewing the exact candidate authored by /root/qcb_formal_view_audit. I did not author or alter this candidate; identity strings alone are not a real-world independence/human certificate.",
+    "prior_context": "I previously inspected historical214 as a neighboring contract in scientific-reader work and have personally read the adjacent qubitization source. Parent supplied the source-clarification objective; the full candidate exposes its author rationale and prior-review context. This is not blind/source-blind. I read the complete current candidate and full historical mathematical original, including question, answer, rubric, five steps, assumptions, conventions and primary-source metadata; I did not substitute an intended repair for the actual content.",
+    "binding_head": "0b229454bcac07658738e184e255d3ae44e65957",
+    "candidate_file": "_review_tmp/plan-214-qubitization-source-clarification-repair.json",
+    "candidate_sha256_lf": "c9833bdec3df5d9ff676940548b51be3e7c4f615303f270b18cd20543f82dd9c",
+    "actual_primary_retrieval": "For this review I independently fetched https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf in memory:5718900 bytes,447 pages, raw SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599, matching the original and candidate pin. Complete printed143,155,159,167,168 were text-extracted and read; I personally rendered in memory and visually inspected155/168. No PDF/page file was saved or redistributed and no other pages are certified by this bounded review.",
+    "verification_limit": "Only schema/binding checks and source/mathematical reconstruction were performed. No fresh Lean/kernel, circuit production execution, finite-bit synthesis, source-blind decoder, model/human/expert, novelty, admission or stable-publication claim. Candidate's reported authoring execution was read; I independently corroborated bytes/pins/pages/formulas, not every historical action in its narrative."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "fa6d5317e5460f774b682be442b3a28aaf6d927eb9775d600bc204dec418b186",
+    "all_nine_contract_fields_unchanged": true,
+    "schema": "The exact13-field qcb.textbook_answer_successor.v1 schema matches the existing answer-successor schema: no unknown/contract replacement fields, admission=pending_distinct_review, candidate author distinct from this reviewer and original author, exact core/predecessor key/whole-item digest binding. Exposition changes only core_summary and five allowed-node semantic steps. The four rubric IDs remain unique with positive finite weights.",
+    "assessment": "The original question already asks the Hermitian-block versus whole-unitary distinction, a concrete Example9.17-compatible counterexample and Definition9.23's stronger property/use. Those demands are mathematically valid and are answered without adding a question premise or changing family, split, graph_version, target/supporting nodes or source_refs. In a shadow successor, all nine CONTRACT_FIELDS remain byte-for-value identical and the five-step count is preserved.",
+    "historical_primary_metadata": "The original primary_sources array also remains unchanged. Its wrong Eq9.30–9.40 qubitization anchor and omission of printed155 persist as explicit source-metadata debt. This mathematical/source-clarification acceptance does NOT say that the inherited primary_sources locators were corrected, nor authorize a metadata transport or a claim of complete source-publication closure."
+  },
+  "substantive_reconstruction": {
+    "compression_and_counterexample": "Let J embed the clean ancilla subspace. Exact BE means J†U_AJ=A/alpha, with alpha>0. That fixes a compression, while the other blocks must jointly satisfy unitarity rather than being independently free. The proposed R=[[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]] satisfies R†R=I but R†≠R; U_A=R⊗I2 has clean block(1/2)I2 and the exact Eq9.72 input-zero amplitude action. The alternative [[a,b],[b,-a]] with a²+b²=1 has the same first column and is Hermitian unitary. Thus the oracle's specified first column does not force a unique or necessarily non-Hermitian completion; the counterexample proves admissibility, not a universal completion claim. Rubric1–2 and steps1–2 are supported.",
+    "normalized_exact_closure": "For an exact Hermitian U_A, set C=A/alpha=J†U_AJ. Compression is a contraction since ||Cx||≤||U_AJx||=||x||, and C is Hermitian. Choose a unit eigenvector v from an orthonormal spectral basis of C (normalization is a free proof choice, not an extra premise about A). With a=Jv and U_Aa=lambda a+e, clean orthogonality and unitarity give ||e||²=1-lambda². For |lambda|<1, b=e/sqrt(1-lambda²) is unit/clean-orthogonal, and U_A²=I gives U_Ab=sqrt(1-lambda²)a-lambda b. Hence U_A restricts to the stated reflection and Z_P to diag(1,-1); their product is the stated rotation. Projecting its kth power yields T_k(lambda), and summing over the spectral basis gives the clean block T_k(C), not T_k(A) at arbitrary scale. This checks rubric3–4 and steps3–5 without a whole-output-state inference.",
+    "endpoints_and_approximation": "At lambda=±1, e=0, so a spans a one-dimensional invariant line. Z_Pa=a and (U_AZ_P)^k a=lambda^k a=T_k(lambda)a; no zero-norm leakage vector is normalized. For approximate HBE, global self-adjointness still defines HBE, and its actual clean compression is an exact Hermitian contraction, but the requested A/alpha need not equal it. The candidate explicitly declines an exact T_k(A/alpha) or quantitative error bound without an error argument. It also does not claim Hermiticity is necessary for every more general qubitization construction.",
+    "source_and_scope": "Own complete primary reads confirm Example9.17/Eqs9.72–9.73 on printed155, Definition9.23 on159, and the complete closure on167–168: Eqs10.30–10.35, reflection/iterate10.37–10.40 and projected block10.41. They are not9.30–9.40. Source168 explicitly separates the±1 one-dimensional case. The candidate's correct operative references and residual frozen-metadata warning are both accurate. All four current rubric entries and five steps were assessed; acceptance is of this exact private answer/rubric/exposition, not a metadata repair or a fresh formal/circuit/resource certificate."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Exact local LF binding for the Lin–Wiebe source-registry metadata only. Independently fetched primary pin5718900bytes/447pages/raw SHA56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599; complete printed143,155,159,167–168 personally read and155/168 visually inspected for this review. Metadata binding is not the external proof text; no whole-book/local-Lean claim."
+    }
+  ]
+}

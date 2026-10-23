@@ -11,7 +11,7 @@ import time
 import urllib.parse
 import urllib.request
 
-ORIGIN = 'https://dakebu.github.io/Quantum-Computing-Block-Encoding/'
+ORIGIN = 'https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/'
 ROOT = Path(__file__).resolve().parents[2]
 
 

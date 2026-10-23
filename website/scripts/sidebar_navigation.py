@@ -56,12 +56,20 @@ def render_navigation(prefix: str, current: str, papers: dict, cases: list[dict]
         return section(key, title, content[len(heading):], route.startswith(target))
 
     research = links_section("research", "Structure & research", VIEWS)
+    bench = links_section("quantumcomputingbench", "QuantumComputingBench", (
+        ("Exercise book", "quantumcomputingbench/"),
+        ("Mathematical exercises", "quantumcomputingbench/non-lean/"),
+        ("Lean companion", "quantumcomputingbench/lean/"),
+        ("Contribution contract", "quantumcomputingbench/contribute/"),
+        ("Evidence and release gates", "quantumcomputingbench/evidence/"),
+    ))
     return (
         '<nav class="book-nav" data-compact-navigation="1">'
         '<strong class="nav-group-label">Explore</strong>'
         + link("Home", "") + link("Book map", "learning/")
         + '<strong class="nav-group-label">Textbooks</strong>'
         + build_site.render_book_navigation(prefix, route)
+        + bench
         + '<!-- research-nav:start -->' + research + '<!-- research-nav:end -->'
         + collection("papers", "Papers", render_papers_navigation(prefix, current, papers), "papers/")
         + collection("examples", "Example Cases", render_examples_navigation(prefix, current, cases), "example-cases/")

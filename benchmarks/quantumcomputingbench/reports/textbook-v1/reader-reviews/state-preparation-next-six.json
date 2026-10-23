@@ -1,0 +1,171 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "requested_core_ids": ["qcb-core-sp-006", "qcb-core-sp-007", "qcb-core-sp-008", "qcb-core-sp-010", "qcb-core-sp-011", "qcb-core-sp-012"],
+    "excluded_core": "qcb-core-sp-009 was expressly excluded from this assignment.",
+    "catalog_selection": "Five requested cores were read as actual prepared items returned by qcb_curriculum.load_catalog using .venv/Scripts/python.exe. sp-010 is absent from the current catalog and nl-v12/release.json; its actual prepared candidate was read from nl-v12/provisional.json and is reviewed separately below under provisional_items.",
+    "catalog_hash_at_initial_inspection": "ad7733d307ddc808f544f276cf0b0e8812e27c442abdd01072c6522ce0ecc74f",
+    "observed_branch": "agent/qcb-native-formal-v1",
+    "observed_head_at_start": "324bb730227cdb90a7ec526d232d1a25db95bdfd",
+    "digest_method": "qcb_core.digest of the complete actual prepared public item, not its authored record or a reconstructed subset.",
+    "content_checked": "Complete questions, answers, rubrics, assumptions, conventions, source references and relevant full local Lean definitions/proofs. Local source_refs are the primary anchors; these items have no external primary_sources.",
+    "comparison_scope": "Bounded comparison with current native items and release-v3 released/provisional questions and likely source-linked overlaps. Shared source nodes alone were not treated as mathematical equivalence. No global deduplication result is claimed."
+  },
+  "provenance": {
+    "actual_identity": "Resumed actual /root/qcb_formal_view_audit task, distinct from original author native-sp-author and the formal-decoder task. No extra agents were spawned.",
+    "exposure": "Not blind: questions, full answers and rubrics were visible. Earlier first-five review had exposed sp-007, sp-008 and sp-012 as comparison candidates and their source definitions. Prior accept labels were not used as evidence.",
+    "protocol_context": "Reused previously read AGENTS/HARNESS/substantive-worker, publication, digestion, memory, shared CONTRACT and ACCEPTANCE instructions. This is substantive local-source review, not source publication or new formal execution.",
+    "lean_rerun": false,
+    "external_access_or_extra_agents": false,
+    "file_hash_method": "qcb_integrity.text_sha: SHA-256 with CRLF-to-LF normalization only.",
+    "mutation_scope": "Only this new report; no frozen item, production source, repair, existing review, commit or push edited by this pass."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-sp-006",
+      "item_digest": "44c37085b4bd6ee2044b283002c7cb3d2067205bc96c3b84b5cb04a60a4002a6",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "For arbitrary real f and S=sum f^2>0, sum(f/sqrt(S))^2=S/(sqrt(S))^2=S/S=1. Sum-of-squares nonnegativity suffices for sqrt(S)^2=S; positivity is used to establish S!=0 at cancellation. This normalization theorem does not require f>=0, nor a state-preparation circuit.",
+        "answer_rubric_defect": "The main algebra and rubric r1-r3 correctly identify cancellation. However, the answer's final sentence and rubric r4 append the claim that the compiled loader first column is f/sqrt(S) without retaining the source theorem's pointwise nonnegativity premise. Under the stated arbitrary-real-table assumptions this is false in the allowed zero-qubit case: the sole table entry f=-1 has S=1 and normalized amplitude -1, while prepareCircuit 0 f is the empty circuit with exact first column +1. The literal matrix-entry theorem is not modulo global phase, so the sign cannot silently be discarded. Thus a correct solution to the question's normalization theorem is being paired with a stronger false reference/rubric assertion.",
+        "division_boundary": "The answer also says division is undefined at S=0 while immediately assigning the resulting sum the value zero. In Lean's real field division is total and 0/0=0; physically the all-zero table has no normalized state. A reader must distinguish those statements. No new Lean execution was performed to assert this convention.",
+        "required_successor": "Retain the arbitrary-real normalization question and correct its answer/rubric: either remove r4 and the circuit-specific concluding claim, or explicitly say the loader linkage is conditional on prepareCircuit_firstColumn's separate nonnegative-input and positive-mass hypotheses. State that at zero mass the formal normalized expression is zero and fails normalization, rather than calling Lean division undefined. This can be an answer/rubric successor with the question contract unchanged; do not silently weaken or edit the frozen record.",
+        "edge_cases": "n=0 is substantive, not excluded. Signed nonzero f still satisfies the pure sum-of-squares identity. The zero table fails S>0, and no gate, ancilla, approximation or resource result follows from normalization algebra."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["normSq", "normSq_nonneg", "normalized_sum_sq"], "lines": "211-214 and 310-317", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read entire norm identity proof, including square-root rewrite and div_self with nonzero premise."},
+        {"file": "QuantumBlockEncoding/RealAmplitudePreparation.lean", "declarations": ["prepareCircuit", "prepareCircuit_firstColumn"], "lines": "224-230 and 275-308", "sha256_lf": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa", "checked": "Read all first-column hypotheses and proof; zero-qubit branch uses nonnegative sole amplitude to obtain ratio +1."},
+        {"file": "QuantumBlockEncoding/PrimitiveSemantics.lean", "declarations": ["evalPrimitiveCircuit"], "lines": "373-377", "sha256_lf": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62", "checked": "Empty primitive circuit evaluates exactly to matrix identity, providing the negative zero-qubit counterexample directly from definitions."}
+      ],
+      "alias_findings": [
+        {"other_key": "r-preparecircuit-firstcolumn-normalization", "other_item_digest": "2810fc3a879b22576bcedd2cdfac4e965befa586f8edc63ee6d130d40ef47136", "relation": "downstream_circuit_theorem_with_additional_hypotheses", "same_core_alias_proposed": false, "reason": "The legacy target includes first-column induction for nonnegative positive-mass inputs. Pure normalization algebra is a prerequisite, not the same target. Both test_public."},
+        {"other_core_id": "qcb-core-sp-005", "other_item_digest": "4748bf7c81283496b115e778c1f365bd503d4384829e85ceb0959f348a5a97d4", "relation": "complementary_norm_invariant", "same_core_alias_proposed": false, "reason": "Marginal aggregation preserves the denominator before normalization; it does not prove division yields unit mass. Both test_public."}
+      ],
+      "limitations": ["Rejects the exact answer/rubric extension, not the valid normalization theorem.", "No new Lean execution, successor approval or global equivalence conclusion."]
+    },
+    {
+      "core_id": "qcb-core-sp-007",
+      "item_digest": "f47a739f7ea08d5acd553764322f8c24c2c6b1e7c40abe98923f3bceb2f8963a",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Define M_n(x)=transfer K n x. The base M_0=I acts on the supplied boundary. For x of length n+1 and free output bond b, the stage expansion gives sum_a U_n((last x),b)(0,a)*run_n(init x,a). Clean-column equality replaces U_n with the output-row/input-column slice K_n; the inductive hypothesis replaces run_n by M_n times boundary. Matrix-vector associativity then identifies the sum with (coreSlice(K_n,last x)*M_n(init x))*boundary at b, precisely M_{n+1}(x)*boundary. Later chronological stages multiply on the left.",
+        "answer_rubric_audit": "The complete answer preserves the free output b and summed input a, handles the empty prefix, applies the local clean-column premise rather than assuming global state action, and matches all four rubric requirements. Input-bit-one columns never appear. 'Arbitrary unitary completions' means any completion satisfying full unitarity and the same prescribed clean columns; existence of such a completion is not proved here, and arbitrary K need not be isometric.",
+        "edge_cases_and_boundaries": "The identity holds for unnormalized or zero complex boundaries, nonunitary stage matrices, and an empty finite bond carrier as an empty equality. Relative phases are preserved exactly by the linear formula. It is a state-action identity including the bond, not total-probability-one, terminal cleanup, a flattened physical circuit, a synthesis algorithm or a resource theorem."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["Stage", "freshZero", "liftStage", "step", "step_apply", "coreSlice", "transfer", "run", "run_eq_transfer"], "lines": "32-110", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read complete definitions and induction, including the sum collapse and matrix-vector composition order."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-002", "relation": "local_step_prerequisite", "same_core_alias_proposed": false, "reason": "sp-002 asks which columns act and whether padding is postselection. This item additionally proves every-length core contraction from stage/core equality. Both test_public; sharing step_apply does not make the targets equal."},
+        {"other_core_id": "qcb-core-sp-012", "other_item_digest": "071ab0623ad314e9dec69f07d951817d7eba436b0cdbfe21a38c52f4ec7b8e30", "relation": "supported_generalization_of_input-contract", "same_core_alias_proposed": false, "reason": "sp-012 weakens equality to active columns and requires initial/core support to prove completion independence. This question prescribes every fresh-zero bond column. The extra support reasoning prevents a mere notation alias. Different splits are related-theorem exposure, not an established same-target alias conflict."}
+      ],
+      "limitations": ["No stage completion existence, synthesis, mass preservation or terminal cleanup is inferred.", "No new Lean execution or exhaustive same-core reconciliation."]
+    },
+    {
+      "core_id": "qcb-core-sp-008",
+      "item_digest": "d403cce404da75f2931579b020692a9cf08143dfd7b2a59eeec69fce4c59f771",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "The mass of a complex vector is sum_i conjugate(v_i)*v_i, a real nonnegative scalar embedded in C. Fresh-zero embedding repeats each existing component once in the fresh-bit-zero sector and sets the other sector to zero. I on passive prefix tensor U is unitary when U is; hence its matrix action preserves mass because M†M=I. Basis regrouping is a bijection and preserves the finite sum. Induction on run length preserves the boundary mass, and a boundary concentrated with amplitude one on one bond label has mass one.",
+        "answer_rubric_audit": "The answer gives the padding, Kronecker unitary action and bijective regrouping explicitly, then proves one-step and all-length invariance and evaluates the basis boundary. All four rubric criteria are correct. Full-unitarity assumptions are retained. The claim concerns the joint emitted-bits-and-bond register; it does not claim the bond has been cleaned or that the emitted subsystem alone is a pure target state.",
+        "edge_cases_and_boundaries": "Length zero has one empty output word and the basis boundary already has unit mass. The explicit initial label requires the bond carrier to be inhabited; the impossible empty-carrier instance is not silently assigned probability one. Complex phase interference is retained by conjugation. No measurement, rejected branch or normalization factor is used. This semantic construction does not itself certify a primitive gate count, physical wire placement or an efficient circuit compiler."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["freshZero", "liftStage", "step", "liftStage_unitary", "run", "basisBoundary"], "lines": "39-59, 72-78 and 93-113", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read stage embedding, unitarity and initial state definitions."},
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["amplitudeMass", "amplitudeMass_mulVec", "amplitudeMass_freshZero", "stepBasisEquiv", "amplitudeMass_step", "amplitudeMass_run", "amplitudeMass_run_basisBoundary"], "lines": "288-341", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read complete unitary mass proof, padding proof, reindexing, run induction and basis-boundary evaluation."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-002", "relation": "padding_mass_prerequisite", "same_core_alias_proposed": false, "reason": "Unconditional fresh-zero mass preservation is one step of this theorem; it does not establish arbitrary-stage or all-length probability one."},
+        {"other_key": "qcb-authored-0006", "other_item_digest": "e63083a59b00dbd881ba3dcb0f68c0929137fba1fcb14e0d8ce66d4beab47039", "relation": "related_row-canonical_chain_isometry", "same_core_alias_proposed": false, "reason": "Legacy chainMass_eq is a real row-vector contraction theorem from orthonormal-row cores; this target is complex square-stage dynamics with fresh registers and a basis boundary. Relating them needs core/stage and orientation adapters, not just a renamed variable. Both train."},
+        {"other_core_id": "qcb-core-sp-007", "relation": "independent_state-action_guarantee", "same_core_alias_proposed": false, "reason": "Transfer equality does not require unitarity and cannot itself imply total probability one; this theorem does not require intended core equality."}
+      ],
+      "limitations": ["Normalization of the joint register is not terminal-bond cleanup or target-state fidelity.", "No new Lean execution or circuit/resource certificate."]
+    },
+    {
+      "core_id": "qcb-core-sp-011",
+      "item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f",
+      "verdict": "reject",
+      "semantic_core_verdict": "pending_contract_repair",
+      "reasoning": {
+        "reconstruction": "For physical bond cardinality D and chosen clean label, terminalCore has outputs only in W=span{|0,clean>,|1,clean>}, of dimension two. For a unitary full stage, the columns indexed by distinct (fresh input bit zero,bond a) are orthonormal. Any set of k prescribed terminal columns in W therefore has k<=2. This applies to active columns just as much as padded columns. The source's supported terminal action is an algebraic consequence conditional on support and local active-column equalities; the lemma itself makes no unitary or completion-existence assertion.",
+        "defect": "The question and assumptions specify active dimension greater than two and a strictly larger padded dimension. They then ask for an active-only restriction that would restore compatibility with unitarity. But k>2 ACTIVE terminal columns cannot fit in W either. The answer's dimension argument correctly disproves the all-padded-column demand, yet its final claim that restricting to active columns allows unitarity and cleanup to coexist is false under the exercise's retained active>2 hypothesis. Rubric r3 repeats 'active bond dimension d>2' where the source warning concerns the padded dimension. This is a mathematical contract defect, not a wording-only answer repair.",
+        "counterexample_obstruction": "Take padded bond D=4 and three active labels. The three unitary columns for fresh-zero inputs at those labels would have Gram matrix I_3. If all their support lies in W, their 2-by-3 coefficient matrix T has rank at most two, so T†T cannot equal I_3. Inactive-column choices cannot change this contradiction.",
+        "required_successor": "Version the question/assumptions/rubric to distinguish padded D>2 from active k<=2. Require the prescribed active T columns to be orthonormal (or explicitly leave local synthesis as an obligation); then compatible unitary completion can exist. Keep inactive input support and active-only terminal equality for the state-action conclusion. Merely deleting equalities on inactive labels while keeping active>2 does not fix it.",
+        "source_boundary": "At k=0 the supported input is the zero vector and factorization is algebraically valid but not a normalized state. At k=1 or2 compatible active columns must still be orthonormal for a unitary stage. The source preserves amplitudes exactly and gives zero on every non-clean output without postselection; it does not conjure a unitary satisfying arbitrary terminal T."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["Stage", "terminalCore", "step_terminalCore", "step_terminalCore_no_leakage", "step_terminalCore_of_supported"], "lines": "32-34 and 176-222", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read all terminal definitions and complete proofs. Source comment refers to all padded input columns at bond dimension>2, while the supported lemma assumes active equalities and has no unitary premise."},
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["run_terminal_clean"], "lines": "224-247", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read full supported-run composition proof; local terminal columns remain a premise, not a constructed unitary."},
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["RankReduced.last_bond_le_two"], "lines": "112-117", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Actual canonical terminal active dimension is bounded by two, corroborating the distinction from a larger padded physical register."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-012", "other_item_digest": "071ab0623ad314e9dec69f07d951817d7eba436b0cdbfe21a38c52f4ec7b8e30", "relation": "support_prerequisite_not_terminal_dimension_theorem", "same_core_alias_proposed": false, "reason": "Inactive support makes unused columns irrelevant; it cannot make more than two orthonormal active columns fit in a two-dimensional output subspace. Both train."},
+        {"other_core_id": "qcb-core-la-012", "other_item_digest": "b53e888a9d2bde591363f2eb202ee553d7d833c9cfc4f8c52e0ce21427338a09", "relation": "related_terminal_active_dimension_bound", "same_core_alias_proposed": false, "reason": "Gives the canonical min-recursion bound <=2. It does not prove the all-padded-column unitary obstruction or a completion theorem. A repaired contract needs a fresh comparison rather than automatic new-core status."}
+      ],
+      "limitations": ["The dimension obstruction is rigorous finite-dimensional reasoning from the displayed matrix shapes, not a newly executed Lean counterexample.", "A question-contract successor is necessary; no source or frozen item edited."]
+    },
+    {
+      "core_id": "qcb-core-sp-012",
+      "item_digest": "071ab0623ad314e9dec69f07d951817d7eba436b0cdbfe21a38c52f4ec7b8e30",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": {
+        "reconstruction": "Assume boundary support on active(0), core outputs supported on active(t+1), and equality of each stage's fresh-zero columns to K_t only for active(t) input labels. The transfer-applied boundary has the declared support: at length zero it is the boundary, and at a positive length an inactive output row of the last core is zero. For run equality, induct on length and expand step at free output b as a sum over old bond a. For active a, substitute clean-column equality. For inactive a, the preceding transfer amplitude is zero, so both the stage term and core term vanish independently of completion. This yields run=transfer*boundary. The run support then follows, and any two stages with the same active columns produce exactly identical amplitudes for this supported boundary.",
+        "answer_rubric_audit": "The full answer gives the three sufficient source hypotheses, the active/inactive split, no leakage and exact completion independence, and it explicitly preserves full-unitarity constraints as separate. All four rubric criteria match these source proofs. 'Gauge freedom' refers only to unreachable input-column freedom for the given supported semantics, not equality of full operators or a global-phase quotient.",
+        "minimality_boundary": "The source proves sufficiency, not an if-and-only-if characterization of logically weakest assumptions. Read the question's 'minimal hypotheses' as the explicit local support-and-column contract sufficient for this proof. Particular zero states or cancelling cores can satisfy the same run equality under weaker conditions; no universal necessity theorem is inferred or required by the proof described.",
+        "edge_cases_and_boundaries": "Rank may shrink or change inside one fixed finite carrier. Empty active sets imply zero supported amplitude; this need not be a normalized state. At length zero equality/support are just boundary facts. Complex amplitudes and relative phases are preserved. Neither probability one, terminal cleanup, compatible unitary completion existence nor a gate/resource bound is proved without additional premises."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["freshZero", "step_apply", "coreSlice", "transfer", "run"], "lines": "39-68 and 81-96", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read actual finite-sum and chronological contraction definitions, fixing output-row/input-column order."},
+        {"file": "QuantumBlockEncoding/SequentialBondPreparation.lean", "declarations": ["transfer_boundary_supported", "run_eq_transfer_of_supported", "run_supported"], "lines": "123-174", "sha256_lf": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5", "checked": "Read complete support proof, full run-equality induction including inactive zero terms, and derived run support."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-sp-007", "other_item_digest": "f47a739f7ea08d5acd553764322f8c24c2c6b1e7c40abe98923f3bceb2f8963a", "relation": "proper_supported_input-contract_generalization", "same_core_alias_proposed": false, "reason": "Taking all labels active reduces the supported theorem to all-clean-column transfer equality, but the changing-support proof is additional requested reasoning. No exact alias is established solely by that specialization."},
+        {"other_core_id": "qcb-core-sp-002", "relation": "related_fresh-input-one_column_irrelevance", "same_core_alias_proposed": false, "reason": "This target also permits arbitrary fresh-input-zero columns at inactive bond labels, which requires support propagation. Fresh-input-one irrelevance alone has no such rank-change guarantee."},
+        {"other_core_id": "qcb-core-sp-011", "other_item_digest": "8e29ce90772af81328f7d4b8e817f6183b46c52d96801e394ac4287c4be24a6f", "relation": "terminal_consumer_with_separate_dimension_obstruction", "same_core_alias_proposed": false, "reason": "Support theorem does not supply unitary-compatible active terminal columns; the sp-011 defect does not refute this algebraic support result."}
+      ],
+      "limitations": ["No theorem that the listed sufficient hypotheses are necessary in every degenerate instance.", "No new Lean execution, unitary completion or resource claim."]
+    }
+  ],
+  "provisional_items": [
+    {
+      "core_id": "qcb-core-sp-010",
+      "item_digest": "b2669f77b78478d3a6f4fb66336647a71f48073c82699087ff4167f696d70528",
+      "prepared_source": "benchmarks/quantumcomputingbench/data/public/nl-v12/provisional.json",
+      "catalog_status": "Absent from load_catalog and current released items; lifecycle candidate, pending answer/NL validation. This row must not count as a review of an admitted core.",
+      "verdict": "reject",
+      "semantic_core_verdict": "pending_contract_repair_and_overlap_reconciliation",
+      "reasoning": {
+        "reconstruction": "Source RankReduced recurses backward with left dimension l'=min(l,2*m'), terminal dimension unchanged. Thus every nonempty head is bounded by l and twice its next active bond. A one-core chain with arbitrary left l and terminal one has l'=min(l,2)<=2. Induction using maxBond(cons)=max(left,maxBond(tail)) proves maximal bond does not increase. These are structural dimensions from thin LQ, not necessarily actual numerical matrix ranks.",
+        "defect": "The frozen question, convention, answer and rubric call Chain 1 l 1 a scalar-to-scalar one-core chain with both boundaries one, but l is arbitrary in that source signature. If both boundaries really are scalar then l=1 and l'=min(1,2)=1. The answer's claimed sharp example says a scalar-boundary core populating two bit values attains reduced bond two; two physical amplitudes do not imply a two-dimensional left bond. This is false even for an ordinary one-bit superposition represented by a 1-by-2 core.",
+        "correct_sharp_case": "The bound two is sharp for terminal-one and arbitrary left l>=2: take l=2 with the core identified with the 2-by-2 identity in (bit,terminal) columns. It is not sharp for the claimed one-core Chain 1 1 1 specialization. Empty/deficient cores remain allowed; min-based dimensions are not a promise of minimal Schmidt rank.",
+        "answer_rubric_audit": "The recurrence, two head inequalities and maxBond induction are correct. The scalar-to-scalar identification and sharpness assertion are wrong; rubric r3 requires that misidentified scalar corollary. Repair needs to say one terminal core with arbitrary left bond, or a terminal suffix of a longer scalar-boundary chain, and distinguish that from a one-core chain whose initial boundary is scalar.",
+        "required_successor": "Keep this provisional. Correct the question/convention/r3 to terminal dimension one with arbitrary left l, and demonstrate sharpness only when l>=2. Alternatively retain both scalar boundaries and replace the sharp bound by l'=1. Those are different corrected contracts and require explicit versioning and comparison with qcb-core-la-012. No actual algorithm/cost claim is supported by the existence canonicalization."
+      },
+      "source_checks": [
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["Core", "Chain", "RankReduced", "exists_core_lq", "exists_rightCanonical", "RankReduced.head_bound", "RankReduced.last_bond_le_two"], "lines": "18-26 and 49-117", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Read complete factorization, dimension recurrence and head/terminal-bound proofs. Chain 1 l 1 has arbitrary left dimension l, not both boundaries fixed to one."},
+        {"file": "QuantumBlockEncoding/TensorTrainCanonical.lean", "declarations": ["maxBond", "RankReduced.maxBond_le"], "lines": "197-207", "sha256_lf": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f", "checked": "Read max definition including both boundaries and full induction proving non-enlargement."},
+        {"file": "QuantumBlockEncoding/ThinLQ.lean", "declarations": ["exists_factor_of_le", "exists_thin_lq"], "lines": "38-93", "sha256_lf": "40c0c7680f93a7365d95c68e4c3607ab20f52d1e62771dc98d6a6d8c3f39c07a", "checked": "Reused previously inspected full proof of min-shaped orthonormal-row factors, including deficient/empty cases; no computation or complexity inferred."}
+      ],
+      "alias_findings": [
+        {"other_core_id": "qcb-core-la-012", "other_item_digest": "b53e888a9d2bde591363f2eb202ee553d7d833c9cfc4f8c52e0ce21427338a09", "relation": "substantial_same_rank-bound_subtarget_overlap", "same_core_alias_proposed": "pending_repaired_contract", "reason": "The recurrence/head bound/terminal <=2 reasoning substantially overlaps. sp-010 additionally asks for maxBond non-enlargement and false one-core scalar sharpness. A corrected target must be reconciled, not declared distinct from shared-source differences alone. Both train."},
+        {"other_key": "qcb-authored-0001", "other_item_digest": "be983fb5a6a9a7c42c46f392584fe45067899858381971a78353d0746631c5ef", "relation": "thin_LQ_dimension_prerequisite", "same_core_alias_proposed": false, "reason": "Legacy target gives min(m,n) factor shapes for one real matrix; backward chain recurrence and maxBond induction are additional claims."
+        }
+      ],
+      "limitations": ["This is an exact prepared-provisional-item rejection, not an admission event or review credit for the current catalog.", "No Lean rerun, mathematical source edit or successor authored."]
+    }
+  ],
+  "summary": {
+    "admitted_originals_accepted": ["qcb-core-sp-007", "qcb-core-sp-008", "qcb-core-sp-012"],
+    "admitted_originals_rejected": ["qcb-core-sp-006", "qcb-core-sp-011"],
+    "provisional_originals_rejected": ["qcb-core-sp-010"],
+    "classification": "SOURCE_INVALID for the rejected frozen question/answer/rubric contracts; the named local Lean source statements remain sound as inspected. No mathematical source route is retired by an environment failure.",
+    "next_step": "Preserve exact original bindings and historical review records. Require separate successors and independent review for sp-006 and sp-011; keep sp-010 provisional and reconcile its corrected rank-bound target. No repair is approved here.",
+    "global_limit": "Six requested originals reviewed: five current admitted and one existing provisional. Not approval of all catalog items, full semantic deduplication, native Lean view admission, isolated evaluation or stable release."
+  }
+}

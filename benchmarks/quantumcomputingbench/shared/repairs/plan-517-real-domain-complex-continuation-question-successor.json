@@ -1,0 +1,85 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-517",
+  "supersedes_key": "qcb-core-plan-517-chebyshev-identity-sine-domain-boundary",
+  "supersedes_item_digest": "6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce",
+  "supersedes_contract_hash": "fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-517-textbook-question-v2-real-domain-complex-continuation",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction. The original question requests a concrete false extension beyond real arcsine's domain, while the original answer additionally (and falsely) excludes complex continuation. Replace that demand transparently by assessment of real well-formedness versus the valid complex identity, retaining its real proof, exact a2 witness, correct signed hyperbolic representation and physical-overlap boundary. Only question changes among nine CONTRACT_FIELDS; both original conventions remain true when hyperbolic representation is stated with reflection/parity sign. No active assumption/convention is overridden. Preserve core/family/test_public split/frozen graph/source_refs, six steps and every ordered per-step node list. Original contract fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e is superseded, not claimed equivalent. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json; inspected/authored private _review_tmp/plan-517-real-domain-complex-continuation-question-successor.json. Pending distinct review, not a new core or selfapproval. Recomputed proposed question-only contract a7cd3d15c64e8ec16178faaa51a6e067064725220063b471bf6e1826851513fe.",
+  "question": "Let k be a natural number, m=2k+1, and T_m the first-kind Chebyshev polynomial, with T_j(cos beta)=cos(j beta). Grover's normalized-overlap calculation uses T_(2k+1)(a)=(-1)^k sin((2k+1)arcsin(a)) for a in[0,1], where arcsin denotes the real inverse sine.\n\nDetermine the full real a-domain on which that real-inverse expression is defined and prove the identity there, including a=0,+1,-1 and k=0. Assess the predecessor's requested 'concrete refutation' at a>1 precisely: is the real expression a false numeric equality, or is it undefined because no real inverse-sine argument exists? At a=2,k=1 compute T_3(2) exactly and explain what the bound of a REAL sine does and does not show. Do not infer any bound for complex sine from the real bound.\n\nThen prove the odd multiple-angle identity T_(2k+1)(sin z)=(-1)^k sin((2k+1)z) for all complex z. For any complex inverse-sine value z satisfying sin z=a, determine whether the same Chebyshev value is recovered; do not assume a globally single-valued holomorphic arcsine exists. Give an explicit complex z with sin z=2, and compute (-1)^1 sin(3z) exactly to settle, rather than presume, the continuation claim.\n\nFor arbitrary natural j give the correct real hyperbolic formula on a>=1 and on a<=-1, including the parity sign on the negative side; prove it from the Chebyshev recurrence or equivalent complete algebra. Explain why complex continuation or an unnormalized inner product greater than1 does not make such a a permissible normalized quantum overlap or singular value in a unit-normalized block. Retain the exact(-1)^k phase in the scalar/Grover identity, distinguishing it from probability and from a free controlled-phase convention.",
+  "reference_answer": "As a REAL inverse-sine expression, the displayed formula is defined for a in[-1,1]. For those a let phi=arcsin(a) in[-pi/2,pi/2] and beta=pi/2-phi. Then cos beta=sin phi=a, and\nT_(2k+1)(a)=cos((2k+1)(pi/2-phi))=(-1)^k sin((2k+1)phi).\nThe sign follows from cos((2k+1)pi/2)=0 and sin((2k+1)pi/2)=(-1)^k. This includes a0 (both sides0), a1 (both sides1), a-1 (both sides-1) and k0 (T_1(a)=a=sin(arcsin a)). The interval is the domain of the real inverse, not a maximal domain for the polynomial identity after analytic continuation.\n\nFor a>1 there is NO real phi with sin phi=a, so real arcsin(a), understood as an inverse, has no value. Consequently there is no defined real numerical equality there to falsify by substitution. For a2,k1, the recurrence gives T_3(x)=4x^3-3x and T_3(2)=26. This refutes any attempted extension that insists its right side remains (-1) times the sine of a REAL argument, hence lies in[-1,1]. It does NOT refute a complex inverse-sine interpretation. Assigning a totalized software function outside its inverse domain would be an extra convention, not the real-inverse identity under discussion. A complex sine is not bounded in modulus by1.\n\nThe continuation can be proved without postulating a global branch. The Chebyshev recurrence T_0=1,T_1=x,T_(j+1)=2x T_j-T_(j-1), together with cos((j+1)w)=2cos(w)cos(jw)-cos((j-1)w), proves T_j(cos w)=cos(jw) for every COMPLEX w by induction. Put w=pi/2-z and j=2k+1. The same entire trigonometric relations give\nT_(2k+1)(sin z)=cos((2k+1)(pi/2-z))=(-1)^k sin((2k+1)z)\nfor all complex z. Therefore any complex number z satisfying sin z=a gives the SAME polynomial value T_(2k+1)(a), independently of which inverse value was chosen. Local inverse branches can be used on appropriate domains, but this does not define a single global holomorphic arcsine through the branch points±1. No branch-independence conclusion relies on applying a real bounded-sine estimate to complex arguments.\n\nFor the requested exact value, put eta=arccosh(2)=log(2+sqrt(3))>0 and choose z=pi/2-i*eta. From sin(x+i y)=sin x cosh y+i cos x sinh y, sin z=cosh eta=2. Moreover sin(3z)=sin(3pi/2)cosh(3eta)=-cosh(3eta). The hyperbolic triple-angle identity gives cosh(3eta)=4*cosh(eta)^3-3*cosh(eta)=26, so (-1)^1 sin(3z)=26=T_3(2). This explicitly refutes the predecessor ANSWER'S rejection of complex continuation. It is not a counterexample to the real inverse's domain restriction. In particular k0 also continues correctly to T_1(a)=sin z=a; no exceptional prohibition appears there.\n\nFor the real outside-interval representation, if a>=1 write a=cosh eta, eta=arccosh(a)>=0. The functions cosh(j eta) satisfy the same recurrence in j and initial values1,cosh eta as T_j(a), so\nT_j(a)=cosh(j arccosh a).\nFor a<=-1, write b=-a>=1. The Chebyshev recurrence also proves T_j(-b)=(-1)^j T_j(b). Thus\nT_j(a)=(-1)^j cosh(j arccosh(-a)).\nThe inverse hyperbolic cosine has a nonnegative REAL argument at least1 on each stated branch. The formula cosh(j arccosh(a)) without reflection is not a real formula for a<-1. At a±1 these formulas give1 and(-1)^j. For the odd order here the negative-side value is -cosh((2k+1)arccosh(-a)); for example T_3(-2)=-26. The original broad hyperbolic convention is retained with this mandatory reflected argument and parity sign, not treated as an unqualified positive-side formula.\n\nFinally, |<u|v>|<=1 for unit vectors by Cauchy-Schwarz, and any clean compression J_out†U J_in of a unitary between isometries has norm<=1. Singular values of an exact unit-normalized encoded block therefore lie in[0,1]. An inner product between unnormalized vectors can exceed1, but calling it an overlap amplitude does not make it a normalized state's amplitude, success probability or valid unit-normalized scalar block. One must normalize or change the block factor and track that change; complex analytic continuation is mathematics, not a physical amplitude-amplification construction outside its normalized domain. In source Example11.4 the scalar a=1/sqrt(N) lies in[0,1] for N>=1, and the qubitization expression carries the exact factor(-1)^k relative to the conventional Grover expression. That factor has no effect on an isolated success probability, but becomes a relative phase under control unless tracked or corrected; it is not silently discarded in the scalar identity.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "States[-1,1] as the real-inverse domain, proves the real identity with the correct(-1)^k sign and checks endpoints/zero/k0; does not mistake that domain statement for failure of complex continuation."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Proves the all-complex odd multiple-angle identity by a complete recurrence or equivalent argument; explains any inverse value recovers the polynomial and distinguishes this from existence of a global holomorphic inverse branch."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Computes T_3(2)=26 and separates an undefined real arcsine from a false bounded-real-sine extrapolation. Constructs z=pi/2-i arccosh2 and verifies (-1)sin(3z)=26 exactly rather than claiming complex sine bounded by1."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Derives both signed real hyperbolic branches, including a<-1 and endpoints; keeps normalized overlap/unitary-compression constraints and exact phase bookkeeping separate from analytic continuation and probabilities."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The odd Chebyshev/sine formula has real-inverse domain[-1,1] but continues correctly through any complex inverse-sine value; signed reflected hyperbolic formulas describe both real exterior branches without creating unphysical normalized overlaps.",
+    "semantic_steps": [
+      {
+        "claim": "For real a in[-1,1], phi=arcsin(a) exists; endpoints/zero/k0 remain valid rather than requiring an interior overlap.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The Chebyshev/cosine recurrence holds for complex arguments as well, with beta=pi/2-z.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "Odd order yields the exact(-1)^k sine relation for every complex z; any inverse value of a therefore recovers the same polynomial without a global branch claim.",
+        "supporting_nodes": [
+          "concept:harmonic-analysis"
+        ]
+      },
+      {
+        "claim": "T_3(2)=26 is exact, whereas the real-inverse expression at2 is undefined; a bounded real-sine extrapolation cannot produce26.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The complex choice z=pi/2-i arccosh2 gives sin(z)=2 and (-1)sin(3z)=26, so real-domain failure is not a refutation of complex continuation.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The real exterior formulas use cosh(j arccosh a) for a>=1 and(-1)^j cosh(j arccosh(-a)) for a<=-1; physical normalization and phase obligations remain separate.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Read complete lin-wiebe-2026-qasc registry entry. This LF binds URL/edition/historical PDF hash METADATA ONLY, not a local mathematical proof or current PDF-byte equality. Actual mathematical source: https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf; observed cover29 April2026 and447 pages. Operative author-hosted PDF text read in this authoring task: Complete Example11.4 and Eq11.29-11.30 with its preceding normalized Grover/reflection context, printed187-188; Definition9.2 normalized block scope, printed143, and normalized singular-value/parity conventions Definition10.4, printed164-165. The source uses a=1/sqrt(N) in[0,1] and does not reject complex continuation. All-complex recurrence proof, exact inverse-value witness and signed negative hyperbolic branch are independent repairs of the authored boundary reasoning, not new claims printed by this source. Recorded historical binary SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 remains unverified here; screenshot requests PDF pages177,178,187 failed with cache misses, so no operative pixel inspection or fresh source-paper seal is claimed."
+    }
+  ],
+  "execution": "Actual author /root/qcb_native_comparison, not an independent reviewer or selfapprover. I previously wrote the historical scientific reader review/finding for this core and have full parent/source/withdrawal exposure; this is not blind authoring. Entire actual prepared predecessor was read again via release.checked()[2], including complete question/answer/rubric, assumptions/conventions, semantic steps and provenance. Whole original digest 6ee75377e19be126a85a576b4e313b2e6b2f2c4d424a2f8740dfd32e1e6340ce and original nine-field contract fe6b370225ca42bd08b2aabe06434b9ffb89977c361b5ebd6a75fa01fb650f2e were recomputed; current bound withdrawal reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json report digest 140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6 and exact finding digest bb15f37a2e8deeec8147b21b53ea6258b68ad076a504ab74faa9b88c478f1a71 were recomputed and matched. Entire new mathematical/grading candidate is authored here. All six original ordered per-step supporting-node lists and count6 are preserved; no family/split/graph/source_refs or active assumption/convention list is edited. Actual canonical HEAD observed e9308632431899a08938b4d9a6cd1b9d90c45e30; engine code is not a mathematical source dependency. Primary access was web PDF text extraction of the complete operative regions identified above, with matching cover/date/page count, but no direct binary verification or rendered operative page inspection: screenshots failed with cache misses. Historical primary SHA is provenance, not a fresh byte seal. No paper/PDF stored or redistributed. No production Lean/native-formal theorem, kernel/build/compiler/simulator/GPU/admin operation, model/human/expert approval, global alias reconciliation, minimality/novelty or reader admission claim. Only NEW private _review_tmp/plan-517-real-domain-complex-continuation-question-successor.json is written; proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-517-real-domain-complex-continuation-question-successor.json is not installed. Prior candidates/reports and all canonical files stay unchanged by me. A distinct exact-content review is required before any transport/admission. Recomputed proposed nine-field contract hash: a7cd3d15c64e8ec16178faaa51a6e067064725220063b471bf6e1826851513fe. Only question differs from the inherited nine-field contract; all other eight fields remain exact."
+}

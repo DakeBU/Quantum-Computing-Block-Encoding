@@ -1,0 +1,199 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "author": "/root/qcb_native_comparison",
+  "admission": "pending_distinct_review",
+  "core_id": "qcb-core-plan-209",
+  "supersedes_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+  "supersedes_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+  "key": "qcb-core-plan-209-textbook-v1-original-entry-query-ledger-repair",
+  "change_scope": "Private unchanged-question answer/rubric/exposition successor. Preserve all nine CONTRACT_FIELDS and exactly five ordered predecessor step-node lists. The question asks why the one-forward/one-inverse original-entry-query charge is natural for the conversion, not why it is an optimal lower bound or a complete gate count with arithmetic omitted. Supply an actual fused conversion with those original queries plus both arithmetic passes, all scratch, phases, precision and inverse-access qualifications. The displayed arbitrary-real coefficient is a target, not a guarantee that finite-bit input realizes it exactly; distinguish the implemented rounded coefficient and invalid-domain cases. No substitution of a derived angle oracle as a primitive, hidden reality/sparsity assumption or new oracle promise. This is authorship pending a distinct exact-content review, not selfapproval.",
+  "reference_answer": "Keep the two interfaces separate. With retained combined index t=(i,j), an entry oracle O writes a fixed d'-bit datum b_t on a clean value register V while retaining T. In a coherent superposition it writes sum_t c_t|b_t,t>, not a freely readable classical list of all entries. Measuring that value can disturb T, and CNOT fanout copies computational-basis records, not arbitrary unknown states. An amplitude oracle instead places a coefficient on a signal basis vector while retaining T; probabilities alone generally lose its sign/complex phase, and estimating or reading it is not free. The relevant block is a coherent compression, not a classical numeric output. In the stated bit-access construction the amplitude oracle is derived; another input model may stipulate it as primitive, and known special matrices may have direct circuits. There is no universal separation or lower bound asserted by the digital/analog labels.\n\nFirst make the target meaningful: z|0>+sqrt(1-|z|²)|1> is normalized with nonnegative real second coefficient precisely for |z|<=1. If entries exceed that range, a known positive scaling factor or another target is needed; computing that bound is not free. A finite datum for a general real/complex entry does not by itself give its original exact coefficient. What the finite-angle construction implements exactly in the ideal-rotation model is z_hat=exp(2pi i p_b) cos(pi q_b), with actually computed binary fractions q_b in[0,1/2] and p_b in[0,1). The original input-rounding, arithmetic-rounding and gate-synthesis errors remain separate. For complex entries, the given entry datum must describe the complex value, e.g. its real/imaginary parts within total width d'; a magnitude-only datum cannot determine missing phase. This does not add a nonnegative-real restriction. At zero choose phase0 without dividing by its magnitude. Signed real values can use phase0 or1/2 and the same magnitude rotation; an alternative signed-angle circuit must include its endpoint handling.\n\nHere is one explicitly composable original-entry-query implementation. Registers are(signal S,value V,angle Q,phase P,arithmetic scratch R,index T), with widths1,d',d,e,w,|T|. All temporary registers start zero. Choose a specified reversible arithmetic circuit C of non-oracle gate cost G_C, preserving V, that maps |b,0_Q,0_P,0_R> to |b,q_b,p_b,g_b>. Garbage g_b may be retained during the rotation; all arithmetic workspace used by this implementation belongs to R and its cost. Constructing and costing C is a genuine obligation, not a unit-cost angle query. One may choose d>=1 for the magnitude fraction so q=1/2 is representable; any alternative endpoint encoding/flags are counted. The safe stored q range is part of the explicit arithmetic design, not an inferred error guarantee for arbitrary input bits. If rounded data leave the unit disk, clipping/scaling must be specified and its approximation effect analyzed rather than silently treated as exact A.\n\nChronologically apply O; C; R_sig; C†; O†. On each index t the successive records are |0,0,0,0,0,t> -> |0,b_t,0,0,0,t> -> |0,b_t,q_t,p_t,g_t,t> -> |v_t,b_t,q_t,p_t,g_t,t> -> |v_t,b_t,0,0,0,t> -> |v_t,0,0,0,0,t>, where v_t=z_hat_t|0>+sqrt(1-|z_hat_t|²)|1>. Specifically R_sig first applies Ry(2pi q_t) and then D(p_t)=diag(exp(2pi i p_t),1) on S, controlled on the stored bits. Since0<=q<=1/2, its sine is nonnegative. Bit expansion of q gives d ideal bit-controlled Y rotations; expansion of p gives e bit-controlled phase-on-zero operations. Their chronological product has the claimed first column. The phase-on-zero operation must not be replaced by an Rz while dropping an index-dependent overall phase: that would change coherent label phases. Real negative and complex coefficients are not recovered by a magnitude-only rotation.\n\nR_sig changes none of V,Q,P,R,T. Consequently the actual C† restores Q,P,R in BOTH signal branches, and O† restores V. This proves the arbitrary-superposition law by linearity, not just basis-input probabilities. If the only specification of O is its action on zero V, unitarity gives its mathematical inverse but does not automatically give black-box inverse-query access or its cost. The ledger explicitly uses one O† call when that interface is available; for the usual XOR value oracle O|v,t>=|v xor b_t,t>, it is self-inverse. A known reversible entry circuit may instead be reversed with its full cost. No inverse access or controlled unknown-unitary oracle is made free by notation.\n\nThe fused architecture has ledger(one original O query,one original O† query,2G_C+G_R other gates,d'+d+e+w peak temporary qubits,one retained signal), plus the retained indices and any outer block-encoding registers. G_R denotes the actual rotation/phase implementation cost: d+e counts ideal controlled operations in this explicitly extended gate model, not elementary Clifford+T gates. If query circuits are also compiled, their gate/depth/workspace costs must be included without double-counting the oracle-level metric. C may require further arithmetic storage or input evaluation; w is the complete live amount in the chosen reversible implementation, not an output-length estimate. For purely real known-phase data P and its gates may be omitted only with the corresponding justified interface. All temporary qubits return clean but physically exist at peak: 'borrowed clean' is this question's convention, not dirty borrowed workspace or zero qubit cost. The signal is intended output, not scratch to uncompute; persistent here means retained for the outer circuit, not consumed forever or counted twice when reused sequentially.\n\nCompare a separately packaged CLEAN angle/phase oracle B. The schematic B;R_sig;B† uses one B and one B†, but every original-entry query, arithmetic gate and workspace cost inside B must be expanded. For example, a clean converter F preserving b and restoring its own scratch gives B chronologically O;F;O†. That costs two original queries per B, so naive B;R_sig;B† costs FOUR original queries, not two. Because R_sig acts on S,Q,P while O acts on V,T, their actions commute; keeping V live across R_sig cancels the middle O†/O pair and yields the fused O;F;R_sig;F†;O† construction. Retaining more live data is an explicit resource trade-off. Thus cleanup is charged for this circuit, but 'cannot amortize away' is not a theorem about every algorithm, known constant or fused multi-call design.\n\nFor a density rho on T the clean S=0 compression is D_z=sum_t z_hat_t|t><t|, with success p=sum_t rho_tt|z_hat_t|² and accepted state D_z rho D_z†/p only if p>0. This diagonal action on the combined index is NOT by itself a full matrix block encoding of A; sparsity/permutation or row-column constructions and their queries/gates must be supplied separately. Omitting cleanup and tracing the remaining records generally dephases different records in the joint signal/index state; the signal-only marginal and a basis-input signal need not change. Those exceptions do not satisfy the specified reusable clean interface. Exactness here is for stored q,p with ideal gates. If true ideal parameters q,p have errors bounded by delta_q and circular delta_p, the signal-vector error is at most pi delta_q+2pi delta_p, plus synthesis error; relating those to original matrix-data error, especially near magnitude endpoints, needs its own analysis. No arbitrary-real exactness, free readout/amplification, total sparse-block-encoding cost, arithmetic runtime bound or optimal query lower bound follows from '+2 queries'.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Distinguishes coherent digital entry records from signed/complex amplitude access, avoids free readout/fanout claims, and separates primitive-model choices from this derived construction and finite-bit exactness."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Derives O;C;R_sig;C†;O† on all retained registers and arbitrary coherent input, including valid phase loading, zero/endpoints, all scratch and explicit original inverse-access typing; does not replace C by one free angle query."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Gives one original forward plus one inverse entry query for the explicit fused construction with2G_C+G_R other gates and d'+d+e+w live clean work, contrasts the fully expanded packaged-angle ledger and possible fusion, and does not claim a universal optimality/lower bound."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Distinguishes peak clean temporary qubits from retained signal/indices/outer flags, restores all arithmetic workspace, and keeps normalization/phases, error/gate-synthesis, projection versus channel, sparsity/readout/amplification and original-real-versus-rounded target limits explicit."
+    }
+  ],
+  "exposition": {
+    "core_summary": "An entry-derived amplitude oracle needs original queries plus reversible arithmetic, signed/complex signal loading and cleanup. A fused O;C;R;C†;O† implementation uses one forward and inverse ENTRY query while charging both arithmetic passes and all live workspace; two derived-angle calls are a different ledger.",
+    "semantic_steps": [
+      {
+        "claim": "The entry oracle writes a coherent fixed-point record on retained indices; reading all entries or copying arbitrary quantum states is not a free digital operation.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The signal interface coherently loads a valid signed/complex rounded coefficient; magnitude rotation plus the correct conditional phase gives the full two-branch state, not a complete matrix block encoding by itself.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "For the fused sequence O;C;R_sig;C†;O†, arithmetic is charged gate work and cleanup uses one counted original inverse query; separately packaged angle-oracle calls must have all internal costs expanded.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "The explicit fused ledger is one forward/one inverse original entry query plus2G_C+G_R gates and complete peak scratch, not a lower bound forbidding known-constant circuits, cancellation or other resource trade-offs.",
+        "supporting_nodes": [
+          "concept:complexity"
+        ]
+      },
+      {
+        "claim": "All temporary value/angle/phase/arithmetic work returns clean in both signal branches and remains part of peak physical space; the signal is retained output, with exactness only for the specified rounded parameters and ideal gates.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry personally inspected. Metadata binding only: URL, edition and historical primary SHA. Operative external proofs and my actual access limits are separately recorded."
+    }
+  ],
+  "execution": {
+    "status": "private_answer_successor_authorship_pending_distinct_review",
+    "actual_author": "/root/qcb_native_comparison",
+    "authored_at_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-209-original-entry-query-ledger-answer-repair.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-209-original-entry-query-ledger-answer-repair.json",
+    "transport_or_admission_claimed": false,
+    "prior_exposure": "Informed correction authorship by /root/qcb_native_comparison, not independent review. I have prior scientific/block-encoding cohort exposure and recently independently reviewed boundary-authored206/207; I read the complete actual208/209 originals, current exact withdrawals/full findings and operative primary source. I did not author the historical scientific-algorithms-201-210 review. Earlier review labels, parent leads and shared207 mechanism are not transplanted approval. No blind/human/expert/kernel/source-paper seal or admission is claimed.",
+    "contract_binding": {
+      "original_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "original_contract_hash": "ae91a774d00f0200a6dba18a3d4f7ee65df6ac6452cf482ae647f019cc41846e",
+      "successor_contract_hash": "ae91a774d00f0200a6dba18a3d4f7ee65df6ac6452cf482ae647f019cc41846e",
+      "changed_contract_fields": [],
+      "unchanged_contract_values": {
+        "question": "Two input models for the entries of a matrix A appear in the sparse block-encoding discussion: the BIT oracle O~_A |0^{d'}>|i>|j> = |A~_ij>|i>|j>, which writes a classical fixed-point string into a register, and the AMPLITUDE oracle O_A |0>|i>|j> = (A_ij|0> + sqrt(1-|A_ij|^2)|1>)|i>|j>, which encodes the entry as the amplitude of an ancilla qubit. Explain conceptually (i) what distinguishes the two as computational resources -- which is a 'digital/query' interface and which is an 'analog/amplitude' interface; (ii) why building the amplitude oracle from the bit oracle requires both controlled rotations (gate work) and uncomputation (query work), i.e. the amplitude oracle is strictly derived, not primitive; and (iii) in a resource count for the overall block encoding, why it is natural to charge the construction one forward and one inverse bit-oracle query plus the gates of a controlled rotation, and why the work register must be counted as borrowed (returned clean), not consumed.",
+        "assumptions": [
+          "A bit oracle and reversible classical arithmetic are available",
+          "The block encoding requires the entry as an amplitude of a flagged ancilla"
+        ],
+        "conventions": [
+          "Query cost counts oracle calls; gate cost counts elementary gates; ancilla cost distinguishes borrowed (clean) from persistent",
+          "'No free cleanup' means uncomputation is a counted resource"
+        ],
+        "family": "qsc-matrix-access",
+        "split": "test_public",
+        "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+        "target_nodes": [
+          "concept:block-encoding",
+          "concept:complexity",
+          "concept:operator-theory"
+        ],
+        "supporting_nodes": [],
+        "source_refs": [
+          {
+            "anchor": "lin-wiebe-2026-qasc",
+            "license": "MIT metadata only",
+            "path": "website/research/sources.json",
+            "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+          }
+        ]
+      },
+      "semantic_step_count": 5,
+      "original_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:block-encoding"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:block-encoding"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:complexity"
+        ],
+        [
+          "concept:block-encoding"
+        ]
+      ],
+      "equivalence_to_changed_question_claimed": false,
+      "additional_core_count": 0
+    },
+    "literal_question_fit": "The original asks for conceptual distinction and why a one-forward/one-inverse ORIGINAL bit-query charge is natural in building the amplitude interface. The fused construction proves exactly that count and explains why CR gates alone are not the total non-query ledger. 'Derived, not primitive' is answered for the stipulated construction from the given entry access, not promoted to a prohibition on other input models. The question does not demand a universal lower bound or assert an exact finite-bit arbitrary-real synthesis theorem; its target formula is explicitly distinguished from the actual finite-angle implementation, with no changed question or hidden real-only/sparse promise. A reviewer must reject if they find a literal demand that this assessment cannot satisfy; no presumption of approval.",
+    "withdrawal": {
+      "core_id": "qcb-core-plan-209",
+      "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "reason": "The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b"
+    },
+    "withdrawal_finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b",
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "edition": "April29,2026;447-page primary",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "actual_access": "Personally accessed author-hosted PDF text in this objective, including complete Section9.6 Example9.16 Eq9.68-9.71/Exercise9.4, Proposition5.7 statement/proof Eq5.17-5.20 and Fig5.3 textual controls, full Example5.8 Eq5.21-5.25/Fig5.4 workspace discussion; Section9.7 Examples9.17-9.18, complete Proposition9.19 Eq9.77-9.84/Fig9.7 textual transcript and its explicit permutation/entry oracle interfaces. Uncomputation Eq5.3-5.7 and clean-work convention read personally in the continuous objective context.",
+        "binary_hash_independently_verified": false,
+        "operative_pixels_inspected": false,
+        "access_limits": "My screenshot requestsPDF104 and155 in this authoring objective failed with cache misses. Textual formulas/controls were inspected, not rendered geometry. No raw-byte hash match, source/PDF/human seal, copying or redistribution; root's or another author's byte/render executions are not mine.",
+        "source_proof_coverage": "Printed real-entry compute-rotate-uncompute and the sparse projected-block proof are source nodes. Complex phase-loading construction, explicit original-entry-query fused ledger, obstruction counterexamples and zero/phase boundaries below are independent derivations, not claimed printed source proofs. Exercise9.4 states the complex task without supplying its solution. Full sparse/compiler/amplification/resource closure is excluded."
+      }
+    ],
+    "source_proof_coverage": {
+      "source_nodes": "Printed real-entry compute-rotate-uncompute and the sparse projected-block proof are source nodes. Complex phase-loading construction, explicit original-entry-query fused ledger, obstruction counterexamples and zero/phase boundaries below are independent derivations, not claimed printed source proofs. Exercise9.4 states the complex task without supplying its solution. Full sparse/compiler/amplification/resource closure is excluded.",
+      "independent_nodes": "Full original-entry-query transcript/cost tuple, naive four-query packaged example versus fused two-query cancellation, complex phase loading with record-relative phases, density/projector and finite-parameter error boundaries.",
+      "remaining_obligations": "Actual reversible conversion implementation/cost and accuracy, original inverse-query capability when not XOR/known circuit, elementary rotation synthesis, precise data-rounding/scaling contract, sparse/outer block compiler and resource accounting. These are not silently discharged."
+    },
+    "artifact_inventory": "Scoped inventory found no preexisting private plan208/209 candidates; all206/207/104/105 and older artifacts preserved. Existing canonical uncommitted root checkpoint content is observed but untouched.",
+    "mechanical_validation": "Read-only current payload grammar, actual predecessor/withdrawal/finding digests and LF source bindings inspected. All nine contract fields and five exact ordered step-node lists are retained. No policy/curriculum code is a mathematical dependency.",
+    "self_approval": false,
+    "execution_limits": "No canonical/source/policy edits, builds/tests/kernel/simulator, commits/push, admission, new agents, GPU/admin or human/blind/expert/global/model claim. Private preparation only.",
+    "worker_handoff": {
+      "failure_class": "NONE",
+      "salvage": "The valid207 compute-rotate-uncompute interface is reused as a mathematical submechanism; the new delta is a complete original-entry ledger and explicit fusion/cost trade-off, not a second copy counted as a new core.",
+      "process_memory": "No unrelated curated entries imported; exact current withdrawal/finding and protocols consulted.",
+      "direction_fingerprint": "original-entry-query-fused-arithmetic-phase-peak-space",
+      "expected_information_gain": "Retire confusion between entry queries and derived angle calls without inventing universal lower bounds.",
+      "parallel_work": "No new agents; one bounded authoring objective.",
+      "common_blind_spot": "Distinct future exact-content review required; no self-certification.",
+      "purification": "Not admitted/PURIFIED/formally proved. Grading and five-step exposition authored with retained register/phase/resource boundaries.",
+      "bounded_overlap": "207 supplies a clean stored-angle transcript;209 asks additional model/query/gate/peak-workspace accounting. Shared subproof is disclosed, not complete-target equivalence, global deduplication, split clearance or count inflation.",
+      "next_step": "Root to inspect exact bytes and request a distinct mathematical/source review; no current-reader promotion authorized."
+    }
+  }
+}

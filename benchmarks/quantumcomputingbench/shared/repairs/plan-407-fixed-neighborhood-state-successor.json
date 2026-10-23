@@ -1,0 +1,67 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-407",
+  "supersedes_key": "qcb-core-plan-407-spectrum-estimator-normalized-partition-validity",
+  "supersedes_item_digest": "427b9899965fedd55c13f5e4b447607c4e9aa577d2823e36b2d746716301c9c6",
+  "supersedes_contract_hash": "df551f43bd9ee6937018c39bad53ba61fdcec54489bfa28c58aed7307f7bfc36",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-407-textbook-question-v2-neighborhood-consistency",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-contract correction, not equivalent to the predecessor's demand to prove Pr(hat r!=r)->0. Keep that exact-equality assertion for assessment/refutation and replace the false proof demand with fixed-epsilon convergence in probability using the original polynomial-qualified outcome bound and an explicit diagram-count union factor. Keep estimator-domain validation, all spectra including zeros, original assumptions/conventions (empty), family spectrum-estimation-consistency, split, frozen graph/source scope and three semantic steps. Only question changes among the nine fields. The corrected neighborhood theorem substantially overlaps plan319's concentration subtarget; this is reserved lineage under existing407, not an additional distinct core or global deduplication/alias decision.",
+  "question": "Fix a density operator rho on C^d with ordered spectrum r=(r_1>=...>=r_d>=0),sum_i r_i=1, and let n>=1. Weak Schur sampling measures rho^tensor(n) with the orthogonal Schur-Weyl projectors{P_lambda}, where lambda=(lambda_1>=...>=lambda_d>=0) is an integer partition of n padded by zeros. Its outcome probability w_lambda=tr(P_lambda rho^tensor(n)) obeys the given bound w_lambda<=(n+1)^[d(d-1)/2]*exp(-n D(lambda/n||r)). Here logarithms are natural, zero-p terms in D(p||r)=sum_i p_i log(p_i/r_i) are0, and D=+infinity if p has positive mass outside the support of r. The estimate is hat r=lambda/n.\n\n(a) Verify that every returned hat r is an ordered probability vector, hence a legitimate candidate spectrum. (b) Assess the predecessor's assertion 'Pr(hat r!=r)->0 as n->infinity'. Is this exact-equality form of consistency true for every fixed spectrum? Test it on the fixed full-rank qubit spectrum r=(1/sqrt(2),1-1/sqrt(2)), and explain why D(p||r)>0 for each p!=r does not provide a uniform positive lower bound on the punctured simplex as the estimator grid changes with n.\n\n(c) Prove the correct statement: for every fixed epsilon>0, Pr(||hat r-r||_1>=epsilon)->0 as n->infinity with rho and hence d fixed. Derive a finite-n upper bound retaining BOTH the per-outcome polynomial prefactor and the count of at most(n+1)^d diagrams. Justify a strictly positive rate uniformly on the closed epsilon-away region (for example by a compactness argument on the positive-support face, or by the natural-log Pinsker inequality), handle zero entries of r without a full-rank assumption, and explain what this neighborhood result does NOT imply about exact equality or individual atom probabilities. No efficient implementation of the Schur measurement or finite-bit exact-spectrum procedure is requested.",
+  "reference_answer": "(a) Because n>0, division preserves lambda_1>=...>=lambda_d>=0 and gives sum_i lambda_i/n=1. Thus hat r is a nonincreasing nonnegative probability vector. For example diag(hat r) is a density matrix with exactly this ordered spectrum. There is no estimator lambda/n at n=0, which is not used in this large-n statement.\n\n(b) The claimed exact-equality consistency is false. For d=2 take rho=diag(t,1-t),t=1/sqrt(2). It is a fixed ordered full-rank state since1>t>1/2, and t is irrational. Every lambda_i/n is rational at every finite positive n, so hat r NEVER equals r. Therefore Pr(hat r!=r)=1 for every n, regardless of the sampling probabilities. This refutes the literal assertion, including the same sentence printed after source Algorithm9.1; it does not refute convergence in probability in a fixed positive tolerance.\n\nPointwise positivity D(p||r)>0 for p!=r cannot be promoted to a uniform delta>0 over that punctured simplex. For the same r, take k_n=floor(nt) and lambda^(n)=(k_n,n-k_n), an ordered partition for all sufficiently large n. Then lambda^(n)/n approaches r without ever equaling it, and continuity of relative entropy for this full-rank r gives D(lambda^(n)/n||r)->0. The outcomes and their exponents change with n. One cannot freeze an outcome-dependent positive exponent while shrinking the deviation radius to zero. Even the rational spectrum(1/2,1/2) cannot equal lambda/n when n is odd, so an exact-equality limit for all n is not rescued merely by rationality.\n\n(c) Put h=d(d-1)/2. If r_i=0 and(lambda_i/n)>0 for some i, the stipulated D convention and outcome bound force w_lambda=0. Restrict attention to the closed probability face F={p:p_i=0 whenever r_i=0}. On F, the remaining r_i are strictly positive and D(p||r)=sum_{r_i>0}p_i log p_i-sum_{r_i>0}p_i log r_i is continuous, with0 log0=0. It is nonnegative and vanishes only at r. The set F_epsilon={p in F:||p-r||_1>=epsilon} is compact. If it is nonempty, its minimum delta_epsilon of D is strictly positive: a zero minimum would occur at r, excluded by epsilon>0. If it is empty, all possible positive-weight outcomes are already inside the neighborhood and the outside event has probability0.\n\nThere are at most(n+1)^d possible diagrams, because each padded row length lies in{0,...,n}; ignoring ordering and sum constraints only overcounts. Hence in the nonempty case the union bound gives\nPr(||hat r-r||_1>=epsilon)=sum_{lambda:||lambda/n-r||_1>=epsilon}w_lambda\n <=(n+1)^[h+d]*exp(-n delta_epsilon).\nThe exponent h+d=d(d+1)/2 includes BOTH the original per-outcome factor and the count factor; it cannot be replaced by h merely because one term has the smallest rate. Its logarithm is(h+d)log(n+1)-n delta_epsilon, which tends to minus infinity for fixed d and fixed epsilon, proving convergence in probability. If desired, natural-log Pinsker D(p||r)>=||p-r||_1^2/2 gives the explicit valid bound(n+1)^[d(d+1)/2]*exp(-n epsilon^2/2), including incompatible supports via D=+infinity. This last inequality uses the standard Pinsker theorem stated in source Eq9.41, not pointwise D positivity alone.\n\nNo full-rank hypothesis was added. At d=1 the only outcome is lambda=(n), so hat r=r=(1) surely. For rank-one r at larger d, the given bound forces zero probability outside its singleton support face, so only the matching partition can have positive weight. These special cases do not repair the universal exact-equality assertion, already refuted by the irrational full-rank example. In general the theorem proves that TOTAL probability in every fixed neighborhood tends to1; it does not show an exact matching diagram eventually exists, that its atom has probability tending to1, or that each nearby atom has a positive constant lower bound.\n\nThe valid neighborhood/relative-entropy union argument is substantially the same concentration subtarget as plan319. This successor additionally retains validation of the partition estimator and explicitly diagnoses the false exact-equality quantifier. It preserves the reserved407 identity/family/split and makes no claim of a new globally distinct core or a completed alias reconciliation. The source later Proposition9.5 is a fixed-epsilon statement; the extracted Eq9.35 omits the count factor invoked by its own text, so the explicit sum above is used rather than that shortened formula. No efficient Schur-transform circuit, finite-bit equality oracle, lower bound on exact atoms or fresh local Lean proof is inferred.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Proves lambda/n is an ordered probability vector for n>=1 and identifies a density matrix with that spectrum."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "Explicitly refutes exact-equality consistency using the fixed irrational qubit spectrum and rational estimator grid; explains why pointwise positive KL divergence supplies no uniform punctured-simplex gap as n changes."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "For fixed epsilon proves a uniform positive rate on the supported closed away-region, handles zero r_i through D=+infinity and zero outcome weights, and performs the union bound with exponent d(d-1)/2+d, not just the per-outcome exponent."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Shows the fixed-d polynomial is dominated by exp(-n delta_epsilon), states convergence in probability rather than exact equality/constant atom weights, handles d=1/rank-one boundaries, and records substantial overlap with319 without a new-core or efficient-implementation claim."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The partition estimator lambda/n is always a valid ordered spectrum, but exact equality need not ever occur for irrational r. The polynomial-qualified KL bound plus the explicit diagram count proves fixed-epsilon convergence in probability, with zero-spectrum support handled separately.",
+    "semantic_steps": [
+      {
+        "claim": "For n>=1,lambda/n is ordered, nonnegative and sums to1, so it is a valid candidate spectrum.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "An irrational fixed spectrum refutes universal exact-equality consistency; only a fixed epsilon-away region has a uniform positive relative-entropy gap, with incompatible supports having zero probability.",
+        "supporting_nodes": [
+          "concept:probability"
+        ]
+      },
+      {
+        "claim": "Sum the polynomial-qualified outcome bound over at most(n+1)^d diagrams to obtain fixed-epsilon convergence in probability, not an exact-atom claim. This concentration subtarget overlaps319 and does not add a new core or implementation certificate.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Full Leditzky metadata entry219-227 read; LF hash authenticates metadata only. Fresh independently retrieved pinned primary PDF554175bytes/79pages raw SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3. Complete printed71-76 Eq9.6/Algorithm9.1, full Lemma9.3 and Prop9.4 proof9.7-9.32, neighborhood discussion9.33-9.37, Prop9.5/9.38-9.39 and Pinsker9.40-9.41 read. Printed Algorithm9.1's exact-equality sentence is assessed/refuted, not accepted as authority; extracted9.35 lacks the count factor. The rational-grid counterexample and explicit supported compactness/union proof are reconstructed NL mathematics, not local Lean closure. Actual original319 question/answer/rubric/steps and the already reviewed319 repair were exposed for bounded overlap assessment, not for new approval or changes."
+    }
+  ],
+  "execution": "Private explicit question-version2 authoring by actual /root/qcb_formal_view_audit, not independent approval of my candidate. Entire actual prepared original read through release.checked()[2], including question, reference, rubric, assumptions/conventions, summary, three steps and primary/source metadata; whole item and original contract bound. Read the exact private qit-extendibility-401-410-review.json's scope/provenance,401/407 findings and material overlap comparisons; parent diagnostics and inherited accept metadata exposed, not source/verdict blind. Prior source/QIT review exposure disclosed. Mandatory repository protocols and substantive-worker/PDF guidance used in this continuous context. Fresh independent read-only HTTPS memory retrieval of the Leditzky PDF in this objective:554175bytes/79pages, raw SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3 matching the historical pin; complete operative printed57-58 and printed71-76 estimator/bound/proof/neighborhood regions read. No fresh visual verification of these pages, no PDF/page saved or redistributed. No Lean/kernel/native-formal execution, algorithmic cost guarantee, novelty, model/human/expert approval, extra agent, admission, canonical/source/policy edit, commit/push or PR104 change. Only _review_tmp/plan-407-fixed-neighborhood-state-successor.json authored, pending distinct exact-content question-change review."
+}

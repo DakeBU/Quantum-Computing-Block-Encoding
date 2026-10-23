@@ -1,0 +1,165 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-sp-108",
+  "repair_record_digest": "124f75cdf35d89a6bbf0df3c9aa618e59138f2c132663078bbc6e2ce0807383f",
+  "original_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+  "verdict": "accept",
+  "exposure": "Not blind: read root's migration objective, the complete historical prepared item via release.checked()[2], actual current policy row, exact bound withdrawal/finding, entire boundary-authored candidate and old exact approval by /root/qcb_formal_view_audit. Prior task/source context and the original objections were exposed. I did not author this candidate and am distinct from both its author and original author. This is substantive re-review of unchanged candidate bytes, not mechanical rebinding of an earlier approval.",
+  "substantive_reconstruction": {
+    "degree_and_indices": "The leading term of (1-t)^(k+1) is (-1)^(k+1)t^(k+1); multiplying by t^i gives degree i+k+1 with nonzero leading coefficient (-1)^(k+1). Thus degree k+1 holds exactly at i=0, while i=k reaches ambient degree d=2k+1. The allowed example k=i=1 gives t-2t^2+t^3. This distinction is independent of the Bernstein basis's representation degree: a polynomial represented in degree d need not have actual degree d. Natural indices satisfy i+j<=k<=d throughout the entire j-range, hence the natural binomial denominator choose(d,i+j) is strictly positive when cast to the reals.",
+    "exact_elevation": "Multiplying the proposed weight by B_(d,i+j) cancels precisely this nonzero binomial. Its remaining exponent is d-i-j=(k+1)+(k-i-j), so the product factors as t^i(1-t)^(k+1) choose(k-i,j)t^j(1-t)^(k-i-j). Summation is the binomial expansion of (t+(1-t))^(k-i)=1. This is an all-real polynomial identity; it neither divides by t or 1-t nor requires an interior point. At i=k only j=0 remains with weight 1/choose(d,k). At k=0 the identity is B_(1,0)=1-t; endpoint evaluations use the constant power convention and introduce no 0/0 operation.",
+    "actual_source_coefficients": "The source coefficientSeries coefficient formula gives a_(k,i)=sum_(m=0)^i choose(k+i-m,k)/m!, nonnegative since each factorial is positive and every numerator nonnegative. Finite collection defines L_r=sum_(i,j)[r=i+j]a_i w_(i,j). These coefficients are nonnegative and vanish for r>k. I checked the full collection/evaluation proof, not only its declaration name. The reflection B_(d,r)(1-t)=B_(d,d-r)(t), including the binomial symmetry and endpoint exponents, changes F_k into coefficients L_(d-r). Therefore H_k=e^(-1)F_k+F_k(1-t) has c_r=e^(-1)L_r+L_(d-r). The positive exponential multiplies the unreflected endpoint, as the actual t=p+1 source formula requires.",
+    "positivity_and_grading": "Coefficient nonnegativity is independent of the evaluation variable. Only the last deduction uses t in [0,1], where both endpoint powers and the binomial basis functions are nonnegative. Outside that interval the same algebraic expansion holds but its basis functions need not be nonnegative, and the answer does not assert positivity there. At k=0 the coefficient pair is (e^(-1),1) and H_0=e^(-1)(1-t)+t, confirming orientation. All four rubric criteria and the three exposition steps require the false-degree assessment, denominator/exponent calculation, actual source coefficient collection and interval-limited sign deduction. They do not silently replace H by an unspecified positive polynomial or conflate coefficient positivity with an exact-degree assertion.",
+    "proof_and_resource_limits": "The complete operative HermiteBernstein proof bodies establish the all-real elevation, reflected collection and coefficient signs. HermitePolynomial's coefficientSeries, endpointFactor, Taylor shift and sourceInterpolant_eval fix the intended polynomial; its degree results are upper bounds, not a theorem certifying the original false wording. The new leading-coefficient calculation is ordinary independent mathematics, not an invented Lean declaration. No finite-bit compiler, gate/query guarantee, new kernel run, PDF inspection or native-formal view is asserted. The migration's engine inspection is recorded separately, while the two actual mathematical source files remain the LF-bound dependencies."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+      "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+      "anchor": "Complete operative basis definitions/nonnegativity/reflection, elevationWeight and full elevation_term/elevation_sum proofs, sourceCoefficient, leftCoefficient collection/evaluation/nonnegativity, sourceBernsteinCoefficient/reflected_sum and sourceInterpolant_bernstein proofs, through line206."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Complete operative coefficientSeries/coefficientPolynomial/endpointFactor/sourceInterpolant definitions; coefficientSeries_coeff/nonneg/zero proof bodies near169-204; coefficientPolynomial_eval, sourceInterpolant_eval and all degree-upper-bound proof bodies near289-332. Coordinate and exponential orientation checked."
+    }
+  ],
+  "content_bindings": {
+    "candidate_path": "benchmarks/quantumcomputingbench/shared/repairs/sp-108-question-degree-successor.json",
+    "candidate_sha256_lf": "52625a5eaf60c40d7a490d76250bd73e847a29abe52efd215cced6f79aa0b41a",
+    "current_policy_row_digest": "c7e31c3c9f4acb3ac1708208c435a6fe5bba53fb5ca2c30e0ad1bdeb1211d116",
+    "withdrawal": {
+      "core_id": "qcb-core-sp-108",
+      "predecessor_key": "qcb-core-sp-108",
+      "predecessor_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+      "reason": "The question gives the false degree k+1 for t^i(1-t)^(k+1); its degree is i+k+1.",
+      "review": "reports/textbook-v1/reader-reviews/state-preparation-101-110-review.json",
+      "review_digest": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+      "finding_digest": "a00068654d14500fe3903fde2955649e61d1f1e6ea184f3dd168c9359eddd2dc"
+    },
+    "withdrawal_report_digest_recomputed": "6b628fb6d379503d0646060a1b9a4495eed59da029c69c81e0ad9941e6da5219",
+    "withdrawal_finding_digest_recomputed": "a00068654d14500fe3903fde2955649e61d1f1e6ea184f3dd168c9359eddd2dc",
+    "ordered_original_step_nodes": [
+      [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+      ]
+    ],
+    "ordered_candidate_step_nodes": [
+      [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum"
+      ],
+      [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.leftCoefficient_nonneg",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+      ]
+    ],
+    "original_contract_fields": {
+      "question": "Work with the degree-d Bernstein basis B_{d,r}(t) = C(d,r) t^r (1-t)^{d-r}. For fixed k, i with i <= k, consider the single endpoint-factor monomial t^i (1-t)^{k+1} of degree k+1. Prove the exact degree-elevation identity that writes it in the degree-(2k+1) Bernstein basis: t^i (1-t)^{k+1} = sum_{j=0}^{k-i} w(k,i,j) * B_{2k+1, i+j}(t), where w(k,i,j) = C(k-i, j) / C(2k+1, i+j). Deduce that the full source polynomial has a Bernstein coefficient vector with all nonnegative entries on [0,1].",
+      "assumptions": [],
+      "conventions": [],
+      "family": "hermite-bernstein-representation",
+      "split": "train",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.leftCoefficient_nonneg",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lines 50-84: elevationWeight k i j = C(k-i,j)/C(2k+1,i+j); elevation_term : weight * basis (2k+1) (i+j) t = t^i (1-t)^(k+1) * C(k-i,j) * t^j * (1-t)^(k-i-j); elevation_sum : sum_{j in range (k-i+1)} weight*basis = t^i (1-t)^(k+1) via add_pow. lines 166-173: sourceBernsteinCoefficient_nonneg",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff"
+        }
+      ]
+    },
+    "successor_contract_fields": {
+      "question": "For natural numbers k and i with 0 <= i <= k, work over the real polynomial ring and define B_{d,r}(t)=C(d,r)*t^r*(1-t)^(d-r) for 0 <= r <= d. The predecessor described the endpoint-factor term t^i*(1-t)^(k+1) as having degree k+1. Is this true for every allowed i? Determine its exact degree and leading coefficient, give a counterexample to the universal description if false, and distinguish that degree from the Bernstein representation degree d=2*k+1.\n\nProve, for every real t, the exact identity t^i*(1-t)^(k+1)=sum_{j=0}^{k-i} w(k,i,j)*B_{d,i+j}(t), where w(k,i,j)=C(k-i,j)/C(d,i+j), with the binomial coefficients regarded as real numbers. Justify the nonzero denominators and handle i=0, i=k and k=0 without assuming t is strictly between the endpoints.\n\nTo make the same full source polynomial explicit, set a_{k,i}=sum_{m=0}^{i} C(k+i-m,k)/m! for 0 <= i <= k, F_k(t)=(1-t)^(k+1)*sum_{i=0}^{k} a_{k,i}*t^i, and H_k(t)=exp(-1)*F_k(t)+F_k(1-t). Thus H_k(t) is the source interpolant evaluated at p=t-1. Give a degree-d Bernstein coefficient formula for H_k by collecting the elevated terms and reflecting their indices. Prove its coefficients are nonnegative real numbers, and deduce H_k(t)>=0 on [0,1]. Separate the all-real exact identity from the interval restriction used for nonnegativity of the basis functions.",
+      "assumptions": [],
+      "conventions": [],
+      "family": "hermite-bernstein-representation",
+      "split": "train",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.leftCoefficient_nonneg",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lines 50-84: elevationWeight k i j = C(k-i,j)/C(2k+1,i+j); elevation_term : weight * basis (2k+1) (i+j) t = t^i (1-t)^(k+1) * C(k-i,j) * t^j * (1-t)^(k-i-j); elevation_sum : sum_{j in range (k-i+1)} weight*basis = t^i (1-t)^(k+1) via add_pow. lines 166-173: sourceBernsteinCoefficient_nonneg",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff"
+        }
+      ]
+    }
+  },
+  "mechanical_context": {
+    "observed_head": "f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818",
+    "branch": "agent/qcb-convention-contract-migration",
+    "state": "Dirty engine inspected after root's explicit FINAL admission-engine freeze; these are historical mechanical-inspection versions, not mathematical source dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157"
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab"
+      },
+      {
+        "path": "website/scripts/quantumcomputingbench.py",
+        "sha256_lf": "5a097d13f8048bd3265a42ec6312448baa5a99701fe583d383148a9a194ef740"
+      },
+      {
+        "path": "website/scripts/test_quantumcomputingbench_browser.py",
+        "sha256_lf": "03446cd6e0e891c5ea85cdb57948673198d2b42d0327d0a341dcfed30e18a681"
+      }
+    ],
+    "inspection": "Read complete qcb_textbook_policy.py and qcb_curriculum.py; read the convention-fixture construction, rebinding and three direct tests and changed renderer/browser logic. V1 accepts exactly its original field set and only replaces question; V2 alone requires an additional changed, nonempty, unique list of nonblank convention strings and a genuinely changed question. Other contract fields cannot enter either payload. V2 requires its distinct review method, exact old/new nine-field hashes and convention lists, changed-fields order and substantive convention assessment. Current and historical conventions are separately retained; readiness conditionally requires convention_revision_lineage. This does not prove all application paths, browser execution or semantic correctness.",
+    "tests": {
+      "executed_by": "/root/qcb_native_comparison",
+      "test_file": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+      "names": [
+        "test_convention_successor_binds_both_contracts_and_keeps_other_fields",
+        "test_convention_successor_rejects_unbounded_or_invalid_payloads_with_rebound_review",
+        "test_convention_successor_requires_distinct_exact_substantive_review"
+      ],
+      "result": "3 passed; unittest reported 4.405 seconds",
+      "scope": "In-memory mechanical fixtures only. No build, production installation, browser or kernel execution."
+    }
+  },
+  "provenance": {
+    "inspected_candidate": "benchmarks/quantumcomputingbench/shared/repairs/sp-108-question-degree-successor.json",
+    "written_private_review": "_review_tmp/sp-108-question-degree-successor-migration-revalidation-review.json",
+    "limits": "Private review only; no canonical installation, changes to old reviews/candidates, new paper/PDF seal, kernel/native-formal verification, model/human/expert/blind approval, admission, global semantic closure or additional-core claim."
+  },
+  "original_contract_hash": "0c40b3818a787101bd8d762d33210b70f3847eb30289dc997d15279634febffa",
+  "successor_contract_hash": "cadcbadd693451e8bdb77013bce1d01119d42dd0ea6083150acda0c8b2969f50",
+  "question_version": 2,
+  "contract_change_assessment": {
+    "necessity": "The original literal question itself calls t^i(1-t)^(k+1) degree k+1. For allowed k=i=1 it is cubic. An answer-only correction would contradict a false question demand. This explicit first question-version2 instead assesses/refutes the description, preserves the exact elevation task and makes the same source polynomial explicit in its existing coordinate.",
+    "invariant_scope": "Recomputed nine-field hashes show exactly question changes. Assumptions and conventions remain empty; train split, family, frozen graph/nodes/source_refs are identical. Three semantic steps remain. Candidate step3 adds leftCoefficient_nonneg to its node list, already an original target; the two actual ordered node maps are bound separately. I do not call those per-step lists predecessor-identical or infer a measured proof depth."
+  }
+}

@@ -153,3 +153,22 @@ For a password-protected static preview, use `serve_preview.py`; credentials
 come only from `ASPBE_PREVIEW_USERNAME` and `ASPBE_PREVIEW_PASSWORD` (the old
 `ABEIS_PREVIEW_*` names remain accepted for compatibility). A
 TryCloudflare URL is temporary preview infrastructure, not production hosting.
+
+## Mathematical prose
+
+Write inline formulas as `\(...\)` or `$...$`; reserve `\[...\]` and
+`$$...$$` for displayed equations. Keep an entire equation inside one pair
+of delimiters. Use code/preformatted blocks only for actual source, commands,
+and deliberate copyable TeX. The reader also recovers complete explicitly
+delimited formulas from legacy inline-code wrappers, without processing Lean
+code, source downloads or editable text areas.
+
+`math-reader.js` configures the shared MathJax startup and typesets newly added
+mathematical prose. The engine, TeX extensions and fonts are pinned to MathJax
+3.2.2 under `static/vendor/` and are published with the site; formula rendering
+does not require a third-party CDN. Preserve that directory when copying assets.
+
+After building, run `python website/scripts/test_math_browser.py --root SITE`.
+This Playwright gate blocks external network access, compiles all unique
+formulas, visits desktop/mobile reader pages, and checks delayed loading,
+inline formulas, live insertion and preservation of code/editor contents.

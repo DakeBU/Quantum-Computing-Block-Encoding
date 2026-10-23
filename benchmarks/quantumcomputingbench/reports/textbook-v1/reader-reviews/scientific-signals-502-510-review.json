@@ -1,0 +1,565 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_native_comparison",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "selection": "Exactly qcb-core-plan-502 through qcb-core-plan-510 as complete historical prepared records returned by release.checked()[2]; no substitution of current successors or repaired intentions.",
+    "requested_core_ids": [
+      "qcb-core-plan-502",
+      "qcb-core-plan-503",
+      "qcb-core-plan-504",
+      "qcb-core-plan-505",
+      "qcb-core-plan-506",
+      "qcb-core-plan-507",
+      "qcb-core-plan-508",
+      "qcb-core-plan-509",
+      "qcb-core-plan-510"
+    ],
+    "absent_ids": [],
+    "initial_observed_head": "a0836e38501d3976663ca561424063e78ba32214",
+    "binding_revalidation_head": "be93e03c1524fe1d7ea2e02796789d65fae90951",
+    "checkpoint_change": "The shared checkout advanced during this read-only task. All nine exact historical whole-item digests and the source metadata LF binding remained unchanged on revalidation; this private report does not mutate either checkpoint.",
+    "current_policy_digest": "f9da19b04c7ceaaabaf31060f797c7700994f228b4035a9399cdbb3fc49dc086",
+    "bounded_semantic_coverage": "All nine full questions, answers, rubrics, assumptions, conventions and semantic steps were read. Closest within-batch contracts and seven actual relevant historical neighbors were compared. Detailed pair records below distinguish complete targets from sublemmas/generalizations; this is not a census-wide deduplication conclusion.",
+    "output_role": "Private subsequent-checkpoint evidence only; outside the active reader-reviews glob. No admission, scope rewrite, count change or stable-release claim."
+  },
+  "provenance": {
+    "identity": "/root/qcb_native_comparison",
+    "authorship": "I did not author these nine stored items and did not edit them or supply repair candidates in this task.",
+    "exposure": "Not blind or source-blind. Complete prepared records include inherited review metadata; a full-record read exposed stored accept labels and reviewer notes, and current-policy status inspection exposed withdrawal reasons for reserved neighbors. I reconstructed the algebra and explicit counterexamples independently of those labels. This report does not claim a new person, a human/expert reviewer, or a model identity.",
+    "instruction_refresh": "Read complete repository AGENTS.md, HARNESS.md, theorem-publication, proof-digestion, evidence-routed-memory protocols and substantive-worker/frontier-master skills; used the PDF skill for bounded extraction and visual source verification.",
+    "primary_retrieval": {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition": "29 April 2026 public 447-page edition",
+      "actual_primary_bytes_retrieved": 5718900,
+      "actual_raw_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "pin_matched": true,
+      "actual_page_count": 447,
+      "complete_text_pages_read": [
+        141,
+        142,
+        143,
+        145,
+        146,
+        152,
+        153,
+        159,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "operative_regions": "Definition9.2; Lemma9.5 and proof; Definitions10.1–10.4; full scalar rotation and HBE construction; Eqs10.45–10.80; full CS Theorems10.9/10.10 and proof; Section10.5, Fig10.3, Theorem10.12, Eq10.105; subspace example10.13 for bounded neighboring-contract comparison.",
+      "visual_inspection": {
+        "personally_rendered_in_memory_and_viewed_pdf_pages": [
+          173,
+          178
+        ],
+        "contents": "Figure10.2 and Eq10.72–10.75 projected-block layout; Figure10.3 control-bit/order/repeated-iterate layout and Theorem10.12 premises.",
+        "limits": "No visual claim for other pages; other listed pages were fully text-extracted and read. No entire-book review. The primary PDF was retrieved/read/rendered in memory and not added to the repository or redistributed."
+      },
+      "primary_source_limit": "The pinned source contains its own shorthand/overstatements, including the narrower printed Hermitian label in Proposition10.7. I checked operative equations, not just theorem names, and did not treat source prose as an infallible proof oracle."
+    },
+    "execution": "Read-only release.checked() preparation, current-policy application for status only, exact digest/LF checks, primary-byte retrieval/text extraction and in-memory PDF rendering were performed. Counterexamples below are explicit hand-reconstructed matrix identities, not fresh Lean/kernel verification or production algorithm execution.",
+    "verification_limits": "No kernel run, native-formal theorem, compiled circuit, error/finite-bit synthesis, blind decoder, hardware execution, global deduplication, novelty, admission or stable-release certification is claimed.",
+    "source_binding_limit": "Local source_checks bind the exact LF metadata file required by the records; it contains source metadata, not the external mathematical PDF. Actual primary binary identity and inspected regions are separately recorded above."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-502",
+      "key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+      "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+      "question_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037",
+      "current_reader_present": true,
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The adjoint-paired block identities are correct, but the full requested conclusion and explanatory steps are not true with the stated universal scope. Let p=|0,v>, s=sqrt(1-t^2), q=(U†p-tp)/s and q'=(Up-tp)/s for |t|<1. Unitarity and the exact flag block A imply U:[p,q]→[p,q'] has matrix S=[[t,s],[s,-t]], U† reverses these ordered bases with the same S, and R is Z in both. Thus E has matrix SZSZ=M(t)^2; its flagged block is T_2k(A), and UR E^k has flagged block T_(2k+1)(A). This reconstructs rubric1–3 and steps2–6, with second-kind off-diagonal -s U_(2k-1). At t=±1 the flagged line is invariant and the companion construction degenerates, rather than necessarily defining a genuine two-dimensional plane. However neither non-Hermiticity of the global U nor the absence of a Hermiticity premise implies H≠H'. A real ancilla rotation R(theta) tensor I with cos(theta)=t already has H=H' as subspaces, though their chosen companion bases differ in sign. More decisively, in ancilla-major order |00>,|01>,|10>,|11>, take t=1/2, s=sqrt(3)/2 and U=[[t,0,s,0],[0,1,0,0],[s,0,-t,0],[0,0,0,i]]. This is unitary, not Hermitian, and its exact flag block is the Hermitian A=diag(t,1). With R=diag(1,1,-1,-1), UR is the usual rotation on span{|00>,|10>} and is 1 on |01>; consequently its every power already has flag block diag(T_k(t),1)=T_k(A), despite U≠U†. Thus answer's DIFFERENT-plane assertion, semantic step1, and rubric4/step7's necessity claim are false as universal claims. Even one UR always has flag block A=T_1(A); what fails without added structure is a guarantee for arbitrary powers, not the degree-one block itself. Source Eqs10.50–10.59 only establish the directed maps and guaranteed paired construction, not distinctness or universal necessity. No projected-block result here asserts a normalized deterministic transformed state or a finite-gate synthesis.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-503",
+      "key": "qcb-core-plan-503-second-kind-offdiagonal",
+      "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+      "question_contract_hash": "b5f4f6be5686b4f0b01a01d2a3f07f68e5e6cac9b602dbe290e6d84f3269132b",
+      "current_reader_present": true,
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The complete scalar target and its four rubric requirements are justified. Put t=cos(theta), theta∈[0,pi]; the nonnegative square root is sin(theta). Matrix multiplication of planar rotations gives M(t)^k=[[cos(k theta),-sin(k theta)],[sin(k theta),cos(k theta)]]. On the open interval, T_k(t)=cos(k theta) and U_(k-1)(t)=sin(k theta)/sin(theta), so the two off-diagonal signs in the answer are correct. At t=1, M=I and the polynomial limit U_(k-1)(1)=k is finite; at t=-1, M=-I and U_(k-1)(-1)=(-1)^(k-1)k is finite. Multiplication by sqrt(1-t^2)=0 gives zero off-diagonals in both cases; it is not legitimate to evaluate the raw 0/0 trigonometric quotient there, but the answer explicitly invokes the finite polynomial value and verifies the actual matrices separately. For the empty iterate k=0, M^0=I is checked directly (or U_-1=0 under the usual extension), rather than relying on an undefined quotient. All six substantive steps correspond to this calculation. This is an exact identity for real t in the stipulated interval, not an approximation bound, a query-cost theorem, or a claim about whole unprojected quantum outputs. The source has the scalar proof already in Eqs10.25–10.28, with the same second-kind factors in10.56/10.72/10.74. Its overlap with plan220/502/504 is a genuine shared scalar sublemma, not equality of their complete operator/construction contracts.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-504",
+      "key": "qcb-core-plan-504-svt-parity-left-right-vectors",
+      "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+      "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26",
+      "current_reader_present": true,
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The two displayed projected operators are correct, but the complete explanation and its first semantic step assert more than follows. Write p_i=|0,v_i>, p'_i=|0,w_i>, q_i=(U†p'_i-sigma_i p_i)/sqrt(1-sigma_i^2), and q'_i=(Up_i-sigma_i p'_i)/sqrt(1-sigma_i^2) when sigma_i<1. The source's directed matrices are U:H_i→H'_i and U†:H'_i→H_i, both S(sigma_i). Hence E^k has flag-to-flag block V T_2k(Sigma)V†, while UR E^k has block W T_(2k+1)(Sigma)V†; this independently establishes the substantive parts of rubric1–3 and the intended parity mechanism without eigenvalue or diagonalizability assumptions. Odd polynomials vanish at sigma=0, so arbitrary null-space singular-vector choices do not spoil the odd matrix function; even output is a function of A†A and is likewise basis-independent. At sigma=1 the two-dimensional construction may collapse to a line. The answer nevertheless says the input flagged right vector 'is sent back to the flagged right vector scaled by T_2k', omitting the flag-orthogonal term if read as a full-state assertion. For A=(1/2)I and the canonical Hermitian dilation U=[[tI,sI],[sI,-tI]], k=1 gives full output (-1/2)|0,v>+(sqrt(3)/2)|1,v>, not the unnormalized flagged vector alone; success probability is 1/4. More unambiguously, semantic step1 and the last paragraph say each U application swaps the planes bidirectionally. Source Eq10.79 supplies an exact counterexample: U sends e0→e2→e1→e0 and fixes e3 in ancilla-major order. For sigma=0 choose right v=e0(system), left w=e1(system); then H=span{e0,e2}, H'=span{e1,e2}, but U(H')=span{e0,e1}≠H. It is U†, not U, that returns H' to H. Rubric4 rewards this overstrong swap description. The projected sums agree with Eqs10.73/10.75; that does not validate the whole-state or bidirectional-U claims. Source Proposition10.7's printed 'Hermitian' premise is itself narrower than the preceding general-matrix derivation; the general result was checked from Eqs10.61–10.75, not inferred from that heading.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-505",
+      "key": "qcb-core-plan-505-nilpotent-sv-vs-eigenvalue-counterexample",
+      "item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+      "question_contract_hash": "7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197",
+      "current_reader_present": true,
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The nilpotent computation and rubric1–4 are correct: A=[[0,1],[0,0]]=I diag(1,0) X†, so the right-even transformation is X diag(T_2(1),T_2(0))X†=diag(-1,1), whereas the ordinary polynomial is T_2(A)=2A^2-I=-I because A^2=0. The explanation must distinguish a Jordan-polynomial calculation from merely evaluating a function on the eigenvalue list; for this degree-two polynomial the -I result is in fact the ordinary polynomial, despite defective diagonalizability. All six listed steps have this intended calculation. The full reference answer then adds the false generalization that for normal A eigenvalue and singular-value transformations coincide up to signs. Take the perfectly normal exact contraction A=(i/2)I_2. Its singular values are 1/2; the even SVT is T_2^SV(A)=(-1/2)I, while the ordinary polynomial T_2(A)=(-3/2)I. They differ in magnitude, not merely a sign, phase, or choice of singular vectors. Normality allows arbitrary complex eigenphases, which are discarded by the right-even function of |A|; Hermiticity restricts those phases to real signs and definite parity is then sufficient for agreement. Source Definition10.4 and Eqs10.15–10.16 establish that Hermitian statement, not the normal-matrix extension. If 'only when normal' were instead read as a universal necessary condition, f(x)=x already gives odd SVT=A for every nonnormal A, so that reading is also overbroad. The example remains a specialization of the projected even formula in504 and a useful contrast to the reserved219 target, but the extra incorrect principle prevents an unconditional full-answer acceptance. This rejection is not a rejection of the explicit diag(-1,1) computation.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-506",
+      "key": "qcb-core-plan-506-cosine-sine-constraint-and-range",
+      "item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+      "question_contract_hash": "0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f",
+      "current_reader_present": true,
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The requested contraction/CS statement and the rubric are mathematically sound, and the later rotated-column part of the answer contains the route to a valid proof; however its explicitly repeated earlier implication is invalid. Partition U=[[B,F],[G,H]]. Full unitarity gives B†B+G†G=I_p. After B=W C V†, (GV)†(GV)=I-C^2, hence c_j∈[0,1], the lower vectors GVe_j are mutually orthogonal with lengths s_j=sqrt(1-c_j^2), and q≥p permits completing their normalized nonzero members to a bottom-space unitary. Zero s_j require arbitrary orthonormal completion rather than division by zero. This yields the CS sine matrix, including c_j=0 or1, and C^2+S^2=I. The singular-value arguments are therefore in [0,1]; for a Hermitian block, signed eigenvalues are also in [-1,1], not necessarily all nonnegative. The scalar Chebyshev trigonometric representation is valid there, although second-kind polynomials can still reach size k and the word stable is not a uniform condition-number bound. The answer's first paragraph and semantic step2 instead infer the spectral bound merely from each original column of B having norm≤1. That inference is false: B=[[1,1],[0,0]] has both column norms1 but largest singular value sqrt(2). This B cannot be a unitary compression; it is a counterexample to the cited local implication, not to the true theorem. Retaining the full Gram-matrix constraint or invoking the rotated columns after the SVD resolves the gap, and the answer later does invoke those rotated columns. I therefore do not label the whole mathematical target false, but I cannot cleanly certify all its proof steps as written: the stored six-step exposition explicitly promotes the insufficient original-column argument into a semantic step. Source Theorem10.9/Eqs10.83–10.89 uses full orthonormality and triangular structure, not column lengths alone. A distinct adjudication of whether the later valid argument suffices for the current proof/rubric presentation is needed; no repair has been authored here.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-507",
+      "key": "qcb-core-plan-507-z-reflection-commutes-not-xy",
+      "item_digest": "8c10659977129d9beb6a9dc8a112cd04b982917267361a57dd4449e718f07091",
+      "question_contract_hash": "61af4b81984237d5ce7d0e2d89deb63c484e4ad3420f45a02fbfe110135aa9c6",
+      "current_reader_present": true,
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For the single-qubit flag specified in the question, the two graded sectors have equal data dimension. With D=diag(I,-I) and F=diag(W,W'), DF=FD=diag(W,-W') regardless of W and W'. Likewise D commutes with the V outer factor, so U†DU D can be expressed with the same CS middle matrices and those outer factors cancel/pull through in the required places. Replacing D by X⊗I gives XF=[[0,W'],[W,0]] and FX=[[0,W],[W',0]]; equality holds iff W=W'. For instance W=I and W'=-I give anticommutation, a concrete counterexample to the student's universal substitution. This verifies all four rubric entries and the six steps at the operator-coupling level. The question correctly says generically: special equal-block cases can commute, so the answer does not establish that every X choice fails. The schematic full-sector swap would not apply unchanged to the unequal p,q grading of506 or a multi-ancilla zero-versus-all-nonzero split; here the single-qubit flag supplies the necessary equal dimensions. The phrase 'entangles the two graded sectors' is understood only as coupling those operator sectors; a local X by itself need not generate physical entanglement of any state. Similarly the failed factorization is the particular singular-vector-aligned CS expression independent of W,V, not a denial of Jordan's abstract two-reflection/two-dimensional decomposition in some other basis. These limits agree with the exact commutation reason surrounding Eq10.96; they do not grant a hardware-resource or state-preparation guarantee.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-508",
+      "key": "qcb-core-plan-508-lcu-select-query-count",
+      "item_digest": "99fb50087dd29dddc1503144dc867f4855efd2d53d33cf573ad8a8869fe5ed47",
+      "question_contract_hash": "7cf4beda2da8c73ec4a6fa0699a93edd8cf7c9b9585060f38c2a11ce7d2c9c40",
+      "current_reader_present": true,
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "In the stated direct sequential multiplexing construction, the scheduled controlled circuit for branch k uses 2k calls in total to U and U†, even though its control may be zero on a particular basis input. Summing these scheduled blocks gives 2 sum_(k=0)^(K-1)k=K(K-1). This is a construction comparison, not a lower bound for every possible SELECT circuit. For K=2^a, define E=U†RUR. Binary expansion k=sum_j k_j2^j gives SELECT_k E^k as the product of bit-controlled E^(2^j). Repeating E exactly 2^j times costs 2^(j+1) base calls, not unit-cost exponentiation or fast-forwarding; thus total 2 sum_j2^j=2K-2, equal to the maximum-order even term's scheduled count. This proves the four rubric entries and all six steps. The edge K=1 has an empty product and zero calls in both implementations. A useful access-model bridge is that bit-controlled E does not need a freely controllable arbitrary black-box U: (I⊗U†) controlled(R) (I⊗U) controlled(R) is identity on control0 and U†RUR on control1. The two ordinary base calls still count, while the known flag reflection is controlled. U† access itself is required by the qubitization construction; counts must combine forward and inverse calls as the source does, not count only forward U. A linear combination is implemented through unitaries whose projected blocks are the Chebyshev transforms, not by treating the nonunitary polynomial itself as a controlled unitary. Source Fig10.3 was visually checked, including control-bit order and the repeated E, E^2,...,E^(2^(a-1)) blocks. The record explicitly excludes coefficient preparation, multi-control synthesis, elementary-gate costs, finite-bit precision, and readout costs; its exact ideal query count does not certify any of them. These are precisely the limits around Eqs10.100–10.102.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-509",
+      "key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+      "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+      "question_contract_hash": "ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2",
+      "current_reader_present": true,
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The main balanced-LCU block identity is correct, but the explanatory success-port/unavoidability wording has an unresolved degenerate-spectrum overclaim. The parity projections f_e=(f(x)+f(-x))/2 and f_o=(f(x)-f(-x))/2 are even/odd, add to f, and are unique by applying the two parity projections to any proposed decomposition. For a Hermitian A, definite-parity SVT agrees with the corresponding polynomial function, with arbitrary null-space sign choices irrelevant because odd functions vanish at0. Given exact blocks B_e=f_e(A)/c and B_o=f_o(A)/c at a common positive scale and padded common signal workspace, H-controlled-select-H has control-zero/signal-zero block (B_e+B_o)/2=f(A)/(2c). This reconstructs the core of rubric1–3 and steps1–5 and the factor2 of the fixed selected projector in source Eq10.105. If A is not a contraction, an actual qubitization implementation must first access A/alpha and substitute f_(e/o)(alpha x); the record gives no bound on this input-access/normalization work and I infer none. The final claim that only one control outcome carries the desired sum, and the associated unconditional phrasing of rubric4/step6, is not literally true on every allowed spectrum. Let f(x)=1+x (genuinely parity-mixed) and A=0. Then f_e(A)=I and f_o(A)=0; both the sum port and the difference port have the same projected operator I/(2c). More generally parity-mixed polynomials can have one parity part vanish on spec(A). Moreover coefficient-weighted LCU with factors c_e,c_o can use scale c_e+c_o, rather than2 max(c_e,c_o); the record's answer correctly restricts its algebra to common-c balanced control, so it must not be read as a general optimality/lower-bound statement. The common-c balanced selected block remains exactly f/(2c) even in the counterexample, so this is not a counterexample to that central identity. I mark the complete record uncertain rather than asserting that its intended fixed-scheme calculation is wrong: admission of the full proof would require deciding/qualifying whether 'only one' and 'halves the success amplitude' are merely descriptions of a chosen port or false universal physical-success claims. For a state psi, the actual chosen-port success probability is ||f(A)psi||^2/(4c^2), not an unconditional1/4 or a state-independent relative loss. No such clarification/repair has been written here.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    },
+    {
+      "core_id": "qcb-core-plan-510",
+      "key": "qcb-core-plan-510-definite-parity-lcu-resource-statement",
+      "item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+      "question_contract_hash": "2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c",
+      "current_reader_present": true,
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The resource theorem quoted from the source has an indispensable input premise absent from the full literal question and answer: U_A is an exact (1,m)-block-encoding of A, not merely a single-ancilla block-encoding with arbitrary subnormalization or error. Under that source premise, the derivation is sound: parity-specific Chebyshev unitaries provide exact blocks T_k^SV(A); magnitude-square-root coefficient preparation and the appropriate phases give LCU factor sum|alpha_k|; an index register of a=O(log(d+1)) qubits (for the small d=0,1 cases handled directly) and binary paired-iterate reuse yield O(d) U/U† calls. The odd case uses the same multiplexed even powers plus one unconditional UR, so is still O(d). Temporary work for a flag reflection, padding to a power-of-two index range, and exact ideal coefficient-preparation oracles are not proof of a compiled finite-bit gate implementation. The answer appropriately separates gate/preparation/readout cost, and its four rubric entries/six steps have this conditional resource shape. But Definition9.2 explicitly allows alpha≠1 and nonzero epsilon, neither excluded by any assumption/convention in this record; 'single-ancilla' specifies only m=1. An exact counterexample already uses epsilon=0: A=2I_2 and U=I_4 form a legitimate (2,1)-block-encoding. With degree-one odd f(x)=x, the coefficient1-norm is1. The answer promises a factor1 block-encoding of f^SV(A)=A=2I_2, which is impossible because a unitary compression has norm≤1. The algorithm actually transforms the normalized block A/2 unless the polynomial and its coefficients are rescaled; that changes the claimed coefficient factor. An approximate input similarly needs an error-propagation contract instead of an exact output promise. Theorem10.12 explicitly says (1,m), and Eq10.104/Section10.5 inherit exact normalized blocks. Without silently adding that missing premise, this complete record cannot receive acceptance. This rejection concerns the question/resource contract, not the correct normalized-input theorem or its no-free-gate-cost caveat.",
+      "source_checks": [
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+        }
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ],
+  "neighbor_bindings": [
+    {
+      "core_id": "qcb-core-plan-214",
+      "key": "qcb-core-plan-214-hermitian-matrix-nonhermitian-block-encoding-boundary",
+      "item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+      "question_contract_hash": "fa6d5317e5460f774b682be442b3a28aaf6d927eb9775d600bc204dec418b186",
+      "current_reader_present": true,
+      "role": "bounded neighboring contract only; not a new full reader verdict"
+    },
+    {
+      "core_id": "qcb-core-plan-217",
+      "key": "qcb-core-plan-217-svt-definite-parity-eigenvalue-equivalence",
+      "item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+      "question_contract_hash": "5330ca732152f43ed156ccfd8223d123bf6c6a2f40f64b97c93b1d0c9c8491a7",
+      "current_reader_present": false,
+      "role": "reserved withdrawn historical malformed target; not silently repaired"
+    },
+    {
+      "core_id": "qcb-core-plan-218",
+      "key": "qcb-core-plan-218-dilated-hermitian-matrix-svt-eigenstructure",
+      "item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+      "question_contract_hash": "08bc8eafc4fa42dcd2d8bd5032d055d944f251b0ac47caca944e9937bdd5f8a0",
+      "current_reader_present": false,
+      "role": "reserved withdrawn historical malformed target; not silently repaired"
+    },
+    {
+      "core_id": "qcb-core-plan-219",
+      "key": "qcb-core-plan-219-matrix-power-not-singular-value-transformation",
+      "item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+      "question_contract_hash": "fc763e6b01528c5b2ed8a9eb0903d4ecaa87ae18bdbcd6c6fea67ef82e3cba05",
+      "current_reader_present": false,
+      "role": "reserved withdrawn historical malformed target; not silently repaired"
+    },
+    {
+      "core_id": "qcb-core-plan-220",
+      "key": "qcb-core-plan-220-qubitization-iterate-chebyshev-block-encoding",
+      "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+      "question_contract_hash": "ec9dc64e542b86dfc207f02ba3eeea2716c1bf7559db9e35315fbc79f85a710c",
+      "current_reader_present": true,
+      "role": "bounded neighboring contract only; not a new full reader verdict"
+    },
+    {
+      "core_id": "qcb-core-plan-511",
+      "key": "qcb-core-plan-511-subspace-blockencoding-reflections-reduce",
+      "item_digest": "216c79773b04ab1d4a02081409afd1d5bcb8b699bbc13e5e52d49665f0603746",
+      "question_contract_hash": "ed4585cfb75c266e5b089844b910e94a070956a03ae17c3f01168dd077e4f78e",
+      "current_reader_present": true,
+      "role": "bounded neighboring contract only; not a new full reader verdict"
+    },
+    {
+      "core_id": "qcb-core-plan-512",
+      "key": "qcb-core-plan-512-rotation-reflections-overlap-example",
+      "item_digest": "f7c7bcf690a37698856d2c6713a064d8184919097eb397ba4fc74e1f628a723a",
+      "question_contract_hash": "fcc6737d65441cbb178d120b9eb16efd98e5f9dcf52e41b913ee178a8109a979",
+      "current_reader_present": true,
+      "role": "bounded neighboring contract only; not a new full reader verdict"
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "lin-wiebe-2026-qasc metadata entry only; not the primary PDF's mathematical content or a local proof certificate"
+    }
+  ],
+  "bounded_pair_comparisons": [
+    {
+      "left": {
+        "core_id": "qcb-core-plan-502",
+        "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "question_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-503",
+        "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+        "question_contract_hash": "b5f4f6be5686b4f0b01a01d2a3f07f68e5e6cac9b602dbe290e6d84f3269132b"
+      },
+      "relation": "shared scalar sublemma, not equivalent complete targets",
+      "reconstruction": "503 is the scalar M(t)^k identity including the endpoint treatment.502 additionally constructs the two directed basis maps from a unitary compression and asks for even/odd adjoint pairing plus a necessity explanation. The correct scalar formula is used inside502; it does not establish502's false distinct-plane/necessity claim."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-502",
+        "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "question_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26"
+      },
+      "relation": "Hermitian specialization of correct block formulas; literal complete contracts not equivalent",
+      "reconstruction": "For Hermitian A, even right SVT and odd balanced SVT reduce to the corresponding Tk(A) by parity. This embeds the correct output-block portion of502 in504's general SVD construction.504 permits distinct left/right singular vectors and nondiagnonalizable A, whereas502 asks about real signed eigenvalues and repeated-UR necessity. Their separate false explanatory steps are not merged into a repaired shared target."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-502",
+        "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "question_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-214",
+        "item_digest": "ee7b6ab22e7d5bafb9e15e983138f7ede1ac7947e99241fe3924ad09a543ebfc",
+        "question_contract_hash": "fa6d5317e5460f774b682be442b3a28aaf6d927eb9775d600bc204dec418b186"
+      },
+      "relation": "prerequisite boundary, not same conclusion",
+      "reconstruction": "214 establishes that an encoded Hermitian block need not make the full unitary Hermitian, using a rotation example.502 asks what the adjoint-paired Chebyshev construction does in that larger input class. The rotation example in214 also warns that a non-Hermitian unitary can preserve the same geometric plane; it does not imply the DISTINCT-plane assertion in502."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-502",
+        "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "question_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-220",
+        "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+        "question_contract_hash": "ec9dc64e542b86dfc207f02ba3eeea2716c1bf7559db9e35315fbc79f85a710c"
+      },
+      "relation": "generalized input class and paired-order construction versus HBE special case",
+      "reconstruction": "220 assumes U=U† and derives U^2=I closure, then all powers of UR.502 drops that premise and gives E=U†RUR and an extra UR for odd order. Under220's premise E=(UR)^2, so the correct output formulas specialize consistently. This is shared mechanism/strong-premise specialization, not equality of the whole question;502's universal necessity clause cannot be imported into220."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-503",
+        "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+        "question_contract_hash": "b5f4f6be5686b4f0b01a01d2a3f07f68e5e6cac9b602dbe290e6d84f3269132b"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-220",
+        "item_digest": "17fa9371009c4d46bf734d23da434d92f20544b991214dd9f1936d2ae4633bcc",
+        "question_contract_hash": "ec9dc64e542b86dfc207f02ba3eeea2716c1bf7559db9e35315fbc79f85a710c"
+      },
+      "relation": "proper scalar sublemma/specialization, not full-target equivalence",
+      "reconstruction": "220 contains the same rotation-power calculation and even its second-kind off-diagonal in the answer, but its full target requires deriving an invariant plane from HBE and proving a projected operator identity.503 takes the scalar rotation as given and asks specifically about the endpoints and off-diagonal form. This is meaningful overlap, not a new independent quantum construction or a complete duplicate."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-503",
+        "item_digest": "b6107ce9db2ef5b7186113a0124865a058dbf3c5319ce52791949fccae0d6d19",
+        "question_contract_hash": "b5f4f6be5686b4f0b01a01d2a3f07f68e5e6cac9b602dbe290e6d84f3269132b"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26"
+      },
+      "relation": "same scalar plane-power identity with different assembly target",
+      "reconstruction": "504 uses M(sigma)^(2k) and M(sigma)^(2k+1) internally, but asks for V-versus-W assembly of the projected blocks over all singular vectors.503 does not assert that operator conclusion, the left/right choice, or any normalization/query guarantee."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-505",
+        "item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+        "question_contract_hash": "7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197"
+      },
+      "relation": "explicit specialization/counterexample, not equivalent complete target",
+      "reconstruction": "505 specializes the even right formula to a specific rank-one nilpotent, computing V=X and T2^SV=diag(-1,1).504 asks the general right-even/balanced-odd assembly, including odd output, with no nilpotent or misleading eigenvalue guess. The false normal-matrix extension in505 is an additional current answer claim and is not licensed by504."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-217",
+        "item_digest": "50679e2149c8cc4c1a3ae4d804b3f72dec413a104f29d51b1eb4da9d19feea0a",
+        "question_contract_hash": "5330ca732152f43ed156ccfd8223d123bf6c6a2f40f64b97c93b1d0c9c8491a7"
+      },
+      "relation": "shared Hermitian parity bridge with reserved malformed target kept literal",
+      "reconstruction": "The correct Hermitian equality for definite parity explains how504's SVD sums reduce to eigenvalue polynomials. Actual217 also demands that parity be 'exactly' the hypothesis and says non-parity agreement cannot occur, which is too strong for a fixed finite spectrum; its sign(D) SVD convention also needs unit-modulus completion at zero. I did not treat a repaired sufficient-only statement as217's full actual target or identify504 with it."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-218",
+        "item_digest": "568117cff67fd69c6ea6f73b73f70181dee69cf8f0059fd634d0074c0189fe8a",
+        "question_contract_hash": "08bc8eafc4fa42dcd2d8bd5032d055d944f251b0ac47caca944e9937bdd5f8a0"
+      },
+      "relation": "shared matrix-function parity but different dilation and physical-output contract",
+      "reconstruction": "Actual218 requires the Hermitian dilation eigenbasis, its f(Atilde) block formula, and a definite measurement with no postselection loss.504 instead uses a given block-encoding unitary and projected iterate blocks. The algebraic dilation identity alone neither removes qubitization flag garbage nor makes a non-isometric f(Atilde) a normalized deterministic state. Reserved218 remains malformed; it is not assumed corrected merely because the projected formulas coincide with its useful sublemma."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-505",
+        "item_digest": "fe853c4c836e167a6501e0cc7a8ea48915d4b78c8ff212e0d9c55ebe42f2c5f2",
+        "question_contract_hash": "7a4f23fede7bd6fc824b5936f9fb9d5b60c6d8ecb52cf20d83b6097ba5108197"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-219",
+        "item_digest": "2387018c64ae8b443f7d0dc49ebb1c814f123a3d08e5575f01c1597ddc3b6d0e",
+        "question_contract_hash": "fc763e6b01528c5b2ed8a9eb0903d4ecaa87ae18bdbcd6c6fea67ef82e3cba05"
+      },
+      "relation": "different nonnormal obstructions; reserved stronger claim not silently repaired",
+      "reconstruction": "505 is a defective nilpotent and compares ordinary T2(A) with a right-even singular function. Actual219 assumes diagonalizability and demands a no-scalar-g exclusion for all three generalized forms plus an inverse claim without an invertibility premise;505 is not a direct example satisfying that full contract. The generic interior V†W mechanism alone does not prove219's universal 'unless diagonal' exclusion: the diagonalizable nonnormal A=[[1,1],[0,-1]] has A^2=I, which is the right/left function g≡1 despite nonnormality. Thus the useful generic warning and the stronger malformed target stay separate."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-504",
+        "item_digest": "c381cbd3f7121acaa8f6a1c1901efc4466ddd3eb9446022ad1a5cef85a9c92ea",
+        "question_contract_hash": "8ad3d619d213308a8f49f558407d3deeb56a1335837f03a1bc637c6af949ab26"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-506",
+        "item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+        "question_contract_hash": "0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f"
+      },
+      "relation": "contraction/CS prerequisite, not full-output equivalence",
+      "reconstruction": "506 proves unitary-compression singular values lie in [0,1] and a C^2+S^2=I structure for general p≤q.504 uses those scalar values to build parity-specific flagged operator sums. The norm/CS lemma alone does not determine the even/odd outer factors, nor does the latter replace506's general dimension and degenerate singular-value proof."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-506",
+        "item_digest": "f77a7a84ab1bb6ed5de47988c4b7da7369747254ab22e347e0bd4192d0cc9913",
+        "question_contract_hash": "0f0d845ee3ff78f5091140f693f4b70c9e552cfebd742062c3f1d45e8042018f"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-507",
+        "item_digest": "8c10659977129d9beb6a9dc8a112cd04b982917267361a57dd4449e718f07091",
+        "question_contract_hash": "61af4b81984237d5ce7d0e2d89deb63c484e4ad3420f45a02fbfe110135aa9c6"
+      },
+      "relation": "two different CS lemmas sharing a factorization",
+      "reconstruction": "506 concerns the scalar cosine/sine constraints of an arbitrary unitary compression.507 concerns the central grading reflection commuting with arbitrary block-diagonal outer factors, and the generic failure of an off-diagonal X swap in the equal-sector case. Shared use of CS does not make their complete targets equivalent;506's q≥p can be unequal, unlike507's single-qubit swap model."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-507",
+        "item_digest": "8c10659977129d9beb6a9dc8a112cd04b982917267361a57dd4449e718f07091",
+        "question_contract_hash": "61af4b81984237d5ce7d0e2d89deb63c484e4ad3420f45a02fbfe110135aa9c6"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-511",
+        "item_digest": "216c79773b04ab1d4a02081409afd1d5bcb8b699bbc13e5e52d49665f0603746",
+        "question_contract_hash": "ed4585cfb75c266e5b089844b910e94a070956a03ae17c3f01168dd077e4f78e"
+      },
+      "relation": "same reflection machinery, different basis/rank scope",
+      "reconstruction": "507's grading-central D commutes with CS outer factors in the given basis;511 concerns two possibly different projectors and ranks, and a basis identification of an entire iterate. A general pair of reflections can still have a Jordan two-dimensional decomposition even when an X substitution destroys the particular singular-vector-aligned factorization in507. No new full reader verdict for511 is supplied here."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-502",
+        "item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+        "question_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-512",
+        "item_digest": "f7c7bcf690a37698856d2c6713a064d8184919097eb397ba4fc74e1f628a723a",
+        "question_contract_hash": "fcc6737d65441cbb178d120b9eb16efd98e5f9dcf52e41b913ee178a8109a979"
+      },
+      "relation": "shared twice-angle geometry, different full encoding contracts",
+      "reconstruction": "512's accessing unitary is I and its input/output projectors differ, so the product is R(2theta) with encoded overlap cos(theta)I.502 uses the same flag projector around a general U and a Hermitian A, and asks for polynomial blocks of all paired orders. The explicit subspace-encoding example explains the same geometry but is neither a complete duplicate nor evidence that H and H' must differ in502."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-508",
+        "item_digest": "99fb50087dd29dddc1503144dc867f4855efd2d53d33cf573ad8a8869fe5ed47",
+        "question_contract_hash": "7cf4beda2da8c73ec4a6fa0699a93edd8cf7c9b9585060f38c2a11ce7d2c9c40"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-510",
+        "item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+        "question_contract_hash": "2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c"
+      },
+      "relation": "exact SELECT subroutine versus broader resource theorem; no repaired-input alias",
+      "reconstruction": "508 fixes K=2^a, even orders and exact counts K(K-1) versus2K-2.510 requests coefficient1-norm, ancillary width and O(d) total calls for both parities.508 is a resource subroutine inside the normalized-input theorem intended by510; an O(d) statement does not imply508's exact comparison. Actual510 also omits the required unit-normalized exact input premise and is compared as written, not as the repaired theorem."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-509",
+        "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+        "question_contract_hash": "ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-510",
+        "item_digest": "ff1a28db552836b74d04d8d088fac67ad5b1f63dc3d4aa67521223461a8981d0",
+        "question_contract_hash": "2bf5d37381543b15e282db4a961dd4db9e475ef5dda028ddbb1eb0448213bd6c"
+      },
+      "relation": "mixed-parity Hermitian extension, not equivalent to definite-parity general SVT",
+      "reconstruction": "509 needs a real mixed-parity polynomial and Hermitian A so two parity-specific functions can be added as f(A); it studies a common-c balanced selected block.510 asks a definite-parity SVT for general A and its resource shape. The coefficientnorm and generic LCU ingredients are shared, but the outer generalized functions, parity assumptions and normalization comparison targets differ."
+    },
+    {
+      "left": {
+        "core_id": "qcb-core-plan-508",
+        "item_digest": "99fb50087dd29dddc1503144dc867f4855efd2d53d33cf573ad8a8869fe5ed47",
+        "question_contract_hash": "7cf4beda2da8c73ec4a6fa0699a93edd8cf7c9b9585060f38c2a11ce7d2c9c40"
+      },
+      "right": {
+        "core_id": "qcb-core-plan-509",
+        "item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+        "question_contract_hash": "ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2"
+      },
+      "relation": "shared multiplexing mechanism, different normalization versus query targets",
+      "reconstruction": "Both use a controlled selection inside an LCU sandwich.508 counts repeated U/U† calls for many even Chebyshev indices and does not ask for a normalizer;509 combines two already constructed parity pieces and derives the selected-block factor2 relative to common c, without508's exact query schedule. Their common SELECT node does not make the requested conclusions equal."
+    }
+  ],
+  "remaining_gaps": [
+    "No global native/legacy census or transitive split-closure claim; only the requested nine and named neighbors were compared.",
+    "No formal companion exists for these records in the inspected prepared items; no theorem-prover or native formal equivalence was inferred.",
+    "Input normalization/error, physical-state versus projected-block language, and selected-port versus optimal success accounting must remain separate. Literal defects and uncertainty in the current records were not repaired in this task.",
+    "Cases marked uncertain require separate adjudication or a distinct authored correction and review; an otherwise correct central formula is not a blanket endorsement of all stored exposition."
+  ],
+  "pair_selection_and_remaining_coverage": {
+    "rationale": "Selected actual nearest mathematical neighbors by input class, scalar rotation, outer-vector assembly, CS grading, and LCU query/normalizer targets after reading the full nine records. All36 within-batch unordered pairs were screened by their complete input/target types; the detailed records focus on the overlapping pairs rather than manufacture new equivalences for distant pairs.",
+    "cross_group_screen": "The remaining within-batch pair comparisons not itemized separately separate scalar/unitary-plane or CS lemmas from coefficient-prepared LCU query/normalizer synthesis.502–507 do not ask for508's exact multiplexed schedule or510's three resource quantities;508–510 do not replace the invariant-plane, scalar endpoint, or compression/commutation proof targets. No whole-target equality follows from a shared matrix-analysis, block-encoding or approximation graph node.",
+    "limits": "This is a bounded semantic screen, not proof of absence of aliases against the full catalog, legacy diagnostics, or all transitive specializations. Reserved217/218/219 remain obligations in their actual malformed historical versions, not silently corrected assumptions."
+  },
+  "reusable_source_bridge": {
+    "controlled_paired_iterate": "For a control bit b and known flag reflection R, (I⊗U†) C_b(R) (I⊗U) C_b(R)=|0><0|⊗I+|1><1|⊗(U†RUR). Thus the exact paired-iterate SELECT query count need not assume a free controlled arbitrary U oracle; two ordinary forward/inverse calls suffice, with controls moved onto known R.",
+    "projected_versus_full_output": "With p_i the flagged singular vector and companion q_i, E^k p_i=T_2k(sigma_i)p_i+sqrt(1-sigma_i^2) U_(2k-1)(sigma_i)q_i. The first coefficient is the block entry; the second term is generally nonzero. Unit-normalized exact input block and chosen projector must be stated before converting these identities into a physical success claim.",
+    "source_trust_limit": "The source's equations and full proofs were inspected directly, including its own shorthand caveats; source citation does not turn an unsupported stronger target into a theorem."
+  }
+}

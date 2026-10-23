@@ -1,0 +1,1952 @@
+[
+  {
+    "core_id": "qcb-core-be-101",
+    "key": "qcb-core-be-101",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A reversible source-loader on three little-endian bits is defined by the rule that maps each slot value s in {0,...,7} to (s XOR 3) mod 8, i.e. it flips the two low-order bits of s. Prove that this loader is its own inverse (an involution) as a permutation of {0,...,7}, and give the explicit image list obtained by applying it to 0,1,2,3,4,5,6,7 in order. Explain why the involution property is exactly what lets the two bit-flip gates that realize it also undo it when applied a second time.",
+    "reference_answer": "The loader is L(s) = (s XOR 3) mod 8. Since every s in {0,...,7} is below 8, the outer mod 8 is inert and L(s) = s XOR 3. Bitwise XOR with the fixed mask 3 (binary 011) toggles bit 0 and bit 1 and leaves bit 2 untouched. XOR with a fixed mask is self-inverse because XOR is associative and commutative with x XOR x = 0: L(L(s)) = (s XOR 3) XOR 3 = s XOR (3 XOR 3) = s XOR 0 = s, so L is an involution and in particular a bijection of the 8-element set. Applying L to 0..7 in order gives [3, 2, 1, 0, 7, 6, 5, 4]: 0->3, 1->2, 2->1, 3->0, 4->7, 5->6, 6->5, 7->4. Operationally the loader is implemented by two X (bit-flip) gates on wires 0 and 1; because each X is self-inverse and the two flips commute, running the same two gates again applies 3 XOR 3 = 0, returning every slot to its original value, which is the circuit-level statement of the involution.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "State L(s)=s XOR 3 (mod 8 inert for s<8) and that it toggles the two low bits, mask 3 = binary 011",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove the involution L(L(s))=s using x XOR x=0 and associativity/commutativity of XOR, concluding L is a bijection",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Give the exact image list [3,2,1,0,7,6,5,4] and connect the involution to the two X gates undoing themselves on a second pass",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3",
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3_table"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3ReversibleProgram"
+    ],
+    "assumptions": [
+      "Slot values range over {0,...,7}, so the outer mod 8 never fires",
+      "The loader is XOR with the fixed mask 3"
+    ],
+    "conventions": [
+      "XOR with a constant mask toggles exactly the bits set in the mask",
+      "The loader is realized by two X gates on the two low wires"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Because every slot value is below 8, (s XOR 3) mod 8 equals s XOR 3.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3"
+        ]
+      },
+      {
+        "claim": "XOR with the fixed mask 3 toggles bit 0 and bit 1 and fixes bit 2.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3"
+        ]
+      },
+      {
+        "claim": "Self-inverse: (s XOR 3) XOR 3 = s XOR (3 XOR 3) = s, so L is an involution and a bijection.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3"
+        ]
+      },
+      {
+        "claim": "Evaluating L on 0..7 yields the ordered image list [3,2,1,0,7,6,5,4].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveOffset3_table"
+        ]
+      },
+      {
+        "claim": "The two X gates implementing the mask are each self-inverse and commute, so a second pass applies 3 XOR 3 = 0 and restores every slot.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3ReversibleProgram"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires recognizing XOR-by-constant as an involution, proving the self-inverse law, and computing the explicit permutation table while connecting it to the gate realization."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+        "sha256": "e4f35bfdd690445de12d5a7e6692b9ab86d1a096b9ed3f4d1a41e07b99181ca7",
+        "anchor": "def primitiveOffset3 (slot : Fin 8) : Fin 8 := ⟨(slot.val ^^^ 3) % 8, Nat.mod_lt _ (by decide)⟩ (lines 29-30); @[simp] theorem primitiveOffset3_table : List.ofFn primitiveOffset3 = [3, 2, 1, 0, 7, 6, 5, 4] := by native_decide (lines 32-34)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-xor-loader-involution",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The three-bit source loader s |-> s XOR 3 is an involution with image list [3,2,1,0,7,6,5,4]; XOR-with-mask self-inversion is the circuit-level undoing of the two bit-flip gates.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-102",
+    "key": "qcb-core-be-102",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "boundary",
+    "question": "A fixed seven-wire reversible access circuit stores an address word on wires 0-2, a row word on wires 3-5, and one reusable work wire 6. On any input whose work wire is already 0, the circuit outputs the address word replaced by (loader(address)+row) mod 8, leaves the row word unchanged, and returns the work wire to 0. State precisely why the hypothesis 'work wire starts at 0' is required rather than cosmetic, what three separate guarantees the clean-branch contract bundles, and what can fail if the circuit is run on an input whose work wire starts at 1.",
+    "reference_answer": "The hypothesis state(6)=0 is load-bearing because the modular adder borrows wire 6 as scratch during carry handling; its exact output semantics (the clean sum on the address word, the preserved row, and the final work=0) are only certified on the subspace where the scratch wire enters empty. The clean-branch contract bundles three independent guarantees: (1) functional correctness of the result register, address word becomes (loader(address)+row) mod 8; (2) non-disturbance of the data it must not touch, the row word is returned unchanged; (3) workspace restoration, the borrowed work wire is returned to 0 so it can be reused and so it does not entangle with or carry information out of the computation. If the work wire starts at 1, the input lies outside the certified clean subspace: the adder's carry scratch is pre-occupied, so the emitted address sum can be wrong, and crucially there is no guarantee that wire 6 returns to 0, so the 'workspace clean' promise fails. A dirty-ancilla input therefore breaks both the result correctness and the restoration guarantee simultaneously; the three guarantees are not derivable from one another and each must be stated as a conjunct of the clean-branch theorem.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Explain that work=0 is required because the adder borrows wire 6 as carry scratch, so the exact semantics hold only on the clean subspace",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Separate the three bundled guarantees: result = (loader(address)+row) mod 8, row preserved, work returned to 0, and note they are independent conjuncts",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Describe the failure on a work=1 input: outside the certified subspace the sum can be wrong and the restoration-to-zero promise is lost",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_cleanAction"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_preserves_row",
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_workspaceClean",
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3BasisEquiv"
+    ],
+    "assumptions": [
+      "The work wire is a reusable scratch wire borrowed by the modular adder",
+      "The clean-action contract is asserted only under the hypothesis work=0"
+    ],
+    "conventions": [
+      "Wire order is address[0..2], row[0..2], work",
+      "The clean branch is the subspace where the work wire enters at 0"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The modular adder uses wire 6 as carry scratch, so its exact output map is certified only on inputs with work=0.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_cleanAction"
+        ]
+      },
+      {
+        "claim": "Guarantee one: the address word is overwritten by (loader(address)+row) mod 8.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_cleanAction"
+        ]
+      },
+      {
+        "claim": "Guarantee two: the row word is returned unchanged, a non-disturbance promise independent of the sum.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_preserves_row"
+        ]
+      },
+      {
+        "claim": "Guarantee three: the work wire is returned to 0, so no scratch information leaks out and the wire is reusable.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_workspaceClean"
+        ]
+      },
+      {
+        "claim": "On a work=1 input the state leaves the certified subspace, so both the emitted sum and the return-to-zero promise can fail.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3_cleanAction"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires reading the conjunctive clean-action theorem, isolating three independent guarantees, and reasoning about why a dirty-ancilla input falls outside the certified subspace."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+        "sha256": "e4f35bfdd690445de12d5a7e6692b9ab86d1a096b9ed3f4d1a41e07b99181ca7",
+        "anchor": "theorem primitiveAccess3_cleanAction (state : PrimitiveBasis 7) (workClean : state 6 = 0) : let output := primitiveAccess3BasisEquiv state; primitiveWord3 output 0 1 2 = ⟨((primitiveOffset3 (primitiveWord3 state 0 1 2)).val + (primitiveWord3 state 3 4 5).val) % 8, Nat.mod_lt _ (by decide)⟩ ∧ primitiveWord3 output 3 4 5 = primitiveWord3 state 3 4 5 ∧ output 6 = 0 (lines 48-57); theorem primitiveAccess3_preserves_row ... (lines 60-64); theorem primitiveAccess3_workspaceClean ... (lines 67-70)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-clean-branch-work-hypothesis",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The reversible access circuit's clean-action theorem bundles three independent guarantees (correct sum, preserved row, restored work=0) and all three hold only under the work=0 hypothesis; a dirty work wire voids both correctness and restoration.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-103",
+    "key": "qcb-core-be-103",
+    "topic": "oracle_composition",
+    "track": "knowledge",
+    "task_kind": "concept",
+    "question": "A fully expanded three-bit access circuit is compiled into a primitive gate list over the basis {X, RY, RZ, CX}, and a cost score is read off the emitted list. The construction advertises two accounting facts: its resource score equals the resource of its own emitted circuit by definition, and its count of unresolved oracle calls is exactly 0. Explain what each of these two facts does and does not certify, why 'the module imports a block-encoding theory' is not by itself a claim that any oracle has been synthesized, and in what precise sense the zero-oracle count is an honest statement about this fixed witness rather than about arbitrary input widths.",
+    "reference_answer": "The first fact, resource = circuit.resource by definition, says the advertised cost is not an independent assertion that could silently disagree with the object it describes; it is computed directly from the emitted gate list, so there is no gap between the number quoted and the number the circuit actually incurs. It certifies internal consistency of the accounting, not optimality: it does not claim the gate count is minimal or matches any paper bound. The second fact, oracleCalls = 0, certifies that the emitted list contains no opaque oracle instruction, every instruction is a concrete primitive gate (X, RY, RZ, or CX). It therefore certifies that this particular witness has been fully synthesized down to primitives with nothing left abstract. It does NOT certify that an arbitrary-width banded access oracle can be synthesized to zero oracle calls; the witness is deliberately a fixed three-bit instance. Importing a block-encoding theory module only brings definitions and earlier lemmas into scope; module imports never entail theorem claims, so importing a theory that mentions oracles is not a claim that any oracle was realized. The zero-oracle statement is honest precisely because it is scoped to the one concrete compiled program: it reports a verifiable property of a finite emitted list, and does not pretend to prove the paper's arbitrary-size gate upper bound.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Explain resource = circuit.resource as definitional internal consistency of the cost (not optimality or a paper bound)",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain oracleCalls = 0 as full synthesis of this fixed witness into concrete primitives, scoped to the three-bit instance and not arbitrary width",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "State that module imports never entail theorem claims, so importing an oracle-bearing theory is not a claim that any oracle was synthesized",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_resource_faithful",
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_oracleCalls_eq_zero"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program"
+    ],
+    "assumptions": [
+      "The witness is a fixed three-bit instance, not an arbitrary-width family",
+      "The cost score is computed from the emitted gate list"
+    ],
+    "conventions": [
+      "Resource ownership is definitional: the score is the circuit's own resource",
+      "An oracle call is an opaque, unsynthesized instruction"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "resource = circuit.resource holds by definition, so the quoted cost cannot disagree with the emitted circuit.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_resource_faithful"
+        ]
+      },
+      {
+        "claim": "This certifies accounting consistency, not minimality or agreement with any paper bound.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_resource_faithful"
+        ]
+      },
+      {
+        "claim": "oracleCalls = 0 means every emitted instruction is a concrete primitive; the witness is fully synthesized.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_oracleCalls_eq_zero"
+        ]
+      },
+      {
+        "claim": "The claim is scoped to this fixed three-bit program and does not extend to arbitrary input width.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program"
+        ]
+      },
+      {
+        "claim": "Importing an oracle-bearing theory module brings scope only; it is not a claim that any oracle has been realized.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires distinguishing definitional accounting from optimality, scoping a zero-oracle claim to a fixed instance, and articulating the import-is-not-a-claim principle."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+        "sha256": "e4f35bfdd690445de12d5a7e6692b9ab86d1a096b9ed3f4d1a41e07b99181ca7",
+        "anchor": "theorem primitiveAccess3Program_resource_faithful : primitiveAccess3Program.resource = primitiveAccess3Program.circuit.resource := rfl (lines 83-84); theorem primitiveAccess3Program_oracleCalls_eq_zero : primitiveAccess3Program.resource.oracleCalls = 0 := PrimitiveCircuit.resource_oracleCalls_eq_zero _ (lines 87-89)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-definitional-resource-zero-oracle",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Definitional resource faithfulness certifies accounting consistency (not optimality), zero oracle calls certifies full primitive synthesis of a fixed three-bit witness, and importing an oracle-bearing theory is never itself an oracle-realized claim.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-104",
+    "key": "qcb-core-be-104",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A reversible program on seven wires induces a bijection of the 2^7 computational-basis strings. Two objects are then formed: the permutation matrix of that bijection (the 0/1 matrix with a single 1 in each row and column recording where each basis string is sent), and the matrix obtained by compiling the program into a primitive gate list and multiplying the primitive gate matrices in order. Prove that these two matrices are equal, and explain why this 'compile-then-evaluate equals evaluate-the-bijection' statement is a refinement guarantee rather than a definition, and why it forces the compiled matrix to be a 0/1 permutation matrix.",
+    "reference_answer": "Write E for the basis bijection induced by the reversible program and P(E) for its permutation matrix, P(E)[r,c] = 1 if r = E(c) and 0 otherwise. Let C be the product of the emitted primitive gate matrices in chronological order. The claim is C = P(E). The proof is the compiler soundness lemma: compiling a reversible program and evaluating the primitive list reproduces exactly the permutation matrix of the program's basis action. This is a refinement rather than a definition because the compiled matrix C is built from an independent low-level pipeline (translating each reversible instruction into X/RY/RZ/CX gates and multiplying their 2^7-dimensional matrices), whereas P(E) is built from the high-level combinatorial bijection; the theorem asserts the two independently defined objects coincide, closing the gap between specification and implementation. The equality forces C to be a 0/1 permutation matrix: P(E) by construction has exactly one 1 in each column (at row E(c)) and, since E is a bijection, exactly one 1 in each row; so C inherits this structure. In particular C is unitary and real, and it maps each basis vector |c> to the single basis vector |E(c)> with no superposition, which is exactly the behaviour expected of a reversible classical circuit lifted to the quantum register.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Identify the two independently defined matrices: the permutation matrix P(E) of the basis bijection and the ordered product C of compiled primitive gate matrices",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "State and justify C = P(E) as a compiler-soundness refinement linking the low-level pipeline to the high-level bijection, not a definitional identity",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude C is a 0/1 permutation matrix (one 1 per row and column from bijectivity), hence maps each basis string to a single basis string without superposition",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_eval"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3BasisEquiv",
+      "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix"
+    ],
+    "assumptions": [
+      "The reversible program induces a bijection of basis strings",
+      "The compiled matrix is the ordered product of emitted primitive-gate matrices"
+    ],
+    "conventions": [
+      "The permutation matrix sends column c to the single row E(c)",
+      "Compilation is a separate pipeline from the combinatorial bijection"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The reversible program induces a basis bijection E and the compiler emits a primitive gate list whose ordered product is C.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program"
+        ]
+      },
+      {
+        "claim": "P(E) is the 0/1 matrix with P(E)[r,c]=1 iff r=E(c), defined from the high-level bijection.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix"
+        ]
+      },
+      {
+        "claim": "Compiler soundness gives C = P(E): the low-level evaluated product equals the permutation matrix of the bijection.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_eval"
+        ]
+      },
+      {
+        "claim": "This is a refinement because C and P(E) are defined by independent constructions and are proven to coincide.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3Program_eval"
+        ]
+      },
+      {
+        "claim": "Since E is a bijection, P(E) has one 1 per row and column, so C is a 0/1 permutation matrix mapping each basis string to a single basis string.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BandedSparseAccess.primitiveAccess3BasisEquiv"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires understanding compiler soundness as a refinement between two independent definitions and deducing the permutation-matrix structure from bijectivity."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+        "sha256": "e4f35bfdd690445de12d5a7e6692b9ab86d1a096b9ed3f4d1a41e07b99181ca7",
+        "anchor": "theorem primitiveAccess3Program_eval : evalPrimitiveProgram primitiveAccess3Program = Robin.ComplexLCU.equivPermutationMatrix primitiveAccess3BasisEquiv := by exact compileReversibleProgram_eval primitiveAccess3ReversibleProgram (lines 77-80)",
+        "license": "MIT (repository LICENSE)"
+      },
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "def equivPermutationMatrix {ι : Type*} [DecidableEq ι] (equiv : ι ≃ ι) : _root_.Matrix ι ι ℂ := fun row column => if row = equiv column then 1 else 0 (lines 148-151)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-compile-eval-refinement",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The compiled primitive-gate product equals the permutation matrix of the reversible program's basis bijection; this refinement links the low-level pipeline to the combinatorial map and forces a 0/1 permutation structure.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-105",
+    "key": "qcb-core-be-105",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A real planar rotation embedded over the complex numbers is the 2x2 matrix with top row (c, -s) and bottom row (s, c) for real scalars c and s. Prove that this matrix is unitary exactly when c^2 + s^2 = 1, by computing all four entries of the product of its conjugate transpose with itself, and explain why no further hypothesis on c and s is needed and why complex conjugation plays no role here.",
+    "reference_answer": "Call the matrix M with M = [[c, -s], [s, c]], entries real but viewed in the complex field. Its conjugate transpose M* has entries that are complex conjugates of the transpose; since c and s are real, conjugation is the identity on them, so M* = [[c, s], [-s, c]] (the ordinary real transpose). Compute M* M entrywise using Fin-2 sums. (1,1) entry: c*c + s*s = c^2 + s^2. (1,2) entry: c*(-s) + s*c = -cs + cs = 0. (2,1) entry: (-s)*c + c*s = -sc + cs = 0. (2,2) entry: (-s)*(-s) + c*c = s^2 + c^2 = c^2 + s^2. So M* M = [[c^2+s^2, 0],[0, c^2+s^2]], which equals the 2x2 identity if and only if c^2 + s^2 = 1. Hence M is unitary precisely under the normalization c^2 + s^2 = 1. No further hypothesis is required: the off-diagonal entries cancel identically for every real c, s (they are structural cancellations -cs+cs), so the only constraint comes from the diagonal. Conjugation plays no role because the entries are real: for a genuinely complex rotation one would need |entries|^2, but here conjugation acts trivially and the unitarity condition collapses to the real Pythagorean identity c^2 + s^2 = 1. In particular, taking c = cos t and s = sin t makes the identity automatic, so every angle-parameterized real rotation is unitary.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Compute M* as the real transpose [[c,s],[-s,c]], noting conjugation is trivial on real entries",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Compute all four entries of M* M and show the off-diagonals cancel identically while the diagonal equals c^2+s^2",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude unitarity iff c^2+s^2=1, with no extra hypothesis, and note cos/sin make it automatic",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realOrthogonalRotation_unitary"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realOrthogonalRotation",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realRotation_unitary"
+    ],
+    "assumptions": [
+      "c and s are real scalars embedded in the complex field",
+      "Unitarity means the conjugate transpose times the matrix equals the identity"
+    ],
+    "conventions": [
+      "The matrix has top row (c,-s) and bottom row (s,c)",
+      "Conjugation is the identity on real entries"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Since c,s are real, the conjugate transpose M* equals the real transpose [[c,s],[-s,c]].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realOrthogonalRotation"
+        ]
+      },
+      {
+        "claim": "The diagonal entries of M* M are both c^2 + s^2.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realOrthogonalRotation_unitary"
+        ]
+      },
+      {
+        "claim": "The off-diagonal entries cancel identically to 0 as -cs+cs for every real c,s.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realOrthogonalRotation_unitary"
+        ]
+      },
+      {
+        "claim": "Therefore M* M = (c^2+s^2) I, equal to the identity iff c^2+s^2 = 1.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realOrthogonalRotation_unitary"
+        ]
+      },
+      {
+        "claim": "With c=cos t, s=sin t the Pythagorean identity makes unitarity automatic for every angle.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realRotation_unitary"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "basic",
+      "rationale": "Requires an explicit 2x2 Gram-matrix computation and the observation that conjugation is trivial on real entries, reducing unitarity to the Pythagorean normalization."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "noncomputable def realOrthogonalRotation (cosine sine : Real) : _root_.Matrix (Fin 2) (Fin 2) ℂ := fun row column => match row.val, column.val with | 0, 0 => (cosine : ℂ) | 0, _ => -(sine : ℂ) | _, 0 => (sine : ℂ) | _, _ => (cosine : ℂ) (lines 23-29); theorem realOrthogonalRotation_unitary (cosine sine : Real) (normalization : cosine * cosine + sine * sine = 1) : realOrthogonalRotation cosine sine ∈ _root_.Matrix.unitaryGroup (Fin 2) ℂ (lines 32-57)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-real-rotation-unitary-iff",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A real planar rotation [[c,-s],[s,c]] over C is unitary exactly when c^2+s^2=1: the off-diagonals of the Gram matrix cancel identically and conjugation is trivial on real entries.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-106",
+    "key": "qcb-core-be-106",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "An amplitude-loading gate is built from a planar rotation through an angle t(x), where t is any fixed real-valued function of the real parameter x chosen so that on the interval -1 <= x <= 1 the cosine of t(x) equals x (an inverse-cosine branch), and extended in some unspecified way to the rest of the real line. Two claims are on the table: (A) the gate is unitary for every real x, with no restriction and independent of how t is extended; (B) the top-left entry of the gate equals x. Decide for which values of x each claim holds. Prove the unconditional claim, prove that claim (B) holds for -1 <= x <= 1, and prove that claim (B) FAILS whenever |x| > 1 without using any particular value of the extension. Explain the asymmetry: why unitarity is free but the clean-entry readout needs -1 <= x <= 1.",
+    "reference_answer": "The gate is the planar rotation with top row (cos t(x), -sin t(x)) and bottom row (sin t(x), cos t(x)). Claim (A) holds unconditionally. For every real angle, cos^2 + sin^2 = 1, so this matrix is a planar rotation and hence unitary (its two entries lie on the unit circle); this is true whatever real number t(x) happens to be, so unitarity holds for all real x and does not depend on how t is extended outside [-1,1]. Claim (B): the top-left entry equals cos t(x). On the interval -1 <= x <= 1 the angle was chosen so that cos t(x) = x, so the top-left entry equals x exactly and the amplitude is loaded correctly. For |x| > 1 the claim fails, and this can be proved without knowing the extension value: the cosine of any real angle lies in the closed interval [-1, 1], so cos t(x) lies in [-1, 1] for every possible choice of t(x); but |x| > 1 means x lies outside [-1, 1], so cos t(x) cannot equal x. Thus the readout is wrong for every |x| > 1 regardless of how t is extended, and no guess about the extension is needed. The asymmetry is the key point: unitarity is a structural property of the rotation shape (two unit-circle entries for any angle), so it survives even a meaningless input; but the clean-entry readout is a semantic promise that the stored amplitude is exactly x, and a cosine can only ever equal numbers in [-1, 1]. A construction can therefore be perfectly unitary yet load the wrong number: a unitarity certificate must not be mistaken for a certificate that the intended coefficient was loaded.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove unitarity holds for all real x because every planar rotation satisfies cos^2+sin^2=1 regardless of the angle, independent of how t is extended",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove the top-left entry cos t(x) equals x on -1 <= x <= 1 by the defining choice of the angle",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Prove claim (B) fails for every |x|>1 because the cosine of any angle lies in [-1,1] while x does not, with no appeal to a particular extension value",
+        "weight": 1
+      },
+      {
+        "id": "c4",
+        "criterion": "Explain the asymmetry: unitarity is structural and free, but the clean-entry readout is a semantic promise a cosine can satisfy only for values in [-1,1]",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation_unitary",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation_cleanEntry"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.realRotation_unitary"
+    ],
+    "assumptions": [
+      "The angle t(x) satisfies cos t(x) = x on -1 <= x <= 1 and is extended in some unspecified way elsewhere",
+      "The clean entry is read as the top-left matrix element"
+    ],
+    "conventions": [
+      "The amplitude gate is the planar rotation through an inverse-cosine branch of x",
+      "The cosine of any real angle lies in the closed interval [-1, 1]"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The amplitude gate is a planar rotation through the angle t(x) with top row (cos t(x), -sin t(x)).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation"
+        ]
+      },
+      {
+        "claim": "Every planar rotation is unitary since cos^2+sin^2=1 for any angle, so the gate is unitary for all real x independent of the extension of t.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation_unitary"
+        ]
+      },
+      {
+        "claim": "On -1 <= x <= 1 the angle is chosen so cos t(x) = x, so the top-left entry equals x.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation_cleanEntry"
+        ]
+      },
+      {
+        "claim": "For |x|>1 the cosine of any angle lies in [-1,1] while x lies outside it, so cos t(x) cannot equal x for any extension value.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation_cleanEntry"
+        ]
+      },
+      {
+        "claim": "Unitarity is structural and hypothesis-free, but the clean-entry readout is a semantic promise valid only where x is a possible cosine, so unitarity does not certify the right amplitude.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeRotation_unitary"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires separating a structural unitarity guarantee from a domain-restricted semantic readout and proving failure for |x|>1 purely from the bounded range of cosine, with no appeal to a specific extension value."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "theorem amplitudeRotation_unitary (coefficient : Real) : amplitudeRotation coefficient ∈ _root_.Matrix.unitaryGroup (Fin 2) ℂ := realRotation_unitary _ (lines 93-96); theorem amplitudeRotation_cleanEntry (coefficient : Real) (lower : -1 ≤ coefficient) (upper : coefficient ≤ 1) : amplitudeRotation coefficient 0 0 = (coefficient : ℂ) := by simp [amplitudeRotation, Real.cos_arccos lower upper] (lines 99-102)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-amplitude-unitary-vs-readout",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The inverse-cosine amplitude gate is unitary for every real parameter and for any extension of the angle, but its clean-entry readout equals the parameter only on [-1,1]; for |x|>1 the readout cannot equal x because cosine is bounded in [-1,1], proved without guessing the extension.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-107",
+    "key": "qcb-core-be-107",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A controlled family of operators is placed block-diagonally: for each control value k there is a block B_k acting on the same target space, and the full operator is the block-diagonal matrix whose k-th diagonal block is B_k. Prove that if every block B_k is unitary then the whole block-diagonal operator is unitary, by showing how the conjugate transpose interacts with the block-diagonal structure and that the product collapses block-by-block to the identity.",
+    "reference_answer": "Let D = blockDiagonal(B) be the operator on the product index (target x control) whose (k,k) block is B_k and whose off-diagonal blocks are 0. First, the conjugate transpose commutes with the block-diagonal construction: star(D) is the block-diagonal operator whose k-th block is star(B_k). This is checked entrywise: for two compound indices with control parts kR and kC, if kR != kC the entry is 0 on both sides (a block-diagonal matrix has zero off-diagonal blocks, and so does its conjugate transpose), and if kR = kC the entry is the conjugate-transpose entry of the single block B_k. Hence star(D) = blockDiagonal(k -> star(B_k)). Next, the product of two block-diagonal matrices is block-diagonal with the blocks multiplied pointwise: star(D) * D = blockDiagonal(k -> star(B_k) * B_k). Now use the hypothesis: each B_k is unitary, so star(B_k) * B_k = I for every k. Therefore the family k -> star(B_k) * B_k is the constant identity family, and blockDiagonal of the all-identity family is the identity matrix on the whole product space. Thus star(D) * D = I, which is exactly unitarity of D. The proof uses only (1) that conjugate transpose respects the block structure, (2) that block-diagonal multiplication is pointwise in the control index, and (3) the per-block unitarity hypothesis; no relation between different control values is needed because distinct blocks never interact.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Show the conjugate transpose of a block-diagonal matrix is block-diagonal with each block conjugate-transposed (off-diagonal blocks zero on both sides)",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Show the product of block-diagonal matrices multiplies blocks pointwise in the control index, giving blockDiagonal(k -> star(B_k)*B_k)",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Apply per-block unitarity star(B_k)*B_k = I to conclude the product is the identity, hence D is unitary; note distinct blocks never interact",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.blockDiagonal_unitary"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift_unitary"
+    ],
+    "assumptions": [
+      "Each diagonal block B_k is unitary on the shared target space",
+      "The full operator is block-diagonal in the control index"
+    ],
+    "conventions": [
+      "Off-diagonal blocks of a block-diagonal matrix are zero",
+      "Unitarity means the conjugate transpose times the operator is the identity"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The conjugate transpose of a block-diagonal matrix is block-diagonal with each block replaced by its conjugate transpose.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.blockDiagonal_unitary"
+        ]
+      },
+      {
+        "claim": "Off-diagonal compound entries vanish on both sides because distinct control values index different blocks.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.blockDiagonal_unitary"
+        ]
+      },
+      {
+        "claim": "The product of two block-diagonal matrices multiplies blocks pointwise in the control index.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.blockDiagonal_unitary"
+        ]
+      },
+      {
+        "claim": "Per-block unitarity gives star(B_k)*B_k = I for every k, so the block family is the constant identity.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.blockDiagonal_unitary"
+        ]
+      },
+      {
+        "claim": "Block-diagonal of the all-identity family is the identity, so star(D)*D = I and D is unitary.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift_unitary"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires knowing how conjugate transpose and multiplication interact with block-diagonal structure and assembling per-block unitarity into a global identity."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "theorem blockDiagonal_unitary {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ] (blocks : κ → _root_.Matrix ι ι ℂ) (unitary : ∀ k, blocks k ∈ _root_.Matrix.unitaryGroup ι ℂ) : _root_.Matrix.blockDiagonal blocks ∈ _root_.Matrix.unitaryGroup (ι × κ) ℂ (lines 122-145)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-blockdiagonal-unitary",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A block-diagonal operator built from per-block unitaries is unitary: the conjugate transpose respects the block structure, multiplication is pointwise in the control index, and each block collapses to the identity.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-108",
+    "key": "qcb-core-be-108",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Suppose an operator on a finite register is unitary, and we relabel the register's basis by a bijection (reindexing both rows and columns through the same equivalence of index sets). Prove that the reindexed operator is again unitary. Make explicit how the conjugate transpose commutes with reindexing and why using the SAME equivalence on rows and columns is essential for the argument to close.",
+    "reference_answer": "Let O be unitary on index set I, star(O)*O = I, and let e : I -> K be a bijection. Reindexing produces R = reindex_e(O), the operator on K with R[e(i), e(j)] = O[i,j]; equivalently R is the submatrix of O pulled back along e^{-1} on both axes. The key structural fact is that conjugate transpose commutes with reindexing by the same equivalence: star(reindex_e(O)) = reindex_e(star(O)). This holds entrywise because transposition swaps the two axes and conjugation acts pointwise, and reindexing the same way on both axes preserves that swap. Now compute star(R)*R = reindex_e(star(O)) * reindex_e(O). Because reindexing by a single algebra equivalence is multiplicative, reindex_e(star(O)) * reindex_e(O) = reindex_e(star(O)*O) = reindex_e(I) = I (the identity reindexes to the identity, since e is a bijection and the identity's only data is the diagonal). Hence star(R)*R = I and R is unitary. The use of the SAME equivalence on both rows and columns is essential: multiplicativity of reindexing (reindex(X)*reindex(Y) = reindex(X*Y)) requires that the inner contracted index of the product be relabelled consistently on both factors; if rows and columns were relabelled by different bijections the reindexed objects would not be square-compatible and the product rule, hence the whole argument, would fail.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "State the goal star(R)*R = I for R = reindex_e(O) and the hypothesis star(O)*O = I",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove star(reindex_e(O)) = reindex_e(star(O)) and use multiplicativity reindex(X)*reindex(Y)=reindex(X*Y) plus reindex of the identity being the identity",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain that using the same equivalence on rows and columns is essential so the inner contracted index is relabelled consistently and the product rule holds",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_conjugates_reindex"
+    ],
+    "assumptions": [
+      "The operator O is unitary before relabelling",
+      "Rows and columns are reindexed by one and the same bijection"
+    ],
+    "conventions": [
+      "Reindexing is an algebra equivalence, hence multiplicative",
+      "The identity matrix reindexes to the identity"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Reindexing by e gives R with R[e(i),e(j)] = O[i,j], a pullback along e on both axes.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "Conjugate transpose commutes with reindexing by the same equivalence: star(reindex_e(O)) = reindex_e(star(O)).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "Reindexing is multiplicative, so reindex_e(star(O)) * reindex_e(O) = reindex_e(star(O)*O).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "Since star(O)*O = I and the identity reindexes to the identity, star(R)*R = I, so R is unitary.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      },
+      {
+        "claim": "The same equivalence on both axes is needed so the contracted inner index of the product is relabelled consistently, which is what makes reindexing multiplicative.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.reindex_unitary"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires knowing that conjugate transpose and matrix multiplication both commute with a single-equivalence reindexing, and seeing why consistent relabelling of the contracted index is indispensable."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "theorem reindex_unitary {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ] (equiv : ι ≃ κ) (operator : _root_.Matrix ι ι ℂ) (unitary : operator ∈ _root_.Matrix.unitaryGroup ι ℂ) : _root_.Matrix.reindexAlgEquiv ℂ ℂ equiv operator ∈ _root_.Matrix.unitaryGroup κ ℂ (lines 105-119)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-reindex-preserves-unitary",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Relabelling a unitary's basis by a single bijection on both rows and columns preserves unitarity, because conjugate transpose and multiplication commute with the reindexing algebra equivalence and the identity reindexes to the identity.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-109",
+    "key": "qcb-core-be-109",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A state-preparation unitary acts only on a selector register, but inside a composite machine it is applied on the full product register coefficient x (selector x system) as identity-on-coefficient tensor (PREPARE tensor identity-on-system). Prove that if PREPARE is unitary on the selector register alone then this tensor-lifted operator is unitary on the whole product register, and explain the physical reading: tensoring a gate with 'do nothing' on untouched registers never spoils unitarity.",
+    "reference_answer": "The lifted operator is L = I_c ⊗ (PREPARE ⊗ I_s), a Kronecker product acting on the compound index coefficient x (selector x system). The governing fact is that the Kronecker product of two unitaries is unitary: if M and N are unitary on their respective factors then M ⊗ N is unitary on the product, because star(M ⊗ N) = star(M) ⊗ star(N) and (star(M) ⊗ star(N))(M ⊗ N) = (star(M) M) ⊗ (star(N) N) = I ⊗ I = I. Apply this twice. Inner step: PREPARE is unitary by hypothesis and I_s (the identity on the system) is unitary (its conjugate transpose is itself and the product is the identity), so PREPARE ⊗ I_s is unitary on selector x system. Outer step: I_c (identity on coefficient) is unitary, and PREPARE ⊗ I_s is unitary from the inner step, so I_c ⊗ (PREPARE ⊗ I_s) is unitary on the whole register. The physical reading: 'do nothing' on a register is represented by the identity, which is a trivial unitary; tensoring any unitary with identities on registers it does not touch leaves it unitary because the Kronecker factorization of the unitarity check splits into independent per-factor identities. A unitary gate that physically touches only one subsystem therefore remains a legitimate reversible operation on the enlarged machine, with the untouched registers carried along inertly.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "State the lift as I_c ⊗ (PREPARE ⊗ I_s) and invoke that the Kronecker product of unitaries is unitary via star(M⊗N)=star(M)⊗star(N)",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Apply the Kronecker fact twice: PREPARE ⊗ I_s unitary (inner), then I_c ⊗ (that) unitary (outer), using that identities are unitary",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Give the physical reading: tensoring a gate with identity on untouched registers preserves unitarity because the check factorizes per subsystem",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift"
+    ],
+    "assumptions": [
+      "PREPARE is unitary on the selector register alone",
+      "The lift tensors identities on the coefficient and system registers"
+    ],
+    "conventions": [
+      "The identity matrix is a unitary on any register",
+      "star of a Kronecker product is the Kronecker product of the stars"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The lifted operator is the Kronecker product I_c ⊗ (PREPARE ⊗ I_s) on coefficient x (selector x system).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift"
+        ]
+      },
+      {
+        "claim": "The Kronecker product of two unitaries is unitary because star(M⊗N)=star(M)⊗star(N) and (star(M)⊗star(N))(M⊗N)=I⊗I.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+        ]
+      },
+      {
+        "claim": "Inner step: PREPARE is unitary and I_s is unitary, so PREPARE ⊗ I_s is unitary.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+        ]
+      },
+      {
+        "claim": "Outer step: I_c is unitary, so I_c ⊗ (PREPARE ⊗ I_s) is unitary on the whole register.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+        ]
+      },
+      {
+        "claim": "Physically, identities represent inert untouched registers, and the unitarity check factorizes per subsystem, so tensoring with them never spoils unitarity.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires applying the Kronecker-product unitarity law twice through a nested tensor structure and interpreting identity factors as inert registers."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "def selectorLift (prepare : _root_.Matrix selector selector ℂ) : ... := (1 : _root_.Matrix coefficient coefficient ℂ) ⊗ₖ (prepare ⊗ₖ (1 : _root_.Matrix system system ℂ)) (lines 254-264); theorem selectorLift_unitary ... := by apply _root_.Matrix.kronecker_mem_unitary ... (lines 267-281)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-tensor-lift-unitary",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Lifting a selector PREPARE to the full register as I ⊗ (PREPARE ⊗ I) preserves unitarity by applying the Kronecker-product-of-unitaries law twice; identities on untouched registers are inert unitaries.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-110",
+    "key": "qcb-core-be-110",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A coherently controlled SELECT applies, for each selector value s, a permutation p_s of the system register, while leaving the coefficient and selector registers fixed. Prove that the map sending (coeff, (s, x)) to (coeff, (s, p_s(x))) is a genuine bijection of the whole product register by exhibiting its two-sided inverse, and explain why its matrix is automatically unitary. Why is it essential that the inverse applies the inverse permutation (p_s)^{-1} indexed by the SAME selector value s that is read on input?",
+    "reference_answer": "Define F(coeff, (s, x)) = (coeff, (s, p_s(x))). Candidate inverse: G(coeff, (s, y)) = (coeff, (s, (p_s)^{-1}(y))). Check both composites. G(F(coeff,(s,x))) = G(coeff,(s,p_s(x))) = (coeff,(s,(p_s)^{-1}(p_s(x)))) = (coeff,(s,x)) since (p_s)^{-1} undoes p_s. F(G(coeff,(s,y))) = F(coeff,(s,(p_s)^{-1}(y))) = (coeff,(s,p_s((p_s)^{-1}(y)))) = (coeff,(s,y)). Both composites are the identity, so F is a bijection with inverse G. Its matrix is the permutation matrix of F (a 0/1 matrix with a single 1 per row and column), and every permutation matrix over C is unitary: its conjugate transpose is the permutation matrix of F^{-1}, and the product of a permutation matrix with its inverse is the identity. Hence SELECT is unitary purely because it is a basis permutation, with no amplitude arithmetic required. It is essential that G applies (p_s)^{-1} indexed by the SAME selector s: the selector is preserved by F, so on input the controlling value is s and the system permutation applied is p_s; to invert we must read that same preserved selector s and undo exactly p_s. If the inverse used a different selector's permutation p_{s'} the composite would apply p_s then (p_{s'})^{-1}, which is not the identity unless the permutations happen to coincide. Coherent control means the control register both selects which permutation acts and is itself carried through unchanged so the inverse can re-read it.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Exhibit the candidate inverse G applying (p_s)^{-1} on the system while preserving coefficient and selector",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Verify both composites G∘F and F∘G are the identity, concluding F is a bijection",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude unitarity because the matrix is a basis permutation, and explain that the inverse must use the same preserved selector s so coherent control re-reads the correct permutation",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.controlledSystemEquiv",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_unitary"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_unitary"
+    ],
+    "assumptions": [
+      "Each selector value s names a permutation p_s of the system register",
+      "SELECT preserves the coefficient and selector registers"
+    ],
+    "conventions": [
+      "The forward map carries the selector through unchanged",
+      "A basis permutation's matrix is a 0/1 permutation matrix"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Define F(coeff,(s,x)) = (coeff,(s,p_s(x))) and the candidate inverse G applying (p_s)^{-1} on the system.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.controlledSystemEquiv"
+        ]
+      },
+      {
+        "claim": "G∘F = identity because (p_s)^{-1} undoes p_s under the preserved selector s.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.controlledSystemEquiv"
+        ]
+      },
+      {
+        "claim": "F∘G = identity because p_s undoes (p_s)^{-1}, so F is a bijection.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.controlledSystemEquiv"
+        ]
+      },
+      {
+        "claim": "The matrix of F is a basis permutation matrix, which is unitary over C.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_unitary"
+        ]
+      },
+      {
+        "claim": "The inverse must apply (p_s)^{-1} for the same preserved selector s; coherent control carries the selector through so the inverse re-reads the correct permutation.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.controlledSystemEquiv"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires constructing a two-sided inverse of a controlled permutation and reasoning about why the control register must be preserved for coherent inversion."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "def controlledSystemEquiv (permutation : selector → system ≃ system) : LCUIndex coefficient selector system ≃ LCUIndex coefficient selector system where toFun index := (index.1, (index.2.1, permutation index.2.1 index.2.2)) invFun index := (index.1, (index.2.1, (permutation index.2.1).symm index.2.2)) left_inv index := by simp right_inv index := by simp (lines 315-327); theorem selectLift_unitary ... := equivPermutationMatrix_unitary _ (lines 340-349)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-controlled-select-bijection",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A controlled SELECT (coeff,(s,x)) |-> (coeff,(s,p_s(x))) is a bijection with inverse applying (p_s)^{-1} under the same preserved selector s, hence unitary as a basis permutation; coherent control requires carrying the selector through for inversion.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-111",
+    "key": "qcb-core-be-111",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Finite basis permutations are represented by 0/1 matrices: for a bijection e of the index set, its matrix has a 1 at (row, column) exactly when row = e(column). Prove that composing two such permutation matrices multiplies them in reverse order: the matrix of the composite that does 'first then second' equals (matrix of second) times (matrix of first). Make explicit how matrix multiplication selects a single surviving term and why the order reversal is forced rather than a convention.",
+    "reference_answer": "Let P(e) denote the permutation matrix of e, with P(e)[r,c] = 1 if r = e(c) else 0. Multiplying P(e) on the left of any operator applies e^{-1} to the row index: (P(e) * X)[r,c] = X[e^{-1}(r), c], because the matrix product sums over an intermediate index k the term P(e)[r,k] X[k,c], and P(e)[r,k] is nonzero (equal to 1) only at the single index k = e^{-1}(r). Now take X = P(first) and e = second: (P(second) * P(first))[r,c] = P(first)[second^{-1}(r), c] = 1 iff second^{-1}(r) = first(c), i.e. iff r = second(first(c)). That is exactly the condition defining P(first then second), the composite that applies 'first' and then 'second'. Hence P(second) * P(first) = P(first then second). The single surviving term is the heart of the computation: because each column of a permutation matrix has exactly one 1, the convolution sum over the contracted index collapses to one summand, turning matrix multiplication into function composition. The order reversal is forced, not conventional: a matrix acts on column vectors from the left, so applying 'first' then 'second' to a state means second*(first*v), and reading off the induced map on basis labels gives the composite in the order r = second(first(c)) with the matrices written right-to-left. Any other ordering would contradict how left multiplication selects the inverse-image row.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Establish that left multiplication by P(e) sends row index r to the single term at e^{-1}(r), because each column has exactly one 1",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Compute (P(second)*P(first))[r,c] = 1 iff r = second(first(c)), matching P(first then second)",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain the order reversal is forced by left action on column vectors (second*(first*v)), not a free convention",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul_apply",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix"
+    ],
+    "assumptions": [
+      "Each permutation matrix has exactly one 1 per row and per column",
+      "Matrices act on column vectors by left multiplication"
+    ],
+    "conventions": [
+      "P(e)[r,c] = 1 iff r = e(c)",
+      "The composite 'first then second' sends c to second(first(c))"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "Left multiplication by P(e) picks the single term at the inverse image: (P(e)*X)[r,c] = X[e^{-1}(r),c].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul_apply"
+        ]
+      },
+      {
+        "claim": "Setting X = P(first), e = second gives (P(second)*P(first))[r,c] = P(first)[second^{-1}(r),c].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul"
+        ]
+      },
+      {
+        "claim": "This entry is 1 iff second^{-1}(r) = first(c), equivalently r = second(first(c)).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul"
+        ]
+      },
+      {
+        "claim": "That is the matrix of the composite 'first then second', so P(second)*P(first) = P(first then second).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul"
+        ]
+      },
+      {
+        "claim": "The order reversal is forced because left action means second*(first*v); any other order contradicts the inverse-image selection.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.equivPermutationMatrix_mul_apply"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires proving the single-surviving-term rule for permutation-matrix multiplication and reasoning carefully about the forced order reversal under left action."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "theorem equivPermutationMatrix_mul_apply (equiv : ι ≃ ι) (operator : _root_.Matrix ι κ ℂ) (row : ι) (column : κ) : (equivPermutationMatrix equiv * operator) row column = operator (equiv.symm row) column (lines 167-187); theorem equivPermutationMatrix_mul (first second : ι ≃ ι) : equivPermutationMatrix second * equivPermutationMatrix first = equivPermutationMatrix (first.trans second) (lines 206-223)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-permutation-composition-order",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Composition of basis-permutation matrices multiplies them in reverse order (second times first realizes first-then-second), because each column's single 1 collapses the product to function composition and left action forces the reversal.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-112",
+    "key": "qcb-core-be-112",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "proof",
+    "question": "A logical block is assembled as PREPARE-dagger then SELECT then AMPLITUDE then PREPARE, applied on the product register coefficient x (selector x system). Prove that this whole composite is unitary, deriving it only from three local certificates: PREPARE unitary on the selector, every amplitude block unitary on the coefficient, and SELECT a basis permutation. State explicitly why the unprepare stage must be the conjugate transpose of the prepare stage and what role the group-closure of unitaries plays.",
+    "reference_answer": "The composite is W = star(L_prep) * (L_select * (L_amp * L_prep)), where L_prep is PREPARE lifted to the full register, L_select is the controlled-permutation SELECT, L_amp is the block-diagonal amplitude family, and star(L_prep) is the unprepare stage. Unitary matrices on a fixed register form a group, closed under multiplication and under taking conjugate transpose (star). The proof is a four-fold application of closure. (1) L_prep is unitary: it is the tensor lift I ⊗ (PREPARE ⊗ I) of a unitary PREPARE, unitary by the Kronecker law. (2) star(L_prep) is unitary: the group is closed under star. (3) L_amp is unitary: it is block-diagonal with every block a unitary amplitude gate, so it is unitary by the block-diagonal law. (4) L_select is unitary: it is a basis permutation matrix. Then W is a product of four unitaries, so by closure under multiplication it is unitary. The unprepare stage must be exactly star(L_prep), the conjugate transpose of the prepare stage, for two reasons visible here: structurally it is what the composite is defined to use, and semantically it is the stage that returns the selector ancilla to its reference state by inverting the preparation, which is the standard LCU uncompute; using any operator other than the adjoint of PREPARE would neither cancel the preparation nor be guaranteed unitary from the single PREPARE certificate. Group closure is what lets four independent local unitarity facts combine into one global unitarity conclusion without any cross-stage computation.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Identify the four factors star(L_prep), L_select, L_amp, L_prep and the local certificate making each unitary",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Use closure of the unitary group under star and multiplication to conclude the four-fold product is unitary",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain the unprepare stage must be star(L_prep) to uncompute the preparation and to inherit unitarity from the single PREPARE certificate",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_unitary"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift_unitary",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_unitary"
+    ],
+    "assumptions": [
+      "PREPARE is unitary on the selector register",
+      "Every amplitude block is unitary on the coefficient register",
+      "SELECT is a basis permutation"
+    ],
+    "conventions": [
+      "The unprepare stage is the conjugate transpose of the prepare stage",
+      "Unitaries form a group closed under product and conjugate transpose"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "L_prep is unitary as the tensor lift of a unitary PREPARE.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift_unitary"
+        ]
+      },
+      {
+        "claim": "star(L_prep) is unitary by closure of the unitary group under conjugate transpose.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_unitary"
+        ]
+      },
+      {
+        "claim": "L_amp is unitary by the block-diagonal law and L_select is unitary as a basis permutation.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift_unitary",
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_unitary"
+        ]
+      },
+      {
+        "claim": "The product of these four unitaries is unitary by closure under multiplication.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_unitary"
+        ]
+      },
+      {
+        "claim": "The unprepare stage must be star(L_prep) to uncompute PREPARE and to inherit unitarity from the single PREPARE certificate.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires assembling four independent local unitarity certificates through group closure and justifying the adjoint-unprepare structure semantically."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+        "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+        "anchor": "noncomputable def prepareAmplitudeSelectUnprepare (prepare ...) (rotation ...) (permutation ...) := star (selectorLift ... prepare) * (selectLift ... permutation * (amplitudeLift rotation * selectorLift ... prepare)) (lines 352-367); theorem prepareAmplitudeSelectUnprepare_unitary ... (lines 370-399)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-lcu-composite-unitary",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The full PREPARE-dagger/SELECT/AMPLITUDE/PREPARE composite is unitary by combining four local certificates through unitary-group closure; the unprepare stage must be the adjoint of PREPARE to uncompute it and inherit unitarity.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-113",
+    "key": "qcb-core-be-113",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "In the clean projected entry of a PREPARE/AMPLITUDE/SELECT/PREPARE-dagger block, the system-row-to-system-column entry is a sum over the selector index s of a term that is present only when the controlled permutation p_s maps the system column y to the system row x, and otherwise zero. The nonzero term carries the factor conj(PREPARE[s, s0]) times AMPLITUDE_s[y](c0,c0) times PREPARE[s, s0], for the clean selector s0 and clean coefficient c0. Prove that the selection indicator can be written equivalently as 'p_s(y) = x' or as '(p_s)^{-1}(x) = y', and explain why the PREPARE amplitude enters as conj(PREPARE[s,s0]) times PREPARE[s,s0], a nonnegative weight.",
+    "reference_answer": "The clean entry at system row x and system column y is the sum over selector s of: if p_s(y) = x then conj(PREPARE[s,s0]) * AMPLITUDE_s[y](c0,c0) * PREPARE[s,s0], else 0. First, the two forms of the indicator are equivalent because p_s is a bijection. If p_s(y) = x, apply (p_s)^{-1} to both sides: (p_s)^{-1}(x) = (p_s)^{-1}(p_s(y)) = y. Conversely if (p_s)^{-1}(x) = y, apply p_s: x = p_s((p_s)^{-1}(x)) = p_s(y). So 'p_s(y) = x' and '(p_s)^{-1}(x) = y' pick out exactly the same selector values; this is why the derivation can match the SELECT condition read either forward (as the permutation applied to the column) or backward (as the inverse permutation applied to the row). Second, the PREPARE amplitude enters as the product conj(PREPARE[s,s0]) * PREPARE[s,s0] because the leftmost stage is the conjugate transpose of PREPARE (its row s0, column s entry is conj(PREPARE[s,s0])) and the rightmost stage is PREPARE itself (its row s, column s0 entry is PREPARE[s,s0]); the shared selector index s is the one being summed, so the same amplitude appears conjugated on the left and plain on the right. The product conj(z) * z = |z|^2 is a nonnegative real weight, so each surviving selector contributes a nonnegative PREPARE weight times the amplitude block's clean entry: this is the quantitative signature of the prepare/unprepare sandwich concentrating weight on the prepared selector distribution.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove 'p_s(y) = x' iff '(p_s)^{-1}(x) = y' using that p_s is a bijection (apply the inverse / the permutation to both sides)",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain the conjugate factor comes from the leftmost PREPARE-dagger stage and the plain factor from the rightmost PREPARE stage, sharing the summed selector s",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Conclude conj(PREPARE[s,s0])*PREPARE[s,s0] = |PREPARE[s,s0]|^2 is a nonnegative weight on the prepared selector distribution",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_mul_amplitudeLift_mul_selectorLift_clean",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_mul_clean"
+    ],
+    "assumptions": [
+      "p_s is a bijection of the system register for each selector s",
+      "The clean selector and clean coefficient are fixed reference values s0 and c0"
+    ],
+    "conventions": [
+      "The left stage is the conjugate transpose of PREPARE; the right stage is PREPARE",
+      "The surviving selector index is shared by both PREPARE factors"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The clean entry is a selector sum of conj(PREPARE[s,s0])*AMPLITUDE_s[y](c0,c0)*PREPARE[s,s0] under the SELECT indicator.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+        ]
+      },
+      {
+        "claim": "Because p_s is a bijection, p_s(y)=x holds iff (p_s)^{-1}(x)=y, by applying the inverse or the permutation to both sides.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_mul_amplitudeLift_mul_selectorLift_clean"
+        ]
+      },
+      {
+        "claim": "The conjugate factor arises from the left PREPARE-dagger stage and the plain factor from the right PREPARE stage.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_mul_clean"
+        ]
+      },
+      {
+        "claim": "Both factors share the summed selector s, so the entry carries conj(PREPARE[s,s0])*PREPARE[s,s0].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+        ]
+      },
+      {
+        "claim": "conj(z)*z = |z|^2 is a nonnegative real weight on the prepared selector distribution.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires manipulating the bijection indicator in both directions and tracing the conjugate/plain PREPARE factors back to the adjoint and plain stages of the sandwich."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+        "sha256": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+        "anchor": "theorem prepareAmplitudeSelectUnprepare_cleanEntry ... = ∑ selectorIndex : selector, if permutation selectorIndex systemColumn = systemRow then star (prepare selectorIndex cleanSelector) * rotation selectorIndex systemColumn cleanCoefficient cleanCoefficient * prepare selectorIndex cleanSelector else 0 (lines 172-220); theorem selectLift_mul_amplitudeLift_mul_selectorLift_clean ... if (permutation row.2.1).symm row.2.2 = systemColumn then ... (lines 113-144)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-clean-entry-indicator-weight",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "In the LCU clean projected entry the SELECT indicator p_s(y)=x is equivalent to (p_s)^{-1}(x)=y by bijectivity, and the PREPARE amplitude enters as conj(PREPARE[s,s0])*PREPARE[s,s0] = |PREPARE[s,s0]|^2, a nonnegative weight from the adjoint/plain sandwich.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-114",
+    "key": "qcb-core-be-114",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "concept",
+    "question": "When the clean PREPARE bra is applied to project an arbitrary right factor, the result at clean system row and some column is a sum over the selector index of conj(PREPARE[s, s0]) times the right factor evaluated at the input where the coefficient is clamped to the clean value c0, the selector is the summation index s, and the system component is the fixed clean system row. Explain in words what this projection formula is doing: which register components are pinned, which is summed over, and why the conjugate PREPARE amplitude is the correct weight. Contrast the coherent selector sum here with an incoherent classical mixture.",
+    "reference_answer": "The projection formula implements the clean PREPARE bra acting on the left of an operator. Reading it register by register: the coefficient component is pinned to the clean reference value c0 on the right-factor input, because the bra lives in the clean coefficient sector; the system component is pinned to the fixed clean system row, because the bra does not touch the system; and the selector component is NOT pinned, it is summed over all selector values s. Each selector term is weighted by conj(PREPARE[s, s0]), the complex conjugate of the amplitude that PREPARE assigns to selector s when started from the clean selector reference s0. This conjugate weight is correct because projecting with a bra <psi| contributes the conjugate of the ket amplitudes: the clean bra is the row of the conjugate transpose of PREPARE indexed by s0, whose entry in column s is exactly conj(PREPARE[s, s0]). The important semantic point is coherence: the selector sum is a coherent superposition, not a classical mixture. The terms conj(PREPARE[s,s0]) * (right factor at selector s) are added as complex amplitudes before any modulus is taken, so cross-selector interference is possible; different selector branches can reinforce or cancel. An incoherent classical mixture would instead add nonnegative probabilities |PREPARE[s,s0]|^2 weighting each branch's outcome independently, with no interference. The prepare/unprepare structure of the full block is precisely what converts this coherent selector sum into the intended weighted combination of amplitude blocks, which an incoherent mixture could not reproduce.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "State which components are pinned (coefficient to c0, system to the clean row) and that the selector is summed over",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain the conjugate weight conj(PREPARE[s,s0]) comes from the bra being a row of the conjugate transpose of PREPARE indexed by the clean selector",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Contrast the coherent selector superposition (amplitudes added, interference possible) with an incoherent classical mixture (probabilities added, no interference)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_mul_clean"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_cleanRow_apply",
+      "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+    ],
+    "assumptions": [
+      "The clean bra lives in the clean coefficient and clean system sector",
+      "PREPARE acts only on the selector register"
+    ],
+    "conventions": [
+      "Projecting with a bra contributes conjugated ket amplitudes",
+      "The clean PREPARE bra is the row of the conjugate transpose indexed by s0"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The projection pins the coefficient to c0 and the system to the clean row while summing over the selector.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_mul_clean"
+        ]
+      },
+      {
+        "claim": "Each selector term carries conj(PREPARE[s,s0]) because the bra is a row of the conjugate transpose of PREPARE.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_cleanRow_apply"
+        ]
+      },
+      {
+        "claim": "The selector sum is coherent: amplitudes are added before any modulus, allowing interference between selector branches.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_mul_clean"
+        ]
+      },
+      {
+        "claim": "An incoherent mixture would instead add nonnegative probabilities with no interference, giving a different result.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires reading a projection formula at the register level and articulating the coherent-superposition versus incoherent-mixture distinction."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+        "sha256": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+        "anchor": "theorem star_selectorLift_mul_clean ... (star (selectorLift ... prepare) * operator) (cleanCoefficient, (cleanSelector, systemRow)) column = ∑ selectorIndex : selector, star (prepare selectorIndex cleanSelector) * operator (cleanCoefficient, (selectorIndex, systemRow)) column (lines 147-169)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-clean-bra-projection-coherence",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The clean PREPARE-bra projection pins coefficient and system while coherently summing the selector with weights conj(PREPARE[s,s0]); the sum adds amplitudes (interference possible), unlike an incoherent classical mixture of probabilities.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-115",
+    "key": "qcb-core-be-115",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Any complex square matrix A splits as A = H1 + i H2 where H1 = (A + A-dagger)/2 and H2 = (A - A-dagger)/(2i). Prove that H1 and H2 are both Hermitian (equal to their own conjugate transpose entrywise) and that H1 + i H2 reconstructs A, taking care with the factor of i in the denominator of H2. Explain why this is the matrix analogue of writing a complex number as real part plus i times imaginary part.",
+    "reference_answer": "Work entrywise with the conjugate-transpose convention A-dagger[i,j] = conj(A[j,i]). Define H1[i,j] = (A[i,j] + conj(A[j,i]))/2 and H2[i,j] = (A[i,j] - conj(A[j,i]))/(2i). Hermiticity of H1: its (j,i) conjugate is conj(H1[j,i]) = conj((A[j,i] + conj(A[i,j]))/2) = (conj(A[j,i]) + A[i,j])/2 = H1[i,j], using that conjugation is additive, fixes 1/2, and is involutive. So H1[i,j] = conj(H1[j,i]), i.e. H1 is Hermitian. Hermiticity of H2: conj(H2[j,i]) = conj((A[j,i] - conj(A[i,j]))/(2i)) = (conj(A[j,i]) - A[i,j])/(conj(2i)) = (conj(A[j,i]) - A[i,j])/(-2i) = (A[i,j] - conj(A[j,i]))/(2i) = H2[i,j], where conj(2i) = -2i and dividing the negated numerator by the negated denominator restores the sign; one uses 2i != 0. So H2 is Hermitian. Reconstruction: H1[i,j] + i*H2[i,j] = (A[i,j] + conj(A[j,i]))/2 + i*(A[i,j] - conj(A[j,i]))/(2i). The i cancels the i in the denominator of the second term (again 2i != 0), giving (A[i,j] + conj(A[j,i]))/2 + (A[i,j] - conj(A[j,i]))/2 = A[i,j]. So A = H1 + i H2. This is the exact matrix analogue of z = Re(z) + i Im(z): the Hermitian part plays the role of the real part (fixed by conjugate transpose, as the real part is fixed by conjugation) and H2 plays the role of the imaginary part (made Hermitian by dividing by 2i), and the two together rebuild A just as real and imaginary parts rebuild a scalar.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove H1 is Hermitian using additivity, involutivity of conjugation and that it fixes 1/2",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove H2 is Hermitian handling conj(2i) = -2i correctly (negated numerator over negated denominator), with 2i != 0",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Prove H1 + i H2 = A by cancelling i against the 2i denominator, and give the real-part/imaginary-part analogy",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart_isHermitian",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart_isHermitian",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart"
+    ],
+    "assumptions": [
+      "A is an arbitrary complex square matrix",
+      "2i is nonzero so division by 2i is legitimate"
+    ],
+    "conventions": [
+      "Conjugate transpose convention A-dagger[i,j] = conj(A[j,i])",
+      "A matrix is Hermitian iff each entry equals the conjugate of its transpose entry"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "H1[i,j] = (A[i,j] + conj(A[j,i]))/2 satisfies conj(H1[j,i]) = H1[i,j], so H1 is Hermitian.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitianPart_isHermitian"
+        ]
+      },
+      {
+        "claim": "For H2, conj(2i) = -2i, and the negated numerator over the negated denominator gives conj(H2[j,i]) = H2[i,j], using 2i != 0.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.antiHermitianPart_isHermitian"
+        ]
+      },
+      {
+        "claim": "H1[i,j] + i*H2[i,j]: the i cancels the 2i denominator, leaving A[i,j].",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition"
+        ]
+      },
+      {
+        "claim": "Thus A = H1 + i H2, the matrix analogue of z = Re(z) + i Im(z).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.hermitian_decomposition"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires careful entrywise conjugation algebra, correct handling of conj(2i) = -2i, and the nonzero-denominator cancellation, plus the scalar analogy."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+        "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+        "anchor": "def hermitianPart (A : CMatrix ι ι) : CMatrix ι ι := fun i j => (A i j + conj (A j i)) / 2 (lines 56-57); def antiHermitianPart (A : CMatrix ι ι) : CMatrix ι ι := fun i j => (A i j - conj (A j i)) / (2 * Complex.I) (lines 60-61); theorem hermitian_decomposition (A : CMatrix ι ι) : ∀ i j, A i j = hermitianPart A i j + Complex.I * antiHermitianPart A i j (lines 64-71)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-hermitian-decomposition",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Every complex matrix A = H1 + i H2 with H1=(A+A-dagger)/2 and H2=(A-A-dagger)/(2i) both Hermitian; the proof needs conj(2i)=-2i and i/(2i) cancellation, mirroring z = Re(z) + i Im(z) at the matrix level.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-116",
+    "key": "qcb-core-be-116",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "boundary",
+    "question": "A homogenization step embeds a problem matrix A and an inhomogeneous block B into the direct-sum matrix S = [[A, B], [0, 0]] on the doubled index set. One then forms its Hermitian part S1 = (S + S-dagger)/2. Prove that the lower-right block of S1 is identically zero, and show that the lower-left block of S1 equals B/2 PROVIDED B is Hermitian, while without that hypothesis the lower-left block is instead B-dagger/2. Explain precisely where the Hermiticity of B is used and why the upper-right block B/2 needs no such hypothesis.",
+    "reference_answer": "Write S on the index set that is the disjoint union of two copies of the base, with blocks indexed by (left,left),(left,right),(right,left),(right,right). By definition S has upper-left A, upper-right B, and both lower blocks 0. The Hermitian part is S1[r,c] = (S[r,c] + conj(S[c,r]))/2 entrywise. Lower-right block: for right-indices i,j, S1[(right i),(right j)] = (S[(right i),(right j)] + conj(S[(right j),(right i)]))/2 = (0 + conj(0))/2 = 0, so the whole lower-right block vanishes identically with no hypothesis. Upper-right block: for left-row i, right-column j, S1[(left i),(right j)] = (S[(left i),(right j)] + conj(S[(right j),(left i)]))/2 = (B[i,j] + conj(0))/2 = B[i,j]/2; the second term vanishes because the lower-left block of S is 0, so no hypothesis on B is needed. Lower-left block: for right-row i, left-column j, S1[(right i),(left j)] = (S[(right i),(left j)] + conj(S[(left j),(right i)]))/2 = (0 + conj(B[j,i]))/2 = conj(B[j,i])/2 = B-dagger[i,j]/2. This equals B[i,j]/2 exactly when B-dagger = B, i.e. when B is Hermitian; the hypothesis is used precisely to rewrite conj(B[j,i]) as B[i,j]. Without Hermiticity the honest value is B-dagger/2, which can differ from B/2. The asymmetry is structural: the upper-right block reads B directly from S and its conjugate partner is a zero block, so no hypothesis is needed; the lower-left block reads a zero from S and sees B only through the conjugate of the upper-right partner, so it inevitably sees B-dagger and needs Hermiticity to be reported as B.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove the lower-right block of S1 is identically 0 using that both lower blocks of S vanish (no hypothesis)",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove the upper-right block is B/2 with no hypothesis (its conjugate partner is the zero lower-left block of S)",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Prove the lower-left block is B-dagger/2 in general and equals B/2 only under Hermiticity of B, locating exactly where conj(B[j,i]) = B[i,j] is used",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerRight",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerLeft_of_B_hermitian",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_upperRight"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.homogenizedS",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1"
+    ],
+    "assumptions": [
+      "S has upper-left A, upper-right B, lower-left 0, lower-right 0",
+      "Hermiticity of B is an extra hypothesis, not automatic"
+    ],
+    "conventions": [
+      "S1 = (S + S-dagger)/2 entrywise with S-dagger[r,c] = conj(S[c,r])",
+      "B is Hermitian means B-dagger = B, i.e. conj(B[j,i]) = B[i,j]"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The lower-right block of S1 is (0 + conj(0))/2 = 0 with no hypothesis.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerRight"
+        ]
+      },
+      {
+        "claim": "The upper-right block is (B[i,j] + conj(0))/2 = B[i,j]/2, needing no hypothesis because its conjugate partner is the zero lower-left block.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_upperRight"
+        ]
+      },
+      {
+        "claim": "The lower-left block is (0 + conj(B[j,i]))/2 = B-dagger[i,j]/2 in general.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerLeft_of_B_hermitian"
+        ]
+      },
+      {
+        "claim": "It equals B[i,j]/2 only when conj(B[j,i]) = B[i,j], i.e. when B is Hermitian, which is exactly where the hypothesis enters.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1_lowerLeft_of_B_hermitian"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires computing four Hermitian-part blocks separately and pinpointing which block genuinely needs the Hermiticity hypothesis versus which is hypothesis-free."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+        "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+        "anchor": "def homogenizedS (A B : CMatrix ι ι) : CMatrix (Sum ι ι) (Sum ι ι) := fun row col => match row, col with | Sum.inl i, Sum.inl j => A i j | Sum.inl i, Sum.inr j => B i j | Sum.inr _, Sum.inl _ => 0 | Sum.inr _, Sum.inr _ => 0 (lines 108-114); theorem S1_upperRight ... = B i j / 2 (lines 145-147); theorem S1_lowerLeft_of_B_hermitian (hB : IsHermitian B) ... = B i j / 2 (lines 150-153); @[simp] theorem S1_lowerRight ... = 0 (lines 155-157)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-homogenized-hermitian-blocks",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The Hermitian part S1 of the homogenized S = [[A,B],[0,0]] has zero lower-right and B/2 upper-right with no hypothesis, but its lower-left block is B-dagger/2 in general and only equals B/2 when B is Hermitian; the hypothesis is used exactly to rewrite conj(B[j,i]) as B[i,j].",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-117",
+    "key": "qcb-core-be-117",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "counterexample",
+    "question": "An LCU route builds a clean target block out of controlled-phase source pieces, each carrying a filler block N_A * e^{i phi} on its lower-right. The intended target is the Hermitian piece S1, whose lower-right block is zero. A printed derivation uses both filler phases equal to pi, i.e. e^{i pi} = -1 on both pieces. Show that this printed choice leaves a nonzero lower-right clean filler and therefore cannot equal S1 when N_A is nonzero, and exhibit the corrected phase assignment that cancels the filler while preserving the intended A and A-dagger clean blocks.",
+    "reference_answer": "Each controlled-phase source piece contributes, on the lower-right (right,right) block, the diagonal value N_A * e^{i phi} where phi is that piece's filler phase; the two pieces (one carrying A, one carrying A-dagger) are averaged with weight 1/2 each, and a third Pauli-X-tensor-B piece contributes nothing to the lower-right block. With both printed phases equal to pi, e^{i pi} = -1, so the lower-right clean entry is (1/2)(N_A * (-1)) + (1/2)(N_A * (-1)) = -N_A. Since the intended S1 has lower-right block identically 0, equality of the printed construction with S1 would force -N_A = 0, i.e. N_A = 0. Contrapositively, whenever N_A is nonzero the printed all-(-1) phase choice does NOT equal S1: it is off by a nonzero constant filler on the lower-right. The corrected assignment keeps one piece's filler phase at pi (value -1) but sets the OTHER piece's filler phase to 0 (value e^{i*0} = +1). Then the lower-right clean entry becomes (1/2)(N_A * (+1)) + (1/2)(N_A * (-1)) = (1/2)N_A - (1/2)N_A = 0, cancelling the filler. Crucially this phase change touches only the lower-right filler diagonal; the selected upper-left A block, the A-dagger contribution and the upper-right B/2 block are unaffected, so the corrected construction reproduces exactly S1 (under Hermitian B). The lesson is that two equal filler phases ADD on the irrelevant block instead of cancelling, and that a filler which is harmless on the clean sector only when it cancels must be verified, not assumed, when composing phased oracle pieces.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Compute the printed lower-right clean entry as (1/2)N_A(-1)+(1/2)N_A(-1) = -N_A and conclude it cannot equal S1's zero lower-right unless N_A = 0",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "State the corrected assignment: one filler phase pi (-1) and the other phase 0 (+1), giving (1/2)N_A - (1/2)N_A = 0",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Confirm the correction changes only the lower-right filler and preserves the A, A-dagger and B clean blocks, so it equals S1 under Hermitian B",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.scaledControlledPhaseSource",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean"
+    ],
+    "assumptions": [
+      "N_A is the stored normalizer and may be nonzero",
+      "B is Hermitian so the selected blocks reproduce S1 away from the filler"
+    ],
+    "conventions": [
+      "Each phase piece contributes N_A * e^{i phi} on the lower-right diagonal",
+      "The two source pieces are averaged with weight 1/2 each"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "With both filler phases pi, each lower-right contribution is N_A*(-1), summing with weights 1/2 to -N_A.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight"
+        ]
+      },
+      {
+        "claim": "Since S1 has zero lower-right block, equality forces -N_A = 0, impossible for nonzero N_A, so the printed choice differs from S1.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1"
+        ]
+      },
+      {
+        "claim": "Setting one filler phase to 0 (+1) and the other to pi (-1) gives (1/2)N_A - (1/2)N_A = 0, cancelling the filler.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1"
+        ]
+      },
+      {
+        "claim": "The correction touches only the lower-right filler, so the A, A-dagger and B clean blocks are preserved and the result equals S1 under Hermitian B.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires computing the filler contribution of two averaged phased pieces, refuting the printed all-(-1) choice by a nonzero-normalizer argument, and verifying the corrected phase cancels only the filler."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+        "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+        "anchor": "theorem eq29PrintedClean_lowerRight ... = -normalizerA (lines 247-251); theorem eq29PrintedClean_ne_S1 (hN : normalizerA ≠ 0) : eq29PrintedClean A B normalizerA ≠ S1 A B (lines 254-262); theorem eq29PhaseBalancedClean_eq_S1 (hB : IsHermitian B) : eq29PhaseBalancedClean A B normalizerA = S1 A B (lines 268-296)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-filler-phase-correction",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Two equal pi filler phases leave a nonzero lower-right clean entry -N_A that cannot match S1's zero block for nonzero normalizer; replacing one phase by 0 cancels the filler while preserving the A, A-dagger, B clean blocks.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-118",
+    "key": "qcb-core-be-118",
+    "topic": "oracle_composition",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A composite operator is assembled as H = S1 (x) X_coord + S2 (x) I_coord, a sum of two Kronecker products of a system operator with a coordinate operator. Prove that H is Hermitian provided S1 and S2 are Hermitian and the coordinate operator X_coord is Hermitian, using three facts: a tensor product of Hermitian matrices is Hermitian, the identity is Hermitian, and a sum of Hermitian matrices is Hermitian. Explain why no assumption on the sizes or commutation of the factors is needed.",
+    "reference_answer": "Hermiticity is the entrywise condition M[i,j] = conj(M[j,i]). Three closure facts suffice. (1) Tensor products: if P and Q are Hermitian then (P (x) Q)[(a,b),(c,d)] = P[a,c] Q[b,d], and conj((P (x) Q)[(c,d),(a,b)]) = conj(P[c,a] Q[d,b]) = conj(P[c,a]) conj(Q[d,b]) = P[a,c] Q[b,d] using Hermiticity of P and Q factorwise; so P (x) Q is Hermitian. (2) Identity: I[i,j] = 1 if i=j else 0, and conj(I[j,i]) = I[i,j] since the diagonal entries 1 are real and off-diagonal entries 0, so I is Hermitian. (3) Sums: if M, N are Hermitian then (M+N)[i,j] = M[i,j] + N[i,j] and conj((M+N)[j,i]) = conj(M[j,i]) + conj(N[j,i]) = M[i,j] + N[i,j], so M+N is Hermitian. Now assemble: S1 and X_coord are Hermitian, so by (1) S1 (x) X_coord is Hermitian. S2 is Hermitian and I_coord is Hermitian by (2), so by (1) S2 (x) I_coord is Hermitian. By (3) their sum H is Hermitian. No assumption on the dimensions of the system or coordinate registers is needed because the tensor Hermiticity check factorizes independently over the two registers; and no commutation assumption between S1, S2, or X_coord is needed because Hermiticity is a property of each individual matrix (its own conjugate-transpose symmetry), closed under tensor and sum regardless of whether the factors or summands commute. Hermiticity is thus compositional: it propagates through the standard operator-building operations with only per-piece hypotheses.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Prove the tensor product of Hermitian matrices is Hermitian via factorwise conjugation (P(x)Q)[(a,b),(c,d)] = P[a,c]Q[b,d]",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Prove the identity is Hermitian and that sums of Hermitian matrices are Hermitian",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Assemble H = S1(x)X + S2(x)I as Hermitian and explain no size or commutation hypothesis is needed because the check factorizes and is per-matrix",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.identity_isHermitian",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian",
+      "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian"
+    ],
+    "assumptions": [
+      "S1 and S2 are Hermitian system operators",
+      "The coordinate operator X_coord is Hermitian"
+    ],
+    "conventions": [
+      "Hermiticity means M[i,j] = conj(M[j,i]) entrywise",
+      "H = S1 (x) X_coord + S2 (x) I_coord"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "A tensor product of Hermitian matrices is Hermitian because the conjugation factorizes over the two registers.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian"
+        ]
+      },
+      {
+        "claim": "The identity is Hermitian (real diagonal, zero off-diagonal), so S2 (x) I_coord is Hermitian.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.identity_isHermitian"
+        ]
+      },
+      {
+        "claim": "S1 (x) X_coord is Hermitian from the tensor fact with S1 and X_coord Hermitian.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian"
+        ]
+      },
+      {
+        "claim": "A sum of Hermitian matrices is Hermitian, so H is Hermitian.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian"
+        ]
+      },
+      {
+        "claim": "No size or commutation hypothesis is needed: the tensor check factorizes per register and Hermiticity is a per-matrix symmetry.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires three Hermitian closure lemmas (tensor, identity, sum) and the structural observation that no dimension or commutation assumptions enter."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+        "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+        "anchor": "theorem tensor_isHermitian (A : CMatrix ι ι) (B : CMatrix κ κ) (hA : IsHermitian A) (hB : IsHermitian B) : IsHermitian (tensor A B) (lines 395-400); theorem identity_isHermitian : IsHermitian (identity ι) (lines 386-392); theorem add_isHermitian ... (lines 403-408); theorem oneDimHamiltonian_isHermitian (hx : IsHermitian xXi) : IsHermitian (oneDimHamiltonian A B xXi) (lines 411-417)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-tensor-sum-hermitian-composition",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "H = S1(x)X + S2(x)I is Hermitian from three closure facts (tensor, identity, sum of Hermitians), with no dimension or commutation hypotheses because the tensor Hermiticity check factorizes per register and Hermiticity is a per-matrix symmetry.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-119",
+    "key": "qcb-core-be-119",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "concept",
+    "question": "A source-faithful adapter records a ten-block paper transcript as an ordered list of named oracle-call labels (preparation, an indicator oracle and its dagger, two difference-table oracles, a boundary rotation, a source-function oracle, a register SWAP that is a label only, and two closing daggers), and separately proves facts about register widths (system 3, signal 9, pure ancilla 6; total 13 physical qubits; effective signal 10). Explain what the transcript object does and does NOT assert about the circuit, why the SWAP being 'a label only' matters, and the distinction between the layout's 9 signal qubits and the effective 10 covered by the clean projection.",
+    "reference_answer": "The transcript object is an ordered list of oracle-call labels that fixes the paper's block ORDER exactly: ten blocks in the printed sequence, including an indicator oracle followed later by its dagger and a closing pair of daggers. What it asserts is purely the identity and order of the named blocks: that there are exactly ten, in this sequence. What it does NOT assert is any matrix semantics for those labels: it does not assign a unitary to each label, does not prove oracle cleanup, does not prove unitarity, and does not prove block correctness; those are deliberately a separate layer. The SWAP being 'a label only' matters because it flags that this particular block has no executable semantics attached in the adapter; its matrix action (exchanging two n-qubit registers) lives in a different, executable module. Treating the label as if it carried proven swap semantics would be an overclaim, exactly the kind of 'module mentions an oracle' confusion that must be avoided. The signal-count distinction: the register layout reports 9 signal qubits, the formal signal register declared by the layout structure. The effective signal count is 10, because the clean projection must pin to zero not only the 9 declared signal qubits but also one qubit of visible workspace that behaves as part of the postselected flag for block correctness; effective = declared signal + visible workspace. So '9' is the layout's bookkeeping field and '10' is the operational count of wires the clean-block projection actually controls. Confusing the two would under-count the postselection and misstate which subspace certifies the encoded block.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "State the transcript asserts exactly the ten-block identity and order, and does NOT assign matrices, prove cleanup, unitarity, or block correctness",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain the SWAP 'label only' flags that its executable semantics live elsewhere, so treating it as proven swap action would be an overclaim",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Distinguish the layout's 9 declared signal qubits from the effective 10 (= declared signal + one visible workspace qubit) that the clean projection pins",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit",
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinEffectiveSignalQubits_eq",
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceLayout_spec"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_length",
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinTotalQubits_eq"
+    ],
+    "assumptions": [
+      "The transcript is a list of named oracle-call labels, not matrices",
+      "Executable SWAP semantics live in a separate module"
+    ],
+    "conventions": [
+      "Effective signal qubits = declared signal qubits + visible workspace",
+      "The SWAP block is a paper label only in this adapter"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The transcript fixes exactly ten blocks in the printed order and nothing more about their semantics.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit"
+        ]
+      },
+      {
+        "claim": "It assigns no matrices and proves no cleanup, unitarity, or block correctness; those are a separate layer.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit_length"
+        ]
+      },
+      {
+        "claim": "The SWAP is a label only, flagging that its executable action lives elsewhere; treating it as proven would overclaim.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinSourceCircuit"
+        ]
+      },
+      {
+        "claim": "The layout declares 9 signal qubits while the effective clean-projection count is 10 = 9 declared + 1 visible workspace qubit.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinEffectiveSignalQubits_eq"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires separating a source-order transcript from semantic claims, recognizing the label-only SWAP caveat, and reconciling declared versus effective signal-qubit counts."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/RobinEvolution.lean",
+        "sha256": "8673572458ff260cf35d6cfce60ffcc52b5b2be721671b3171919e32d0b73a37",
+        "anchor": "def warmRobinSourceCircuit : Circuit := [ Gate.oracleCall \"H_W^(kappa)\" , Gate.oracleCall \"U_indic\" , ... , Gate.oracleCall \"SWAP(two n-qubit registers; paper label only)\" , ... ] (lines 108-119); theorem warmRobinSourceLayout_spec : systemQubits = 3 ∧ signalQubits = 9 ∧ pureAncillas = 6 (lines 152-156); theorem warmRobinEffectiveSignalQubits_eq : GHL2025.effectiveRobinSignalQubits warmRobinParameters = 10 (lines 174-177)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-source-transcript-vs-semantics",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The ten-block paper transcript asserts only block identity and order (no matrices, cleanup, unitarity, or correctness), the SWAP is a label-only placeholder whose semantics live elsewhere, and the layout's 9 declared signal qubits differ from the effective 10 the clean projection pins.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  },
+  {
+    "core_id": "qcb-core-be-120",
+    "key": "qcb-core-be-120",
+    "topic": "oracle_composition",
+    "track": "quantum_semantics",
+    "task_kind": "boundary",
+    "question": "A fixed indicator oracle and its stated dagger are certified for a warm Robin instance by four facts bundled together: the dagger's matrix equals the oracle's own matrix; the integer image map of the oracle is self-inverse; and the oracle matrix is a permutation (each row has a unique column with a 1, and each column a unique row). From these, explain the precise sense in which this indicator oracle is self-inverse, why 'dagger equals itself' plus 'image map self-inverse' together certify a clean uncompute, and what would break the uncompute if only the permutation property held without the self-inverse image.",
+    "reference_answer": "The bundle certifies that the indicator oracle U is an involutive permutation and that its dagger is realized by the SAME matrix. Reading the four facts: (a) the dagger's stored matrix equals the oracle's matrix, so applying 'U-dagger' is operationally identical to applying U again; (b) the oracle's integer image map j |-> image(j) satisfies image(image(j)) = j, i.e. it is self-inverse as a function on labels; (c) and (d) the matrix is a genuine permutation matrix (unique 1 per row and per column). Combining (b),(c),(d): U is the permutation matrix of a self-inverse label map, so U is an involution, U*U = I, hence U-dagger = U already follows abstractly, and (a) confirms the stored dagger matches. The precise sense of self-inverse is this involution U^2 = I. Why (a) plus (b) certify a clean uncompute: an uncompute step must restore the register, and it does so iff running the 'inverse' block after the forward block returns to the start. Here the inverse block is stored as U-dagger = U (fact a), and because the image map is self-inverse (fact b) applying U twice returns every basis label to itself, so the composite forward-then-uncompute is exactly the identity on labels. That is a clean, exact uncompute with no residual. What breaks if only the permutation property (c),(d) held WITHOUT self-inverse image: a general permutation P is unitary with P-dagger = P^{-1}, but P^{-1} need not equal P. Then applying the SAME stored matrix twice gives P^2, not the identity, so re-running the forward block does not uncompute; the register ends in the permuted-twice state and the ancilla is not restored. The self-inverse image hypothesis is exactly what guarantees that the physically convenient choice 'use the same oracle to uncompute' is correct rather than an error; permutation-ness alone gives unitarity but not involutivity.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Interpret the bundle as: U is a permutation matrix of a self-inverse label map, hence an involution U^2 = I with U-dagger = U",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Explain that dagger-equals-itself (fact a) plus self-inverse image (fact b) make forward-then-same-oracle an exact clean uncompute with no residual",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Show that permutation-ness alone gives P-dagger = P^{-1} but not P^2 = I, so reusing the same matrix would give P^2 and fail to uncompute without the self-inverse image hypothesis",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinParameters"
+    ],
+    "assumptions": [
+      "The dagger is stored as the same matrix as the oracle",
+      "The oracle's integer image map is asserted self-inverse"
+    ],
+    "conventions": [
+      "A permutation matrix P is unitary with P-dagger = P^{-1}",
+      "An uncompute restores the register iff forward then inverse is the identity"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The oracle matrix is a permutation of a self-inverse label map, hence an involution U^2 = I with U-dagger = U.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate"
+        ]
+      },
+      {
+        "claim": "Fact (a) stores the dagger as the same matrix, and fact (b) self-inverse image makes applying U twice the identity on labels.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate"
+        ]
+      },
+      {
+        "claim": "Thus forward-then-same-oracle is an exact clean uncompute with no residual on the register.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate"
+        ]
+      },
+      {
+        "claim": "With only permutation-ness, P-dagger = P^{-1} need not equal P, so reusing the same matrix gives P^2, not the identity, and the uncompute fails.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RobinEvolution.warmRobinIndicatorCertificate"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "advanced",
+      "rationale": "Requires distinguishing involutivity from mere permutation unitarity and seeing that the self-inverse image hypothesis is exactly what licenses reusing the same oracle as its own uncompute."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/RobinEvolution.lean",
+        "sha256": "8673572458ff260cf35d6cfce60ffcc52b5b2be721671b3171919e32d0b73a37",
+        "anchor": "theorem warmRobinIndicatorCertificate : (GHL2025.oneTermRobinGate_U_indic_dagger warmRobinParameters).matrix = (GHL2025.oneTermRobinGate_U_indic warmRobinParameters).matrix ∧ (∀ j : Nat, GHL2025.indicatorOracleImage warmRobinParameters (GHL2025.indicatorOracleImage warmRobinParameters j) = j) ∧ (... indicatorOracleMatrix is a permutation ...) (lines 180-210)",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "be-indicator-involution-uncompute",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "The indicator-oracle bundle certifies U is a permutation of a self-inverse label map, so U^2 = I and U-dagger = U; dagger-equals-itself plus self-inverse image make the same oracle its own exact clean uncompute, which permutation-ness alone (P-dagger = P^{-1} not P) would not guarantee.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "oracle-composition-author-b2",
+      "new_problem_core": true,
+      "existing_core_aliases": []
+    }
+  }
+]

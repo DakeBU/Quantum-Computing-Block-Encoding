@@ -1,0 +1,234 @@
+[
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "r and s are the exact bookkeeping records specified in the question; no physical scheduling theorem is assumed"
+    ],
+    "conventions": [
+      "Resource.add sums all fields; Resource.parallel maxes the recorded depth and pureAncilla fields, without certifying physical peak demand"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-894edda95e2c05d525d2",
+    "language": "en",
+    "question": "Resource.add sums all coordinates. Resource.parallel sums oneQubit, cnot and oracleCalls but takes max of depth and pureAncilla. For r=(2,3,1,1,4), s=(5,7,2,1,6) in that coordinate order, compute gates, depth and pureAncilla of both results. Does max ancilla alone certify physical peak usage for independent simultaneous subcircuits requiring disjoint clean ancillas?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "ebae72deb8b89054ec3719d81b996fa8163e7094096d7e4678f4337ba4ba5b23",
+    "topic": "resource accounting: depth vs gate count",
+    "track": "quantum_semantics"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "normSq is the sum of squared amplitudes; sqrt(normSq) is the Euclidean normalizer"
+    ],
+    "conventions": [
+      "One-qubit basis labels 0 and 1 correspond to PrimitiveBasis 1 assignments; splitAngle handles zero pair mass explicitly"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-070c55b06f300dbc0474",
+    "language": "en",
+    "question": "The flat prepareMatrixLE_firstColumn API assumes all entries strictly positive. Is strict positivity mathematically necessary for this library's recursive real amplitude preparation? State the weaker prepareCircuit_firstColumn hypotheses, give a sparse nonzero input with a zero entry, and explain the all-zero subtree and all-zero input separately.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "44962e9c8035dac11b9df8f4031376d63fd23083d8aa13f239976c88480be164",
+    "topic": "counterexample: hypotheses of prepareCircuit_firstColumn",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "alpha=0.7 is the real state-vector amplitude-plane angle; the amplitudes are cos(alpha) and sin(alpha)"
+    ],
+    "conventions": [
+      "The RY argument equals the Bloch rotation angle 2*alpha; amplitudes use half that argument"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-c19db65651f1861543f9",
+    "language": "en",
+    "question": "A proposed replacement changes standardRyMatrix(theta)=realRotation(theta/2) to realRotation(theta), claiming the half angle matters only at pi. Refute this using the target cos(alpha)|0>+sin(alpha)|1> for alpha=0.7. Distinguish the amplitude-plane angle alpha, the RY parameter, and the Bloch-sphere polar angle.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "2c170310933b83bd34d657d7bfad41ed6eeba5556773da0ec335950064d9c90a",
+    "topic": "counterexample: RY convention misuse",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "All four cost fields are natural numbers compared with Nat <"
+    ],
+    "conventions": [
+      "Lexicographic search priority is gateCount, depth, auxiliaryQubits, oracleCalls"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8a5954c3aa05ceb23e54",
+    "language": "en",
+    "question": "State BlockEncodingCost.betterThan's comparison order. Gate.resource of an unresolved oracle has oneQubit=0, cnot=0, oracleCalls=1, depth=1. Is its Resource.gates contribution zero? Does this score certify the oracle's expanded physical implementation cost?",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "41d1d754f48fee0e1a07dab1d0436568303a97f978fd05db154384b3ed7f94ae",
+    "topic": "block-encoding resource comparison",
+    "track": "knowledge"
+  },
+  {
+    "answer_format": "lean",
+    "assumptions": [
+      "realRotation and realOrthogonalRotation are the project's 2x2 rotation definitions; Mathlib simp lemmas for trig at 0 are available"
+    ],
+    "conventions": [
+      "Half-angle RY; identity is the Mathlib matrix 1"
+    ],
+    "exposure": "closed_book",
+    "formal_context": {
+      "imports": [
+        "QuantumBlockEncoding.PrimitiveSemantics"
+      ],
+      "target": "QuantumBlockEncoding.standardRyMatrix 0 = 1"
+    },
+    "id": "qcb-c75b0af65ae40b3cd680",
+    "language": "en",
+    "question": "Supply a fully qualified lemma-application proof of the frozen formal target. Reusing the imported theorem is permitted; this tests interface application, not novel theorem discovery. Return only the proof term. Target: QuantumBlockEncoding.standardRyMatrix 0 = 1",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8b0c5ee6f4e7fe82518644f5d77775772ada91dc13efb2aa9931676d117ee649",
+    "topic": "Lean proof completion: RY at zero angle",
+    "track": "lean"
+  },
+  {
+    "answer_format": "lean",
+    "assumptions": [
+      "bit ranges over Fin 2; flipBit is the two-branch if-then-else"
+    ],
+    "conventions": [
+      "Fin 2 inhabitants are 0 and 1"
+    ],
+    "exposure": "closed_book",
+    "formal_context": {
+      "imports": [
+        "QuantumBlockEncoding.PrimitiveSemantics"
+      ],
+      "target": "∀ bit : Fin 2, QuantumBlockEncoding.flipBit (QuantumBlockEncoding.flipBit bit) = bit"
+    },
+    "id": "qcb-cb7d5fbf1366be23d369",
+    "language": "en",
+    "question": "Supply a fully qualified lemma-application proof of the frozen formal target. Reusing the imported theorem is permitted; this tests interface application, not novel theorem discovery. Return only the proof term. Target: ∀ bit : Fin 2, QuantumBlockEncoding.flipBit (QuantumBlockEncoding.flipBit bit) = bit",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "4da3e2c446bc3262e669a13d9811bde52a263dd864ad2877257cb3c86c437eca",
+    "topic": "Lean proof completion: bit flip is involutive",
+    "track": "lean"
+  },
+  {
+    "answer_format": "lean",
+    "assumptions": [
+      "N x N real matrices; planeMatrix is rotateRows applied to the identity",
+      "i != j in Fin N"
+    ],
+    "conventions": [
+      "rotateRows uses the half-angle convention; determinant invariance requires distinct mixed rows"
+    ],
+    "exposure": "closed_book",
+    "formal_context": {
+      "imports": [
+        "QuantumBlockEncoding.AdjacentGivens"
+      ],
+      "target": "∀ {N : ℕ} (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.planeMatrix i j theta).det = 1"
+    },
+    "id": "qcb-d2b43ab3f432d569853e",
+    "language": "en",
+    "question": "Supply a fully qualified lemma-application proof of the frozen formal target. Reusing the imported theorem is permitted; this tests interface application, not novel theorem discovery. Return only the proof term. Target: ∀ {N : ℕ} (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.planeMatrix i j theta).det = 1",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "8d89858a3a63b38c12d0008f1c9a85c30404c2e7ab7174d7b414e67a8d6f8187",
+    "topic": "Lean applicability: determinant of a Givens plane",
+    "track": "lean"
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-f6defaf48d0af1226fe7",
+    "language": "en",
+    "question": "Let r=Resource.ofCountsWithDepth 2 3 1 1 4 and s=Resource.ofCountsWithDepth 5 7 2 1 6. Return [add.gates,add.depth,add.pureAncilla,parallel.gates,parallel.depth,parallel.pureAncilla] as compact JSON with no spaces.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "9c936390672afe10a347788322ee50e727b8a14176bfa3ae183b29fb8d34bfdd",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-51859e0ab30c0da582c3",
+    "language": "en",
+    "question": "For Gate.resource(.oracleCall(name)), return [oneQubit,cnot,oracleCalls,gates] as compact JSON with no spaces. Do not substitute the unknown expanded implementation cost.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "fd64c512ee3b8d81b74d494d6d9896baea58b47eb6928e573c8f3e5efb4fdbb7",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-8ec6aa2f97a0b4cf0af1",
+    "language": "en",
+    "question": "Using the library ceiling-address-width convention, return [clog2(0),clog2(1),clog2(2),clog2(3),clog2(4),clog2(5),clog2(8)] as compact JSON without spaces.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "3ccbe225b5fd32f765fd34789edf632474d62862b53ccb1ad1c808eb52b479c2",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-d796c630819b0695d93b",
+    "language": "en",
+    "question": "A one-qubit input has f(0)=1 and f(1)=0. Is it excluded by prepareCircuit_firstColumn's hypotheses solely because one entry is zero? Return exactly yes or no.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "7d0511fd3b4a7bc4c5172787063ba5d582c308fed5152e8aa25fcf69878e99fb",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning"
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "exposure": "closed_book",
+    "formal_context": null,
+    "id": "qcb-7dad08acd21d3cbefa3d",
+    "language": "en",
+    "question": "When a recursive amplitude split has a=b=0, what rational angle does splitAngle choose? Return exactly the integer 0 if it chooses rational zero, or undefined if it has no value.",
+    "schema_version": "qcb.item.v1",
+    "task_hash": "96fdade99c73f00e6ec2928b2877f163724a1c07ecdba9c9ab4f099b9c7fbb59",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning"
+  }
+]

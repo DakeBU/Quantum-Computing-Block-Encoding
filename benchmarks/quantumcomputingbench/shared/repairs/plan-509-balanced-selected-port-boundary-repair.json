@@ -1,0 +1,82 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-509",
+  "supersedes_key": "qcb-core-plan-509-even-odd-split-subnormalization-doubling",
+  "supersedes_item_digest": "2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-509-textbook-v1-balanced-selected-port-boundary",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition successor, not a question or convention migration. The literal question's factor2 is true for the specified naive balanced common-c combiner and its chosen all-zero port; it does not require the answer's false exclusive-success-port claim. Preserve all nine CONTRACT_FIELDS exactly, original core/family/test_public split/frozen graph/source_refs, six semantic steps and every ordered per-step node list. Unchanged contract hash ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2. Clarify finite-dimensional input normalization/access, compatible branch registers, both control-port projections, degenerate spectra and fixed-scheme versus global optimality. No extra source assumption is silently imposed on the arbitrary Hermitian A: normalization of A and polynomial rescaling are explicit construction obligations. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-509-balanced-selected-port-boundary-repair.json; authored private locator _review_tmp/plan-509-balanced-selected-port-boundary-repair.json. Pending distinct review; no additional core or selfapproval.",
+  "reference_answer": "The polynomial split is f_e(x)=(f(x)+f(-x))/2 and f_o(x)=(f(x)-f(-x))/2. Direct substitution shows f_e is even, f_o is odd, and f_e+f_o=f. If f=e+o with e even and o odd, then f(-x)=e(x)-o(x), so adding/subtracting recovers these same formulas; uniqueness is as polynomials, not a claim that their evaluations on one spectrum uniquely determine them.\n\nFor the finite-dimensional Hermitian operator in the quantum circuit setting, write A=V diag(lambda_i)V†. An even polynomial's right singular-value transform equals its eigenvalue function because f_e(|lambda|)=f_e(lambda); an odd polynomial's balanced transform supplies the sign of lambda, giving f_o(lambda). Choose any unitary sign completion at zero eigenvalues; f_o(0)=0 makes that choice immaterial. Hence the parity-respecting construction implements the desired two functions, not an arbitrary mixed-parity singular-value function of a non-Hermitian matrix.\n\nInput access and scale are real obligations. If A is not already given as an exact normalized block, choose a known rho>0 with ||A||<=rho and let B=A/rho. Obtain an exact block encoding of B and use the definite-parity polynomials g_e(x)=f_e(rho*x) and g_o(x)=f_o(rho*x). They retain their parities and g_e(B)=f_e(A), g_o(B)=f_o(A). A finite Hermitian matrix has such a rho. Concretely, for S=sqrt(I-B^2), the block matrix U_B=[[B,S],[S,-B]] is unitary: spectral functional calculus gives BS=SB and B^2+S^2=I, so its square is I and its clean block is B. Expanding each g in its finite definite-parity Chebyshev basis, implementing the corresponding qubitized blocks, and using phase-aware coefficient LCU gives each parity branch at a positive coefficient-norm factor (with a separate zero-block construction when necessary). This is existence/construction mathematics, not an efficient oracle-synthesis guarantee from the word Hermitian alone. Chebyshev coefficients, coefficient preparation, SELECT and input-oracle work must actually be supplied and charged in any implementation; approximation would require an additional error contract. Nothing here assumes ||A||<=1 without this normalization step.\n\nPut E=f_e(A) and O=f_o(A). Implement the two parity branches at compatible clean signal registers s and a common positive scale c, meaning J†U_e J=E/c and J†U_o J=O/c with J|psi>=|0^r>_s|psi>. The scale need not be minimal. Workspace padding preserves a clean block. If existing nonzero-branch factors are c_e,c_o, take c>=max(c_e,c_o) and explicitly attenuate their accepted blocks by c_e/c or c_o/c, for example by a clean-qubit rotation whose00 matrix element is that ratio. Its clean register is included in s before combining; equalization/padding is not free and is not part of the assertion that the COMBINER adds just one qubit. A zero branch can be represented by a unitary with zero accepted block, for instance X on a signal qubit, at any chosen positive c; never divide by its zero coefficient norm.\n\nIntroduce exactly one new selector b and set SELECT=|0><0|_b tensor U_e+|1><1|_b tensor U_o, with V=(H_b tensor I)SELECT(H_b tensor I). For every normalized input |psi>, the complete projected-port transcript is\nV|0>_b|0^r>_s|psi>\n = |0>_b|0^r>_s (E+O)|psi>/(2c)\n + |1>_b|0^r>_s (E-O)|psi>/(2c) + |G_psi>,\nwhere (I_b tensor <0^r|_s tensor I)|G_psi>=0. Thus projection onto the FIXED b=0,s=0 port gives f(A)/(2c), a block encoding with declared factor2c. It is a projected block, not an assertion that the full unitary output has no garbage. Its success probability is ||f(A)psi||^2/(4c^2); if f(A)psi=0 it is0 and there is no normalized conditional output. Otherwise conditioning on this port gives f(A)psi/||f(A)psi||, with the exact coherent phase retained.\n\nThe coefficient1/2 is forced by this particular balanced H-SELECT-H and this chosen projector: each branch contributes the product of two Hadamard entries1/sqrt(2). It cannot be changed while leaving those operations and that accepted port fixed. This is the precise sense of unavoidable in the naive combination. It is not a universal lower bound on block factors or a state-independent claim about probability loss. The alternative control port contains (E-O)/(2c), not generically the sum, but it need not be useless or distinct on every allowed spectrum. For f(x)=1+x and A=0, a genuinely parity-mixed polynomial has E=I,O=0, and BOTH signal-clean control ports carry I/(2c). For E=0 they differ only by a minus sign. Conversely E=O gives a zero difference port. Polynomial parity alone does not preclude any of these operator degeneracies.\n\nOther schemes can use different accepted projectors, exploit known zero/equal branches, or use coefficient-weighted LCU: factors c_e,c_o give sum factor c_e+c_o using amplitudes sqrt(c_e/(c_e+c_o)) and sqrt(c_o/(c_e+c_o)), rather than2*max(c_e,c_o). That comparison does not remove the literal1/2 from the fixed common-c balanced selected block. A claimed minimal normalization or a complete gate, input-preparation, postselection/amplification or readout complexity theorem would require separate analysis.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Derives and proves uniqueness of the polynomial even/odd split, distinguishing polynomial uniqueness from degeneracies after evaluating on spec(A)."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Explains why definite-parity SVT gives the corresponding eigenvalue function for Hermitian A, including null eigenvalues; makes any A/rho input normalization, polynomial rescaling and oracle/preparation/equalization work explicit rather than silently assuming a unit-normalized available input."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Uses compatible clean signal registers and common c>0 to calculate H-SELECT-H: chosen b0,s0 block f(A)/(2c), other clean control block (f_e(A)-f_o(A))/(2c), flag-orthogonal garbage and the actual input-dependent success probability/zero-output boundary."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Explains the forced1/2 only for this fixed balanced common-c selected-port scheme. Refutes exclusive-success-port/global-optimality overclaims with an allowed degenerate-spectrum example and separates weighted LCU, workspace equalization, implementation and amplification costs."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The unique parity split combines into the fixed all-zero balanced block f(A)/(2c); the other control port is the difference and can coincide with the sum on degenerate spectra. The factor2 is a fixed-scheme accounting identity, not exclusive success or universal optimality.",
+    "semantic_steps": [
+      {
+        "claim": "The parity averages are even/odd polynomials, sum to f, and are uniquely recovered by adding/subtracting f(x) and f(-x).",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "Definite-parity transforms equal the desired functions of Hermitian A, with input normalization/rescaling and compatible common-c branch encodings made explicit.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "A new balanced selector controls the two completed parity encodings on the same signal workspace.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "After recombination, the clean b0 port is (E+O)/(2c), the clean b1 port is (E-O)/(2c), and remaining terms are orthogonal to the clean signal subspace.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "The fixed chosen block is f(A)/(2c) with input-dependent success probability; zero target output cannot be normalized conditionally.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The1/2 follows from fixed Hadamard matrix elements, not exclusive-success-port or global optimality; allowed degenerate spectra and alternative weighted schemes delimit the claim.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Read complete lin-wiebe-2026-qasc registry entry. This LF binds URL/edition/historical PDF hash METADATA ONLY, not a local mathematical proof or current PDF-byte equality. Actual mathematical source: https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf; observed cover29 April2026 and447 pages. Operative author-hosted PDF text read in this authoring task: Definition9.2 exact factor/error and Example9.3 normalized dilation, printed143-144; complete Lemma9.5/Eq9.15-9.26 LCU construction/proof and balanced addition Example9.6/Exercise9.2, printed145-147; complete parity-dependent Definition10.4/Eq10.14-10.16, printed165; operative paired Chebyshev blocks Eq10.97-10.98, printed176; full Section10.5 construction/Theorem10.12 and parity split Eq10.105, printed177-179. Balanced two-port algebra and degeneracy examples are independently reconstructed, not a source claim of exclusive success or global optimality. Recorded historical binary SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 remains unverified here; screenshot requests PDF pages177,178,187 failed with cache misses, so no operative pixel inspection or fresh source-paper seal is claimed."
+    }
+  ],
+  "execution": "Actual author /root/qcb_native_comparison, not an independent reviewer or selfapprover. I previously wrote the historical scientific reader review/finding for this core and have full parent/source/withdrawal exposure; this is not blind authoring. Entire actual prepared predecessor was read again via release.checked()[2], including complete question/answer/rubric, assumptions/conventions, semantic steps and provenance. Whole original digest 2ee2566f02d779dbf9ff9fc536ecc37a6a7942b6547a893063cd89d3d3bc6052 and original nine-field contract ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2 were recomputed; current bound withdrawal reports/textbook-v1/reader-reviews/scientific-signals-502-510-review.json report digest 611f8ab8c15fa5a1546940fbad774043d33d77096f6b91e988366443817600bc and exact finding digest 5b0bbdc9fe85d50082bb174b7e1fd26f26a23d699689671f4608892618f8eb6a were recomputed and matched. Entire new mathematical/grading candidate is authored here. All six original ordered per-step supporting-node lists and count6 are preserved; no family/split/graph/source_refs or active assumption/convention list is edited. Actual canonical HEAD observed e9308632431899a08938b4d9a6cd1b9d90c45e30; engine code is not a mathematical source dependency. Primary access was web PDF text extraction of the complete operative regions identified above, with matching cover/date/page count, but no direct binary verification or rendered operative page inspection: screenshots failed with cache misses. Historical primary SHA is provenance, not a fresh byte seal. No paper/PDF stored or redistributed. No production Lean/native-formal theorem, kernel/build/compiler/simulator/GPU/admin operation, model/human/expert approval, global alias reconciliation, minimality/novelty or reader admission claim. Only NEW private _review_tmp/plan-509-balanced-selected-port-boundary-repair.json is written; proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-509-balanced-selected-port-boundary-repair.json is not installed. Prior candidates/reports and all canonical files stay unchanged by me. A distinct exact-content review is required before any transport/admission. Recomputed proposed nine-field contract hash: ad599d53031602e8c6d1fe615a30b1b8d2f51b86e3f7d9cfa58cba7809ea8bf2. The old/new nine-field contracts are identical."
+}

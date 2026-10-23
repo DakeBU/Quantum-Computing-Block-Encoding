@@ -1,0 +1,50 @@
+{
+  "authoring_hash": "674ba71f7c1ab57851341be16afa507c40fc9efd1fbb7de81395ef5da162c5dc",
+  "batches": [
+    "pilot.json",
+    "planned.json"
+  ],
+  "calls": 0,
+  "cost_usd": 0,
+  "elapsed_seconds": null,
+  "items": [
+    "qcb-6b9956fd0553d2aef701",
+    "qcb-237e6cf7ab3572c80f68",
+    "qcb-8b83d762937c0cef99da",
+    "qcb-51fea576c303158d13b3",
+    "qcb-c0d7d794188fbaa95562",
+    "qcb-8aefbac5ae4f133477bd",
+    "qcb-f1c3e4816cb039d737c8",
+    "qcb-f0c025b527f928b7ad27",
+    "qcb-b631477c51b6952de162",
+    "qcb-19d9284696e8754ce6bc",
+    "qcb-82e2a635858913c206bb",
+    "qcb-463272c5d1f25ac38f53",
+    "qcb-b1a1f70a01eb59fff3b4",
+    "qcb-18465954c3e8777921b1",
+    "qcb-7468c11970d67eda67ba",
+    "qcb-3269ce47b6495336d73d",
+    "qcb-7d45874e6c5824b7a758",
+    "qcb-a60f26f330142b6d6b7c",
+    "qcb-5eed030a7ef682debb28",
+    "qcb-90807e6bc4603e255cd3",
+    "qcb-702c0db090173303b8b1",
+    "qcb-acfa8c74d738d3edb5d2",
+    "qcb-237627ac599c96163bd0",
+    "qcb-8f70cf733057dec6bd22",
+    "qcb-7f3671df9b5dbe762991",
+    "qcb-20af3600b439178311cc"
+  ],
+  "limit": 0,
+  "limits": {
+    "calls": 0,
+    "spend_usd": 0
+  },
+  "method": "curated-original-source-inspected-fixture",
+  "model_validation": false,
+  "note": "No endpoint calls; session author/reviewer telemetry unavailable.",
+  "schema_version": "qcb.generation.v1",
+  "seed": 0,
+  "snapshot_id": "qcb-snapshot-55dc0c6089ec608a68176884",
+  "tokens": null
+}

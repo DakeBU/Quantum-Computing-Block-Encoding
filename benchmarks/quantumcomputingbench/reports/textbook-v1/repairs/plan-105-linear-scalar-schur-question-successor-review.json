@@ -1,0 +1,157 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "core_id": "qcb-core-plan-105",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-105-linear-scalar-schur-question-successor.json",
+  "repair_record_digest": "b313dd3b1ff5a8d78ed18f3cdf6b6b10e2a839db104c302c16325a93534cefa4",
+  "repair_record_sha256_lf": "025af03402e01cc7ab881f6b5adffe1f44c2975230461fef49a8edc8db5886c5",
+  "original_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+  "original_contract_hash": "309c75520531398abe723c2336552f0c218d92787f06a834b7fb16bfa6f49be2",
+  "successor_contract_hash": "66e2872bd051a32e94d0a7f3affed31b2fc48f29be73fdd24fb86462efb14c73",
+  "question_version": 2,
+  "verdict": "accept",
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky source registry entry, URL/edition/recorded pin; exact local metadata LF binding only. Actual mathematical primary inspection and binary/visual limits are separately recorded."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Complete actual authored104/105 mathematical, grading, convention and five-step records compared against the historical prepared originals. Data provenance, not a proof or inherited acceptance."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Actual complete historical prepared originals inspected via release.checked()[2]; whole item hashes bound separately. Frozen QA provenance, not current gold or new proof execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "sha256_lf": "a6d80d945512edd20c52815a84153a821a6103cb724cedeb0f405907d6c98748",
+      "anchor": "Full exact bound104/105 uncertain findings, exposed prior source claims and report scope read. This reviewer authored those historical findings but not these native-authored successors; no verdict or binary execution is transferred."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "observed_text_edition": "Cover April10,2026;79 PDF pages, personally checked during this review.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "binary_hash_verified_this_review": false,
+      "retrieved_raw_sha256": null,
+      "actual_text_regions": "Genuine author-hosted primary PDF text accessed through the web reader: Definition3.6 and finite-dimensional course scope (zero-based16/printed17); Definition3.8 equivalent representations and Definition3.10 invariant vector subspaces (17/18); Definition3.12 irreducibility (18/19); complete Proposition3.17 statement, both proof parts and Corollary3.18 proof (19/20); complete Exercise3.6 statement (36/37); Definition3.37-3.38 and finite-discrete/circle examples (33-34/34-35). Whole operative Schur proof read, not only a registry summary.",
+      "actual_visual_scope": "One new screenshot request for zero-based PDF19 failed with an internal error; no operative pixels or fresh binary retrieval are claimed here. Prior reports include historical byte retrieval by this same task identity, but those old executions and other actors' byte/pixel checks are not current-review executions.",
+      "mathematical_scope": "The source theorem explicitly requires a linear map; the exercise's abbreviated functional equation does not prove linearity. Source finite-dimensional/eigenvalue conventions are separated from the newly explicit question contracts. The counterexamples, closure/inverse steps and exterior field/dimension arguments were independently reconstructed, not attributed as additional source theorems.",
+      "limits": "Current binary equality to the recorded pin remains unverified. No primary PDF saved/redistributed, full-paper seal, source-blind decoding, human/expert approval, local Lean/kernel/native-formal or efficient-circuit claim."
+    }
+  ],
+  "previous_reader_evidence": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+    "report_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+    "finding_digest": "c0c58b623d3ea5cabe7b2ebc6ab27b3547b16bdda387f45ac8779508fceb6c33",
+    "withdrawal_digest": "6376297168a8c061e04f3fb4ea55d66e2222f5f8a62b482577b83a9da1dd5566",
+    "actual_historical_reviewer": "/root/qcb_formal_view_audit",
+    "exposure": "Read the full current canonical historical finding and its scope; same actual reviewer identity as that old reader pass, distinct from the successor's author. Old uncertainty is retained; this is review of the changed complete question, not relabeling the original digest."
+  },
+  "contract_bindings": {
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_fields": [
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "unchanged_values": {
+      "assumptions": [],
+      "conventions": [],
+      "family": "qit-schur-lemma",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "semantic_step_count": 5,
+    "additional_core_count": 0,
+    "equivalence_to_predecessor_claimed": false
+  },
+  "provenance": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "candidate_author": "/root/qcb_native_comparison",
+    "original_author": "representation-qit-author-b2",
+    "independence": "Distinct from the actual current candidate author /root/qcb_native_comparison and original author representation-qit-author-b2; I authored neither104 nor105 successor. I did author the old original-item findings and have prior neighboring QIT/primary-source exposure. Parent supplied the review objective and candidate pins; I saw complete candidate answers/metadata. This is source-exposed distinct mathematical review, not strict blindness, a human/expert seal or a new identity.",
+    "reviewed_at_private_path": "_review_tmp/plan-105-linear-scalar-schur-question-successor.json",
+    "observed_canonical_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "instructions": "Mandatory repository substantive-worker/publication/proof-digestion/evidence-routed-memory instructions and shared CONTRACT/ACCEPTANCE read in this continuous task context and refreshed; PDF skill used to separate text from byte/pixel evidence.",
+    "execution": "Only read-only actual prepared records, complete candidates including all execution metadata, bound withdrawals/findings, primary text and mechanical digests/schema/source/ordered-node checks. New private review JSON only. No candidate/canonical/previous-report edits, builds, Lean/kernel/source-paper seal, policy admission, deployment, model/GPU run, commits/push or new agents. No executable policy/curriculum hashes bound as mathematical source dependencies."
+  },
+  "contract_change_assessment": {
+    "literal_change": "The finite-dimensional/algebraically closed predecessor still describes f only as a function satisfying an equivariance equation. Its empty assumptions/conventions do not supply End_F(V). This explicit question revision first refutes that carrier, then states the linear conditional scalar theorem and its true eigenvalue scope. It does not merely amend an answer while leaving a false literal demand active.",
+    "preserved_scope": "Only question changes in the nine-field contract; the other eight values and all five original ordered step supports match exactly. Finite dimension and algebraic closure already present in the old question remain in the positive theorem; zero spaces and exterior examples are openly assessed, not hidden exclusions or active assumption overrides. The linear operator commutant is explicitly distinguished from all commuting functions. Family, test_public split, graph/source scope and core remain reserved, with no predecessor-equivalence, extra core, global alias or admission claim."
+  },
+  "substantive_reconstruction": {
+    "function_carrier_and_root": "The same C2 sign character on C is a valid finite unitary irreducible action here. Cubing commutes with multiplication by either sign and is entire, but equality f=lambda I would force lambda=1 at z=1 and then fail at z=2. Thus the additional old field/dimension conditions do not fix functional equivariance. A nonlinear function has no endomorphism matrix or characteristic polynomial for this purpose. In the corrected branch f lies explicitly in End_F(V). For n=dim_F V>0, det(tI-f) is monic of degree n, so algebraic closure produces a root lambda. In finite-dimensional linear algebra its zero determinant means a nonzero kernel vector for lambda I-f. Positive finite dimension supplies both the nonconstant polynomial and the matrix singularity criterion; algebraic closure supplies a root. The candidate separates these roles accurately.",
+    "shift_and_irreducibility": "For h=f-lambda I, linearity of f and the identity gives h in End_F(V). Since each phi(g) is F-linear, it commutes with scalar multiplication; combining that with f phi(g)=phi(g)f proves h phi(g)=phi(g)h in the displayed order. The eigenvector v is nonzero and h(v)=0. Linearity makes the kernel a vector subspace, and this intertwining relation makes it invariant. Algebraic irreducibility then forces that nonzero kernel to be V, hence h=0. This is also the zero-or-isomorphism lemma with its invertible alternative ruled out. No circular scalar-Schur premise is used to prove the shift is scalar, and no polynomial is assigned to the nonlinear discriminator.",
+    "commutant_and_zero_space": "Inside End_F(V), every X commuting with all action maps satisfies the same proved hypotheses and is scalar; conversely linearity of the action proves every lambda I commutes. These are both inclusions of the claimed set equality, not an unsupported appeal to the word commutant. For nonzero V, evaluating (lambda-mu)I at a nonzero vector proves uniqueness of the scalar, so F I has dimension one. For V=0, all endomorphisms and the identity are the zero operator; every lambda represents it, and F I is zero-dimensional. The set equality still holds but there is no eigenvector or scalar uniqueness. The candidate handles that branch separately if the adopted definition permits zero irreducibles, which the source's literal invariant-subspace definition does not explicitly exclude.",
+    "real_field_boundary": "I checked the real C4 example without importing complex irreducibility. Its generator J=[[0,-1],[1,0]] is orthogonal and has J^2=-I. A proper nonzero real invariant subspace of R^2 would be a line, so for its generator v one would have Jv=a v with real a. Squaring gives a^2=-1, impossible. This proves real irreducibility. Yet J is a non-real-scalar real-linear operator commuting with all powers of itself. The example truly shows failure of the unrestricted scalar conclusion when algebraic closure is removed; finite group, finite dimension and orthogonality alone do not replace it. It is not a complex irreducibility counterexample, since complexifying creates eigenlines.",
+    "infinite_dimension_boundary": "For K=C(t), each multiplication by g in K^times is an invertible C-linear operator on V=K, defining the stated algebraic representation. Powers 1,t,t^2,... are linearly independent, proving infinite dimension. If a nonzero invariant complex-linear W contains w nonzero, then for every v nonzero the allowed group element v/w carries w to v. Hence W=K: this is genuinely irreducible, unlike a reducible trivial-action example. Multiplication T by t commutes with all g and is not a complex scalar; for each lambda in C, T-lambda I has inverse multiplication by 1/(t-lambda), so T has no complex eigenvalue. This is a valid boundary outside finite dimension while retaining an algebraically closed base. No topology, Hilbert norm, boundedness or compact-group continuity is supplied for K^times, so it cannot refute separately hypothesized topological/unitary Schur variants.",
+    "grading_scope_and_dependency": "An eigenvalue for this particular linear f already suffices for the invariant-kernel argument; finite dimension plus algebraic closure is a general sufficient guarantee, not a necessity for every individual scalar operator. Neither finiteness of G, characteristic zero nor averaging is used. All four rubric criteria and five exposition steps are supported by the full answer, including converse scalar inclusion and zero-space uniqueness boundary. Step4's compressed 'finite/closedness' is read in its explicit algebraic-closure context, not as a closed-subspace or continuity hypothesis; it causes no conflicting active premise. The shared104 lemma is only a dependency:105 additionally obtains an eigenvalue and classifies an endomorphism commutant. I find no blocking mathematical, quantifier or grading defect in this whole exact105 candidate, without concluding global deduplication."
+  },
+  "limitations": [
+    "Current primary text was genuinely inspected, but no new matching binary hash or operative-page pixels were obtained; recorded source pin and historical same-reviewer executions are not fresh evidence.",
+    "C(t) is an algebraic exterior example, not an efficient quantum representation, compact continuous unitary example or theorem about all infinite-dimensional Schur variants.",
+    "Nonblocking editorial compression: exposition step4 says 'finite/closedness'; the full question and answer explicitly mean finite dimension/algebraic closure, not topological closedness. No candidate edit is made or required for the stated mathematics.",
+    "Accept covers this exact question successor only; no historical-original acceptance transfer, new kernel/native-formal seal, actual admission, source-paper seal, global alias clearance or split pooling."
+  ]
+}

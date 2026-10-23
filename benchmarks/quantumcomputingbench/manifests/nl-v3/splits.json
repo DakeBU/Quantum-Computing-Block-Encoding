@@ -1,0 +1,356 @@
+{
+  "assignments": [
+    {
+      "core_id": "qcb-core-be-001",
+      "family": "be-projected-block-contract",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-be-002",
+      "family": "be-auxiliary-accounting",
+      "split": "train",
+      "split_group": "be-auxiliary-accounting"
+    },
+    {
+      "core_id": "qcb-core-be-003",
+      "family": "be-unitary-completion-nonuniqueness",
+      "split": "dev",
+      "split_group": "be-unitary-completion-nonuniqueness"
+    },
+    {
+      "core_id": "qcb-core-be-004",
+      "family": "be-lcu-stage-roles",
+      "split": "train",
+      "split_group": "be-lcu-stage-roles"
+    },
+    {
+      "core_id": "qcb-core-be-005",
+      "family": "be-projection-action-equivalence",
+      "split": "dev",
+      "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence"
+    },
+    {
+      "core_id": "qcb-core-be-006",
+      "family": "be-lcu-clean-entry",
+      "split": "train",
+      "split_group": "be-lcu-clean-entry"
+    },
+    {
+      "core_id": "qcb-core-be-007",
+      "family": "be-postselection-success",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-be-008",
+      "family": "be-scalar-dilation-contraction",
+      "split": "dev",
+      "split_group": "be-scalar-dilation-contraction"
+    },
+    {
+      "core_id": "qcb-core-be-009",
+      "family": "be-one-sparse-support-boundary",
+      "split": "train",
+      "split_group": "be-one-sparse-support-boundary"
+    },
+    {
+      "core_id": "qcb-core-be-010",
+      "family": "be-product-fresh-ancilla",
+      "split": "train",
+      "split_group": "be-product-fresh-ancilla"
+    },
+    {
+      "core_id": "qcb-core-be-011",
+      "family": "be-lcu-phase-cancellation",
+      "split": "dev",
+      "split_group": "be-lcu-phase-cancellation"
+    },
+    {
+      "core_id": "qcb-core-be-012",
+      "family": "be-permutation-orthogonal-clean",
+      "split": "train",
+      "split_group": "be-permutation-orthogonal-clean"
+    },
+    {
+      "core_id": "qcb-core-be-013",
+      "family": "be-exact-to-approx-boundary",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-la-013",
+      "family": "native-expansion-mechanism-013",
+      "split": "train",
+      "split_group": "native-expansion-mechanism-013"
+    },
+    {
+      "core_id": "qcb-core-la-014",
+      "family": "native-expansion-mechanism-014",
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-014"
+    },
+    {
+      "core_id": "qcb-core-la-015",
+      "family": "native-expansion-mechanism-015",
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-015+native-expansion-mechanism-016"
+    },
+    {
+      "core_id": "qcb-core-la-016",
+      "family": "native-expansion-mechanism-016",
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-015+native-expansion-mechanism-016"
+    },
+    {
+      "core_id": "qcb-core-la-017",
+      "family": "native-expansion-mechanism-017",
+      "split": "train",
+      "split_group": "native-expansion-mechanism-017"
+    },
+    {
+      "core_id": "qcb-core-la-018",
+      "family": "native-expansion-mechanism-018",
+      "split": "train",
+      "split_group": "native-expansion-mechanism-018"
+    },
+    {
+      "core_id": "qcb-core-la-019",
+      "family": "native-mathematical-expansion-019",
+      "split": "dev",
+      "split_group": "native-mathematical-expansion-019"
+    },
+    {
+      "core_id": "qcb-core-la-020",
+      "family": "native-mathematical-expansion-020",
+      "split": "train",
+      "split_group": "native-mathematical-expansion-020"
+    },
+    {
+      "core_id": "qcb-core-la-001",
+      "family": "composite-index reshaping / bijective reindexing invariance",
+      "split": "test_public",
+      "split_group": "composite-index reshaping / bijective reindexing invariance"
+    },
+    {
+      "core_id": "qcb-core-la-002",
+      "family": "residual absorption / per-bit-slice right multiplication",
+      "split": "train",
+      "split_group": "residual absorption / per-bit-slice right multiplication"
+    },
+    {
+      "core_id": "qcb-core-la-003",
+      "family": "symbolic algebra evaluation homomorphism",
+      "split": "train",
+      "split_group": "symbolic algebra evaluation homomorphism"
+    },
+    {
+      "core_id": "qcb-core-la-004",
+      "family": "register tensor ordering / block indexing",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-la-005",
+      "family": "orthonormal completion / isometry extension",
+      "split": "train",
+      "split_group": "orthonormal completion / isometry extension"
+    },
+    {
+      "core_id": "qcb-core-la-006",
+      "family": "special-orthogonal completion / orientation repair",
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair"
+    },
+    {
+      "core_id": "qcb-core-la-007",
+      "family": "linearity of matrix-vector action / sparse-input collapse",
+      "split": "dev",
+      "split_group": "linearity of matrix-vector action / sparse-input collapse"
+    },
+    {
+      "core_id": "qcb-core-la-008",
+      "family": "block-encoding certification styles / projection-vs-action equivalence",
+      "split": "dev",
+      "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence"
+    },
+    {
+      "core_id": "qcb-core-la-009",
+      "family": "isometry dimensional obstruction / finite-cardinality counting",
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair"
+    },
+    {
+      "core_id": "qcb-core-la-010",
+      "family": "zero-padding embedding / row-vs-column isometry under padding",
+      "split": "dev",
+      "split_group": "zero-padding embedding / row-vs-column isometry under padding"
+    },
+    {
+      "core_id": "qcb-core-la-011",
+      "family": "necessity of the strict dimension bound / completion failure",
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair"
+    },
+    {
+      "core_id": "qcb-core-la-012",
+      "family": "bond-dimension recurrence / canonicalization boundary bounds",
+      "split": "train",
+      "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds"
+    },
+    {
+      "core_id": "qcb-core-plan-001",
+      "family": "qit-measurement-foundations",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-002",
+      "family": "qit-separability-criteria",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-003",
+      "family": "qit-state-foundations",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-004",
+      "family": "qit-state-foundations",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-005",
+      "family": "qit-composite-entanglement",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-006",
+      "family": "qit-distance-measures",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-007",
+      "family": "qit-symmetry-entanglement",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-008",
+      "family": "qsc-block-encoding-access",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-009",
+      "family": "qsc-block-encoding-access",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-010",
+      "family": "qsc-block-encoding-verification",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-011",
+      "family": "qsc-block-encoding-dilation",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-plan-012",
+      "family": "qsc-lcu-subnormalization",
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing"
+    },
+    {
+      "core_id": "qcb-core-sp-001",
+      "family": "signed-amplitude-angles",
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation"
+    },
+    {
+      "core_id": "qcb-core-sp-002",
+      "family": "sequential-bond-input-promise",
+      "split": "test_public",
+      "split_group": "sequential-bond-input-promise+sequential-transfer-composition"
+    },
+    {
+      "core_id": "qcb-core-sp-003",
+      "family": "canonicalization-input-promise",
+      "split": "train",
+      "split_group": "canonicalization-input-promise+canonicalization-residual-norm"
+    },
+    {
+      "core_id": "qcb-core-sp-004",
+      "family": "canonicalization-residual-norm",
+      "split": "train",
+      "split_group": "canonicalization-input-promise+canonicalization-residual-norm"
+    },
+    {
+      "core_id": "qcb-core-sp-005",
+      "family": "marginal-norm-pythagorean",
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation"
+    },
+    {
+      "core_id": "qcb-core-sp-006",
+      "family": "normalization-identity",
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation"
+    },
+    {
+      "core_id": "qcb-core-sp-007",
+      "family": "sequential-transfer-composition",
+      "split": "test_public",
+      "split_group": "sequential-bond-input-promise+sequential-transfer-composition"
+    },
+    {
+      "core_id": "qcb-core-sp-008",
+      "family": "coherent-success-probability",
+      "split": "train",
+      "split_group": "coherent-success-probability"
+    },
+    {
+      "core_id": "qcb-core-sp-009",
+      "family": "core-circuit-isometry",
+      "split": "train",
+      "split_group": "core-circuit-isometry+tensor-train"
+    },
+    {
+      "core_id": "qcb-core-sp-010",
+      "family": "canonicalization-rank-bounds",
+      "split": "train",
+      "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds"
+    },
+    {
+      "core_id": "qcb-core-sp-011",
+      "family": "terminal-cleanup-unitarity-obstruction",
+      "split": "train",
+      "split_group": "terminal-cleanup-unitarity-obstruction"
+    },
+    {
+      "core_id": "qcb-core-sp-012",
+      "family": "rank-change-support-gauge",
+      "split": "train",
+      "split_group": "rank-change-support-gauge"
+    },
+    {
+      "core_id": "qcb-core-sp-013",
+      "family": "sparse-zero-subtree-boundary",
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation"
+    }
+  ],
+  "core_alias_policy": "One mathematical core across NL/Lean/hybrid views; actual collaborator confirmation pending.",
+  "pretraining_exposure": "unknown",
+  "public_test": true,
+  "shared_support_may_cross_splits": true
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-sp-105",
+  "supersedes_key": "qcb-core-sp-105",
+  "supersedes_item_digest": "fd8583539b598362720ad73856121d268dbc99230408318a2d7a311621b422dc",
+  "author": "/root",
+  "key": "qcb-core-sp-105-textbook-v1-affine-dimension-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Answer, rubric and explanatory summary/steps only. The unrestricted dimension requested by the unchanged question is now explicitly answered. Question, assumptions, conventions, graph scope, family, split and three-step count remain unchanged.",
+  "reference_answer": "Let k be a nonnegative integer and set E(x)=(x+1)^(k+1)*x^(k+1). This is monic of degree 2k+2, hence nonzero. Its zero of multiplicity k+1 at each endpoint makes every derivative of order 0 through k vanish at -1 and at 0. Thus if p is any solution to given endpoint data, p+E is a distinct solution with the same data: uniqueness fails without a degree restriction.\n\nFor the exact solution space, first choose the degree-at-most-2k+1 Hermite interpolant p0 of the fixed data. Such a p0 exists for arbitrary real endpoint jets: use the Taylor coefficients v_j/j! at the two distinct nodes and the Chinese remainder theorem for the coprime moduli (x+1)^(k+1) and x^(k+1). A polynomial p has those same jets exactly when p-p0 is divisible by both moduli, equivalently by their product E. Therefore the complete solution set is the affine coset p0+E*R[x]. Its translation space E*R[x] has the countably infinite real basis {E*x^m : m=0,1,2,...}: it spans because every polynomial multiplier has finitely many monomials, and it is linearly independent because E is nonzero and R[x] is an integral domain. The unrestricted real affine dimension is consequently countably infinite, not a finite number and not the cardinality of the set of real coefficients. In general the solution set is affine rather than a vector subspace; it is a vector subspace precisely for all-zero prescribed jets.\n\nFor comparison, if the degree is capped at 2k+1+d with an integer d>=0, then the possible multipliers of E have degree <d, so the affine dimension is d. At d=0 only p0 remains; at d=1 the new direction is E. Nonzero differences divisible by E cannot have degree below 2k+2, proving uniqueness at degree at most 2k+1 and its sharp failure at the next degree. The countably infinite affine-dimension argument is natural-language linear algebra over the inspected source interfaces, not a claim that a new Lean dimension theorem was compiled.",
+  "rubric": [
+    {"id": "r1", "weight": 1, "criterion": "Exhibits monic nonzero E=(x+1)^(k+1)*x^(k+1) of degree 2k+2 and uses multiplicity k+1 to prove all endpoint derivatives through order k vanish."},
+    {"id": "r2", "weight": 1, "criterion": "Adds E to a solution to refute unrestricted uniqueness and explains why degree at most 2k+1 rules out a nonzero E-divisible difference."},
+    {"id": "r3", "weight": 1, "criterion": "Identifies all solutions as the nonempty affine coset p0+E*R[x], using the two coprime endpoint moduli and existence of the degree-bounded Hermite interpolant."},
+    {"id": "r4", "weight": 1, "criterion": "Explicitly gives countably infinite real affine dimension in the unrestricted case, with translation-space basis {E*x^m}. Does not substitute only a finite degree-capped dimension or confuse affine dimension with the cardinality of the solution set."}
+  ],
+  "exposition": {
+    "core_summary": "The vanishing-jet kernel is E*R[x] for E=(x+1)^(k+1)*x^(k+1). Fixed endpoint jets form a nonempty affine coset of countably infinite real dimension; the degree-2k+1 slice is one point and the next degree already defeats uniqueness.",
+    "semantic_steps": [
+      {"claim": "The nonzero monic E of degree 2k+2 has multiplicity k+1 at both endpoints, so it carries all-zero endpoint k-jets.", "supporting_nodes": ["declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime"]},
+      {"claim": "A difference preserves all fixed jets exactly when it is a multiple of E; adding E gives a distinct solution while the degree-2k+1 slice remains unique.", "supporting_nodes": ["declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime", "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"]},
+      {"claim": "The full nonempty affine coset p0+E*R[x] has translation-space basis E*x^m and countably infinite real affine dimension. The degree-at-most-2k+1+d slice instead has affine dimension d for d>=0; this dimension reasoning is an NL extension, not a new compiled Lean theorem.", "supporting_nodes": ["declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"]}
+    ]
+  },
+  "source_checks": [
+    {"path": "QuantumBlockEncoding/HermitePolynomial.lean", "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e", "anchor": "jetPolynomial_jet; generic twoPointInterpolant and its left/right congruences; endpointModuli_coprime; degree bound via remainder; jet_eq_of_pow_dvd_sub and pow_dvd_sub_of_jet_eq; sourceInterpolant_unique. The unbounded affine basis argument is reconstructed NL mathematics, not attributed to the source uniqueness theorem alone."}
+  ],
+  "execution": "Complete relevant source inspection and independent polynomial/linear-algebra derivation. No production Lean edits or new kernel dimension proof claimed."
+}

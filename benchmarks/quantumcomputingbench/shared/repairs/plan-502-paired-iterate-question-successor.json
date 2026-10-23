@@ -1,0 +1,94 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-502",
+  "supersedes_key": "qcb-core-plan-502-parity-pairing-even-odd-iterate",
+  "supersedes_item_digest": "6dc47a40ade49740a2dfd6231b609dda5a32ae284283b606e270b133f68ad1f5",
+  "supersedes_contract_hash": "ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-502-textbook-question-v2-paired-iterate-guarantee-boundary",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit question-version2 candidate, NOT an unchanged-question answer repair. The historical final demand that a single UR no longer gives a clean Chebyshev block is false as stated: UR always has degree-one clean block A, and lack of global Hermiticity neither forces distinct geometric planes nor universally prevents correct unpaired powers. Replace that false necessity with the guaranteed adjoint-paired construction and a precise counterexample-based boundary. Only question changes among the nine CONTRACT_FIELDS; preserve the other eight fields exactly, the same core/family/test_public split/frozen graph/source scope and seven semantic steps. Original contract hash ca69caa5a76a137ff31eb17382680dd340e5907b0417a2939624c317c195e037 is superseded, not falsely claimed unchanged. Exact normalized compression and endpoint handling are explicit in the new question. No equivalence-to-predecessor, additional core, source-edit, admission or selfapproval claim.",
+  "question": "Let A be a Hermitian n-qubit operator and let U be a unitary on one flag ancilla and the system whose exact clean block is A: J†UJ=A, where J maps v to |0>v. Do not assume U is Hermitian. Set P=JJ† and R=2P-I. For a unit eigenvector v of A with eigenvalue t strictly between-1 and1, construct the clean/flag-orthogonal companion planes H and H' and their ordered bases so that U maps H to H' and U† maps H' back to H; do not assume these geometric planes are distinct. Prove that E=U†RUR acts on H as a rotation by twice arccos(t). Deduce the exact projected identities J†E^kJ=T_{2k}(A) and J†UR E^kJ=T_{2k+1}(A) for every integer k≥0, and handle t=±1 separately without normalizing zero leakage. Finally determine precisely what can be inferred about unpaired powers (UR)^j: note that UR itself always has clean block A, give an admissible non-Hermitian completion for which a higher unpaired power fails to give T_j(A), and give counterexamples showing that U≠U† does not by itself force H≠H' or forbid correct unpaired Chebyshev blocks. Distinguish projected blocks from whole output states.",
+  "reference_answer": "Write p=Jv and s=sqrt(1-t^2) for a unit eigenvector v with |t|<1. The exact clean compression is Hermitian, so J†U†J=A as well. Define q=(U†p-tp)/s and q'=(Up-tp)/s. Both are unit vectors orthogonal to the entire clean subspace: their clean components vanish by the compression identities, and their squared leakage norms are1-t^2 by unitarity. Let B=(p,q), B'=(p,q') and H=span(B), H'=span(B'). Then Up=tp+s q', U†p=tp+s q, and applying U to the latter identity gives Uq=s p-t q'. Similarly U†q'=s p-t q. Thus U:H→H' and U†:H'→H have the same matrix S=[[t,s],[s,-t]] between these directed ordered bases. This statement does not imply that the two geometric planes differ or that U itself maps H' back to H.\n\nThe flag reflection is Z=diag(1,-1) in both bases. Therefore [E]_B=SZSZ=M(t)^2, with M(t)=[[t,-s],[s,t]]. If theta=arccos(t)∈(0,pi), then s=sin(theta) and M(t) is the rotation by theta. Hence E^k on H has matrix M(t)^(2k), with diagonal T_{2k}(t). For k≥1 its upper-right entry is -s U_{2k-1}(t), where U_l denotes the second-kind Chebyshev polynomial, not the bare encoding unitary U. In particular E^k p=T_{2k}(t)p+s U_{2k-1}(t)q; k=0 is the identity directly. The second term is generally nonzero and flag-orthogonal.\n\nUR maps the ordered input basis B into the output basis B' with matrix SZ=M(t). Consequently UR E^k has between-basis matrix M(t)^(2k+1), and UR E^k p=T_{2k+1}(t)p+s U_{2k}(t)q'. Its clean coefficient is T_{2k+1}(t), even though its full image can have leakage into q'. This is an odd between-plane map, not an assertion that UR alone can be iterated using one fixed matrix in one fixed ordered basis. An orthonormal eigenbasis of A spans the input clean subspace, so projecting and using linearity gives J†E^kJ=T_{2k}(A) and J†UR E^kJ=T_{2k+1}(A).\n\nIf t=+1 or-1, unitarity forces Up=tp and U†p=tp, since the clean component already has norm1. The clean line is invariant, E p=p, and UR E^k p=t p. These agree with T_{2k}(±1)=1 and T_{2k+1}(±1)=±1. No companion is obtained by dividing zero leakage by zero, and no genuinely two-dimensional sector is required at these endpoints. The compression is a contraction (||Ax||≤||UJx||=||x||), so all Hermitian eigenvalues are in[-1,1]; this is a consequence, not an added input promise.\n\nThe unpaired conclusion is a boundary of the guarantee, not universal failure. Since RJ=J, J†URJ=A=T_1(A) for every admissible U. For a failure at higher order, take t=1/2, s=sqrt(3)/2, A=t I_2 and U=[[t,-s],[s,t]] tensor I_2, with the ancilla first. This real rotation completion is unitary and non-Hermitian and has clean block A. But UR=[[t,s],[s,-t]] tensor I_2 is a reflection, so (UR)^2=I_4 and its clean block is I_2, whereas T_2(A)=(-1/2)I_2. For any system eigenvector v in this same example, q=-|1>v and q'=|1>v, so H=H' as geometric subspaces even though the ordered companion bases differ. Thus a different-plane necessity is false, and coincidence of the planes alone does not give the desired unpaired powers.\n\nConversely non-Hermiticity need not spoil any unpaired clean polynomial block. In ancilla-major order |00>,|01>,|10>,|11>, take\nU_*= [[t,0,s,0],[0,1,0,0],[s,0,-t,0],[0,0,0,i]], A_*=diag(t,1), t=1/2, s=sqrt(3)/2.\nThis U_* is unitary but not Hermitian because of the last i phase; its clean block is the Hermitian A_*. On span{|00>,|10>}, U_*R is the rotation [[t,-s],[s,t]], while |01> has eigenvalue1 and |11> has eigenvalue-i. Therefore its clean block at every integer power j≥0 is diag(T_j(t),1)=T_j(A_*). This all-j conclusion follows from the invariant-block calculation, not a finite test. The unused endpoint leakage direction allows the global non-Hermitian phase. It refutes any claim that U≠U† alone universally prevents unpaired Chebyshev blocks.\n\nThe source-paired formulas are sufficient guarantees for every exact normalized completion, whether or not special unpaired constructions also work. They identify compressions of unitary operators, not deterministic normalized state outputs. If a projected operator annihilates an input, there is no normalized accepted output for that input; otherwise normalization after a successful projection must still be applied. No gate-compilation, finite-bit or preparation/readout cost claim is made, and a differently scaled or approximate block encoding would require the corresponding normalized target and error analysis.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Constructs normalized flag-orthogonal companions for |t|<1 and the directed matrices U:H→H' and U†:H'→H, without assuming H and H' differ or that U is its own reverse."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Uses R=diag(1,-1) in both ordered bases to prove E=SZSZ=M(t)^2 and the twice-arccos(t) rotation on H."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Derives the projected T_{2k}(A) and T_{2k+1}(A) identities, identifies the second-kind leakage structure where used, and handles k=0 and t=±1 without zero-norm division or a whole-state equality."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Distinguishes a guaranteed paired construction from universal necessity: UR has clean block A; valid counterexamples show failure of a higher unpaired power, possible H=H', and a non-Hermitian completion with correct unpaired clean blocks at all orders."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Exact Hermitian clean blocks admit guaranteed adjoint-paired Chebyshev transformations: E^k gives T_{2k}(A) and UR E^k gives T_{2k+1}(A) after projection. U and U† have directed between-plane maps; neither distinct planes nor failure of every special unpaired construction follows from U≠U†.",
+    "semantic_steps": [
+      {
+        "claim": "For an interior eigenvalue, define unit flag-orthogonal companions q=(U†Jv-tJv)/sqrt(1-t^2), q'=(UJv-tJv)/sqrt(1-t^2) and their input/output planes, not assumed geometrically distinct.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Unitarity gives directed U:H→H' and U†:H'→H with the same symmetric matrix [[t,s],[s,-t]], rather than a bidirectional-U swap assertion.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The flag reflection is diag(1,-1) in both ordered companion bases.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Thus E=U†RUR has matrix SZSZ=M(t)^2 and rotates the input plane by twice arccos(t).",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For k≥1, E^k has clean coefficient T_{2k}(t) and flag-orthogonal second-kind coefficient sqrt(1-t^2)U_{2k-1}(t); k=0 and t=±1 are treated directly.",
+        "supporting_nodes": [
+          "concept:matrix-analysis",
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "The directed extra UR yields clean coefficient T_{2k+1}(t); spectral assembly proves the two projected operator identities, not complete clean-output-state equalities.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "UR already has degree-one clean block A. A rotation completion shows higher unpaired failure even with H=H', while the explicit non-Hermitian U_* with clean block diag(1/2,1) has correct unpaired clean blocks at every power; pairing is a general guarantee, not universal necessity.",
+        "supporting_nodes": [
+          "concept:block-encoding",
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry metadata entry lin-wiebe-2026-qasc only. Actual independently retrieved pinned primary: complete printed170–172, Section10.2.2/Eqs10.45–10.60 and Proposition10.6; directed bases, S/Z products and clean blocks checked. Source endpoint handling on printed168 had also been personally read. The two explicit non-Hermitian boundary witnesses and necessity analysis are this author's reconstruction, not statements attributed to the source or local Lean certificates."
+    }
+  ],
+  "execution": "Private question-v2 authorship by actual /root/qcb_native_comparison, pending distinct exact question-successor review; no selfapproval/admission/kernel/nativeformal/stable claim. I authored the frozen502–510 reader report and its502 rejection, reread that finding and the complete actual historical502 question/answer/rubric/assumptions/conventions/seven steps/source metadata via release.checked()[2], and received root's repair objective; no blindness or independent review of my own candidate is claimed. The old false demand is explicitly versioned, not disguised as answer-only. For this task I freshly retrieved the author-hosted Lin–Wiebe PDF in memory:5718900 bytes,447 pages, raw SHA25656825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599, matching the inherited pin; complete printed170–174 read and171/173 personally rendered/viewed in memory. No PDF/page/source bytes saved or redistributed. Bounded exact SymPy matrix discriminators checked the two displayed4×4 unitarities/non-Hermiticity, first witness's squared clean block and the second witness's powers j=0..6; these finite checks are not a kernel/general-width theorem or the proof of the all-j claim, which is the explicit invariant-block argument above. Only the requested private502/504 candidate files are authored; canonical tree, frozen original/source metadata, prior candidates and reports remain unedited by this task."
+}

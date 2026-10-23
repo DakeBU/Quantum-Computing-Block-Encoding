@@ -75,3 +75,5 @@ tools/robin_maintenance_export_audit/** -text
 /experiments/quantum-foundations/measurement-coherent/evidence/portable-replay-c409.json whitespace=trailing-space,space-before-tab,cr-at-eol
 /research-wiki/external-lean-libraries/axqm.md text eol=lf
 /reviews/publication/source-author-display-c407/** -text
+# Benchmark text hashes are LF-canonical on all supported platforms.
+benchmarks/quantumcomputingbench/** text eol=lf

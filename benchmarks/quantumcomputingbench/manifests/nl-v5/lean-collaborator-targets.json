@@ -1,0 +1,2167 @@
+{
+  "coordination": "pending real collaborator acknowledgment",
+  "integration_allowed": false,
+  "no_new_local_lean_verification": true,
+  "targets": [
+    {
+      "assumptions": [
+        "v is an arbitrary real sequence; only its first k+1 entries are constrained",
+        "derivatives are ordinary real polynomial derivatives"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "the center a is fixed and the polynomial is expressed in the shifted basis (x-a)"
+      ],
+      "core_id": "qcb-core-sp-101",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-jet-interpolation",
+      "mathematical_target": "Fix a real point a and a natural number k, and prescribe target values v(0), v(1), ..., v(k). Define a degree-at-most-k real polynomial P by taking the local Taylor polynomial centred at a whose coefficient of (x-a)^j is v(j)/j!. Prove that for every j with 0 <= j <= k the ordinary j-th derivative of P evaluated at a equals exactly v(j). You may use the fact that the j-th derivative of a polynomial at a point equals j! times the degree-j Taylor coefficient of the polynomial about that point.",
+      "source_refs": [
+        {
+          "anchor": "lines 27-49: def jetPolynomial (a : R) (k : N) (v : N -> R) := taylor (-a) (sum_{j in range (k+1)} monomial j (v j / j!)); theorem eval_iterate_derivative (p) (a) (j) : (derivative^[j] p).eval a = j! * (taylor a p).coeff j; theorem jetPolynomial_jet (a k j v) (hj : j <= k) : (derivative^[j] (jetPolynomial a k v)).eval a = v j",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-jet-interpolation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial_jet",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.eval_iterate_derivative"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-102",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-jet-interpolation",
+      "mathematical_target": "Let p and q be real polynomials and a a real point. Suppose (x-a)^{k+1} divides the difference p-q. Prove that for every order j with 0 <= j <= k, the j-th derivatives of p and q agree at a: (d^j p/dx^j)(a) = (d^j q/dx^j)(a). Explain precisely why the hypothesis forces agreement of all jets strictly below the multiplicity k+1, and why it says nothing about the j = k+1 derivative in general.",
+      "source_refs": [
+        {
+          "anchor": "lines 51-62: theorem jet_eq_of_pow_dvd_sub (p q : R[X]) (a : R) (k j : N) (hj : j <= k) (h : (X - C a)^(k+1) | p - q) : (derivative^[j] p).eval a = (derivative^[j] q).eval a; proof uses pow_sub_dvd_iterate_derivative_of_pow_dvd and X - C a | derivative^[j] (p-q)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-jet-interpolation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.jet_eq_of_pow_dvd_sub"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-103",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-source-positivity",
+      "mathematical_target": "Consider the generating power series obtained as the product of the exponential series exp(X) and the series 1/(1-X)^{k+1}. Let its degree-r coefficient be a_{k,r}. In the coordinate t, define A_k(t) as the truncation of this series to degrees 0..k, i.e. A_k(t) = sum_{r=0}^{k} a_{k,r} t^r. The source polynomial, in the shifted coordinate t = p+1, is a positive combination S(p) = exp(-1) * (1-t)^{k+1} * A_k(t) + t^{k+1} * A_k(1-t). Prove that A_k(t) > 0 for every t >= 0, and deduce that S(p) > 0 for every p in the closed interval [-1, 0].",
+      "source_refs": [
+        {
+          "anchor": "lines 168-205: def coefficientSeries (k) := PowerSeries.exp R * (invOneSubPow R (k+1)).val; theorem coefficientSeries_coeff : coeff r = sum_{m in range (r+1)} C(k+r-m,k)/m!; coefficientSeries_coeff_nonneg; coefficientSeries_coeff_zero = 1. lines 254-286: coefficientPolynomial_pos (k) (t) (ht: 0<=t) : 0 < eval t; sourceInterpolant_pos (k) (p) (hp : p in Icc (-1) 0) : 0 < (sourceInterpolant k).eval p",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-source-positivity",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientPolynomial_pos",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_pos"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-104",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-interpolant-uniqueness",
+      "mathematical_target": "Two real polynomials p and q both have degree at most 2k+1, and both satisfy the same two-point jet data: all derivatives through order k agree at the node -1, and all derivatives through order k agree at the node 0. Prove that p = q. Structure the argument around the two 'endpoint multiplicity' polynomials (x+1)^{k+1} and x^{k+1}, and explain where coprimality and the degree budget 2k+1 enter.",
+      "source_refs": [
+        {
+          "anchor": "lines 119-127: leftModulus k = (X - C(-1))^(k+1); rightModulus k = (X - C 0)^(k+1); endpointModuli_coprime k : IsCoprime. lines 380-417: pow_dvd_sub_of_jet_eq (p q a k) (h : forall j<=k, jets equal) : (X-C a)^(k+1) | p - q; sourceInterpolant_unique (k p) (hp : natDegree <= 2k+1) (hl hr : endpoint jets) : p = sourceInterpolant k",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-interpolant-uniqueness",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.pow_dvd_sub_of_jet_eq",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-105",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "hermite-interpolant-uniqueness",
+      "mathematical_target": "A colleague claims that the two-point jet data 'all derivatives through order k agree at -1 and at 0' pins down a real polynomial uniquely, with no restriction on its degree. Show this is false by exhibiting an explicit nonzero polynomial of degree 2k+2 all of whose derivatives through order k vanish at both -1 and 0. Conclude that the degree bound 2k+1 in the uniqueness statement cannot be dropped, and state the exact dimension of the space of polynomials sharing a fixed set of such endpoint jets.",
+      "source_refs": [
+        {
+          "anchor": "lines 119-166: leftModulus k = (X-C(-1))^(k+1), rightModulus k = (X-C 0)^(k+1); interpolant degree <= 2k+1; product (leftModulus*rightModulus).natDegree = 2k+2 used in uniqueness degree count. lines 394-417: sourceInterpolant_unique requires hp : natDegree <= 2k+1",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-interpolant-uniqueness",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.endpointModuli_coprime",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_unique"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-106",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-source-positivity",
+      "mathematical_target": "Let the generating series be C(X) = exp(X) * (1 - X)^{-(k+1)} as formal power series over the reals. Prove that its coefficient of X^r is exactly sum_{m=0}^{r} C(k + r - m, k) / m!, where C(.,.) is the binomial coefficient, and prove that this coefficient is nonnegative for every r, with the r=0 coefficient equal to 1. You may use that exp(X) has coefficient 1/m! in degree m and that (1-X)^{-(k+1)} has coefficient C(k+i, k) in degree i.",
+      "source_refs": [
+        {
+          "anchor": "lines 184-204: theorem coefficientSeries_coeff (k r) : coeff r (coefficientSeries k) = sum_{m in range (r+1)} C(k+r-m,k)/m!; uses invOneSubPow_val_succ_eq_mk_add_choose and coeff_exp; coefficientSeries_coeff_nonneg; coefficientSeries_coeff_zero : coeff 0 = 1",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-source-positivity",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff_nonneg",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.coefficientSeries_coeff_zero"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-107",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-source-positivity",
+      "mathematical_target": "In the shifted coordinate t = p + 1, the source Hermite bridge polynomial is written as a sum of two endpoint contributions: S(p) = exp(-1) * (1-t)^{k+1} * A_k(t) + t^{k+1} * A_k(1-t), where A_k is a fixed degree-<=k polynomial. Explain the structural role of each ingredient: why the coordinate is centred so that the two nodes p = -1 and p = 0 become t = 0 and t = 1, why each term carries a factor raised to the power k+1, how the two terms specialise the required endpoint values exp(-1) at p=-1 and 1 at p=0, and why the construction is manifestly symmetric under the reflection t -> 1-t up to the constant exp(-1).",
+      "source_refs": [
+        {
+          "anchor": "lines 176-182,288-308: endpointFactor k = (1-X)^(k+1) * coefficientPolynomial k; sourceInterpolant k = taylor 1 (C(exp(-1))*endpointFactor k + (endpointFactor k).comp(1-X)); sourceInterpolant_eval (k p) : eval p = exp(-1)*(1-(p+1))^(k+1)*A_k(p+1) + (p+1)^(k+1)*A_k(1-(p+1))",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+          "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-source-positivity",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.sourceInterpolant_eval",
+        "declaration:QuantumBlockEncoding.HermitePolynomial.endpointFactor"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-108",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-bernstein-representation",
+      "mathematical_target": "Work with the degree-d Bernstein basis B_{d,r}(t) = C(d,r) t^r (1-t)^{d-r}. For fixed k, i with i <= k, consider the single endpoint-factor monomial t^i (1-t)^{k+1} of degree k+1. Prove the exact degree-elevation identity that writes it in the degree-(2k+1) Bernstein basis: t^i (1-t)^{k+1} = sum_{j=0}^{k-i} w(k,i,j) * B_{2k+1, i+j}(t), where w(k,i,j) = C(k-i, j) / C(2k+1, i+j). Deduce that the full source polynomial has a Bernstein coefficient vector with all nonnegative entries on [0,1].",
+      "source_refs": [
+        {
+          "anchor": "lines 50-84: elevationWeight k i j = C(k-i,j)/C(2k+1,i+j); elevation_term : weight * basis (2k+1) (i+j) t = t^i (1-t)^(k+1) * C(k-i,j) * t^j * (1-t)^(k-i-j); elevation_sum : sum_{j in range (k-i+1)} weight*basis = t^i (1-t)^(k+1) via add_pow. lines 166-173: sourceBernsteinCoefficient_nonneg",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-bernstein-representation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_term",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.elevation_sum",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.leftCoefficient_nonneg",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.sourceBernsteinCoefficient_nonneg"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-109",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-bernstein-subdivision",
+      "mathematical_target": "A degree-d polynomial is held as a coefficient row c(0),...,c(d) in the Bernstein basis, so that its value at t is sum_{r=0}^{d} c(r) B_{d,r}(t). One de Casteljau step with parameter s replaces the row c by the row with entries (1-s) c(i) + s c(i+1). Let L_u denote the operation that reads the left edge of the de Casteljau triangle built with parameter u (its i-th output is the result of i de Casteljau steps at u applied to c, read at position 0). Prove that evaluating the L_u-transformed coefficients at parameter t reproduces the original polynomial at the rescaled parameter u*t: sum_r (L_u c)(r) B_{d,r}(t) = sum_r c(r) B_{d,r}(u t).",
+      "source_refs": [
+        {
+          "anchor": "lines 219-282: casteljauStep t = t . coefficientShift + (1-t) . 1; casteljauStep_mul_parameter : casteljauStep (u*t) = (1-t).1 + t.casteljauStep u; leftRestriction u c i = casteljau i c u 0; leftRestriction_step : leftRestriction u (casteljauStep (u*t) c) = casteljauStep t (leftRestriction u c); casteljau_leftRestriction via Function.Semiconj.iterate_right; leftRestriction_eval : sum_r leftRestriction u c r * basis d r t = sum_r c r * basis d r (u*t)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-bernstein-subdivision",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.casteljauStep",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.casteljauStep_mul_parameter",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.leftRestriction_step",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.casteljau_leftRestriction",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.leftRestriction_eval"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-110",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-bernstein-subdivision",
+      "mathematical_target": "Let a degree-d polynomial be given by Bernstein coefficients c(0),...,c(d), all lying in a common interval [lo, hi]. Suppose we restrict the polynomial to a subinterval [u, v] with 0 <= u < v <= 1 by two successive de Casteljau subdivisions, producing new Bernstein coefficients c'(0),...,c'(d) for the restricted piece. Prove that every restricted coefficient c'(i) still lies in [lo, hi]. Identify the two structural facts about the Bernstein basis that make this true.",
+      "source_refs": [
+        {
+          "anchor": "lines 313-374: restrictCoefficients d u v c = leftRestriction ((v-u)/(1-u)) (rightRestriction d u c); basis_sum : sum_r basis d r t = 1; bernstein_sum_bounds (ht: t in Icc 0 1) (hc: c r in Icc lo hi) : sum in Icc lo hi; restrictCoefficients_bounds (hu:0<=u)(huv:u<v)(hv:v<=1) : restricted coeff in Icc lo hi",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+          "sha256": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-bernstein-subdivision",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteBernstein.basis_sum",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.bernstein_sum_bounds",
+        "declaration:QuantumBlockEncoding.HermiteBernstein.restrictCoefficients_bounds"
+      ]
+    },
+    {
+      "assumptions": [
+        "q is an arbitrary real polynomial; the coefficient bound used must be at least 2 deg q",
+        "samples are taken on the exact real arithmetic progression, not a rounded grid"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "the empty sum (count=0) is zero and the power-sum polynomial satisfies P_r(0)=0"
+      ],
+      "core_id": "qcb-core-sp-111",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-discrete-mass",
+      "mathematical_target": "Let q be a real polynomial and consider sampling it on an arithmetic progression x_j = start + step * j for j = 0,1,...,count-1. We want the exact discrete squared mass M = sum_{j=0}^{count-1} q(x_j)^2 as a closed-form expression whose size depends on the degree of q, not on count. Let g(x) = q(start + step*x)^2, a polynomial of degree D = 2*deg(q), with coefficients g_0,...,g_D. Using the power-sum identity sum_{j=0}^{count-1} j^r = P_r(count) (a fixed polynomial in count, e.g. the Faulhaber/Bernoulli formula), prove the exact identity M = sum_{r=0}^{D} g_r * P_r(count), and explain why this is an exact algebraic equality rather than a quadrature approximation.",
+      "source_refs": [
+        {
+          "anchor": "lines 20-57: powerSumClosed count degree = sum_{i in range (degree+1)} bernoulli i * C(degree+1,i) * count^(degree+1-i)/(degree+1); powerSumClosed_eq : (powerSumClosed count degree : R) = sum_{j in range count} j^degree (via sum_range_pow); affineSquared p start step = (p.comp (C start + C step*X))^2; polynomialMassClosed_eq (h : affineSquared.natDegree <= bound) : polynomialMassClosed = sum_{j in range count} (p.eval (start+step*j))^2",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-discrete-mass",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.powerSumClosed_eq",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.affineSquared",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.polynomialMassClosed_eq"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "samples use the exact grid x_j = start + step*j; the right tail reuses the same formula with negated start and step"
+      ],
+      "core_id": "qcb-core-sp-112",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-discrete-mass",
+      "mathematical_target": "On the exponential tail of the target, the sampled amplitude at x_j = start + step*j is exp(x_j), and the discrete squared mass over count samples is E = sum_{j=0}^{count-1} exp(x_j)^2. Give the exact closed form for E, and treat the boundary case step = 0 explicitly. Explain precisely why the generic geometric-series formula exp(2 start) * ((exp(2 step))^count - 1) / (exp(2 step) - 1) is well defined exactly when step is nonzero, what it degenerates to as the ratio approaches 1, and what the correct value is when step = 0.",
+      "source_refs": [
+        {
+          "anchor": "lines 89-116: exponentialMassClosed start step count = if step = 0 then count * exp(2*start) else exp(2*start) * ((exp(2*step))^count - 1)/(exp(2*step)-1); exponentialMassClosed_eq : = sum_{j in range count} (exp(start+step*j))^2; proof needs exp(2*step) != 1 derived from step != 0 via exp_injective, then geom_sum_eq",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-discrete-mass",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.exponentialMassClosed_eq"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-113",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-discrete-mass",
+      "mathematical_target": "The target function is strictly positive everywhere and passes through the value 1 at the physical point p = 0 (the splice point). On a register of n+1 qubits the grid has 2^{n+1} points indexed in little-endian order, and the central index 2^n maps to the grid point p = 0. Prove that the unnormalized squared sample norm N = sum_j (amplitude at grid point j)^2 is at least 1, uniformly in the smoothing order k, the width n, and the physical scale L > 0. Explain why identifying a single known sample value suffices and why strict positivity of all samples is used only to keep the bound honest rather than to prove it.",
+      "source_refs": [
+        {
+          "anchor": "lines 162-195: smoothInitial_zero : smoothInitial k 0 = 1 (from sourceInterpolant_right_jet k 0); centralIndex n = <2^n, _> : Fin (gridSize (n+1)); gridPoint_central : gridPoint (n+1) L (centralIndex n) = 0; sampled_mass_ge_one : 1 <= sum_j (sampledAmplitude k (n+1) L j)^2 via Finset.single_le_sum at centralIndex",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+          "sha256": "ff87cc69d0527cb1a7001a7bae4b916cf0a2c2b8bd1e6ba017511c3be27bc69f"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-discrete-mass",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.centralIndex",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.gridPoint_central",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.smoothInitial_zero",
+        "declaration:QuantumBlockEncoding.HermiteIntervalMass.sampled_mass_ge_one"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-114",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-cut-rank",
+      "mathematical_target": "Consider a bivariate real array F(x,y) = q(u(x) + v(y)), where q is a real polynomial of degree at most d and u, v are arbitrary real-valued functions of the row index x and column index y respectively. Prove that F factorizes as a matrix product A * B with inner dimension d+1, and conclude that the rank of F is at most d+1. Make explicit which polynomial identity provides the factorization and why only the degree of q — not the number of rows or columns — controls the inner dimension.",
+      "source_refs": [
+        {
+          "anchor": "lines 23-50: FactorsThrough F := exists A : Matrix a i R, B : Matrix i b R, F = A*B; FactorsThrough.rank_le : F.rank <= Fintype.card i; polynomial_add_factorization (p) (d) (hd: p.natDegree <= d) (u v) : FactorsThrough (i := Fin (d+1)) (fun x y => p.eval (u x + v y)) via A x i = (taylor (u x) p).coeff i, B i y = v y^i; polynomial_add_rank_le : rank <= d+1",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "sha256": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-cut-rank",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.polynomial_add_factorization",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.polynomial_add_rank_le"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-115",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-cut-rank",
+      "mathematical_target": "A bivariate array is said to 'factor through width w' if it can be written as a product of a (rows x w) and a (w x cols) matrix. Explain how four composition laws combine finite-width factorizations, and give the exact width each produces: (i) a sum of two arrays factoring through widths w1 and w2; (ii) the negation of an array factoring through w; (iii) the entrywise (Hadamard) product of arrays factoring through w1 and w2; (iv) a constant scalar multiple of an array factoring through w. Then explain how these laws let one assemble a width bound for a function built as a sum of products of a threshold indicator, an exponential, and a polynomial, without ever forming a dense matrix.",
+      "source_refs": [
+        {
+          "anchor": "lines 61-105,250-257: product_factorization width Unit; exponential_add_factorization (exp(u+v)) width Unit; FactorsThrough.add -> Sum i k; FactorsThrough.neg same i; FactorsThrough.pointwise_mul -> i x k; FactorsThrough.scale same i. lines 133-148: threshold_factorization width Fin 2",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "sha256": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-cut-rank",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.add",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.neg",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.pointwise_mul",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.scale",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.threshold_factorization",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.exponential_add_factorization"
+      ]
+    },
+    {
+      "assumptions": [
+        "the suffix index satisfies v(y) < M so each threshold reduces to a two-state separation across the cut",
+        "the bound is a rank/separation certificate and asserts no circuit compiler"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-116",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "hermite-cut-rank",
+      "mathematical_target": "The full target initial datum is a piecewise function: an exponential left tail for p < -1, a degree-<=2k+1 polynomial bridge for -1 <= p < 0, and an exponential right tail for p >= 0. Sample it on an integer-indexed grid and split the index as M*u(x) + v(y) across a binary cut, where v(y) < M. Prove that the resulting bivariate sample array has rank at most 8k+12, uniformly over the cut location, by exhibiting an explicit finite-width factorization. Account for every additive piece and the exact width it contributes.",
+      "source_refs": [
+        {
+          "anchor": "lines 192-248: HermiteBond k = Sum (Sum (Fin 2 x Unit) ((Sum (Fin 2)(Fin 2)) x Fin (2k+2))) (Fin 2 x Unit); hermiteBond_card = 8k+12; hermite_affine_factorization builds hleft = threshold.pointwise_mul exp, hmiddle = (hB.add hA.neg).pointwise_mul hpoly, hright = complement.pointwise_mul exp, hsum = (hleft.add hmiddle).add hright; hermite_affine_cut_rank_le : rank <= 8k+12",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteCutRank.lean",
+          "sha256": "c0f038bd889c77163967c71df5f5987082f4b79ab7db2b7822efcdda7234aaf2"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-cut-rank",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteCutRank.hermite_affine_factorization",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.hermiteBond_card",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.hermite_affine_cut_rank_le",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.threshold_complement_factorization",
+        "declaration:QuantumBlockEncoding.HermiteCutRank.blockIndex_lt_iff"
+      ]
+    },
+    {
+      "assumptions": [
+        "the claim concerns logical sufficiency; it does not deny that a bounded cut rank is useful structural context for an MPS/TT route"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-117",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "hermite-cut-rank",
+      "mathematical_target": "A reader argues: 'Since the sampled Hermite amplitude array has every bipartite cut rank bounded by 8k+12, the state can be prepared by a polynomial-resource circuit; the rank bound closes the state-preparation task.' Explain why this inference is not valid as stated. Exhibit the logical gap by distinguishing what a cut-rank/factorization certificate actually provides from what a state-preparation circuit requires, and identify at least two concrete ingredients that the rank bound alone does not supply.",
+      "source_refs": [
+        {
+          "anchor": "lines 1-58: 'Neither a rank bound nor normalization supplies a primitive circuit compiler.' sampled_cut_rank_le : rank <= 8k+12; normalized_cut_factorization : the real amplitudes retain the same factor width after exact normalization (a factorization, not a compiler)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+          "sha256": "eda04790bd59d39a49da0e98bc9602261ef7c5b0cdb531d88a97c3f6d1036d1f"
+        }
+      ],
+      "split": "dev",
+      "split_group": "hermite-cut-rank",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteCutRank.FactorsThrough.rank_le",
+        "declaration:QuantumBlockEncoding.HermiteSampleStructure.sampled_cut_rank_le",
+        "declaration:QuantumBlockEncoding.HermiteSampleStructure.normalized_cut_factorization"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-118",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "hermite-smooth-gluing",
+      "mathematical_target": "A gluing principle states: if two real functions f and g are each C^k and all their derivatives through order k agree at a cut point c, then the spliced function (equal to f for x < c and g for x >= c) is C^k. A student claims the jet-matching hypothesis is unnecessary — that merely requiring f and g to be C^k and to agree in value at c (f(c) = g(c)) already gives a C^k splice. Disprove this for k = 1 with an explicit example, and explain exactly which derivative order fails and why the full jet-matching hypothesis through order k is needed for a C^k conclusion.",
+      "source_refs": [
+        {
+          "anchor": "lines 56-90: deriv_splice needs hv : f c = g c and hd : deriv f c = deriv g c; contDiff_splice (k c f g) (hf hg : ContDiff k) (hjet : forall j <= k, iteratedDeriv j f c = iteratedDeriv j g c) : ContDiff k (splice c f g); proof by induction on k, base uses value match for continuity, succ step differentiates and recurses with jets one order lower",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteSmoothness.lean",
+          "sha256": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-smooth-gluing",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_splice",
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.hasDerivAt_splice",
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.deriv_splice"
+      ]
+    },
+    {
+      "assumptions": [],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-119",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-smooth-gluing",
+      "mathematical_target": "The target initial datum is the piecewise function equal to exp(p) for p < -1, to the source polynomial S(p) for -1 <= p <= 0, and to exp(-p) for p > 0. Assume it is already known that S matches the required endpoint jets: all derivatives of S through order k equal those of exp at the left junction p = -1, and all derivatives of S through order k equal those of exp(-p) at the right junction p = 0. Prove that the full target is globally C^k for every natural number k, using a reusable two-piece C^k gluing theorem applied twice.",
+      "source_refs": [
+        {
+          "anchor": "lines 99-147: contDiff_right_splice k : ContDiff k (splice 0 (S) (exp(-.))) via sourceInterpolant_right_iteratedDeriv and iteratedDeriv_exp_neg; right_splice_eventuallyEq : the right splice =f near -1 equals S; contDiff_double_splice k uses iteratedDeriv_exp and sourceInterpolant_left_iteratedDeriv; smoothInitial_eq_double_splice; smoothInitial_contDiff k : ContDiff k (smoothInitial k)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteSmoothness.lean",
+          "sha256": "da47568584b8435a07431a7ebae29836796018f76d02b4d8b0c4169830ec68bc"
+        }
+      ],
+      "split": "train",
+      "split_group": "hermite-smooth-gluing",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_right_splice",
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.contDiff_double_splice",
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.smoothInitial_eq_double_splice",
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.smoothInitial_contDiff",
+        "declaration:QuantumBlockEncoding.HermiteSmoothness.right_splice_eventuallyEq"
+      ]
+    },
+    {
+      "assumptions": [
+        "L > 0 so the grid step is positive and comparisons against -1 are well posed",
+        "the cost model counts only real field operations and exact real comparisons; natural-index and bit-level costs are out of scope"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [],
+      "core_id": "qcb-core-sp-120",
+      "evidence_relation": "local_source_supported",
+      "family": "hermite-cutoff-search",
+      "mathematical_target": "To locate where the left exponential tail meets the polynomial bridge on a grid of 2^n cells, one performs an exact-comparison binary search carrying real interval endpoints: starting from the real interval [lower, lower+span] with span equal to the full width, each of n steps halves the span, forms the midpoint, compares it against the threshold -1, and recurses into the half that still contains the crossing. The search returns an index 'cutIndex'. Prove that this search returns exactly the true cutoff index for every width n and scale L > 0, including the boundary cases where the crossing is at the very first grid point or at the very last, and the single-cell (n = 0) base case. State the exact number of real comparisons and real field operations the search performs.",
+      "source_refs": [
+        {
+          "anchor": "lines 22-128: search (remaining start lower span) recursion; search_value (hlo : start <= cutIndex) (hhi : cutIndex <= start + 2^remaining) : (search ...).value = cutIndex via half_span and middle_point; compute n L = do width<-mul pi L; lower<-sub 0 width; search n 0 lower width; compute_value : = cutIndex; search_cost : cost op = 2*remaining*tick field op + (remaining+1)*tick compare op; compute_comparisons = n+1; compute_field_operations = 2n+2",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+          "sha256": "3e236d6572ceba6d0418cb75da49512152bf03586cebc03b4d9cd8132029d098"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "hermite-cutoff-search",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search",
+        "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search_value",
+        "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.compute_value",
+        "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.search_cost",
+        "declaration:QuantumBlockEncoding.HermiteBinaryCutoff.compute_cost"
+      ]
+    },
+    {
+      "assumptions": [
+        "Real orthogonal 2x2 matrices; target in (0,1) so s = sqrt(1-x^2) > 0 and the two witnesses are genuinely distinct",
+        "Clean block is the single embedded entry U(0,0)"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "cleanBlockBy embed U (row,col) = U(embed row, embed col); here embed sends the system index to total index 0",
+        "Garbage/failure branch = entries off the clean embedding"
+      ],
+      "core_id": "qcb-core-be-003",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "be-unitary-completion-nonuniqueness",
+      "mathematical_target": "Fix a total space of dimension 2 and a system embedding that sends the single system index to total index 0, so the clean block is the one entry U(0,0). A contributor claims that specifying the target A (here the scalar at position (0,0)) and demanding U be real orthogonal determines U uniquely. Refute this: for the target entry x with 0 < |x| < 1, exhibit two DISTINCT real orthogonal 2x2 matrices whose clean block is the same x, verify both are orthogonal, identify exactly which matrix data is left free by the block-encoding contract, and state the general principle about how much of U a clean-block (or even clean-action) certificate pins down.",
+      "source_refs": [
+        {
+          "anchor": "def cleanBlockBy 'U (embed row) (embed col)' (lines 38-42)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+        },
+        {
+          "anchor": "theorem pointwiseProjection_iff_cleanBasisAction with comment 'any normalized orthogonal failure branch is additional unitarity evidence, not a different block-encoding contract' (lines 271-294)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        },
+        {
+          "anchor": "structure OperatorBlockEncodingCandidate (lines 103-116); structure VerifiedOperatorBlockEncoding (lines 130-134)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        }
+      ],
+      "split": "dev",
+      "split_group": "be-unitary-completion-nonuniqueness",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.VerifiedOperatorBlockEncoding"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.cleanBlockBy"
+      ]
+    },
+    {
+      "assumptions": [
+        "Registers factor as coefficient x (selector x system)",
+        "Clean value fixes coefficient and selector to their zero/clean indices"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Composition order is star(selectorLift prepare) * selectLift * amplitudeLift * selectorLift prepare",
+        "PREPARE and UNPREPARE share the selector register"
+      ],
+      "core_id": "qcb-core-be-004",
+      "evidence_relation": "local_source_supported",
+      "family": "be-lcu-stage-roles",
+      "mathematical_target": "A logical linear-combination-of-unitaries block encoding is assembled as unprepare after select after amplitude after prepare, on a product of a coefficient register, a selector register, and the system register. Describe the role of each of the four stages, say which registers each stage touches, and explain why the final stage is the adjoint (dagger) of the first rather than an independent gate. What exactly plays the role of the ancilla that must be returned to zero?",
+      "source_refs": [
+        {
+          "anchor": "def selectorLift (lines 253-264); def amplitudeLift (lines 283-294); def selectLift (lines 329-337); def prepareAmplitudeSelectUnprepare 'star (selectorLift ... prepare) * (selectLift ... * (amplitudeLift rotation * selectorLift ... prepare))' (lines 351-367)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843"
+        }
+      ],
+      "split": "train",
+      "split_group": "be-lcu-stage-roles",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectorLift",
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift",
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare"
+      ]
+    },
+    {
+      "assumptions": [
+        "Signal value fixed to the clean value for the whole argument",
+        "Finite-dimensional complex (or semiring) matrices; matrix-vector action is linear"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Compound index s*systemDim+k with signal high-order",
+        "Clean output amplitude = coordinate (clean,output) of U applied to the (clean,input) basis ket"
+      ],
+      "core_id": "qcb-core-be-005",
+      "evidence_relation": "local_source_supported",
+      "family": "be-projection-action-equivalence",
+      "mathematical_target": "Fix the clean signal value. Prove that the following two certificate conditions are equivalent: (i) the projected system x system block of U equals a target A entrywise; (ii) for every system basis input and output, the clean output amplitude of U on the clean basis input (clean signal, basis input) equals A(output,input). Explain each direction, name the single linear-algebra fact that makes one clean-basis amplitude equal to one projected-block entry, and state how (ii) extends from basis inputs to an arbitrary normalized system input.",
+      "source_refs": [
+        {
+          "anchor": "theorem applyVec_basisKet 'applyVec operator (basisKet cols index) = operator.col index' (lines 70-74); def cleanBasisActionAmplitude (lines 249-256); theorem cleanBasisActionAmplitude_eq_signalSystemBlockProjection (lines 259-269); theorem pointwiseProjection_iff_cleanBasisAction (lines 277-294)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        },
+        {
+          "anchor": "def signalSystemBlockProjection and signalSystemBlockRowIndex 'signalIdx * rows + systemIdx' (lines 695-772)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/CircuitSemantics.lean",
+          "sha256": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666"
+        }
+      ],
+      "split": "dev",
+      "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude",
+        "declaration:QuantumBlockEncoding.signalSystemBlockProjection"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection"
+      ]
+    },
+    {
+      "assumptions": [
+        "Input and output pinned to the clean coefficient and clean selector",
+        "rotation(j,systemColumn) is a coefficient-register unitary; only its clean diagonal entry survives"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "SELECT uses the controlled system equivalence; matching condition is permutation(j)(systemColumn) = systemRow",
+        "PREPARE amplitude is prepare(j, cleanSelector); UNPREPARE contributes its complex conjugate"
+      ],
+      "core_id": "qcb-core-be-006",
+      "evidence_relation": "local_source_supported",
+      "family": "be-lcu-clean-entry",
+      "mathematical_target": "For the logical unprepare-select-amplitude-prepare LCU matrix on registers coefficient x (selector x system), derive the exact clean projected entry between clean input (clean coefficient, clean selector, systemColumn) and clean output (clean coefficient, clean selector, systemRow). Show that it is a finite sum over selector indices, that each surviving term carries the SELECT matching condition on the system permutation, and that each term's weight is the conjugate of a PREPARE amplitude times the controlled coefficient rotation diagonal entry times the PREPARE amplitude. Explain concretely why the selector weight appears as conjugate-times-itself and what this means physically.",
+      "source_refs": [
+        {
+          "anchor": "theorem prepareAmplitudeSelectUnprepare_cleanEntry giving the selector sum 'if permutation selectorIndex systemColumn = systemRow then star (prepare ...) * rotation ... * prepare ... else 0' (lines 171-220); star_selectorLift_mul_clean (lines 147-169); selectLift_mul_amplitudeLift_mul_selectorLift_clean (lines 112-144)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+          "sha256": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340"
+        },
+        {
+          "anchor": "def prepareAmplitudeSelectUnprepare (lines 351-367)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843"
+        }
+      ],
+      "split": "train",
+      "split_group": "be-lcu-clean-entry",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare",
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.star_selectorLift_mul_clean",
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.selectLift_mul_amplitudeLift_mul_selectorLift_clean",
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.amplitudeLift_apply"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.Robin.ComplexLCU.prepareAmplitudeSelectUnprepare_cleanEntry"
+      ]
+    },
+    {
+      "assumptions": [
+        "U is unitary so the total output norm is 1",
+        "alpha is chosen at least ||A|| so the projected block A/alpha is a valid contraction for every input"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Clean branch = all-zero auxiliary bra/ket; success = all-zero postselection outcome",
+        "Normalizer alpha enters as block = A/alpha"
+      ],
+      "core_id": "qcb-core-be-007",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "be-postselection-success",
+      "mathematical_target": "A block encoding is read by preparing the auxiliary register in the all-zero state, applying U, and postselecting the auxiliary register back on all-zero. Suppose U block-encodes A with normalizer alpha (so the auxiliary-zero projected block equals A/alpha) and the input system state is a normalized vector v. Express the unnormalized clean output branch and its squared norm, give the exact success probability of the all-zero postselection, and state when this probability equals (||A v|| / alpha)^2. Why is the success probability generally strictly below 1, and what does this cost imply for using the block encoding as a subroutine?",
+      "source_refs": [
+        {
+          "anchor": "structure ApproximateOperatorBlockEncodingCandidate with approximationBound '||A - alpha * ((<0^a| tensor I) U (|0^a> tensor I))|| <= epsilon' (lines 136-153); structure OperatorBlockEncodingCandidate (lines 103-116)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        },
+        {
+          "anchor": "def cleanBasisActionAmplitude and comment that any normalized orthogonal failure branch is additional unitarity evidence (lines 249-294)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude",
+        "declaration:QuantumBlockEncoding.signalSystemBlockProjection"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate"
+      ]
+    },
+    {
+      "assumptions": [
+        "Real rational entries; normalizer fixed to 1",
+        "Clean block is the single top-left entry x"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Dilation layout [[x,y],[y,-x]] with clean entry at (0,0)",
+        "Orthogonality tested entrywise by row Gram overlaps"
+      ],
+      "core_id": "qcb-core-be-008",
+      "evidence_relation": "local_source_supported",
+      "family": "be-scalar-dilation-contraction",
+      "mathematical_target": "Consider the 2x2 scalar dilation whose top-left clean entry is x, whose two off-diagonal entries are both y, and whose bottom-right entry is -x. Treat the single top-left entry as the one-dimensional clean block encoding the scalar x with normalizer 1. Determine the exact condition on (x,y) under which this dilation is orthogonal (a valid real one-qubit-signal block encoding), compute the two row self-overlaps and the row cross-overlap, and explain the boundary: what is the largest |x| for which a real y exists making the dilation orthogonal, and what does exceeding it mean for block-encoding a scalar of magnitude greater than 1 with normalizer 1?",
+      "source_refs": [
+        {
+          "anchor": "def scalarDilation [[x,y],[y,-x]] (lines 532-537); scalarDilationRowDot and theorems scalarDilation_row0_normSq / row1_normSq = x*x+y*y (lines 556-571); scalarDilation_rows01_orthogonal = 0 (lines 583-588); scalarDilation_row0_unit_norm_of (lines 573-581)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+        }
+      ],
+      "split": "dev",
+      "split_group": "be-scalar-dilation-contraction",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row1_normSq",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_rows01_orthogonal",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_unit_norm_of"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.scalarDilation_row0_normSq"
+      ]
+    },
+    {
+      "assumptions": [
+        "Rational matrix backend; support map c is a function on columns",
+        "Reconstruction uses amp(col) = target(c(col), col)"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-sparse: at most one nonzero per column at the fixed row c(col)",
+        "A zero amplitude column is the degenerate allowed case"
+      ],
+      "core_id": "qcb-core-be-009",
+      "evidence_relation": "local_source_supported",
+      "family": "be-one-sparse-support-boundary",
+      "mathematical_target": "A one-sparse block-encoding route reconstructs a target matrix from a column support map c and column amplitudes: entry (row, col) is amp(col) when row = c(col) and 0 otherwise. Suppose a contributor claims this route can exactly encode ANY matrix with at most one nonzero per column. Give a concrete small target that is NOT reconstructed by the one-sparse formula, state exactly which hypothesis of the one-sparse reconstruction lemma it violates, and then exhibit a genuine zero-containing one-sparse target that IS correctly reconstructed, confirming that a zero amplitude column is allowed but a second nonzero per column is not.",
+      "source_refs": [
+        {
+          "anchor": "def oneSparseMatrix (lines 123-125); theorem oneSparseMatrix_entry_if (lines 127-132); theorem oneSparse_from_support hypothesis 'row != c col -> A row col = 0' (lines 139-147); structure OneSparseCertificate (lines 155-170)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+        }
+      ],
+      "split": "train",
+      "split_group": "be-one-sparse-support-boundary",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix_entry_if",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.OneSparseCertificate"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparse_from_support",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.oneSparseMatrix"
+      ]
+    },
+    {
+      "assumptions": [
+        "Normalizer N (normalizerA) is a complex scalar; the counterexample needs N != 0",
+        "B is Hermitian (as in the PDE theorem) for the corrected block to equal S1"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Each term scaled by 1/2; filler is N*e^{i*phi} on the lower-right diagonal",
+        "S1 is the Hermitian part of [[A,B],[0,0]] with lower-right block 0"
+      ],
+      "core_id": "qcb-core-be-011",
+      "evidence_relation": "local_source_supported",
+      "family": "be-lcu-phase-cancellation",
+      "mathematical_target": "In an LCU-style assembly of a Hermitian piece, each selected term contributes a scaled controlled-phase source whose upper block carries the intended operator and whose lower-right filler block is normalizer times a phase e^{i*phi}. A source writes both filler phases as e^{i*pi} = -1 and claims the two filler blocks cancel so the clean block equals the intended Hermitian piece S1. Show by direct computation of the lower-right clean entry that the printed all-(-1)-phase choice does NOT cancel, give the exact value of that entry, prove the clean block therefore differs from S1 when the normalizer is nonzero, and exhibit the corrected phase assignment that does make the fillers cancel while preserving the intended operator blocks.",
+      "source_refs": [
+        {
+          "anchor": "def scaledControlledPhaseSource lower-right filler 'if i=j then normalizer*phase' (lines 191-198); def eq29PrintedClean (lines 221-229); theorem eq29PrintedClean_lowerRight = -normalizerA (lines 247-251); theorem eq29PrintedClean_ne_S1 (lines 254-262); theorem eq29PhaseBalancedClean_eq_S1 (lines 268-296)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+          "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7"
+        }
+      ],
+      "split": "dev",
+      "split_group": "be-lcu-phase-cancellation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PhaseBalancedClean_eq_S1",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.scaledControlledPhaseSource",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.S1"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_lowerRight",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.eq29PrintedClean_ne_S1"
+      ]
+    },
+    {
+      "assumptions": [
+        "Rational matrix backend; p is a self-map of the finite basis",
+        "Clean block uses the all-zero ancilla embedding via productIndex"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "permMatrix p (row,col) = 1 iff row = p(col)",
+        "productIndex (a,s) = a*system + s; clean embedding fixes a = zero"
+      ],
+      "core_id": "qcb-core-be-012",
+      "evidence_relation": "local_source_supported",
+      "family": "be-permutation-orthogonal-clean",
+      "mathematical_target": "A reversible-classical block-encoding route realizes the full unitary as a permutation matrix on the flattened ancilla-system basis, with the clean block taken from the all-zero ancilla embedding. Prove that a permutation matrix built from a bijective index map is a valid real orthogonal unitary proxy (its column and row Gram matrices are the identity), and separately give the exact clean-block entry formula for such a permutation under the product embedding. Explain why bijectivity (not merely injectivity) is needed for the row Gram condition, and why the clean block of a permutation is itself a 0/1 partial-permutation matrix rather than an arbitrary target.",
+      "source_refs": [
+        {
+          "anchor": "def permMatrix (lines 19-20); def columnInner/rowInner/IsRationalOrthogonal (lines 23-36); theorem permMatrix_columnInner_of_injective (lines 283-327); permMatrix_rowInner_of_bijective (lines 330-382); permMatrix_isRationalOrthogonal_of_bijective (lines 389-394); def productIndex (lines 48-57); theorem cleanBlockProduct_permMatrix_entry (lines 81-86)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+        }
+      ],
+      "split": "train",
+      "split_group": "be-permutation-orthogonal-clean",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.permMatrix_columnInner_of_injective",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.permMatrix_rowInner_of_bijective",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.productIndex",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.IsRationalOrthogonal"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.permMatrix_isRationalOrthogonal_of_bijective",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.cleanBlockProduct_permMatrix_entry"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite rational/complex matrices; clean block via an embedding of the system basis",
+        "The approximation bound is a proposition instantiated by the backend"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Exact case is epsilon=0 with the approximation predicate equal to the pointwise clean-block equality",
+        "Pointwise (entrywise) equality is distinct from an operator-norm statement"
+      ],
+      "core_id": "qcb-core-be-013",
+      "evidence_relation": "local_source_supported",
+      "family": "be-exact-to-approx-boundary",
+      "mathematical_target": "An exact clean-block certificate can be promoted to a zero-error approximate incumbent in the adaptive exact-to-approximate search policy. State what data an exact clean-block certificate carries, what the zero-error promotion sets the epsilon and the approximation predicate to, and why an exact certificate is a legitimate epsilon=0 member of the approximate search without any additional analytic norm argument. Then explain the boundary the other way: does holding a zero-error approximate incumbent let you conclude an operator-norm bound ||A - alpha*block|| <= 0, and if not, what extra ingredient is required?",
+      "source_refs": [
+        {
+          "anchor": "structure ExactCleanBlock (lines 623-641); structure ZeroErrorApproxCleanBlock with epsilon:=0 and approximationBound := PointwiseEq (lines 865-872); def exactAsZeroErrorApproxCleanBlock and theorem exactAsZeroErrorApproxCleanBlock_bound (lines 877-888)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+        },
+        {
+          "anchor": "def VerifiedOperatorBlockEncoding.asZeroErrorApprox with comment 'Analytic backends can later replace this with a theorem connecting exact block equality to a concrete operator-norm inequality' (lines 165-184)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.ZeroErrorApproxCleanBlock",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock_bound",
+        "declaration:QuantumBlockEncoding.VerifiedOperatorBlockEncoding.asZeroErrorApprox"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.exactAsZeroErrorApproxCleanBlock",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.ExactCleanBlock"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+        "All basis/register permutations are fixed and applied to both input and output"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-vector action; Euclidean induced operator norm for norm claims",
+        "Source inspection only; no fresh formal verification"
+      ],
+      "core_id": "qcb-core-la-013",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-expansion-mechanism-013",
+      "mathematical_target": "Let P permute computational-basis labels and let a circuit have chronological matrices U1,...,Ut. Prove that consistently renaming every wire realizes P(Ut...U1)P inverse rather than inserting a physical permutation gate. Explain why output-only relabeling would fail to preserve circuit multiplication.",
+      "source_refs": [
+        {
+          "anchor": "matrix_mul lines35-38; eval_gate83-109; eval_circuit111-118; module placement boundary",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+          "sha256": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727"
+        }
+      ],
+      "split": "train",
+      "split_group": "native-expansion-mechanism-013",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.matrix_mul",
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_gate"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.eval_circuit"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+        "All basis/register permutations are fixed and applied to both input and output"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-vector action; Euclidean induced operator norm for norm claims",
+        "Source inspection only; no fresh formal verification"
+      ],
+      "core_id": "qcb-core-la-014",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-expansion-mechanism-014",
+      "mathematical_target": "A circuit uses only single-qubit rotations, bit flips and controlled bit flips. A bijection relabels all physical wires, preserving which wire controls which target. Which of total instruction count, rotation count and controlled-bit-flip count must stay unchanged? Does this alone prove equal nearest-neighbor routing cost on fixed hardware?",
+      "source_refs": [
+        {
+          "anchor": "gate/circuit16-23; count theorems120-133 and module header",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+          "sha256": "9f9b653ddda82a40bc9eafde31f6c932f59f631c03bfe24fbdc282acb8307727"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-014",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.ryCount",
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.cxCount"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveWireRename.gateCount"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+        "All basis/register permutations are fixed and applied to both input and output"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-vector action; Euclidean induced operator norm for norm claims",
+        "Source inspection only; no fresh formal verification"
+      ],
+      "core_id": "qcb-core-la-015",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-expansion-mechanism-015",
+      "mathematical_target": "Define R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]]. Derive the exact operator distance between R(a) and R(b), and prove it is at most |a-b|/2. Why does adding any number of untouched spectator qubits not multiply the distance by a dimension factor?",
+      "source_refs": [
+        {
+          "anchor": "difference_factor28-37; liftedRy factor54-59; distance61-79",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+          "sha256": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-015+native-expansion-mechanism-016",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor",
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance_le"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+        "All basis/register permutations are fixed and applied to both input and output"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-vector action; Euclidean induced operator norm for norm claims",
+        "Source inspection only; no fresh formal verification"
+      ],
+      "core_id": "qcb-core-la-016",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-expansion-mechanism-016",
+      "mathematical_target": "For the real rotation R(theta)=[[cos(theta/2),-sin(theta/2)],[sin(theta/2),cos(theta/2)]], compare R(theta+2pi) and R(theta). A colleague claims the two full operators have distance0 because every output probability agrees. Refute or prove that claim, and distinguish bare-system global-phase equivalence from coherent branch use.",
+      "source_refs": [
+        {
+          "anchor": "exact difference factor and exact operator distance28-68",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+          "sha256": "57ad888af7a81ac5067f6655160fecf1f197a91b0414bc5e510786b9eed27e32"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "native-expansion-mechanism-015+native-expansion-mechanism-016",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.standardRy_difference_factor"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.PrimitiveRyPerturbation.liftedRy_distance"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+        "All basis/register permutations are fixed and applied to both input and output"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-vector action; Euclidean induced operator norm for norm claims",
+        "Source inspection only; no fresh formal verification"
+      ],
+      "core_id": "qcb-core-la-017",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-expansion-mechanism-017",
+      "mathematical_target": "A reversible gate flips a target bit exactly when two control bits are both1. Assume each control wire is distinct from the target, but allow the two control wires to coincide. Prove the gate is its own inverse and explain what it reduces to when the controls coincide.",
+      "source_refs": [
+        {
+          "anchor": "ccxBasisAction24-28; involutive30-50; equivalence52-61",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+          "sha256": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711"
+        }
+      ],
+      "split": "train",
+      "split_group": "native-expansion-mechanism-017",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ccxBasisAction",
+        "declaration:QuantumBlockEncoding.ccxBasisEquiv"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex Hilbert spaces unless real amplitudes are explicitly specified",
+        "All basis/register permutations are fixed and applied to both input and output"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Column-vector action; Euclidean induced operator norm for norm claims",
+        "Source inspection only; no fresh formal verification"
+      ],
+      "core_id": "qcb-core-la-018",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-expansion-mechanism-018",
+      "mathematical_target": "On a two-bit string(c,t), consider the update that flips c itself when c=t=1 and otherwise does nothing. Does the familiar self-inverse proof for a two-control target flip remain valid when one control is also the target? Give a concrete collision and explain the lost hypothesis.",
+      "source_refs": [
+        {
+          "anchor": "basis action24-28; control-target hypotheses and preserved controls30-49",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ReversibleClassical.lean",
+          "sha256": "01ea24f54500974985702a0f968e28d93b2bd04a1aefaf05da848c9b7fe64711"
+        }
+      ],
+      "split": "train",
+      "split_group": "native-expansion-mechanism-018",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ccxBasisAction_involutive"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ccxBasisAction"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex matrices; ordinary conjugate transpose",
+        "All declared products have compatible dimensions"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Tensor factors ordered as written; stencil offsets are ordinary integers, not modular wrapping",
+        "Original derivation from inspected local source; no fresh Lean verification"
+      ],
+      "core_id": "qcb-core-la-019",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-mathematical-expansion-019",
+      "mathematical_target": "Let S and T be Hermitian matrices on one finite system and X a Hermitian matrix on a second system. Prove that H=S tensor X+T tensor I is Hermitian without assuming that S and T commute. Give a counterexample showing that the same conclusion can fail if X is not Hermitian.",
+      "source_refs": [
+        {
+          "anchor": "tensor367-369; tensor_isHermitian394-400; add_isHermitian402-408; oneDimHamiltonian_isHermitian410-417",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+          "sha256": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7"
+        }
+      ],
+      "split": "dev",
+      "split_group": "native-mathematical-expansion-019",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.tensor",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.oneDimHamiltonian_isHermitian"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.tensor_isHermitian",
+        "declaration:QuantumBlockEncoding.GHL2025.Hamiltonian.add_isHermitian"
+      ]
+    },
+    {
+      "assumptions": [
+        "Finite-dimensional complex matrices; ordinary conjugate transpose",
+        "All declared products have compatible dimensions"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Tensor factors ordered as written; stencil offsets are ordinary integers, not modular wrapping",
+        "Original derivation from inspected local source; no fresh Lean verification"
+      ],
+      "core_id": "qcb-core-la-020",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "native-mathematical-expansion-020",
+      "mathematical_target": "A finite row stencil is a list of offset/coefficient pairs. Its matrix entry at row i and column j is the sum of coefficients of every pair with i+offset=j; no modular wrapping is used. Prove that merging repeated offsets by summing their coefficients leaves every matrix entry unchanged. Use the pairs (1,2),(1,-2),(-1,3) to show why list width and the number of nonzero matrix entries need not agree.",
+      "source_refs": [
+        {
+          "anchor": "stencilRowCoeff15-26; buildRobinMatrix50-63",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RobinMatrix.lean",
+          "sha256": "e957b6a5961ad2c22cfd154f17cbbec3e7668027b2f526d9f762798eb1c50038"
+        }
+      ],
+      "split": "train",
+      "split_group": "native-mathematical-expansion-020",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.buildRobinMatrix"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.stencilRowCoeff"
+      ]
+    },
+    {
+      "assumptions": [
+        "the core is a real matrix with composite column index (bit of 2 values, right bond of r values)",
+        "a thin factorization with orthonormal rows exists in flat coordinates"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "columns reshaped by a fixed finite-product bijection of size 2r",
+        "orthonormal rows means Q*Q-transpose = identity"
+      ],
+      "core_id": "qcb-core-la-001",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "composite-index reshaping / bijective reindexing invariance",
+      "mathematical_target": "A single core of a finite real tensor train is a real matrix whose rows are indexed by the left bond and whose columns are indexed by a composite label: an ordered pair of an emitted bit (two values) and a right-bond index (r values). To factorize this core, one reshapes that composite column label into a single flat column label and then performs a thin factorization in the flat coordinates. Explain (a) why the reshaping is a genuine bijection and what the flat label's size is, (b) why performing the factorization in flat coordinates and then relabeling the result back by the inverse reshaping produces valid factors of the original core, and (c) why the row-orthonormality of the orthonormal factor is unaffected by the relabeling. State the resulting inner (new left-bond) dimension.",
+      "source_refs": [
+        {
+          "anchor": "complete declaration exists_core_lq (lines 67-80) with Core (line 18) and slice (lines 20-21); the reshaping uses a finite-product bijection and sum-reindexing to recover A = R*Q and Q*Q-transpose = 1 with inner dimension min l (2*r)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "composite-index reshaping / bijective reindexing invariance",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.Core",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_core_lq"
+      ]
+    },
+    {
+      "assumptions": [
+        "A is a core emitting one bit of two values with a right-bond index",
+        "R is a real matrix on the right-bond index"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "a bit-slice fixes the emitted bit and leaves an ordinary left-by-right matrix",
+        "absorption acts only on the right-bond coordinate"
+      ],
+      "core_id": "qcb-core-la-002",
+      "evidence_relation": "local_source_supported",
+      "family": "residual absorption / per-bit-slice right multiplication",
+      "mathematical_target": "During backward canonicalization of a finite real tensor train, a residual matrix R (left over from factorizing a later core) must be absorbed into the right bond of the preceding core A, where A emits one bit of two possible values and has a right-bond index. The absorption produces a new core whose entry at left index a and composite column (bit, j) is the sum over the old right-bond index b of A at (a, bit, b) times R at (b, j). Explain in matrix-slice terms what this absorption does to each of the two emitted-bit branches of A, and justify why it does not mix the two bit branches together. State the single slice identity that captures this.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations absorb (lines 58-60) and absorb_slice (lines 62-64), with slice (lines 20-21) and Core (line 18)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "train",
+      "split_group": "residual absorption / per-bit-slice right multiplication",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.slice",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.Core"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.absorb",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.absorb_slice"
+      ]
+    },
+    {
+      "assumptions": [
+        "the environment assigns a rational to every symbol name"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "coefficients are symbolic expressions over the rationals",
+        "evaluation is relative to a fixed environment"
+      ],
+      "core_id": "qcb-core-la-003",
+      "evidence_relation": "local_source_supported",
+      "family": "symbolic algebra evaluation homomorphism",
+      "mathematical_target": "A stencil coefficient is written in a small symbolic language whose expressions are built from rational constants, named symbols, and the operations addition, multiplication, and negation. Given an environment that assigns a rational number to each symbol name, the coefficient is turned into a concrete rational number by a single evaluation map. State how this map treats each of the five kinds of expression, and state precisely which algebraic structure the evaluation preserves (that is, which equalities relate the value of a compound expression to the values of its parts).",
+      "source_refs": [
+        {
+          "anchor": "declarations Coeff.evalWith (lines 175-181) and the evalWith_rat/evalWith_symbol/evalWith_add/evalWith_mul/evalWith_neg simp lemmas (lines 183-196)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/Core.lean",
+          "sha256": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894"
+        }
+      ],
+      "split": "train",
+      "split_group": "symbolic algebra evaluation homomorphism",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_rat",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_symbol"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.Coeff.evalWith",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_add",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_mul",
+        "declaration:QuantumBlockEncoding.Coeff.evalWith_neg"
+      ]
+    },
+    {
+      "assumptions": [
+        "system register has 2^n states",
+        "a auxiliary qubits are used"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "signal/ancilla register is high-order, system register is low-order",
+        "flat index = signal * systemDim + system"
+      ],
+      "core_id": "qcb-core-la-004",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "register tensor ordering / block indexing",
+      "mathematical_target": "A block-encoding unitary represents an operator that acts on the 2^n states of an n-qubit system register, using a auxiliary qubits. (a) What is the dimension of the square matrix representing the full unitary, and why? (b) The full index is a flattened combination of a signal/ancilla register and the system register; state which register is treated as the high-order (most significant) part of the index and which as the low-order part. (c) If one instead keeps the two registers explicit as an ordered pair (signal, system) and reads off the sub-matrix for one fixed value of the signal register, how does that sub-matrix relate to the sub-matrix obtained by projecting the single flattened unitary onto the same signal branch?",
+      "source_refs": [
+        {
+          "anchor": "declaration OperatorBlockEncodingCandidate with the dimension note (lines 97-116)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        },
+        {
+          "anchor": "declarations flatToProductRegister (lines 190-198), productRegisterBlockProjection (lines 201-204), productRegisterBlockProjection_flatToProductRegister (lines 210-217)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.productRegisterBlockProjection"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.flatToProductRegister",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.productRegisterBlockProjection_flatToProductRegister"
+      ]
+    },
+    {
+      "assumptions": [
+        "V has orthonormal columns, i.e. V-transpose * V = I_r",
+        "the placement of columns is an injection into the N positions"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "real matrices",
+        "orthogonal matrix means U-transpose * U = I",
+        "inner-product space R^N has dimension N"
+      ],
+      "core_id": "qcb-core-la-005",
+      "evidence_relation": "local_source_supported",
+      "family": "orthonormal completion / isometry extension",
+      "mathematical_target": "You are given r real column vectors in R^N that are orthonormal (each has unit length and distinct ones are orthogonal), presented as the columns of an N-by-r matrix V satisfying V-transpose times V equals the r-by-r identity. You are also given an arbitrary assignment that places these r columns into r distinct column positions among the N columns of a target N-by-N matrix (the positions need not be the first r columns, and need not be contiguous). Prove that there exists an N-by-N real orthogonal matrix U (U-transpose times U equals the N-by-N identity) whose columns at exactly those r prescribed positions are the given vectors. Make explicit each ingredient your argument relies on.",
+      "source_refs": [
+        {
+          "anchor": "complete declaration exists_orthogonal_completion (lines 20-59)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d"
+        }
+      ],
+      "split": "train",
+      "split_group": "orthonormal completion / isometry extension",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_orthogonal_completion"
+      ]
+    },
+    {
+      "assumptions": [
+        "an orthogonal completion with the prescribed columns exists",
+        "r < N so at least one column is unused"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "real matrices",
+        "SO(N) = orthogonal matrices of determinant +1",
+        "sign flip is a diagonal matrix with a single -1 entry"
+      ],
+      "core_id": "qcb-core-la-006",
+      "evidence_relation": "local_source_supported",
+      "family": "special-orthogonal completion / orientation repair",
+      "mathematical_target": "Suppose r orthonormal real columns are placed at r distinct positions among the N columns of an orthogonal matrix, and suppose r < N so at least one column position is left free. The naive completion to an orthogonal matrix may land in the reflection family (determinant -1) rather than the rotation family (determinant +1). Prove that one can always repair the orientation so the final matrix has determinant exactly +1 while leaving every one of the r prescribed columns completely unchanged. Explain why the strict inequality r < N is exactly what makes the repair possible, and why the repair cannot in general be done when r = N.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations signFlip (lines 62-63), signFlip_orthogonal (lines 65-72), signFlip_det (lines 74-75), mul_signFlip_preserves (lines 77-79), exists_specialOrthogonal_completion_of_unused (lines 83-104), exists_specialOrthogonal_completion (lines 107-121)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d"
+        }
+      ],
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_orthogonal_completion",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.signFlip",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.signFlip_orthogonal",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.signFlip_det",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.mul_signFlip_preserves"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion_of_unused"
+      ]
+    },
+    {
+      "assumptions": [
+        "finite complex matrices and vectors",
+        "|left> and |right> are computational-basis states"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "basis ket is a Kronecker delta at its index",
+        "matrix-vector action uses the standard finite sum"
+      ],
+      "core_id": "qcb-core-la-007",
+      "evidence_relation": "local_source_supported",
+      "family": "linearity of matrix-vector action / sparse-input collapse",
+      "mathematical_target": "In a finite complex matrix backend, acting with an operator on a computational-basis state (a vector with a single 1 at one position and 0 elsewhere) returns the corresponding column of the operator. Using only this fact and the linearity of matrix-vector multiplication, prove that acting with an operator A on the two-term superposition a*|left> + b*|right>, where |left> and |right> are two basis states, gives a*(column left of A) + b*(column right of A), and that the amplitude read at output row k equals a*A[k,left] + b*A[k,right]. Explain why this means a block-encoding or state-preparation witness never needs to reconstruct the whole matrix-vector product: only two named columns, or two named entries, are ever required.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations applyVec_basisKet (lines 70-74), applyVec_twoBasisSuperposition (lines 79-88), applyVec_twoBasisSuperposition_apply (lines 93-100)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        }
+      ],
+      "split": "dev",
+      "split_group": "linearity of matrix-vector action / sparse-input collapse",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.basisKet",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_twoBasisSuperposition",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_twoBasisSuperposition_apply"
+      ]
+    },
+    {
+      "assumptions": [
+        "a fixed clean signal value is chosen",
+        "finite matrices over a semiring backend"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "signal-system flattening with signal high-order",
+        "pointwise matrix equality quantifies over all entries"
+      ],
+      "core_id": "qcb-core-la-008",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "block-encoding certification styles / projection-vs-action equivalence",
+      "mathematical_target": "Two proof styles are commonly used to certify that a flattened signal-system unitary block-encodes a target operator on the system register at a fixed 'clean' signal value. Style A proves a pointwise equality: the matrix block obtained by projecting the unitary onto that clean signal branch equals the target matrix entry by entry. Style B proves an action statement: for every clean-signal basis input and every clean-signal output row, the amplitude the unitary produces equals the corresponding target matrix entry. Prove that these two styles are logically equivalent, by first showing the single bridging identity that the clean-input/clean-output amplitude of the unitary equals exactly one entry of the projected block.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations cleanBasisActionAmplitude (lines 249-256), cleanBasisActionAmplitude_eq_signalSystemBlockProjection (lines 259-269), pointwiseProjection_iff_cleanBasisAction (lines 277-294)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        }
+      ],
+      "split": "dev",
+      "split_group": "be-projection-action-equivalence+block-encoding certification styles / projection-vs-action equivalence",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.applyVec_basisKet"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.pointwiseProjection_iff_cleanBasisAction",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude_eq_signalSystemBlockProjection"
+      ]
+    },
+    {
+      "assumptions": [
+        "V-transpose * V = I_r (orthonormal columns)",
+        "the placement e is an injection from r labels into N positions",
+        "part (b) additionally assumes r < N"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "real matrices and the standard inner product on R^N",
+        "orthonormal family is linearly independent; dimension bounds independent families"
+      ],
+      "core_id": "qcb-core-la-009",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "isometry dimensional obstruction / finite-cardinality counting",
+      "mathematical_target": "Let V be a real N-by-r matrix whose columns are orthonormal, expressed by the identity V-transpose times V equals the r-by-r identity. (a) Prove the dimensional obstruction r <= N. (b) Suppose further that the strict inequality r < N holds and that the r columns are placed at r distinct positions among the N available column positions via an injective assignment from the r column-labels into the N positions. Prove that this assignment cannot be surjective, i.e. at least one of the N positions receives no prescribed column. Make the counting argument explicit and explain how these two facts together guarantee a spare position exists exactly when r < N.",
+      "source_refs": [
+        {
+          "anchor": "complete declaration exists_specialOrthogonal_completion (lines 107-121), whose body derives non-surjectivity of e from r < N via a finite-cardinality (card_le_of_surjective) contradiction; orthonormality from V-transpose*V = 1 is set up in exists_orthogonal_completion (lines 20-59)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d"
+        }
+      ],
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_orthogonal_completion"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion"
+      ]
+    },
+    {
+      "assumptions": [
+        "the original core is right-canonical (orthonormal rows before padding)",
+        "padding appends zero outputs beyond the active rank"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "active clean-input columns are indexed by the original ranks",
+        "column orthonormality is the conjugate-transpose-times-matrix Gram identity"
+      ],
+      "core_id": "qcb-core-la-010",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "zero-padding embedding / row-vs-column isometry under padding",
+      "mathematical_target": "When embedding a right-canonical tensor-train core into a larger fixed physical register by zero-padding its outputs, one claims the active clean-input columns remain orthonormal and that right-multiplication of the boundary stays mass-preserving. A reviewer argues: 'the padded core still satisfies core times core-transpose equals the identity on the physical register, so its rows are orthonormal and nothing changes'. Show by an explicit small example that the reviewer's blanket claim is false: padding generally destroys the ROW orthonormality relation even though it preserves the COLUMN orthonormality of the active clean-input columns. State precisely which relation survives padding and which does not, and why only the surviving one is used.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations paddedCore (lines 255-258), paddedCore_inactive_output (lines 260-262), complexCore_isometry (lines 215-226), paddedCore_active_isometry (lines 295-315)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "dev",
+      "split_group": "zero-padding embedding / row-vs-column isometry under padding",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.paddedCore",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.padVector"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.paddedCore_active_isometry",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.paddedCore_inactive_output"
+      ]
+    },
+    {
+      "assumptions": [
+        "prescribed columns are orthonormal",
+        "the conjecture drops the strict inequality and allows prescribed-count = dimension"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "real matrices",
+        "determinant +1 means rotation (SO(N)), -1 means reflection"
+      ],
+      "core_id": "qcb-core-la-011",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "necessity of the strict dimension bound / completion failure",
+      "mathematical_target": "The special-orthogonal completion result guarantees that prescribed orthonormal columns can be extended to a determinant-+1 orthogonal matrix WHENEVER the number of prescribed columns is strictly less than the ambient dimension. A student conjectures the strict inequality is just a technical convenience and that the result still holds when the prescribed columns already fill all the positions (number of prescribed columns equal to the ambient dimension). Give an explicit counterexample disproving the student's conjecture, and identify exactly which step of the strictly-fewer-columns argument has no analogue in the fully-prescribed case.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations exists_specialOrthogonal_completion (lines 107-121) with its strict hypothesis hr : r < N, exists_specialOrthogonal_completion_of_unused (lines 83-104), signFlip_det (lines 74-75)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+          "sha256": "2a38bfa0dda457b563f5178e20dc2ccbb1281ff7d5f7357e4096a3c29fa2bb5d"
+        }
+      ],
+      "split": "train",
+      "split_group": "isometry dimensional obstruction / finite-cardinality counting+necessity of the strict dimension bound / completion failure+special-orthogonal completion / orientation repair",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion_of_unused",
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.signFlip_det"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealIsometryCompletion.exists_specialOrthogonal_completion"
+      ]
+    },
+    {
+      "assumptions": [
+        "canonicalization follows the backward min(l, 2*m') recurrence",
+        "the terminal bond of a scalar-boundary chain is dimension one"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "each core emits one bit of dimension 2",
+        "bond dimensions are the dependent inner indices, not padded"
+      ],
+      "core_id": "qcb-core-la-012",
+      "evidence_relation": "local_source_supported",
+      "family": "bond-dimension recurrence / canonicalization boundary bounds",
+      "mathematical_target": "A finite real tensor train is right-canonicalized by sweeping from the terminal bond backward, replacing each core by one with orthonormal rows while absorbing a residual into the preceding core. The active left bond dimension produced at each core obeys the exact backward recurrence: the new left bond is the minimum of (the current left bond) and (twice the next active bond). Using only this recurrence and the fact that the sweep never enlarges any bond, prove two boundary facts: (a) after canonicalization every core's left bond is at most its original left bond AND at most twice its next active bond; and (b) for a scalar-boundary chain whose terminal bond is forced to dimension one, the active bond immediately before the terminal bond is at most two. Explain where the factor of two comes from.",
+      "source_refs": [
+        {
+          "anchor": "complete declarations RankReduced (lines 51-55), exists_core_lq (lines 67-80), RankReduced.head_bound (lines 104-110), RankReduced.last_bond_le_two (lines 113-117), RankReduced.maxBond_le (lines 203-207)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "train",
+      "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_core_lq",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.maxBond_le"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.last_bond_le_two"
+      ]
+    },
+    {
+      "assumptions": [
+        "U unitary on the stated finite tensor product",
+        "alpha>0 is a real scale; epsilon>=0; column-vector convention"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Auxiliary register pinned to the all-zero value selects the clean block",
+        "Exact case is the epsilon=0 instance of the approximate operator-norm bound"
+      ],
+      "core_id": "qcb-core-be-001",
+      "evidence_relation": "local_source_supported",
+      "family": "be-projected-block-contract",
+      "mathematical_target": "Let U be a unitary on n system qubits and a auxiliary qubits. For a strictly positive real alpha, define B=(<0^a| tensor I)U(|0^a> tensor I). State what it means for U to encode a system operator A exactly or with induced-operator-norm error at most epsilon>=0. Give the matrix dimensions and derive the scalar entry condition equivalent to exact encoding. Explain why division by alpha needs its stated premise.",
+      "source_refs": [
+        {
+          "anchor": "structure OperatorBlockEncodingCandidate (lines 103-116); structure ApproximateOperatorBlockEncodingCandidate with approximationBound comment '||A - alpha * ((<0^a| tensor I) U (|0^a> tensor I))|| <= epsilon' (lines 136-153)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        },
+        {
+          "anchor": "def signalSystemBlockProjection with doc 'The block (<signalIdx| tensor I) M (|signalIdx> tensor I)' (lines 741-772)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/CircuitSemantics.lean",
+          "sha256": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "be-exact-to-approx-boundary+qsc-block-encoding-verification+be-postselection-success+qsc-block-encoding-access+be-projected-block-contract+qit-channel-foundations+qit-composite-entanglement+qit-distance-measures+qit-measurement-foundations+qit-representation-ordering+qit-separability-criteria+qit-state-foundations+qit-symmetry-entanglement+qsc-block-encoding-access+qsc-block-encoding-composition+qsc-block-encoding-dilation+qsc-block-encoding-reuse+qsc-lcu-subnormalization+qsc-query-complexity+qsc-transforms-resources+register tensor ordering / block indexing",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingSpec",
+        "declaration:QuantumBlockEncoding.signalSystemBlockProjection"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.ApproximateOperatorBlockEncodingCandidate"
+      ]
+    },
+    {
+      "assumptions": [
+        "Unitary circuit on S tensor W tensor D",
+        "A clean workspace promise concerns all input data vectors on the signal-success subspace"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "auxiliaryQubits = signalQubits + pureAncillas",
+        "Clean block uses the all-zero auxiliary bra and ket simultaneously"
+      ],
+      "core_id": "qcb-core-be-002",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "be-auxiliary-accounting",
+      "mathematical_target": "A circuit acts on a signal register S, a workspace W and a data register D, starting S,W at zero. The signal value0 is called success. Explain the additional mathematical promise needed to call W clean on every successful branch. Does knowing only the smaller submatrix obtained by projecting BOTH S and W to zero imply that promise? Give a two-dimensional workspace counterexample, and explain which auxiliary qubits still occupy physical space.",
+      "source_refs": [
+        {
+          "anchor": "structure RegisterLayout {systemQubits, signalQubits, pureAncillas}; def auxiliaryQubits 'combines the signal qubits selecting the block with pure ancillas that must be returned to a clean state' (lines 14-30); structure BlockEncodingCost (lines 50-55)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+        }
+      ],
+      "split": "train",
+      "split_group": "be-auxiliary-accounting",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.OperatorBlockEncodingCandidate",
+        "declaration:QuantumBlockEncoding.BlockEncodingCost"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RegisterLayout",
+        "declaration:QuantumBlockEncoding.RegisterLayout.auxiliaryQubits"
+      ]
+    },
+    {
+      "assumptions": [
+        "U,V unitary with unit normalization for simplicity",
+        "Each clean block uses its own auxiliary bra/ket0; column-vector chronological order"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "Product applies right factor first (B), then left (A), to the system",
+        "Clean branch requires all-zero ancilla before each factor"
+      ],
+      "core_id": "qcb-core-be-010",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "be-product-fresh-ancilla",
+      "mathematical_target": "Suppose unitaries U and V have clean blocks A and B on the same data space. Explain why applying V then U with DISJOINT auxiliary registers initialized at zero yields clean block AB. Show concretely why simply reusing a single auxiliary register can fail. Is resetting that register or applying its inverse automatically a free coherent repair?",
+      "source_refs": [
+        {
+          "anchor": "theorem matrix_mul_congr_pointwise (lines 792-797); def productCleanBlockCertificate 'cleanBlock := Matrix.mul left.cleanBlock right.cleanBlock' (lines 800-808); def productResourceCost adding auxiliaryQubits and gateCount, depth adds (lines 831-839)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a"
+        },
+        {
+          "anchor": "comment that any normalized orthogonal failure branch is additional unitarity evidence (lines 271-294)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5"
+        }
+      ],
+      "split": "train",
+      "split_group": "be-product-fresh-ancilla",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.productResourceCost",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.LCUCertificate",
+        "declaration:QuantumBlockEncoding.ConcreteSemantics.cleanBasisActionAmplitude"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.productCleanBlockCertificate",
+        "declaration:QuantumBlockEncoding.BlockEncodingClassics.matrix_mul_congr_pointwise"
+      ]
+    },
+    {
+      "assumptions": [
+        "a and b are arbitrary real sibling amplitudes; the claim concerns one binary split, not the whole recursive loader",
+        "the real Y-rotation convention is the standard orthogonal rotation used by the library backend"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "wires are little-endian; the split acts on one new highest wire",
+        "the pair norm is the Euclidean length sqrt(a^2 + b^2) and the all-zero pair is assigned angle zero"
+      ],
+      "core_id": "qcb-core-sp-001",
+      "evidence_relation": "local_source_supported",
+      "family": "signed-amplitude-angles",
+      "mathematical_target": "In the low-wire-first recursive loader for a finite real amplitude table, each binary split of a sibling pair of real amplitudes (a, b) is realised by a single uniformly-controlled real Y-rotation. The rotation angle is twice a signed polar angle: its magnitude is the inverse cosine of a divided by the pair norm sqrt(a^2 + b^2), and its sign is taken from the sign of b (with the all-zero pair assigned angle zero). Explain the role of the sign branch, and why using the bare inverse-cosine magnitude alone would fail for a general real amplitude table.",
+      "source_refs": [
+        {
+          "anchor": "lines 150-201: noncomputable def splitAngle (a b : R) : ExactAngle := if pairNorm a b = 0 then .rational 0 else .real (2 * if b < 0 then -Real.arccos (a / pairNorm a b) else Real.arccos (a / pairNorm a b)); and theorem splitAngle_firstColumn (a b : R) (v : Fin 2) : standardRyMatrix (splitAngle a b).eval v 0 * (pairNorm a b : C) = if v = 0 then (a : C) else (b : C)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle_firstColumn",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm"
+      ]
+    },
+    {
+      "assumptions": [
+        "the stage is a genuine matrix-vector action on the fresh-bit-and-bond register, followed only by basis regrouping",
+        "no claim is made that the stage's clean columns implement any particular tensor core"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "the fresh output bit is appended at the highest wire; already-emitted bits are passive",
+        "amplitude mass is the sum of star(amplitude) times amplitude over all basis labels"
+      ],
+      "core_id": "qcb-core-sp-002",
+      "evidence_relation": "local_source_supported",
+      "family": "sequential-bond-input-promise",
+      "mathematical_target": "A sequential bond-dimension construction prepares a state one output bit at a time: each stage acts on a freshly introduced bit set to zero together with the current bond register, appending the new bit at the highest wire while previously emitted bits stay passive. (i) Which input columns of a stage's local matrix can actually influence an emitted amplitude, and (ii) does introducing the fresh zero bit amount to a postselection or measurement?",
+      "source_refs": [
+        {
+          "anchor": "lines 39-68: def freshZero v := fun x => if x.2.1 = 0 then v (x.1, x.2.2) else 0; noncomputable def step U v := fun x => ((liftStage n U).mulVec (freshZero v)) (Fin.init x.1, (x.1 (Fin.last n), x.2)); theorem step_apply : step U v (x, b) = sum a, U (x (Fin.last n), b) (0, a) * v (Fin.init x, a); and lines 302-306 theorem amplitudeMass_freshZero : amplitudeMass (freshZero v) = amplitudeMass v",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+          "sha256": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "sequential-bond-input-promise+sequential-transfer-composition",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_apply",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.freshZero",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_freshZero"
+      ]
+    },
+    {
+      "assumptions": [
+        "the train has scalar left and right boundaries (both dimension one) and real cores",
+        "the sole numeric hypothesis is that the sum of squared contracted amplitudes is one"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "right-canonical means every individual core has orthonormal rows",
+        "amplitudes are read off by full contraction of the chain for each bit word"
+      ],
+      "core_id": "qcb-core-sp-003",
+      "evidence_relation": "local_source_supported",
+      "family": "canonicalization-input-promise",
+      "mathematical_target": "A finite real tensor train with scalar (dimension-one) left and right boundaries defines its amplitudes by full contraction over all cores. Suppose the only hypothesis is that the sum of squared contracted amplitudes equals one. After right-canonicalization, what is guaranteed about (a) the new initial boundary vector and (b) each individual target amplitude, and what is deliberately NOT assumed?",
+      "source_refs": [
+        {
+          "anchor": "lines 183-195: theorem exists_normalized_state (C : Chain n 1 1) (hC : (sum x : Word n, (contract C x 0 0) ^ 2) = 1) : exists l' u D, RightCanonical D and RankReduced C D and mass u = 1 and for all x, contract C x 0 0 = sum a, u a * contract D x a 0; and lines 172-178 exists_rightCanonical_normalized",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "train",
+      "split_group": "canonicalization-input-promise+canonicalization-residual-norm",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_normalized_state",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_rightCanonical_normalized"
+      ]
+    },
+    {
+      "assumptions": [
+        "the input train is normalized (chain mass one) with a scalar terminal bond",
+        "canonicalization uses orthonormal-row (right-canonical) cores"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "mass is the sum of squared entries of a real boundary vector",
+        "vecMul v R denotes the row-vector action of the residual matrix on the boundary"
+      ],
+      "core_id": "qcb-core-sp-004",
+      "evidence_relation": "local_source_supported",
+      "family": "canonicalization-residual-norm",
+      "mathematical_target": "A normalized finite real tensor train with a scalar terminal bond is right-canonicalized from the terminal end inward, absorbing each residual matrix into the preceding core. After this process, where does the total squared mass of the state reside, and what are the dimensions of the two boundary bonds?",
+      "source_refs": [
+        {
+          "anchor": "lines 159-178: theorem residual_mass (C D R hD h v) : chainMass C v = mass (Matrix.vecMul v R); and theorem exists_rightCanonical_normalized (C : Chain n l 1) (v) (hv : chainMass C v = 1) : exists l' R D, RightCanonical D and RankReduced C D and (for all x, contract C x = R * contract D x) and mass (Matrix.vecMul v R) = 1",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "train",
+      "split_group": "canonicalization-input-promise+canonicalization-residual-norm",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.chainMass_eq"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.residual_mass",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_rightCanonical_normalized"
+      ]
+    },
+    {
+      "assumptions": [
+        "f is an arbitrary real table on n+1 wires; no positivity or normalization is assumed",
+        "the marginal is defined by the sibling-pair Euclidean length as in the source"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "normSq g is the sum of squared entries; wires are little-endian with the last bit split off by snoc",
+        "pairNorm is the nonnegative Euclidean length of a pair"
+      ],
+      "core_id": "qcb-core-sp-005",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "marginal-norm-pythagorean",
+      "mathematical_target": "For a finite real amplitude table f on n+1 wires, define its low-wire marginal by taking, at each prefix word b, the Euclidean length of the sibling pair (f at b-with-last-bit-0, f at b-with-last-bit-1). Prove that the total squared Euclidean norm of the marginal equals the total squared Euclidean norm of f. Explain why this makes the recursive marginal pass norm-faithful.",
+      "source_refs": [
+        {
+          "anchor": "lines 142-222: theorem pairNorm_sq (a b : R) : pairNorm a b ^ 2 = a ^ 2 + b ^ 2; noncomputable def marginal f := fun b => pairNorm (f (Fin.snoc b 0)) (f (Fin.snoc b 1)); noncomputable def normSq f := sum b, f b ^ 2; theorem normSq_marginal (f : PrimitiveBasis (n+1) -> R) : normSq (marginal f) = normSq f",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq_marginal",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm_sq",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.marginal",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+      ]
+    },
+    {
+      "assumptions": [
+        "the total squared norm S is strictly positive",
+        "entries are real; normalization is by division by sqrt(S)"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "normSq is the sum of squared entries; sqrt is the real nonnegative square root"
+      ],
+      "core_id": "qcb-core-sp-006",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "normalization-identity",
+      "mathematical_target": "Let f be a finite real amplitude table whose total squared Euclidean norm S = sum_b f(b)^2 is strictly positive. Prove that dividing every entry by sqrt(S) yields an exactly normalized state, i.e. sum_b (f(b)/sqrt(S))^2 = 1, and identify exactly where strict positivity of S is used.",
+      "source_refs": [
+        {
+          "anchor": "lines 310-317: theorem normalized_sum_sq (f : PrimitiveBasis n -> R) (positive : 0 < normSq f) : (sum b, (f b / Real.sqrt (normSq f)) ^ 2) = 1, proved by simp_rw [div_pow]; rw [Finset.sum_div]; Real.sq_sqrt (normSq_nonneg f); div_self (ne_of_gt positive)",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+      ]
+    },
+    {
+      "assumptions": [
+        "the only hypothesis is clean-column equality of each stage with the corresponding tensor core; no global state action is assumed",
+        "the boundary is an explicit bond vector supplied to the run"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "the last emitted core multiplies on the left (same order as circuit evaluation)",
+        "transfer at length 0 is the identity matrix"
+      ],
+      "core_id": "qcb-core-sp-007",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "sequential-transfer-composition",
+      "mathematical_target": "In the sequential bond construction, a complete state after n emitted bits is produced by applying stage matrices in order, starting from an explicit bond boundary vector. Assume for each stage index t and each clean input column (fresh bit input = 0, bond input a) the stage entry equals the corresponding tensor core entry K t. Prove by induction on n that the full run amplitude at bit word x and final bond label b equals the matrix-vector product of the chronological transfer contraction of the cores with the boundary, (transfer K n x) applied to the boundary, read at b. State precisely which columns of the stages are therefore irrelevant.",
+      "source_refs": [
+        {
+          "anchor": "lines 86-110: noncomputable def transfer K | 0,_ => 1 | n+1,x => coreSlice (K n) (x (Fin.last n)) * transfer K n (Fin.init x); theorem run_eq_transfer (U K) (cleanColumns : for all t bit b a, U t (bit,b) (0,a) = K t (bit,b) a) (boundary) (n x b) : run U boundary n (x,b) = (transfer K n x).mulVec boundary b, proved by induction with step_apply, cleanColumns, ih, mulVec_mulVec",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+          "sha256": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "sequential-bond-input-promise+sequential-transfer-composition",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_eq_transfer",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.transfer",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_apply"
+      ]
+    },
+    {
+      "assumptions": [
+        "each stage is a full unitary on the fresh-bit-and-bond register",
+        "the run starts from a single bond basis label"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "amplitude mass is sum of star(amplitude) times amplitude; a basis boundary has one unit coordinate",
+        "the lifted stage is the Kronecker product of identity on passive wires with the stage"
+      ],
+      "core_id": "qcb-core-sp-008",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "coherent-success-probability",
+      "mathematical_target": "In the sequential bond construction, suppose every stage matrix is a full unitary on the fresh-bit-and-bond register and the run starts from a single bond basis label (one bond coordinate equal to one, the rest zero). Prove that the total probability (sum of squared amplitude moduli over all basis labels) of the emitted state is exactly one at every length n. Explain why this is a coherent success statement with no postselection, and what role the fresh-zero padding plays.",
+      "source_refs": [
+        {
+          "anchor": "lines 288-340: noncomputable def amplitudeMass v := sum i, star (v i) * v i; theorem amplitudeMass_step (hU : U in unitaryGroup) : amplitudeMass (step U v) = amplitudeMass v; theorem amplitudeMass_run (unitary : for all t, U t in unitaryGroup) : amplitudeMass (run U boundary n) = amplitudeMass boundary; theorem amplitudeMass_run_basisBoundary : amplitudeMass (run U (basisBoundary initial) n) = 1",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+          "sha256": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5"
+        }
+      ],
+      "split": "train",
+      "split_group": "coherent-success-probability",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_freshZero",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.liftStage_unitary"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_run_basisBoundary",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_step",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.amplitudeMass_run"
+      ]
+    },
+    {
+      "assumptions": [
+        "A is a real core with orthonormal rows A * A^T = 1",
+        "the complex embedding uses (bit, new bond) as output rows and old bond as input columns"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "conjTranspose is the complex conjugate transpose; realness means entrywise conjugation is the identity",
+        "the isometry condition is (complexCore A)^dagger (complexCore A) = 1 on the input-bond index"
+      ],
+      "core_id": "qcb-core-sp-009",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "core-circuit-isometry",
+      "mathematical_target": "A real tensor-train core carries orthonormal rows (its row-canonical condition). Show that embedding such a core into a complex matrix with the physical bit and new bond as output rows and the old bond as input columns yields a genuine circuit isometry: the conjugate-transpose times the matrix is the identity on the input-bond index. Explain why real orthonormal rows translate exactly to orthonormal complex input columns under this orientation.",
+      "source_refs": [
+        {
+          "anchor": "lines 209-226: def complexCore A := fun out a => (A a out : C); theorem complexCore_isometry (A : Core l r) (hA : A * A.transpose = 1) : (complexCore A).conjTranspose * complexCore A = 1, proved via congrFun hA, Complex.ext on real and imaginary parts of the mul_apply / conjTranspose_apply / one_apply expansion",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "train",
+      "split_group": "core-circuit-isometry+tensor-train",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.complexCore_isometry"
+      ]
+    },
+    {
+      "assumptions": [
+        "canonicalization uses the thin core factorization with Q-row count min(l, 2*m')",
+        "the chain has dependent (not padded) bond dimensions"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "l is the current left dimension, m' the already-reduced next bond; maxBond takes the max over all bonds including both boundaries",
+        "a scalar-to-scalar train is Chain 1 l 1 with an empty tail of terminal bond one"
+      ],
+      "core_id": "qcb-core-sp-010",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "canonicalization-rank-bounds",
+      "mathematical_target": "Consider the exact right-canonicalization of a finite real tensor train. Characterize the active (reduced) bond dimensions it produces: give the backward recurrence the reduced left rank of each core obeys, prove the two-sided bound on the head rank of any nonempty canonicalized train, and derive the sharp consequence that the penultimate active bond of a scalar-to-scalar train (one core, both boundaries dimension one) has dimension at most two. Also state why canonicalization never enlarges the maximal bond.",
+      "source_refs": [
+        {
+          "anchor": "lines 102-117 and 197-207: theorem RankReduced.head_bound : l' <= l and exists m' Q tail, D = cons Q tail and l' <= 2*m'; theorem RankReduced.last_bond_le_two {C : Chain 1 l 1} {D : Chain 1 l' 1} (h : RankReduced C D) : l' <= 2; def maxBond | nil r => r | cons _ C => max l (maxBond C); theorem RankReduced.maxBond_le : maxBond D <= maxBond C via max_le_max (min_le_left _ _) ih",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+          "sha256": "b8d1eb0651708ac2496be306e2d4b6f3025f7ea4d35a8c6907de02b89d1d981f"
+        }
+      ],
+      "split": "train",
+      "split_group": "bond-dimension recurrence / canonicalization boundary bounds+canonicalization-rank-bounds",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.exists_core_lq",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.maxBond"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.head_bound",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.last_bond_le_two",
+        "declaration:QuantumBlockEncoding.TensorTrainCanonical.RankReduced.maxBond_le"
+      ]
+    },
+    {
+      "assumptions": [
+        "the physical bond register is padded strictly larger than the active bond, with active dimension greater than two",
+        "the full terminal stage is required to be unitary"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "terminal core sends inputs to a single clean output bond label carrying a 2-row emitted-bit block",
+        "active columns are the occupied input bond labels; inactive columns are free completion data"
+      ],
+      "core_id": "qcb-core-sp-011",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "terminal-cleanup-unitarity-obstruction",
+      "mathematical_target": "In the sequential bond construction with a padded physical bond register larger than the active bond, a tempting simplification is to demand that the terminal cleanup stage send EVERY padded input column (not just the active ones) into the single clean output label. Show by a dimension/orthogonality argument that for an active bond dimension greater than two this demand is incompatible with the stage being unitary, and state the correct restricted condition the library uses instead.",
+      "source_refs": [
+        {
+          "anchor": "lines 201-222: comment 'Requiring this terminal action on all padded input columns would be incompatible with unitarity for bond dimension greater than two.'; theorem step_terminalCore_of_supported (support : for all p a, not active a -> v (p,a) = 0) (cleanColumns : for all bit b a, active a -> U (bit,b) (0,a) = terminalCore clean T (bit,b) a) : step U v (x,b) = if b = clean then sum a, T (x (Fin.last n)) a * v (Fin.init x, a) else 0",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+          "sha256": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5"
+        }
+      ],
+      "split": "train",
+      "split_group": "terminal-cleanup-unitarity-obstruction",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_terminal_clean"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore_of_supported",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_terminalCore"
+      ]
+    },
+    {
+      "assumptions": [
+        "ranks change inside a fixed padded register, with an explicit active-label predicate per stage",
+        "stages agree with the tensor cores only on active input columns; inactive completions are arbitrary"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "active a means the predicate holds for bond label a at that stage; inactive labels are the complement",
+        "transfer is the chronological contraction of the cores"
+      ],
+      "core_id": "qcb-core-sp-012",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "rank-change-support-gauge",
+      "mathematical_target": "In the sequential bond construction with rank changes inside a fixed padded register, a reader claims: 'If the completion columns of the stages (the inputs for inactive, zero-padded bond labels) are chosen differently, the emitted state could change, so the construction is ambiguous.' Refute this using the support-propagation argument, and state precisely the minimal hypotheses under which the emitted state is uniquely the tensor contraction regardless of the inactive completion.",
+      "source_refs": [
+        {
+          "anchor": "lines 125-174: theorem transfer_boundary_supported (initialSupport, coreSupport) (inactive : not active n b) : (transfer K n x).mulVec boundary b = 0; theorem run_eq_transfer_of_supported (initialSupport, coreSupport, cleanColumns : for all t bit b a, active t a -> U t (bit,b) (0,a) = K t (bit,b) a) : run U boundary n (x,b) = (transfer K n x).mulVec boundary b; theorem run_supported : run U boundary n (x,b) = 0 when inactive",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+          "sha256": "ad4542b108d44f196f2a02f78e59b58f43d45b1e890709cf4c22e1222805d5c5"
+        }
+      ],
+      "split": "train",
+      "split_group": "rank-change-support-gauge",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.step_apply"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_eq_transfer_of_supported",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.run_supported",
+        "declaration:QuantumBlockEncoding.SequentialBondPreparation.transfer_boundary_supported"
+      ]
+    },
+    {
+      "assumptions": [
+        "the loader uses the zero-pair angle-zero convention and normalizes by the total norm's square root",
+        "entries are real and may be zero or negative; the question concerns which zeros are tolerable"
+      ],
+      "collaborator_acknowledged": false,
+      "conventions": [
+        "normSq is the total squared norm; a zero marginal corresponds to a vanishing subtree",
+        "the per-entry claim targets f(b)/sqrt(normSq f)"
+      ],
+      "core_id": "qcb-core-sp-013",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "family": "sparse-zero-subtree-boundary",
+      "mathematical_target": "The recursive real-amplitude loader assigns the all-zero sibling pair the angle zero, so a vanishing subtree contributes no rotation. (i) Explain operationally what a zero sibling pair means for the prepared state and why angle zero is the right choice there. (ii) The sharp first-column theorem that recovers f(b)/sqrt(normSq f) for every entry is stated with a STRICT positivity hypothesis on the entries, yet the construction clearly tolerates many exact zeros internally. Reconcile these: identify where exact interior zeros are harmless and where a zero would actually break the stated per-entry identity, and give the minimal honest hypothesis for the whole-vector claim.",
+      "source_refs": [
+        {
+          "anchor": "lines 150-156 splitAngle zero-pair branch (.rational 0); lines 275-308 theorem prepareCircuit_firstColumn (f) (nonneg : for all b, 0 <= f b) (positive : 0 < normSq f) (b) : evalPrimitiveCircuit (prepareCircuit n f) b (fun _ => 0) = ((f b / Real.sqrt (normSq f) : R) : C); lines 310-317 normalized_sum_sq requiring 0 < normSq f",
+          "license": "MIT (repository LICENSE)",
+          "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+          "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+        }
+      ],
+      "split": "test_public",
+      "split_group": "marginal-norm-pythagorean+normalization-identity+signed-amplitude-angles+sparse-zero-subtree-boundary+real-amplitude-preparation",
+      "status": "candidate formal target; not a proof or verification receipt",
+      "supporting_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.pairNorm",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.marginal_nonneg"
+      ],
+      "target_nodes": [
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+        "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normalized_sum_sq"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-319",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-319-concentration-prefactor-repair.json",
+  "repair_record_digest": "2fcc7f4bda646993c9b2da0b02c61c075fe06acbea9d840480a5643486142182",
+  "repair_record_sha256_lf": "5cae4df09ac6e4321e6d125eb3953b3473b13a774701aed0a068a43b275dc019",
+  "original_item_digest": "f1c75541f386d843fd18d4f5da821e8f4752a5f188cfeef498618fbb468b386f",
+  "verdict": "accept",
+  "verdict_scope": "Complete exact answer/rubric/four-step exposition accepted under the unchanged question, not predecessor-approval transfer or admission.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "71f662a536110e1d7e62774362e563fe429fba9429940a16fc3410273fec0825",
+    "projected_contract_hash": "71f662a536110e1d7e62774362e563fe429fba9429940a16fc3410273fec0825",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "field_equality": {
+      "question": true,
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "contract_field_overrides_in_repair": [],
+    "assessment": "Actual whole historical prepared item read. A private deep-copy answer/exposition projection leaves every nine-field contract value exactly equal, including question, fixed-d assumption, conventions, family, split, graph and source scope. Candidate binds exact original key/digest, and check_exposition/check_source_bindings passed read-only. Four original semantic steps retained.",
+    "retained_family": "qit-spectrum-concentration",
+    "retained_split": "test_public",
+    "retained_graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a"
+  },
+  "original_defect": "The true neighborhood-concentration target and intended polynomial-qualified rate were obscured by step3's bare-exponential wording, which can falsely assert w<=exp(-nD). The corrected finite-n argument must retain both prefactors and the neighborhood count; it must not require full rank or exact equality with the spectrum.",
+  "substantive_reconstruction": {
+    "orthogonal_blocks": "Use the orthogonal central Schur-Weyl isotypical projections P_lambda, not unnormalized Young symmetrizers. Positivity of rho tensor n makes each trace nonnegative, and the resolution of identity gives total1. The actual block is I_(V_lambda) tensor omega_lambda(rho), giving w=f_lambda tr omega_lambda(rho). Diagonalizing rho by a unitary does not change these central block weights.",
+    "character_bound": "A semistandard tableau of shape lambda has no repeated label in any column. For any k labels, a column of height h holds at most min(k,h) occurrences; summing columns gives lambda1+...+lambdak. Thus sorted content nu^down is majorized by lambda. Rearrangement against decreasing log(s) and summation by parts (prefix differences nonnegative, total difference0) yield s^nu<=s^lambda when s>0. The row-constant tableau contributes s^lambda. The Schur character is consequently between s^lambda and m_lambda*s^lambda. This requires only the valid necessary content restriction and weight basis, not a false fixed-word survival iff.",
+    "padded_hook_lower_bound": "Put beta_i=lambda_i+d-i and r=d(d-1)/2. The row-i hook product equals beta_i! divided by product_{j>i}(beta_i-beta_j): row hooks occupy1,...,beta_i with exactly those beta_i-beta_j omitted. Multiplying gives f=n!*product_{i<j}(lambda_i-lambda_j+j-i)/product_i(lambda_i+d-i)!. Each numerator integer is>=1. After dividing out lambda_i!, the denominator has sum_i(d-i)=r extra factors, each<=n+d. Therefore f>=C_lambda/(n+d)^r. Also f<=C_lambda since standard tableaux inject into assignments of the n numbers to increasing rows. Padded zero rows cause no division by zero or factorial defect.",
+    "weyl_upper_bound": "Weyl gives m_lambda=product_{i<j}(lambda_i-lambda_j+j-i)/(j-i). Each denominator is a positive integer and each ratio<=n+d (indeed<=n+1), so m_lambda<=(n+d)^r. The f and m factors are not interchanged.",
+    "multinomial_mode_proof": "For p_i=lambda_i/n, the type-lambda probability is T_lambda=C_lambda product_i p_i^lambda_i=C_lambda exp(-nH(p)). It is<=1. For any supported type mu of total n, T_mu/T_lambda is product_i lambda_i^(mu_i-lambda_i)*lambda_i!/mu_i!: n factors cancel because sums agree. If mu_i=lambda_i+h, its factor is product_{t=1}^h lambda_i/(lambda_i+t)<=1; if mu_i=lambda_i-h, it is product_{t=0}^{h-1}(lambda_i-t)/lambda_i<=1. Coordinates with lambda_i=0 have mu_i=0 in the supported case and factor1; any mu with positive mass there has probability0. Thus lambda is a mode. There are at most(n+1)^d types of total probability1, so T_lambda>=(n+1)^(-d). This rigorously gives the candidate's upper and lower entropy estimates, not just an asymptotic Stirling assertion.",
+    "finite_n_prefactors": "Combining f>=C/(n+d)^r, character>=s^lambda and C>=(n+1)^(-d)exp(nH), then n+1<=n+d, gives w>=(n+d)^(-r-d)exp(-nD). The upper bounds give w<=(n+d)^r exp(-nD). Here r+d=d(d+1)/2, exactly the exponent in step3. For rho=I2/2,n=2,lambda=(2,0), w=3/4 while bare exp(-nD)=1/4, so deleting the factor really is invalid.",
+    "zero_support": "If rank(s)=q and lambda has more than q nonzero rows, its first column cannot be strictly filled using only q positive labels; all character monomials vanish, w=0. Since ordered s has zeros beyond q, such p has mass outside support and D=+infinity, so exp(-nD)=0 and both inequalities remain valid. For lambda with at most q rows, the row-constant monomial is positive and the same proof applies on the q-dimensional support, retaining the larger d-dependent bounds. No full-rank premise is inserted.",
+    "union_and_rate_quantifiers": "On the closed probability face supported on the q positive eigenvalues, D is continuous even at p_i=0 (x log x extends continuously), nonnegative, and zero only at s. The closed epsilon-complement is compact with strictly positive minimum delta unless empty. Unsupported diagrams already have zero weight. Summing at most(n+1)^d upper bounds gives outside mass<=(n+1)^d(n+d)^r exp(-n delta)->0 for fixed d. This supplies the factor missing from the extracted source Eq9.35. For supported nonzero weights the two-sided bounds give D-r log(n+d)/n <= -log(w)/n <= D+(r+d)log(n+d)/n. Hence along supported p_n->p the rate tends to D(p||s). This does not apply that finite rate to sequences of unsupported outcomes approaching the support.",
+    "boundaries_and_scope": "n>=1 is required only for lambda/n; the asymptotic question does not ask n=0. A density state forces d>=1. d=1 has one certain supported outcome; rank1 in any d has only lambda=(n) supported. No constant lower atom probability near s, eventual exact matching diagram, efficient Schur-transform implementation or finite-bit bound is asserted."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept in full, including mode proof, padded-hook constants, zero-spectrum handling and supported-sequence rate qualification. Neighborhood and exact-atom claims are separated.",
+    "rubric": "All r1-r4 are sound: orthogonal block probabilities; character/dimension factorization; explicit polynomial and support conventions; counted total-neighborhood union bound with fixed d. No false one-coefficient exponential or full-rank assumption remains.",
+    "exposition": "All four claims and core summary read. Step3 exactly retains r and r+d prefactors. Necessary content majorization is not inflated into sufficiency. Original support nodes/count are retained.",
+    "necessity_minimality": "An unchanged-question answer/exposition repair suffices because the original closeness/rate target is true. The old uncertain finding stays historical, not silently converted into candidate acceptance."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete Leditzky metadata entry219-227 inspected: URL, printed10 April2026/79-page edition and recorded historical pin. LF binding is metadata only; actual primary mathematics and fresh binary access are separated below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "CONTRACT_FIELDS/check_exposition12-27; question-successor old/new contract projection30-123; answer-successor projection153-207 read in the continuous review context. Actual fields used in private binding checks, no admission invoked."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "anchor": "core_contract19-20 read and used to extract exact nine-field predecessor contracts."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "recorded_edition": "10 April2026,79 pages; FT25 course directory",
+      "recorded_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "retrieved_byte_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "byte_count": 554175,
+      "pdf_page_count": 79,
+      "hash_match": true,
+      "retrieval": "This reviewer freshly retrieved the primary PDF through an approved read-only HTTPS memory fetch and independently computed raw binary SHA256; bundled pypdf extracted complete operative pages. No PDF/intermediate page saved or redistributed. Earlier author/reviewer byte-access limits remain their own historical provenance, not silently relabeled.",
+      "last_modified_header": "Fri, 10 Apr 2026 12:15:47 GMT",
+      "response_date_header": "Thu, 22 Oct 2026 20:32:29 GMT",
+      "zero_based_pdf_pages_read": [
+        2,
+        44,
+        45,
+        48,
+        49,
+        50,
+        51,
+        56,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "operative_regions": "Printed45-46 tableau definitions and Prop5.9/5.10 hook/Weyl statements; printed49 semistandard weight-basis/necessary content context; printed50-51 Eq5.31-5.36; complete printed72-75 Lemma9.3/Prop9.4 proof9.7-9.32 and9.33-9.37; printed76 Prop9.5/9.38-9.41 context.",
+      "visual_inspection": {
+        "performed": false,
+        "limit": "No inspected pixels for these operative pages. A web screenshot request for printed57 failed. Exact matching-byte text was read; no typography/whole-book rendering claim."
+      },
+      "local_lean_closure": "None: primary-source NL only; conceptual graph nodes do not establish local Lean proofs.",
+      "source_gap_disposition": "The primary states the hook/Weyl and Chapter5 entropy/two-sided bounds, with external background deferred; this review does not pretend those are fully proved there. The candidate's padded-hook rearrangement, elementary multinomial mode proof and support/union argument were independently checked to close the needed prefactor reasoning. No external Harrow thesis proof was retrieved or claimed."
+    }
+  ],
+  "provenance": {
+    "observed_head": "be93e03c1524fe1d7ea2e02796789d65fae90951",
+    "reviewed_at_private_path": "_review_tmp/plan-319-concentration-prefactor-repair.json",
+    "transport_note": "repair_record uses intended canonical destination; actual reviewed bytes were private at reviewed_at_private_path. No transport or admission performed.",
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-312-320-review.json",
+      "reviewed_at_private_path": "_review_tmp/representation-qit-312-320-review.json",
+      "digest": "455d0123260c0784c5addf22bb8b2dc9a348c2f52f7aaa8634c00522cda868c9",
+      "sha256_lf": "0360127cb02a68a8a41b06113f888984c11baa38e934cdcee6350e5602a2a92e",
+      "reviewer": "/root/qcb_boundary_repair_review",
+      "exposure": "Actual319/320 findings, report scope/provenance and relevant source limitations read. This prior report is not by this reviewer; for320 it is by the candidate author and cannot self-approve the candidate. No assertion of independently checking every other finding/comparator in that report."
+    },
+    "instructions": "Substantive-worker and PDF skills used. Mandatory AGENTS/HARNESS/publication/digestion/memory/shared-contract instructions were read in preceding objectives of this continuous context; skill text refreshed. Exact-contract mathematical evidence remains distinct from policy/build gates.",
+    "hash_method": "qcb_core.digest(entire actual prepared original from current release.checked()[2] and entire parsed candidate including metadata); qcb_integrity.text_sha for LF-normalized whole files. Candidate and old/new or unchanged contract digests recomputed programmatically.",
+    "independence": "Actual reviewer /root/qcb_formal_view_audit, distinct from original author tensor-symmetry-author-b3 and candidate author /root. Authored neither. Prior Leditzky source exposure exists; full source/candidate/parent rationale and inherited metadata visible. Not blind or a new identity; no previous independent original319/320 verdict by this task claimed.",
+    "new_kernel_execution": false,
+    "native_formal_admission": false,
+    "source_blind_review": false,
+    "human_or_expert_approval": false,
+    "model_evaluation": false,
+    "additional_agents": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this private *-review.json output authored. Candidates, frozen originals, earlier reports, source-binding modules, production Lean, policy and PR104 unchanged; no commit/push.",
+    "limits": "Independent bounded mathematical reader/source review, not global dedup, source-publication seal, new Lean closure, circuit/oracle construction, implemented measurement, finite-bit cost or novelty approval."
+  }
+}

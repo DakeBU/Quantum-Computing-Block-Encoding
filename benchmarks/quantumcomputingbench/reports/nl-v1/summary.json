@@ -1,0 +1,34 @@
+{
+  "candidate_cores": 50,
+  "candidate_records": 50,
+  "counts_by_topic": {
+    "block_encoding": 13,
+    "linear_algebra": 12,
+    "planned_quantum_information": 7,
+    "planned_scientific_computing": 5,
+    "state_preparation": 13
+  },
+  "duplicate_or_existing_view_records": 7,
+  "goal_complete": false,
+  "independent_new_distinct_core_verdicts": 42,
+  "local_lean_verification_performed": false,
+  "reviewed_by_evidence_relation": {
+    "local_source_supported": 18,
+    "nl_bridge_from_inspected_source": 15,
+    "primary_source_nl_only": 9
+  },
+  "reviewed_by_semantic_steps": {
+    "2": 8,
+    "3": 31,
+    "4": 3
+  },
+  "reviewed_by_topic": {
+    "block_encoding": 10,
+    "linear_algebra": 12,
+    "planned_quantum_information": 7,
+    "planned_scientific_computing": 2,
+    "state_preparation": 11
+  },
+  "reviewed_cores": 42,
+  "version": "nl-v1"
+}

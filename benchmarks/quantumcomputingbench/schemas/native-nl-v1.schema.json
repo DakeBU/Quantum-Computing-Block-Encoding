@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Native mathematical NL core view v1",
+  "type": "object",
+  "required": ["core_id", "mathematical_core_id", "native_nl", "evidence_relation", "formal_evidence", "views", "reviewed_semantic_step_count", "task_kind", "question", "reference_answer", "rubric", "assumptions", "conventions", "target_nodes", "supporting_nodes", "semantic_steps", "source_refs", "primary_sources", "author", "authored_hash", "graph_version", "task_hash", "context_hash", "split_group", "split", "lifecycle", "reviews", "validation", "unresolved_issues"],
+  "properties": {
+    "core_id": {"type": "string", "pattern": "^qcb-core-(la|sp|be|plan)-[0-9]{3}$"},
+    "mathematical_core_id": {"type": "string"},
+    "task_kind": {"enum": ["concept", "proof", "counterexample", "boundary"]},
+    "evidence_relation": {"enum": ["local_source_supported", "nl_bridge_from_inspected_source", "primary_source_nl_only"]},
+    "formal": {"type": "null"},
+    "formal_context": {"type": "null"},
+    "native_nl": {
+      "type": "object",
+      "required": ["core_summary", "evidence_relation", "formal_counterpart", "author_identity", "new_problem_core", "existing_core_aliases"],
+      "properties": {
+        "core_summary": {"type": "string", "minLength": 15},
+        "new_problem_core": {"type": "boolean"},
+        "existing_core_aliases": {"type": "array", "items": {"type": "string"}},
+        "formal_counterpart": {"enum": ["existing_source_not_freshly_verified", "none"]}
+      }
+    },
+    "formal_evidence": {
+      "type": "object",
+      "required": ["local_verification_performed", "counterpart", "inherited_evidence"],
+      "properties": {"local_verification_performed": {"const": false}}
+    },
+    "views": {"const": ["natural_language"]},
+    "reviewed_semantic_step_count": {"type": ["integer", "null"], "minimum": 0},
+    "split": {"enum": ["train", "dev", "test_public"]},
+    "lifecycle": {"enum": ["candidate", "validated", "released"]},
+    "question": {"type": "string", "minLength": 35},
+    "reference_answer": {"type": "string", "minLength": 35},
+    "source_refs": {"type": "array", "minItems": 1},
+    "primary_sources": {"type": "array"},
+    "rubric": {"type": "array", "minItems": 1},
+    "semantic_steps": {"type": "array", "minItems": 1}
+  }
+}

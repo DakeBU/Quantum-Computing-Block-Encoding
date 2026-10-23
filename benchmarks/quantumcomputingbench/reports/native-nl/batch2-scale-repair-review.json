@@ -1,0 +1,42 @@
+{
+  "reviewer": "scientific-algorithms-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "scope": "scale-repair re-review of the plan-210 diagonal-one-sparse boundary correction",
+  "items": [
+    {
+      "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2",
+      "authored_sha256": "5314b67ef5c32cc8db81b5fe14ae6e308be88e671a781d7ed8d4778996d9e309",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "repair_admission": true,
+      "new_problem_core": false,
+      "supersedes": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+      "core_aliases": [
+        "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity"
+      ],
+      "no_added_count": true,
+      "notes": "Same-core scale/boundary repair of plan-210. MATH SOUND: (1) Core (1,1)-block-encoding identity <0|<i|O_A|0>|j>=A_jj delta_ij=A_ii delta_ij unchanged and verified (numerically confirmed for A=diag(0.5,0.3) and for A=0, both hold); U_A in BE_{1,1}(A) with this construction's alpha=1; no O_c needed because c(j)=j for diagonal A - all correct and faithful to Example 9.17 / Eq.(9.72)-(9.73). (2) Optimality statement correctly bounded: floor alpha>=||A||=max_i|A_ii| (from top-left block = A/alpha having operator norm <=1); alpha=1 saturates iff ||A||=1; for 0<||A||<1 a smaller alpha=||A|| is achievable via encoding A/||A|| (max entry modulus 1) - numerically confirmed (r=0.5 -> (A/r)_max=1.0, alpha=r attained meets floor, optimal for nonzero A). (3) RESIDUAL ZERO-MATRIX OVERCLAIM NOW RESOLVED: the earlier defect (unqualified 'smaller alpha=||A|| achievable via A/||A||' failing at A=0) is fixed in all four surfaces - reference_answer gates the A/r construction on '0 < max_i|A_ii|=r<1 strictly' and adds the explicit A=0 clause ('every strictly positive scale is feasible (a zero clean block), but scale 0 is not an admissible positive normalization; the infimum 0 is not an attained positive minimum, and division by the zero norm is never used'); rubric r4 reads 'a smaller alpha=||A|| when ||A||>0 is achievable'; semantic_steps[4] reads 'for 0<||A||<1 a smaller alpha=||A|| for nonzero A is achievable'; assumptions adds 'Positive subnormalization scales only; the scaling construction A/r is used only for r=||A||>0, with A=0 handled separately'; native_nl core_summary reads 'for nonzero A the sharp existence scale is ||A||, whereas A=0 admits all positive scales with unattained infimum 0'. No remaining division-by-zero or non-positive-alpha claim; the A=0 corner is now mathematically correct (A/alpha=0 for any alpha>0, inf 0 unattained since alpha must be >0). Repair accepted. existing_view / same core as the original plan-210 (supersedes it; new_problem_core false; no added distinct count).",
+      "checked_sources": [
+        "Example 9.17",
+        "Eq.(9.72)-(9.73)",
+        "U_A in BE_{1,1}(A)",
+        "alpha>=||A||=max_i|A_ii| floor",
+        "A/||A|| scaling gated on 0<||A||<1",
+        "A=0 degenerate case (all positive alpha feasible, inf 0 unattained)",
+        "primary PDF sha256 56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599 (binary verified authentic)",
+        "PDF p.155"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ],
+  "verdict_summary": {
+    "total": 1,
+    "accept": 1,
+    "pending": 0,
+    "reject": 0,
+    "repair_admission": true,
+    "new_problem_core": false
+  },
+  "cross_ref": "This repair supersedes the plan-210 item carried as PENDING in reports/native-nl/batch2-scientific-final-review.json. With this scale repair accepted, the batch2 scientific set effectively stands at 20 cores all resolved (19 original accepts + plan-210 repaired to accept via existing_view); plan-210 is NOT a new distinct core (new_problem_core=false, supersedes original, no added count).",
+  "note": "Repair re-review only (plan-210 scale/zero-matrix boundary). The sibling repair items in batch2_boundary_repairs.json (qcb-core-sp-101-corrected-v2, qcb-core-la-205-corrected-v2) are outside this scientific-algorithms scale-repair scope and are not adjudicated here."
+}

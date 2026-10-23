@@ -373,8 +373,8 @@ def main() -> int:
         'class="site-sidebar"',
         "QuantumComputinglib",
         "ASPBE",
-        "DakeBU/Quantum-Computing-Block-Encoding",
-        "Dake Bu, Xiajie Huang, Nana Liu, Atsushi Nitanda, Hau-san Wong, Qingfu Zhang",
+        "DakeBU/QuantumComputinglib-QuantumComputingBench",
+        "Dake Bu, Xiajie Huang, Outongyi Lv, Nana Liu, Atsushi Nitanda, Hau-san Wong, Qingfu Zhang",
         "<span>01</span>",
     ):
         if marker not in combined:

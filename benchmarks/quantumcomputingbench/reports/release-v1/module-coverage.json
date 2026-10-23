@@ -1,0 +1,1337 @@
+[
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.AdjacentGivens"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-23c794a7e551bc6a39e9",
+      "qcb-8ae60cfe4db36c855ba3"
+    ],
+    "source": "QuantumBlockEncoding/AdjacentGivens.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Automation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Automation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.AutomationTrace"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/AutomationTrace.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.BandedSparseAccess"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-7dc0f2662452059027d9"
+    ],
+    "source": "QuantumBlockEncoding/BandedSparseAccess.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.BandedSparseAccessPrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/BandedSparseAccessPrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.BlockEncoding"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-293f7fd98fe1ef1fd6e4"
+    ],
+    "source": "QuantumBlockEncoding/BlockEncoding.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.BlockEncodingClassics"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Circuit"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-293f7fd98fe1ef1fd6e4",
+      "qcb-de51d4def00da5b1f23a"
+    ],
+    "source": "QuantumBlockEncoding/Circuit.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.CircuitSemantics"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/CircuitSemantics.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ColdStartTransferE1"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ColdStartTransferE1.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConcreteSemantics"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConcreteSemantics.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConstructiveHermitePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConstructiveHermitePreparation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConstructiveIsometryCompletion"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConstructiveIsometryCompletion.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConstructiveIsometryLocal"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConstructiveIsometryLocal.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConstructiveTensorTrain"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConstructiveTensorTrain.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConstructiveTensorTrainCompiler"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConstructiveTensorTrainCompiler.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ConstructiveThinLQ"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ConstructiveThinLQ.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Core"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-cfb087e0e92ca5fec80f"
+    ],
+    "source": "QuantumBlockEncoding/Core.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.CubicAmplitudePrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/CubicAmplitudePrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.CubicStatePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-a5eb27c37ee4d42a4495"
+    ],
+    "source": "QuantumBlockEncoding/CubicStatePreparation.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Examples.RobinHeat"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Examples/RobinHeat.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.GHL2025"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/GHL2025.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.GHLHamiltonian"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-4220360abcb7715d6d68"
+    ],
+    "source": "QuantumBlockEncoding/GHLHamiltonian.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.GrayBasis"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/GrayBasis.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.GrayGivensCompiler"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteBernstein"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteBernstein.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteBinaryCutoff"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteBinaryCutoff.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteBoundaryInjection"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteBoundaryInjection.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteCutRank"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteCutRank.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteExplicitBond"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteExplicitBond.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteFiniteChain"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteFiniteChain.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteFiniteNorm"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteFiniteNorm.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteIntervalMass"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteIntervalMass.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermitePolynomial"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermitePolynomial.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermitePolynomialPreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermitePolynomialPreparation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermitePolynomialResources"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-1646baf547ca12996075"
+    ],
+    "source": "QuantumBlockEncoding/HermitePolynomialResources.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteSampleStructure"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteSampleStructure.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteSmoothness"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteSmoothness.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteStatePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteStatePreparation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.HermiteTransferCores"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/HermiteTransferCores.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Literature"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Literature.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.MainCase"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/MainCase.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.MatrixProductChain"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/MatrixProductChain.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ModularAdder3"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ModularAdder3.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.OpenProblems"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/OpenProblems.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.OpenProblemsAudit"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/OpenProblemsAudit.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.OptimalControl"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/OptimalControl.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Papers.GHL2025"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Papers/GHL2025.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveBasisLE"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PrimitiveBasisLE.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveCircuit"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-e114c4c01df85cd92020"
+    ],
+    "source": "QuantumBlockEncoding/PrimitiveCircuit.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveCircuitPerturbation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-72aba766ed27879ef754"
+    ],
+    "source": "QuantumBlockEncoding/PrimitiveCircuitPerturbation.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveDepthBound"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PrimitiveDepthBound.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveMacros"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PrimitiveMacros.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveRefinement"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PrimitiveRefinement.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveRyPerturbation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PrimitiveRyPerturbation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveSemantics"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-c58d4afce67cf58f3719",
+      "qcb-82511408ba7dfd170627",
+      "qcb-e114c4c01df85cd92020",
+      "qcb-a581356321717e5379c9"
+    ],
+    "source": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PrimitiveWireRename"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PrimitiveWireRename.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.PromiseGateOptimization"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/PromiseGateOptimization.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.RealAmplitudePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-677cd60e7ddaedbf219d",
+      "qcb-29743f43dafb3062f4b6",
+      "qcb-30808845e75f76c52e70"
+    ],
+    "source": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.RealIsometryCompletion"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/RealIsometryCompletion.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.RectangularGivens"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/RectangularGivens.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Resources"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-de51d4def00da5b1f23a"
+    ],
+    "source": "QuantumBlockEncoding/Resources.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ReversibleClassical"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/ReversibleClassical.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.ComplexLCU"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.ComplexLCUProjection"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.EvolvedCandidates"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/EvolvedCandidates.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Figure4Loaders"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Figure4Loaders.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Figure4MiddlePrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Figure4MiddlePrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Figure4PreparePrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Figure4PreparePrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Figure4Primitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Figure4Primitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Figure4SourceData"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Figure4SourceData.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Figure4T3"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Figure4T3.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.FixedN3Data"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/FixedN3Data.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Hadamard8BlockEncoding"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Hadamard8BlockEncoding.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.Hadamard8Verified"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/Hadamard8Verified.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.PaperSevenAmplitudePrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/PaperSevenAmplitudePrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.PaperSevenLogicalUnitary"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/PaperSevenLogicalUnitary.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.PaperSevenPrepare"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/PaperSevenPrepare.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.PaperSevenPreparePrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/PaperSevenPreparePrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.PaperSevenPrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/PaperSevenPrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.PaperSevenT3"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/PaperSevenT3.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.ResourceComparison"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/ResourceComparison.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SixSlotOptimal"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SixSlotOptimal.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SourceBaseline"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SourceBaseline.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SourceSevenSparseData"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SourceSevenSparseData.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SymmetryFourSlot"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SymmetryFourSlot.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SymmetryFourSlotBlockEncoding"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotBlockEncoding.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SymmetryFourSlotLogicalUnitary"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotLogicalUnitary.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SymmetryFourSlotPrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SymmetryFourSlotPrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SymmetryXorFourSlotLogicalUnitary"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SymmetryXorFourSlotLogicalUnitary.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SymmetryXorFourSlotPrimitive"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SymmetryXorFourSlotPrimitive.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.SystemConjugation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/SystemConjugation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.T3ResourceComparison"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/T3ResourceComparison.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.Robin.WeightedPermutation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/Robin/WeightedPermutation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.RobinEvolution"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/RobinEvolution.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.RobinMatrix"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-2bc482874bfd082d4685"
+    ],
+    "source": "QuantumBlockEncoding/RobinMatrix.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.SelectedRyPlane"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/SelectedRyPlane.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.SelectedRyTrace"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/SelectedRyTrace.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.SemanticFidelityEvidence"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/SemanticFidelityEvidence.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.SequentialBondPreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/SequentialBondPreparation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.SequentialPrimitiveAssembly"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/SequentialPrimitiveAssembly.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-bbebdace0731bbab42a6"
+    ],
+    "source": "QuantumBlockEncoding/StatePreparation.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationBellRoute"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-c0af36ec57e5a7e131b9"
+    ],
+    "source": "QuantumBlockEncoding/StatePreparationBellRoute.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationBenchmarks"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StatePreparationBenchmarks.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationBenchmarksCoreFixed"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StatePreparationBenchmarksCoreFixed.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationPaperEntryCertificates"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StatePreparationPaperEntryCertificates.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationPaperRoutes"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StatePreparationPaperRoutes.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationPaperRoutesCompact"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StatePreparationPaperRoutesCompact.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StatePreparationPrimitiveRoutes"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StatePreparationPrimitiveRoutes.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredBernstein"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredBernstein.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredBinaryCoordinates"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredBinaryCoordinates.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredDyadicSpans"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredDyadicSpans.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredGivens"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredGivens.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteBoundaries"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteBoundaries.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteChildGeometry"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteChildGeometry.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteCoefficients"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteCoefficients.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteGeometry"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteGeometry.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteKernelTable"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteKernelTable.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteRawCost"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-2c2d3f98100884e506ba"
+    ],
+    "source": "QuantumBlockEncoding/StoredHermiteRawCost.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteRawSource"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteRawSource.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteSharedTables"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteSharedTables.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteSourceCache"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteSourceCache.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteStageFields"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteStageFields.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredHermiteStageInput"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredHermiteStageInput.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredIsometryCompletion"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredIsometryCompletion.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredMatrixProductChain"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredMatrixProductChain.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredRectangularGivens"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredSelectedRyTrace"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredSelectedRyTrace.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredTensorTrain"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredTensorTrain.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredTensorTrainNorm"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredTensorTrainNorm.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.StoredThinLQ"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/StoredThinLQ.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TeachingRouteClosures"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TeachingRouteClosures.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TechnicalLemmas"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TechnicalLemmas.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TensorTrainCanonical"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-1b801cb763664a8409ef",
+      "qcb-d6f4c2bffbc82a2e84cc",
+      "qcb-1c82db36c7ad8f4ce139"
+    ],
+    "source": "QuantumBlockEncoding/TensorTrainCanonical.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TensorTrainLocalCompiler"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TensorTrainLocalCompiler.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TensorTrainNormEnvironment"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TensorTrainNormEnvironment.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TensorTrainPrimitivePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TensorTrainPrimitivePreparation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TensorTrainSchedule"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TensorTrainSchedule.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TensorTrainWord"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TensorTrainWord.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.TextbookStatePreparation"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/TextbookStatePreparation.lean",
+    "status": "requires_substantive_authoring"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.ThinLQ"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [
+      "qcb-dcaf3c7ed84ca29e03d6",
+      "qcb-4b1cbb58b753dfbbb35a"
+    ],
+    "source": "QuantumBlockEncoding/ThinLQ.lean",
+    "status": "meaningful_qa_available"
+  },
+  {
+    "module_ids": [
+      "module:QuantumBlockEncoding.UniformlyControlledRy"
+    ],
+    "next_action": "Review additional mathematical interfaces and edge cases; do not generate name recall.",
+    "released_item_ids": [],
+    "source": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+    "status": "requires_substantive_authoring"
+  }
+]

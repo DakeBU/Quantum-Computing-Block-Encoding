@@ -1,0 +1,145 @@
+{
+  "schema_version": "qcb.answer_successor_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-204",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-204-complex-conjugation-repair.json",
+  "repair_record_digest": "bf3c01e5a75f04338bc73b1803fe7dbd7447f815747aee41380175ead74b16fb",
+  "repair_record_sha256_lf": "974405d439d4252b5220ae716bdfb31eb96ee03b838c4a095ae18f870a769e73",
+  "original_item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact candidate: question-contract fitness, answer, rubric and exposition. Private independent mathematical revalidation only; no automatic admission, formal transfer, kernel, human/expert or novelty certification.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "b1569085f93b8ecb592f938cc36e92f9283b3fe8ac30012a7073869eb995671f",
+    "reasoning": "The nine original fields stay exactly fixed, including 0<|c|<1, the two-dimensional span and the specified normalized complements. The question already uses complex c and conjugation; the fault is in the prior proof, not its target. No real-phase restriction or added premise is allowed. All five ordered support-node lists, family/split and source scope are preserved."
+  },
+  "preserved_scope": {
+    "family": "qsc-state-discrimination",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "target_nodes": [
+      "concept:operator-theory",
+      "concept:probability",
+      "concept:block-encoding"
+    ],
+    "supporting_nodes": [
+      "concept:matrix-analysis"
+    ],
+    "source_refs": [
+      {
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only",
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+      }
+    ],
+    "semantic_step_count": 5,
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:matrix-analysis"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ]
+  },
+  "substantive_reconstruction": {
+    "complex_complements": "Put r=|c|, δ=1−r², u=(ψ−conj(c)φ)/sqrtδ and v=(φ−cψ)/sqrtδ. Direct inner-product expansion gives norms one, φ†u=0, ψ†v=0, ψ†u=φ†v=sqrtδ, and u†v=−c. In particular 1−conj(c)c is δ, not 1−c². These computations are valid for genuinely complex overlaps and use no rephasing assumption.",
+    "two_outcome_obstruction": "For a positive effect E, zero expectation on a vector implies annihilation, by its positive square root. Hence an unambiguous Eψ annihilates φ and, on the stipulated two-dimensional span, equals a uu† with a≥0; similarly Eφ=b vv†. Completeness evaluated on ψ and φ forces aδ=bδ=1. Therefore tr(Eψ+Eφ)=2/δ>2, contradicting the trace of I. Equivalently self-adjoint Eψ with Eψψ=ψ and Eψφ=0 would force c=0. This rules out every valid conclusive-only two-effect measurement, not merely one guessed pair.",
+    "three_effect_validity": "For the supplied weights 1/(1+r), form F=[u v]. Its Gram matrix F†F has eigenvalues 1±r, and F is invertible because r<1. Thus S=(uu†+vv†)/(1+r) has eigenvalues 1 and (1−r)/(1+r), so it is a positive contraction. P?=I−S is positive with eigenvalues 0 and 2r/(1+r); all three effects sum to I. Wrong-label expectations vanish, correct-label probability is δ/(1+r)=1−r for either input, and inconclusive probability is r. At r=0 a two-outcome orthogonal measurement is possible; r=1 is excluded and the given complement formula is undefined."
+  },
+  "answer_rubric_and_exposition_assessment": "All four rubric criteria test the actual positivity-to-support argument, conjugate-correct forced weights, universal two-outcome contradiction and full three-effect positivity/completeness verification. The exposition's five steps track these same obligations, with the final graph node not being mistaken for a claimed block-encoding implementation. The answer does not assert uniqueness or arbitrary-prior optimality of this POVM. The inconclusive effect supplies missing positive slack; it does not make the conclusive effects projective or circumvent the original nonorthogonality assumption.",
+  "bounded_semantic_relation": "This is the fixed two-state unambiguous-discrimination task, not an identification of all POVM-realization targets. No new ancilla, cleanup, efficiency, formal proof or global semantic-dedup claim is justified.",
+  "prior_review_exposure": {
+    "old_review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/repairs/plan-204-complex-conjugation-repair-review.json",
+    "old_review_digest": "6d115f328f3989f937ad5ed4cca80f511d2b2a6d447e4f6dfd83bb2482f40e01",
+    "old_review_sha256_lf": "68005e606cfe215683de030bf1c89e7da038325aeda0d96cb9782a5cf7fd49c8",
+    "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+    "exposure": "The exact historical original, withdrawal/finding, entire candidate and old accepted review were exposed. I read the other reviewer's old report; its verdict is not mathematical evidence for this reconstruction. I did not author this candidate. Old reviews remain byte-for-byte unchanged.",
+    "prior_withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+    "prior_withdrawal_review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+    "prior_finding_digest": "dcd0cb8e660cb2bc5c6770f428b752242e01ef43d844fe17f6dc8f4e2ccb3591",
+    "historical_code_binding": "The old report's whole policy binding remains historical, including its old LF cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9. This NEW report does not bypass or rewrite it."
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Exact complete historical prepared qcb-core-plan-204 loaded via release.checked()[2], including question, assumptions, conventions, reference answer, full rubric and semantic steps. Whole item digest is above. This is tracked mathematical-content provenance, not proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/shared/repairs/plan-204-complex-conjugation-repair.json",
+      "sha256_lf": "974405d439d4252b5220ae716bdfb31eb96ee03b838c4a095ae18f870a769e73",
+      "anchor": "Entire exact candidate read, including all reference-answer, rubric, exposition and metadata fields. This LF binding identifies reviewed mathematical content, not independent proof authority."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete relevant Lin–Wiebe entry read: primary URL, edition and historical binary pin. LF binds metadata only; primary mathematical inspection and its limits are separate below."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "actual_access": "Primary PDF text actually accessed through web extraction in this objective; cover/edition and operative regions inspected. No PDF redistribution or new local formal closure.",
+      "operative_regions": "Lin–Wiebe April29 2026, full POVM definition context Eq9.51 and complete Example9.14/Eq9.53–9.54 (PDF page index151, printed152), including both complement definitions and positive inconclusive assertion. The source presents the construction but not the complete Gram-spectrum/trace contradiction required here; those are explicitly reconstructed above.",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "reviewer_verified_binary_hash": false,
+      "limit": "The retrieved text's edition/anchors agree with the recorded source, but I did not obtain/hash original PDF bytes. Candidate/other reviewer claims of matching bytes are not inherited. This is source-text mathematical review, not a PDF-binary seal or a source-blind/kernel proof."
+    }
+  ],
+  "mechanical_context": {
+    "scope": "Historical static inspection after the parent's final freeze on agent/qcb-convention-contract-migration, HEAD f8d3836ba8d6d5fa7fd2de38a372ff8345f1f818. These files implement admission/lineage, not the mathematical proof. Their hashes are not evergreen mathematical dependencies.",
+    "files": [
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+        "sha256_lf": "1e974111c433aa319e64f4351ddf48ee8a10a0ebee422ec6a8eb6db8fb9b3b50",
+        "inspection": "Entire file read. Payload v1 remains question-only; strict payload v2 additionally requires a changed nonempty distinct text convention list, separate review method and exact old/new lists/hashes/changed fields. Both keep other contract fields and versioned lineage; source/withdrawal checks remain."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+        "sha256_lf": "0e2da03276b7a2ca5e729f12d993f8ab027f590a2d093457be699fc1f2530157",
+        "inspection": "Entire file read. core_contract uses the nine fields. stable_readiness conditionally requires convention_revision_lineage when a current successor changes conventions; historic predecessor reviews do not approve successors."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/tests/test_textbook_policy.py",
+        "sha256_lf": "fdc8ee8d60175e9d1fd8735c750c39e36ace2b076af5ac8fcb8a468b1f85ecab",
+        "inspection": "Entire file read, including the three new convention fixture tests: both contracts/unchanged fields, malformed or unbounded rebound payloads, and exact distinct substantive review including uncertain withholding. Fixtures are explicitly not mathematical approval."
+      }
+    ],
+    "execution": "No tests/build/kernel executed by this reviewer. Parent reported three direct convention tests passed; I inspected their code, not their execution. No admission engine was invoked for this verdict."
+  },
+  "provenance": {
+    "candidate_author": "/root",
+    "read_location": "benchmarks/quantumcomputingbench/shared/repairs/plan-204-complex-conjugation-repair.json",
+    "prepared_original": "release.checked()[2] historical native record, not current-reader substitution",
+    "independence": "Distinct from candidate author and original author; truthful prior exposure above. No parent reasoning or accepted metadata used as proof.",
+    "writes": "Only this new private migration-revalidation report; canonical candidates, sources, policy and all old reports untouched."
+  }
+}

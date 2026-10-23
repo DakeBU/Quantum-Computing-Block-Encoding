@@ -1,0 +1,616 @@
+{
+  "schema_version": "qcb.reader_review.v1",
+  "reviewer": "/root/qcb_boundary_repair_review",
+  "method": "independent-mathematical-reader-review",
+  "scope": {
+    "observed_head_at_start": "5e83f45bea5b7368237a22c3513dc00566687fc3",
+    "requested_core_ids": [
+      "qcb-core-plan-201",
+      "qcb-core-plan-202",
+      "qcb-core-plan-203",
+      "qcb-core-plan-204",
+      "qcb-core-plan-205",
+      "qcb-core-plan-206",
+      "qcb-core-plan-207",
+      "qcb-core-plan-208",
+      "qcb-core-plan-209",
+      "qcb-core-plan-210"
+    ],
+    "present_admitted_core_ids": [
+      "qcb-core-plan-201",
+      "qcb-core-plan-202",
+      "qcb-core-plan-203",
+      "qcb-core-plan-204",
+      "qcb-core-plan-205",
+      "qcb-core-plan-206",
+      "qcb-core-plan-207",
+      "qcb-core-plan-208",
+      "qcb-core-plan-209",
+      "qcb-core-plan-210"
+    ],
+    "absent_ids": [],
+    "historical_native_count": 213,
+    "current_reader_count_at_inspection": 194,
+    "selection": "Loaded complete actual prepared records via scripts/release.checked()[2]. Checked presence and whole digest equality in the current policy reader without substituting or rewriting content. plan-210 uses the actual corrected-v2 prepared key. All ten IDs present.",
+    "content_inspected": "Entire prepared records, including all question, answer, rubric, assumptions, conventions, semantic steps, summary, primary-source metadata, source references, alias/family/split fields and inherited review metadata. Historical acceptances are exposed but are not mathematical evidence for this review.",
+    "review_target": "Independent NL mathematical/source/access/resource review at this committed snapshot, staged privately for the checkpoint after sealed PR101. No edit or approval of PR101 or any canonical publication/policy is performed.",
+    "comparison_scope": "Only bounded in-batch whole-target/subtarget and interface comparisons. Global semantic reconciliation and split pooling are not completed."
+  },
+  "provenance": {
+    "actual_identity": "The actual /root/qcb_boundary_repair_review task, distinct from scientific-algorithms-author-b2 and main-batch2-boundary-repair-author. No invented second reviewer or collaborator is involved.",
+    "exposure": "Not source-blind, verdict-blind or human-reviewed. This task had historical cross-cohort exposure to some planned questions; fresh full prepared records and primary text were read for this objective. Parent supplied the scope/source URL and asked for a skeptical review, not a mathematical verdict.",
+    "mandatory_instructions_refreshed": [
+      "AGENTS.md",
+      "HARNESS.md",
+      "docs/theorem-publication-protocol.md",
+      ".agents/skills/qbe-substantive-worker/SKILL.md",
+      "docs/proof-digestion-protocol.md",
+      "docs/evidence-routed-memory-protocol.md",
+      "benchmarks/quantumcomputingbench/shared/CONTRACT.md",
+      "benchmarks/quantumcomputingbench/shared/ACCEPTANCE.md"
+    ],
+    "skills_used": "qbe-substantive-worker for frozen-contract/source/access diagnosis; PDF skill for primary-text inspection and attempted visual verification. Read-only PDF use; no PDF authored or redistributed.",
+    "new_kernel_execution": false,
+    "local_Lean_closure_claimed": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "model_evaluation_performed": false,
+    "novelty_claimed": false,
+    "digest_method": "qcb_core.digest(entire actual prepared item), not an authored-row/question-only hash. qcb_integrity.text_sha of actual local tracked text gives LF-normalized SHA-256; this is distinct from a binary PDF SHA.",
+    "execution": "Only read-only prepared-data loading/policy presence and hash checks. No new mathematical kernel, numerical simulator, source proof compilation, remote model call or extra agent. The explicit counterexamples/identities are independently reconstructed mathematics, not promoted finite diagnostics.",
+    "mutation_scope": "Only parent-workspace _review_tmp/scientific-algorithms-201-210-review.json is written. No canonical candidate/policy/QA/source/review, frozen history, local main, PR101, commit or push is changed."
+  },
+  "primary_source_checks": {
+    "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+    "requested_source": "Lin Lin and Nathan Wiebe, Quantum Algorithms for Scientific Computation, recorded 29 April2026 edition.",
+    "actual_access": "The primary author-hosted URL returned web-extracted PDF text. The cover extraction states the title, both authors and April29,2026; reported page count447. Relevant complete bounded construction/proof text was read, including Example9.14, Lemma9.15, Example9.16, Examples9.17-9.18, Proposition9.19 proof, Proposition5.7 proof, Example5.8 workspace discussion, and Proposition11.6 proof/Example11.7 access assumptions. Section11.4's distinction between input-state and subspace reflections was also inspected.",
+    "edition_assessment": "Visible cover date, equation numbers and contexts match the recorded edition. This supports anchor-level comparison, not byte-for-byte historical identity.",
+    "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+    "newly_retrieved_binary_sha256": null,
+    "historical_binary_hash_verified_in_this_review": false,
+    "failed_checks": [
+      {
+        "operation": "Web PDF screenshots at zero-based pages151,152,153,154",
+        "result": "Each returned cache-miss; no rendered visual page was inspected."
+      },
+      {
+        "operation": "Direct read-only in-memory HTTPS retrieval for a binary hash",
+        "result": "Denied by local socket permissions (WinError10013). No binary was retrieved, written or hashed, and no bypass/escalation was attempted."
+      }
+    ],
+    "limits": "No primary PDF bytes are saved or redistributed. No assertion that historical SHA was reverified, no whole-book/source-graph audit, and no external source is relabeled MIT. Local source catalog hash authenticates metadata only. Formula layout was cross-checked through multiple extracted equation/context regions but not screenshots; this limitation is explicit.",
+    "distinction": "Primary-source inspection supports fidelity comparisons, not local Lean correctness. Reject/uncertain findings below concern the exact QA reasoning and are independent of historical acceptance notes."
+  },
+  "shared_mathematical_and_resource_contract": {
+    "state_and_instrument": "Finite-dimensional normalized quantum inputs. PSD square roots implement the particular square-root instrument, not every instrument sharing those POVM effects. A normalized conditional update is defined only for positive outcome probability; impossible branches retain a zero unnormalized operator but no conditional state.",
+    "coherent_control": "A controlled selector or entry oracle is a supplied coherent unitary with specified registers. Constructing controlled access from unrelated black-box operations, reflecting about an unknown input state, or repeating a destructive operation on fresh copies is not automatically free.",
+    "query_gate_bit_separation": "Counted W/W† or an angle-oracle call is not an elementary-gate/Clifford+T count. Reversible arithmetic, inverse computation, preparation, work qubits, approximation and rotation synthesis require their own ledger. Mathematical norm-optimal unitary existence does not imply efficient norm estimation or synthesis.",
+    "clean_work": "Returning a work register to zero restores the specified coherent interface and allows reuse; it does not remove peak physical workspace, and it does not establish a universal lower bound of one mandatory inverse query on every special input/circuit.",
+    "scales": "Positive normalization scales only. A fixed-scale construction may be valid but nonoptimal; A=0 must not be divided by its norm or assigned an admissible positive scale0."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-plan-201",
+      "key": "qcb-core-plan-201-povm-lcu-success-probability-completeness",
+      "item_digest": "5432c2b2b9dea37c3425626c4e2f81de0bc5efe924d1f09178943b56ade40d74",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "mathematical_reconstruction": "Write L=2^m and K_i=sqrt(P_i). The clean projected vector is (beta*sqrt(L))^(-1) sum_i |i,0^a> K_i psi. Each remainder is killed by the same ancilla projector before taking the norm. Inner products of distinct label basis states are zero, so the squared norm is (beta^2 L)^(-1) sum_i <psi,K_i†K_i psi>. Positivity gives K_i†K_i=P_i. Completeness, not orthogonality of the P_i, then changes the sum to <psi,psi>=1. Thus success is exactly p=1/(beta^2 L); the K_i psi themselves need not be orthogonal.",
+        "contract_and_zero_cases": "Normalized psi, common beta>0, common clean projector and exact uniform label preparation are used. Zero effects contribute zero terms, not undefined states; individual zero outcome weights do not affect the nonzero global success. Existence of the assumed unitaries implies beta^2 L>=1, so the formula cannot exceed one. For L=1, P_0=I and beta>=1. With no ancilla at all, the hypotheses are restrictive rather than a free generic construction; if they hold the no-ancilla success event has probability one. An unnormalized input would instead give ||psi||^2/(beta^2 L), so normalization is not optional.",
+        "answer_rubric_exposition": "The complete reference answer, r1-r4 and six semantic steps correctly distinguish orthogonality of labels, PSD square-root identity and completeness. The perpendicular remainder has zero overlap with the entire clean-ancilla subspace, not merely one system vector. No false interference term is removed by assuming the effects are mutually orthogonal. The controlled selector is given as a resource, not synthesized free from unrelated black-box U_i.",
+        "semantic_and_resource_scope": "This is the one-shot success-probability identity, distinct from plan-202's conditional instrument and plan-203's amplification access proof. It supplies no implementation cost for controlled selection, oracle generation, state preparation or finite-bit gates. Same family/test_public is preserved."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-201-povm-lcu-success-probability-completeness record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-201 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Lemma9.15, Eq9.55-9.62; printed152-153 (zero-based PDF151-152).",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-202",
+      "key": "qcb-core-plan-202-povm-conditional-output-state-update-rule",
+      "item_digest": "4d0389f52f14f202bd366a400d21ee868cd70f95d739c66384d54c616d48666f",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "mathematical_reconstruction": "The map V:psi -> sum_i |i> K_i psi is an isometry because V†V=sum_i P_i=I. Its output is already normalized, and the clean branch of the preceding run is sqrt(p)V psi. Measuring label i has conditional probability q_i=||K_i psi||^2. For q_i>0 the system state is K_i psi/sqrt(q_i). For a density operator rho, the unnormalized outcome map is E_i(rho)=K_i rho K_i, a completely positive linear map with trace Tr(P_i rho). The normalized conditional map is E_i(rho)/Tr(P_i rho), not itself a linear function of rho. Convexly mixing unnormalized branch operators and only then normalizing yields the stated formula independently of the ensemble decomposition.",
+        "success_and_zero_boundary": "Conditioning on reading i presupposes q_i>0; the mixed formula likewise presupposes Tr(P_i rho)>0. If P_i=0 or rho is supported in its kernel, the outcome is impossible, the unnormalized branch is zero and no conditional state is defined. This is an implicit boundary of the question's conditional language, not permission to assign 0/0 a normalized state. The total ancilla success probability is positive and independent of rho under the construction. The unconditional event 'success AND label i' has probability p*q_i; a failed ancilla event is a separate failure outcome.",
+        "answer_rubric_exposition": "Accept the complete reference/rubric and five steps with the ordinary positive-probability meaning of conditional post-measurement state made explicit above. The answer invokes linearity only for the unnormalized map, correctly, not for the normalized update. The construction realizes the square-root (Luders-type) instrument; a POVM's effects alone would not uniquely determine all possible post-measurement instruments. Amplification preserving the relative good-branch amplitudes is the relevant sense of the final remark; it is not a proof of free deterministic cleanup or a stand-alone amplification implementation.",
+        "semantic_assessment": "Distinct output-state/statistics target from the scalar probability derivation in plan-201. Same test_public family, and no cross-split alias is introduced. The amplification access issue is evaluated separately for plan-203."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-202-povm-conditional-output-state-update-rule record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-202 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Section9.4 Eq9.51; Lemma9.15 Eq9.63-9.66; printed151,153-154 (PDF150,152-153).",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-203",
+      "key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
+      "item_digest": "6eda46c37ea2b7d75cb89acca2686e8411e54825a5468776262522fff5b883bd",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_quantitative_part": "For independent fresh runs with success p, expected waiting time is 1/p=beta^2 L and failure after T trials is (1-p)^T. For an actual implementable amplitude-amplification rotation, sin(theta)=sqrt(p), and O(1/sqrt(p))=O(beta*sqrt(L)) queries reach a constant success probability. Repeating independently preparable constant-success trials T=O(log(1/delta)) times gives failure c^T, hence the displayed product bound for 0<delta<=a fixed constant below one. For delta close to one, one should use max(1,log(1/delta)) or a ceiling; p=1 needs no amplification. Majority is not the natural operation on arbitrary POVM labels: a success flag permits until-success, not voting for a most common label.",
+        "access_gap": "The reference explicitly invokes reflections about the full initial state |u,0^a,psi> and independent outer repetitions. The stated assumptions supply a good-subspace reflection and W/W†, but not a preparation oracle for an arbitrary unknown psi, a reflection about psi, or fresh independent copies after a failed destructive trial. W† alone does not implement reflection about an unknown system state. This is a genuine access-model gap in the given proof, not a reason to declare the intended query bound false. The source Lemma9.15 states the bound, but its short final amplification sentence does not resolve this missing interface in the authored expansion.",
+        "independent_isometry_route_not_assumed_as_extra_hypothesis": "The POVM structure provides a route that avoids adding an input-state oracle: let Q=|u,0^a><u,0^a| tensor I_sys and P=I_out tensor |0^a><0^a| tensor I_sys. From completeness, Q W† P W Q=pQ. Therefore the restrictions g=P W/sqrt(p) and b=(I-P)W/sqrt(1-p) on Q are both isometries (for 0<p<1) with orthogonal ranges. Reflection about WQW†, implemented by W(2Q-I)W†, and reflection about P act as the same two-dimensional rotation on every pair g psi,b psi. Q is a known ancilla/label subspace, not a reflection about psi. This is the required subspace/isometry amplification bridge. A coherent high-confidence fixed-point/isometry amplification construction or a justified recovery/repreparation procedure is still needed to explain the delta dependence on a single unknown input; the answer instead silently takes independent trials. No new theorem for that bridge is claimed here.",
+        "parameter_qualification": "The assertion that beta^2*2^m necessarily grows exponentially in m also needs a qualification on beta. For P_i=I/L, beta=1/sqrt(L), U_i=I is a valid common-beta encoding, and p=1 for every m; the original assumptions allow this. The formula is correct as a function of both parameters, but blanket exponential-in-m language is not. No gate or finite-bit complexity follows from counting W/W† calls, and constructing a controlled selector from arbitrary U_i is not supplied.",
+        "answer_rubric_exposition_disposition": "The numeric scaling, good-amplitude identification and geometric angle argument are sound. r2-r4 and steps3-5 nevertheless accept a proof route whose initial-state reflection/independent-repeat resources are absent; r1 also unconditionally calls the dependence exponential. Mark uncertain pending a precise implementation/access explanation, not accept based on the source's stated formula and not reject the underlying isometry-amplification possibility.",
+        "semantic_assessment": "This is a resource/access target, not a duplicate of plan-201, even though it uses p. The broad Grover/OAA conceptual nodes do not certify the missing concrete interface."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-203-povm-amplitude-amplification-query-count record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-203 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Full Lemma9.15 proof through Eq9.67; full Proposition11.6 proof Eq11.32-11.42 and Example11.7; Section11.4 input-reflection warning/Definition11.11. Printed153-154,189-195.",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-204",
+      "key": "qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity",
+      "item_digest": "d925946e833792c3cf95b2b993cd3b820be35abfd5c259fdb68384b3f29d3558",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "correct_target_and_impossibility_derivation": "The no-two-outcome conclusion is true. For PSD E, <v,Ev>=||sqrt(E)v||^2=0 implies Ev=0. In the stipulated two-dimensional span, unambiguity forces E_psi=a|phi_perp><phi_perp| and E_phi=b|psi_perp><psi_perp|. With d=1-|c|^2>0, the correct overlap is <psi|phi_perp>=(1-conj(c)*c)/sqrt(d)=sqrt(d). Completeness on psi and phi forces a=b=1/d. Then the sum has trace 2/d>2 when c!=0, contradicting the two-dimensional identity. An even shorter independent argument uses E_phi psi=0 and completeness to get E_psi psi=psi, while E_psi phi=0; self-adjointness gives <psi|phi>=<E_psi psi|phi>=<psi|E_psi phi>=0, contradiction.",
+        "exact_false_line": "The full reference instead writes <psi|phi_perp>=(<psi|psi>-c<psi|phi>)/sqrt(1-|c|^2) and then equates this with (1-|c|^2)/sqrt(1-|c|^2). The coefficient must be conj(c), as in the question's correct definition. As written its numerator is 1-c^2, not 1-|c|^2. The original domain is complex overlap, with no real-positive phase convention that would excuse dropping the conjugation.",
+        "concrete_witness": "Take psi=(1,0) and phi=(i/2,sqrt(3)/2), so c=i/2 and both vectors are normalized. The actual phi_perp=(sqrt(3)/2,i/2), hence <psi|phi_perp>=sqrt(3)/2. The written intermediate evaluates to (5/4)/(sqrt(3)/2)=5/(2sqrt(3)), even greater than one. This disproves the displayed equality while leaving the final true impossibility claim intact.",
+        "three_outcome_reconstruction": "Let u=phi_perp,v=psi_perp. They are unit vectors and <u|v>=-c. The Gram matrix of their column matrix has characteristic polynomial (1-lambda)^2-|c|^2, so uu†+vv† has eigenvalues 1+|c| and 1-|c|. Dividing by 1+|c| makes the sum of conclusive effects a positive contraction. Its complement has eigenvalues 0 and 2|c|/(1+|c|), so is PSD; the wrong-state expectations vanish by the complement definitions. On either promised input, the conclusive success probability is 1-|c| and inconclusive probability |c|. For c=0 two conclusive outcomes suffice; |c|=1 is excluded because the complement formulas are undefined.",
+        "answer_rubric_exposition_disposition": "Reject this exact answer because it contains a false complex-scalar proof line. The literal question is mathematically sound and the reference's intended trace proof, rubric conclusions and semantic step2's final formula are salvageable. A minimal answer-only conjugation correction could restore them; silently restricting c to real would change the contract and is not approved. This rejection is not a claim that all unambiguous discrimination mathematics is false.",
+        "semantic_assessment": "The requested impossibility plus verification includes a portion of plan-205, but the no-two-outcome obstruction is an additional target. Same family/test_public; this is overlap/subtarget sharing, not a claimed new global dedup result."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-204-unambiguous-discrimination-inconclusive-necessity record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-204 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Complete Example9.14 including Eq9.53-9.54, printed152 (PDF151).",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-205",
+      "key": "qcb-core-plan-205-state-discrimination-povm-validity-unambiguity",
+      "item_digest": "ac1b3b3d96f318f7409e0ff115c76d8ac4d471ea0f8b8acf2b79810e14205eb7",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "independent_diagonalization": "Put d=1-|c|^2>0, u=(psi-conj(c)phi)/sqrt(d) and v=(phi-c psi)/sqrt(d). Expansion using <psi|phi>=c gives ||u||=||v||=1, <phi|u>=0, <psi|v>=0 and <u|v>=-c. For F with columns u,v, F†F=[[1,-c],[-conj(c),1]]. Its characteristic polynomial is (1-lambda)^2-|c|^2, with roots 1+-|c|. Since |c|<1, F has rank two, so FF† has these same two eigenvalues on the plane. S=FF†/(1+|c|) has eigenvalues 1 and (1-|c|)/(1+|c|). Thus I-S has eigenvalues 0 and 2|c|/(1+|c|), proving PSD rather than merely asserting it. Off the plane, S=0 and P_?=I.",
+        "other_axioms_and_boundaries": "Each conclusive effect is a positive scalar times a rank-one projector. Sum completeness follows from the definition of P_?. Wrong-state expectations vanish because <phi|u>=<psi|v>=0. At c=0 the two complement vectors are orthogonal, both eigenvalues of S are one and P_? vanishes on the plane; positivity is still valid. For |c| approaching one the formulas remain defined at every strictly smaller value, but the endpoint itself is excluded. No inversion of |c| or eigenvector phase is needed, so the c=0 case is not accidentally discarded. The maximal common coefficient t for t(uu†+vv†)<=I is t=1/(1+|c|); this is not a claim about all unequal-prior discrimination strategies.",
+        "answer_rubric_exposition": "The complete reference, r1-r4 and five steps correctly use the Gram-overlap spectral calculation, not treat a nonorthogonal pair as an orthonormal coordinate basis. The explicit matrix/characteristic-polynomial derivation above supplies the actual diagonalization behind the quoted rank-one-sum fact. Both complementary conjugations are correct here, unlike the isolated reference line in plan-204.",
+        "semantic_assessment": "The construction-validity/spectral-positivity task overlaps the verification portion of plan-204 but does not itself prove the no-two-conclusive-outcome obstruction. Same test_public family; no whole-target alias or cross-split move is proposed. No gate complexity, optimal general discrimination or local formal theorem is implied."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-205-state-discrimination-povm-validity-unambiguity record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-205 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Complete Example9.14 Eq9.53-9.54, printed152 (PDF151).",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-206",
+      "key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "different_beta_correct_part": "For L labels and uniform PREP, the clean vector is L^(-1/2) sum_i beta_i^(-1)|i>K_i psi. Its success probability is <psi|T|psi>/L with T=sum_i P_i/beta_i^2. The successful label distribution is (<psi|P_i|psi>/beta_i^2)/<psi|T|psi> when success is possible. It is generally reweighted and may be state-dependent; a full physical measurement includes failure, so the subnormalized successful effects alone need not sum to I. 'Different beta always breaks' is too strong for zero effects or special coincident reweightings, but the generic obstruction is real.",
+        "beta_fix_and_false_normalization": "The correct normalized compensating PREP is sum_i beta_i|i>/B with B=sqrt(sum_i beta_i^2). Then the clean vector is (1/B)sum_i |i>K_i psi and success is 1/B^2. The reference's proposed sum_i(beta_i/beta)|i> with beta=max_i beta_i is generally not normalized: for beta_0=1,beta_1=2 its squared norm is 1/4+1=5/4, so cannot be prepared by a unitary as stated. Padding the clean block to common scale beta requires a new encoding whose clean block is K_i/beta, e.g. multiply the old K_i/beta_i block by beta_i/beta using an extra flagged contraction. Saying merely 'block encoding of (beta_i/beta)K_i' without its normalization leaves that interface ambiguous.",
+        "disjoint_ancilla_counterexample": "The alleged double counting for disjoint clean ancillas is false. Let each U_i act on ancilla A_i and the common system, extend it by identity on all other ancillas, and initialize the entire union to zero. W is then a well-typed controlled unitary on one common total Hilbert space. The single projector onto all union ancillas being zero kills every active-branch dirty component. Idle ancillas are deterministically zero, not additional random successes. The projected branch is exactly L^(-1/2) sum_i beta_i^(-1)|i>K_i psi, so common beta gives the original p=1/(beta^2 L). Different sizes are a register-typing/embedding issue, not an inevitable breakdown of probability algebra.",
+        "concrete_same_beta_disjoint_witness": "Take L=2, P_0=P_1=I/2 and beta=1. Let branch0 apply Ry(pi/2) on clean ancilla A0, and branch1 apply Ry(pi/2) on a disjoint clean ancilla A1, leaving the system and idle ancilla unchanged. Projecting A0,A1 both to zero leaves (|0>+|1>)*psi/2, of squared norm1/2, precisely the original formula. An extra unused clean qubit in branch1 makes the native ancilla sizes different without changing this result. Thus disjoint or unequal-size clean ancillas do not by themselves force any of the claimed failure.",
+        "answer_rubric_exposition_disposition": "Reject: the question's premise in part(b), reference, r3 and semantic step4 demand a false necessity assertion; r4 also packages the unnormalized alternative PREP as a fix. Padding into shared registers is a valid convenient fix for an untyped direct sum, but not the unique/minimal mathematical escape. There is a common global success projector on the union, contrary to 'no cheaper fix avoids a shared flag'. No cost lower bound supports that assertion. Some variants with arbitrary dirty idle ancillas or branch-dependent flags do need additional handling, but those extra hypotheses cannot be silently imported.",
+        "semantic_assessment": "A hypothesis-diagnosis task distinct from one-shot plan-201, but it currently misclassifies a convenient interface as a mathematical necessity. A future question successor must allow the diagnosis that disjoint clean ancillas work; this review does not silently repair that forced clause."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-206 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Complete Lemma9.15 assumptions and proof Eq9.55-9.67, printed152-154 (PDF151-153).",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-207",
+      "key": "qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute",
+      "item_digest": "fca254be303c5fff08fa40bf0e0ed738cf6ee210ff0c6946190c4380d09c2874",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_clean_oracle_derivation": "Let t=(i,j), let q_t be the actually stored rounded angle, and set a_t=cos(pi*q_t). The reversible load B maps |0^d,t> to |q_t,t>. The controlled rotation, with convention Ry(2*pi*q_t), maps |0,q_t> to (a_t|0>+sin(pi*q_t)|1>)|q_t>. For 0<=q_t<1 the sine is nonnegative and equals sqrt(1-a_t^2). B† acts on work/indices, not on the signal qubit, and returns |q_t,t> to |0^d,t> in both signal branches. Linearity then gives the desired coherent action on any superposition of t. No inverse on the output amplitude qubit is performed.",
+        "correct_garbage_analysis": "For input sum_t alpha_t|t>, skipping the inverse yields sum_t alpha_t|v_t,t>|q_t>, with v_t=a_t|0>+sqrt(1-a_t^2)|1>. Tracing out work multiplies the t,s off-diagonal block by <q_s|q_t>, hence suppresses coherence precisely between populated indices with different stored bit strings. Equal rounded strings do not decohere each other. For a single fixed basis index t, the signal and work are a product, and tracing work leaves the signal qubit's pure superposition completely unchanged. The signal-only marginal is in fact unchanged by tracing/uncomputing the work in all cases; it is joint signal/index coherence that matters.",
+        "exact_content_uncertainty": "The reference's universal wording 'whenever different (i,j) produce different theta' omits whether those indices are populated. More materially, rubric r3 calls the result a mixed 'ancilla state', and the reference says it destroys the two-component amplitude superposition for an indexed entry. That is false on a basis input and conflates a marginal with the joint coherence. A clean oracle on arbitrary superpositions does require cleanup, but not because discarding a product angle record always decoheres its signal qubit. Mark uncertain until the intended joint-register/potential which-path statement is explicit; do not reject the valid compute-rotate-uncompute identity.",
+        "precision_and_source_boundary": "The finite-d-bit quantity q_t is generally an approximation to arccos(A_ij)/pi, not equal to it for arbitrary real entries. The source explicitly redefines the approximated entry as cos(pi*q_t). The reference makes that redefinition, so exactness is only for that rounded-angle entry, not the original real A or necessarily the original d'-bit fixed-point A-tilde. The question's equality notation should be read with this declared rounding convention; a finite-bit arbitrary-real exactness theorem would be false. Reversible angle arithmetic can need further clean workspace beyond the displayed d bits.",
+        "answer_rubric_exposition": "r1-r2 and steps1-3 correctly implement the register transcript. r3-r4 and steps4-5 need the subsystem/populated-index qualifications above; 'corrupted matrix element A_ij' is shorthand for a wrong reduced coherent channel, since after trace-out there is no single unitary whose matrix entry one can read. The no-free-cleanup lesson is sound within a coherent multi-index interface, but the literal broad explanations are not yet exact.",
+        "semantic_assessment": "Construction/clean-work target rather than plan-209's full ledger. No whole-target alias is asserted; both share the same compute/uncompute dependency and test_public family."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-207-amplitude-oracle-from-bit-oracle-uncompute record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-207 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Complete Example9.16 Eq9.69-9.71; full Proposition5.7 proof and Fig5.3; Example5.8 arithmetic/workspace discussion and Fig5.4. Printed104-106,154-155.",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-208",
+      "key": "qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary",
+      "item_digest": "1433ecfb6610132671b67d490e1d21b1d9dae433bb26badca61bce12b62e0347",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "sharp_state_validity": "For z=A_ij, the intended vector z|0>+sqrt(1-|z|^2)|1> has a real nonnegative second coefficient and norm one iff |z|<=1. For every such z, U_z=[[z,-s],[s,conj(z)]], s=sqrt(1-|z|^2), is a unitary extension with that first column; controlled label blocks then define a unitary oracle. For |z|>1, even interpreting the square root as i*sqrt(|z|^2-1) produces norm squared2|z|^2-1>1, so the advertised vector cannot be a unitary image of |0>. At |z|=1 the second coefficient is zero, and a phase on |0> is valid.",
+        "zero_and_angle_counterexamples": "The reference, rubric r4 and semantic step2 incorrectly claim strict |z|<1 guarantees both branches populated and angle2*arccos(|z|) strictly inside(0,pi). At z=0, allowed by every strict max-norm assumption, the output is |1>, the first branch vanishes and that angle is pi, not interior. The assumption that a real Y rotation with angle2*arccos(|z|) directly encodes z also loses its sign/phase. For z=-1/2, it gives +1/2 on |0>, not -1/2; those states are not related by global phase because the positive |1> coefficient is unchanged. For complex z the same magnitude-only rotation similarly requires an additional controlled phase. At |z|=1, the magnitude-defined angle is0, not '0 or pi'; a signed real convention would instead use2*arccos(z), reaching2pi at z=-1.",
+        "norm_scale_and_zero_preprocessing": "For this sparse LCU scheme, constructing the entry oracle for A/M with known M>0, M>=||A||max gives a block encoding of A at scale s*M; equality s*||A||max requires choosing the actual nonzero max norm, not merely any loose upper bound. A nonzero operator still forces alpha>=||A||, but entry max norm and operator norm differ. A=0 must not be divided by a chosen upper bound M=0 or assigned a positive-normalization scale0; choose any positive M. A larger guard can be numerically useful, but no rounding/error accumulation theorem follows just from strict inequality.",
+        "answer_rubric_exposition_disposition": "Reject exact record. Its principal closed-range validity conclusion and legitimacy of |z|=1 are correct, but the complete regime analysis contains explicit false zero-entry and rotation-phase claims. The source's real-entry example uses arccos(A_ij), not arccos(|A_ij|); the source separately leaves complex-entry construction as an exercise. The authored assumptions themselves impose the inadequate magnitude-only Y-rotation interface, so this is not merely one harmless phrase in an otherwise verified all-entry construction.",
+        "semantic_assessment": "Distinct normalization/synthesis boundary from plan-207's rounded-angle transcript and plan-210's diagonal projection. A future repair must preserve real/signed/complex scope honestly and handle zero; it must not silently add nonzero nonnegative entries to the question."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-208-amplitude-oracle-maxnorm-normalization-boundary record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-208 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Section9.6 Eq9.68 and full Example9.16; Exercise9.4; Section9.7 sparse scaling, Examples9.17-9.18 and full Proposition9.19 calculation Eq9.81-9.84. Printed154-157.",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-209",
+      "key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "SOURCE_INVALID",
+      "reasoning": {
+        "valid_interfaces_and_two_level_accounting": "An entry bit oracle provides a basis string coherently, not a free measurement of arbitrary superpositions or an automatic amplitude loader. Given a genuinely available clean angle oracle B=O'_A, the construction is B,CR,B†: exactly two calls to B/B†, plus the controlled-rotation gates, and the displayed d-bit angle workspace returns clean. These are different resources. A clean returned workspace still counts toward peak physical qubits; calling it borrowed is this record's explicitly declared convention, not the usual dirty-borrowed-ancilla promise.",
+        "missing_original_bit_oracle_ledger": "The literal input resource is the entry oracle O-tilde_A, whereas the answer's final '+2 queries +CR gates +d work' ledger has switched to the derived angle oracle O'_A as a primitive. Reversible arccos/angle conversion is gate work with workspace, not automatically one unit-cost query to the original entry oracle. Source Example9.16 explicitly allows extra work registers, and Section5.4 warns of arithmetic overhead. Their cost is absent from the answer's 'honest ledger'. Without an expanded implementation or an explicit oracle-level convention identifying B as primitive, that ledger cannot be advertised as a complete count in the question's original entry-bit input model.",
+        "explicit_composable_ledger": "For a clean reversible converter C with gate cost G_C and workspace w, one valid construction retains the d'-bit queried value: O-tilde_A; C; CR; C†; O-tilde_A†. It uses two original entry-oracle queries, 2G_C+G_CR other gates, and enough live clean work for the value, angle and arithmetic workspace (e.g. d'+d+w qubits, subject to an actual reversible implementation), plus the signal ancilla and indices. Alternatively, composing a separately clean angle oracle and its inverse costs twice that angle oracle's full original-query/gate/workspace cost; it need not be exactly two original queries. Fusion may remove intermediate compute/uncompute pairs, so 'cannot amortize away' is not a lower bound on all algorithms.",
+        "precision_and_cleanup_limits": "Finite strings cannot generally produce an arbitrary original real entry exactly. The induced amplitude is the rounded-angle cosine, plus any gate-synthesis error; finite-bit precision, rotation synthesis, reversible arithmetic and phase handling need a separate bound. Uncomputation is required to provide the specified clean coherent interface, but inverse-oracle calls are not a universal lower bound for special matrices such as known constants. It is reasonable to count them for this stated construction, not assert no other construction or shared-call optimization exists.",
+        "answer_rubric_exposition_disposition": "The digital/amplitude distinction, clean reuse and B/CR/B† architecture are correct. r2-r3 and steps3-4 blur classical-arithmetic gates with queries; r4 does not supply omitted conversion workspace. Mark uncertain pending an explicit original-bit versus angle-oracle ledger. If B were stipulated as the primitive input, the two-B-query statement would be sound, but that stipulation must not be silently substituted for the given bit oracle.",
+        "semantic_assessment": "Related to plan-207's same circuit, but the asked resource-model and peak-workspace distinctions are additional. No global equivalence/dedup conclusion is justified from this pair alone."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+          "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+          "anchor": "Full authored qcb-core-plan-209 record, matched with actual prepared question/answer/rubric/semantic steps and source metadata. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Complete Example9.16 Eq9.69-9.71; full Proposition5.7 proof; Example5.8 arithmetic/workspace discussion Eq5.23-5.24. Printed104-106,154-155.",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    },
+    {
+      "core_id": "qcb-core-plan-210",
+      "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2",
+      "item_digest": "1f65e62ee73cdfa4f023076fc698fed90d81a1dbaf24524784aa24219df9cfe4",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "failure_class": "NONE",
+      "reasoning": {
+        "exact_matrix_element": "For j, the specified oracle produces (A_jj|0>+s_j|1>)|j>. Taking <0,i| gives A_jj delta_ij since the |1> term is orthogonal to <0|. This equals A_ii delta_ij, exactly the diagonal matrix entry. Therefore the clean block is A at alpha1 with one signal qubit. Labels are preserved, so no support permutation is needed. Zero diagonal entries simply produce |1,j> and a zero clean component; the absence of a literal unique nonzero in that column does not invalidate choosing the designated diagonal slot c(j)=j.",
+        "unitary_existence_and_phase": "For each diagonal z with |z|<=1, the unitary U_z=[[z,-sqrt(1-|z|^2)],[sqrt(1-|z|^2),conj(z)]] extends the prescribed |0> action. Taking the direct sum over j handles negative/complex phases and endpoints without a magnitude-only Y-rotation assumption. The question gives this oracle, so its efficient physical synthesis is not asserted. In the general one-designated-entry-per-row/column case, the support map is a permutation; fixed points are allowed, and all-zero padded slots may be designated. Saying it is generally nonidentity does not mean every column moves.",
+        "lower_bound_and_attainment": "A clean subblock of a unitary is a contraction: ||A/alpha||<=1 implies alpha>=r=||A||. For diagonal A, r=max_j|A_jj|. If r=1, this construction's alpha1 meets the floor. If 0<r<1, applying the same amplitude-oracle construction to A/r gives a clean block A/r, hence an (r,1)-encoding of A; r is attained and alpha1 is not globally optimal. If r=0, A=0 and every alpha>0 has the same zero desired clean block, realizable e.g. by X on the signal qubit. Its infimum0 is not an allowed positive normalization and no A/r division is used.",
+        "answer_rubric_exposition": "The actual prepared corrected-v2 key was reviewed, not its withdrawn predecessor. Its full answer, four criteria, assumptions, summary and five steps correctly gate rescaling on r>0 and explicitly cover A=0. The unit-scale identity, no-permutation claim and limited optimality are sound. This is mathematical existence with an input oracle; knowing the exact norm, constructing the rescaled oracle and finite-bit gates are not made free.",
+        "semantic_assessment": "Explicit same-core alias of the original plan-210 identity is retained in the prepared metadata, not counted as a new core. It is a diagonal application distinct from plan-208's all-entry normalization boundary. The comparison to general one-sparse support does not add a stronger oracle premise to this diagonal proof."
+      },
+      "source_checks": [
+        {
+          "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+          "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+          "anchor": "Exact qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2 record, all fields read after loading via release.checked()[2]. This binds reviewed content/provenance, not an external mathematical proof or new kernel result."
+        },
+        {
+          "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_boundary_repairs.json",
+          "sha256_lf": "46e018f84abae12ec528be2fc3a9216e509b9b4e1fa215d004c9e1573ab3b1cc",
+          "anchor": "Full corrected-v2 authored plan-210 record at key near line196. The old original key is not substituted for the prepared successor. QA content provenance only."
+        },
+        {
+          "path": "website/research/sources.json",
+          "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+          "anchor": "Full lin-wiebe-2026-qasc source-catalog entry near line230 inspected. It records URL, edition and historical binary SHA; the local LF hash authenticates only this metadata, not the PDF bytes or its proof."
+        }
+      ],
+      "primary_source_checks": [
+        {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "recorded_edition": "29 April 2026",
+          "inspected_anchors": "Complete Example9.17 Eq9.72-9.73 and Example9.18 Eq9.74-9.76; block-encoding definition Section9.1 and scale restriction discussed near Eq9.50. Printed141-143,151,155.",
+          "retrieval": "Author-hosted PDF text accessed through web PDF extraction; relevant complete cited construction/proof regions read. No copied PDF is stored or redistributed.",
+          "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "historical_binary_hash_verified_in_this_review": false,
+          "evidence_limit": "Edition header and anchors match; no new PDF-byte hash or visual-page verification. Local catalog/QA hashes below are provenance only."
+        }
+      ],
+      "alias_findings": [],
+      "limitations": [
+        "No local formal counterpart is supplied by these planned/source-only records. No new kernel, blind/expert/human/model evaluation or novelty claim.",
+        "Primary text was retrieved from the cited author-hosted URL; binary historical SHA equality and visual page rendering were not verified. See top-level primary_source_checks for exact access limits.",
+        "In-batch target comparisons are bounded; no whole-catalog semantic deduplication or global split reconciliation is certified."
+      ]
+    }
+  ],
+  "summary": {
+    "accepted": [
+      "qcb-core-plan-201",
+      "qcb-core-plan-202",
+      "qcb-core-plan-205",
+      "qcb-core-plan-210"
+    ],
+    "rejected": [
+      "qcb-core-plan-204",
+      "qcb-core-plan-206",
+      "qcb-core-plan-208"
+    ],
+    "uncertain": [
+      "qcb-core-plan-203",
+      "qcb-core-plan-207",
+      "qcb-core-plan-209"
+    ],
+    "absent_ids": [],
+    "exact_rejections": {
+      "qcb-core-plan-204": "False complex-conjugation line in an otherwise true impossibility proof; question is sound and a minimal answer-only correction is plausible.",
+      "qcb-core-plan-206": "False necessity of a shared physical ancilla and false disjoint-union probability argument; compensating PREP is also unnormalized as written. Part(b)'s forced premise needs explicit diagnosis rather than silent acceptance.",
+      "qcb-core-plan-208": "Zero-entry/interior-angle/two-branch claims and magnitude-only signed/complex Y-rotation interface are false; positive scaling is also needed at A=0."
+    },
+    "uncertainties": {
+      "qcb-core-plan-203": "Valid intended isometry-amplification scaling, but full-input reflection and independent repetitions are not justified by given access; beta-dependent exponential wording is too broad.",
+      "qcb-core-plan-207": "Correct exact rounded-angle compute/uncompute circuit, but literal ancilla-versus-joint decoherence claims and universal quantifiers need clarification.",
+      "qcb-core-plan-209": "Correct two-angle-oracle-call architecture, but original entry-bit oracle versus derived angle-oracle cost and arithmetic workspace/gates are not reconciled."
+    },
+    "disposition": "Four exact items accepted, three rejected, three uncertain. Intended targets are not uniformly refuted: each finding states which mathematics survives and which literal QA/source-access assertion fails. No canonical quarantine, repair or admission is performed by this private report.",
+    "stable_release_limit": "This is one bounded ten-item obligation report for the following checkpoint, not a change to sealed PR101, a complete-catalog mathematical acceptance, global dedup completion, proof closure or stable release approval."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-004",
+  "supersedes_key": "qcb-core-plan-004-ensemble-nonuniqueness",
+  "supersedes_item_digest": "a164323e0e5bf45d8f789a72c3970c1499741925574408425b17b6ff20886f35",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-004-textbook-v1-ensemble-zero-and-genuine-variation-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition candidate only. Preserve all nine CONTRACT_FIELDS, including exact question, assumptions, conventions, qit-state-foundations family, test_public split, frozen graph/source scope and three semantic steps. Original question-contract hash: 8e444920c8cf49281daaf6c805d6a838377a8b38433e08b11eacb48aa0e5f35e. Correct zero-output normalization and the false inference from different isometries to physically different ensembles; give explicit varying ensembles for every mixed state and an honest longer-ensemble witness. This is authorship, not approval or admission.",
+  "reference_answer": "Put u_l=sqrt(p_l)|psi_l> and w_j=sum_l V_jl u_l. Expanding the outer products gives sum_j |w_j><w_j| = sum_{l,m}(sum_j V_jl conjugate(V_jm)) |u_l><u_m|. The coefficient is (V^dagger V)_{m,l}=delta_{ml}, so the sum is exactly rho. Taking traces gives q_j=||w_j||^2>=0 and sum_j q_j=1.\n\nIf q_j>0 define |phi_j>=w_j/sqrt(q_j). If q_j=0, positivity of the Hilbert norm implies w_j=0, so discard that term; alternatively retain its zero weight and assign it any unit vector, without dividing by zero. Thus one obtains a valid ensemble with at most k positive-weight entries, not necessarily exactly k. For example appending a zero row to V appends a zero output. Also different isometries need not give different physical ensembles: multiplying rows of V by phases changes w_j only by phases and leaves both q_j and |phi_j><phi_j| unchanged. Permutations, duplicate rays and zero rows can create further redundant descriptions.\n\nGenuine nonuniqueness needs a separate witness. Every finite-dimensional mixed rho has at least two strictly positive eigenvalues lambda_1,lambda_2 with orthonormal eigenvectors e_1,e_2. Start with its positive spectral ensemble and write u=sqrt(lambda_1)e_1, v=sqrt(lambda_2)e_2. Apply the two-row real rotation, with identity on the other rows: w_1(theta)=cos(theta)u+sin(theta)v and w_2(theta)=-sin(theta)u+cos(theta)v, for 0<theta<pi/4. This is an allowed square column isometry. Both new weights are strictly positive: q_1=lambda_1 cos^2(theta)+lambda_2 sin^2(theta) and q_2=lambda_1 sin^2(theta)+lambda_2 cos^2(theta). The e_2/e_1 coefficient ratio of w_1 is sqrt(lambda_2/lambda_1)tan(theta), positive and strictly varying, while that of w_2 is negative. Hence these first rays cannot be identified by row phases or exchanged with the second rays; all untouched spectral rays lie outside their two-dimensional span. Distinct theta therefore give genuinely different physical ensembles even after ignoring ordering and vector phases. This also works for repeated eigenvalues, when the weights may stay fixed but the rays vary. Since the construction yields infinitely many ensembles of the same rho, it yields alternatives to any one initially supplied ensemble; it does not assume that the initial ensemble is spectral.\n\nLonger positive ensembles can also be constructed, but k>r alone does not guarantee new rays. For a concrete genuine length increase from the rank-s positive spectral ensemble, replace the two coefficient columns above by the three rows (1/sqrt(2),0), (1/2,1/sqrt(2)), (-1/2,1/sqrt(2)), leaving the other s-2 columns in untouched identity rows. The two displayed columns have norm one and inner product zero, so the resulting (s+1)-by-s matrix is an isometry. Its three outputs are u/sqrt(2), u/2+v/sqrt(2), and -u/2+v/sqrt(2), with strictly positive weights lambda_1/2, lambda_1/4+lambda_2/2, and lambda_1/4+lambda_2/2. Their rays are pairwise distinct because u,v are independent, and are distinct from the untouched eigenvector rays, so this really has s+1 positive distinct-ray components instead of s. By contrast one may increase a list length just by splitting a positive weight among repeated copies of its ray, or pad V with zero rows; neither operation alone proves a new set of pure states. The identity for every V and the explicit genuine witnesses establish exactly the claimed nonuniqueness, without an injectivity claim for the isometry parameterization.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Expands the output outer-product sum with correct complex conjugation and identifies its coefficient as (V^dagger V)_{m,l}."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Uses V^dagger V=I_r to recover rho exactly, and obtains q_j>=0 and sum_j q_j=1 by norms and trace."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Normalizes only q_j>0 outputs; discards zero outputs or explicitly gives zero-weight slots arbitrary unit vectors. Does not claim an arbitrary k-row isometry necessarily gives k positive components."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Proves genuine physical nonuniqueness for every mixed state by an explicit varying positive-component construction, not merely infinitely many isometries. Distinguishes phase/permutation/duplicate/zero-row redundancy and makes any longer-ensemble claim existential with a valid positive-output witness rather than automatic from k>r."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Column isometries preserve the ensemble outer-product sum, but zero rows and phase redundancies must be handled. Explicit rotation of two positive spectral components gives genuinely varying ensembles for every mixed state, and a rectangular isometry can give a genuinely longer positive ensemble.",
+    "semantic_steps": [
+      {
+        "claim": "Expanding sum_j |w_j><w_j| produces the coefficient sum_j conjugate(V_jm)V_jl=(V^dagger V)_{m,l} for |u_l><u_m|.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "Orthonormal columns collapse the sum to rho; the output norms sum to one, and only positive-norm outputs are divided by their square roots, with zero outputs discarded or retained at zero weight.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Explicitly rotating two positive spectral components gives a continuously varying projective ray for every mixed state; a three-row two-column isometry gives a genuine longer positive ensemble. Different isometries, larger row counts or phase changes alone do not prove physically new ensembles.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Registry entry leditzky-2025-repth-qit, metadata only. Actual independently retrieved pinned primary PDF: printed page4 Definition2.3/Eqs2.7-2.8 and complete printed page12 Exercise2.1/Eqs2.37-2.38. The zero-output qualification, noninjectivity analysis, varying spectral-pair proof and explicit longer-ensemble witness are this author's mathematical reconstruction, not claims that the source states those missing details or that concept nodes are Lean closure."
+    }
+  ],
+  "execution": "Source-grounded private authorship only; pending distinct review, not selfapproval, kernel/native-formal/stable admission or a new identity. Read root's exact _review_tmp/qit-foundations-004-005-007-review.json and the entire actual prepared historical004 record from release.checked()[2], including prior answer/reviews; no blindness claimed. I independently fetched https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf in memory:554175 bytes,79 pages, raw SHA256 90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3, matching the historical pin. The initial sandboxed fetch was blocked; the read-only elevated retry succeeded. I extracted and read complete printed pages4,6,12-16. Web PDF screenshot calls failed with cache misses; I personally inspected the existing private page12 and16 PNGs previously rendered by root, and do not claim that rendering as my own execution. PDF skill used for bounded source reading/visual inspection; no PDF or source bytes saved or redistributed, no other primary regions or local Lean proofs blanket certified. This candidate changes only answer/rubric/exposition; the original primary-source metadata and nine contract fields remain unchanged."
+}

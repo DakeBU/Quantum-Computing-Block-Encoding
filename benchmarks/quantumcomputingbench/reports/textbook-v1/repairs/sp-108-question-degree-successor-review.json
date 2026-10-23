@@ -1,0 +1,121 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-question-successor-review",
+  "core_id": "qcb-core-sp-108",
+  "question_version": 2,
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/sp-108-question-degree-successor.json",
+  "repair_record_digest": "124f75cdf35d89a6bbf0df3c9aa618e59138f2c132663078bbc6e2ce0807383f",
+  "repair_record_sha256_lf": "52625a5eaf60c40d7a490d76250bd73e847a29abe52efd215cced6f79aa0b41a",
+  "original_item_digest": "f857c429fedee80ac422ff286d3c82d03a902fb323bfeb8787effb1826e5a490",
+  "original_contract_hash": "0c40b3818a787101bd8d762d33210b70f3847eb30289dc997d15279634febffa",
+  "successor_contract_hash": "cadcbadd693451e8bdb77013bce1d01119d42dd0ea6083150acda0c8b2969f50",
+  "verdict": "accept",
+  "verdict_scope": "The complete exact private version-2 question, answer, rubric and exposition are accepted as a mathematically justified, expressly changed contract. Not equivalence to the predecessor, reader admission, historical gold restoration, native formal-view approval or new Lean execution.",
+  "independence": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "repair_author": "/root/qcb_boundary_repair_review",
+    "original_author": "structured-preparation-author-b2",
+    "assessment": "This task authored neither candidate nor predecessor; it is distinct from their actual authors.",
+    "exposure": "Not blind or a fresh identity. This reviewer previously rejected the exact original in its bounded State Preparation reader batch, including the degree defect. The parent requested review of the new candidate and its intended correction. Complete actual original, candidate and operative local proof bodies were inspected again; prior verdicts are not substituted for the reconstruction."
+  },
+  "binding_definition": {
+    "original_item_digest": "qcb_core.digest of the whole actual historical prepared predecessor obtained through current scripts/release.checked()[2], not a selected-field digest or current reader projection.",
+    "repair_record_digest": "qcb_core.digest of the entire exact parsed private candidate, including question/answer/rubric/exposition and source/execution metadata.",
+    "repair_record_sha256_lf": "qcb_integrity.text_sha of the actual complete private candidate.",
+    "original_contract_hash": "qcb_core.digest(qcb_curriculum.core_contract(original)).",
+    "successor_contract_hash": "qcb_core.digest of that exact original contract with only question replaced by candidate.question.",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_equality": {
+      "assumptions": true,
+      "conventions": true,
+      "family": true,
+      "split": true,
+      "graph_version": true,
+      "target_nodes": true,
+      "supporting_nodes": true,
+      "source_refs": true
+    },
+    "actual_checks": "Supersedes key, whole item digest and contract hash match the actual predecessor. Candidate question_version=2, question is changed. check_exposition and check_source_bindings passed read-only. Exactly three semantic steps remain, with every cited node in the original target/support scope.",
+    "retained_scope": {
+      "family": "hermite-bernstein-representation",
+      "split": "train",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "core_id": "qcb-core-sp-108"
+    }
+  },
+  "provenance": {
+    "observed_head": "a0836e38501d3976663ca561424063e78ba32214",
+    "retrieval": "Current release.checked()[2] actual full predecessors; both complete private candidates read. No current reader admission or source-publication seal inferred.",
+    "instruction_status": "Refreshed AGENTS, HARNESS, substantive-worker skill, theorem-publication, proof-digestion, evidence-routed-memory and shared CONTRACT/ACCEPTANCE instructions. Their evidence distinctions guided this static mathematical review.",
+    "source_hash_method": "Actual qcb_integrity.text_sha whole-file LF-normalized bindings independently recomputed; parsed-record and contract hashes use qcb_core.digest.",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_approval_claimed": false,
+    "expert_or_model_evaluation_claimed": false,
+    "extra_agents": false,
+    "admission_performed": false,
+    "mutation_scope": "Only this private review JSON is authored. No candidate, earlier reader review, production Lean, frozen QA, source-binding module, canonical policy, PR103, commit or push is changed.",
+    "remaining_limits": "Local source text and independently reconstructed elementary polynomial reasoning; no fresh kernel check, primary-paper retrieval, finite-bit implementation, coherent oracle, circuit, theorem novelty, global dedup or blanket chapter approval."
+  },
+  "contract_change_assessment": {
+    "classification": "Explicit first question-contract successor, not answer-only repair.",
+    "predecessor_literal_reading": "The predecessor calls t^i(1-t)^(k+1) degree k+1 for all allowed i<=k. This is false for i>0. It also leaves 'full source polynomial' implicit, and its old answer/last semantic step put exp(-1) on the reflected copy, unlike the actual source definition.",
+    "changed_requested_reasoning": "Version2 explicitly asks to assess/refute the old degree description, compute exact degree/leading coefficient, prove the retained all-real elevation, and supply an explicit collected/reflected coefficient formula for the same source polynomial. This adds a counterexample and boundary/convention explanation; it is not equivalent to the old requested proof.",
+    "retained_mathematical_family_and_target": "The same endpoint-factor-to-Bernstein representation and nonnegative source coefficient construction remain. Family hermite-bernstein-representation, train split, frozen graph version, target/support node lists and source_refs are retained exactly. Same reserved core lineage is justified; this is not a newly counted core.",
+    "hypotheses_and_model": "Original assumptions/conventions are empty. Stating natural k,i with i<=k and real polynomial evaluation makes the original binomial/polynomial setting explicit. It adds no positivity-of-t, interior-endpoint, nonzero-variable or nonzero-k premise. a_{k,i}, F and H define the formerly implicit full source object rather than assuming its coefficient positivity.",
+    "source_orientation": "H(t)=exp(-1)F(t)+F(1-t) is sourceInterpolant evaluated at p=t-1, hence t=p+1. This is the actual source weighting, not exp(-1) times the reflection. The correction is disclosed in the explicit question/answer and source-coordinate discussion; it is not a silent redefinition of the source.",
+    "necessity_and_minimality": "An answer-only change cannot make the old exact-degree sentence true. Version2 preserves that false description for assessment, replaces it with the precise degree, and makes the same source target self-contained. Defining the full source is additional explicit exposition, not a new condition or different construction. The retained exact elevation/nonnegativity route needs no graph or hypothesis change.",
+    "admission_boundary": "The predecessor rejection remains digest-bound historical evidence. This accepts the exact private candidate mathematics only; migration/copying/reader selection, stale companion handling and publication gates remain separate."
+  },
+  "substantive_reconstruction": {
+    "leading_coefficient": "In R[t], (1-t)^(k+1) has nonzero leading coefficient (-1)^(k+1) and degree k+1. Multiplication by the monic t^i shifts degree by i and leaves that coefficient unchanged. Exact degree is i+k+1; k=i=1 yields t-2t^2+t^3, degree3 rather than2. With 0<=i<=k, it is at most d=2k+1, equal to d iff i=k. It is never zero or constant, since k+1>=1. The question's ambient Bernstein degree does not assert exact degree of every represented polynomial.",
+    "binomial_denominator_and_factorization": "For 0<=j<=k-i, r=i+j<=k<=2k+1=d, so choose(d,r)>0. Cancelling this binomial in w B is legitimate and yields choose(k-i,j)t^(i+j)(1-t)^(d-i-j). Since d-i-j=(k+1)+(k-i-j), factor out t^i(1-t)^(k+1). The remaining sum is (t+(1-t))^(k-i)=1, proving the displayed identity for all real t with no division by t or 1-t.",
+    "source_coefficients_and_collection": "The source coefficientSeries is exp(t)*(1-t)^(-(k+1)); its degree-i coefficient is sum_{m=0}^i choose(k+i-m,k)/m!, exactly a_{k,i}. Each summand is nonnegative over the reals, with factorial denominator positive. The truncation keeps i=0..k, so endpointFactor is F. Collecting the elevated terms assigns L_r=sum_{i,j}[r=i+j]a_i w_ij, with zero support above k; every L_r is nonnegative.",
+    "reflection_and_source_bridge": "B_{d,r}(1-t)=B_{d,d-r}(t) follows from choose(d,r)=choose(d,d-r) and swapping the powers. Reindex the finite d+1 term sum to get F(1-t)=sum_r L_(d-r)B_{d,r}(t). Therefore c_r=exp(-1)L_r+L_(d-r), with nonnegative coefficients independent of t. The source's taylor1 evaluates the weighted expression at p+1; at p=t-1 this is precisely H(t), not a weight-swapped target.",
+    "endpoints_and_degenerate_indices": "i=k leaves j=0 with w=1/choose(d,k), already at actual degree d. i=0 has actual degree k+1. k=0 forces i=j=0,d=1,F=1-t and coefficients(exp(-1),1), giving H=exp(-1)(1-t)+t. At t=0 or1 all formulas remain polynomial identities, with exponent-zero factors1; no analytical 0^0 limit is introduced. In fact H(0)=exp(-1),H(1)=1 for every k because a_(k,0)=1. Negative or outside-unit t does not break the identity, but nonnegative basis values are only used on [0,1].",
+    "nonnegativity_and_resource_boundary": "On [0,1], t and 1-t are nonnegative, making every Bernstein basis value nonnegative. Nonnegative c_r then imply H>=0. No claim of sign outside the interval, numerical coefficient stability, finite-bit efficiency or quantum state/circuit realization follows. The leading-degree reasoning is independently derived NL algebra; elevation/source-bridge theorem bodies were read but not rerun."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "question": "Accept: all ranges, denominator bounds, exact-degree versus ambient-degree distinction, same full source target and all-real versus interval distinction are explicit.",
+    "reference_answer": "Accept in full. Counterexample and leading coefficient are correct; finite collection and reflection preserve actual source weights and p=t-1 orientation. i=0,i=k,k=0 and endpoint evaluations are included without illicit cancellation.",
+    "rubric": "c1 grades the false-degree refutation and exact leading term; c2 grades positive denominator/exponent/binomial identity and boundaries; c3 grades actual a_i and correct exp(-1)L_r+L_(d-r); c4 grades coefficient/basis positivity at the right scopes. No criterion demands a false degree or a new formal certificate.",
+    "semantic_steps": "All three read. Their graph anchors are relevant to elevation/collection; step1 additionally states independently derived degree reasoning and is not advertised as a local exact-degree theorem. Same original support-step count and node scope are retained.",
+    "residual_mathematical_defects": "None found within this exact candidate. Acceptance does not retroactively accept the original question or its weight-swapped prose."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/HermiteBernstein.lean",
+      "sha256_lf": "661618d9c10826491ee293c7c411ac2d55056426739f4bbfd3e7c410c05e4bff",
+      "anchor": "Complete module read. Operative basis/basis_eq/nonneg/flip22-37; sourceCoefficient/eq/nonneg40-48; elevationWeight/nonneg51-55; full elevation_term57-66 and elevation_sum69-84; leftCoefficient and full collection/nonnegativity/evaluation proofs89-164; sourceBernsteinCoefficient/nonneg167-173; reflected_sum176-184 and full sourceInterpolant_bernstein188-198. Later subdivision/readout not invoked for this candidate."
+    },
+    {
+      "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+      "sha256_lf": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+      "anchor": "Read complete operative region169-204: coefficientSeries, coefficientPolynomial, endpointFactor, sourceInterpolant and full coefficient coefficient/nonnegative/zero proofs. Read289-332: complete coefficientPolynomial_eval, sourceInterpolant_eval and degree-upper-bound proofs. These define the actual full target, unreflected exponential weight and t=p+1; unrelated analytic/splice proofs are not needed or newly reviewed."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_textbook_policy.py",
+      "sha256_lf": "cfa2687f426d3187543a5f1ea75cb2b4491cd26a06fe4d755970678cf38bb4d9",
+      "anchor": "Actual CONTRACT_FIELDS/check_exposition12-27 and question_successor30-123 read, including new_contract={original_contract,question:repair.question}, distinct content bindings, retained scope and historical lineage. Only read-only scope/binding checks used; no admission invoked."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/src/qcb_curriculum.py",
+      "sha256_lf": "a7849cd787e3195c190693fe3257a4c6d4eb4a1633a40f9366ab2ea28e25e7e5",
+      "anchor": "Actual core_contract19-20 read; its nine-field extraction used programmatically for both old/new contract digests."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "proposal_id": "7911c49d-cb8e-46b1-a37c-230c673d70d2",
+  "track": "non-lean",
+  "author": "REPLACE_WITH_ACTUAL_AUTHOR_IDENTITY",
+  "core_id": "candidate:7911c49d-cb8e-46b1-a37c-230c673d70d2",
+  "admission": "candidate_not_counted",
+  "dedup_review_required": true,
+  "source_nodes": ["REPLACE_WITH_ACTUAL_GRAPH_NODE_ID"],
+  "view_kind": "derivation",
+  "note": "Example only, not an admitted proposal. Existing-core proposals instead copy core_id, contract_hash, family, split and snapshot_id from the registry. Add the substantive question/answer and exact evidence packet in your own proposal."
+}

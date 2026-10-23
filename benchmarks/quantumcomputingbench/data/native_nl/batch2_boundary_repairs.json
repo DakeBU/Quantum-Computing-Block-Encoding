@@ -1,0 +1,317 @@
+[
+  {
+    "core_id": "qcb-core-sp-101",
+    "key": "qcb-core-sp-101-corrected-v2",
+    "topic": "structured_preparation",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "Fix a real point a and a natural number k, and prescribe target values v(0), v(1), ..., v(k). Define a degree-at-most-k real polynomial P by taking the local Taylor polynomial centred at a whose coefficient of (x-a)^j is v(j)/j!. Prove that for every j with 0 <= j <= k the ordinary j-th derivative of P evaluated at a equals exactly v(j). You may use the fact that the j-th derivative of a polynomial at a point equals j! times the degree-j Taylor coefficient of the polynomial about that point.",
+    "reference_answer": "Write P = sum over i in {0,...,k} of (v(i)/i!) * (x-a)^i. The key bridge is that for any polynomial Q, (d^j/dx^j Q)(a) = j! * c_j, where c_j is the coefficient of (x-a)^j in the Taylor expansion of Q about a; equivalently c_j is the degree-j coefficient of the shifted polynomial Q(x+a). Step 1: the Taylor coefficients of P about a are read off directly: the coefficient of (x-a)^j is v(j)/j! for j <= k and 0 for j > k, because P is already written in the (x-a) basis. Step 2: apply the bridge at order j <= k: (d^j P/dx^j)(a) = j! * (coefficient of (x-a)^j) = j! * (v(j)/j!). Step 3: since j! is a nonzero natural number cast into the reals, j! * (v(j)/j!) = v(j) exactly. Hence every requested jet value is reproduced exactly. Each summand has degree at most k, so the finite sum has degree at most k. This is only an upper bound on the degree of the polynomial for the prescribed data; for example all-zero data gives the zero polynomial. No minimality claim or numerical approximation is needed.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Writes P in the (x-a) monomial basis with coefficient v(j)/j! and identifies these as the Taylor coefficients about a.",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Invokes the derivative/Taylor-coefficient bridge: j-th derivative at a equals j! times the degree-j Taylor coefficient.",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Cancels j! against the 1/j! normalization to conclude the j-th derivative at a equals v(j) for all j <= k.",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "Notes the degree bound k and that the identities are exact (no numerical approximation).",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial",
+      "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial_jet",
+      "declaration:QuantumBlockEncoding.HermitePolynomial.eval_iterate_derivative"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "v is an arbitrary real sequence; only its first k+1 entries are constrained",
+      "derivatives are ordinary real polynomial derivatives"
+    ],
+    "conventions": [
+      "the center a is fixed and the polynomial is expressed in the shifted basis (x-a)"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The j-th derivative at a of any polynomial equals j! times its degree-j Taylor coefficient about a.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermitePolynomial.eval_iterate_derivative"
+        ]
+      },
+      {
+        "claim": "The polynomial written in the (x-a) basis has degree-j coefficient v(j)/j! for j<=k.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial"
+        ]
+      },
+      {
+        "claim": "Multiplying the coefficient by j! cancels the normalization, giving exactly v(j).",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.HermitePolynomial.jetPolynomial_jet"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Requires linking the ordinary iterated derivative to Taylor coefficients and tracking the factorial normalization, not just quoting a derivative rule."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/HermitePolynomial.lean",
+        "sha256": "f8a3e1d5f29aed1228b6ede3577a9af1e76301559172ee67a266fcb0d56fee1e",
+        "anchor": "lines 27-49: def jetPolynomial (a : R) (k : N) (v : N -> R) := taylor (-a) (sum_{j in range (k+1)} monomial j (v j / j!)); theorem eval_iterate_derivative (p) (a) (j) : (derivative^[j] p).eval a = j! * (taylor a p).coeff j; theorem jetPolynomial_jet (a k j v) (hj : j <= k) : (derivative^[j] (jetPolynomial a k v)).eval a = v j",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "hermite-jet-interpolation",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A single Taylor-truncation polynomial reproduces every prescribed derivative up to order k exactly, via the j! normalization of Taylor coefficients.",
+      "evidence_relation": "local_source_supported",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "main-batch2-boundary-repair-author",
+      "new_problem_core": false,
+      "existing_core_aliases": [
+        "qcb-core-sp-101"
+      ]
+    },
+    "supersedes": "qcb-core-sp-101",
+    "author": {
+      "identity": "main-batch2-boundary-repair-author",
+      "method": "Same-core mathematical boundary correction after actual independent rejection",
+      "independence": "self-authored repair requires distinct content review"
+    }
+  },
+  {
+    "core_id": "qcb-core-la-205",
+    "key": "qcb-core-la-205-corrected-v2",
+    "topic": "stored_cost_refinement",
+    "track": "reasoning",
+    "task_kind": "proof",
+    "question": "A full stored rectangular compilation of an N-by-M matrix produces a reduced residual, a chronological list of rotation steps, and a fully accumulated N-by-N transform. In the eight-counter exact-real model its per-counter cost has been bounded by an explicit polynomial budget whose values on the eight counters are: field = N*M*(6*M+6*N+9); square root = N*M; inverse-cosine = N*M; other trigonometric = 4*N*M; comparison = 2*N*M + M + N*N; read = N*M*(10*M+14*N+10) + 2*N*N + 2*N + 1; write = N*M*(6*M+10*N+1) + 2*N*N + 2*N; emitted records = N*M. Prove that the sum of all eight counters is bounded by N*M*(22*M+30*N+29) + 5*N*N + 4*N + M + 1, and explain why this single scalar is an operation count in an extended exact-real model and not a finite-bit running time.",
+    "reference_answer": "Add the eight per-counter polynomials. Group the N*M*(...) coefficients: from field 6*M+6*N+9, from read 10*M+14*N+10, from write 6*M+10*N+1, giving 22*M+30*N+20 inside the N*M factor; the square-root, inverse-cosine, emitted and part of the comparison counters each contribute an extra N*M (that is 1+1+1 from sqrt/angle/emit, 4 from the other trig, and 2 from the comparison), adding 9 more inside the same N*M factor and yielding N*M*(22*M+30*N+29). The remaining non-N*M terms are: comparison M + N*N, read 2*N*N + 2*N + 1, write 2*N*N + 2*N; summing the N*N terms gives 5*N*N, the linear-in-N terms give 4*N, the M term stays M, and the constants give 1. Hence the grand total is N*M*(22*M+30*N+29) + 5*N*N + 4*N + M + 1. The quantity counts exact-real primitive operations (field arithmetic, exact square roots and trigonometric evaluations, exact comparisons) and stored-word traffic in a word-RAM style model; it charges no bit-level cost for representing or rounding reals, so it is explicitly not a finite-bit running-time bound.",
+    "rubric": [
+      {
+        "id": "c1",
+        "criterion": "Correctly collect the N*M coefficient to 22*M+30*N+29 across all eight counters",
+        "weight": 1
+      },
+      {
+        "id": "c2",
+        "criterion": "Sum the lower-order terms to 5*N*N + 4*N + M + 1",
+        "weight": 1
+      },
+      {
+        "id": "c3",
+        "criterion": "Explain the exact-real word-model reading and that it is not finite-bit complexity",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.compile_total_cost_le"
+    ],
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.polynomialBudget",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.total",
+      "declaration:QuantumBlockEncoding.StoredRectangularGivens.compile"
+    ],
+    "assumptions": [
+      "The eight per-counter polynomial budgets are as stated",
+      "Totalling means summing the eight counters"
+    ],
+    "conventions": [
+      "Exact-real word-RAM operation model with no bit-level charge; not a finite-bit runtime",
+      "Original derivation from inspected local source; no fresh Lean verification"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "The N*M-scaled parts of all eight counters collect to 22*M+30*N+29.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.polynomialBudget"
+        ]
+      },
+      {
+        "claim": "The remaining quadratic, linear and constant terms sum to 5*N*N+4*N+M+1.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.total"
+        ]
+      },
+      {
+        "claim": "The scalar total is an exact-real operation count, not finite-bit complexity.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.StoredRectangularGivens.compile_total_cost_le"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Careful polynomial summation of eight counters with an explicit model caveat."
+    },
+    "source_refs": [
+      {
+        "path": "QuantumBlockEncoding/StoredRectangularGivens.lean",
+        "sha256": "f8638a6d287b3b984fa530b13eeb18e3992904543236bd0756eda41fa6490d98",
+        "anchor": "polynomialBudget213-221; total236-238; compile_total_cost_le240-253",
+        "license": "MIT (repository LICENSE)"
+      }
+    ],
+    "family": "native-stored-cost-205",
+    "answer_format": "rubric",
+    "evidence_status": "source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "Prove the eight per-counter polynomial budgets of a stored rectangular compilation sum to N*M*(22*M+30*N+29)+5*N*N+4*N+M+1 and read it as an exact-real, not finite-bit, count. The write budget includes the required +2*N spine term.",
+      "evidence_relation": "nl_bridge_from_inspected_source",
+      "formal_counterpart": "existing_source_not_freshly_verified",
+      "author_identity": "main-batch2-boundary-repair-author",
+      "new_problem_core": false,
+      "existing_core_aliases": [
+        "qcb-core-la-205"
+      ]
+    },
+    "supersedes": "qcb-core-la-205",
+    "author": {
+      "identity": "main-batch2-boundary-repair-author",
+      "method": "Same-core mathematical boundary correction after actual independent rejection",
+      "independence": "self-authored repair requires distinct content review"
+    }
+  },
+  {
+    "core_id": "qcb-core-plan-210",
+    "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity-corrected-v2",
+    "topic": "planned_scientific_algorithms",
+    "track": "planned",
+    "task_kind": "proof",
+    "question": "Let A be a diagonal N x N matrix (a 1-sparse matrix whose only nonzero entries are A_ii), with ||A||_max <= 1. Using the simplified amplitude oracle O_A |0>|i> = (A_ii |0> + sqrt(1 - |A_ii|^2) |1>) |i>, set U_A := O_A. Prove by direct evaluation of the matrix element <0|<i| U_A |0>|j> that U_A is a (1,1)-block-encoding of A, i.e. <0|<i| U_A |0>|j> = A_ii delta_ij, so THIS construction has subnormalization factor alpha = 1 with a single ancilla qubit. Explain why no index-permutation oracle is needed here, in contrast to the general 1-sparse case. Then discuss precisely in what sense alpha = 1 is or is not optimal: state the general lower bound any block encoding must obey, and say whether alpha = 1 is a global optimum for every diagonal A with ||A||_max <= 1 or only in a specific case.",
+    "reference_answer": "Apply U_A = O_A to |0>|j>: U_A |0>|j> = (A_jj |0> + sqrt(1-|A_jj|^2)|1>)|j>. Now take the overlap with <0|<i|: <0|<i| U_A |0>|j> = A_jj <0|0> <i|j> + sqrt(1-|A_jj|^2) <0|1> <i|j>. The second term vanishes because <0|1> = 0. The first term is A_jj <i|j> = A_jj delta_ij. When i = j this equals A_jj = A_ii; when i != j it is 0. Hence <0|<i| U_A |0>|j> = A_ii delta_ij, which is precisely the (i,j) entry of the diagonal matrix A. By the definition of block encoding, (<0| tensor I) U_A (|0> tensor I) = A exactly, with one ancilla qubit (m = 1) and subnormalization alpha = 1, so U_A is in BE_{1,1}(A). No permutation oracle is needed because for a DIAGONAL matrix the row index equals the column index: the single nonzero entry in column j sits at row c(j) = j, i.e. the sparsity permutation c is the identity. In the general 1-sparse case the unique nonzero entry of column j lives at row c(j) != j, so one must apply an index permutation O_c |j> = |c(j)> to move the amplitude-carrying basis state from |j> to |c(j)>; for the diagonal case c = id, so O_c = I and U_A = O_A alone suffices. Optimality -- stated carefully. The general lower bound is that any (alpha,m)-block-encoding of A must satisfy alpha >= ||A|| (operator norm), because the encoded top-left block equals A/alpha and a sub-block of a unitary has operator norm at most 1, forcing ||A||/alpha <= 1. For a diagonal A, ||A|| = max_i |A_ii|. The present construction FIXES alpha = 1 regardless of the entries; this value saturates the lower bound (hence is globally optimal) ONLY in the case ||A|| = max_i |A_ii| = 1, e.g. when some |A_ii| = 1. If instead 0 < max_i |A_ii| = r < 1 strictly, then alpha = 1 is a VALID but NOT optimal subnormalization: the lower bound only demands alpha >= r, and a smaller alpha = r is mathematically achievable -- for example by encoding A/r (whose max entry has modulus 1) with this very construction to obtain an (r,1)-block-encoding of A. Thus alpha = 1 is a property of THIS fixed construction, globally optimal exactly when ||A|| = 1, and for ||A|| < 1 merely a valid upper bound rather than the minimum. The honest statement: the construction yields alpha = 1; it meets the alpha >= ||A|| floor iff ||A|| = 1, and is not subnormalization-optimal when ||A|| < 1. At A=0, every strictly positive scale is feasible (a zero clean block), but scale0 is not an admissible positive normalization; the infimum0 is not an attained positive minimum, and division by the zero norm is never used.",
+    "rubric": [
+      {
+        "id": "r1",
+        "criterion": "Applies U_A = O_A to |0>|j> and expands the overlap <0|<i| U_A |0>|j>",
+        "weight": 1
+      },
+      {
+        "id": "r2",
+        "criterion": "Uses <0|1> = 0 to kill the second term and <i|j> = delta_ij to obtain A_ii delta_ij, concluding U_A in BE_{1,1}(A) (this construction's alpha = 1)",
+        "weight": 1
+      },
+      {
+        "id": "r3",
+        "criterion": "Explains the sparsity permutation is the identity for a diagonal matrix (c(j)=j), so no O_c is needed, unlike the general 1-sparse case",
+        "weight": 1
+      },
+      {
+        "id": "r4",
+        "criterion": "States alpha >= ||A|| and correctly limits optimality: alpha = 1 is globally optimal ONLY when ||A|| = max_i|A_ii| = 1; for 0 < ||A|| < 1 it is valid but NOT optimal (a smaller alpha = ||A|| when ||A||>0 is achievable, e.g. by encoding A/||A||)",
+        "weight": 1
+      }
+    ],
+    "target_nodes": [
+      "concept:block-encoding",
+      "concept:matrix-analysis",
+      "concept:operator-theory"
+    ],
+    "supporting_nodes": [],
+    "assumptions": [
+      "A is diagonal with ||A||_max <= 1",
+      "O_A acts as the single-index amplitude oracle",
+      "Positive subnormalization scales only; the scaling construction A/r is used only for r=||A||>0, with A=0 handled separately."
+    ],
+    "conventions": [
+      "BE_{alpha,m}(A) denotes an (alpha,m)-block-encoding of A",
+      "The ancilla success flag is the first qubit returning |0>"
+    ],
+    "semantic_steps": [
+      {
+        "claim": "U_A|0>|j> = (A_jj|0> + sqrt(1-|A_jj|^2)|1>)|j>.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "<0|<i|U_A|0>|j> = A_jj <0|0><i|j> + sqrt(1-|A_jj|^2)<0|1><i|j>, and <0|1>=0 kills the second term.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "<i|j> = delta_ij gives <0|<i|U_A|0>|j> = A_ii delta_ij, so U_A in BE_{1,1}(A) with this construction's alpha = 1.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "For diagonal A the sparsity permutation is c(j)=j, so O_c = I and no permutation oracle is required.",
+        "supporting_nodes": [
+          "concept:block-encoding"
+        ]
+      },
+      {
+        "claim": "Any block encoding needs alpha >= ||A||; alpha = 1 saturates this iff ||A|| = 1, and for 0 < ||A|| < 1 a smaller alpha = ||A|| for nonzero A is achievable, so alpha = 1 is not globally optimal there.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ],
+    "difficulty": {
+      "level": "foundational",
+      "rationale": "A short exact calculation plus two conceptual observations (permutation triviality and the carefully-bounded sense in which alpha = 1 is optimal); requires not overclaiming global optimality."
+    },
+    "source_refs": [
+      {
+        "path": "website/research/sources.json",
+        "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+        "anchor": "lin-wiebe-2026-qasc",
+        "license": "MIT metadata only"
+      },
+      {
+        "primary_source": {
+          "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+          "sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+          "edition": "29 April 2026",
+          "pages": "155",
+          "anchors": "Example 9.17; Eq. (9.72)-(9.73); U_A in BE_{1,1}(A)",
+          "inspection": "full bounded primary text read",
+          "redistribution": "not redistributed",
+          "reuse": "Original questions/derivations; no copied source text or external relicensing"
+        }
+      }
+    ],
+    "family": "qsc-sparse-block-encoding",
+    "answer_format": "rubric",
+    "evidence_status": "planned_source_inspected",
+    "formal": null,
+    "unresolved_issues": [],
+    "native_nl": {
+      "core_summary": "A diagonal entry-amplitude oracle gives a unit-scale block; for nonzero A the sharp existence scale is ||A||, whereas A=0 admits all positive scales with unattained infimum0. No efficient synthesis inferred.",
+      "evidence_relation": "primary_source_nl_only",
+      "formal_counterpart": "none",
+      "author_identity": "main-batch2-boundary-repair-author",
+      "new_problem_core": false,
+      "existing_core_aliases": [
+        "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity"
+      ]
+    },
+    "supersedes": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+    "author": {
+      "identity": "main-batch2-boundary-repair-author",
+      "method": "Same-core mathematical boundary correction after actual independent rejection",
+      "independence": "self-authored repair requires distinct content review"
+    }
+  }
+]

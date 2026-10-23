@@ -1,0 +1,199 @@
+{
+  "schema_version": "qcb.mathematical_reader_review.v1",
+  "method": "independent-mathematical-reader-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "absent_core_ids": ["qcb-core-be-005", "qcb-core-be-007"],
+  "provenance": {
+    "item_source": "Actual admitted/prepared item dictionary returned by qcb_curriculum.load_catalog in qcb-release-integration. Each item_digest is qcb_core.digest of the complete prepared record.",
+    "scope": "The ten actually present be-001 through be-012 records were reviewed as complete NL questions, answers, assumptions, conventions, rubrics and semantic steps. Absent IDs were skipped, not reconstructed or invented. Relevant exact local definitions and complete source proof bodies were inspected.",
+    "bounded_alias_scope": "Compared the ten requested tasks with one another and the complete current questions of nearby la-004, la-008, be-104, be-105, be-107 and be-110. Prior inspected la-005/la-006 and la-019 supply additional bounded completion/Hermitian comparisons. Shared declaration names were candidate retrieval signals, not evidence of equal mathematical tasks. No global deduplication or novelty result is claimed.",
+    "limits": "This is a mathematical reader review, not source-blind decoding, fresh Lean verification, production circuit execution, finite-bit compilation or a query/resource benchmark. In particular abstract candidate Prop fields and arithmetic clean-block certificates are not upgraded into analytic or circuit certificates. Only this report outside the repository was written; no source, policy, catalog or previous report was changed."
+  },
+  "items": [
+    {
+      "core_id": "qcb-core-be-001",
+      "item_digest": "d3fcc5644825a903d365c5356b4e51c6754683966d400872169b733c2b7ed313",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "There are 2^a auxiliary labels and 2^n system labels, so U has square dimension 2^(n+a), while its auxiliary-zero compression B and target A are 2^n square. With the stated column-vector convention B(i,j)=U((0,i),(0,j)). The scale convention A=alpha B gives B(i,j)=A(i,j)/alpha because alpha>0 implies alpha!=0, and the converse follows entrywise. The approximate contract is ||A-alpha B||<=epsilon in the Euclidean induced operator norm; at epsilon=0, norm nonnegativity and norm definiteness make this equivalent to exact equality. Positivity is stronger than the cancellation hypothesis: a nonzero real scale permits division, while positivity is the declared normalization convention. At alpha=0 the undivided equation merely requires A=0 and leaves B unconstrained, so the divided characterization is invalid. 'Not defined' is the usual mathematical-ratio convention here, not a claim that Lean's totalized field division raises an error. With n=0 the system is a scalar and with a=0 B=U; the formulas remain valid. The answer and all three rubric criteria agree. I inspected the complete candidate structures and projection definitions: approximationBound is deliberately an arbitrary stored proposition, so those records alone do not prove this analytic inequality for a concrete circuit. No optimal scale or implementation efficiency follows. la-004 shares dimension/indexing prerequisites but asks a different representation equality, and la-008 asks a clean-action equivalence rather than normalization/error semantics.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+          "anchor": "Complete OperatorBlockEncodingCandidate/VerifiedOperatorBlockEncoding and ApproximateOperatorBlockEncodingCandidate/VerifiedApproximateOperatorBlockEncoding definitions and norm-contract documentation, lines 97-165."
+        },
+        {
+          "path": "QuantumBlockEncoding/CircuitSemantics.lean",
+          "sha256_lf": "761ac3a98ea5a82ad5030e280e3810821081d10cec3d0a0a1d3c2add3fcd4666",
+          "anchor": "Complete signal/system index definitions, bounds, signalSystemBlockProjection and its entry formula, lines 696-776."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-002",
+      "item_digest": "0225404a2bcf4af0f22e5bf5145a57227181783389be19800bce939c379853e1",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Writing J(v)=|0>_S|0>_W tensor v, the additional promise is that for every v, (|0><0|_S tensor I_WD) U J(v)=|0>_S|0>_W tensor T(v), equivalently every amplitude with S=0 and W!=0 vanishes. The smaller double-zero submatrix determines T but says nothing about those other signal-success workspace components. With one-dimensional signal/data and a two-dimensional W, the rotation R(t) sends |0> to cos(t)|0>+sin(t)|1>; for 0<t<pi/2 it is unitary, its doubly projected scalar block is cos(t), signal success is certain, and the excited workspace amplitude is nonzero. This is a valid exact block for the scalar target cos(t) at unit normalization, yet fails the promise. The answer and all three rubric criteria are correct. A one-dimensional signal in this example consumes zero signal qubits; whenever signal/workspace registers are actually allocated, both contribute to the total Hilbert space regardless of separate ledger roles. Projection need not be implemented as uncomputation or establish deterministic workspace cleanup. I inspected RegisterLayout/auxiliaryQubits and the cost/candidate records: they account for roles but do not carry the success-sector amplitude theorem. The counterexample is independently derived using the exact real-rotation semantics, not attributed to a cleanup theorem in those records. be-004/be-006 explain a particular LCU clean projection and do not subsume this missing-success-sector-promise counterexample; be-001 is the normalization definition. No physical reset, compiler or resource bound is claimed.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+          "anchor": "Complete RegisterLayout and auxiliaryQubits, lines 14-30; BlockEncodingCost/fromLayoutAndResource, lines 50-66; full candidate fields, lines 103-116."
+        },
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+          "anchor": "Complete realOrthogonalRotation entry definition and unitary proof, lines 23-57; realRotation definition and unitary theorem, lines 60-85."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-003",
+      "item_digest": "a757beddff8a7a05762348e416f2e50a373efa53005468c33f43d4ea53b61de8",
+      "verdict": "uncertain",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The intended nonuniqueness proof is mathematically correct: for s=sqrt(1-x^2)>0, the displayed U1=[[x,-s],[s,x]] and U2=[[x,s],[s,-x]] both have Gram identity because x^2+s^2=1 and their column cross products cancel; their differing off-diagonal entries show distinctness. Both clean entries are x. These same formulas work for every 0<|x|<1, including negative x, and there is no uniqueness of the off-block completion subject to orthogonality. The source cleanBlockBy and the clean-output-only action equivalence fix precisely this subblock; they do not fix full clean-input output vectors, and the answer correctly qualifies its clean-ACTION phrase by reading clean outputs. However, the exact item has a contract discrepancy: its question requests all x with 0<|x|<1, while its explicit assumptions state target in (0,1), and the answer starts its construction 'with x in (0,1)'. I cannot certify the question/assumptions/answer as one unambiguous contract without deciding which range is intended. This is why the verdict is uncertain rather than a claim that the displayed matrices are wrong; the construction would extend immediately, but this review does not author that correction. The completion is not a freely chosen set of independent off-block entries: orthogonality couples them, as the answer notes. Larger ambient spaces can have continuous completion families, whereas this fixed two-dimensional real example merely needs two witnesses. A needlessly long implementation can also change cost without changing U, so no cost can be read from A alone. be-008 asks the scalar contraction boundary rather than completion nonuniqueness, and la-005/la-006 concern existence of orthogonal/SO completions for prescribed whole columns, not a single compressed entry.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+          "anchor": "Complete cleanBlockBy definition and product embedding, lines 38-63; matrix-level Gram predicates, lines 23-36."
+        },
+        {
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+          "anchor": "Complete cleanBasisActionAmplitude, projected-entry bridge and pointwiseProjection_iff_cleanBasisAction definitions/proofs, lines 249-294; this action reads only clean outputs."
+        },
+        {
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+          "anchor": "Complete OperatorBlockEncodingCandidate and VerifiedOperatorBlockEncoding records, lines 103-134; resource data and proof obligations are separately recorded."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-004",
+      "item_digest": "69ef913513b5551fc106df171152b284d3ab8de62ca563ee680e1e751cfaa977",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The stage/register description matches the source: selectorLift PREPARE acts on selector alone; AMPLITUDE changes the coefficient register controlled by selector and system; SELECT preserves coefficient/selector and permutes the system; the defined final stage is PREPARE-dagger on the same selector. For that definition the clean bra supplies conjugate PREPARE amplitudes and produces the intended squared selector weights. But the answer strengthens this sufficient architectural choice into 'only PREPARE-dagger' can recombine the weights and says the ancilla 'must return to zero' without separating clean projection from deterministic cleanup. The exclusivity is false: if P is PREPARE and D is any selector unitary whose clean row is <0| (for example diag(1,exp(i phi)) on a two-dimensional selector), then the different final gate Q=D P^dagger has the same clean bra <0|Q=<0|P^dagger and yields exactly the same projected LCU block. Even P=I with all intervening stages I and Q=diag(1,-1) is a different final gate with the intended clean action. Also P^dagger after a nontrivial SELECT need not return the selector to zero on the entire state: with selector P=H, a one-qubit system initialized at |0>, and SELECT choosing I or X, the final state has a nonzero selector-one branch. The source proves unitary composition and a clean-entry formula, not zero success probability for other auxiliary values. Thus the record's register assignment is sound, but its stated necessity/cleanup explanation and rubric c3 cannot be accepted as exact mathematics. This finding does not reject the source's explicitly defined P^dagger construction. be-006 is a different task deriving its exact clean entry; be-002 is precisely the projection-versus-cleanup distinction, not an alias. No compilation, query or finite-bit guarantee follows from the logical lifts.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+          "anchor": "Complete selectorLift/amplitudeLift/controlledSystemEquiv/selectLift definitions and local unitary proofs, lines 253-349; complete prepareAmplitudeSelectUnprepare definition and unitary proof, lines 351-399."
+        },
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+          "sha256_lf": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+          "anchor": "Complete star_selectorLift_cleanRow_apply, star_selectorLift_mul_clean and prepareAmplitudeSelectUnprepare_cleanEntry proofs, lines 63-80 and 147-220; these constrain the clean row, not the entire final selector output."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-006",
+      "item_digest": "5e2925c035693a4f8034296aa2d0448e56e059aac0db6f66de4b45cc440f9fb2",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Let p_j=P(j,s0), r_j(x)=rotation(j,x)(c0,c0), and pi_j be the SELECT system equivalence. The clean matrix entry from (c0,s0,x) to (c0,s0,y) is sum_j [pi_j(x)=y] conjugate(p_j) r_j(x) p_j. Expanding the products, selectorLift first fixes coefficient c0 and data x while providing p_j. AMPLITUDE keeps (j,x) and changes only coefficient. SELECT maps x to pi_j(x) without changing j or coefficient. Finally the clean P^dagger bra fixes output coefficient c0 and data y and contributes conjugate(p_j), eliminating every other intermediate index. This proves the formula with the input x, not output y, controlling the rotation, and verifies all three rubric criteria against complete helper and root source proofs. With unitary PREPARE, |p_j|^2 are normalized selector probabilities; a general complex r_j can encode signs/phases or attenuation, so the whole summand is not generally a probability. The purely algebraic source identity even holds without unitarity of P or the rotations, while its physical probability interpretation presumes the named PREPARE gate is unitary. In the specified P/P^dagger architecture the same column and its adjoint produce |p_j|^2; independent choices would in general produce cross-overlap weights instead. This does not mean no different unitary with the same clean bra can work, nor does it prove deterministic selector/coefficient cleanup or supply the missing target-specific weights/oracles. Chosen clean labels entail nonempty coefficient/selector carriers; an empty data carrier has no queried entry. be-004 asks stage roles and be-110 proves SELECT bijectivity; neither is the same derived clean-entry identity. No resource or primitive compiler theorem is inferred.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCUProjection.lean",
+          "sha256_lf": "fa0b84ce5c819184f190b81b4d259e12f725e6196cd37147984fab76fe4ec340",
+          "anchor": "Entire module inspected: complete lift-entry lemmas and clean multiplication helpers, lines 17-169; complete prepareAmplitudeSelectUnprepare_cleanEntry proof, lines 171-220."
+        },
+        {
+          "path": "QuantumBlockEncoding/Robin/ComplexLCU.lean",
+          "sha256_lf": "aa51d33a6ca788b17879e1d88030b525f4f035c97d74588636ccf25f8c04b843",
+          "anchor": "Complete logical lift definitions and their unitary conditions, lines 253-349; prepareAmplitudeSelectUnprepare and full unitary-composition proof, lines 351-399."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-008",
+      "item_digest": "f7551d5420a1e61e7be02a212873d5cc4384b08c62628605282e64b91c4a7181",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The elementary Gram calculations are correct: for D=[[x,y],[y,-x]], DD^T=(x^2+y^2)I, so real orthogonality is equivalent to x^2+y^2=1. A real y exists exactly when |x|<=1, with y=+/-sqrt(1-x^2), and at |x|=1 it vanishes. But the answer and rubric c3 explicitly offer enlarging the signal register as an alternative to raising the normalizer for a scalar |c|>1. That is false in every auxiliary dimension: if J is the clean isometric embedding, then ||J^dagger U J||<=||J^dagger|| ||U|| ||J||=1. More signal qubits cannot produce a clean entry/block with magnitude/norm greater than one at normalizer one. The answer's own universal contraction sentence contradicts this offered remedy. There is also a carrier distinction: the cited scalarDilation accepts rational x,y. Extending the question to existence of a real y is valid mathematics, but a rational y need not exist for every rational |x|<=1 (x=1/2 gives y=+/-sqrt(3)/2). The assumptions' phrase 'Real rational entries' must not be used to claim that the rational source supplies those real square-root witnesses. The row-overlap lemmas only prove conditional algebraic identities, not a general real/rational dilation existence theorem or circuit synthesis. I therefore reject the exact answer/rubric despite its correct calculations. The final sentence also reverses the normalizer wording: it is A/alpha, the encoded block, that must be a contraction under the convention A=alpha B. be-003 concerns nonunique completions; be-105 concerns the differently signed proper rotation and its Gram criterion, so neither is an exact alias of this scalar-dilation/contraction task.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+          "anchor": "Complete rational scalarDilation definition and four entry lemmas, lines 532-554; complete row-dot definition, self-overlap, conditional unit-norm and both cross-overlap proofs, lines 556-595."
+        },
+        {
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+          "anchor": "Approximate block-encoding norm convention A-alpha*cleanBlock, lines 136-153, and total-unitary dimension definition, lines 103-116."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-009",
+      "item_digest": "81aa90c475f83c6c482f6e7f35e5c20125c17896170b3c3306ef5600c8c76dcb",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The stated proposition to be refuted is reconstruction of ANY matrix with at most one nonzero in each column. For a finite nonempty row carrier and a support map chosen to pick that possible nonzero, this proposition is true: choose c(j) to be the unique nonzero row when it exists and any row for a zero column; set amp(j)=A(c(j),j). Then every off-support entry vanishes and oneSparse_from_support proves exact entrywise reconstruction. In the square n=0 case all indices are empty and reconstruction is vacuous as well. The answer's alleged counterexample has two nonzeros in column zero and therefore violates the very 'at most one' premise of the contributor's claim. It demonstrates the limitation of the formula on a non-one-sparse matrix, but cannot refute that claim. Rubric c1 positively requires this invalid form of counterexample, so this is a question/answer/rubric logical defect rather than merely incomplete exposition. If c is fixed independently of the target, even a one-sparse target can fail the specified location condition; the record must distinguish that fixed-c claim from existentially choosing a suitable support map, which the current wording and counterexample do not do. The zero-column example B=diag(0,3) with c(0)=0,c(1)=1 is reconstructed correctly and does show zero amplitudes are permitted. Its entry 3 is an arithmetic matrix example, not by itself a normalizer-one unitary block; reconstruction supplies neither normalization, a reversible location oracle nor an actual amplitude loader. Complete source definitions and the full support proof confirm these distinctions. No bounded neighboring task has the same support-map reconstruction question; this correctness rejection is independent of semantic deduplication.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+          "anchor": "Complete kroneckerRat, oneSparseMatrix, oneSparseMatrix_entry_if and oneSparse_from_support definitions/proofs, lines 116-147; complete OneSparseCertificate/cleanBlock/correct, lines 155-170."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-010",
+      "item_digest": "ee013faa49782085ff133a942fb0e639d3357fa9a4eed212f42f0bb7096d2323",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "Use independent auxiliary labels a for U and b for V. V leaves a unchanged, and U leaves b unchanged. Between the final all-zero bra and initial all-zero ket, those two untouched-register deltas force the auxiliary indices at each factor to be zero, leaving only sum_k U((0,i),(0,k)) V((0,k),(0,j))=sum_k A(i,k)B(k,j)=(AB)(i,j). This confirms the chronological order: V first, then U. With one shared qubit and scalar data, U=V=X has individual clean entries zero but composite clean entry <0|XX|0>=1; the omitted term is a path exiting and later re-entering the clean sector. The example meets all assumptions and the second rubric criterion exactly. A reset is a nonunitary channel on an unknown entangled auxiliary, and generally loses the needed coherent operator amplitude. Applying V^-1 cancels V globally, not just an independently identified garbage state; neither operation is a free general repair. All three rubric criteria and the answer are mathematically sound. For a zero-dimensional data space the product is vacuous, while if both factors have no auxiliary the ordinary unitary product already works. With nonunit scales, the standard product scale would be their product, but the question explicitly sets unit normalization. I inspected the complete source product certificate and resource formulas: they multiply already-extracted matrices and add ledger values, and do not prove the lifted disjoint-register circuit theorem. The answer itself warns against that promotion, so the finite-index derivation here is independent NL reasoning rather than an invented source/compiler guarantee. be-004/be-006 concern LCU sums on reused structured selectors; la-008 concerns projection/action equivalence, so neither is this fresh-register product theorem and reuse counterexample.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+          "anchor": "Complete LCUCertificate with equality-only blockProof and metadata normalizer, lines 725-737; complete matrix_mul_foldl_congr/matrix_mul_congr_pointwise and productCleanBlockCertificate, lines 778-808; productResourceCost, lines 831-839."
+        },
+        {
+          "path": "QuantumBlockEncoding/ConcreteSemantics.lean",
+          "sha256_lf": "454c0c5e215ca197c5883bedf74882f392d259c7afeadc63912230437698ebe5",
+          "anchor": "Complete cleanBasisActionAmplitude/projection bridge/equivalence, lines 249-294; the clean-output contract does not remove failure-sector amplitudes."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-011",
+      "item_digest": "b64c8446192d113eddb6f829ef3cce766d74ac79527a75bec2bebc8674cce7fd",
+      "verdict": "accept",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "For any chosen lower-right diagonal label i, each of the two one-half-scaled sources contributes -N/2 under phase factor -1, while the Pauli-X tensor B term contributes zero there. Their sum is -N, not zero. The Hermitian part S1 of [[A,B],[0,0]] has lower-right block zero, so at that chosen entry N!=0 proves the two matrices differ. Replacing one phase factor by +1 makes the fillers N/2-N/2=0. The upper-left remains (A+A^dagger)/2, the upper-right B/2, and the lower-left B/2, which equals B^dagger/2 exactly under the declared Hermitian B hypothesis; hence the entire balanced matrix is S1. This independently verifies every answer/rubric step and the full block-by-block source proof, including all one-half factors and the role of B's adjoint. Angles zero and pi correspond to phase factors +1 and -1 respectively; the source phase parameter is the factor itself, not the angle. The inequality requires a lower-right entry to exist: the source explicitly takes i in the index carrier, as does the requested entry calculation. For a formally empty carrier both matrices are empty/equal and no such entry witness exists, so the N!=0 conclusion is not a blanket empty-dimension theorem. In the intended finite-register/PDE setting the carrier is nonempty. At N=0 the printed fillers do cancel, and the non-equality claim correctly excludes it. The phase-balanced source is a distinct proposed interpretation, not a claim that the literal printed phases were already correct, and no implementability/resource bound follows from the algebra alone. la-019 proves general Hermitian tensor/sum closure; be-006 derives a logical LCU projection formula. Neither is this concrete source filler-phase mismatch and balanced-block calculation.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/GHLHamiltonian.lean",
+          "sha256_lf": "2e453b72433b4031e29ba73e9e22c3be0f63e4640781b9c81219fdf908ee80c7",
+          "anchor": "Complete adjoint/hermitianPart/IsHermitian definitions, lines 48-63; homogenizedS/S1 and all relevant S1 block formulas, lines 108-157; complete scaledControlledPhaseSource/pauliXTensor/printed and balanced clean definitions and all three root proofs, lines 191-296."
+        }
+      ]
+    },
+    {
+      "core_id": "qcb-core-be-012",
+      "item_digest": "f2574f4e42e99fa324af5c0df2eb12570c39d40fa042763277872b2a3b8abb8a",
+      "verdict": "reject",
+      "semantic_core_verdict": "distinct_or_explicit_alias",
+      "reasoning": "The column and row Gram expansions and the clean entry formula are correct for a bijection p:Fin n->Fin n. Distinct columns have disjoint indicator supports, every column has one unit entry, and a unique preimage supplies each row's diagonal norm. The product embedding is injective on system labels, so the clean block is 0/1 with at most one 1 in each column AND each row, hence a partial permutation. However, the item explicitly assumes a self-map of one finite basis and demands an explanation that injectivity alone is insufficient for the row Gram identity. In that setting every injective self-map is surjective by finite cardinality. Thus injectivity alone already implies bijectivity and both Gram identities; there cannot be the missing-row example described in the answer under the declared assumptions. The source separates an injective-input column lemma from a bijective-input row lemma as proof interfaces, but those signatures do not prove strict mathematical necessity of an additional independent premise. A genuinely rectangular injection or an infinite self-map would permit injective/not-surjective behavior, but both change the stated finite square contract. The answer and rubric c2 therefore teach a false implication boundary, requiring rejection. Also, the claim that no non-0/1 target can be encoded needs the unit-normalizer/direct-clean-block qualification: the raw clean block is 0/1, but under A=alpha B a positive rescaling alpha times a partial permutation is still encoded by the same U. Weighting/LCU is needed for arbitrary relative entries, not necessarily for a common positive scale. All calculations are rational matrix identities; unitary realization over complex numbers additionally uses their standard real embedding, not a primitive resource theorem. be-104 asks equality of compiled gate semantics with a reversible permutation matrix and be-110 asks selector-dependent bijection; they are distinct from this Gram/clean-subblock task despite sharing permutation prerequisites.",
+      "source_checks": [
+        {
+          "path": "QuantumBlockEncoding/BlockEncodingClassics.lean",
+          "sha256_lf": "94ac6632924df0a49b1ebd99bb5d9ed69b2ea463ec527033f38bd73deeb1346a",
+          "anchor": "Complete permMatrix, columnInner, rowInner and IsRationalOrthogonal definitions, lines 19-36; full productIndex/cleanBlockProduct and cleanBlockProduct_permMatrix_entry, lines 48-86; complete injective column-Gram, bijective row-Gram and combined orthogonality proofs, lines 283-394."
+        },
+        {
+          "path": "QuantumBlockEncoding/BlockEncoding.lean",
+          "sha256_lf": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4",
+          "anchor": "The explicit encoded-target normalization convention in ApproximateOperatorBlockEncodingCandidate documentation, lines 136-153."
+        }
+      ]
+    }
+  ]
+}

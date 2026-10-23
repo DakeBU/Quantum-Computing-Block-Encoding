@@ -1,0 +1,1511 @@
+[
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "r and s are the exact bookkeeping records specified in the question; no physical scheduling theorem is assumed"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "5cca87659c22df83452be7456b29cd4762cdd7242e1843c8b11f33d388220fb5",
+    "context_hash": "f8c3c77c5ff2b7831a4304ff34cf98b824facad65fdce5299f82e28fc31cd882",
+    "conventions": [
+      "Resource.add sums all fields; Resource.parallel maxes the recorded depth and pureAncilla fields, without certifying physical peak demand"
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Distinguishes two combinators, performs a small depth computation, and includes an anti-hallucination guard against an unsupported identity."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "resource-accounting",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-894edda95e2c05d525d2",
+    "key": "qs-resource-depth-parallel-vs-serial-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "resource-accounting",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "qs-resource-depth-parallel-vs-serial-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "Resource.add sums all coordinates. Resource.parallel sums oneQubit, cnot and oracleCalls but takes max of depth and pureAncilla. For r=(2,3,1,1,4), s=(5,7,2,1,6) in that coordinate order, compute gates, depth and pureAncilla of both results. Does max ancilla alone certify physical peak usage for independent simultaneous subcircuits requiring disjoint clean ancillas?",
+    "reference_answer": "Serial: gates=20, depth=10, pureAncilla=2. Parallel bookkeeping: gates=20, depth=6, pureAncilla=1. These are values of the current Resource operations, not a scheduling/physical-resource theorem. Two simultaneous independent subcircuits each demanding one distinct ancilla need two ancillas: 1+1=2 > max(1,1)=1. Thus the max rule needs an explicit reuse/overlap/scheduling contract to represent physical peak usage. CircuitLayer is intended as parallel but the IR itself does not prove non-overlap. Do not infer a universal physical bound or change the library definition to hide this boundary.",
+    "reference_checks": [
+      "resourceWitness",
+      "disjointDemandNotMax"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "All six numerical fields correct",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "Separate defined bookkeeping from physical resource claims",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "Give disjoint-unit-demand counterexample and required additional contract",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Compute Resource fields, then refute the universal physical interpretation by disjoint simultaneous unit demands.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Resource.parallel",
+          "declaration:QuantumBlockEncoding.Resource.add",
+          "declaration:QuantumBlockEncoding.Resource.ofCounts",
+          "declaration:QuantumBlockEncoding.Gate.resource",
+          "declaration:QuantumBlockEncoding.CircuitLayer.resource",
+          "declaration:QuantumBlockEncoding.Circuit.resource",
+          "declaration:QuantumBlockEncoding.LayeredCircuit.resource"
+        ]
+      }
+    ],
+    "skills": [
+      "quantum_semantics"
+    ],
+    "source_refs": [
+      {
+        "anchor": "Resource.add / Resource.parallel / Resource.ofCounts",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Resources.lean",
+        "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+      },
+      {
+        "anchor": "Gate.resource / CircuitLayer.resource / Circuit.resource / LayeredCircuit.resource",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Circuit.lean",
+        "sha256": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94"
+      }
+    ],
+    "split": "train",
+    "split_group": "resource-accounting",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "qs-resource-depth-parallel-vs-serial",
+    "support_count": 7,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Resource.add",
+      "declaration:QuantumBlockEncoding.Resource.ofCounts",
+      "declaration:QuantumBlockEncoding.Gate.resource",
+      "declaration:QuantumBlockEncoding.CircuitLayer.resource",
+      "declaration:QuantumBlockEncoding.Circuit.resource",
+      "declaration:QuantumBlockEncoding.LayeredCircuit.resource"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Resource.parallel"
+    ],
+    "task_hash": "ebae72deb8b89054ec3719d81b996fa8163e7094096d7e4678f4337ba4ba5b23",
+    "topic": "resource accounting: depth vs gate count",
+    "track": "quantum_semantics",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.resourceWitness",
+          "QuantumComputingBench.ReferenceChecks.disjointDemandNotMax"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "normSq is the sum of squared amplitudes; sqrt(normSq) is the Euclidean normalizer"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "dfc5dad67a8798d9e7aa70ff8b9795f9ed76336b684d42afd765367a0aa4c5ae",
+    "context_hash": "f5e4f5214876cb926af8376265d481828faa754c54a17badc02b5f6b4e6bc36a",
+    "conventions": [
+      "One-qubit basis labels 0 and 1 correspond to PrimitiveBasis 1 assignments; splitAngle handles zero pair mass explicitly"
+    ],
+    "difficulty": {
+      "level": "hard",
+      "rationale": "Hypothesis-necessity analysis distinguishing a definite degenerate counterexample from a carefully bounded sign claim, with an explicit no-overclaim guard."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "real-amplitude-preparation",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-070c55b06f300dbc0474",
+    "key": "neg-prepare-firstcolumn-positivity-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "real-amplitude-preparation",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "neg-prepare-firstcolumn-positivity-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "The flat prepareMatrixLE_firstColumn API assumes all entries strictly positive. Is strict positivity mathematically necessary for this library's recursive real amplitude preparation? State the weaker prepareCircuit_firstColumn hypotheses, give a sparse nonzero input with a zero entry, and explain the all-zero subtree and all-zero input separately.",
+    "reference_answer": "No. The lower prepareCircuit_firstColumn theorem assumes pointwise nonnegativity and positive total squared norm. For one qubit, f(0)=1 and f(1)=0 is nonnegative with positive total mass and is prepared correctly, despite failing strict pointwise positivity. The flat API's strict positivity is sufficient to derive the lower hypotheses, not proof of necessity. splitAngle assigns angle zero when pairNorm=0; the proof handles zero subtrees without requiring every local branch to have nonzero mass. The all-zero input fails the positive global-mass premise and cannot be normalized to a unit vector. Lean's total division convention does not turn that vector into a normalized state.",
+    "reference_checks": [
+      "sparseNonnegative",
+      "sparseHasZero",
+      "sparsePositiveMass",
+      "sparseNotStrictlyPositive",
+      "sparsePrepared",
+      "zeroSplit"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Distinguish sufficient flat-API hypothesis from necessary conditions",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "State nonnegative plus positive global normSq and sparse witness",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "Explain zero subtree guard and global zero-vector obstruction",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "The lower theorem applies to a sparse nonnegative vector with positive global mass; splitAngle explicitly handles zero local mass.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareMatrixLE_firstColumn",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq_pos_of_positive",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle_firstColumn"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "prepareMatrixLE_firstColumn / prepareCircuit_firstColumn / splitAngle / normSq_pos_of_positive",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+        "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "real-amplitude-preparation",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "neg-prepare-firstcolumn-positivity",
+    "support_count": 6,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq_pos_of_positive",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle_firstColumn",
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareMatrixLE_firstColumn"
+    ],
+    "task_hash": "44962e9c8035dac11b9df8f4031376d63fd23083d8aa13f239976c88480be164",
+    "topic": "counterexample: hypotheses of prepareCircuit_firstColumn",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.sparseNonnegative",
+          "QuantumComputingBench.ReferenceChecks.sparseHasZero",
+          "QuantumComputingBench.ReferenceChecks.sparsePositiveMass",
+          "QuantumComputingBench.ReferenceChecks.sparseNotStrictlyPositive",
+          "QuantumComputingBench.ReferenceChecks.sparsePrepared",
+          "QuantumComputingBench.ReferenceChecks.zeroSplit"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "alpha=0.7 is the real state-vector amplitude-plane angle; the amplitudes are cos(alpha) and sin(alpha)"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "61a837cf3f8eda4804e6eff3aa866989de38475d0917ee319fe80879519f151d",
+    "context_hash": "b22d073050422724701c2e22a69523f8a3d24dbe9adeaf5a7c8c13f65e95e4ec",
+    "conventions": [
+      "The RY argument equals the Bloch rotation angle 2*alpha; amplitudes use half that argument"
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Targeted convention-mismatch counterexample with concrete numbers; two supporting nodes."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "primitive-semantics-convention",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-c19db65651f1861543f9",
+    "key": "neg-ry-not-half-only-at-pi-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "primitive-semantics-convention",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "neg-ry-not-half-only-at-pi-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "A proposed replacement changes standardRyMatrix(theta)=realRotation(theta/2) to realRotation(theta), claiming the half angle matters only at pi. Refute this using the target cos(alpha)|0>+sin(alpha)|1> for alpha=0.7. Distinguish the amplitude-plane angle alpha, the RY parameter, and the Bloch-sphere polar angle.",
+    "reference_answer": "The distinction holds generally, not only at pi. RY(theta)|0> has amplitudes (cos(theta/2),sin(theta/2)), so the target uses theta=2 alpha=1.4. Passing 0.7 instead produces amplitudes (cos(0.35),sin(0.35)). For this real great-circle state, the Bloch polar angle is 2 alpha: the RY parameter equals that Bloch angle, not twice it. The loader formula 2 arccos(c) doubles the amplitude-plane angle arccos(c), not the physical Bloch angle. Sign/phase conventions and arccos range must still be retained.",
+    "reference_checks": [
+      "halfAngle"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Correct half-angle matrix action and numerical parameters",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "Distinguish amplitude angle from Bloch angle",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "No claim that the RY parameter doubles the Bloch angle",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Apply the half-angle definition; distinguish state-vector plane coordinates from Bloch coordinates.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.standardRyMatrix_two_arccos_eq_amplitudeRotation",
+          "declaration:QuantumBlockEncoding.standardRyMatrix",
+          "declaration:QuantumBlockEncoding.standardRyMatrix_zero"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "standardRyMatrix / standardRyMatrix_two_arccos_eq_amplitudeRotation",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+      }
+    ],
+    "split": "train",
+    "split_group": "primitive-semantics-convention",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "neg-ry-not-half-only-at-pi",
+    "support_count": 3,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.standardRyMatrix",
+      "declaration:QuantumBlockEncoding.standardRyMatrix_zero"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.standardRyMatrix_two_arccos_eq_amplitudeRotation"
+    ],
+    "task_hash": "2c170310933b83bd34d657d7bfad41ed6eeba5556773da0ec335950064d9c90a",
+    "topic": "counterexample: RY convention misuse",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.halfAngle"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "rubric",
+    "assumptions": [
+      "All four cost fields are natural numbers compared with Nat <"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "54416ce2903539e498ba98d4cc4122f59a411106c9d06a76db82edf74fc26061",
+    "context_hash": "1a9e01e7b62a90165fb391079ef1e999ff966cd6fee514ee2bc5a1409e490f66",
+    "conventions": [
+      "Lexicographic search priority is gateCount, depth, auxiliaryQubits, oracleCalls"
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Reads a nested disjunction and distinguishes struct-field order from comparison priority."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "block-encoding-cost",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-8a5954c3aa05ceb23e54",
+    "key": "k-becost-lexicographic-order-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "block-encoding-cost",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "k-becost-lexicographic-order-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "State BlockEncodingCost.betterThan's comparison order. Gate.resource of an unresolved oracle has oneQubit=0, cnot=0, oracleCalls=1, depth=1. Is its Resource.gates contribution zero? Does this score certify the oracle's expanded physical implementation cost?",
+    "reference_answer": "The strict lexicographic order is gateCount, then depth, then auxiliaryQubits, then oracleCalls. Resource.gates sums oneQubit+cnot+oracleCalls, so this oracle contributes one abstract gate, not zero. Zero local elementary-gate counts mean its physical implementation has not been expanded or certified, not that implementation is free. The score order is an explicit search-design choice, not a theorem derived from free oracle cost; physical/query/finite-bit comparisons require matched contracts.",
+    "reference_checks": [
+      "oracleAbstractGate"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Correct comparison order",
+        "id": "c1",
+        "weight": 1
+      },
+      {
+        "criterion": "Oracle contributes one abstract Resource.gates unit",
+        "id": "c2",
+        "weight": 1
+      },
+      {
+        "criterion": "Separate unresolved elementary implementation cost and score-design choice",
+        "id": "c3",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Unfold Resource.gates on Gate.resource(.oracleCall); inspect the lexicographic predicate without inferring a physical cost certificate.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.BlockEncodingCost.betterThan",
+          "declaration:QuantumBlockEncoding.BlockEncodingCost",
+          "declaration:QuantumBlockEncoding.BlockEncodingCost.noWorseThan",
+          "declaration:QuantumBlockEncoding.Gate.resource"
+        ]
+      }
+    ],
+    "skills": [
+      "knowledge"
+    ],
+    "source_refs": [
+      {
+        "anchor": "BlockEncodingCost.betterThan / noWorseThan",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/BlockEncoding.lean",
+        "sha256": "fe06f75a29822e28ccdbfedfb0b0e87f90872620fae7aed359085fad8fae64b4"
+      },
+      {
+        "anchor": "Gate.resource (oracleCall)",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Circuit.lean",
+        "sha256": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94"
+      },
+      {
+        "anchor": "Resource.gates",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Resources.lean",
+        "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+      }
+    ],
+    "split": "train",
+    "split_group": "block-encoding-cost",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "k-becost-lexicographic-order",
+    "support_count": 5,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.BlockEncodingCost",
+      "declaration:QuantumBlockEncoding.BlockEncodingCost.noWorseThan",
+      "declaration:QuantumBlockEncoding.Gate.resource",
+      "declaration:QuantumBlockEncoding.Resource.gates"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.BlockEncodingCost.betterThan"
+    ],
+    "task_hash": "41d1d754f48fee0e1a07dab1d0436568303a97f978fd05db154384b3ed7f94ae",
+    "topic": "block-encoding resource comparison",
+    "track": "knowledge",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.oracleAbstractGate"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "lean",
+    "assumptions": [
+      "realRotation and realOrthogonalRotation are the project's 2x2 rotation definitions; Mathlib simp lemmas for trig at 0 are available"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "b8d86e0decb5645276efc1815dc79c22f3979f2f35fb4d263df66245b00f5c23",
+    "context_hash": "5fb00921f6e174eb2b99b9e655e09f47a9abf93c77e0bc8f72914f9959c46202",
+    "conventions": [
+      "Half-angle RY; identity is the Mathlib matrix 1"
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Approved imported lemma application with exact hypothesis matching; not proof synthesis."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "lean-primitive-semantics",
+    "formal": {
+      "approved_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "imports": [
+        "QuantumBlockEncoding.PrimitiveSemantics"
+      ],
+      "reference_proof": "by exact QuantumBlockEncoding.standardRyMatrix_zero",
+      "target": "QuantumBlockEncoding.standardRyMatrix 0 = 1"
+    },
+    "formal_context": {
+      "imports": [
+        "QuantumBlockEncoding.PrimitiveSemantics"
+      ],
+      "target": "QuantumBlockEncoding.standardRyMatrix 0 = 1"
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-c75b0af65ae40b3cd680",
+    "key": "lean-standardRyMatrix-zero-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "lean-primitive-semantics",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "lean-standardRyMatrix-zero-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "Supply a fully qualified lemma-application proof of the frozen formal target. Reusing the imported theorem is permitted; this tests interface application, not novel theorem discovery. Return only the proof term. Target: QuantumBlockEncoding.standardRyMatrix 0 = 1",
+    "reference_answer": "by exact QuantumBlockEncoding.standardRyMatrix_zero",
+    "reference_checks": [
+      "ryZero"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Proof elaborates against the unchanged fully qualified target and satisfies the axiom policy",
+        "id": "formal",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Apply the exact imported declaration to the frozen fully qualified target without adding assumptions.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.standardRyMatrix_zero"
+        ]
+      }
+    ],
+    "skills": [
+      "lean"
+    ],
+    "source_refs": [
+      {
+        "anchor": "standardRyMatrix_zero",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+      }
+    ],
+    "split": "train",
+    "split_group": "lean-primitive-semantics",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "lean-standardRyMatrix-zero",
+    "support_count": 2,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.standardRyMatrix"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.standardRyMatrix_zero"
+    ],
+    "task_hash": "8b0c5ee6f4e7fe82518644f5d77775772ada91dc13efb2aa9931676d117ee649",
+    "topic": "Lean proof completion: RY at zero angle",
+    "track": "lean",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_replayed",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.ryZero"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "lean",
+    "assumptions": [
+      "bit ranges over Fin 2; flipBit is the two-branch if-then-else"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "7fd8423ebc51969e0b18eabf80b21128e3c56558b38d294b60d27292522fb106",
+    "context_hash": "25c71df3221bd3124a4e06dc2ee18b364f073daacb49bdba0a8257088996d356",
+    "conventions": [
+      "Fin 2 inhabitants are 0 and 1"
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Approved imported lemma application with exact hypothesis matching; not proof synthesis."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "lean-primitive-semantics",
+    "formal": {
+      "approved_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "imports": [
+        "QuantumBlockEncoding.PrimitiveSemantics"
+      ],
+      "reference_proof": "by exact QuantumBlockEncoding.flipBit_flipBit",
+      "target": "∀ bit : Fin 2, QuantumBlockEncoding.flipBit (QuantumBlockEncoding.flipBit bit) = bit"
+    },
+    "formal_context": {
+      "imports": [
+        "QuantumBlockEncoding.PrimitiveSemantics"
+      ],
+      "target": "∀ bit : Fin 2, QuantumBlockEncoding.flipBit (QuantumBlockEncoding.flipBit bit) = bit"
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-cb7d5fbf1366be23d369",
+    "key": "lean-flipBit-involutive-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "lean-primitive-semantics",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "lean-flipBit-involutive-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "Supply a fully qualified lemma-application proof of the frozen formal target. Reusing the imported theorem is permitted; this tests interface application, not novel theorem discovery. Return only the proof term. Target: ∀ bit : Fin 2, QuantumBlockEncoding.flipBit (QuantumBlockEncoding.flipBit bit) = bit",
+    "reference_answer": "by exact QuantumBlockEncoding.flipBit_flipBit",
+    "reference_checks": [
+      "flipInvolution"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Proof elaborates against the unchanged fully qualified target and satisfies the axiom policy",
+        "id": "formal",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Apply the exact imported declaration to the frozen fully qualified target without adding assumptions.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.flipBit_flipBit"
+        ]
+      }
+    ],
+    "skills": [
+      "lean"
+    ],
+    "source_refs": [
+      {
+        "anchor": "flipBit / flipBit_flipBit",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/PrimitiveSemantics.lean",
+        "sha256": "ded83cb43f8d6e79c50ac738bfd4faca5bc5aeb4c564114999a832db25418c62"
+      }
+    ],
+    "split": "train",
+    "split_group": "lean-primitive-semantics",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "lean-flipBit-involutive",
+    "support_count": 2,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.flipBit"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.flipBit_flipBit"
+    ],
+    "task_hash": "4da3e2c446bc3262e669a13d9811bde52a263dd864ad2877257cb3c86c437eca",
+    "topic": "Lean proof completion: bit flip is involutive",
+    "track": "lean",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_replayed",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.flipInvolution"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "lean",
+    "assumptions": [
+      "N x N real matrices; planeMatrix is rotateRows applied to the identity",
+      "i != j in Fin N"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "7bdf1ca3fc1242af917c5fce80e01c00fe1b0a76ea434cf1182d59b2c3169837",
+    "context_hash": "5e2e550fabbaa030cad224bc99a098e1ba371fa024f4a2a6271a8a7c57cf4a9f",
+    "conventions": [
+      "rotateRows uses the half-angle convention; determinant invariance requires distinct mixed rows"
+    ],
+    "difficulty": {
+      "level": "easy",
+      "rationale": "Approved imported lemma application with exact hypothesis matching; not proof synthesis."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "lean-givens-decomposition",
+    "formal": {
+      "approved_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "imports": [
+        "QuantumBlockEncoding.AdjacentGivens"
+      ],
+      "reference_proof": "by exact QuantumBlockEncoding.AdjacentGivens.planeMatrix_det",
+      "target": "∀ {N : ℕ} (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.planeMatrix i j theta).det = 1"
+    },
+    "formal_context": {
+      "imports": [
+        "QuantumBlockEncoding.AdjacentGivens"
+      ],
+      "target": "∀ {N : ℕ} (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.planeMatrix i j theta).det = 1"
+    },
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-d2b43ab3f432d569853e",
+    "key": "lean-planeMatrix-det-applicability-corrected-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "lean-givens-decomposition",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "lean-planeMatrix-det-applicability-corrected-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "Supply a fully qualified lemma-application proof of the frozen formal target. Reusing the imported theorem is permitted; this tests interface application, not novel theorem discovery. Return only the proof term. Target: ∀ {N : ℕ} (i j : Fin N), i ≠ j → ∀ theta : ℝ, (QuantumBlockEncoding.AdjacentGivens.planeMatrix i j theta).det = 1",
+    "reference_answer": "by exact QuantumBlockEncoding.AdjacentGivens.planeMatrix_det",
+    "reference_checks": [
+      "planeDet"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Proof elaborates against the unchanged fully qualified target and satisfies the axiom policy",
+        "id": "formal",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Apply the exact imported declaration to the frozen fully qualified target without adding assumptions.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix_det"
+        ]
+      }
+    ],
+    "skills": [
+      "lean"
+    ],
+    "source_refs": [
+      {
+        "anchor": "planeMatrix_det / rotateRows_det / det_two_row_mix",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+        "sha256": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c"
+      }
+    ],
+    "split": "dev",
+    "split_group": "lean-givens-decomposition",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "supersedes": "lean-planeMatrix-det-applicability",
+    "support_count": 4,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.rotateRows_det",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.det_two_row_mix",
+      "declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.AdjacentGivens.planeMatrix_det"
+    ],
+    "task_hash": "8d89858a3a63b38c12d0008f1c9a85c30404c2e7ab7174d7b414e67a8d6f8187",
+    "topic": "Lean applicability: determinant of a Givens plane",
+    "track": "lean",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_replayed",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.planeDet"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "80c778b498ad1aadd70c53d5fc90950962f14d66d0a80f70d74342efddab690b",
+    "context_hash": "439bd2cc67788402c509947c244e1a1e99391a7a2f12b5874f098e81c10e65b1",
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Library-specific boundary or multi-coordinate calculation; step count is not graph distance."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "resource-accounting",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-f6defaf48d0af1226fe7",
+    "key": "exact-resource-six-coordinates-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "resource-accounting",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "exact-resource-six-coordinates-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "Let r=Resource.ofCountsWithDepth 2 3 1 1 4 and s=Resource.ofCountsWithDepth 5 7 2 1 6. Return [add.gates,add.depth,add.pureAncilla,parallel.gates,parallel.depth,parallel.pureAncilla] as compact JSON with no spaces.",
+    "reference_answer": "[20,10,2,20,6,1]",
+    "reference_checks": [
+      "resourceWitness"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Exact answer under the stated formatting contract",
+        "id": "exact",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Unfold both operations, then sum all three gate-count fields.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Resource.parallel",
+          "declaration:QuantumBlockEncoding.Resource.add",
+          "declaration:QuantumBlockEncoding.Resource.gates"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "Resource.add/parallel/gates",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Resources.lean",
+        "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+      }
+    ],
+    "split": "train",
+    "split_group": "resource-accounting",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 3,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Resource.add",
+      "declaration:QuantumBlockEncoding.Resource.gates"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Resource.parallel"
+    ],
+    "task_hash": "9c936390672afe10a347788322ee50e727b8a14176bfa3ae183b29fb8d34bfdd",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.resourceWitness"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "68af5598926c1244e9985751f3475d4b84a44f6adabb149b8767b9cb60c932f1",
+    "context_hash": "439bd2cc67788402c509947c244e1a1e99391a7a2f12b5874f098e81c10e65b1",
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Library-specific boundary or multi-coordinate calculation; step count is not graph distance."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "block-encoding-cost",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-51859e0ab30c0da582c3",
+    "key": "exact-oracle-abstract-unit-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "block-encoding-cost",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "exact-oracle-abstract-unit-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "For Gate.resource(.oracleCall(name)), return [oneQubit,cnot,oracleCalls,gates] as compact JSON with no spaces. Do not substitute the unknown expanded implementation cost.",
+    "reference_answer": "[0,0,1,1]",
+    "reference_checks": [
+      "oracleResourceTuple"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Exact answer under the stated formatting contract",
+        "id": "exact",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "An unresolved oracle has one abstract gate unit despite zero expanded local elementary counts.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.Gate.resource",
+          "declaration:QuantumBlockEncoding.Resource.gates"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "Gate.resource",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Circuit.lean",
+        "sha256": "286c7b579f75891cb34f01d13e84a5f00e6b509a480efaaef9472a58a67a0f94"
+      },
+      {
+        "anchor": "Resource.gates",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Resources.lean",
+        "sha256": "d7d939aa5e74965a28a3835750aa7ca5fa27aeeb0ef14ad1f5555cbf6279e09d"
+      }
+    ],
+    "split": "train",
+    "split_group": "block-encoding-cost",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 2,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.Resource.gates"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.Gate.resource"
+    ],
+    "task_hash": "fd64c512ee3b8d81b74d494d6d9896baea58b47eb6928e573c8f3e5efb4fdbb7",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.oracleResourceTuple"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "875c7b634071beece46b9b656a5a0f0221c69bbbc0c716cb06917c594c6b6755",
+    "context_hash": "439bd2cc67788402c509947c244e1a1e99391a7a2f12b5874f098e81c10e65b1",
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Library-specific boundary or multi-coordinate calculation; step count is not graph distance."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "core-vocabulary",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-8ec6aa2f97a0b4cf0af1",
+    "key": "exact-clog2-boundaries-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "core-vocabulary",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "exact-clog2-boundaries-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "Using the library ceiling-address-width convention, return [clog2(0),clog2(1),clog2(2),clog2(3),clog2(4),clog2(5),clog2(8)] as compact JSON without spaces.",
+    "reference_answer": "[0,0,1,2,2,3,3]",
+    "reference_checks": [
+      "addressBoundary"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Exact answer under the stated formatting contract",
+        "id": "exact",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Compute the guarded Nat.log2(m-1)+1 definition, including 0 and 1.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.clog2"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "clog2",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/Core.lean",
+        "sha256": "c7e76d91c7fcfd844177f99c0399a3465a7d8360d3a522acb5d4c4e2f8277894"
+      }
+    ],
+    "split": "train",
+    "split_group": "core-vocabulary",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 1,
+    "supporting_nodes": [],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.clog2"
+    ],
+    "task_hash": "3ccbe225b5fd32f765fd34789edf632474d62862b53ccb1ad1c808eb52b479c2",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.addressBoundary"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "7505626d473d91ebf2f028155ddbf64d7080a6258e82adafe48b4343e7054516",
+    "context_hash": "439bd2cc67788402c509947c244e1a1e99391a7a2f12b5874f098e81c10e65b1",
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Library-specific boundary or multi-coordinate calculation; step count is not graph distance."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "real-amplitude-preparation",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-d796c630819b0695d93b",
+    "key": "exact-sparse-strict-necessity-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "real-amplitude-preparation",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "exact-sparse-strict-necessity-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "A one-qubit input has f(0)=1 and f(1)=0. Is it excluded by prepareCircuit_firstColumn's hypotheses solely because one entry is zero? Return exactly yes or no.",
+    "reference_answer": "no",
+    "reference_checks": [
+      "sparsePrepared",
+      "sparseNotStrictlyPositive"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Exact answer under the stated formatting contract",
+        "id": "exact",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "Global positive mass and pointwise nonnegativity allow this sparse vector.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn",
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "prepareCircuit_firstColumn / normSq",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+        "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "real-amplitude-preparation",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 2,
+    "supporting_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.normSq"
+    ],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.prepareCircuit_firstColumn"
+    ],
+    "task_hash": "7d0511fd3b4a7bc4c5172787063ba5d582c308fed5152e8aa25fcf69878e99fb",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.sparsePrepared",
+          "QuantumComputingBench.ReferenceChecks.sparseNotStrictlyPositive"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  },
+  {
+    "answer_format": "exact",
+    "assumptions": [
+      "Use the current library definitions; return exactly the specified answer format"
+    ],
+    "author": {
+      "identity": "codex-qcb-repair-2026-10-21",
+      "independence": "self-authored; independent NL/source review pending",
+      "method": "local source inspection and actual Lean reference regressions"
+    },
+    "authored_hash": "a7e1295b0b6eea3813b0d078ee97dc0e4db2eef0897ac55ccb48f548b85a8eda",
+    "context_hash": "439bd2cc67788402c509947c244e1a1e99391a7a2f12b5874f098e81c10e65b1",
+    "conventions": [
+      "Exact symbolic bookkeeping; no unproved physical interpretation"
+    ],
+    "difficulty": {
+      "level": "intermediate",
+      "rationale": "Library-specific boundary or multi-coordinate calculation; step count is not graph distance."
+    },
+    "evidence_status": "source_inspected",
+    "exposure": "closed_book",
+    "family": "real-amplitude-preparation",
+    "formal": null,
+    "formal_context": null,
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "id": "qcb-7dad08acd21d3cbefa3d",
+    "key": "exact-zero-subtree-angle-v3",
+    "language": "en",
+    "lifecycle": "candidate",
+    "lineage": {
+      "cost_usd": null,
+      "family": "real-amplitude-preparation",
+      "model_version": null,
+      "parameters": {},
+      "provider": "session assistant",
+      "seed": 0,
+      "template": "exact-zero-subtree-angle-v3",
+      "tokens": null
+    },
+    "primary_sources": [],
+    "question": "When a recursive amplitude split has a=b=0, what rational angle does splitAngle choose? Return exactly the integer 0 if it chooses rational zero, or undefined if it has no value.",
+    "reference_answer": "0",
+    "reference_checks": [
+      "zeroSplit"
+    ],
+    "relation_types": [
+      "authored_mathematical_support"
+    ],
+    "release_policy": "public",
+    "reviews": [],
+    "rubric": [
+      {
+        "criterion": "Exact answer under the stated formatting contract",
+        "id": "exact",
+        "weight": 1
+      }
+    ],
+    "schema_version": "qcb.item.v1",
+    "semantic_step_count": 1,
+    "semantic_steps": [
+      {
+        "claim": "The zero-mass guard explicitly selects rational zero.",
+        "supporting_nodes": [
+          "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle"
+        ]
+      }
+    ],
+    "skills": [
+      "reasoning"
+    ],
+    "source_refs": [
+      {
+        "anchor": "splitAngle / pairNorm",
+        "license": "MIT (repository LICENSE)",
+        "path": "QuantumBlockEncoding/RealAmplitudePreparation.lean",
+        "sha256": "a6ded7e65a7e42d5724529befb48eefc9505814136206dd96248fb59b3c45efa"
+      }
+    ],
+    "split": "test_public",
+    "split_group": "real-amplitude-preparation",
+    "structural_distance_definition": "unknown; imports are not theorem entailment",
+    "structural_graph_distance": null,
+    "support_count": 1,
+    "supporting_nodes": [],
+    "target_nodes": [
+      "declaration:QuantumBlockEncoding.RealAmplitudePreparation.splitAngle"
+    ],
+    "task_hash": "96fdade99c73f00e6ec2928b2877f163724a1c07ecdba9c9ab4f099b9c7fbb59",
+    "topic": "library boundary diagnostics",
+    "track": "reasoning",
+    "unresolved_issues": [],
+    "validation": {
+      "answer_quality": "pending",
+      "formal": "not_applicable",
+      "nl_alignment": "pending"
+    },
+    "verification_receipts": [
+      {
+        "execution_class": "trusted_local_reference",
+        "isolated": false,
+        "nl_alignment": "pending_independent_review",
+        "report": "benchmarks/quantumcomputingbench/reports/release-v3/lean-reference-checks.json",
+        "report_hash": "546c769127e12b31aa180fcc1768af54ada2fd9fae29ca38e8fdd75984821c9a",
+        "roots": [
+          "QuantumComputingBench.ReferenceChecks.zeroSplit"
+        ],
+        "status": "reference_checked"
+      }
+    ]
+  }
+]

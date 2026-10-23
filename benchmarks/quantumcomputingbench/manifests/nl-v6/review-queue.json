@@ -1,0 +1,353 @@
+{
+  "items": [
+    {
+      "authored_hash": "1bfc7fa6882126f4d53d012cace884eb17770cb1b3b3b3590c5cdfbaa09d3bb3",
+      "core_id": "qcb-core-plan-210",
+      "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/batch2-scientific-final-review.json",
+          "artifact_sha256": "9021e04aaeab3f8d2e814a2cfaa9018b8af29f661ecf41c82e59b67fb9602775",
+          "authored_sha256": "1bfc7fa6882126f4d53d012cace884eb17770cb1b3b3b3590c5cdfbaa09d3bb3",
+          "checked_sources": [
+            "Example 9.17",
+            "Eq.(9.72)-(9.73)",
+            "U_A in BE_{1,1}(A)",
+            "alpha>=||A||=||A||_max floor",
+            "A=0 degenerate case",
+            "PDF p.155"
+          ],
+          "content_hash": "f343bc6b1f07d24da1eedf819e4723c9a19e8abc89d5be9d2ea215f811bfa609",
+          "core_aliases": [],
+          "core_verdict": "new_distinct",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-plan-210-diagonal-one-sparse-block-encoding-identity",
+          "method": "distinct-context-source-review",
+          "notes": "Example 9.17 (Eq.9.72-9.73). The core (1,1)-block-encoding identity <0|<i|O_A|0>|j>=A_ii delta_ij is CORRECT and holds for ALL diagonal A with ||A||_max<=1, INCLUDING A=0 (both sides 0); c(j)=j triviality (no O_c) correct; the earlier coordinator-flagged false GLOBAL-optimality claim (alpha=1 optimal for every A) WAS fixed by the author (reference/rubric r4/step4/native_nl now say alpha>=||A||=max_i|A_ii|, alpha=1 saturates iff ||A||=1, and for ||A||<1 a smaller alpha=||A|| is achievable). HOWEVER a residual EDGE-CASE OVERCLAIM remains and is why this item is PENDING: the 'smaller alpha=||A|| achievable, e.g. by encoding A/||A||' statement FAILS at the zero matrix A=0, which is in the stated domain (||A||_max=0<=1): 'A/||A||' is division by zero/undefined, and a subnormalization must be strictly positive (the infimum of valid alpha for A=0 is 0 but UNATTAINED, so there is no achievable minimal alpha=||A||=0). MINIMAL FIX: add the qualifier ||A||>0 (equivalently A!=0) to the 'smaller alpha achievable' claim in reference_answer, rubric r4, semantic_steps[4] and native_nl core_summary; optionally note the A=0 degenerate case where no positive-minimal alpha exists. The graded identity portion is unaffected; only the optimality discussion needs the qualifier.",
+          "reviewer": "scientific-algorithms-reviewer-b2",
+          "verdict": "pending"
+        }
+      ],
+      "question": "Let A be a diagonal N x N matrix (a 1-sparse matrix whose only nonzero entries are A_ii), with ||A||_max <= 1. Using the simplified amplitude oracle O_A |0>|i> = (A_ii |0> + sqrt(1 - |A_ii|^2) |1>) |i>, set U_A := O_A. Prove by direct evaluation of the matrix element <0|<i| U_A |0>|j> that U_A is a (1,1)-block-encoding of A, i.e. <0|<i| U_A |0>|j> = A_ii delta_ij, so THIS construction has subnormalization factor alpha = 1 with a single ancilla qubit. Explain why no index-permutation oracle is needed here, in contrast to the general 1-sparse case. Then discuss precisely in what sense alpha = 1 is or is not optimal: state the general lower bound any block encoding must obey, and say whether alpha = 1 is a global optimum for every diagonal A with ||A||_max <= 1 or only in a specific case.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "b52e61a8665d15c2708064b0043e0877d17a9354dc54be56deb3a7af3222609d",
+      "core_id": "qcb-core-la-205",
+      "key": "qcb-core-la-205",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/batch2-stored-final-review.json",
+          "artifact_sha256": "85bc0d51369861db59e65e55f39e2c9d55d5f832b2489543486addd153d14522",
+          "authored_sha256": "b52e61a8665d15c2708064b0043e0877d17a9354dc54be56deb3a7af3222609d",
+          "checked_sources": [
+            "QuantumBlockEncoding/StoredRectangularGivens.lean#polynomialBudget213-221(write=line220)",
+            "QuantumBlockEncoding/StoredRectangularGivens.lean#compile_total_cost_le240-253"
+          ],
+          "content_hash": "cc771b403e5722412108e2ea9c726f29986694bd959fdace5ee9725812a2f765",
+          "core_aliases": [],
+          "core_verdict": "new_distinct",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-la-205",
+          "method": "distinct-context-source-review",
+          "notes": "MATH/SOURCE-FIDELITY DEFECT, UNCHANGED in FINAL-MAIN (content deliberately not edited per coordinator). Target compile_total_cost_le (240-253) final total N*M*(22*M+30*N+29)+5*N*N+4*N+M+1 IS correct in source. BUT the question still states 'write = N*M*(6*M+10*N+1) + 2*N*N', dropping the '+2*N' present in actual source polynomialBudget .write=N*M*(6*M+10*N+1)+2*N*N+2*N (line 220). Summing the question's OWN eight stated polynomials yields 5*N*N+2*N+M+1 (only read supplies 2*N), not the claimed 4*N total. The reference compounds it: lists 'write 2*N*N' yet asserts 'the linear-in-N terms give 4*N' - internal contradiction. Solver following the given data cannot derive the stated total. Remains reject; fix requires restoring '+2*N' to the write line in both question and reference.",
+          "reviewer": "stored-cost-reviewer-b2",
+          "verdict": "reject"
+        }
+      ],
+      "question": "A full stored rectangular compilation of an N-by-M matrix produces a reduced residual, a chronological list of rotation steps, and a fully accumulated N-by-N transform. In the eight-counter exact-real model its per-counter cost has been bounded by an explicit polynomial budget whose values on the eight counters are: field = N*M*(6*M+6*N+9); square root = N*M; inverse-cosine = N*M; other trigonometric = 4*N*M; comparison = 2*N*M + M + N*N; read = N*M*(10*M+14*N+10) + 2*N*N + 2*N + 1; write = N*M*(6*M+10*N+1) + 2*N*N; emitted records = N*M. Prove that the sum of all eight counters is bounded by N*M*(22*M+30*N+29) + 5*N*N + 4*N + M + 1, and explain why this single scalar is an operation count in an extended exact-real model and not a finite-bit running time.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "425a03b0613f0875b51ce482cec2cb799d9e6398e8283b346633be6f977e9590",
+      "core_id": "qcb-core-sp-101",
+      "key": "qcb-core-sp-101",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/batch2-structured-final-review.json",
+          "artifact_sha256": "257a4cfa6690a5e3e423faee79c3af0547b67a38c14597d0e3f1988aa984b4ed",
+          "authored_sha256": "425a03b0613f0875b51ce482cec2cb799d9e6398e8283b346633be6f977e9590",
+          "checked_sources": [
+            "QuantumBlockEncoding/HermitePolynomial.lean#L28-29 def jetPolynomial",
+            "QuantumBlockEncoding/HermitePolynomial.lean#L32-35 theorem eval_iterate_derivative",
+            "QuantumBlockEncoding/HermitePolynomial.lean#L38-49 theorem jetPolynomial_jet"
+          ],
+          "content_hash": "1c8f4643c7047829617486ac6dbc914b997bb155f347c0713e6222c648f1a414",
+          "core_aliases": [],
+          "core_verdict": "new_distinct",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-sp-101",
+          "method": "distinct-context-source-review",
+          "notes": "Core math (the asked statement) is correct and source-backed: jetPolynomial in (x-a) basis coeff v(j)/j!, eval_iterate_derivative (d^j P)(a)=j!*taylorcoeff_j, jetPolynomial_jet => v(j) for j<=k; nonzero-normalizer (j! cast nonzero) handled. Author REVISED the reference_answer since the partial review (hash changed from 9fe187d0 to 425a03b0): the earlier flatly-FALSE 'minimal degree able to carry k+1 constraints' was softened and the degenerate cases (v=0 -> zero poly, v(k)=0 -> degree<k) are now correctly acknowledged, calling k 'an upper bound on this construction's degree, not a universal minimum'. However the answer STILL contains an unasked, unproven necessity claim -- 'The bound k is the generic (worst-case) degree needed to carry k+1 derivative constraints at a single node' -- which is a dimension-count assertion neither requested by the question (which asks only to prove (d^j P)(a)=v(j)) nor proved in the answer; plus a duplicated-phrase typo 'has degree at most k, has degree at most k'. Reject stands: reference answer carries out-of-scope unproven material and a text defect. Minimal fix: delete the entire trailing 'The bound k is the generic (worst-case) degree needed...' sentence and the duplicated clause.",
+          "reviewer": "structured-prep-reviewer-b2",
+          "verdict": "reject"
+        }
+      ],
+      "question": "Fix a real point a and a natural number k, and prescribe target values v(0), v(1), ..., v(k). Define a degree-at-most-k real polynomial P by taking the local Taylor polynomial centred at a whose coefficient of (x-a)^j is v(j)/j!. Prove that for every j with 0 <= j <= k the ordinary j-th derivative of P evaluated at a equals exactly v(j). You may use the fact that the j-th derivative of a polynomial at a point equals j! times the degree-j Taylor coefficient of the polynomial about that point.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "49107573667056ff1425e8feb3970e0570e32daa1f2ff99089a64d3396bea5c5",
+      "core_id": "qcb-core-be-005",
+      "key": "qcb-core-be-005",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/block-review.json",
+          "artifact_sha256": "bd3133e6201e79f7c27b702cb0ac11d56fba7dcaf6a9181034841b8a3fb8e400",
+          "authored_sha256": "49107573667056ff1425e8feb3970e0570e32daa1f2ff99089a64d3396bea5c5",
+          "checked_sources": [
+            "QuantumBlockEncoding/ConcreteSemantics.lean applyVec_basisKet 70-74, cleanBasisActionAmplitude 249-256, cleanBasisActionAmplitude_eq_signalSystemBlockProjection 259-269, pointwiseProjection_iff_cleanBasisAction 277-294",
+            "native_nl/foundations.json qcb-core-la-008 645-735"
+          ],
+          "content_hash": "e4fc903bf6e1023850215c1b6cb0697dab5eaa30f595949775ca14f51a877112",
+          "core_aliases": [
+            "qcb-core-la-008"
+          ],
+          "core_verdict": "duplicate",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-be-005",
+          "method": "distinct-context-source-review",
+          "notes": "DUPLICATE of foundations la-008. Identical target_nodes {pointwiseProjection_iff_cleanBasisAction, cleanBasisActionAmplitude_eq_signalSystemBlockProjection} (verified set-equal). Both prove the same biconditional (projected-block pointwise equality <=> clean-basis-action equality) via the same single bridge (applyVec_basisKet column-selection), both directions, same linearity extension and failure-branch remark. be-005 only adds the explicit s*systemDim+k index; same mathematical core already authored in foundations. Reject as duplicate, not counted toward native-BE quota.",
+          "reviewer": "native-be-review-distinct-context",
+          "verdict": "reject"
+        }
+      ],
+      "question": "Fix the clean signal value. Prove that the following two certificate conditions are equivalent: (i) the projected system x system block of U equals a target A entrywise; (ii) for every system basis input and output, the clean output amplitude of U on the clean basis input (clean signal, basis input) equals A(output,input). Explain each direction, name the single linear-algebra fact that makes one clean-basis amplitude equal to one projected-block entry, and state how (ii) extends from basis inputs to an arbitrary normalized system input.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "2bb59f58aa67cbf13308b51aff190206d50c0c781b6ee7b6427ece2eb487f3a1",
+      "core_id": "qcb-core-be-007",
+      "key": "qcb-core-be-007",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/block-review.json",
+          "artifact_sha256": "bd3133e6201e79f7c27b702cb0ac11d56fba7dcaf6a9181034841b8a3fb8e400",
+          "authored_sha256": "2bb59f58aa67cbf13308b51aff190206d50c0c781b6ee7b6427ece2eb487f3a1",
+          "checked_sources": [
+            "QuantumBlockEncoding/BlockEncoding.lean ApproximateOperatorBlockEncodingCandidate 136-153",
+            "QuantumBlockEncoding/ConcreteSemantics.lean 249-294 (no operator-norm theorem present)",
+            "native_nl/planned.json plan-008"
+          ],
+          "content_hash": "b1803b676fb81d19ce9bc7e5d9bae44e552e47f52ca4d90acd12b48110810585",
+          "core_aliases": [
+            "qcb-core-plan-008-normalized-block-success-probability"
+          ],
+          "core_verdict": "existing_view",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-be-007",
+          "method": "distinct-context-source-review",
+          "notes": "Postselection success probability p = ||A v||^2/alpha^2, post-measurement (A v)/||A v||, p<1 since alpha>=||A||, O(1/p) vs O(alpha/||A v||) amplitude-amplification cost. Same mathematical result as planned core plan-008-normalized-block-success-probability (qsc-block-encoding-access), whose summary states the identical ||A|b>||^2/alpha^2 success probability. be-007 is a legitimate nl_bridge derivation (no operator-norm theorem exists in BlockEncoding.lean/ConcreteSemantics.lean - it is an analytic bridge, not a literal source theorem) but it is a VIEW of plan-008, not a new distinct block-encoding core. Pending/existing_view so parent can alias-group vs reject; should not be counted as fresh distinct alongside plan-008.",
+          "reviewer": "native-be-review-distinct-context",
+          "verdict": "pending"
+        }
+      ],
+      "question": "A block encoding is read by preparing the auxiliary register in the all-zero state, applying U, and postselecting the auxiliary register back on all-zero. Suppose U block-encodes A with normalizer alpha (so the auxiliary-zero projected block equals A/alpha) and the input system state is a normalized vector v. Express the unnormalized clean output branch and its squared norm, give the exact success probability of the all-zero postselection, and state when this probability equals (||A v|| / alpha)^2. Why is the success probability generally strictly below 1, and what does this cost imply for using the block encoding as a subroutine?",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "21fd48b1d9663e241f763be62f0b828764bdebd9dd141171a138810a91bac79e",
+      "core_id": "qcb-core-be-013",
+      "key": "qcb-core-be-013",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/block-review.json",
+          "artifact_sha256": "bd3133e6201e79f7c27b702cb0ac11d56fba7dcaf6a9181034841b8a3fb8e400",
+          "authored_sha256": "21fd48b1d9663e241f763be62f0b828764bdebd9dd141171a138810a91bac79e",
+          "checked_sources": [
+            "QuantumBlockEncoding/BlockEncodingClassics.lean 623-641, 865-888",
+            "QuantumBlockEncoding/BlockEncoding.lean 148-184",
+            "native_nl/planned.json plan-010"
+          ],
+          "content_hash": "0b6b98d798e56e93742840f9fd9ca7b7e585d33e8dd1558cb0d3407f13bb3b9e",
+          "core_aliases": [
+            "qcb-core-plan-010-entry-vs-operator-norm-verification"
+          ],
+          "core_verdict": "existing_view",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-be-013",
+          "method": "distinct-context-source-review",
+          "notes": "Exact-to-zero-error-approximate repackaging (epsilon=0, approximationBound = same PointwiseEq) and the boundary that a zero-error incumbent does not yield an operator-norm bound without a pointwise-to-norm bridge. Source objects verified: ExactCleanBlock (623-641), ZeroErrorApproxCleanBlock epsilon:=0 approximationBound:=PointwiseEq (865-872), exactAsZeroErrorApproxCleanBlock + _bound (877-888), VerifiedOperatorBlockEncoding.asZeroErrorApprox doc 'Analytic backends can later replace this with a theorem connecting exact block equality to a concrete operator-norm inequality' (BlockEncoding.lean 165-184). CONCERN: the first half (certificate fields, promotion sets epsilon=0, reuses proof) is largely a structure-field/software-packaging description bordering on API recall; the genuinely mathematical content (entrywise equality alone does not give an operator-norm statement, needs a bridge theorem) is the SAME scope distinction as planned core plan-010-entry-vs-operator-norm-verification (qsc-block-encoding-verification). Pending/existing_view: substantive math overlaps plan-010, remainder is packaging; recommend parent alias-group under plan-010 or reject rather than count as distinct native core.",
+          "reviewer": "native-be-review-distinct-context",
+          "verdict": "pending"
+        }
+      ],
+      "question": "An exact clean-block certificate can be promoted to a zero-error approximate incumbent in the adaptive exact-to-approximate search policy. State what data an exact clean-block certificate carries, what the zero-error promotion sets the epsilon and the approximation predicate to, and why an exact certificate is a legitimate epsilon=0 member of the approximate search without any additional analytic norm argument. Then explain the boundary the other way: does holding a zero-error approximate incumbent let you conclude an operator-norm bound ||A - alpha*block|| <= 0, and if not, what extra ingredient is required?",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "boundary",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "2b74d1fa51314ffb938ea80c8b9990167551da89c2cb9d3b800685937d99f980",
+      "core_id": "qcb-core-plan-008",
+      "key": "qcb-core-plan-008-normalized-block-success-probability",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/planned-review.json",
+          "artifact_sha256": "59cf13dc3985b26a8ab36952c283b043df835653648622a84f3766b6d4e4da41",
+          "authored_sha256": "2b74d1fa51314ffb938ea80c8b9990167551da89c2cb9d3b800685937d99f980",
+          "checked_sources": [
+            "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+            "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+            "data/authored/planned-corrections.json"
+          ],
+          "content_hash": "28f8224b7416fdc8bafcfa12cd5993e5ad692c7bae59991556197fb3ddfddea6",
+          "core_aliases": [
+            "qsc-block-encoding-dedup-adapter-001"
+          ],
+          "core_verdict": "existing_view",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-plan-008-normalized-block-success-probability",
+          "method": "distinct-context-source-review",
+          "notes": "Lin-Wiebe pp141-144 Sec 9.1 Eq 9.1-9.4,9.9-9.10. p(0)=||A|b>||^2/alpha^2=(1/alpha^2)<b|A-dagger A|b> correct; exact alpha=1 p(0)=||A|b>||^2; norm recovery ||A|b>||=alpha sqrt(p(0)); p~1/alpha^2 oversized alpha harmful; normalized output A|b>/||A|b>|| -> all match source. MATH VALID. NOVELTY: base success-probability/postselection fact of Sec 9.1; authored roadmap item qsc-block-encoding-dedup-adapter-001 explicitly directs the scientific-computing part to point back to the existing certified Block Encoding part and NOT re-formalize under a second API. new_problem_core=true with empty aliases not safely established by source inspection alone -> core_verdict existing_view; verdict pending dedup against existing certified BE part.",
+          "reviewer": "native-planned-review-distinct-context",
+          "verdict": "pending"
+        }
+      ],
+      "question": "Suppose a non-unitary matrix A acting on n qubits is embedded as the top-left block of a larger unitary, in the sense that applying the unitary to an input with the ancilla register prepared in all-zeros, and then measuring the ancillas and keeping only the all-zeros outcome, applies A to the system state. More generally the embedded block equals A divided by a positive subnormalization factor alpha. For an input system state |b>, derive the probability of the kept (all-zeros) outcome, express it in terms of A, |b> and alpha, and explain two consequences: how the norm of A|b> can be recovered from the measured success probability, and why choosing alpha too large is harmful. Confirm the output state conditioned on success is the correctly normalized version of A|b>.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "4e1d482fddb82b818dd82662c1276158894ca859faf3ed10c4731fe396b25f4d",
+      "core_id": "qcb-core-plan-009",
+      "key": "qcb-core-plan-009-subnormalization-scale-lower-bound",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/planned-review.json",
+          "artifact_sha256": "59cf13dc3985b26a8ab36952c283b043df835653648622a84f3766b6d4e4da41",
+          "authored_sha256": "4e1d482fddb82b818dd82662c1276158894ca859faf3ed10c4731fe396b25f4d",
+          "checked_sources": [
+            "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+            "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+            "data/authored/planned-corrections.json"
+          ],
+          "content_hash": "eea9b0e5dc2d87868569ab23710949b98dfb4241feb4e824caba53b8e931be4f",
+          "core_aliases": [
+            "qsc-block-encoding-dedup-adapter-001"
+          ],
+          "core_verdict": "existing_view",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-plan-009-subnormalization-scale-lower-bound",
+          "method": "distinct-context-source-review",
+          "notes": "pp142-143 Exercise 9.1 + Eq 9.8-9.10. Block B=PUQ contraction ||B||<=1 proof correct (projectors non-expansive, U norm-preserving); A/alpha a block => ||A||<=alpha i.e. alpha>=||A|| necessary; ||A||>1 rules out unit factor; alpha=||A|| smallest admissible; bound is scale-only not efficient-circuit guarantee -> matches source. MATH VALID. NOVELTY: Exercise 9.1 standard norm bound; same dedup caution as plan-008 (dedup-adapter roadmap). core_verdict existing_view; verdict pending.",
+          "reviewer": "native-planned-review-distinct-context",
+          "verdict": "pending"
+        }
+      ],
+      "question": "When a matrix A is embedded (up to a positive factor alpha) as the all-zeros block of a larger unitary, so that A/alpha is a submatrix of a unitary, prove the necessary scaling constraint on alpha. First prove the auxiliary fact that any submatrix block of a unitary has operator norm at most 1. Deduce the sharp lower bound alpha must satisfy in terms of the operator norm of A, explain why an exact unit-factor embedding is impossible when A has operator norm bigger than 1, and state what role alpha then plays and whether the bound alone guarantees an efficiently implementable embedding.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "boundary",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "57b13d9edff532288897c940d548d7d9537898468d0a2f8f6ad61917f8823994",
+      "core_id": "qcb-core-plan-012",
+      "key": "qcb-core-plan-012-lcu-optimal-subnormalization-cauchy-schwarz",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/planned-review.json",
+          "artifact_sha256": "59cf13dc3985b26a8ab36952c283b043df835653648622a84f3766b6d4e4da41",
+          "authored_sha256": "57b13d9edff532288897c940d548d7d9537898468d0a2f8f6ad61917f8823994",
+          "checked_sources": [
+            "temp/qasc-primary.pdf.native.txt (Lin-Wiebe QASC, pp141-150, full bounded read)",
+            "data/authored/planned.json (BE batch: Prop 9.10 sum, Prop 9.12 product, qsc-block-encoding-dedup-adapter-001)",
+            "data/authored/planned-corrections.json"
+          ],
+          "content_hash": "7331d323cb2f68eca87a22d579affde496d7087f0c85248f8903f3c454d08c96",
+          "core_aliases": [
+            "qasc-lcu-sum-additive-error-prop910-001",
+            "qasc-product-block-encoding-error-prop912-001",
+            "qsc-block-encoding-dedup-adapter-001"
+          ],
+          "core_verdict": "uncertain",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-plan-012-lcu-optimal-subnormalization-cauchy-schwarz",
+          "method": "distinct-context-source-review",
+          "notes": "pp145-146 Lemma 9.5 Eq 9.20-9.26. factor ||beta||_2 ||gamma||_2; ||alpha||_1=sum|beta_i gamma_i| <= ||beta||_2 ||gamma||_2 by Cauchy-Schwarz (Eq 9.26); optimum |beta_i|=|gamma_i|=sqrt(|alpha_i|) giving factor ||alpha||_1 (Eq 9.23); success prob ~1/factor^2 so minimizing factor maximizes success -> all match source exactly. MATH VALID. NOVELTY: Lemma 9.5 itself NOT among authored items (which cover Prop 9.10 sum and Prop 9.12 product composition error), so not a direct duplicate, but same qsc LCU family under the dedup-adapter roadmap caution. core_verdict uncertain; verdict pending (adjacent to authored LCU items).",
+          "reviewer": "native-planned-review-distinct-context",
+          "verdict": "pending"
+        }
+      ],
+      "question": "A target operator is written as a linear combination T = sum_i alpha_i U_i of unitaries U_i, and is implemented by a prepare-select-unprepare scheme in which each coefficient is split as alpha_i = beta_i gamma_i, a left preparation loads the vector of beta_i (normalized by the 2-norm of beta), a controlled selection applies U_i, and a right unpreparation loads the vector of gamma_i. The resulting construction embeds T with subnormalization factor equal to the product of the 2-norms of the beta and gamma vectors. Prove, using the Cauchy-Schwarz inequality, that this subnormalization factor is at least the 1-norm of the coefficient vector alpha, and determine the splitting beta_i, gamma_i that makes the factor equal to that 1-norm. Explain why this is the best (smallest) achievable factor for this scheme and hence the most favorable success probability.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "15db68aa5549420f71184e377a3b783634b541e2ad8cec8d673076386aafc11c",
+      "core_id": "qcb-core-sp-010",
+      "key": "qcb-core-sp-010",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/preparation-review.json",
+          "artifact_sha256": "e0d70cafb3974beff6b5da6c3378bc3247006dd41c23716d387f5bdcb4660cac",
+          "authored_sha256": "15db68aa5549420f71184e377a3b783634b541e2ad8cec8d673076386aafc11c",
+          "checked_sources": [
+            "QuantumBlockEncoding/TensorTrainCanonical.lean"
+          ],
+          "content_hash": "c25e1c5d0fa59e63aa1672e04164b8d392ea9c840609a24324faca7f90b46ca9",
+          "core_aliases": [
+            "qcb-core-la-012"
+          ],
+          "core_verdict": "duplicate",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-sp-010",
+          "method": "distinct-context-source-review",
+          "notes": "DUPLICATE of foundations qcb-core-la-012. Verified head_bound (104-110), last_bond_le_two (113-117), maxBond (198-200), maxBond_le (203-207); source math correct and sha256 matches. BUT core content is identical to la-012: same backward recurrence l'=min(l,2m'), same two-sided head bound (l'<=l and l'<=2m'), same sharp scalar-boundary penultimate-bond<=2 specialization, same 'factor of two from emitted bit' explanation. sp-010 only additionally foregrounds maxBond_le (non-expansion), which la-012 already carries as a supporting_node. No new mathematics; rejected as a re-worded restatement of an existing accepted foundations core.",
+          "reviewer": "native-sp-review-distinct-context",
+          "verdict": "reject"
+        }
+      ],
+      "question": "Consider the exact right-canonicalization of a finite real tensor train. Characterize the active (reduced) bond dimensions it produces: give the backward recurrence the reduced left rank of each core obeys, prove the two-sided bound on the head rank of any nonempty canonicalized train, and derive the sharp consequence that the penultimate active bond of a scalar-to-scalar train (one core, both boundaries dimension one) has dimension at most two. Also state why canonicalization never enlarges the maximal bond.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "proof",
+      "unresolved_issues": []
+    },
+    {
+      "authored_hash": "ae9d254c3309208eaf4b7e3f31a7bc2d0959faa940b43c57078f20e7f1c81ff2",
+      "core_id": "qcb-core-sp-013",
+      "key": "qcb-core-sp-013",
+      "latest_reviews": [
+        {
+          "artifact": "benchmarks/quantumcomputingbench/reports/native-nl/preparation-review.json",
+          "artifact_sha256": "e0d70cafb3974beff6b5da6c3378bc3247006dd41c23716d387f5bdcb4660cac",
+          "authored_sha256": "ae9d254c3309208eaf4b7e3f31a7bc2d0959faa940b43c57078f20e7f1c81ff2",
+          "checked_sources": [
+            "QuantumBlockEncoding/RealAmplitudePreparation.lean"
+          ],
+          "content_hash": "9502d65b867d63eb88829f0598db863117dc52fd65b9c27320b6776c5bb6ddd8",
+          "core_aliases": [
+            "qcb-core-sp-001",
+            "qcb-core-sp-006"
+          ],
+          "core_verdict": "existing_view",
+          "formal_status": "not_run_source_inspection_only",
+          "key": "qcb-core-sp-013",
+          "method": "distinct-context-source-review",
+          "notes": "REJECT: problematic step claim. Verified splitAngle zero-branch (150-155), prepareCircuit_firstColumn (275-308), normalized_sum_sq (311-317); sha256 matches. Part (i) (zero sibling pair = vanishing subtree, angle zero canonical, per-split identity passes through zero norm) is CORRECT. Part (ii)/r4 is MATHEMATICALLY WRONG for the cited node: it states the minimal honest hypothesis for the whole-vector normalized first-column claim allows 'individual entries ... zero or NEGATIVE', but prepareCircuit_firstColumn carries a load-bearing hypothesis nonneg : for all b, 0 <= f b. The base case (n=0, lines 280-289) derives hf : 0 < f b and uses Real.sqrt_sq (le_of_lt hf); a single negative entry gives f(b)/sqrt(f(b)^2)=f(b)/|f(b)|=-1 != 1 (empty circuit emits amplitude 1), so negatives genuinely break the cited theorem. The item is internally contradictory: its own unresolved_issues admits 'prepareCircuit_firstColumn, which assumes nonnegativity'. Core is also a recombination of sp-001 (zero-branch) + sp-006 (strict-positivity normalization) with no genuinely new verified mathematics; the one novel assertion (negatives allowed) is false. existing_view relative to sp-001/sp-006.",
+          "reviewer": "native-sp-review-distinct-context",
+          "verdict": "reject"
+        }
+      ],
+      "question": "The recursive real-amplitude loader assigns the all-zero sibling pair the angle zero, so a vanishing subtree contributes no rotation. (i) Explain operationally what a zero sibling pair means for the prepared state and why angle zero is the right choice there. (ii) The sharp first-column theorem that recovers f(b)/sqrt(normSq f) for every entry is stated with a STRICT positivity hypothesis on the entries, yet the construction clearly tolerates many exact zeros internally. Reconcile these: identify where exact interior zeros are harmless and where a zero would actually break the stated per-entry identity, and give the minimal honest hypothesis for the whole-vector claim.",
+      "status": "pending_mathematical_or_novelty_review",
+      "task_kind": "boundary",
+      "unresolved_issues": [
+        "The flat per-entry API prepareMatrixLE_firstColumn is stated with entrywise strict positivity; the weaker total-norm-positive hypothesis stated here is the mathematically minimal one for the recursive first-column form prepareCircuit_firstColumn, which assumes nonnegativity plus positive total norm."
+      ]
+    }
+  ],
+  "note": "Candidates are not released coverage."
+}

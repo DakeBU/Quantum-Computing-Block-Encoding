@@ -1,0 +1,212 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-513",
+  "supersedes_key": "qcb-core-plan-513-grover-two-reflection-rotation",
+  "supersedes_item_digest": "cd8b6f0ad2579a7da387e77474953610eafc452d26ac9809572e224383c47544",
+  "supersedes_contract_hash": "223283ae1e418ed41b108cf5cec5af739ef40b70d1bd30aa955b782c7f7f80a9",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-513-textbook-question-v2-nontrivial-plane-endpoint",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not an answer-only repair. Retain the literal single-mark promise for every positive N, including N=1, and assess/refute the predecessor's universal normalized-unmarked-plane demand at that endpoint. Preserve the two reflections, their order, the interior angle/power target, and every other contract field. The existing half-angle and two-mirror conventions remain true on their defined loci; no convention change or N>=2 standing premise is introduced. The nontrivial plane is a case conclusion for N>1, not a new assumption. Preserve all six ordered semantic-step node lists. Changed requested reasoning and non-equivalence are explicit; no arbitrary near-unit success, new core or local formal admission.",
+  "question": "Keep the original promise of exactly one marked basis state among N states, with no exclusion of the positive endpoint N=1. Put g=|marked>, psi=N^(-1/2) sum_x |x>, R_g=I-2|g><g| and R_psi=2|psi><psi|-I, with Grover iterate G=R_psi R_g (marked flip first). Assess the predecessor's request to work in a two-dimensional real plane containing a normalized uniform superposition of all unmarked states for every allowed N: is that object defined at N=1? For N>1 construct the normalized unmarked state b and derive the exact matrix of G in the ordered basis (g,b). Define phi in (0,pi/2] by sin(phi)=1/sqrt(N), call 2phi the full iteration angle, distinguish its signed Cartesian orientation in (g,b) from the angle measured from b toward g, and prove the signed marked coefficient after k>=0 iterations is sin((2k+1)phi). Treat N=1 directly at the operator/state level without inventing a bad vector or a two-dimensional plane; say precisely which scalar formula survives and which geometric assertion fails. Do not infer that ordinary integer pi-phase iterations achieve arbitrarily near-unit success for every N.",
+  "reference_answer": "The old universal two-dimensional-plane request is not defined at the allowed endpoint N=1: the unmarked sum is zero, and a zero vector cannot be normalized. This must be assessed, not silently removed by assuming N>=2. For N>1 define b=(N-1)^(-1/2) sum_{x unmarked}|x>. Then g,b are orthonormal and psi=s g+c b with s=sin(phi)=1/sqrt(N), c=cos(phi)=sqrt((N-1)/N). Both reflections preserve this real plane. In the ordered basis (g,b), R_g=diag(-1,1), and R_psi=[[2s^2-1,2sc],[2sc,2c^2-1]]. Multiplying in the stipulated order gives G=[[1-2s^2,2sc],[-2sc,2c^2-1]]=[[cos(2phi),sin(2phi)],[-sin(2phi),cos(2phi)]]. It is the Cartesian rotation by -2phi in this ordered basis. Equivalently, parameterizing a vector as sin(alpha)g+cos(alpha)b measures alpha from b toward g; multiplication advances alpha to alpha+2phi. The mirror axes are b for R_g and psi for R_psi and differ by phi, giving the same magnitude 2phi with this orientation. Thus Gg=cos(2phi)g-sin(2phi)b and Gb=sin(2phi)g+cos(2phi)b. The addition formulas, or induction starting at alpha=phi, give G^k psi=sin((2k+1)phi)g+cos((2k+1)phi)b for every integer k>=0. The marked coefficient is signed; its measurement probability is sin^2((2k+1)phi), and its absolute amplitude magnitude is the absolute value of that sine. At N=1, psi=g, R_psi=I on the one-dimensional space and R_g=-I, so G=-I and G^k psi=(-1)^k g exactly. Taking phi=pi/2, sin((2k+1)phi)=(-1)^k still matches the exact signed coefficient, but there is no bad component, mirror-axis comparison or planar rotation to prove. The mark is already found with probability one at k=0. N=0 is incompatible with the unique-mark promise, not an extra excluded search case. Ordinary integer iterations do not guarantee arbitrarily high success for all nontrivial sizes: N=2 has phi=pi/4 and success exactly1/2 for every integer k. Efficient implementation, finite-bit synthesis and any extra cleanup or success boosting are outside this algebraic question. This is an explicit endpoint-corrected question, not proof of the original universal plane assertion.",
+  "rubric": [
+    {
+      "id": "c1",
+      "weight": 1,
+      "criterion": "Explicitly identifies/refutes the nonexistent normalized unmarked vector and two-dimensional plane at N=1, without adding N>=2 as a standing premise."
+    },
+    {
+      "id": "c2",
+      "weight": 1,
+      "criterion": "For N>1 constructs orthonormal g,b and psi=sin(phi)g+cos(phi)b; obtains both reflection matrices and their stipulated product with correct signs."
+    },
+    {
+      "id": "c3",
+      "weight": 1,
+      "criterion": "Distinguishes Cartesian angle -2phi in basis(g,b) from advancement +2phi measured from b toward g, and derives the all-k signed sine/cosine action."
+    },
+    {
+      "id": "c4",
+      "weight": 1,
+      "criterion": "Treats N=1 as G=-I with exact (-1)^k coefficient, distinguishes signed coefficient/magnitude/probability, and rejects a universal near-unit integer-iteration guarantee using N=2."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The Grover plane exists only when the bad component is nonzero. For N>1 the exact oriented rotation yields the odd-multiple sine; at N=1 G=-I preserves success while the two-dimensional construction is undefined.",
+    "semantic_steps": [
+      {
+        "claim": "Set sin(phi)=1/sqrt(N). For N>1 construct the normalized bad vector and decompose psi; at N=1 that vector is undefined, not a new hypothesis.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      },
+      {
+        "claim": "On the nontrivial plane the marked flip is diag(-1,1); at N=1 it is the scalar -I.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The uniform reflection fixes psi and negates its orthogonal line; at N=1 it is I on the sole line.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The two nontrivial mirror axes differ by phi, yielding angle magnitude2phi, with orientation measured explicitly rather than inferred.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The ordered(g,b) product is [[cos2phi,sin2phi],[-sin2phi,cos2phi]]; the endpoint instead has G=-I.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "All k>=0 give signed marked coefficient sin((2k+1)phi), including (-1)^k at N=1, without a universal near-unit success claim.",
+        "supporting_nodes": [
+          "concept:approximation"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Entire lin-wiebe-2026-qasc metadata entry230-238 read: URL, April29 2026/447-page edition and historical PDF pin. This LF authenticates metadata only, not source proof or binary identity. Genuine primary text access/limitations below."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch3_polynomial_signals.json",
+      "sha256_lf": "78541d8a2950d69b67d29165ea494d30b2d8db26c915558a99928ace903dab2c",
+      "anchor": "Complete authored qcb-core-plan-513-grover-two-reflection-rotation question/assumptions/conventions/answer/rubric/semantic steps and actual whole prepared counterpart read. Content provenance only; mathematical corrections are derived, not certified by this QA file."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Historical prepared original loaded through release.checked()[2] and bound as a whole, not a substituted current-reader row. No change to frozen content."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_candidate_pending_distinct_review",
+    "authored_at_head": "e9308632431899a08938b4d9a6cd1b9d90c45e30",
+    "private_origin": "_review_tmp/plan-513-nontrivial-plane-endpoint-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-513-nontrivial-plane-endpoint-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "223283ae1e418ed41b108cf5cec5af739ef40b70d1bd30aa955b782c7f7f80a9",
+      "successor_contract_hash": "f4b50cd4ee83f991c95c99e67653cc21fb47d221b7e2c687258c45a5fb328dfc",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [
+        "Exactly one marked element among N basis states"
+      ],
+      "original_conventions": [
+        "Sine of the half-angle equals the overlap 1/sqrt(N) of the uniform state with the marked state",
+        "A product of two planar reflections with axes differing by phi is a rotation by 2 phi"
+      ],
+      "preserved_family": "qsc-grover-amplitude-amplification",
+      "preserved_split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:matrix-analysis",
+        "concept:approximation"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 6,
+      "original_ordered_step_nodes": [
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:approximation"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:approximation"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:approximation"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "prior_exposure": {
+      "source_and_original": "This author read the entire actual prepared original, current withdrawal and complete bound finding, including old imported accept metadata. Parent supplied defect leads; neither those leads nor prior verdicts are proof. The source was then reread and the arguments independently reconstructed. This is not source-blind authorship.",
+      "withdrawal_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-signals-511-520-review.json",
+      "withdrawal_review_digest": "140900849ce7f4fd7453c107a63873a345ea6d874c58c01229dce730bed823e6",
+      "finding_digest": "8f5aca8a2b1a2bdf4cd54d2b5126fa33b84f7598bb44e4394483ec4afdb1a348",
+      "actual_prior_reviewer": "/root/qcb_native_comparison",
+      "withdrawal_bindings_verified": true
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+        "edition_observed": "Cover April29,2026;447 pages",
+        "operative_regions": "Complete Section11.1 unique-mark setup and Algorithm11.1; full Theorem11.2 proof Eq11.2-11.22, especially denominator Eq11.15, ordered marked/unmarked action Eq11.17, power Eq11.18 and integer-rounding bounds Eq11.19-11.21. Source text is inspected, not presumed endpoint-correct; the separate N=1 proof and orientation comparison are this author's reconstruction.",
+        "access": "Primary PDF text genuinely retrieved through web extraction in this objective. One group of requests failed, direct-URL retry succeeded. No PDF redistributed.",
+        "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+        "binary_hash_independently_verified": false,
+        "visual_check": "Attempted Fig11.1 page screenshot; service reported screenshot unavailable. No visual source-layout seal or verified binary claim.",
+        "limits": "The cover/anchors match the recorded edition, but this author did not obtain and hash original PDF bytes. Source statements themselves have assessed defects; primary-source presence is not proof of their correctness."
+      }
+    ],
+    "source_proof_coverage": {
+      "mathematical_nodes": "Complete Section11.1 unique-mark setup and Algorithm11.1; full Theorem11.2 proof Eq11.2-11.22, especially denominator Eq11.15, ordered marked/unmarked action Eq11.17, power Eq11.18 and integer-rounding bounds Eq11.19-11.21. Source text is inspected, not presumed endpoint-correct; the separate N=1 proof and orientation comparison are this author's reconstruction.",
+      "source_gaps": "No local Lean theorem or source-to-formal bridge supplied. Source bounds/normalizations are assessed rather than inherited; this candidate contains an explicit NL derivation only.",
+      "excluded": "Neighboring Chebyshev/SVT reinterpretation, exact-amplification variants, quantum lower-bound proofs and circuit synthesis are not needed for this bounded correction and are not claimed covered."
+    },
+    "validation": "Whole predecessor/withdrawal/contract bindings and exact six-step ordered-node preservation checked mechanically; those checks are not mathematical approval. No test/build/Lean/kernel or prediction execution.",
+    "author_self_approval": false
+  }
+}

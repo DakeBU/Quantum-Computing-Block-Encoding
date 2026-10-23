@@ -23,7 +23,7 @@ Before implementing a formal result, read
   part of a broader unfinished route.
 
 Use the
-[lemma proposal form](https://github.com/DakeBU/Quantum-Computing-Block-Encoding/issues/new?template=lemma-contribution.yml)
+[lemma proposal form](https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/issues/new?template=lemma-contribution.yml)
 or export a packet from the Live Formalization Workspace.
 
 ## 2. Develop in the owning module

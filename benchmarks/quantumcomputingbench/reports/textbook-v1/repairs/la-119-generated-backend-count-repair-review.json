@@ -1,0 +1,42 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "method": "independent-answer-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "core_id": "qcb-core-la-119",
+  "repair_record_digest": "07269a311d3585f1f7888bf1c54ac0d8e1b9b8dd16fee466dde740b0819db8e4",
+  "original_item_digest": "2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155",
+  "verdict": "accept",
+  "exposure": "Actual distinct reviewer /root/qcb_native_comparison; candidate author /root/qcb_formal_view_audit. I received root's objective, read the complete private _review_tmp/la-119-generated-backend-count-repair.json and the actual historical prepared original via release.checked()[2] (complete mathematical/grading contracts, all steps and inherited metadata), then exact withdrawal and bound finding. Prior LA013/219/220 findings were authored by this same reviewer; prior LA112/119 findings were by the candidate author. Those exposures and prior source/cohort work are disclosed; no blindness or independent acceptance of my own authorship is claimed. This reviewer did not author these candidates. Withdrawal reports/textbook-v1/reader-reviews/linear-algebra-111-120-review.json, exact report a020d5bf18738c9a1726e626abca5370d6fe24a2a078d55ab14b0038b5d91d22, finding cdee1557b5369d0e8d07d3b6de0c67340212fafc79615b8209d41683bc6109f4 and full predecessor 2e11be7304fdf2cc58f23e09e0f22e1e42c339a4b78bf1f957a432a7a8aa9155 recomputed/matched. Proposed canonical candidate locator benchmarks/quantumcomputingbench/shared/repairs/la-119-generated-backend-count-repair.json; only its private bytes were inspected. This task writes only NEW private _review_tmp/la-119-generated-backend-count-repair-review.json; it installs no canonical bytes. Mechanical inspection used release/qcb_core/qcb_textbook_policy helpers at observed HEAD0e42c19ec6def3722dc9cc130f86f8453869c5c1; these incidental scripts/policy are not mathematical source dependencies and are not in source_checks. No external paper/PDF retrieval, visual-source claim, source-paper seal, fresh kernel/build/compiler/production execution, whole-NL formal certification, human/expert/model identity, selfapproval, admission, global-dedup, new agents, canonical/candidate/prior-artifact edits, commits/push or PR107 mutation. Acceptance is exact-content answer-successor mathematics/source correspondence only.",
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "24c44aece1fcea0871151b7cead13621a753b47db0ea3ba7cd7b2b6cd171e0e0",
+    "literal_question_fit": "The original literal question asks why per-rotation counts fail to justify a linear whole-matrix conclusion; it does not require an optimal-synthesis impossibility theorem. The candidate can answer that exact question without changing any contract field by qualifying its backend family and giving a growing-width ratio instead of overstating one finite datum.",
+    "preserved_scope": "All nine CONTRACT_FIELDS remain unchanged; this is an answer/rubric/exposition correction, not an undeclared question version. Exact schema13 fields, original core/family/split/graph/source_refs and 4 ordered per-step node lists checked. Candidate source LF bindings matched current local files. Distinct review does not itself authorize publication or infer predecessor verdict inheritance."
+  },
+  "substantive_reconstruction": {
+    "exact_generated_list": "The actual unsimplified decomposeSO emits L=N(N-1)/2 adjacent planes, including zero-angle identity steps; reverse/map preserves length. The recursive selected-RY backend on q+1 wires has q full controls, S=2^q=N/2, emits exactly S RY and2(S-1) CX per plane, and uses no oracle. FlatMap/additive count proofs give G=L(3S-2), RY=LS and CX=2L(S-1), independently of the target's particular angles. This is an emitted-list equality, not a necessary nonidentity-rotation count.",
+    "family_growth": "Dividing the equality by N gives ((N-1)/2)(3N/2-2), unbounded along powers of two. For N>=4, L>=N^2/4 and3N/2-2>=N imply G>=N^3/4; G<=3N^3/4=6S^3 provides the other comparison. Thus this specific generated family is Theta(N^3), not O(N). A cubic UPPER bound alone could not prove nonlinearity; the candidate correctly bases the lower comparison on its exact list equality. A bounded own integer screen q=0..7 agreed with these arithmetic formulas, not a Lean-producer execution or all-width proof.",
+    "small_case_and_necessity": "At q=0, N=2 gives one RY and zero CX. At q=1, N=4 gives L=6, 12 RY+12 CX=24, versus four records for one plane. Since24=6N, that datum alone refutes only the stage/whole-list confusion, not every linear asymptotic bound. Identity SO matrices admit an empty circuit although this producer retains its fixed identity steps. All rubric/exposition claims now make that distinction and acknowledge separately existing decomposeSO/selectedStep/compileSO semantic proofs instead of claiming those proofs are globally absent. Gate tallies are not classical runtime, finite-bit synthesis, routing or optimal lower bounds."
+  },
+  "source_checks": [
+    {
+      "path": "QuantumBlockEncoding/UniformlyControlledRy.lean",
+      "sha256_lf": "241819a53088a3f4c63a6a57df393d02a3558ef5634b534791c2f7a88c14c21e",
+      "anchor": "Read the complete operative compileUniformlyControlledRy recursive definition (about192-214) and complete RY/CX/no-oracle count inductions (about370-409). Both sublists and two CX records are retained independently of angle values. Other multiplexor semantic proofs were not newly audited in full for this count-only use."
+    },
+    {
+      "path": "QuantumBlockEncoding/SelectedRyPlane.lean",
+      "sha256_lf": "0098a9ef2bfc1af9eeaa44357b0818628084be35f88854232496e14d715c2f40",
+      "anchor": "Read the complete module and proof bodies: selected angle/actual compiler, full-control plane refinement, exact per-plane/list count and no-oracle theorems, aggregate gate-count induction and scoped cubic bound. Count equality is for the generated flatMap list, not optimal synthesis."
+    },
+    {
+      "path": "QuantumBlockEncoding/GrayGivensCompiler.lean",
+      "sha256_lf": "21bb92938d2d0d81341700123e66195fdebb12e72db7faf066a897479fe942ce",
+      "anchor": "Personally read the complete current module and proof bodies in the preceding SP117 review; its identical whole LF hash revalidated here. Actual selectedStep/Gray orientation and compileSO evaluation are separate from exact gateCount/RY/CX equalities and the cubic upper bound; no build replay is claimed."
+    },
+    {
+      "path": "QuantumBlockEncoding/AdjacentGivens.lean",
+      "sha256_lf": "a43c3b4f543738cb317be01fa664fd466bfa28e21c33d10c7a90e74037a58d9c",
+      "anchor": "Read the complete module and every proof body in two consecutive regions: actual pair elimination and zero-pair behavior, row-window frame/zeroing/preservation, fullSweep/steps/action/length proofs, decomposeSO exact emitted length including identity rotations, inverse chronological reconstruction and matrix semantics. No fresh execution."
+    }
+  ]
+}

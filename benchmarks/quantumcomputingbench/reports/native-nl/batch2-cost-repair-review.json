@@ -1,0 +1,24 @@
+{
+  "reviewer": "stored-cost-reviewer-b2",
+  "method": "distinct-context-source-review",
+  "items": [
+    {
+      "key": "qcb-core-la-205-corrected-v2",
+      "supersedes": "qcb-core-la-205",
+      "authored_sha256": "d74fdafe7a84fd0ca644e538548c251358beb474641662fc8d66861d20a86238",
+      "verdict": "accept",
+      "core_verdict": "existing_view",
+      "core_aliases": [
+        "qcb-core-la-205"
+      ],
+      "repair_admission": true,
+      "adds_new_core": false,
+      "notes": "REPAIR of qcb-core-la-205 (prior verdict reject). FIX VERIFIED SOUND. The question now states 'write = N*M*(6*M+10*N+1) + 2*N*N + 2*N', restoring the +2*N spine term that matches the actual source polynomialBudget .write at StoredRectangularGivens.lean line 220. The reference's non-N*M breakdown now reads 'write 2*N*N + 2*N', so the linear-in-N terms legitimately total read(2*N)+write(2*N)=4*N - the prior internal contradiction (write listed as 2*N*N while claiming 4*N) is resolved. Full re-derivation checks: N*M factor = field(6M+6N+9)+read(10M+14N+10)+write(6M+10N+1)=22M+30N+20, plus sqrt+angle+emit(3)+trig(4)+compare(2)=9 => 22M+30N+29; non-N*M = N*N terms compare(N*N)+read(2N*N)+write(2N*N)=5N*N, linear 4N, M term M, constant 1. Grand total N*M*(22*M+30*N+29)+5*N*N+4*N+M+1 EXACTLY matches target theorem compile_total_cost_le (240-253); grand total unchanged from original, now correctly derivable from the stated per-counter data. Exact-real-not-finite-bit disclaimer preserved. source_refs sha256 f8638a6d287b... matches the real StoredRectangularGivens.lean (verified, LF/UTF-8). Repair supersedes old key qcb-core-la-205; new_problem_core=false, existing_core_aliases=[qcb-core-la-205]; no new core added.",
+      "checked_sources": [
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#polynomialBudget213-221(write=line220)",
+        "QuantumBlockEncoding/StoredRectangularGivens.lean#compile_total_cost_le240-253"
+      ],
+      "formal_status": "not_run_source_inspection_only"
+    }
+  ]
+}

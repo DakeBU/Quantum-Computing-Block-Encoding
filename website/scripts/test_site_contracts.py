@@ -26,6 +26,114 @@ from website.scripts.check_site import check_case_teaching, require
 TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
 
 
+class CurriculumDiagramTests(unittest.TestCase):
+    @staticmethod
+    def markup() -> str:
+        source = (ROOT / 'website/static/site.js').read_text(encoding='utf-8')
+        return re.search(r'const curriculumMarkup = `([\s\S]*?)`;', source).group(1)
+
+    def test_legend_is_outside_the_rendered_graph(self) -> None:
+        page = self.markup()
+        legend = page.split('<aside class="diagram-legend"', 1)[1].split('</aside>', 1)[0]
+        source = (ROOT / 'website/diagrams/quantum-domain-roadmap.mmd').read_text(encoding='utf-8')
+        self.assertIn('aria-label="Diagram legend"', page)
+        self.assertIn('Solid:', legend)
+        self.assertIn('Dashed:', legend)
+        self.assertIn('not a Lean theorem-dependency graph', legend)
+        self.assertLess(page.index('</aside>'), page.index('<div class="curriculum-flow"'))
+        self.assertIn('data-curriculum-layout="stacked"', page)
+        self.assertNotIn('NOTE[', source)
+        self.assertNotIn('NOTE -', source)
+
+    def test_roadmap_has_one_shared_foundation_and_four_typed_links(self) -> None:
+        source = (ROOT / 'website/diagrams/quantum-domain-roadmap.mmd').read_text(encoding='utf-8')
+        edges = [line.strip() for line in source.splitlines() if '-->' in line or '.->' in line]
+        self.assertEqual(len(edges), 4)
+        self.assertEqual(source.count('CORE["Shared Lean foundations'), 1)
+        self.assertNotIn('Shared Lean graph', source)
+        self.assertIn('CORE -->|common foundation| TEXTBOOK', edges)
+        self.assertIn('BE -. "algorithm support" .-> SCI', edges)
+        self.assertIn('QIT -. "theoretical support" .-> SCI', edges)
+        self.assertIn('subgraph TEXTBOOK[', source)
+        self.assertIn('subgraph CURRENT[', source)
+        self.assertIn('subgraph PLANNED[', source)
+        self.assertIn('accTitle:', source)
+        self.assertIn('accDescr:', source)
+        self.assertIn('Planned Part III', source)
+        self.assertIn('Planned Part IV', source)
+        page = self.markup()
+        self.assertIn('Planned Part III', page)
+        self.assertIn('Planned Part IV', page)
+        self.assertEqual(re.findall(r'data-curriculum-link="([^"]+)"', page),
+                         ['EXT:CORE', 'CORE:TEXTBOOK', 'BE:SCI', 'QIT:SCI'])
+        self.assertEqual(re.findall(r'data-curriculum-node="([^"]+)"', page),
+                         ['EXT', 'CORE', 'TEXTBOOK', 'SP', 'BE', 'QIT', 'SCI'])
+
+    def test_simplification_keeps_transport_and_admission_conditions(self) -> None:
+        page = self.markup()
+        for text in ('SELECT', 'inverse/unprepare', 'nonzero accepted branch',
+                     'normalization', 'postselection/amplification',
+                     'not proof memory', 'reviewed and admitted'):
+            self.assertIn(text, page)
+        self.assertIn('curriculum-flow', page)
+        self.assertIn('max-width: min(100%, 520px)', (ROOT / 'website/static/site.css').read_text(encoding='utf-8'))
+
+    def test_other_diagrams_do_not_inherit_curriculum_specific_legend(self) -> None:
+        other = next(path.stem for path in (ROOT / 'website/diagrams').glob('*.mmd')
+                     if path.stem != 'quantum-domain-roadmap')
+        page = build_site.diagram('../', other, 'Other diagram')
+        self.assertNotIn('diagram-legend', page)
+        self.assertNotIn('curriculum-transport-notes', page)
+        self.assertIn('class="diagram-panel"', page)
+
+
+class BenchmarkLaunchTests(unittest.TestCase):
+    def test_canonical_repository_and_live_origins(self) -> None:
+        from website.scripts import check_deployed_research, restore_published_blueprint
+
+        repository = "DakeBU/QuantumComputinglib-QuantumComputingBench"
+        origin = "https://dakebu.github.io/QuantumComputinglib-QuantumComputingBench/"
+        self.assertEqual(build_site.PROJECT_REPOSITORY, repository)
+        self.assertEqual(check_deployed_research.ORIGIN, origin)
+        self.assertEqual(restore_published_blueprint.ORIGIN, origin)
+        schema = build_site.load_json(ROOT / "website/community/contribution.schema.json")
+        self.assertEqual(schema["$id"], origin + "community/contribution.schema.json")
+        workspace = (ROOT / "website/static/workspace.js").read_text(encoding="utf-8")
+        self.assertIn(f"https://github.com/{repository}/issues/new?", workspace)
+
+    def test_launch_news_is_first_and_links_to_the_handoff(self) -> None:
+        page = build_site.render_home(
+            {"declarations": []},
+            {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
+            {"passed": True}, {"shortCommit": "test"},
+        )
+        news = page.split('id="news"', 1)[1].split("</ol>", 1)[0]
+        self.assertLess(news.index("2026-10-21"), news.index("2026-10-18"))
+        self.assertIn("QuantumComputingBench starts.", news)
+        self.assertIn(
+            build_site.PROJECT_REPOSITORY_URL + "/tree/main/benchmarks/quantumcomputingbench",
+            news,
+        )
+        self.assertIn("planned topics clearly separated from verified library evidence", news)
+
+    def test_readme_and_agent_handoff_keep_preview_evidence_boundaries(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        benchmark = ROOT / "benchmarks/quantumcomputingbench"
+        self.assertTrue((benchmark / "README.md").is_file())
+        self.assertTrue((benchmark / "AGENT_GOAL.md").is_file())
+        self.assertIn("benchmarks/quantumcomputingbench/AGENT_GOAL.md", readme)
+        news = readme.split("## News", 1)[1]
+        self.assertLess(news.index("21 October 2026"), news.index("18 October 2026"))
+        self.assertIn("currently in development", readme)
+        bench_readme = (benchmark / "README.md").read_text(encoding="utf-8")
+        self.assertIn("v0.1.0-preview.1", bench_readme)
+        self.assertIn("not complete whole-graph coverage", bench_readme)
+        self.assertIn("ENV_BLOCKED", bench_readme)
+        self.assertIn("UNMEASURED", bench_readme)
+        self.assertIn("no aggregate distinct-core", bench_readme)
+        self.assertTrue((benchmark / "manifests/integration-20261022/admission.json").is_file())
+
+
 class RequiredPublicationArtifactTests(unittest.TestCase):
     def test_restore_follows_static_and_dynamic_module_imports(self) -> None:
         from website.scripts.restore_published_blueprint import resource_links, local_name, BLUEPRINT
@@ -255,6 +363,8 @@ class SiteContractTests(unittest.TestCase):
             {"passed": True}, {"shortCommit": "test"},
         )
         self.assertIn("Four textbook parts, one shared Lean graph", page)
+        self.assertIn('heading.textContent = "Four textbook parts, shared Lean foundations"',
+                      (ROOT / 'website/static/site.js').read_text(encoding='utf-8'))
         self.assertIn("Part III · Planned", page)
         self.assertIn("Part IV · Planned", page)
         self.assertIn('href="quantum-information/index.html"', page)
@@ -471,12 +581,22 @@ class SiteContractTests(unittest.TestCase):
 
     def test_footer_names_repository_and_all_organizers(self) -> None:
         source = (ROOT / "website/scripts/build_site.py").read_text(encoding="utf-8")
-        self.assertIn("DakeBU/Quantum-Computing-Block-Encoding", source)
+        self.assertIn("DakeBU/QuantumComputinglib-QuantumComputingBench", source)
         for name in (
-            "Dake Bu", "Xiajie Huang", "Nana Liu", "Atsushi Nitanda",
+            "Dake Bu", "Xiajie Huang", "Outongyi Lv", "Nana Liu", "Atsushi Nitanda",
             "Hau-san Wong", "Qingfu Zhang",
         ):
             self.assertIn(name, source)
+
+    def test_project_author_order_and_affiliation(self) -> None:
+        names = [name for name, _ in build_site.ORGANIZERS]
+        index = names.index("Xiajie Huang")
+        self.assertEqual(names[index:index + 3], ["Xiajie Huang", "Outongyi Lv", "Nana Liu"])
+        affiliations = dict(build_site.ORGANIZERS)
+        self.assertEqual(affiliations["Outongyi Lv"], "Shanghai Jiao Tong University")
+        self.assertEqual(affiliations["Outongyi Lv"], affiliations["Xiajie Huang"])
+        citation = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("Huang, Xiajie and Lv, Outongyi and Liu, Nana", citation)
 
     def test_every_case_has_formula_lean_evolution_and_executable_output(self) -> None:
         data = json.loads((ROOT / "website/example-cases.json").read_text(encoding="utf-8"))
