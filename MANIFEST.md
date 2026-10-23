@@ -8543,3 +8543,4 @@ block-encoding formalization lifecycle.
 | 2026-10-19 14:00:26 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c389-fixed-diff-reviewed-Linux-repair-checkpoint-20261019 |
 | 2026-10-19 14:47:23 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged c398-reviewed-observer-parser-checkpoint-20261019 |
 | 2026-10-23 12:02:41 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged measurement-c401-20261023 |
+| 2026-10-23 13:20:03 | qbe.py trial-log | `runs\trials.jsonl` | trial | Logged QBE-LIB-MEASUREMENT-C409-20261023 |

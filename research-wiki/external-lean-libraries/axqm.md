@@ -36,3 +36,24 @@ API, then the pure-state rank-one/trace correspondence. Mixed-state updates,
 instruments, dilation, tensor conventions and resource/circuit realization remain
 separate obligations. OpenAI Math and the other recorded QIT libraries must share
 the resulting reviewed semantic adapter, not acquire independent foundations.
+
+
+## Coherent branch consumer checkpoint
+
+The [coherent-branch package](../../experiments/quantum-foundations/measurement-coherent/README.md)
+now consumes the preceding norm-mass theorem in the actual map
+`MeasurementCoherent.branchIsometry`, using Mathlib's existing finite Hilbert
+product and `LinearIsometry`. It proves the literal coordinate action and full
+complex-overlap identity through that isometry; no second measurement/state API
+is introduced. This closes the preparatory packet's internal non-wrapper-use
+gap, not the separate production-textbook-consumer/admission obligation.
+
+Exact source, pre-proof seal, independent source-blind reconstruction, distinct
+static semantic acceptance, actual Lean4.33 consumers/signatures/axioms and a
+bounded compiler-helper dependency observation are pinned in that package.
+The portable fixed-source replay passes independently of the author's runner;
+its initial dependency-parser failure remains preserved alongside the correction.
+Status is still **proved_locally preparatory**, not production Graph/main/QA gold
+or PURIFIED. Existing public-test plan-201/202 contracts and splits are unchanged;
+the square-root/POVM, register, normalized block and mixed-state obligations
+are not closed by this interface.
