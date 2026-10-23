@@ -1,0 +1,203 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-105",
+  "supersedes_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+  "supersedes_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+  "supersedes_contract_hash": "309c75520531398abe723c2336552f0c218d92787f06a834b7fb16bfa6f49be2",
+  "author": "/root/qcb_native_comparison",
+  "key": "qcb-core-plan-105-textbook-question-v2-linear-scalar-schur",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 correction, not an answer-only assumption of linearity. The original finite-dimensional/algebraically closed question defines f-equivariance only by a functional equation; even there a continuous entire equivariant function need not be scalar. Retain/refute that reading and put F-linear endomorphism, finite dimension, algebraic closure and the nonzero/zero-space eigenvalue distinction explicitly in the assessed QUESTION. Restrict the commutant conclusion to End_F(V), not all commuting functions. Original assumptions/conventions remain empty and only question changes among nine CONTRACT_FIELDS; core/family/test_public split/frozen graph/source_refs and five exact ordered per-step node lists are preserved. Original contract 309c75520531398abe723c2336552f0c218d92787f06a834b7fb16bfa6f49be2 is superseded without an equivalence claim. Proposed canonical locator benchmarks/quantumcomputingbench/shared/repairs/plan-105-linear-scalar-schur-question-successor.json; authored private _review_tmp/plan-105-linear-scalar-schur-question-successor.json. No convention migration, new core, selfapproval or admission. Recomputed proposed nine-field question-only contract 66e2872bd051a32e94d0a7f3affed31b2fc48f29be73fdd24fb86462efb14c73.",
+  "question": "The predecessor takes an irreducible finite-dimensional representation phi:G->GL_F(V) over an algebraically closed field F, defines a function f:V->V to be equivariant only by f(phi(g)v)=phi(g)f(v), and asks to prove f=lambda*I. Assess that literal functional-equation claim WITHOUT silently assuming f linear. Give a nonlinear continuous (indeed holomorphic) counterexample for F=C on a nonzero finite-dimensional irreducible unitary representation of a finite group, and identify why the characteristic-polynomial and scalar-commutant arguments cannot apply to arbitrary functions.\n\nThen prove the correct CONDITIONAL statement with its hypotheses explicit: F is algebraically closed, V is a finite-dimensional F-vector space, phi is an F-linear representation with no G-invariant F-linear subspaces other than0,V, and f belongs to End_F(V) and commutes with every phi(g). If V is nonzero, exhibit an eigenvalue lambda using positive finite dimension and algebraic closure, show h=f-lambda*I is an F-linear equivariant endomorphism with nonzero kernel, and use the correctly LINEAR zero-or-isomorphism lemma to prove h=0. If a definition of irreducibility permits V=0, handle that case separately rather than invoking an eigenvector there.\n\nDerive precisely End_G(V)={X in End_F(V): X phi(g)=phi(g)X for all g}=F*I, including the converse that scalars commute, and say when the scalar parameter is unique. Explain which hypotheses are sufficient for the eigenvalue argument, why existence of an eigenvalue for this particular f is a weaker sufficient condition, and why no finite-group/characteristic-zero/unitarity hypothesis is used. Give explicit boundary illustrations when algebraic closure or finite dimension is removed, clearly outside the proved conditional theorem; do not use a reducible infinite-dimensional example as a counterexample to an irreducible-representation conclusion, or claim to settle every topological/unitary Schur variant. Identify the exact kernel/image subproof shared with plan104 without equating the two complete targets.",
+  "reference_answer": "The literal claim is false without F-linearity even under the stated field and dimension conditions. Use G={+1,-1}, V=C and phi(epsilon)z=epsilon*z. This nonzero one-dimensional complex representation is irreducible and unitary; the finite discrete group is compact and acts continuously. The entire map f(z)=z^3 satisfies f(epsilon*z)=epsilon*f(z) for each group element. It is not a scalar multiple of the identity: f(1)=1 would force lambda=1, but f(2)=8!=2. It is also noninjective, since1 and omega=(-1+i*sqrt(3))/2 are distinct and both cube to1. This is the same concrete functional-equivariance failure used in104, not a different promise. Holomorphicity or continuity does not make a function C-linear. A nonlinear function has no endomorphism matrix or characteristic polynomial in End_F(V), so the old eigenvalue proof cannot even start on that carrier. Likewise, a commutant taken among all functions is not the linear-operator commutant below.\n\nNow impose the conditional hypotheses actually stated in the revised question: f is F-linear, V is finite-dimensional over algebraically closed F, and the representation is algebraically irreducible. If V=0, its only linear endomorphism is0 and lambda*I is0 for every lambda; the conclusion holds directly and there is no nonzero eigenvector. If irreducibility by definition excludes the zero space, this branch is outside that convention. In the nonzero case n=dim_F(V)>0. In any basis f has an n-by-n matrix, and chi_f(t)=det(tI-f) is a polynomial over F of degree n. Algebraic closure gives a root lambda in F. Since det(lambda I-f)=0, finite-dimensional linear algebra gives a nonzero v with (f-lambda I)v=0. Finite positive dimension supplies the nonconstant characteristic polynomial and the matrix kernel criterion; algebraic closure supplies its root. Neither follows for an arbitrary nonlinear function.\n\nSet h=f-lambda I. It is F-linear because both f and I are. For every g, F-linearity of phi(g) and scalar commutation give h phi(g)=f phi(g)-lambda phi(g)=phi(g)f-phi(g)lambda I=phi(g)h. Thus h is a linear intertwiner, not just a function satisfying an unexplained formal subtraction. The eigenvector v is a nonzero kernel vector, so h cannot be injective or a representation isomorphism.\n\nThe linear kernel/image lemma now applies. Explicitly, ker(h) and im(h) are linear subspaces by linearity, and the displayed intertwining relation makes them G-invariant. Since ker(h) contains a nonzero vector, irreducibility forces ker(h)=V. Hence h=0 and f=lambda I. Equivalently, the zero-or-isomorphism lemma says h is zero or a linear isomorphism and the latter is excluded. This is precisely the104 subproof used after a new eigenvalue/shift step;104 by itself does not imply every endomorphism is scalar over every field.\n\nFor the corollary define End_G(V) INSIDE End_F(V). Any X in that set is linear and equivariant under the same finite-dimensional/algebraically closed hypotheses, so the preceding argument gives X=lambda I. Conversely, for every lambda in F and every g, phi(g)(lambda v)=lambda phi(g)v, so lambda I commutes and belongs to End_G(V). Thus the sets are equal. If V is nonzero, (lambda-mu)I=0 implies lambda=mu by evaluation at a nonzero vector, so the scalar is unique and F*I is a one-dimensional operator space. At V0 the set equality is still true but all scalars give the same zero operator; no one-dimensionality or unique-scalar claim is made there.\n\nThe root argument actually needs only that this particular linear f have an eigenvalue: if f-lambda I has a nonzero kernel, algebraic irreducibility already forces it to vanish. Finite dimension and algebraic closure are general sufficient hypotheses guaranteeing that property, not necessary conditions for each individual operator to be scalar. No averaging over G, finite-group premise, characteristic-zero restriction, inner product or unitarity enters the proof.\n\nThere are genuine boundaries to deleting those sufficient hypotheses wholesale. Over R take G=C_4 acting on R^2 by powers of J=[[0,-1],[1,0]]. A nonzero invariant real line would give Jv=a v with real a, and then -v=J^2v=a^2v, impossible. The representation is irreducible and orthogonal, yet J commutes with every action matrix and is not a real scalar. This shows why algebraic closure cannot be dropped from a universal scalar statement merely because the maps are linear.\n\nFor an algebraic infinite-dimensional boundary over C, let K=C(t), V=K as a C-vector space, and G=K^times act by multiplication. Powers1,t,t^2,... are C-linearly independent, so V is infinite-dimensional. Every nonzero invariant C-linear subspace W contains some w!=0; for any v!=0, multiplication by the group element v/w sends w to v, so W=V. Thus this is an algebraically irreducible representation. Multiplication T(v)=t*v is C-linear and commutes with G, but is not lambda I for any complex lambda. Indeed T-lambda I is invertible by multiplication with1/(t-lambda), so T has no complex eigenvalue. This is a genuine irreducible counterexample outside finite dimension, not a shift on a reducible trivial representation. No compactness, Hilbert-space boundedness or continuity hypothesis is asserted for this exterior example, and it does not refute differently hypothesized topological/unitary Schur theorems. The finite-group nonlinear examples already meet the continuity/finite-dimensional conditions of the actual literal defect.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Refutes the literal function-only claim by a genuine nonlinear continuous/holomorphic finite-unitary-irrep example; then under the QUESTION'S explicit F-linearity/finite-dimensional/algebraically-closed conditions produces an eigenvalue only for V!=0 and treats V=0 separately if admitted."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Shows h=f-lambda I is an F-linear intertwiner by actual scalar/linear commutation, not merely a formally subtracted nonlinear function."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Uses a nonzero eigenvector to give nonzero kernel, applies the linear invariant kernel/image or zero-or-isomorphism lemma correctly, and concludes h=0 and f=lambda I with no missing morphism premise."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Defines the commutant inside End_F(V), proves both inclusions and the correct uniqueness/zero-space boundary; identifies the weaker eigenvalue condition and genuine field/dimension boundary examples without claiming all infinite/topological variants fail. Distinguishes105's extra eigenvalue target from shared104 subproof."
+    }
+  ],
+  "exposition": {
+    "core_summary": "Functional equivariance is insufficient even for entire maps on finite unitary irreps. For explicitly linear endomorphisms, positive finite dimension and algebraic closure supply an eigenvalue; the shifted linear Schur lemma then gives the scalar commutant, with zero-space and exterior-field/dimension limits explicit.",
+    "semantic_steps": [
+      {
+        "claim": "The nonlinear complex sign-irrep example refutes the functional-only claim; for an explicitly linear endomorphism on nonzero finite-dimensional V over algebraically closed F, the characteristic polynomial supplies an eigenvalue, while V=0 is handled separately.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The shifted map h=f-lambda I is F-linear and equivariant because linear action maps commute with scalars.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "The nonzero eigenvector lies in ker(h), so h is not invertible; a nonlinear function would not justify this endomorphism/eigenvalue argument.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "The shared linear kernel/image Schur lemma forces h=0 and f=lambda I; finite/closedness supplies the eigenvalue rather than an invisible convention.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Inside End_F(V), all commuting X and all scalar maps give exactly F*I, with uniqueness only on nonzero V and genuine outside-hypothesis field/dimension boundaries; this is not a classification of all equivariant functions or all topological variants.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit entry inspected: author-hosted URL, recorded10 April2026/79-page edition and historical binary SHA90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3. LF binds metadata only, NOT primary proof bytes or mathematical correctness. Actual author-hosted primary PDF text personally inspected in this objective: Definition3.6 and course finite-dimensional scope printed17/PDF16; Definitions3.8/3.10 equivalence/invariant LINEAR subspaces printed18/PDF17; Definition3.12 irreducibility printed19/PDF18; complete Proposition3.17 statement/both proof parts and Corollary3.18 proof printed20/PDF19; full Exercise3.6 statement printed37/PDF36; continuous-representation Definition3.38 printed34/PDF33. Proposition3.17 explicitly says linear; Exercise3.6 abbreviates map and supplies no proof that functional equivariance forces linearity. Kernel/image closure and the nonlinear/real/infinite boundary witnesses in these candidates are independently reconstructed, not new source declarations. Fresh binary equality and rendered pages remain unverified."
+    }
+  ],
+  "execution": {
+    "status": "private_authorship_pending_distinct_exact_content_review",
+    "author_identity": "/root/qcb_native_comparison",
+    "observed_canonical_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-105-linear-scalar-schur-question-successor.json",
+    "proposed_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-105-linear-scalar-schur-question-successor.json",
+    "installed_canonically": false,
+    "author_self_approval": false,
+    "inventory": {
+      "scope": "Before writing, a full read-only rg inventory enumerated4022 private files, including old generated reader pages for104/105. Initial scoped104/105/Schur/linearity candidate inventory found no prior plan104/105 repair JSON. Both NEW target paths were checked absent. Existing be104 candidates, generated pages and all previous private files are untouched.",
+      "limits": "Observed process inventory only, not a permanent file count or completion metric."
+    },
+    "contract_binding": {
+      "original_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "original_contract_hash": "309c75520531398abe723c2336552f0c218d92787f06a834b7fb16bfa6f49be2",
+      "successor_contract_hash": "66e2872bd051a32e94d0a7f3affed31b2fc48f29be73fdd24fb86462efb14c73",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_values": {
+        "assumptions": [],
+        "conventions": [],
+        "family": "qit-schur-lemma",
+        "split": "test_public",
+        "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+        "target_nodes": [
+          "concept:operator-theory",
+          "concept:matrix-analysis"
+        ],
+        "supporting_nodes": [],
+        "source_refs": [
+          {
+            "anchor": "leditzky-2025-repth-qit",
+            "license": "MIT metadata only",
+            "path": "website/research/sources.json",
+            "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+          }
+        ]
+      },
+      "original_question": "Let (phi, V) be an irreducible representation of a group G on a finite-dimensional vector space V over an algebraically closed field F (for example F = C), and let f: V -> V be G-equivariant, i.e. f . phi(g) = phi(g) . f for all g. Prove that f = lambda . 1_V for some scalar lambda in F. Make explicit where algebraic closure and finite dimension are used, and derive as a corollary that any operator X commuting with an irreducible representation is a scalar multiple of the identity.",
+      "current_question_locator": "Top-level question of this exact record; combine it with unchanged_contract_values for the full successor nine-field contract.",
+      "question_version": 2,
+      "semantic_step_count": 5,
+      "original_ordered_step_nodes": [
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "withdrawal_binding": {
+      "core_id": "qcb-core-plan-105",
+      "predecessor_key": "qcb-core-plan-105-schur-lemma-scalar-over-alg-closed",
+      "predecessor_item_digest": "2e412b13c8de13f801773ac4612a9ce937e53b539a24ffa09f41e658d7bee9c1",
+      "reason": "The scalar-Schur question omits linearity; a nonlinear equivariant function need not be scalar.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+      "finding_digest": "c0c58b623d3ea5cabe7b2ebc6ab27b3547b16bdda387f45ac8779508fceb6c33",
+      "actual_historical_reviewer": "/root/qcb_formal_view_audit",
+      "whole_predecessor_review_and_finding_digests_independently_recomputed": true
+    },
+    "exposure": "I have prior Leditzky/QIT source exposure from neighboring tasks and received the parent's shared-linearity uncertainty lead. In this objective I read the entire actual prepared historical104/105 records via release.checked()[2], exact current withdrawals and complete bound findings by /root/qcb_formal_view_audit, including that other reviewer's historical primary-byte retrieval claims. I did not perform those historical executions and do not transfer their byte/visual verification to my authoring. I reconstructed these new full questions, answers, rubrics and five-step expositions after reading the operative primary proof. This is actual authorship, not independent approval or source-blind work.",
+    "primary_source_checks": [
+      {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "edition_observed": "Cover10 April2026;79 pages",
+        "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "actual_access": "Genuine author-hosted web PDF text extraction personally read in this objective: complete relevant definitions, Proposition3.17(i)/(ii) proof and Corollary3.18 proof, Exercise3.6 statement and continuous-group convention. Source cover/date/page count observed. No local primary PDF stored or redistributed.",
+        "binary_hash_verified_here": false,
+        "operative_pixels_inspected_here": false,
+        "failed_visual_attempts": "Screenshot requests at zero-based PDF pages17,19,36 returned cache misses. No successful rendered operative-page inspection is claimed.",
+        "limits": "Historical PDF pin is provenance, not fresh byte equality; neither the prior reviewer's genuine matching-byte retrieval nor another task's visual inspection is assigned to this author. No paper/PDF/human/expert seal."
+      }
+    ],
+    "source_proof_coverage": {
+      "nodes": "Definition3.6 linear group actions; Definition3.8 linear representation isomorphism; Definition3.10 invariant vector subspaces; Definition3.12 irreducibility; Proposition3.17 explicit linear-map carrier, kernel/image zero-or-isomorphism proof and eigenvalue-shift scalar proof; Corollary3.18 linear-operator consequence.",
+      "reconstructed_gap": "Exercise3.6 gives a subspace/invariance exercise without full proof and abbreviates equivariant map. I supply closure, invariance and inverse proofs under explicit F-linearity; I do not infer linearity from its functional formula. The principal source theorem is correct on its explicit linear carrier; the defect is the broader prepared question, not a refutation of standard Schur.",
+      "boundaries": "Zero-space cases are split rather than hidden behind the ordinary nonzero-irrep convention. Finite compact continuous unitary polynomial counterexamples refute the literal104/105 functional claims. The real and C(t) examples in105 are separately derived outside-field/dimension boundaries, not assertions about the source's finite-dimensional continuous quantum setting.",
+      "excluded": "No Maschke averaging, semisimple decomposition, arbitrary infinite-dimensional topological/unitary classification, physical quantum circuit implementation, gate/query bound or production Lean theorem is needed or claimed."
+    },
+    "bounded_relation": "104 and105 share the C2 sign-action nonlinear counterexample and the linear invariant-kernel/image zero-or-isomorphism fragment. 105 additionally supplies an eigenvalue/shift and classifies a commutant inside End_F(V);104 works without that scalar/eigenvalue conclusion. This is a bounded dependency/subproof overlap, not equivalence of the whole revised questions, duplicate-count permission or global semantic reconciliation.",
+    "validation": "Read-only prepared-record/source/contract checks only. All other eight original contract values and exact five ordered semantic node lists are preserved. Exact payload grammar, whole digests and source LF will be checked mechanically before handoff; these checks are not mathematical approval.",
+    "process_memory_ids_consulted": [],
+    "process_memory_scope": "Used mandatory substantive-worker/frontier/publication protocols, personally read at unchanged tracked versions, plus the PDF-reading skill for bounded source access. Exact source and withdrawal pointers supplied the relevant process context; no unrelated review was treated as proof.",
+    "frontier_handoff": {
+      "objective": "Retire functional-equivariance-as-linearity ambiguity for reserved104/105 with explicit assessed conditional linear targets.",
+      "mathematical_delta": "Finite-unitary-irrep holomorphic counterexample, explicit finite-positive-dimensional/algebraically-closed linear eigenvalue route and correctly typed scalar commutant, with genuine field/dimension boundaries.",
+      "failure_class": "REFUTED: literal function-only theorem; no engine obstruction because both active convention/assumption lists are empty.",
+      "salvage": "Correct linear Schur source proofs retained and expanded; nonlinear closure/injectivity/eigenvalue inferences discarded. No production theorem or source artifact modified.",
+      "direction_fingerprint": "Nontrivial C2 sign-action polynomial discriminator -> explicit common-field linear carrier -> invariant kernel/image -> eigenvalue shift only under its stated guarantee.",
+      "parallel_admission": "No new agents; no selfapproval. Distinct whole-candidate mathematical/contract review is still required.",
+      "purification_exposition": "Private NL derivations only. No Exposition Seal, PURIFIED status, source-to-Lean bridge, kernel verification, model/human approval, global deduplication or admission.",
+      "next_step": "Root independently reconciles literal question changes, then requests a distinct exact-content review before any canonical transport; this is next-cohort preparation only, not a PR110 change."
+    }
+  }
+}

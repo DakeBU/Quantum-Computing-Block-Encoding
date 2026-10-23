@@ -112,6 +112,18 @@ shared purification, parity-LCU and reflection subproofs without duplicate count
 or inherited-split independence claims. These are reviewed NL corrections, not
 new kernel proofs or a stable-release declaration.
 
+Read the topology/coherent-record checkpoint before extending related targets.
+Plan003 distinguishes extreme points, relative affine boundary and full ambient
+boundary, including dimensions zero and one. Plan104/105 distinguish equivariant
+functions from linear intertwiners and state the precise finite-dimensional,
+algebraically closed scalar conclusion. Plan206 permits clean union ancillas
+and derives normalized factor compensation; physical register sharing is not
+necessary. Plan207 derives joint angle-class dephasing while the signal marginal
+is unchanged, and separates finite-bit stored angles from arbitrary exact real
+angles. Plan404's dimension factor compares unrounded excess copies, not total
+or rounded copy minima. Reuse their existing core IDs and record bounded shared
+subproofs, not additional cores, independent splits or newly formalized results.
+
 Run the benchmark unit tests and `scripts/curriculum.py validate` with a supported
 Python environment. Submit coherent PR milestones with exact changed targets,
 source evidence, review status, test results and unresolved gaps. Do not rewrite

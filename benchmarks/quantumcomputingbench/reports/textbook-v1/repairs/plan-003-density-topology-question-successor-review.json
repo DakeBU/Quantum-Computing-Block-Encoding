@@ -1,0 +1,143 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "core_id": "qcb-core-plan-003",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-003-density-topology-question-successor.json",
+  "repair_record_digest": "96c03a08047dfac8179702998de36b48d36b5a2379a395963ddd67a9d091b168",
+  "repair_record_sha256_lf": "b6d2b4e37803f0513837447f06162839e5153dd32c971ca3d04e89146f29b629",
+  "original_item_digest": "7e302b73d9cda8ccc45e78d6c239f3cb6e9a0908e868691023aeea3256e809c3",
+  "original_contract_hash": "33ba67d2cb869a69a3dab85e183938f49676f44053968ffb23539051a99cb797",
+  "successor_contract_hash": "667c373770ab0b2e17a6f36c07805f86105329ad42c683449207874e5fc403c7",
+  "question_version": 2,
+  "verdict": "accept",
+  "contract_change_assessment": {
+    "literal_need": "The old question asks to prove an unrestricted boundary=pure statement, while its answer/rubric silently grade extreme points. That literal demand is false, not a missing one-line proof. The new question explicitly preserves and refutes the demand, retains convexity and extremality, and asks a topology-specific boundary classification. It is therefore a genuine first question-version correction, not an answer-only substitution or a claimed equivalent restatement.",
+    "preserved_scope": "Only question changes among the nine contract fields. Empty assumptions/conventions, qit-state-foundations family, test_public split, graph/source_refs and all three exact ordered support lists remain unchanged. Finite C^d and its real Hermitian affine topology are now explicit in the changed question, not smuggled into unchanged standing lists. Initial d>=1 is followed by an express d=0 assessment, not a silent qubit/nonzero restriction rescuing the old assertion. No extra core, alias/split clearance, stale-companion upgrade or admission follows."
+  },
+  "substantive_reconstruction": {
+    "carrier_and_convexity": "I reconstructed the matrix carrier before using the geometric language. Over C, writing an arbitrary matrix as B+iC with B,C Hermitian shows that real nonnegative quadratic forms force every quadratic form of C to vanish; polarization gives C=0. Thus positivity already entails Hermiticity and the explicit Herm_d carrier does not add a state hypothesis. Herm_d is a REAL d^2-dimensional space, and for d>=1 trace one cuts out a real affine hyperplane A_d of dimension d^2-1. All finite-dimensional norms induce the same topology. For a probability mixture, each quadratic form is a sum of nonnegative terms with nonnegative coefficients; unit sum is unused there. Trace linearity instead gives sum_i p_i and needs that sum to be one, not coefficient signs. This separates proof roles without false individual necessity: (2,-1) on equal states still yields that state, whereas on orthogonal pure states in d>=2 it violates positivity despite trace one.",
+    "both_extremality_directions": "For a positive trace-one matrix, spectral eigenvalues are nonnegative and sum to one. Rank one therefore gives exactly a unit-vector projector. Rank at least two supplies orthonormal positive-eigenvalue directions u,v; adding and subtracting t(P_u-P_v), with t smaller than both eigenvalues, creates two distinct positive trace-one matrices with midpoint rho. Thus higher rank is not extreme. Conversely, if P=s sigma+(1-s)tau with 0<s<1, every vector z perpendicular to its unit range vector has zero expectation in P. Positivity and the strictly positive mixture weights force zero expectations in sigma and tau separately. Spectral decomposition makes this equivalent to sigma z=tau z=0. Hermiticity then confines both ranges to the same one-dimensional support, and trace one forces sigma=tau=P. This proves the reverse implication rather than merely quoting the source's pure-state terminology.",
+    "affine_hull_and_relative_boundary": "The PSD cone is closed because nonnegative quadratic forms are closed conditions, and trace one is closed. If rho is positive definite, an operator-norm-small Hermitian trace-zero perturbation E satisfies <v,(rho+E)v> >= (lambda_min(rho)-||E||)||v||^2, so it stays positive for ||E||<lambda_min. This is a neighborhood in A_d, not in the full matrix space. Applied at I_d/d it shows every trace-zero Hermitian direction has small positive and negative translates inside D_d, proving its REAL affine hull is A_d. Conversely, for a singular state in d>=2 choose a unit kernel vector z and unit w perpendicular to it. E_t=t(P_w-P_z) is trace zero, tends to zero, and gives expectation -t on z. Nearby points of A_d therefore lie outside D_d. Closedness proves every singular state is relatively boundary; positive-definite states are precisely the relative interior. Approaching any state by mixing with epsilon I_d/d also confirms closure of that interior.",
+    "dimensions_and_full_ambient_topologies": "For d=1, A_1=D_1 is a singleton: it is relatively open in itself and has empty relative boundary, although its state is pure and extreme. For d=2 the only singular trace-one positive spectra are (1,0), so relative boundary equals pure states only in this special case. For d>=3, diag(1/2,1/2,0,...) is mixed, rank two and nonextreme, but singular and relatively boundary. Its trace-one perturbations diag(1/2+t,1/2,-t,...) explicitly leave positivity and converge to it. In the FULL Hermitian space, arbitrarily small nonzero rho+tI violate trace one; no state is interior. D_d is closed there, so its boundary is all of D_d. Hermiticity itself is a closed condition in M_d(C), hence D_d is closed in that larger usual real norm topology too; the same trace-violating perturbation again gives empty interior and the same full boundary. This includes mixed positive-definite states for d>=2 and avoids equating topology with convex extremality.",
+    "zero_case_grading_and_source_limit": "At d=0 the unique operator has trace zero, so D_0=A_0 are empty, with no states, pure points or extreme points. Their empty boundary/interior statements follow directly in the indicated spaces; no division by d or nonempty-hyperplane dimension formula is used. Every four-part grading requirement is proved in the complete answer, and the three exposition claims retain their original ordered nodes, with the last openly expanded to separate extremality and topology. The operative primary region states density axioms, convexity, pure/extreme/rank-one and spectral facts, but supplies no boundary=pure theorem. I checked the perturbation and support proofs independently rather than borrowing authority for that missing inference. I find no blocking mathematical or grading defect in this exact revised payload. The old rejected item is not converted to acceptance, and overlap with pure-projector or other state-foundation subtargets does not settle whole-core aliases."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky bibliographic entry and recorded pin; exact metadata LF only. Primary state-definition and spectral/extremality text read separately as specified below, not inferred from registry status."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/planned.json",
+      "sha256_lf": "afb90ee041855b1a011081522c41e4166fcd758236e55161f7cc9a2cd1f784bb",
+      "anchor": "Entire authored003 question, answer, four criteria, three steps, empty assumptions/conventions and source metadata compared with actual prepared original. Content provenance only; it records the erroneous boundary clause, not a proof of it."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Complete actual historical prepared003 loaded via release.checked()[2] and bound by original_item_digest; immutable QA provenance, not a newly executed mathematical theorem."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+      "sha256_lf": "63799389718ad57743e7647fea2b29081d3c0888d654006d9a47e28c52ab6ede",
+      "anchor": "Full current bound rejection finding and report scope read, with whole report/finding digests independently recomputed. Historical exposure and defect evidence, not approval of the successor authored by that reviewer."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+      "observed_text_edition": "April10,2026 cover and79-page count; the operative printed3-4 correspond to zero-based PDF2-3.",
+      "actual_text_scope": "Personally reopened/read the complete operative Section2.1 region through the start of2.2: Definition2.1 state positivity/unit trace and finite complex C^d/Eq2.4, Definition2.2 Hermitian observables, full convexity/extreme-point/rank-one paragraph, Definition2.3 ensembles and full spectral decomposition Eq2.8 with nonnegative unit-sum eigenvalues. Zero-based PDF2-3, printed3-4. No full-paper reading claimed.",
+      "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+      "binary_hash_verified_this_review": false,
+      "retrieved_raw_sha256": null,
+      "operative_pixels_inspected_this_review": false,
+      "visual_attempt": "One current web screenshot request for zero-based PDF3/printed4 returned a cache miss. No successful operative image inspection or fresh PDF-byte retrieval claimed; root's separately reported matching-byte/render executions are not mine.",
+      "source_vs_derivation": "The source's concise convexity/extremality/spectral assertions are not complete printed topology proofs. Polarization, both extremality directions, affine hull, all perturbations, low/zero-dimensional and full-ambient cases were independently reconstructed above. No boundary=pure statement was found in this bounded primary region.",
+      "limits": "Text access is genuine; current raw pin equality and operative pixels remain unverified. No source PDF saved/redistributed, source-paper seal, local Lean/kernel/native-formal closure, efficient preparation/gate count or infinite-dimensional topology result."
+    }
+  ],
+  "previous_reader_evidence": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/plan-003-boundary-review.json",
+    "report_digest": "8d02904308bb1822a2000dd6f34b6a1aa52bc02c5f961442a6d89cdef4851bf2",
+    "finding_digest": "d090129cd26b948a0fa757a19de64d3c9f106f057bc90eba925aca1172f13bd0",
+    "actual_historical_reviewer": "/root/qcb_boundary_repair_review",
+    "assessment": "Read whole original rejection/finding as exposed evidence. That same actor authored this new candidate; my present review is distinct from both candidate and original authors, not a transfer of the old report's authority."
+  },
+  "contract_bindings": {
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_fields": [
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "unchanged_values": {
+      "assumptions": [],
+      "conventions": [],
+      "family": "qit-state-foundations",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:probability"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "successor_ordered_step_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:operator-theory"
+      ]
+    ],
+    "semantic_step_count": 3,
+    "equivalence_to_predecessor_claimed": false,
+    "additional_core_count": 0
+  },
+  "provenance": {
+    "actual_identity": "/root/qcb_formal_view_audit",
+    "candidate_author": "/root/qcb_boundary_repair_review",
+    "original_author": "native-planned-author",
+    "independence": "I authored neither the003 candidate nor its original. I have prior QIT/source and cross-cohort exposure and have read the earlier rejection, parent's topology lead and full candidate including execution. Distinct mathematical reconstruction, not source/verdict blindness, a human/expert review or an invented identity.",
+    "reviewed_at_private_path": "_review_tmp/plan-003-density-topology-question-successor.json",
+    "observed_canonical_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "instructions": "Mandatory repository substantive-worker/publication/proof-digestion/evidence-routed-memory protocols and shared CONTRACT/ACCEPTANCE read in this continuous review context; PDF skill used to keep text, pixels and raw-byte evidence separate.",
+    "execution": "One NEW private review JSON only; exact candidate/original/old-new contract, source LF, current withdrawal/finding and three ordered node lists checked read-only. No candidate/prior-report/canonical/source edits, builds/kernel, policy admission, deployment, commits/push, models/GPU or new agents. No code hashes used as mathematical source dependencies."
+  },
+  "limitations": [
+    "Accept concerns this exact explicit question successor only, not the rejected original or a reinterpretation of boundary as extremality.",
+    "Current primary byte/pixel verification remains absent and is not inherited from root or the author; independent finite-dimensional mathematical arguments are stated explicitly.",
+    "No global alias/dedup, split pooling, stable-release, source-paper/kernel/native-formal or admission claim."
+  ]
+}

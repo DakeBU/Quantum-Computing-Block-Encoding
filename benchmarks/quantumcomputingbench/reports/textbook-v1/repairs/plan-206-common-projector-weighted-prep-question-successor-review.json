@@ -1,0 +1,133 @@
+{
+  "schema_version": "qcb.textbook_question_successor_review.v1",
+  "method": "independent-question-successor-review",
+  "reviewer": "/root/qcb_native_comparison",
+  "question_version": 2,
+  "verdict": "accept",
+  "exposure": "Informed, not blind: I have prior scientific/block-encoding cohort and primary-source exposure, and received the parent's bounded defect leads. I did not author these candidates or the scientific-algorithms-201-210 historical findings. Here I read the complete actual prepared originals via release.checked()[2], current exact withdrawals and full findings, entire candidates including execution/rubric/exposition, and complete operative primary regions. Distinct candidate authorship plus this substantive reconstruction is the independence claimed; no human/expert or unexposed-cognition seal is claimed.",
+  "core_id": "qcb-core-plan-206",
+  "repair_record_digest": "550c9e80fddd7450fa5b98e105811d5a09db11db52ebacc832cf710dcae7fc48",
+  "original_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+  "original_contract_hash": "649d4e624621233d47f2e87d3362859e93f4b05ff4643ed3d04f7483a81d2d35",
+  "successor_contract_hash": "d5bbb6751510de60e219672c2dfd00853e0dd5e7ca9e81d962aedea813e1518b",
+  "contract_change_assessment": {
+    "literal_need": "The predecessor requires proving that disjoint or differently sized ancillas make a joint zero event undefined. Its assumptions do not say idle registers are dirty or forbid embeddings. The explicit clean-union construction below refutes that demanded conclusion. Its different-beta conclusion is also overstated for zero effects. Answer-only cannot satisfy those literal demands; the successor explicitly asks to assess/refute them and derive the valid replacement. This is a first question-version2 correction, not claimed equivalent content.",
+    "retained_contract": "Both original assumptions remain true: the controlled selector is formed on one common carrier, and success is the designated block-ancilla zero event. Constructing that carrier and initializing its union to zero are explicit paid construction operations, not a silently assumed physical shared register. The convention about complete POVM effects is respected by adding failure, not declaring successful subeffects complete. No convention migration is needed. All other eight fields and five ordered node lists are exact."
+  },
+  "substantive_reconstruction": {
+    "selected_map": "Let J embed H at the chosen zero ancilla. Decompose U_i J=J K_i/beta_i+G_i with J†G_i=0. Index-orthogonal controls make W unitary irrespective of branch commutation. For normalized alpha its successful isometry compression is C=sum_i(alpha_i/beta_i)|i> K_i, while the full output retains sum_i alpha_i|i>G_i. Thus C†C=T=sum_i|alpha_i|²P_i/beta_i²<=I. For density rho, C rho C† includes the stated alpha_i conjugate(alpha_j) cross terms, success is tr(T rho), label effects are |alpha_i|²P_i/beta_i², and failure is I-T. Conditioning divides only by positive probability; a successful nonzero label has the usual square-root POVM update.",
+    "weights_and_exceptions": "Uniform alpha gives the beta-inverse reweighting, not a different normalized POVM without a failure branch. With P0=P1=I/2 and factors1,2, the successful label weights are1/4 and1/16: total5/16 and conditional4/5,1/5. With P0=I,P1=0 those distinct factors cannot distort the sole populated outcome. More generally sum_i P_i/beta_i²>=I/beta_max² proves the claimed strictly positive uniform success lower bound. This does not assert state independence for arbitrary factors or arbitrary alpha, which can instead have zero success.",
+    "normalized_compensation": "Set B²=sum_i beta_i². The vector beta/B has norm1 and cancels the branch denominators, giving V/B with V=sum_i|i>K_i and V†V=I. Hence probability1/B² and conditional V rho V† are exact. Since each compression is contractive, P_i<=beta_i² I; summing proves B²>=1 on the nonzero physical carrier. Dividing instead by beta_max gives norm squared5/4 for1,2, so is invalid. Independent label phases leave label probabilities unchanged but change the coherent target. Tensoring each branch with a clean rotation whose zero entry is beta_i/beta_max yields common block K_i/beta_max; its extra flag must also be accepted. This is a separate sufficient construction, not an optimality theorem.",
+    "union_witness": "For disjoint A_i, use the ordered tensor product of every ancilla and H, initialize every ancilla to zero, and extend U_i identically on idle factors. Projecting the entire union to zero multiplies idle factors by1 and kills the active garbage through its own zero bra. No independent idle random event is counted. In the stated two-outcome witness, branch0 rotates its one-qubit ancilla by Ry(pi/2); branch1 rotates one of two disjoint ancillas identically. With P_i=I/2 and beta1 the union compression is (|0>+|1>)psi/2, probability1/2. This explicitly handles both unequal widths and disjoint supports. Dirty or correlated idle inputs do not meet this construction's initialized interface, and an unembedded sum of different-size operators is genuinely untyped.",
+    "grading_and_scope": "All four rubric criteria and five exposition claims follow these calculations, including zero effects, relative phases and undefined zero-probability conditional states. L1 reduces correctly; an empty POVM cannot sum to identity on a nonzero physical space. The source's amplification paragraph was read but its resource assertion is not re-proved by the candidate: unknown-state reflections, SELECT construction, normalized PREP, reset, controls, readout and finite-bit synthesis remain charged or unresolved. The shared fragment with207 is a precise zero-projector/garbage interface;206 concerns POVM weights and carrier embeddings, whereas207 concerns coherent angle records. Neither is a complete-target alias, global reconciliation or an additional core."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc metadata entry personally inspected and LF checked in this review. Binds external URL/edition/historical pin only, not primary bytes or a local proof. Primary mathematical regions and access limits are separately stated."
+    }
+  ],
+  "content_bindings": {
+    "inspected_private_candidate": "_review_tmp/plan-206-common-projector-weighted-prep-question-successor.json",
+    "planned_canonical_candidate": "benchmarks/quantumcomputingbench/shared/repairs/plan-206-common-projector-weighted-prep-question-successor.json",
+    "candidate_sha256_lf": "6e3e52fa46a582460c28d00d20a9373684f7c0c5f5b4ec508a851604e0c26a67",
+    "original_assumptions": [
+      "W = sum_i |i><i| tensor U_i is the controlled block-encoding selector",
+      "Success is defined as the block-encoding ancilla returning 0^a"
+    ],
+    "original_conventions": [
+      "beta_i denotes a per-outcome subnormalization; a_i a per-outcome ancilla size",
+      "A valid POVM requires the implemented effects to sum to I"
+    ],
+    "changed_contract_fields": [
+      "question"
+    ],
+    "unchanged_contract_field_digests": {
+      "assumptions": "08505dbaedb68c82f87df5916d30ef1e3c62a862ac050973fafc2cd8f4f05454",
+      "conventions": "6820e7017eec4dd0cbcdae9a6eaa1a04625a1d2da80ffa7d199efcc31ae3b8c4",
+      "family": "195521db078135582bbd45b603e80a15fe9d20b72524b3f6853e294a3dbbe697",
+      "split": "a774e852385c11df74d26b40210fb7d29a7b8e7357a8ecece45482398c3f3f7c",
+      "graph_version": "2ced781f875884ea6187183f7ad941c8871d10c978fb36a1a4c054d2defedc1b",
+      "target_nodes": "c40d3a7f112b9115af28ccf276262e303e4f39f2470fb2a45ddf403f04b3364a",
+      "supporting_nodes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "source_refs": "5c4265958dc20cca662e75650774b7cf3998fb866be977f879a73d2cc238bc75"
+    },
+    "original_ordered_step_nodes": [
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "candidate_ordered_step_nodes": [
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:probability"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "semantic_step_count": 5,
+    "withdrawal": {
+      "core_id": "qcb-core-plan-206",
+      "predecessor_key": "qcb-core-plan-206-povm-shared-ancilla-beta-assumption-boundary",
+      "predecessor_item_digest": "d38a79b187cf26c01f7885a3a12002f9fe511bfdb2b765bfd886cd809ed7aab2",
+      "reason": "Disjoint clean ancillas admit a common union projector; the proposed compensating PREP is also unnormalized.",
+      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+      "finding_digest": "29ed87e1b485d7a29947e777bf2027ffd4136259fb8568b9f46da65a3f0383ff"
+    },
+    "withdrawal_report_sha256_lf": "44dbcedbd5e9499d0dc81a3bc65df49ae9a625e764efe16a0a322c60169b3756",
+    "original_content_source_bindings": [
+      {
+        "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+        "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+        "anchor": "Whole exact historical prepared qcb-core-plan-206 loaded through release.checked()[2], with full question/assumptions/conventions/answer/rubric/steps and provenance; content binding, not mathematical proof or current-reader substitution."
+      },
+      {
+        "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+        "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+        "anchor": "Complete corresponding authored mathematical record read and matched to the prepared original. Local QA-content provenance only, not a primary proof seal."
+      }
+    ],
+    "validation": "Actual whole candidate/original digests, both nine-field contracts, withdrawal report/finding digests, all candidate LF source bindings, exact16-field V1 payload, version2, distinct author, pending marker and five identical ordered lists independently recomputed. These are static content/grammar checks, not execution of production admission."
+  },
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "edition_observed": "Cover April29,2026;447 pages",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "operative_regions": "Complete Lemma9.15 statement and proof, Eq9.55-9.67, printed152-154/PDF151-153; Definition9.2 with zero-block/factor convention Eq9.8-9.13; complete Lemma9.5 coefficient normalization and proof Eq9.15-9.26. Final amplification paragraph read but not certified here. Clean-union extensions, density formulas and counterexamples independently reconstructed.",
+      "actual_review_access": "Personally accessed author-hosted PDF text in this objective and read complete operative formulas/construction/proofs and textual figure labels named above. No primary PDF copied or redistributed.",
+      "binary_hash_verified_in_this_review": false,
+      "operative_pixels_inspected_in_this_review": false,
+      "limits": "My screenshot requests for PDF104,152,154 returned cache misses. I inspected figure textual controls/angles, not rendered geometry. No fresh raw-byte SHA match, paper/PDF/visual/human seal or inherited parent's/candidate author's execution claim."
+    }
+  ],
+  "provenance": {
+    "observed_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "written_private_review": "_review_tmp/plan-206-common-projector-weighted-prep-question-successor-review.json",
+    "limitations": "Private exact-content mathematical/source review only. No canonical installation, earlier artifact edits, build/kernel/native-formal proof, simulator, code-as-mathematical dependency, self-approval, human/expert/blind/model/novelty/admission or global closure claim."
+  },
+  "review_scope": "Complete candidate question, reference answer, four rubric criteria, summary, five semantic steps and execution/source/process metadata read and assessed against full actual predecessor and bound finding. Verdict is for these exact bytes, not transferred from an old approval or guaranteed by metadata. No production build/kernel or admission executed."
+}
