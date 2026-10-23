@@ -1,0 +1,190 @@
+{
+  "schema_version": "qcb.textbook_answer_successor_review.v1",
+  "reviewer": "/root/qcb_formal_view_audit",
+  "method": "independent-answer-successor-review",
+  "core_id": "qcb-core-plan-209",
+  "repair_record": "benchmarks/quantumcomputingbench/shared/repairs/plan-209-original-entry-query-ledger-answer-repair.json",
+  "repair_record_digest": "7772e1aa6bd2547c24707f9ec7c81274592566b12c83fac43ac95738f04d7750",
+  "repair_record_sha256_lf": "d9982b1760f53cc52a86a2f1829568a4d18f132f4a57c5209d0df531e4e91ab7",
+  "original_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+  "verdict": "accept",
+  "verdict_scope": "Entire exact answer/rubric/five-step exposition under the literal unchanged contract. This is not admission or transfer of a historical label.",
+  "independence": {
+    "repair_author": "/root/qcb_native_comparison",
+    "original_author": "scientific-algorithms-author-b2",
+    "assessment": "Actual reviewer /root/qcb_formal_view_audit authored neither original nor candidate and is distinct from historical reader /root/qcb_boundary_repair_review. Full informed source exposure and exact candidate review, not blindness."
+  },
+  "unchanged_question_contract_assessment": {
+    "contract_hash": "ae91a774d00f0200a6dba18a3d4f7ee65df6ac6452cf482ae647f019cc41846e",
+    "projected_contract_hash": "ae91a774d00f0200a6dba18a3d4f7ee65df6ac6452cf482ae647f019cc41846e",
+    "contract_fields": [
+      "question",
+      "assumptions",
+      "conventions",
+      "family",
+      "split",
+      "graph_version",
+      "target_nodes",
+      "supporting_nodes",
+      "source_refs"
+    ],
+    "unchanged_contract_values": {
+      "question": "Two input models for the entries of a matrix A appear in the sparse block-encoding discussion: the BIT oracle O~_A |0^{d'}>|i>|j> = |A~_ij>|i>|j>, which writes a classical fixed-point string into a register, and the AMPLITUDE oracle O_A |0>|i>|j> = (A_ij|0> + sqrt(1-|A_ij|^2)|1>)|i>|j>, which encodes the entry as the amplitude of an ancilla qubit. Explain conceptually (i) what distinguishes the two as computational resources -- which is a 'digital/query' interface and which is an 'analog/amplitude' interface; (ii) why building the amplitude oracle from the bit oracle requires both controlled rotations (gate work) and uncomputation (query work), i.e. the amplitude oracle is strictly derived, not primitive; and (iii) in a resource count for the overall block encoding, why it is natural to charge the construction one forward and one inverse bit-oracle query plus the gates of a controlled rotation, and why the work register must be counted as borrowed (returned clean), not consumed.",
+      "assumptions": [
+        "A bit oracle and reversible classical arithmetic are available",
+        "The block encoding requires the entry as an amplitude of a flagged ancilla"
+      ],
+      "conventions": [
+        "Query cost counts oracle calls; gate cost counts elementary gates; ancilla cost distinguishes borrowed (clean) from persistent",
+        "'No free cleanup' means uncomputation is a counted resource"
+      ],
+      "family": "qsc-matrix-access",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:block-encoding",
+        "concept:complexity",
+        "concept:operator-theory"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "lin-wiebe-2026-qasc",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ]
+    },
+    "changed_contract_fields": [],
+    "field_equality": "All nine actual values literally unchanged. No implicit nonnegative-real, sparsity, exact finite-real synthesis or free inverse-access assumption is substituted.",
+    "literal_question_assessment": "The request says why it is natural to charge one forward and one inverse original bit query, not to prove optimal necessity or to suppress arithmetic gates. Its phrase 'derived, not primitive' is scoped by 'building ... from the bit oracle'; it does not prohibit a different input model stipulating amplitude access. The corrected full construction answers precisely that literal task. Inverse access is an explicit capability needed to execute this ledger, not inferred merely from abstract unitarity. Finite-bit approximation is distinguished from the ideal displayed target, rather than silently asserted exact.",
+    "family": "qsc-matrix-access",
+    "split": "test_public",
+    "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+    "original_semantic_step_count": 5,
+    "candidate_semantic_step_count": 5,
+    "original_ordered_per_step_supporting_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "ordered_per_step_supporting_nodes": [
+      [
+        "concept:operator-theory"
+      ],
+      [
+        "concept:block-encoding"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:complexity"
+      ],
+      [
+        "concept:block-encoding"
+      ]
+    ],
+    "ordered_node_lists_identical": true,
+    "checks": "Actual predecessor key/whole item, whole candidate/LF, nine-field digest, retained values, step count and every ordered per-step node list independently checked."
+  },
+  "original_defect": "The predecessor counted calls to a derived angle oracle as if they were original entry queries and omitted reversible conversion gates/workspace; its cleanup rhetoric could suggest a universal lower bound.",
+  "substantive_reconstruction": {
+    "interfaces": "Let t denote the retained pair of indices and b_t the queried fixed-point record. O maps |0>_V|t> to |b_t>_V|t> coherently. A superposition of t therefore carries correlated records, not a freely readable classical list. Basis-record CNOT fanout is compatible with no-cloning, but neither it nor measurement gives free coherent amplitude loading. An entry amplitude is a different interface, whose ideal target is normalized only for |z_t|<=1. This construction derives it from available digital access; another model or a known constant can supply it differently.",
+    "signed_complex_loader": "With stored q_t in[0,1/2] and p_t modulo1, define z_hat=exp(2*pi*i*p_t)cos(pi*q_t). Apply Ry(2*pi*q_t) to signal0, then D(p)=diag(exp(2*pi*i*p),1). Its column is exactly (z_hat,sin(pi*q_t)); the latter is nonnegative and equals sqrt(1-|z_hat|^2). Zero has q=1/2, with arbitrary phase convention p=0 and no division by magnitude; magnitude1 has q=0 and retains the phase. A negative real value can use p=1/2. Replacing D by Rz while discarding its label-dependent global factor is invalid coherently. Bit-controlled rotations implement the stated binary angle; d+e ideal controls are not automatically that many elementary hardware gates.",
+    "transcript_and_cleanup": "Use registers S,V,Q,P,R,T, with widths1,d',d,e,w and the index width. Starting at clean work and fixed t: O writes b_t; reversible C preserves b_t,t and computes q_t,p_t,g_t; R_sig changes only S; C† restores Q,P,R to zero on both signal branches; O† restores V. Hence the final signal vector tensored with clean work and t follows, and linearity gives the same clean interface for arbitrary coherent input. Arithmetic garbage may remain between C and C†: it need not be separately cleared before rotation, because all controls and the retained value are preserved. Abstract existence of O† is not an oracle-access promise; an XOR entry oracle is self-inverse, a known circuit may be reversed at cost, and a genuinely forward-only black box does not silently supply this implementation.",
+    "resource_ledger_and_fusion": "For the explicit chronological O;C;R_sig;C†;O† circuit, the original-entry query ledger is1 forward plus1 inverse. Remaining gates cost2G_C+G_R and simultaneous clean temporary work is d'+d+e+w, besides the retained signal/indices/outer registers. Returning these qubits clean permits reuse but does not remove them from peak physical space. Separately packaging a clean angle oracle B=O;F;O† makes B;R;B† naively cost4 original queries. R acts on signal/angle/phase and O on value/indices, so the middle O†;R;O can be replaced by R; the fused circuit recovers2 queries while retaining the value. Thus cleanup is charged, not an unavoidable universal extra2-query theorem or a ban on amortization.",
+    "projection_precision_and_cost_limits": "Compressing signal0 gives the diagonal operator D_z on the combined label, not the full matrix A merely because labels are called row and column. For density rho the success probability is sum_t rho_tt|z_hat_t|^2; the conditioned state is D_z rho D_z†/p only when p>0. Tracing leftover records generally dephases joint signal/index coherence, though basis inputs and signal-only marginals can be exceptions. Exactness is for stored parameters with ideal gates. Differentiating the unit signal vector gives q-derivative norm pi and phase-derivative norm<=2pi, yielding the stated pi*delta_q+2pi*circular_delta_p bound plus synthesis error. Data-to-angle error near endpoints, actual reversible arithmetic runtime, inverse capability, rotation synthesis and outer sparse-access costs remain separate obligations."
+  },
+  "answer_rubric_and_exposition_assessment": {
+    "reference_answer": "Accept all paragraphs: digital/amplitude distinction, explicit phase-correct clean transcript, full original-query/gate/space accounting, fusion, projection and precision qualifications were checked, not just the headline +2.",
+    "rubric": "All four criteria/weights inspected. r1 avoids free classical readout and exact-real overclaims; r2 requires the full coherent phase/inverse/scratch transcript; r3 requires original rather than derived queries with both conversion passes and no optimality claim; r4 keeps peak space, projection, synthesis and outer-resource boundaries. These grade the repaired question rather than a hidden real-only task.",
+    "exposition": "Summary and all five claims are consistent with the full answer and exactly retain the original ordered support-node lists. Concept links are not advertised as local Lean closure.",
+    "repair_scope": "Answer-only is sufficient. The literal natural-cost request is true for the exhibited construction, with explicit oracle-access/finite-bit limitations; a universal primitive impossibility or hardware-optimality target is neither assumed nor proved."
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete lin-wiebe-2026-qasc entry, beginning line230, personally read. This binds metadata only, not primary mathematics. Actual primary inspection is separately recorded."
+    }
+  ],
+  "content_provenance_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Complete actual historical prepared qcb-core-plan-209 from release.checked()[2]; whole item bound separately. Frozen QA provenance, not mathematical source proof."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_scientific_algorithms.json",
+      "sha256_lf": "5da1441027bf2f878363922bcaab0ae5b6f402029883d7370641438e952911ee",
+      "anchor": "Complete authored qcb-core-plan-209 record beginning line934, matched against prepared fields. Record provenance only."
+    }
+  ],
+  "primary_source_checks": [
+    {
+      "url": "https://math.berkeley.edu/~linlin/qasc/live_notes_0429.pdf",
+      "recorded_edition": "29 April 2026; 447-page edition",
+      "recorded_historical_binary_sha256": "56825000d53025dea4c2998dd6a061592b8fb2b9a446c3194c5f408183327599",
+      "current_binary_sha256": null,
+      "current_binary_hash_verified": false,
+      "retrieval": "My current author-hosted PDF web-text retrieval succeeded; cover edition and complete operative text were inspected. No raw binary was obtained or hashed in this review.",
+      "inspected_regions": "Section5.2 Eq5.3-5.7; fixed-point definitions; complete Proposition5.7 proof Eq5.17-5.20; Example5.8 Eq5.21-5.25/Fig5.4/workspace discussion; complete Example9.16 Eq9.68-9.71/Exercise9.4; Examples9.17-9.18 and complete Proposition9.19 Eq9.77-9.84.",
+      "operative_pixels_inspected": false,
+      "visual_limits": "My current screenshot requests for zero-based PDF pages105 and153 failed: the service reported screenshot resolution/content-type support errors. Textual figure registers and formulas, not rendered geometry, were inspected. No other actor's bytes or pixels are inherited."
+    }
+  ],
+  "source_proof_graph": {
+    "source_nodes": "Real-entry controlled rotation, compute/rotate/uncompute, and clean-work conventions are actual inspected source nodes.",
+    "source_gaps_filled_by_independent_math": "Exercise9.4 states complex loading but supplies no solution. The explicit D(p) loader, fused original-entry ledger, four-versus-two cancellation and error/projection qualifications were independently derived, not attributed to a printed complete compiler theorem.",
+    "excluded": "Full sparse matrix compiler, elementary gate synthesis/complexity, amplitude amplification and kernel/formal certification are outside this review."
+  },
+  "withdrawal_evidence": {
+    "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+    "report_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+    "report_sha256_lf": "44dbcedbd5e9499d0dc81a3bc65df49ae9a625e764efe16a0a322c60169b3756",
+    "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b",
+    "row_digest": "1dab1f4c35c6631ef239718a0458bcc8ba45fb4d8c634a0206304392046ea813",
+    "reviewer": "/root/qcb_boundary_repair_review",
+    "inspection": "Whole bound original finding/current withdrawal read; exact original, report, finding and withdrawal row digests independently recomputed and matched."
+  },
+  "bounded_overlap": "Plan207 shares a clean stored-angle mechanism;209 additionally asks input-model/query/gate/peak-workspace accounting. This is a disclosed subproof dependency, not automatic whole-target equivalence, global alias resolution or cross-split clearance.",
+  "provenance": {
+    "observed_head": "543595d84298831b3a2cdb400444b544a2dcd2fd",
+    "actual_reviewer": "/root/qcb_formal_view_audit",
+    "instruction_status": "Mandatory AGENTS/HARNESS/substantive-worker/master/publication/digestion/evidence protocols and PDF skill read in this continuous task context; substantive-worker, shared CONTRACT and ACCEPTANCE refreshed. No changed mandatory instruction files across the inspected heads.",
+    "actual_exposure": "I did not author either current candidate or its original; prior substantial QCB block-encoding/source and repair-review exposure, plus this task's full originals, findings and candidates, is disclosed. This is informed distinct review, not strict blindness or a new identity. Parent leads and author conclusions were not treated as proof.",
+    "reviewed_at_private_path": "C:/Users/84771/.codex/.chatgpt-projects/g-p-68baab74f4848191804468004da66cbf/_review_tmp/plan-209-original-entry-query-ledger-answer-repair.json",
+    "new_kernel_execution": false,
+    "source_blind_review": false,
+    "human_or_expert_approval_claimed": false,
+    "admission_performed": false,
+    "execution": "Only read-only prepared-record loading, source text inspection, digest/LF/order comparisons and writing this new private report. No tests/build/Lean/kernel/simulator, canonical/source/policy/candidate edits, commits/push, extra agents or GPU/admin.",
+    "limits": "A bounded natural-language mathematical/source assessment, not formal alignment, source-paper seal, efficient compiler certificate, global semantic deduplication or split clearance.",
+    "intended_locator_only": "repair_record is the requested future published locator; the exact bytes were inspected privately and are not claimed transported."
+  },
+  "worker_handoff": {
+    "failure_class": "NONE",
+    "mathematical_delta": "A correct full original-entry resource ledger replaces an oracle-level switch without changing the question.",
+    "salvage": "Clean angle-loading mechanism retained; omitted conversion/phase/space obligations restored; universal lower-bound route discarded.",
+    "process_memory": "Only relevant required repository protocols and bound withdrawal/finding consulted.",
+    "direction_fingerprint": "original-entry-fused-query-gate-clean-space-review",
+    "expected_information_gain": "Distinguish actual constructible2-query ledger from angle-call count or optimality claim.",
+    "parallel_and_blind_spot_audit": "No extra agents; genuine distinct author/reviewer identities, but informed exposure. Root must reconcile exact bytes before any admission.",
+    "purification": "Mathematical/private review only; no PURIFIED/source-paper/formal/publication seal.",
+    "next_step": "Parent exact-content reconciliation; any transport/admission and later source/kernel gates remain separate."
+  }
+}

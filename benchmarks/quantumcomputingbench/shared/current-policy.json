@@ -596,6 +596,57 @@
         "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
         "finding_digest": "db960820e5a4bb71362d614ca297e9e55d8fce29f335bd2936a8810b2e635716"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-106",
+      "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+      "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+      "reason": "Explicit first question-version correction. The literal unrestricted complex abelian-irrep assertion is false for algebraic infinite-dimensional representations, and the prepared empty assumptions/conventions do not bind the source's finite-dimensional standing convention. Preserve/refute that reading, then prove the source's nonzero finite-dimensional theorem with its field and zero-space boundaries explicit. Change only question among nine CONTRACT_FIELDS; keep core, qit-schur-lemma family, test_public split, graph/source_refs and exactly five ordered original node lists. Do not call the positive finite-dimensional theorem equivalent to the original unrestricted demand, or silently put finite dimension into a standing convention. Prior original contract13d2d42ffb9abf52316dd44b9c632fe90ca15ebc48b2772aa05e521deacfbf34 is superseded, not retained. No new core, global alias clearance, selfapproval or admission. Proposed question-only successor contract d60a5553bc25ce2cbc7f1ec76fc69539591c8d781b6742db92c8d9c494708f1b.",
+      "repair": "shared/repairs/plan-106-abelian-dimension-scope-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-106-abelian-dimension-scope-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-106",
+        "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
+        "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
+        "reason": "The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-108",
+      "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
+      "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+      "reason": "Explicit first question-version2 scalar/codomain correction. The old class-function proof survives over every field, but its unqualified dimension equality needs a scalar cast and its answer's universal integer-recovery claim fails in positive characteristic. Retain and assess that assertion, prove chi(e)=n*1_K and separate characteristic-zero recovery from the characteristic-p counterexample. Do not merely impose C or characteristic zero on all inputs. Empty assumptions/conventions stay empty; only question changes among the nine fields, with the same core/family/split/frozen graph/source_refs and four exact ordered step-node lists. A true scalar-cast reading of the old equality is acknowledged rather than falsely refuted. No equivalence of requested reasoning or approval claimed.",
+      "repair": "shared/repairs/plan-108-character-scalar-degree-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-108-character-scalar-degree-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-108",
+        "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
+        "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
+        "reason": "The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
+        "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
+        "finding_digest": "fef77d5dd0cf1cd367e8fab0d9141f07005ec9e52610916c8dac6c9928d55f48"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-112",
+      "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+      "reason": "Explicit first question-version2 field/metric correction, not an answer-only repair. Preserve the original universal flip and tensor-representation target, assess the missing scalar/metric data and refute the arbitrary-field half-projector reading in characteristic2. Prove the algebraic decomposition for char!=2 without a hidden finite-dimensional assumption, then prove orthogonal projection separately with an explicitly specified real/complex tensor-product metric; supply an incompatible-metric counterexample. This is not blanket narrowing to finite complex representations or an added unitary-action promise. Only question changes among nine fields; empty assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists stay fixed. Metric and field cases are explicit requested analysis, not silently imported standing conventions. No equivalent-old-contract or formal/admission claim.",
+      "repair": "shared/repairs/plan-112-swap-algebra-metric-question-successor.json",
+      "review": "reports/textbook-v1/repairs/plan-112-swap-algebra-metric-question-successor-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-112",
+        "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+        "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+        "reason": "Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+        "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+        "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94"
+      }
     }
   ],
   "answer_successors": [
@@ -1012,27 +1063,43 @@
         "review_digest": "ed8d33e6bd09228271e36d96859b448ddc8526c5cb5893e52126b609b846cd6b",
         "finding_digest": "e7638c3136c2047766855d9329ffbfd597ff7fdfa426e8de22a8f9f1632b2137"
       }
+    },
+    {
+      "core_id": "qcb-core-plan-115",
+      "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+      "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+      "reason": "Unchanged-question answer/rubric/exposition repair. The literal question asks for a proper nonzero invariant subspace for ANY representation with dim V>=2 and to 'compute the dimensions to show V (x) V cannot be irreducible'. That reducibility target is true over any common field and for algebraic infinite dimension, so an explicit finite-complex question restriction is unnecessary. Answer the dimension request with finite integer formulas AND infinite cardinal dimensions/equality, proving properness by basis witnesses where dimension inequalities cannot do so; do not pretend equal infinite dimension implies equality of subspaces. The question itself does not demand the old reference's universally valid +/- eigenspace decomposition or its false d1 isomorphism. Preserve all nine contract fields, old=new hash0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6, empty assumptions/conventions, qit-tensor-representations family, test_public split, graph/source_refs, original FOUR steps and exact ordered node lists. Replace unsupported proof/rubric material, not the literal target. Explicitly disclose the characteristic2/infinite-dimensional proof-method limits and the correct one-dimensional character square; no blanket narrowing, new core, global alias clearance, selfapproval or admission.",
+      "repair": "shared/repairs/plan-115-universal-tensor-square-character-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-115-universal-tensor-square-character-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-115",
+        "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+        "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+        "reason": "The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.",
+        "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+        "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+        "finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a"
+      }
+    },
+    {
+      "core_id": "qcb-core-plan-209",
+      "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+      "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+      "reason": "Private unchanged-question answer/rubric/exposition successor. Preserve all nine CONTRACT_FIELDS and exactly five ordered predecessor step-node lists. The question asks why the one-forward/one-inverse original-entry-query charge is natural for the conversion, not why it is an optimal lower bound or a complete gate count with arithmetic omitted. Supply an actual fused conversion with those original queries plus both arithmetic passes, all scratch, phases, precision and inverse-access qualifications. The displayed arbitrary-real coefficient is a target, not a guarantee that finite-bit input realizes it exactly; distinguish the implemented rounded coefficient and invalid-domain cases. No substitution of a derived angle oracle as a primitive, hidden reality/sparsity assumption or new oracle promise. This is authorship pending a distinct exact-content review, not selfapproval.",
+      "repair": "shared/repairs/plan-209-original-entry-query-ledger-answer-repair.json",
+      "review": "reports/textbook-v1/repairs/plan-209-original-entry-query-ledger-answer-repair-review.json",
+      "prior_withdrawal": {
+        "core_id": "qcb-core-plan-209",
+        "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
+        "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
+        "reason": "The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.",
+        "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
+        "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
+        "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b"
+      }
     }
   ],
   "withdrawals": [
-    {
-      "core_id": "qcb-core-plan-106",
-      "predecessor_key": "qcb-core-plan-106-abelian-group-complex-irreps-one-dimensional",
-      "predecessor_item_digest": "357c7cba2b273eeb17e575a4fde6689360247a58797174513ee67e27147dfafd",
-      "reason": "The unrestricted abelian-group contract omits finite dimension and has an infinite-dimensional irreducible counterexample.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
-      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
-      "finding_digest": "f73feba97b04ce3fc3899deed91125b18d89c23d1b45d91dbb260185c0a1cd0e"
-    },
-    {
-      "core_id": "qcb-core-plan-108",
-      "predecessor_key": "qcb-core-plan-108-character-is-class-function-degree",
-      "predecessor_item_digest": "80dd85d7d4087f408106e86c6c2810dc647dec381455a5d5cfa3376b865a01b9",
-      "reason": "The scalar field convention is absent; trace of identity need not recover integer dimension in positive characteristic.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-101-110-review.json",
-      "review_digest": "806ceb585dd51d2e0f1fbd8d85e2e15d22f1ab10c13d33282cb594aaac585702",
-      "finding_digest": "fef77d5dd0cf1cd367e8fab0d9141f07005ec9e52610916c8dac6c9928d55f48"
-    },
     {
       "core_id": "qcb-core-plan-203",
       "predecessor_key": "qcb-core-plan-203-povm-amplitude-amplification-query-count",
@@ -1050,33 +1117,6 @@
       "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
       "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
       "finding_digest": "e8539d2919a9c4bc460c55039710e7b3c3029f74120bdc431f1e7e99765c6fc2"
-    },
-    {
-      "core_id": "qcb-core-plan-209",
-      "predecessor_key": "qcb-core-plan-209-amplitude-vs-bit-oracle-query-gate-roles",
-      "predecessor_item_digest": "2d729fc273777101818a6bc5aef94cbf317330c1f2235e25a5c01a52c2a7de0a",
-      "reason": "The resource ledger switches from original entry-bit queries to a derived angle oracle and omits conversion resources.",
-      "review": "reports/textbook-v1/reader-reviews/scientific-algorithms-201-210-review.json",
-      "review_digest": "7335d3a54dbaa8c25024667718334f4dc6eeaaeef16f2cc6c7ecc5b1b58ea512",
-      "finding_digest": "b7ace1a05717271121041c51f8d5d93fd481981ddc75dd20ae955d0ec24e595b"
-    },
-    {
-      "core_id": "qcb-core-plan-112",
-      "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
-      "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
-      "reason": "Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
-      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
-      "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94"
-    },
-    {
-      "core_id": "qcb-core-plan-115",
-      "predecessor_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
-      "predecessor_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
-      "reason": "The one-dimensional tensor square need not be the original character; finite complex scope is also unbound.",
-      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
-      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
-      "finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a"
     },
     {
       "core_id": "qcb-core-plan-117",

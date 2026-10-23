@@ -1,0 +1,226 @@
+{
+  "schema_version": "qcb.textbook_question_successor.v1",
+  "core_id": "qcb-core-plan-112",
+  "supersedes_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+  "supersedes_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+  "supersedes_contract_hash": "9fe8d82f4864ac76e0234ade21d7e2bfe84b1e31e622941593236230470e4720",
+  "author": "/root/qcb_boundary_repair_review",
+  "key": "qcb-core-plan-112-textbook-question-v2-swap-algebra-metric",
+  "question_version": 2,
+  "admission": "pending_distinct_review",
+  "change_scope": "Explicit first question-version2 field/metric correction, not an answer-only repair. Preserve the original universal flip and tensor-representation target, assess the missing scalar/metric data and refute the arbitrary-field half-projector reading in characteristic2. Prove the algebraic decomposition for char!=2 without a hidden finite-dimensional assumption, then prove orthogonal projection separately with an explicitly specified real/complex tensor-product metric; supply an incompatible-metric counterexample. This is not blanket narrowing to finite complex representations or an added unitary-action promise. Only question changes among nine fields; empty assumptions/conventions, core/family/split/frozen graph/source_refs and all five ordered step-node lists stay fixed. Metric and field cases are explicit requested analysis, not silently imported standing conventions. No equivalent-old-contract or formal/admission claim.",
+  "question": "Let K be an arbitrary field, V a K-vector space, G an arbitrary group and phi:G->GL_K(V) a representation. No finite-dimensional or inner-product hypothesis is implicit. On the ALGEBRAIC tensor product W=V tensor_K V define the linear flip F(x tensor y)=y tensor x. First prove F^2=I_W and F(phi(g) tensor phi(g))=(phi(g) tensor phi(g))F for every g.\n\nAssess the predecessor's unqualified request to define P_+=(I_W+F)/2, P_-=(I_W-F)/2 and prove that they are Hermitian orthogonal projections. For char(K)!=2, prove the precise algebraic statement: these are complementary idempotents, with sum I_W, products zero in both orders, images ker(F-I_W) and ker(F+I_W), and G-invariant images giving the direct-sum representation W=Sym^2(V) direct_sum Lambda^2(V), where here the two names denote those plus/minus flip eigenspaces. Distinguish this algebraic assertion from metric orthogonality. State what changes in characteristic2, using an explicit example rather than silently dividing by two.\n\nSeparately, for K=R or C, equip V with an inner product (conjugate-linear in the first argument in the complex case) and W with the tensor-product inner product <x tensor y,u tensor v>=<x,u><y,v>. Derive the Hermitian/orthogonal-projection conclusion in THIS specified metric, without assuming phi is unitary. Explain why F^2=I alone, or an arbitrary inner product on W instead of this compatible product metric, is insufficient; give a concrete incompatible-metric counterexample. Treat V=0, dim(V)=1 and dim(V)>=2 correctly, distinguishing possible eigenvalues from eigenvalues that actually occur. Do not silently replace the original question by only a finite-dimensional complex special case.",
+  "reference_answer": "The flip is a well-defined K-linear map by the tensor-product universal property: (x,y)->y tensor x is bilinear. Simple tensors span the algebraic tensor product, whether or not V is finite-dimensional. Thus F^2(x tensor y)=x tensor y proves F^2=I_W. Write T_g=phi(g) tensor phi(g). Both F T_g and T_g F send x tensor y to phi(g)y tensor phi(g)x, so they agree on all W. Neither assertion uses a metric, a finite basis, finite G, unitarity or division by two.\n\nSuppose char(K)!=2, so 2 is invertible. Then P_+^2=(I+2F+F^2)/4=P_+ and P_-^2=(I-2F+F^2)/4=P_-. Also P_++P_-=I and P_+P_-=P_-P_+=(I-F^2)/4=0. F P_+=P_+ and F P_-=-P_- show the corresponding images are contained in ker(F-I) and ker(F+I). Conversely, if Fz=z then P_+z=z; if Fz=-z then P_-z=z. Hence those images are exactly the stated eigenspaces. Every z decomposes as P_+z+P_-z, and the intersection is zero because Fz=z=-z implies 2z=0. This proves a direct sum with unique components. The names Sym^2(V) and Lambda^2(V) mean these subspaces throughout this question, as in the source example. No exterior-quotient identification is silently used in characteristic2. Since each P is a polynomial in F, it commutes with T_g; T_g(Pz)=P(T_gz) lies in the image. Using g^(-1) gives equality of image with its transform, so both restrictions are representations and the direct-sum map is G-equivariant. These are complementary, mutually annihilating algebraic idempotents; such algebraic 'orthogonality' does not by itself mean self-adjoint orthogonal projection.\n\nIn characteristic2 there is no scalar 1/2 and +1=-1. The universal involution/commutation identities still hold, but the displayed half-projectors are not defined and the two proposed flip eigenspaces coincide. Concretely take K=F_2, V=K^2 and G trivial. In the tensor basis b_00,b_01,b_10,b_11, F exchanges b_01 and b_10 and fixes the other two. N=F-I is nonzero, with N b_01=b_01+b_10 and N^2=0. The common plus/minus eigenspace is ker N=span(b_00,b_11,b_01+b_10), of dimension3 in the dimension4 space W. It cannot give the claimed two-eigenspace direct sum or span all W. Thus the old field-unqualified half-projector request is genuinely invalid in this allowed field, not cured by treating 1/2 as a totalized zero. This does not rule out every invariant decomposition for every particular representation; it rules out the asserted universal formula/eigenspace split.\n\nNow take the separately specified real or complex inner-product setting, with the SAME inner product on each factor and its tensor-product metric. On simple tensors, <F(x tensor y),F(u tensor v)>=<y,v><x,u>=<x,u><y,v>, and <F(x tensor y),u tensor v>=<y,u><x,v>=<x tensor y,F(u tensor v)>. Extend by sesquilinearity to finite sums. Hence F is isometric and has adjoint F itself; F^(-1)=F also follows from the involution. Consequently P_+†=P_+ and P_-†=P_-, in addition to idempotency. Moreover <P_+a,P_-b>=<a,P_+P_-b>=0. Thus their images are orthogonal and the same decomposition is an orthogonal one; these are the orthogonal projections onto those images. This proof does not assume the group action preserves the inner product: invariance follows from the preceding commutation, so a nonunitary phi is allowed. No completed Hilbert-space tensor product is silently substituted for the algebraic one.\n\nThe metric qualification is essential. Set V=C^2 and use the same ordered tensor basis above, but on W choose the positive-definite Gram matrix H=diag(1,1,2,1), not the tensor square of one chosen metric on V. F still squares to I, yet ||F b_01||_H^2=2 while ||b_01||_H^2=1, so it is not unitary in this metric. More directly <F b_01,b_10>_H=2 whereas <b_01,F b_10>_H=1, so F is not self-adjoint. The algebraic plus vector s=b_01+b_10 and minus vector a=b_01-b_10 satisfy <s,a>_H=1-2=-1, not zero. Thus the algebraic idempotents are not orthogonal projections in this legitimate but incompatible metric. A permutation's real symmetric matrix is not a basis-independent proof of Hermiticity unless that basis is orthonormal for the actual metric.\n\nFor char(K)!=2 and V=0, W=0; I_W,F,P_+,P_- are all the unique zero map, both images are zero and there are no eigenvalues (eigenvectors must be nonzero). For dim(V)=1, F=I_W, P_+=I_W and P_-=0, so only +1 occurs. For dim(V)>=2, choose independent x,y: the nonzero vectors x tensor x and x tensor y-y tensor x give eigenvalues +1 and -1 respectively, even in infinite dimension. If d is finite, the symmetric basis x_i tensor x_i and x_i tensor x_j+x_j tensor x_i for i<j, and antisymmetric basis x_i tensor x_j-x_j tensor x_i for i<j, yield dimensions d(d+1)/2 and d(d-1)/2. This is an optional finite-dimensional specialization, not an assumption in the universal algebraic proof. In characteristic2 the original formulas remain undefined even in low dimensions; for a one-dimensional V the flip is identity and the two named eigenspaces coincide. Thus the correction explicitly separates a universally meaningful flip, a characteristic-dependent algebraic split and a metric-dependent orthogonal split; it does not claim the original unspecific request was already a fully typed theorem.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Proves well-definedness, F^2=I and commutation on spanning simple tensors with no finite-dimensional, metric or unitarity premise; does not assert that both eigenvalues always occur."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Proves all half-projector algebraic identities for char!=2 and explicitly refutes the unqualified characteristic2 formula/split using a concrete F_2^2 witness."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Identifies both image/kernel eigenspaces in both directions and proves the direct-sum representation/invariance; correctly handles V=0, dimension1 and dimension>=2."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Derives F†=F/isometry and metric orthogonal projection from the specified real/complex tensor-product inner product, not from involutivity alone; verifies an explicit incompatible Gram-metric counterexample and keeps algebraic versus metric assertions distinct."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The flip is a commuting involution over any field. Characteristic different from2 gives complementary algebraic eigenspace projectors; orthogonal projections require the specified real/complex tensor-product metric, not merely involutivity. Characteristic2 and incompatible metrics expose the old scope gap.",
+    "semantic_steps": [
+      {
+        "claim": "The algebraic flip is a well-defined involution over any field on the algebraic tensor product; only actually present nonzero eigenvectors define eigenvalues, with characteristic and zero/one-dimensional boundaries explicit.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Simple-tensor action proves the flip commutes with phi(g) tensor phi(g), without finite dimension or a unitary representation assumption.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "When 2 is invertible the half-sums are complementary algebraic idempotents; the compatible tensor-product metric makes them self-adjoint/orthogonal, while characteristic2 and an incompatible positive metric refute unqualified claims.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Their images are exactly the plus/minus flip kernels when char!=2, with zero, one-dimensional and higher-dimensional occurrences and the finite-dimensional bases distinguished.",
+        "supporting_nodes": [
+          "concept:operator-theory"
+        ]
+      },
+      {
+        "claim": "Commutation makes both images invariant and the decomposition G-equivariant; the metric specialization adds orthogonality without changing the representation or assuming its unitarity.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Complete corresponding authored qcb-core-plan-112 record read, including all literal question/answer/rubric/assumptions/conventions/steps and source metadata. Exact QA-content provenance, not a mathematical proof or approval."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Whole historical prepared qcb-core-plan-112-sym-antisym-projectors-swap-operator loaded via release.checked()[2], with exact digest independently revalidated after observed HEAD changed; not a current-reader substitute. Prepared-content provenance only."
+    },
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Complete leditzky-2025-repth-qit metadata entry previously read and LF rebound in this objective. Pins author-hosted URL, edition and historical SHA only; actual primary text and access limits are separately documented."
+    }
+  ],
+  "execution": {
+    "status": "private_source_only_authorship_pending_distinct_review",
+    "author_identity": "/root/qcb_boundary_repair_review",
+    "task_base_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "observed_head_during_final_authorship": "543595d84298831b3a2cdb400444b544a2dcd2fd",
+    "head_change_assessment": "Integration owner advanced the checkout during private work. Both entire historical originals and exact withdrawal review/finding bindings, plus all three source-LF bindings, were revalidated unchanged at the observed head. Mutable cohort counts are not evidence and no count is used.",
+    "private_origin": "_review_tmp/plan-112-swap-algebra-metric-question-successor.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-112-swap-algebra-metric-question-successor.json",
+    "transport_or_admission_claimed": false,
+    "contract_binding": {
+      "original_contract_hash": "9fe8d82f4864ac76e0234ade21d7e2bfe84b1e31e622941593236230470e4720",
+      "successor_contract_hash": "39d1ada95b06b194068795408738de8b848948875e62f1ae6293547cb055c41f",
+      "changed_contract_fields": [
+        "question"
+      ],
+      "unchanged_contract_fields": [
+        "assumptions",
+        "conventions",
+        "family",
+        "split",
+        "graph_version",
+        "target_nodes",
+        "supporting_nodes",
+        "source_refs"
+      ],
+      "original_assumptions": [],
+      "original_conventions": [],
+      "family": "qit-tensor-representations",
+      "split": "test_public",
+      "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+      "target_nodes": [
+        "concept:operator-theory",
+        "concept:tensor-networks"
+      ],
+      "supporting_nodes": [],
+      "source_refs": [
+        {
+          "anchor": "leditzky-2025-repth-qit",
+          "license": "MIT metadata only",
+          "path": "website/research/sources.json",
+          "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+        }
+      ],
+      "semantic_step_count": 5,
+      "original_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:tensor-networks"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:tensor-networks"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:tensor-networks"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:operator-theory"
+        ],
+        [
+          "concept:tensor-networks"
+        ]
+      ],
+      "equivalence_to_predecessor_claimed": false,
+      "additional_core_count": 0
+    },
+    "withdrawal_binding": {
+      "core_id": "qcb-core-plan-112",
+      "predecessor_key": "qcb-core-plan-112-sym-antisym-projectors-swap-operator",
+      "predecessor_item_digest": "e8c8246646fbf81f51999b8e11cc182f484f8874e8336b896a04bced8d9ab219",
+      "reason": "Swap Hermitian/orthogonal projection claims omit the scalar-field and tensor inner-product convention.",
+      "review": "reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94",
+      "assessment": "Read the exact current withdrawal and full bound item finding, not just the parent's lead. The review/finding digests were recomputed from actual files and matched. The prior uncertainty is addressed explicitly rather than overridden by imported acceptance."
+    },
+    "prior_exposure": {
+      "prior_review_actual_reviewer": "/root/qcb_formal_view_audit",
+      "review_record": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "review_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "review_sha256_lf": "ef0bc651dc21af694af12dc1f653fe94bf849ef97389b2b147d7f5b67be97f72",
+      "finding_digest": "e45d201a601e5979709a285fea6d3c8be4cc4dece012827e930b97939fd4af94",
+      "exposure": "Not blind: the full old answer, rubric, imported acceptance, exact withdrawal/finding, parent leads and relevant source were visible. The prior independent reader was /root/qcb_formal_view_audit, not me. I authored neither historical original nor that review. My preceding source-only QIT work gives prior primary exposure; this candidate is informed correction authorship, not a distinct review or selfapproval. Parent/other reviewer's byte retrieval and verdict are not inherited as my evidence."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "observed_edition": "April10,2026 title, 79-page web PDF text",
+        "operative_regions": "Complete Example2.8 and Eq2.25–2.29 swap/Bell context; Definition3.6 finite-dimensional standing context; the revisited swap/isotypical example Eq3.60–3.65; Definition3.24 and complete Example3.25 Eq3.73–3.78 including spanning bases, dimensions, invariance, projectors and final reducibility qualifier.",
+        "actual_access": "Actual bounded primary PDF text inspection in this objective through the author-hosted web PDF reader; complete operative definition/formula/construction/proof regions read. No whole-book or external cited-proof read claimed.",
+        "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "binary_hash_independently_verified": false,
+        "rendered_pages_independently_inspected": false,
+        "access_limit": "Own read-only in-memory HTTPS byte request was blocked with WinError10013 before bytes were obtained. Web PDF text remained readable. Own screenshot attempts for operative printed28/30 pages returned internal errors, so no pixels or matching-byte verification is claimed. Other reviewer's successful historical retrieval is provenance only, not my own execution. No PDF saved or redistributed.",
+        "source_comparison": "The complete operative example states the flip decomposition/projectors, constructs its finite-dimensional bases and records dimensions/invariance. The candidate independently fills the universal-property, idempotent, eigenspace and metric proof steps and exposes the general-field/metric gap. Infinite-dimensional ALGEBRAIC extension and characteristic2/incompatible-metric discriminators are independent derivations, not claims printed in that source."
+      }
+    ],
+    "source_proof_coverage": {
+      "nodes": "Complete Example2.8 and Eq2.25–2.29 swap/Bell context; Definition3.6 finite-dimensional standing context; the revisited swap/isotypical example Eq3.60–3.65; Definition3.24 and complete Example3.25 Eq3.73–3.78 including spanning bases, dimensions, invariance, projectors and final reducibility qualifier.",
+      "independent_proof_design": "The complete operative example states the flip decomposition/projectors, constructs its finite-dimensional bases and records dimensions/invariance. The candidate independently fills the universal-property, idempotent, eigenspace and metric proof steps and exposes the general-field/metric gap. Infinite-dimensional ALGEBRAIC extension and characteristic2/incompatible-metric discriminators are independent derivations, not claims printed in that source.",
+      "excluded": "Completed Hilbert tensor products/unbounded operators, irreducibility classification, arbitrary tensor powers, resource or circuit synthesis and local formal closure are excluded.",
+      "formal_boundary": "Original formal/formal_context are null. Frozen conceptual nodes are retained but are not local theorem declarations, and no Lean source theorem or execution is invented."
+    },
+    "artifact_inventory": "Before authoring, recursive private inventory found only historical site readbacks for plan108/112, no existing private candidates/reviews with these core names. Those readbacks, the canonical prior reviews and all older private artifacts remain untouched. New names were chosen and absence checked before writing.",
+    "mechanical_validation": "Whole original and withdrawal/finding bindings, old/new nine-field contract hashes, source-LF files and every ordered step-node list are checked mechanically. This is read-only binding verification, not a build/test/kernel or mathematical approval. No admission-code executable is bound as mathematical source.",
+    "skill_handoff": {
+      "objective": "Explicitly resolve the reserved standalone field/typing/metric uncertainty without a new core or hidden premise.",
+      "mathematical_delta": "Retain universal flip equivariance; separate algebraic splitting from inner-product orthogonality and retire the unqualified field/metric claim.",
+      "effect_on_root": "One private explicit first question-version2 candidate; root owns distinct review, transport and any integration.",
+      "failure_class": "SOURCE_INVALID: original standalone scope/typing ambiguity; candidate remains unapproved.",
+      "salvage_audit": "Valid universal algebraic components retained; unqualified conclusions assessed with concrete boundary examples. No discarded route is promoted as a formal result.",
+      "assumptions_and_conventions": "Original lists remain empty. Scalar/metric cases and necessary qualifications appear explicitly in the changed requested question; no nonempty convention rewrite or extra standing assumption is introduced.",
+      "process_memory_ids_consulted": [],
+      "direction_fingerprint": "plan-112-swap-algebra-metric-question-successor",
+      "expected_information_gain": "A complete typed theorem/proof and exact counterexample distinguish salvageable mathematics from the old scope error.",
+      "parallel_admission": "No new agents. No source-blind, human/expert or common-blind-spot seal claimed.",
+      "default_route": "Direct algebraic identities and minimal counterexamples; metric proof is separately scoped where relevant.",
+      "purification_state": "Private question/reference/rubric/exposition aligned with the original ordered graph interfaces; no public Exposition Seal claimed.",
+      "recommended_next": "Distinct exact-content review of necessity, scope, full proof and all bindings before any canonical transport."
+    },
+    "execution_limits": "Only new private candidate and bounded binding/handoff files. No canonical/source/policy or older report/candidate edits, production Lean, builds/tests/kernel/simulation, commits/push, GPU/admin, global alias/split clearance, human/model/novelty/source-blind or admission claim.",
+    "self_approval": false
+  }
+}

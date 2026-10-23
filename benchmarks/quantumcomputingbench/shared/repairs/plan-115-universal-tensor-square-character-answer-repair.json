@@ -1,0 +1,171 @@
+{
+  "schema_version": "qcb.textbook_answer_successor.v1",
+  "core_id": "qcb-core-plan-115",
+  "supersedes_key": "qcb-core-plan-115-irreducible-tensor-square-reducible-counterexample",
+  "supersedes_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+  "author": "/root/qcb_formal_view_audit",
+  "key": "qcb-core-plan-115-textbook-v1-universal-tensor-square-character-repair",
+  "admission": "pending_distinct_review",
+  "change_scope": "Unchanged-question answer/rubric/exposition repair. The literal question asks for a proper nonzero invariant subspace for ANY representation with dim V>=2 and to 'compute the dimensions to show V (x) V cannot be irreducible'. That reducibility target is true over any common field and for algebraic infinite dimension, so an explicit finite-complex question restriction is unnecessary. Answer the dimension request with finite integer formulas AND infinite cardinal dimensions/equality, proving properness by basis witnesses where dimension inequalities cannot do so; do not pretend equal infinite dimension implies equality of subspaces. The question itself does not demand the old reference's universally valid +/- eigenspace decomposition or its false d1 isomorphism. Preserve all nine contract fields, old=new hash0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6, empty assumptions/conventions, qit-tensor-representations family, test_public split, graph/source_refs, original FOUR steps and exact ordered node lists. Replace unsupported proof/rubric material, not the literal target. Explicitly disclose the characteristic2/infinite-dimensional proof-method limits and the correct one-dimensional character square; no blanket narrowing, new core, global alias clearance, selfapproval or admission.",
+  "reference_answer": "The assertion that an internal tensor product of two irreducible representations is always irreducible is false. First give the general tensor-square obstruction, without adding finite-dimensional or characteristic-not-two hypotheses to the question. Let F be the common field of the vector space, use the ordinary ALGEBRAIC tensor product V tensor_F V, and set T_g=phi(g) tensor phi(g). It is a representation because T_g T_h=T_{gh} and T_e=I.\n\nLet S(v tensor w)=w tensor v, extended F-linearly. Pure tensors span the tensor product, so checking them proves S^2=I and S T_g=T_g S for every g. Define A=im(I-S). This is a linear subspace and is G-invariant, since T_g(I-S)x=(I-S)T_g x. Group inverses also give equality T_g A=A if that convention for invariance is used. This route never divides by2 or presumes distinct eigenvalues +1 and -1.\n\nChoose a basis {e_i}_{i in I} of V, with two distinct elements e_1,e_2. The ordered tensors e_i tensor e_j form a basis of the algebraic tensor product. In a chosen ordering of I,\nA has basis a_ij=e_i tensor e_j-e_j tensor e_i, i<j.\nIndeed these span all images of basis tensors under I-S and are linearly independent because each selected ordered coordinate (i,j) appears in just one such vector with coefficient1. This works even in characteristic2, where the minus sign equals plus. In particular a_12!=0, so A is nonzero. Every element of A has zero diagonal coefficients, whereas e_1 tensor e_1 does not; hence e_1 tensor e_1 is NOT in A, proving A proper. Thus the tensor-square representation is reducible whenever dim_F V>=2, with no need to assume the original V is irreducible.\n\nFor finite d, dim(V tensor V)=d^2 and the basis count gives dim A=d(d-1)/2. This is an INTEGER count, not division by2 in the field. The fixed subspace B=ker(S-I) has a basis of the d diagonal tensors e_i tensor e_i and the d(d-1)/2 sums e_i tensor e_j+e_j tensor e_i for i<j; hence dim B=d(d+1)/2 over every field. For finite d>=2, both counts are positive and strictly less than d^2. These supply the question's requested finite-dimensional comparison.\n\nIf char(F)!=2, then A=ker(S+I), B=ker(S-I), the projections are (I-S)/2 and (I+S)/2, and V tensor V=B direct_sum A. This is the source's symmetric/antisymmetric proof in finite complex dimension. In characteristic2, however, +1=-1, so the two eigenspaces just written coincide with B, not with A in general. In that case A is a proper subspace of B (the diagonal tensors witness it), and the displayed half-projections/direct-sum proof is unavailable. For example, at d=2, dim A=1 and dim B=3, although the +1 and -1 eigenspaces are the SAME B. The invariant image A still proves the requested reducibility. No source notation for an antisymmetric eigenspace is silently redefined to avoid this distinction.\n\nFor infinite algebraic dimension kappa=|I|, the ordered basis has cardinality |I times I|=kappa, and the basis of A has cardinality |{(i,j):i<j}|=kappa, under ordinary infinite-cardinal arithmetic. The diagonal-plus-pair basis of B also has cardinality kappa. Thus dim(V tensor V)=dim A=dim B=kappa; a strict finite-style dimension inequality is impossible here. These are the actual requested dimension computations, not a claim of smaller infinite dimension. The explicit nonzero a_12 and excluded diagonal tensor prove strict subspace inclusion even though dimensions agree. Consequently the original proof-method phrase 'compute the dimensions to show' is satisfied by the correct finite comparison together with an explicit explanation of why equal infinite cardinal dimensions cannot replace the universal properness witness. It does not authorize a hidden finite-dimensional premise. This concerns algebraic tensor products, not completed Hilbert/Banach tensors or a closed-subspace-only irreducibility criterion.\n\nTo genuinely refute the student's claim about IRREDUCIBLE factors, one must also supply such a factor with dimension>=2, rather than choose a reducible V. Take G=S_3 and W={(x_1,x_2,x_3) in C^3:x_1+x_2+x_3=0}, with the coordinate-permutation action. This has complex dimension2 and is invariant. If a nonzero invariant subspace U of W contains x!=0, its coordinates cannot all be equal (over C, equal coordinates and sum zero would give x=0). Choose x_i!=x_j. The vector x-(ij)x=(x_i-x_j)(e_i-e_j) lies in U, so e_i-e_j lies in U. Permutations give all coordinate differences, which span W; hence U=W. Thus W really is irreducible. The two factors W,W are irreducible, while their diagonal S_3 tensor action has nonzero proper A of dimension1 and B of dimension3 inside dimension4. The same action of ONE g on both factors is the INTERNAL tensor product in the question, not an external representation of G times G.\n\nThe low-dimensional tail also needs correction. If dim V=1 with character chi:G->F^times, then V tensor V has character chi^2 and is one-dimensional, hence irreducible. It need not be the original representation. Over C, let a generator of C_3 act by omega=exp(2*pi*i/3); the square acts by omega^2!=omega. A nonzero intertwiner between one-dimensional characters is scalar, so it would force equality of those characters; they are inequivalent. In fact chi^2=chi iff chi is trivial, since all chi(g) are nonzero. Equality of vector-space dimensions alone does not imply representation equivalence. If V=0, its tensor square is0 and A=B=0; no nonzero proper subspace witness or ordinary nonzero-irrep assertion is made there. These boundaries preserve, rather than silently weaken, the original dim>=2 target. There is no circuit, finite-bit, source-paper/kernel or global alias conclusion.",
+  "rubric": [
+    {
+      "id": "r1",
+      "weight": 1,
+      "criterion": "Refutes closure of internal tensor products of irreducibles using an actual irreducible factor of dimension>=2 (for example proving the standard complex S3 plane irreducible), not merely a reducible representation; sets up the diagonal tensor-square action correctly."
+    },
+    {
+      "id": "r2",
+      "weight": 1,
+      "criterion": "Proves swap commutation and S^2=I, and exhibits A=im(I-S) as a G-invariant linear subspace with a nonzero off-diagonal difference and an excluded diagonal tensor, over arbitrary field and algebraic dimension. Does not require division by2, finite G or hidden finite complex assumptions."
+    },
+    {
+      "id": "r3",
+      "weight": 1,
+      "criterion": "Computes finite dim A=d(d-1)/2 and fixed-space dim B=d(d+1)/2, both nonzero proper for finite d>=2; identifies the +/- eigenspace/direct-sum and half-projector route only when char(F)!=2. For infinite algebraic dimension gives the correct equal cardinal dimensions and explicit properness witness instead of a false strict dimension inequality."
+    },
+    {
+      "id": "r4",
+      "weight": 1,
+      "criterion": "Concludes tensor-square reducibility universally for algebraic dim>=2. Correctly treats d1 as irreducible character chi^2, not generally equivalent to chi, with a genuine inequivalence example; handles d0 and characteristic2/infinite/topological-tensor boundaries honestly. Distinguishes internal from external group-product action and makes no formal/resource/global-alias claim."
+    }
+  ],
+  "exposition": {
+    "core_summary": "The invariant image of I-swap gives a proper nonzero tensor-square subspace over every field and algebraic dimension>=2. Finite symmetric/alternating counts specialize to the source's complex +/- decomposition; characteristic2 and infinite cardinal counts need explicit distinctions. A one-dimensional square has character chi^2, not generally chi.",
+    "semantic_steps": [
+      {
+        "claim": "The diagonal tensor-square action exists over the same field; a genuine irreducible complex S3 plane supplies two irreducible factors for the student's counterexample, while the general properness argument needs no irreducibility of V.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Swap commutes with every diagonal action, so A=im(I-S) is invariant over every field; the distinct +/- eigenspace decomposition requires characteristic not2 and is not used as a universal premise.",
+        "supporting_nodes": [
+          "concept:tensor-networks"
+        ]
+      },
+      {
+        "claim": "Ordered tensor bases give finite dimensions d(d-1)/2 and d(d+1)/2; for infinite dimension they have the ambient cardinal dimension, so nonzero/properness is certified by off-diagonal and diagonal basis witnesses, not false strict cardinal inequalities.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      },
+      {
+        "claim": "A is a proper nonzero invariant subspace whenever dim V>=2, refuting irreducible tensor-product closure using the actual S3 irrep. At dimension1 the square is the irreducible character chi^2, not generally the original character; zero and topology boundaries remain explicit.",
+        "supporting_nodes": [
+          "concept:matrix-analysis"
+        ]
+      }
+    ]
+  },
+  "source_checks": [
+    {
+      "path": "website/research/sources.json",
+      "sha256_lf": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae",
+      "anchor": "Leditzky URL/edition/recorded primary pin; this LF hash binds local metadata only. Actual operative mathematical text access and byte/pixel limits are recorded separately in execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/native_nl/batch2_representation_qit.json",
+      "sha256_lf": "efe3edde9226d4c9d30f8336a2e1231935ae443670fa98ed576f91171b3c2f89",
+      "anchor": "Entire original106/115 authored questions, answers, rubrics, assumptions/conventions and semantic-step lists compared against full actual prepared originals. Content provenance, not proof of their expanded claims."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/data/public/nl-v12/release.json",
+      "sha256_lf": "6a98f9aa81e0b77ba1530f6f2e8cba69e4564f03a3d41b4d7ea883d67bbce0af",
+      "anchor": "Actual complete historical prepared originals from release.checked()[2], bound separately by whole supersedes_item_digest; frozen QA provenance, not present admission or new Lean execution."
+    },
+    {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "sha256_lf": "ef0bc651dc21af694af12dc1f653fe94bf849ef97389b2b147d7f5b67be97f72",
+      "anchor": "Complete exact115 rejected finding and its scalar/dimension/source limits read; the old d1 isomorphism remains historical, not silently accepted or altered."
+    }
+  ],
+  "execution": {
+    "status": "private_answer_authorship_pending_distinct_review",
+    "actual_author": "/root/qcb_formal_view_audit",
+    "observed_head": "56e50db0f81646b7eead020ef226db31381c756e",
+    "private_origin": "_review_tmp/plan-115-universal-tensor-square-character-answer-repair.json",
+    "intended_canonical_locator": "benchmarks/quantumcomputingbench/shared/repairs/plan-115-universal-tensor-square-character-answer-repair.json",
+    "self_approval": false,
+    "literal_contract_assessment": "Original 'take any representation ... dim V>=2' is preserved, not silently restricted to finite C. Its requested dimension computation is provided in finite and infinite cases; the answer explicitly states that infinite equal cardinal dimensions cannot establish properness, which the displayed basis witness does instead. The main theorem is not refuted in characteristic2 or infinite dimension: only the historical answer's unnecessary eigenspace/direct-sum method is restricted. The d1 equality was also only in the old answer. Thus answer-only repair is proposed with all nine contract fields unchanged, rather than invent a false necessity for a narrower question. Root was informed of this route and will inspect/review the exact packet; that communication is not approval.",
+    "contract_binding": {
+      "original_item_digest": "2775212f59cdcab27086f809eee1d333f4c7683967cdf73d1d37607c2ae07f23",
+      "original_contract_hash": "0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6",
+      "successor_contract_hash": "0c2130a67dfd6dff7457c08fe26a3f315c0cbffdd4acf48040fbb7c396dca9c6",
+      "changed_contract_fields": [],
+      "unchanged_values": {
+        "question": "A student asserts: the tensor product of two irreducible representations of a group G is again irreducible. Show this is false by a counterexample. Specifically, take any representation (phi, V) of G with dim V >= 2 (you may take V irreducible) and consider the tensor-square representation on V (x) V. Exhibit a proper nonzero G-invariant subspace of V (x) V, and compute the dimensions to show V (x) V cannot be irreducible when dim V >= 2.",
+        "assumptions": [],
+        "conventions": [],
+        "family": "qit-tensor-representations",
+        "split": "test_public",
+        "graph_version": "qcb-snapshot-ffa644f0da3031a1ce754b9a",
+        "target_nodes": [
+          "concept:tensor-networks",
+          "concept:matrix-analysis"
+        ],
+        "supporting_nodes": [],
+        "source_refs": [
+          {
+            "anchor": "leditzky-2025-repth-qit",
+            "license": "MIT metadata only",
+            "path": "website/research/sources.json",
+            "sha256": "9f85f45f20ed5a46931ad0dec3b94ee09748bc56e39fae29b0aefe910440b0ae"
+          }
+        ]
+      },
+      "semantic_step_count": 4,
+      "original_ordered_step_nodes": [
+        [
+          "concept:tensor-networks"
+        ],
+        [
+          "concept:tensor-networks"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ]
+      ],
+      "successor_ordered_step_nodes": [
+        [
+          "concept:tensor-networks"
+        ],
+        [
+          "concept:tensor-networks"
+        ],
+        [
+          "concept:matrix-analysis"
+        ],
+        [
+          "concept:matrix-analysis"
+        ]
+      ],
+      "additional_core_count": 0
+    },
+    "previous_reader_evidence": {
+      "path": "benchmarks/quantumcomputingbench/reports/textbook-v1/reader-reviews/representation-qit-111-120-review.json",
+      "report_digest": "0f4c7b6c3ec84dee97d0bc5e71554075c03e8c7f5f12173976d01b1e134495c2",
+      "finding_digest": "692e3da5b0932331045428e71fcf7fe7aed416882a2c18f8a2cde02b9aee134a",
+      "withdrawal_digest": "f73f1cf12b3d4886a55459fd619d025f1f131c5fdc3c0208e37a8a75bb922146",
+      "actual_prior_reviewer": "/root/qcb_formal_view_audit",
+      "exposure": "Same actual task identity authored the historical original rejection; now authoring the repair, not independently approving it. Full prepared original, exact current withdrawal, full finding and inherited grading visible. No source-blindness or prior-verdict transfer."
+    },
+    "primary_source_checks": [
+      {
+        "url": "https://www.felixleditzky.info/teaching/FT25/math595-repth-qit.pdf",
+        "actual_text_regions": "Personally reopened/read Definition3.6 and source finite-dimensional convention (zero-based16/printed17), full Definition3.24/Example3.25 Eq3.73-3.78 including bases, dimensions and projection formulas (27/28), the standard-S3 plane context near Eq3.36 and full Exercise3.9 statement (36/37), and Definition4.2 external versus internal group action (37/38). The source's finite complex swap decomposition is retained as a specialization; the universal image/basis proof, characteristic2 distinction, infinite-cardinal properness and d1 character correction are explicitly independent derivations, not newly attributed printed theorems.",
+        "recorded_historical_binary_sha256": "90784b02b568b8c7bb6a1ec20588d801541d047779333bd2b2b8e63749dc0fe3",
+        "fresh_binary_hash_verified": false,
+        "fresh_raw_sha256": null,
+        "operative_pixels_inspected": false,
+        "actual_access_limits": "Genuine primary PDF text access in displayed79-page April10,2026 edition. Current zero-based27 screenshot attempt failed with an internal error. No fresh raw matching-byte retrieval, operative pixels, complete-paper reading or other actor's byte/render execution claimed. Earlier same-identity byte claims are historical only; no PDF saved/redistributed."
+      }
+    ],
+    "bounded_relations": "112's swap/projector exercise shares a real subproof in characteristic not2 but asks a different complete target;115 additionally provides the irreducible-factor counterexample, dimensions and the corrected character boundary. 106 concerns abelian-irrep dimension, not tensor closure; exterior products in116/Definition4.2 use different acting groups. These are bounded dependencies/distinctions, not global alias or cross-split clearance.",
+    "protocol_and_limits": "AGENTS/HARNESS, frontier-master/substantive-worker, publication/digestion/evidence-routed-memory and shared CONTRACT/ACCEPTANCE used after reading in this context; PDF skill kept primary text/byte/pixel layers separate. Scoped private inventory found no115 candidate at this new name; all prior/canonical files preserved. Only a new private candidate is authored; no production Lean, builds/kernel, source-paper/Exposition/native-formal seal, admission, gate/finite-bit computation, commits/push or extra agents. No mutable total or policy-code hash is mathematical source evidence."
+  }
+}
