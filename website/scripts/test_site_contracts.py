@@ -27,8 +27,13 @@ TEACHING_TRACKS = {str(chapter["track"]) for chapter in CHAPTERS}
 
 
 class CurriculumDiagramTests(unittest.TestCase):
+    @staticmethod
+    def markup() -> str:
+        source = (ROOT / 'website/static/site.js').read_text(encoding='utf-8')
+        return re.search(r'const curriculumMarkup = `([\s\S]*?)`;', source).group(1)
+
     def test_legend_is_outside_the_rendered_graph(self) -> None:
-        page = build_site.diagram('../', 'quantum-domain-roadmap', 'Curriculum')
+        page = self.markup()
         legend = page.split('<aside class="diagram-legend"', 1)[1].split('</aside>', 1)[0]
         source = (ROOT / 'website/diagrams/quantum-domain-roadmap.mmd').read_text(encoding='utf-8')
         self.assertIn('aria-label="Diagram legend"', page)
@@ -54,19 +59,19 @@ class CurriculumDiagramTests(unittest.TestCase):
         self.assertIn('subgraph PLANNED[', source)
         self.assertIn('accTitle:', source)
         self.assertIn('accDescr:', source)
-        page = build_site.diagram('../', 'quantum-domain-roadmap', 'Curriculum')
+        page = self.markup()
         self.assertEqual(re.findall(r'data-curriculum-link="([^"]+)"', page),
                          ['EXT:CORE', 'CORE:TEXTBOOK', 'BE:SCI', 'QIT:SCI'])
         self.assertEqual(re.findall(r'data-curriculum-node="([^"]+)"', page),
                          ['EXT', 'CORE', 'TEXTBOOK', 'SP', 'BE', 'QIT', 'SCI'])
 
     def test_simplification_keeps_transport_and_admission_conditions(self) -> None:
-        page = build_site.diagram('../', 'quantum-domain-roadmap', 'Curriculum')
+        page = self.markup()
         for text in ('SELECT', 'inverse/unprepare', 'nonzero accepted branch',
                      'normalization', 'postselection/amplification',
                      'not proof memory', 'reviewed and admitted'):
             self.assertIn(text, page)
-        self.assertIn('curriculum-diagram', page)
+        self.assertIn('curriculum-flow', page)
         self.assertIn('max-width: min(100%, 520px)', (ROOT / 'website/static/site.css').read_text(encoding='utf-8'))
 
     def test_other_diagrams_do_not_inherit_curriculum_specific_legend(self) -> None:
@@ -353,7 +358,9 @@ class SiteContractTests(unittest.TestCase):
             {"publicDeclarationCount": 0, "sourceDocstringCount": 0},
             {"passed": True}, {"shortCommit": "test"},
         )
-        self.assertIn("Four textbook parts, shared Lean foundations", page)
+        self.assertIn("Four textbook parts, one shared Lean graph", page)
+        self.assertIn('heading.textContent = "Four textbook parts, shared Lean foundations"',
+                      (ROOT / 'website/static/site.js').read_text(encoding='utf-8'))
         self.assertIn("Part III · Planned", page)
         self.assertIn("Part IV · Planned", page)
         self.assertIn('href="quantum-information/index.html"', page)
