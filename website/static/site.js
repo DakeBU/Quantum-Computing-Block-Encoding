@@ -5,6 +5,76 @@
   const body = document.body;
   const siteRoot = body.dataset.siteRoot || "./";
 
+  // Presentation only: keep the frozen QA source extractor unchanged.
+  // This runs synchronously before Mermaid starts; its editable companion
+  // keeps the same seven identities and four typed curriculum relationships.
+  function renderCurriculumRoadmap() {
+    const figure = document.getElementById("diagram-quantum-domain-roadmap");
+    const source = figure?.querySelector(".mermaid");
+    if (!figure || !source) return;
+    const curriculumMarkup = `
+  <aside class="diagram-legend" aria-label="Diagram legend">
+    <strong>How to read this map</strong>
+    <span><i class="legend-line" aria-hidden="true"></i>Solid: shared foundations / curriculum organization</span>
+    <span><i class="legend-line legend-line-dashed" aria-hidden="true"></i>Dashed: conditional reuse or support; assumptions and review required</span>
+    <small>Curriculum map, not a Lean theorem-dependency graph. Listed foundation topics are not a claim of complete local coverage.</small>
+  </aside>
+  <div class="curriculum-flow" role="group" aria-label="Textbooks and shared Lean foundations" data-curriculum-layout="stacked">
+    <section class="curriculum-node curriculum-external" data-curriculum-node="EXT">
+      <h3>External Lean references</h3>
+      <p>Mathlib and attributed quantum Lean libraries</p>
+      <p class="curriculum-boundary">Upstream references are not automatically local proofs.</p>
+    </section>
+    <div class="curriculum-link conditional" data-curriculum-link="EXT:CORE" role="img" aria-label="Conditional reviewed reuse or narrow adapters into shared foundations"><span aria-hidden="true">Reviewed reuse / narrow adapters</span></div>
+    <section class="curriculum-node curriculum-foundations" data-curriculum-node="CORE">
+      <h3>Shared Lean foundations</h3>
+      <p>Reviewed, compatible building blocks reused across textbooks</p>
+      <p class="curriculum-boundary">Linear algebra · states and tensors · operators<br/>circuits and registers · norms · resource interfaces</p>
+    </section>
+    <div class="curriculum-link" data-curriculum-link="CORE:TEXTBOOK" role="img" aria-label="The textbooks reuse the common foundation"><span aria-hidden="true">Common foundation</span></div>
+    <section class="curriculum-textbooks" data-curriculum-node="TEXTBOOK" aria-label="QuantumComputinglib textbooks">
+      <h3>QuantumComputinglib textbooks</h3>
+      <section class="curriculum-group" aria-label="Current textbook core">
+        <h4>Current core</h4>
+        <p class="curriculum-boundary">Compiled guided chapters; route-specific gaps remain visible.</p>
+        <div class="curriculum-core-parts">
+          <section class="curriculum-node curriculum-sp" data-curriculum-node="SP"><h4>Part I · State Preparation</h4><p>Prepare a specified quantum state.</p></section>
+          <section class="curriculum-node curriculum-be" data-curriculum-node="BE"><h4>Part II · Block Encoding</h4><p>Embed an operator in a unitary block.</p></section>
+        </div>
+      </section>
+      <section class="curriculum-group curriculum-planned" aria-label="Planned textbook extensions">
+        <h4>Planned extensions</h4>
+        <p class="curriculum-boundary">Each chapter requires local proof admission.</p>
+        <section class="curriculum-node curriculum-qit" data-curriculum-node="QIT"><h4>Planned Part III · Quantum Information<br/>and Representation Theory</h4><p>Symmetry · Schur–Weyl · de Finetti</p></section>
+        <div class="curriculum-supports" role="group" aria-label="Two conditional support paths into scientific computing">
+          <div class="curriculum-link conditional" data-curriculum-link="BE:SCI" role="img" aria-label="Conditional algorithm support from Part II to Part IV"><span aria-hidden="true">Algorithm support<br/><small>from Part II</small></span></div>
+          <div class="curriculum-link conditional" data-curriculum-link="QIT:SCI" role="img" aria-label="Conditional theoretical support from Part III to Part IV"><span aria-hidden="true">Theoretical support<br/><small>from Part III</small></span></div>
+        </div>
+        <section class="curriculum-node curriculum-sci" data-curriculum-node="SCI"><h4>Planned Part IV · Quantum Scientific Computing</h4><p>QSP/QSVT · simulation · estimation<br/>linear systems · dynamics · open systems</p></section>
+      </section>
+    </section>
+  </div>
+  <details class="curriculum-transport-notes">
+    <summary>State Preparation and Block Encoding: precise transport conditions</summary>
+    <p>State Preparation can supply a PREPARE layer inside Block Encoding; SELECT, inverse/unprepare, coefficient/phase and clean-register semantics are still required.</p>
+    <p>Conversely, a block encoding can supply a state-preparation branch only with an input state, a nonzero accepted branch, normalization and charged postselection/amplification. This is a downstream consumer path, not the inclusion relation.</p>
+    <p>External benchmark statements remain targets, not proof memory. External results become textbook foundations only after a compatible local reuse or adapter is reviewed and admitted.</p>
+  </details>`;
+    const template = document.createElement("template");
+    template.innerHTML = curriculumMarkup;
+    figure.classList.add("curriculum-diagram");
+    source.replaceWith(template.content);
+    const title = figure.querySelector(".diagram-toolbar strong");
+    if (title) title.textContent = "Textbooks and shared Lean foundations — a curriculum map";
+    document.querySelectorAll("h2").forEach((heading) => {
+      if (heading.textContent.trim() === "Four textbook parts, one shared Lean graph") {
+        heading.textContent = "Four textbook parts, shared Lean foundations";
+      }
+    });
+  }
+
+  renderCurriculumRoadmap();
+
   // Some embedded/preview renderers reject \operatorname even though MathJax
   // itself accepts it. Normalize only raw text nodes and never touch source-code
   // or editable text areas. This runs before the deferred MathJax script.

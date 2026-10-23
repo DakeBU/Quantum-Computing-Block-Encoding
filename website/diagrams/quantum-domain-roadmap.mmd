@@ -1,30 +1,28 @@
 flowchart TB
-  CORE["Shared Lean graph<br/>finite linear algebra · tensors · registers · unitaries<br/>states/density operators · channels · norms/distances · resources"]
+  accTitle: QuantumComputinglib textbooks and shared Lean foundations
+  accDescr: External Lean references enter shared foundations only through reviewed reuse or narrow adapters. The textbooks reuse these foundations. State Preparation and Block Encoding are the current core; Quantum Information and Scientific Computing are planned extensions. Conditional algorithm and theory support lead into Scientific Computing. These are curriculum relationships, not Lean theorem implications.
 
-  subgraph CURRENT["Current textbook"]
-    SP["Part I · State Preparation<br/>U|0^n⟩ = |ψ⟩"]
-    BE["Part II · Block Encoding<br/>‖A - αΠUΠ†‖ ≤ ε"]
+  EXT["External Lean references<br/>Mathlib · attributed quantum Lean libraries<br/>upstream references, not automatic local proofs"]
+  CORE["Shared Lean foundations<br/>Reviewed building blocks reused across textbooks<br/>linear algebra · states/tensors · operators<br/>circuits/registers · norms · resource interfaces"]
+
+  subgraph TEXTBOOK["QuantumComputinglib textbooks"]
+    direction TB
+    subgraph CURRENT["Current core · compiled guided chapters"]
+      direction LR
+      SP["Part I · State Preparation<br/>U|0^n⟩ = |ψ⟩"]
+      BE["Part II · Block Encoding<br/>‖A - αΠUΠ†‖ ≤ ε"]
+    end
+    subgraph PLANNED["Planned extensions · local chapter admission required"]
+      direction TB
+      QIT["Planned Part III · Quantum Information<br/>and Representation Theory<br/>symmetry · Schur–Weyl · de Finetti"]
+      SCI["Planned Part IV · Quantum Scientific Computing<br/>QSP/QSVT · simulation · estimation<br/>linear systems · dynamics · open systems"]
+    end
   end
 
-  QIT["Planned Part III · Quantum Information<br/>Leditzky: symmetry · Schur–Weyl · de Finetti<br/>cloning · spectrum estimation"]
-  SCI["Planned Part IV · Quantum Scientific Computing<br/>Lin–Wiebe: QSP/QSVT · simulation · QPE<br/>walks · linear systems/ODEs · open systems"]
-
-  EXT["Attributed external Lean references<br/>Mathlib · quantum-computing-lean · Lean-QuantumInfo<br/>lean-quantum · Lean-QuantumAlg-Bench · Lean-QIT-Bench"]
-
-  CORE --> SP
-  CORE --> BE
-  CORE --> QIT
-  CORE --> SCI
-  SP -. "nested preparation layer + SELECT + unprepare" .-> BE
-  BE -. "downstream consumer (not inclusion): input + branch + normalization/amplification" .-> SP
-  BE --> SCI
-  QIT --> SCI
-  EXT -. "reviewed reuse / narrow adapters only" .-> CORE
-
-  NOTE["Conceptual curriculum graph only.<br/>Dashed arrows are conditional transports, not Lean implications."]
-  NOTE -.-> CURRENT
-  NOTE -.-> QIT
-  NOTE -.-> SCI
+  EXT -. "reviewed reuse / narrow adapters" .-> CORE
+  CORE -->|common foundation| TEXTBOOK
+  BE -. "algorithm support" .-> SCI
+  QIT -. "theoretical support" .-> SCI
 
   classDef core fill:#f8f5ee,stroke:#826a32,color:#222222,stroke-width:1.5px;
   classDef state fill:#edf5f1,stroke:#2f7355,color:#18382b,stroke-width:1.5px;
@@ -35,4 +33,4 @@ flowchart TB
   class SP state;
   class BE block;
   class QIT,SCI future;
-  class EXT,NOTE external;
+  class EXT external;
