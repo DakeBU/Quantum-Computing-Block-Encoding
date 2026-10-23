@@ -563,13 +563,67 @@ def page_template(
 
 def diagram(prefix: str, name: str, title: str) -> str:
     source = (WEBSITE_ROOT / "diagrams" / f"{name}.mmd").read_text(encoding="utf-8")
+    is_curriculum = name == "quantum-domain-roadmap"
+    legend = """
+  <aside class="diagram-legend" aria-label="Diagram legend">
+    <strong>How to read this map</strong>
+    <span><i class="legend-line" aria-hidden="true"></i>Solid: shared foundations / curriculum organization</span>
+    <span><i class="legend-line legend-line-dashed" aria-hidden="true"></i>Dashed: conditional reuse or support; assumptions and review required</span>
+    <small>Curriculum map, not a Lean theorem-dependency graph. Listed foundation topics are not a claim of complete local coverage.</small>
+  </aside>""" if is_curriculum else ""
+    transport_notes = """
+  <details class="curriculum-transport-notes">
+    <summary>State Preparation and Block Encoding: precise transport conditions</summary>
+    <p>State Preparation can supply a PREPARE layer inside Block Encoding; SELECT, inverse/unprepare, coefficient/phase and clean-register semantics are still required.</p>
+    <p>Conversely, a block encoding can supply a state-preparation branch only with an input state, a nonzero accepted branch, normalization and charged postselection/amplification. This is a downstream consumer path, not the inclusion relation.</p>
+    <p>External benchmark statements remain targets, not proof memory. External results become textbook foundations only after a compatible local reuse or adapter is reviewed and admitted.</p>
+  </details>""" if is_curriculum else ""
+    panel_class = "diagram-panel curriculum-diagram" if is_curriculum else "diagram-panel"
+    graph = """
+  <div class="curriculum-flow" role="group" aria-label="Textbooks and shared Lean foundations" data-curriculum-layout="stacked">
+    <section class="curriculum-node curriculum-external" data-curriculum-node="EXT">
+      <h3>External Lean references</h3>
+      <p>Mathlib and attributed quantum Lean libraries</p>
+      <p class="curriculum-boundary">Upstream references are not automatically local proofs.</p>
+    </section>
+    <div class="curriculum-link conditional" data-curriculum-link="EXT:CORE" role="img" aria-label="Conditional reviewed reuse or narrow adapters into shared foundations"><span aria-hidden="true">Reviewed reuse / narrow adapters</span></div>
+    <section class="curriculum-node curriculum-foundations" data-curriculum-node="CORE">
+      <h3>Shared Lean foundations</h3>
+      <p>Reviewed, compatible building blocks reused across textbooks</p>
+      <p class="curriculum-boundary">Linear algebra · states and tensors · operators<br/>circuits and registers · norms · resource interfaces</p>
+    </section>
+    <div class="curriculum-link" data-curriculum-link="CORE:TEXTBOOK" role="img" aria-label="The textbooks reuse the common foundation"><span aria-hidden="true">Common foundation</span></div>
+    <section class="curriculum-textbooks" data-curriculum-node="TEXTBOOK" aria-label="QuantumComputinglib textbooks">
+      <h3>QuantumComputinglib textbooks</h3>
+      <section class="curriculum-group" aria-label="Current textbook core">
+        <h4>Current core</h4>
+        <p class="curriculum-boundary">Compiled guided chapters; route-specific gaps remain visible.</p>
+        <div class="curriculum-core-parts">
+          <section class="curriculum-node curriculum-sp" data-curriculum-node="SP"><h4>Part I · State Preparation</h4><p>Prepare a specified quantum state.</p></section>
+          <section class="curriculum-node curriculum-be" data-curriculum-node="BE"><h4>Part II · Block Encoding</h4><p>Embed an operator in a unitary block.</p></section>
+        </div>
+      </section>
+      <section class="curriculum-group curriculum-planned" aria-label="Planned textbook extensions">
+        <h4>Planned extensions</h4>
+        <p class="curriculum-boundary">Each chapter requires local proof admission.</p>
+        <section class="curriculum-node curriculum-qit" data-curriculum-node="QIT"><h4>Part III · Quantum Information<br/>and Representation Theory</h4><p>Symmetry · Schur–Weyl · de Finetti</p></section>
+        <div class="curriculum-supports" role="group" aria-label="Two conditional support paths into scientific computing">
+          <div class="curriculum-link conditional" data-curriculum-link="BE:SCI" role="img" aria-label="Conditional algorithm support from Part II to Part IV"><span aria-hidden="true">Algorithm support<br/><small>from Part II</small></span></div>
+          <div class="curriculum-link conditional" data-curriculum-link="QIT:SCI" role="img" aria-label="Conditional theoretical support from Part III to Part IV"><span aria-hidden="true">Theoretical support<br/><small>from Part III</small></span></div>
+        </div>
+        <section class="curriculum-node curriculum-sci" data-curriculum-node="SCI"><h4>Part IV · Quantum Scientific Computing</h4><p>QSP/QSVT · simulation · estimation<br/>linear systems · dynamics · open systems</p></section>
+      </section>
+    </section>
+  </div>""" if is_curriculum else f'<pre class="mermaid">{html.escape(source)}</pre>'
     return f"""
-<figure class="diagram-panel" id="diagram-{html.escape(name)}">
+<figure class="{panel_class}" id="diagram-{html.escape(name)}">
   <figcaption class="diagram-toolbar">
     <strong>{html.escape(title)}</strong>
     <a href="{prefix}diagrams/{html.escape(name)}.mmd">editable Mermaid source</a>
   </figcaption>
-  <pre class="mermaid">{html.escape(source)}</pre>
+  {legend}
+  {graph}
+  {transport_notes}
 </figure>"""
 
 
@@ -843,7 +897,7 @@ def render_home(
 <section class="content-section" id="applications">
   <div class="section-heading">
     <p class="eyebrow">Choose the problem first</p>
-    <h2>Four textbook parts, one shared Lean graph</h2>
+    <h2>Four textbook parts, shared Lean foundations</h2>
     <p>Four peer parts share the same foundations. Within Parts I and II, the main construction relation is State Preparation → Block Encoding:
     PREPARE is a reusable subproblem inside many block-encoding routes. A
     block-to-state consumer path also exists, but it is not the inclusion relation
@@ -883,7 +937,7 @@ def render_home(
       <a href="quantum-scientific-computing/index.html">Explore scientific quantum algorithms &#8594;</a>
     </article>
   </div>
-  {diagram(prefix, "quantum-domain-roadmap", "Four peer textbooks and their shared foundations — a curriculum map, not new Lean implications")}
+  {diagram(prefix, "quantum-domain-roadmap", "Textbooks and shared Lean foundations — a curriculum map")}
 </section>
 <section class="content-section process-section state-section" id="state-process">
   <div class="section-heading">
@@ -1752,7 +1806,7 @@ def render_learning(
     <h2>The four-part curriculum</h2>
     <p>{html.escape(str(catalog["truthBoundary"]))}</p>
   </div>
-  {diagram("../", "quantum-domain-roadmap", "Conceptual curriculum roadmap; dashed transports are not Lean implications")}
+  {diagram("../", "quantum-domain-roadmap", "Textbooks and shared Lean foundations — a curriculum map")}
   <div class="application-paths">{part_cards}</div>
   <div class="callout"><strong>Source policy.</strong> The 29 April Lin–Wiebe
   edition supplied to the project is publicly hosted by the authors, so the
@@ -2049,7 +2103,7 @@ def render_roadmap(
     density-operator, tensor-system, channel, distance, circuit, query and
     resource nodes whenever their semantics agree.</p>
   </div>
-  {diagram("../", "quantum-domain-roadmap", "Long-term QuantumComputinglib curriculum and shared-node plan")}
+  {diagram("../", "quantum-domain-roadmap", "Textbooks and shared Lean foundations — a curriculum map")}
   <div class="table-wrap">
     <table class="data-table">
       <thead><tr><th>Status</th><th>Future part / source anchor</th><th>Reuse policy</th></tr></thead>

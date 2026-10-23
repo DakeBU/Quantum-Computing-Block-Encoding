@@ -112,6 +112,43 @@ def check_compact_sidebar(page, base: str) -> None:
         raise AssertionError("Current library page did not open its navigation group")
 
 
+def check_curriculum_diagram(page, base: str, output: Path) -> None:
+    """Check the rendered legend, sparse links and disclosures at both widths."""
+    page.goto(f"{base}/index.html", wait_until="networkidle", timeout=90000)
+    figure = page.locator('#diagram-quantum-domain-roadmap')
+    figure.locator('[data-curriculum-layout="stacked"]').wait_for(state='attached', timeout=30000)
+    if figure.locator('[data-curriculum-node="CORE"] h3').text_content() != 'Shared Lean foundations':
+        raise AssertionError('Shared foundation label is absent from the rendered diagram')
+    if figure.locator('[data-curriculum-link]').count() != 4:
+        raise AssertionError('Curriculum diagram lost its four-link compressed structure')
+    if figure.locator('[data-curriculum-layout]').get_attribute('aria-label') != 'Textbooks and shared Lean foundations':
+        raise AssertionError('Curriculum diagram lost its accessible title')
+    for width in WIDTHS:
+        page.set_viewport_size({'width': width, 'height': 900})
+        for theme in THEMES:
+            page.evaluate('theme => document.documentElement.dataset.theme = theme', theme)
+            geometry = figure.evaluate('''element => {
+              const legend = element.querySelector('.diagram-legend').getBoundingClientRect();
+              const graph = element.querySelector('.curriculum-flow').getBoundingClientRect();
+              const frame = element.getBoundingClientRect();
+              return {outsideGraph: legend.bottom <= graph.top + 1,
+                legendFits: legend.left >= frame.left - 1 && legend.right <= frame.right + 1,
+                overflow: document.documentElement.scrollWidth > innerWidth + 2,
+                textReadable: [...element.querySelectorAll('.curriculum-node p')].every(node => parseFloat(getComputedStyle(node).fontSize) >= 13)};
+            }''')
+            if not geometry['outsideGraph'] or not geometry['legendFits'] or geometry['overflow'] or not geometry['textReadable']:
+                raise AssertionError('Curriculum legend overlaps its graph or page overflows: ' + str(geometry))
+            details = figure.locator('.curriculum-transport-notes')
+            details.locator('summary').focus()
+            details.locator('summary').press('Enter')
+            if details.get_attribute('open') is None or not details.get_by_text('nonzero accepted branch', exact=False).is_visible():
+                raise AssertionError('Transport conditions are not keyboard accessible')
+            if page.evaluate('document.documentElement.scrollWidth > innerWidth + 2'):
+                raise AssertionError('Expanded curriculum conditions overflow the page')
+            details.locator('summary').press('Enter')
+            figure.screenshot(path=str(output / f'curriculum-{width}-{theme}.png'))
+
+
 def run(root: Path, output: Path, browser_channel: str | None = None,
         require_blueprint: bool = False) -> None:
     from playwright.sync_api import sync_playwright
@@ -130,6 +167,7 @@ def run(root: Path, output: Path, browser_channel: str | None = None,
             page = context.new_page()
             page.on("pageerror", lambda error: failures.append(str(error)))
             check_compact_sidebar(page, base)
+            check_curriculum_diagram(page, base, output)
             page.set_viewport_size({"width": 390, "height": 900})
             check_curriculum_explorer(page, base)
             for width in WIDTHS:
