@@ -59,7 +59,11 @@ class CurriculumDiagramTests(unittest.TestCase):
         self.assertIn('subgraph PLANNED[', source)
         self.assertIn('accTitle:', source)
         self.assertIn('accDescr:', source)
+        self.assertIn('Planned Part III', source)
+        self.assertIn('Planned Part IV', source)
         page = self.markup()
+        self.assertIn('Planned Part III', page)
+        self.assertIn('Planned Part IV', page)
         self.assertEqual(re.findall(r'data-curriculum-link="([^"]+)"', page),
                          ['EXT:CORE', 'CORE:TEXTBOOK', 'BE:SCI', 'QIT:SCI'])
         self.assertEqual(re.findall(r'data-curriculum-node="([^"]+)"', page),

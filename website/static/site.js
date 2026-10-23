@@ -45,12 +45,12 @@
       <section class="curriculum-group curriculum-planned" aria-label="Planned textbook extensions">
         <h4>Planned extensions</h4>
         <p class="curriculum-boundary">Each chapter requires local proof admission.</p>
-        <section class="curriculum-node curriculum-qit" data-curriculum-node="QIT"><h4>Part III · Quantum Information<br/>and Representation Theory</h4><p>Symmetry · Schur–Weyl · de Finetti</p></section>
+        <section class="curriculum-node curriculum-qit" data-curriculum-node="QIT"><h4>Planned Part III · Quantum Information<br/>and Representation Theory</h4><p>Symmetry · Schur–Weyl · de Finetti</p></section>
         <div class="curriculum-supports" role="group" aria-label="Two conditional support paths into scientific computing">
           <div class="curriculum-link conditional" data-curriculum-link="BE:SCI" role="img" aria-label="Conditional algorithm support from Part II to Part IV"><span aria-hidden="true">Algorithm support<br/><small>from Part II</small></span></div>
           <div class="curriculum-link conditional" data-curriculum-link="QIT:SCI" role="img" aria-label="Conditional theoretical support from Part III to Part IV"><span aria-hidden="true">Theoretical support<br/><small>from Part III</small></span></div>
         </div>
-        <section class="curriculum-node curriculum-sci" data-curriculum-node="SCI"><h4>Part IV · Quantum Scientific Computing</h4><p>QSP/QSVT · simulation · estimation<br/>linear systems · dynamics · open systems</p></section>
+        <section class="curriculum-node curriculum-sci" data-curriculum-node="SCI"><h4>Planned Part IV · Quantum Scientific Computing</h4><p>QSP/QSVT · simulation · estimation<br/>linear systems · dynamics · open systems</p></section>
       </section>
     </section>
   </div>
