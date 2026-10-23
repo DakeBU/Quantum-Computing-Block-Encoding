@@ -63,3 +63,7 @@ QuantumBlockEncoding.lean text eol=lf
 Tests.lean text eol=lf
 docs/theorem-publication-protocol.md text eol=lf
 tools/robin_maintenance_export_audit/** -text
+
+# Preserve this bounded reviewed foundation packet and its exact source pins.
+/experiments/quantum-foundations/measurement-completeness/** -text
+/research-wiki/external-lean-libraries/axqm.md text eol=lf
