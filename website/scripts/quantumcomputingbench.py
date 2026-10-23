@@ -137,12 +137,16 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
                     'Current content-bound mathematical second pass accepted.' if core.get("editorial_second_pass") == "content_bound_review_accepted" else
                     'Inherited reviews only; a current content-bound mathematical second pass remains pending.')
     body += '<p class="qcb-boundary">' + esc(core["evidence_relation"].replace("_", " ")) + '. ' + review_status + ' No new Lean verification is claimed for this NL view.</p>'
-    premises = '<ul>' + "".join('<li>' + esc(s) + '</li>' for s in item["assumptions"] + item["conventions"]) + '</ul>'
+    premises = ''.join('<ul data-qcb-active-' + field + '>' + ''.join(
+        '<li>' + esc(s) + '</li>' for s in item[field]) + '</ul>'
+        for field in ('assumptions', 'conventions'))
     body += section("Assumptions and conventions", premises, "assumptions")
     if core.get("question_successor"):
         body += '<p class="qcb-boundary" data-qcb-question-version="' + esc(core["question_version"]) + '">This question explicitly revises its historical contract. A Lean companion must bind the current contract hash, not the predecessor hash. This is one reserved core, not two exercises.</p>'
         if "conventions" in core["question_successor"]["changed_contract_fields"]:
             body += '<p class="qcb-boundary" data-qcb-convention-revision="2">The conventions above are the current premises. The superseded convention list is retained in the revision audit below, not as active assumptions. A question may quote a historical claim to assess or refute it.</p>'
+        if "assumptions" in core["question_successor"]["changed_contract_fields"]:
+            body += '<p class="qcb-boundary" data-qcb-assumption-revision="2">The assumptions above are the current premises. The superseded assumptions are retained in the folded historical audit, not as current premises. This is an explicit correction, not an equivalent restatement.</p>'
     body += section("Question", prose(item["question"]), "question")
     roadmap = '<ol>' + "".join('<li>' + esc(s["claim"]) + '</li>' for s in item["semantic_steps"]) + '</ol>'
     body += disclosure("Hint: mathematical route", prose(core["title"]) + roadmap, "hint")
@@ -172,6 +176,11 @@ def core_body(core, item, catalog, graph, live_ids, prefix, publication_commit=N
             for title, key in (("Historical conventions (audit only)", "original_conventions"),
                                ("Current conventions", "current_conventions")):
                 revision_body += '<h3>' + title + '</h3><ul>' + ''.join(
+                    '<li>' + esc(s) + '</li>' for s in lineage[key]) + '</ul>'
+        if "assumptions" in lineage["changed_contract_fields"]:
+            for title, key in (("Historical assumptions (audit only)", "original_assumptions"),
+                               ("Current assumptions", "current_assumptions")):
+                revision_body += '<h3>' + title + '</h3><ul data-qcb-' + key + '>' + ''.join(
                     '<li>' + esc(s) + '</li>' for s in lineage[key]) + '</ul>'
         body += disclosure("Question revision lineage", revision_body + prose(json.dumps(lineage, indent=2)), "revision")
     return body + '</article>'
