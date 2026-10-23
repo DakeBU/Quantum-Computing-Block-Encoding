@@ -43,8 +43,8 @@ remain where they are; reader pages resolve their exact admitted source records.
    family, split, graph/source scope and support-step count stay reserved. A
    companion bound to the old hash is stale, not automatically upgraded. The
    current implementation supports one first correction per frozen core;
-   further chains or changes to assumptions/graph scope require a separately
-   designed and reviewed migration, not an extra JSON override.
+   further chains or changes outside the explicitly supported migrations require
+   a separately designed and reviewed migration, not an extra JSON override.
    Payload schema `qcb.textbook_question_successor.v1` changes only the question.
    Schema `qcb.textbook_question_successor.v2` additionally requires an explicit,
    changed nonempty convention list. It still denotes question version 2, not a
@@ -55,6 +55,49 @@ remain where they are; reader pages resolve their exact admitted source records.
    No other contract field is overridable. Historical conventions appear only
    in the folded revision audit, not among active premises. Browser acceptance
    must check this distinction before a stable gate can pass.
+
+## Explicit assumption corrections
+
+Payload schema `qcb.textbook_question_successor.v3` is a narrow alternative to
+V1/V2, not permission to combine them or make a second correction. It still
+means the **first question version 2**. Its exact payload shape is V1 plus
+`assumptions`; only `question` and `assumptions` may change among the nine
+contract fields. The ordered assumptions must be nonempty, different and free
+of blank or trim-equivalent duplicate strings. Literal bytes are not normalized
+when computing contracts. Conventions, graph/source scope, family and split are
+not overridable. A complete summary, answer, rubric and all original ordered
+per-step node assignments remain required.
+
+A new, genuinely distinct `independent-assumption-successor-review` must bind
+the complete candidate/predecessor, both centrally recomputed contracts,
+literal `original_assumptions` and `current_assumptions`, and exactly
+`changed_contract_fields: ["question", "assumptions"]`. It includes substantive
+reconstruction, contract-change and assumption-change assessments. The
+`assumption_edit_map` covers every old/new index exactly once. Each entry has
+`disposition`, `old_index`, `new_index`, `old_assumption`, `new_assumption` and
+`reason`; retained literals must be equal, replaced literals different, and the
+absent side of an added/removed entry is null. Plan208's bounded correction may
+replace index0 only: precision assumption index1 stays literally at index1.
+
+The fixed `semantic_slot_assessment` addresses domain/quantifiers,
+target/normalization, phase/registers, error/success, source/convention
+noninterference and oracle/resource model. These are real review obligations,
+not a truth classifier implemented by string fields. An impeccable JSON record
+does not establish mathematical truth, real independence or expert approval.
+An obstruction report or implementation-design review is not approval of a
+complete new candidate. Maintainer inspection of the actual mathematics is
+still necessary, including any hidden weakening expressed in prose.
+
+Current premises appear before the question; both old/current lists and
+contract hashes are disclosed in the folded revision audit. A historical
+assertion may be quoted for refutation elsewhere, but is not an active premise.
+Prompts, downloads, grading and formal-view proposals must bind the resolved
+current object. Active task/context identities are recomputed; old identities,
+validation and receipts are audit-only, and old Lean companions do not transfer.
+The actual browser report must check exact active/historical premise lists and
+bind the new reader-source digest. Missing, stale or rejected review withholds
+the core, with no fallback to the old answer. Implementing this migration alone
+does not restore any withheld core or satisfy a stable-release gate.
 
 ## Concurrent collaborators
 

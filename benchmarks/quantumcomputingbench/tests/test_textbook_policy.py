@@ -35,7 +35,7 @@ class TextbookPolicyTests(unittest.TestCase):
         old = {i["core_id"]: i for i in self.historical}
         for item in current:
             changed = item.get("question_successor", {}).get("changed_contract_fields", [])
-            self.assertIn(changed, ([], ["question"], ["question", "conventions"]))
+            self.assertIn(changed, ([], ["question"], ["question", "conventions"], ["question", "assumptions"]))
             unchanged = [k for k in CONTRACT_FIELDS if k not in changed]
             self.assertEqual({k: item[k] for k in unchanged}, {k: old[item["core_id"]][k] for k in unchanged})
             if item.get("textbook_successor"):

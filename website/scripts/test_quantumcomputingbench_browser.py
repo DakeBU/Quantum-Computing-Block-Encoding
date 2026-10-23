@@ -29,7 +29,7 @@ def run(root, output, channel=None):
     thread.start()
     base = f"http://127.0.0.1:{server.server_port}/"
     rows, formal_rows, withdrawal_rows, revision_rows, failures = [], [], [], [], []
-    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels", "quarantined_content_excluded", "question_revision_lineage", "convention_revision_lineage")}
+    checks = {k: False for k in ("mobile_no_overflow", "desktop_no_overflow", "themes", "solution_disclosure", "graph_links", "search_excludes_answers", "native_formal_panels", "quarantined_content_excluded", "question_revision_lineage", "convention_revision_lineage", "assumption_revision_lineage")}
     core_route = HUB + "cores/" + catalog["cores"][0]["core_id"] + "/index.html"
     routes = [HUB + "index.html", HUB + "non-lean/index.html", HUB + "lean/index.html",
               HUB + "non-lean/state-preparation/structured_preparation/index.html",
@@ -104,6 +104,15 @@ def run(root, output, channel=None):
                                 (revision['predecessor_contract_hash'], core['contract_hash'])):
                             failures.append('question contract lineage disclosure failed: ' + route)
                         convention_revision = 'conventions' in revision['changed_contract_fields']
+                        assumption_revision = 'assumptions' in revision['changed_contract_fields']
+                        if assumption_revision:
+                            active = page.locator('#assumptions [data-qcb-active-assumptions] > li').all_text_contents()
+                            old = panel.locator('[data-qcb-original_assumptions] > li').all_text_contents()
+                            current = panel.locator('[data-qcb-current_assumptions] > li').all_text_contents()
+                            if (active != revision['current_assumptions'] or old != revision['original_assumptions']
+                                    or current != revision['current_assumptions']
+                                    or page.locator('[data-qcb-assumption-revision="2"]').count() != 1):
+                                failures.append('active/historical assumptions not exactly distinguished: ' + route)
                         if convention_revision:
                             assumptions = page.locator('#assumptions').inner_text()
                             if (page.locator('[data-qcb-convention-revision="2"]').count() != 1
@@ -123,7 +132,8 @@ def run(root, output, channel=None):
                         page.screenshot(path=str(output / f"revision-{core['core_id']}-{width}-{theme}.png"))
                         revision_rows.append({'core_id': core['core_id'], 'width': width, 'theme': theme,
                                               'old_and_new_contracts_checked': True, 'solution_remained_folded': True,
-                                              'conventions_checked': convention_revision})
+                                              'conventions_checked': convention_revision,
+                                              'assumptions_checked': assumption_revision})
                     for core in catalog["cores"]:
                         formal = core["views"].get("lean")
                         if not formal:
